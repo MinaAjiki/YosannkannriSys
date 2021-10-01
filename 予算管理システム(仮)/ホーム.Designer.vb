@@ -22,9 +22,9 @@ Partial Class ホーム
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああ", New System.Windows.Forms.TreeNode() {TreeNode13})
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああ", New System.Windows.Forms.TreeNode() {TreeNode1})
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -43,6 +43,8 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.マスタToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ヘルプToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.C1SplitContainer1.SuspendLayout()
@@ -61,7 +63,7 @@ Partial Class ホーム
         Me.MenuStrip1.AutoSize = False
         Me.MenuStrip1.BackColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(201, Byte), Integer), CType(CType(95, Byte), Integer))
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ファイルToolStripMenuItem, Me.予算ToolStripMenuItem, Me.外注ToolStripMenuItem, Me.出来高ToolStripMenuItem, Me.見積ToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ファイルToolStripMenuItem, Me.予算ToolStripMenuItem, Me.外注ToolStripMenuItem, Me.出来高ToolStripMenuItem, Me.見積ToolStripMenuItem, Me.マスタToolStripMenuItem, Me.ヘルプToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
@@ -91,15 +93,15 @@ Partial Class ホーム
         Me.外注ToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.外注ToolStripMenuItem.Name = "外注ToolStripMenuItem"
         Me.外注ToolStripMenuItem.Size = New System.Drawing.Size(44, 22)
-        Me.外注ToolStripMenuItem.Text = "外注"
+        Me.外注ToolStripMenuItem.Text = "見積"
         '
         '出来高ToolStripMenuItem
         '
         Me.出来高ToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.出来高ToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.出来高ToolStripMenuItem.Name = "出来高ToolStripMenuItem"
-        Me.出来高ToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
-        Me.出来高ToolStripMenuItem.Text = "出来高"
+        Me.出来高ToolStripMenuItem.Size = New System.Drawing.Size(68, 22)
+        Me.出来高ToolStripMenuItem.Text = "外注計画"
         '
         '見積ToolStripMenuItem
         '
@@ -107,7 +109,7 @@ Partial Class ホーム
         Me.見積ToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.見積ToolStripMenuItem.Name = "見積ToolStripMenuItem"
         Me.見積ToolStripMenuItem.Size = New System.Drawing.Size(44, 22)
-        Me.見積ToolStripMenuItem.Text = "見積"
+        Me.見積ToolStripMenuItem.Text = "出力"
         '
         'TreeView1
         '
@@ -117,13 +119,13 @@ Partial Class ホーム
         Me.TreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TreeView1.Location = New System.Drawing.Point(0, 3)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode13.Name = "ノード2"
-        TreeNode13.Text = "ああああああああああああああ"
-        TreeNode14.Name = "ノード0"
-        TreeNode14.Text = "ああああああああ"
-        TreeNode15.Name = "ノード1"
-        TreeNode15.Text = "ああああああああああああああ"
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode14, TreeNode15})
+        TreeNode1.Name = "ノード2"
+        TreeNode1.Text = "ああああああああああああああ"
+        TreeNode2.Name = "ノード0"
+        TreeNode2.Text = "ああああああああ"
+        TreeNode3.Name = "ノード1"
+        TreeNode3.Text = "ああああああああああああああ"
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3})
         Me.TreeView1.Size = New System.Drawing.Size(269, 655)
         Me.TreeView1.TabIndex = 20
         '
@@ -174,6 +176,8 @@ Partial Class ホーム
         Me.C1SplitterPanel2.Controls.Add(Me.C1TextBox1)
         Me.C1SplitterPanel2.Controls.Add(Me.Label2)
         Me.C1SplitterPanel2.Controls.Add(Me.Button1)
+        Me.C1SplitterPanel2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.C1SplitterPanel2.ForeColor = System.Drawing.Color.White
         Me.C1SplitterPanel2.HeaderTextAlign = C1.Win.C1SplitContainer.PanelTextAlign.Right
         Me.C1SplitterPanel2.Height = 659
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(271, 0)
@@ -190,7 +194,7 @@ Partial Class ホーム
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(113, 70)
+        Me.Button2.Location = New System.Drawing.Point(110, 43)
         Me.Button2.Margin = New System.Windows.Forms.Padding(0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(90, 30)
@@ -204,7 +208,7 @@ Partial Class ホーム
         Me.C1TextBox4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.C1TextBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox4.Location = New System.Drawing.Point(120, 135)
+        Me.C1TextBox4.Location = New System.Drawing.Point(117, 108)
         Me.C1TextBox4.Name = "C1TextBox4"
         Me.C1TextBox4.Size = New System.Drawing.Size(213, 20)
         Me.C1TextBox4.TabIndex = 28
@@ -218,7 +222,7 @@ Partial Class ホーム
         Me.C1TextBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.C1TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox3.Location = New System.Drawing.Point(120, 114)
+        Me.C1TextBox3.Location = New System.Drawing.Point(117, 87)
         Me.C1TextBox3.Name = "C1TextBox3"
         Me.C1TextBox3.Size = New System.Drawing.Size(213, 20)
         Me.C1TextBox3.TabIndex = 27
@@ -231,8 +235,9 @@ Partial Class ホーム
         Me.C1TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.C1TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.C1TextBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox2.Location = New System.Drawing.Point(19, 135)
+        Me.C1TextBox2.Location = New System.Drawing.Point(16, 108)
         Me.C1TextBox2.Name = "C1TextBox2"
         Me.C1TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.C1TextBox2.TabIndex = 26
@@ -246,8 +251,9 @@ Partial Class ホーム
         Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.C1TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.C1TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.Location = New System.Drawing.Point(19, 114)
+        Me.C1TextBox1.Location = New System.Drawing.Point(16, 87)
         Me.C1TextBox1.Name = "C1TextBox1"
         Me.C1TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.C1TextBox1.TabIndex = 25
@@ -260,7 +266,7 @@ Partial Class ホーム
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(16, 42)
+        Me.Label2.Location = New System.Drawing.Point(13, 15)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(92, 18)
         Me.Label2.TabIndex = 24
@@ -274,14 +280,30 @@ Partial Class ホーム
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(18, 70)
+        Me.Button1.Location = New System.Drawing.Point(15, 43)
         Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(90, 30)
         Me.Button1.TabIndex = 23
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'Form1
+        'マスタToolStripMenuItem
+        '
+        Me.マスタToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.マスタToolStripMenuItem.ForeColor = System.Drawing.Color.White
+        Me.マスタToolStripMenuItem.Name = "マスタToolStripMenuItem"
+        Me.マスタToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
+        Me.マスタToolStripMenuItem.Text = "マスタ"
+        '
+        'ヘルプToolStripMenuItem
+        '
+        Me.ヘルプToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ヘルプToolStripMenuItem.ForeColor = System.Drawing.Color.White
+        Me.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem"
+        Me.ヘルプToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
+        Me.ヘルプToolStripMenuItem.Text = "ヘルプ"
+        '
+        'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
@@ -289,7 +311,8 @@ Partial Class ホーム
         Me.ClientSize = New System.Drawing.Size(1264, 684)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.C1SplitContainer1)
-        Me.Name = "Form1"
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Name = "ホーム"
         Me.Text = "Form1"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -322,4 +345,6 @@ Partial Class ホーム
     Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents マスタToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ヘルプToolStripMenuItem As ToolStripMenuItem
 End Class
