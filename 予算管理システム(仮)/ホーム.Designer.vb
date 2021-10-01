@@ -22,9 +22,9 @@ Partial Class ホーム
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああ", New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ああああああああああああああ")
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("", New System.Windows.Forms.TreeNode() {TreeNode1})
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -120,11 +120,11 @@ Partial Class ホーム
         Me.TreeView1.Location = New System.Drawing.Point(0, 3)
         Me.TreeView1.Name = "TreeView1"
         TreeNode1.Name = "ノード2"
-        TreeNode1.Text = "ああああああああああああああ"
+        TreeNode1.Text = ""
         TreeNode2.Name = "ノード0"
-        TreeNode2.Text = "ああああああああ"
+        TreeNode2.Text = ""
         TreeNode3.Name = "ノード1"
-        TreeNode3.Text = "ああああああああああああああ"
+        TreeNode3.Text = ""
         Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3})
         Me.TreeView1.Size = New System.Drawing.Size(269, 655)
         Me.TreeView1.TabIndex = 20
