@@ -32,6 +32,8 @@ Partial Class ホーム
         Me.外注ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.出来高ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.見積ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.マスタToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ヘルプToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.C1SplitContainer1 = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
@@ -43,8 +45,6 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.マスタToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ヘルプToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.C1SplitContainer1.SuspendLayout()
@@ -110,6 +110,22 @@ Partial Class ホーム
         Me.見積ToolStripMenuItem.Name = "見積ToolStripMenuItem"
         Me.見積ToolStripMenuItem.Size = New System.Drawing.Size(44, 22)
         Me.見積ToolStripMenuItem.Text = "出力"
+        '
+        'マスタToolStripMenuItem
+        '
+        Me.マスタToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.マスタToolStripMenuItem.ForeColor = System.Drawing.Color.White
+        Me.マスタToolStripMenuItem.Name = "マスタToolStripMenuItem"
+        Me.マスタToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
+        Me.マスタToolStripMenuItem.Text = "マスタ"
+        '
+        'ヘルプToolStripMenuItem
+        '
+        Me.ヘルプToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ヘルプToolStripMenuItem.ForeColor = System.Drawing.Color.White
+        Me.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem"
+        Me.ヘルプToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
+        Me.ヘルプToolStripMenuItem.Text = "ヘルプ"
         '
         'TreeView1
         '
@@ -286,22 +302,6 @@ Partial Class ホーム
         Me.Button1.Size = New System.Drawing.Size(90, 30)
         Me.Button1.TabIndex = 23
         Me.Button1.UseVisualStyleBackColor = False
-        '
-        'マスタToolStripMenuItem
-        '
-        Me.マスタToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.マスタToolStripMenuItem.ForeColor = System.Drawing.Color.White
-        Me.マスタToolStripMenuItem.Name = "マスタToolStripMenuItem"
-        Me.マスタToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
-        Me.マスタToolStripMenuItem.Text = "マスタ"
-        '
-        'ヘルプToolStripMenuItem
-        '
-        Me.ヘルプToolStripMenuItem.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.ヘルプToolStripMenuItem.ForeColor = System.Drawing.Color.White
-        Me.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem"
-        Me.ヘルプToolStripMenuItem.Size = New System.Drawing.Size(56, 22)
-        Me.ヘルプToolStripMenuItem.Text = "ヘルプ"
         '
         'ホーム
         '

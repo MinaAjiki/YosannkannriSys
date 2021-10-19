@@ -50,22 +50,30 @@
   <ItemGroup>
     <Reference Include="C1.C1Zip.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1FlexGrid.Classic.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Input.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a" />
     <Reference Include="C1.Win.C1SplitContainer.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Themes.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Themes.Extended.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -81,6 +89,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="出来高入力.Designer.vb">
+      <DependentUpon>出来高入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="出来高入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="協力業者入力.Designer.vb">
+      <DependentUpon>協力業者入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="協力業者入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ホーム.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +112,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -103,8 +124,50 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="印刷代価選択.Designer.vb">
+      <DependentUpon>印刷代価選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="印刷代価選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="業者選択%28Export%29.Designer.vb">
+      <DependentUpon>業者選択%28Export%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="業者選択%28Export%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="業者一覧.Designer.vb">
+      <DependentUpon>業者一覧.vb</DependentUpon>
+    </Compile>
+    <Compile Include="業者一覧.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="業者選択%28出来高%29.Designer.vb">
+      <DependentUpon>業者選択%28出来高%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="業者選択%28出来高%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="注文書番号入力.Designer.vb">
+      <DependentUpon>注文書番号入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="注文書番号入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="締切日入力.Designer.vb">
+      <DependentUpon>締切日入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="締切日入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="出来高入力.resx">
+      <DependentUpon>出来高入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="協力業者入力.resx">
+      <DependentUpon>協力業者入力.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ホーム.resx">
       <DependentUpon>ホーム.vb</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +177,18 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="業者一覧.resx">
+      <DependentUpon>業者一覧.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="業者選択%28Export%29.resx">
+      <DependentUpon>業者選択%28Export%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="業者選択%28出来高%29.resx">
+      <DependentUpon>業者選択%28出来高%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="締切日入力.resx">
+      <DependentUpon>締切日入力.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
