@@ -3,10 +3,6 @@
 
     End Sub
 
-    Private Sub C1Button1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Button4.MouseLeave
         Button4.ImageIndex = 0
     End Sub

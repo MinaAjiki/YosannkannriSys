@@ -23,9 +23,9 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("", New System.Windows.Forms.TreeNode() {TreeNode19})
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("", New System.Windows.Forms.TreeNode() {TreeNode1})
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -40,6 +40,7 @@ Partial Class ホーム
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.Button3 = New System.Windows.Forms.Button()
         Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
@@ -52,7 +53,7 @@ Partial Class ホーム
         Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.C1SplitContainer1.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
@@ -145,13 +146,13 @@ Partial Class ホーム
         Me.TreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TreeView1.Location = New System.Drawing.Point(0, 3)
         Me.TreeView1.Name = "TreeView1"
-        TreeNode19.Name = "ノード2"
-        TreeNode19.Text = ""
-        TreeNode20.Name = "ノード0"
-        TreeNode20.Text = ""
-        TreeNode21.Name = "ノード1"
-        TreeNode21.Text = ""
-        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode20, TreeNode21})
+        TreeNode1.Name = "ノード2"
+        TreeNode1.Text = ""
+        TreeNode2.Name = "ノード0"
+        TreeNode2.Text = ""
+        TreeNode3.Name = "ノード1"
+        TreeNode3.Text = ""
+        Me.TreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3})
         Me.TreeView1.Size = New System.Drawing.Size(269, 655)
         Me.TreeView1.TabIndex = 20
         '
@@ -196,6 +197,7 @@ Partial Class ホーム
         '
         Me.C1SplitterPanel2.AutoScroll = True
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel2.Controls.Add(Me.Button1)
         Me.C1SplitterPanel2.Controls.Add(Me.Button4)
         Me.C1SplitterPanel2.Controls.Add(Me.Button3)
         Me.C1SplitterPanel2.Controls.Add(Me.C1FlexGrid1)
@@ -234,6 +236,32 @@ Partial Class ホーム
         Me.Button4.Text = " 　再 計 算"
         Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'ButtonImageList
+        '
+        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
+        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
+        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
+        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
+        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
+        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(12, "RevisionCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(13, "RevisionCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(14, "RevisionCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
+        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
         'Button3
         '
@@ -399,31 +427,21 @@ Partial Class ホーム
         Me.Label2.TabIndex = 24
         Me.Label2.Text = "<< 予算総括表"
         '
-        'ButtonImageList
+        'Button1
         '
-        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
-        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
-        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
-        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mousenter.png")
-        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
-        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
-        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(12, "RevisionCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(13, "RevisionCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(14, "RevisionCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
-        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
-        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Button1.ImageIndex = 0
+        Me.Button1.ImageList = Me.ButtonImageList
+        Me.Button1.Location = New System.Drawing.Point(448, 314)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(102, 31)
+        Me.Button1.TabIndex = 41
+        Me.Button1.Text = " 　再 計 算"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'ホーム
         '
@@ -478,4 +496,5 @@ Partial Class ホーム
     Friend WithEvents Button3 As Button
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Button4 As Button
+    Friend WithEvents Button1 As Button
 End Class
