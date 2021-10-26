@@ -65,7 +65,6 @@ Partial Class ホーム
         Me.TreePanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.Button3 = New System.Windows.Forms.Button()
         Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
@@ -78,10 +77,7 @@ Partial Class ホーム
         Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.C1SplitContainer1.SuspendLayout()
-        Me.C1SplitterPanel1.SuspendLayout()
-        Me.C1SplitterPanel2.SuspendLayout()
+        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.MenuComｍand = New C1.Win.C1Command.C1CommandHolder()
         Me.ファイル = New C1.Win.C1Command.C1CommandMenu()
         Me.C1CommandLink3 = New C1.Win.C1Command.C1CommandLink()
@@ -500,32 +496,6 @@ Partial Class ホーム
         Me.FormPanel.TabIndex = 1
         Me.FormPanel.Text = "パネル2"
         '
-        'ButtonImageList
-        '
-        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
-        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
-        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
-        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mousenter.png")
-        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
-        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
-        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(12, "ModifiyCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(13, "ModifyCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(14, "ModifyCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
-        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
-        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
-        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
-        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
-        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
-        '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.White
@@ -687,10 +657,32 @@ Partial Class ホーム
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(0, 12)
         Me.Label2.TabIndex = 42
-        Me.Label2.Location = New System.Drawing.Point(0, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(0, 12)
-        Me.Label2.TabIndex = 42
+        '
+        'ButtonImageList
+        '
+        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
+        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
+        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
+        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
+        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
+        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(12, "ModifiyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(13, "ModifyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(14, "ModifyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
+        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
         'MenuComｍand
         '
@@ -1897,6 +1889,7 @@ Partial Class ホーム
         Me.ClientSize = New System.Drawing.Size(1264, 684)
         Me.Controls.Add(Me.HomeSplitContainer)
         Me.Controls.Add(Me.MainMenu)
+        Me.Enabled = False
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Name = "ホーム"
@@ -1944,8 +1937,6 @@ Partial Class ホーム
     Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
     Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Button3 As Button
-    Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Button4 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink3 As C1.Win.C1Command.C1CommandLink
