@@ -1,18 +1,18 @@
-﻿Public Class ホーム
+﻿Imports C1.Win.C1Command
+Imports System.Windows.Forms.Form
+
+Public Class ホーム
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        予算選択.Show()
 
     End Sub
 
-    Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Button4.MouseLeave
-        Button4.ImageIndex = 0
+    Private Sub 開く_Click(sender As Object, e As ClickEventArgs) Handles 開く.Click
+        DB選択.Show()
     End Sub
 
-    Private Sub Button4_MouseEnter(sender As Object, e As EventArgs) Handles Button4.MouseEnter
-        Button4.Cursor = Cursors.Hand
-        Button4.ImageIndex = 1
+    Private Sub 参照作成_Click(sender As Object, e As ClickEventArgs) Handles 参照作成.Click
+        Form参照作成.Show()
     End Sub
 
-    Private Sub Button4_MouseDown(sender As Object, e As MouseEventArgs) Handles Button4.MouseDown
-        Button4.ImageIndex = 2
-    End Sub
 End Class
