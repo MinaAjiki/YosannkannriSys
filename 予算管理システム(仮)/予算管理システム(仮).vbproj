@@ -140,6 +140,12 @@
     <Compile Include="エラー.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ホーム.Designer.vb">
+      <DependentUpon>ホーム.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ホーム.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="予算選択.Designer.vb">
       <DependentUpon>予算選択.vb</DependentUpon>
     </Compile>
@@ -156,13 +162,6 @@
       <DependentUpon>協力業者入力.vb</DependentUpon>
     </Compile>
     <Compile Include="協力業者入力.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ホーム.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ホーム.Designer.vb">
-      <DependentUpon>ホーム.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -238,6 +237,9 @@
     <EmbeddedResource Include="Form参照作成.resx">
       <DependentUpon>Form参照作成.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ホーム.resx">
+      <DependentUpon>ホーム.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="予算選択.resx">
       <DependentUpon>予算選択.vb</DependentUpon>
     </EmbeddedResource>
@@ -249,9 +251,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="協力業者入力.resx">
       <DependentUpon>協力業者入力.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ホーム.resx">
-      <DependentUpon>ホーム.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
