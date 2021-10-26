@@ -78,6 +78,10 @@ Partial Class ホーム
         Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.C1SplitContainer1.SuspendLayout()
+        Me.C1SplitterPanel1.SuspendLayout()
+        Me.C1SplitterPanel2.SuspendLayout()
         Me.MenuComｍand = New C1.Win.C1Command.C1CommandHolder()
         Me.ファイル = New C1.Win.C1Command.C1CommandMenu()
         Me.C1CommandLink3 = New C1.Win.C1Command.C1CommandLink()
@@ -679,6 +683,10 @@ Partial Class ホーム
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(0, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(0, 12)
+        Me.Label2.TabIndex = 42
         Me.Label2.Location = New System.Drawing.Point(0, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(0, 12)
@@ -1936,6 +1944,8 @@ Partial Class ホーム
     Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
     Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Button3 As Button
+    Friend WithEvents ButtonImageList As ImageList
+    Friend WithEvents Button4 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink3 As C1.Win.C1Command.C1CommandLink

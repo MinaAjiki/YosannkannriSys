@@ -22,9 +22,19 @@ Partial Class 締切日入力
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(締切日入力))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.C1FlexGrid2 = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
+        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -47,10 +57,102 @@ Partial Class 締切日入力
         Me.C1FlexGrid1.ColumnContextMenuEnabled = True
         Me.C1FlexGrid1.ColumnInfo = "3,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Caption:""ID"";AllowMerging:True;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:166;C" &
     "aption:""締切日"";}" & Global.Microsoft.VisualBasic.ChrW(9)
-        Me.C1FlexGrid1.Location = New System.Drawing.Point(30, 55)
+        Me.C1FlexGrid1.Location = New System.Drawing.Point(30, 384)
         Me.C1FlexGrid1.Name = "C1FlexGrid1"
         Me.C1FlexGrid1.Size = New System.Drawing.Size(349, 150)
         Me.C1FlexGrid1.TabIndex = 45
+        '
+        'ButtonImageList
+        '
+        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
+        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
+        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
+        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
+        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
+        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(12, "RevisionCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(13, "RevisionCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(14, "RevisionCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
+        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
+        '
+        'Button4
+        '
+        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Button4.ImageIndex = 3
+        Me.Button4.ImageList = Me.ButtonImageList
+        Me.Button4.Location = New System.Drawing.Point(350, 288)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(102, 31)
+        Me.Button4.TabIndex = 47
+        Me.Button4.Text = "　登　録"
+        Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'C1FlexGrid2
+        '
+        Me.C1FlexGrid2.AllowAddNew = True
+        Me.C1FlexGrid2.AllowDelete = True
+        Me.C1FlexGrid2.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
+        Me.C1FlexGrid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.C1FlexGrid2.AutoClipboard = True
+        Me.C1FlexGrid2.BackColor = System.Drawing.Color.White
+        Me.C1FlexGrid2.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.C1FlexGrid2.ColumnInfo = "10,1,0,0,0,-1,Columns:"
+        Me.C1FlexGrid2.Location = New System.Drawing.Point(30, 52)
+        Me.C1FlexGrid2.Name = "C1FlexGrid2"
+        Me.C1FlexGrid2.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
+        Me.C1FlexGrid2.Size = New System.Drawing.Size(457, 177)
+        Me.C1FlexGrid2.StyleInfo = resources.GetString("C1FlexGrid2.StyleInfo")
+        Me.C1FlexGrid2.TabIndex = 48
+        '
+        'C1TextBox3
+        '
+        Me.C1TextBox3.AutoSize = False
+        Me.C1TextBox3.BackColor = System.Drawing.Color.White
+        Me.C1TextBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.C1TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.C1TextBox3.Location = New System.Drawing.Point(131, 299)
+        Me.C1TextBox3.Name = "C1TextBox3"
+        Me.C1TextBox3.Size = New System.Drawing.Size(213, 20)
+        Me.C1TextBox3.TabIndex = 50
+        Me.C1TextBox3.Tag = Nothing
+        Me.C1TextBox3.Value = ""
+        '
+        'C1TextBox1
+        '
+        Me.C1TextBox1.AutoSize = False
+        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.C1TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.C1TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.C1TextBox1.Location = New System.Drawing.Point(30, 299)
+        Me.C1TextBox1.Name = "C1TextBox1"
+        Me.C1TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.C1TextBox1.TabIndex = 49
+        Me.C1TextBox1.Tag = Nothing
+        Me.C1TextBox1.Value = "締切日"
+        Me.C1TextBox1.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
         '
         '締切日入力
         '
@@ -58,11 +160,19 @@ Partial Class 締切日入力
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(800, 620)
+        Me.Controls.Add(Me.C1TextBox3)
+        Me.Controls.Add(Me.C1TextBox1)
+        Me.Controls.Add(Me.C1FlexGrid2)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.C1FlexGrid1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "締切日入力"
         Me.Text = "締切日入力"
         CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -70,4 +180,9 @@ Partial Class 締切日入力
 
     Friend WithEvents Label2 As Label
     Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents ButtonImageList As ImageList
+    Friend WithEvents Button4 As Button
+    Friend WithEvents C1FlexGrid2 As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
 End Class

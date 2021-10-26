@@ -134,6 +134,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="エラー.Designer.vb">
+      <DependentUpon>エラー.vb</DependentUpon>
+    </Compile>
+    <Compile Include="エラー.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="予算選択.Designer.vb">
       <DependentUpon>予算選択.vb</DependentUpon>
     </Compile>
@@ -174,6 +180,18 @@
       <DependentUpon>印刷代価選択.vb</DependentUpon>
     </Compile>
     <Compile Include="印刷代価選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="変更内容入力.Designer.vb">
+      <DependentUpon>変更内容入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="変更内容入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="外注内訳入力.Designer.vb">
+      <DependentUpon>外注内訳入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="外注内訳入力.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form参照作成.Designer.vb">
@@ -223,6 +241,9 @@
     <EmbeddedResource Include="予算選択.resx">
       <DependentUpon>予算選択.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="エラー.resx">
+      <DependentUpon>エラー.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="出来高入力.resx">
       <DependentUpon>出来高入力.vb</DependentUpon>
     </EmbeddedResource>
@@ -239,6 +260,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="変更内容入力.resx">
+      <DependentUpon>変更内容入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="外注内訳入力.resx">
+      <DependentUpon>外注内訳入力.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="業者一覧.resx">
       <DependentUpon>業者一覧.vb</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="業者選択%28出来高%29.resx">
       <DependentUpon>業者選択%28出来高%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="注文書番号入力.resx">
+      <DependentUpon>注文書番号入力.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="締切日入力.resx">
       <DependentUpon>締切日入力.vb</DependentUpon>
@@ -275,6 +305,8 @@
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <None Include="Resources\OpenFile.png" />
+    <None Include="Resources\Default.png" />
+    <None Include="Resources\Entry.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
