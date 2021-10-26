@@ -118,57 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="SystemTheme.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>299, 17</value>
+    <value>11, 15</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGMAAAAdCAYAAAC+E9IkAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAALLSURBVGhD7Zo/axRBHIbvG/gRLPwACvbeFwgctiqk
-        O0u1sFAEBYV0Bm3EQlOIaKEINgFBDitTBBaUaEBwxXD4J0XwSDBgMd4zt2+Y2+xdztm72VXnhZfdmb3M
-        wvvs/GYC00DH23ebfSd9m+jgJvemQLScB9HVuQWMlMbcpYemk6Rmdb0bHcjkTe4ZjBQYtsGDqPACihjs
-        wYiqThFGjRRh1EiVwtj6tW06vXdZK6oyGIA4unbZNFbPmMWvy1nvQE9eJubW484+b3zbMj+2f5rr95bt
-        tYzWPn4xp64smfvPX9t20ftW3obdzFQGo/XhpgUhp7vfsyfGXLz9zMxduGPDOnZ6wRw5ec2aPton2os2
-        KAL11dmFR3Y8xi2CTz/XkKoExrnPD4ZALG2+yp4MBAQCVyi0CV9g6OeeMH1E+IwDTO6Bz2zjPfJ/AYPg
-        XRCAyYvSQRiyAgKQ+rinbPkIkFjjAgUDXOYd/zSMZOfTEAhKVV4CQdgvVt7bQFyrpGiW+JQq1hsFzvt4
-        D/dF5l2hNFUYfPVFXzpiTTiUtPdAsHiziOdFUCoj40xZIVAfqSQxDqVOaxTBc8WMDSjf2eejqcFgizoq
-        aHfnhIFSBMKVglLZcM2zMl8sY2g2AAazoGNB4jmz76+cGZQg98vnnj7UXL9R2D9OBDLOZUIidJVDxtEs
-        c3dYmP6QmhoMlJ8B2AWB8zunUSIc9yulTTgKsEz54O+xAgcCs4B1SqZN+QqpqcKQ5tP+gA4A+Wr3afaL
-        0WJB1i6HUAiMr5W2Fm09xz5iTdLMUGkCDtD1LreMhdJMYKD8FhZAk8iFMYl9JKCAAAKzTv2YPkR/2f/0
-        /0Qzg4FYGw6/OW9LV9TBmikM6aCdU9RAQWBETaYIo0aKMGqkCKNG2gcjng6pRuTuwhg6N9Xd7GU/i5ql
-        eju7heem4onCerilI57xrG11zs7aNhq/AabBRwpVOUACAAAAAElFTkSuQmCC
-</value>
+  <data name="FileList.ColumnInfo" xml:space="preserve">
+    <value>3,1,0,0,0,-1,Columns:0{Visible:False;}	1{Width:200;AllowSorting:False;Caption:"名前";AllowDragging:False;AllowEditing:False;Style:"BackColor:HighlightText;Margins:1, 0, 0, 0;TextEffect:Flat;TextDirection:Normal;Trimming:None;";}	2{Width:400;AllowSorting:False;Caption:"場所";AllowDragging:False;}	</value>
   </data>
-  <data name="C1FlexGrid1.StyleInfo" xml:space="preserve">
-    <value>Normal{BackColor:White;}	Alternate{}	Fixed{BackColor:Control;ForeColor:ControlText;Border:Flat,1,ControlDark,Both;BackgroundImageLayout:Hide;}	Highlight{BackColor:255, 248, 186;ForeColor:HighlightText;SearchBackColor:Orange;}	Focus{BackColor:255, 248, 186;SearchBackColor:White;Border:Flat,1,216, 216, 216,Both;}	Editor{}	Search{BackColor:255, 248, 186;ForeColor:HighlightText;}	Frozen{BackColor:Beige;}	FrozenAlternate{}	NewRow{ForeColor:GrayText;}	EmptyArea{BackColor:White;Border:Flat,1,ControlDarkDark,Both;}	SelectedColumnHeader{}	SelectedRowHeader{}	GrandTotal{BackColor:Black;ForeColor:White;}	Subtotal0{BackColor:ControlDarkDark;ForeColor:White;}	Subtotal1{BackColor:ControlDarkDark;ForeColor:White;}	Subtotal2{BackColor:ControlDarkDark;ForeColor:White;}	Subtotal3{BackColor:ControlDarkDark;ForeColor:White;}	Subtotal4{BackColor:ControlDarkDark;ForeColor:White;}	Subtotal5{BackColor:ControlDarkDark;ForeColor:White;}	FilterEditor{}	Footer{BackColor:Control;ForeColor:ControlText;Border:Flat,1,ControlDark,Both;BackgroundImageLayout:Hide;}	FirstCustomStyle{}	</value>
+  <data name="FileList.StyleInfo" xml:space="preserve">
+    <value>Normal{Font:メイリオ, 9pt;BackColor:Window;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	Alternate{Font:メイリオ, 9pt;BackColor:Window;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	Fixed{Font:メイリオ, 9pt;BackColor:213, 234, 209;ForeColor:68, 68, 68;SearchBackColor:Yellow;Border:Flat,1,216, 216, 216,Both;BackgroundImageLayout:Hide;}	Highlight{BackColor:255, 248, 186;ForeColor:68, 68, 68;SearchBackColor:Orange;}	Focus{BackColor:255, 248, 186;ForeColor:68, 68, 68;SearchBackColor:Orange;}	Editor{Font:メイリオ, 9pt;BackColor:Window;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	Search{BackColor:255, 248, 186;ForeColor:68, 68, 68;SearchBackColor:Orange;}	Frozen{Font:メイリオ, 9pt;BackColor:Beige;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	FrozenAlternate{Font:メイリオ, 9pt;BackColor:Beige;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	NewRow{Font:メイリオ, 9pt;BackColor:Window;ForeColor:GrayText;SearchBackColor:Yellow;}	EmptyArea{Font:メイリオ, 9pt;BackColor:AppWorkspace;ForeColor:68, 68, 68;SearchBackColor:Yellow;Border:Flat,1,ControlDarkDark,Both;}	SelectedColumnHeader{Font:メイリオ, 9pt;BackColor:213, 234, 209;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	SelectedRowHeader{Font:メイリオ, 9pt;BackColor:213, 234, 209;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	GrandTotal{Font:メイリオ, 9pt;BackColor:Black;ForeColor:White;SearchBackColor:Yellow;}	Subtotal0{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	Subtotal1{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	Subtotal2{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	Subtotal3{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	Subtotal4{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	Subtotal5{Font:メイリオ, 9pt;BackColor:ControlDarkDark;ForeColor:White;SearchBackColor:Yellow;}	FilterEditor{Font:メイリオ, 9pt;BackColor:Window;ForeColor:68, 68, 68;SearchBackColor:Yellow;}	Footer{Font:メイリオ, 9pt, style=Bold;BackColor:White;ForeColor:68, 68, 68;SearchBackColor:Yellow;Border:Flat,1,ControlDark,Both;BackgroundImageLayout:Hide;}	FirstCustomStyle{}	</value>
   </data>
-  <data name="Button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGMAAAAdCAYAAAC+E9IkAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAANtSURBVGhD7Zo9a1RBFIbzX/wDgr35A4Fgq32sLSwE
-        C8EipWgjFmolWgiCjSBISlMIW4ho5RYSRCzEoGh3zbPsIyfjzNy7Sdy94rxw2HtnzpyP952ZpLhr4MzW
-        nfUDmxxY12zpBu/rCrEZJpqtzjYRY8rLxpUH3c5k2r16t9dsSQbf8D4XY4oYsxcmGpYPRFGD32I0rA5N
-        jBGhiTEiNDFGhH9GjK/ffnTX7z7rnu++nY/ksft62r15/3H+VsaHT1+6m492Zv4lMIdPNNY9fjHJjtdw
-        7+nLai4wWAwaPH/1fq8NIeIouLj9sDt17tpMkAgaZBxCAM/UkQO+2uVbT2a+kqQhuiAmPvjqjw/xz27d
-        mM3z7HgOxHMta2L8FCcmxukL24eKIqkN1qwPxFEIflMQg7khYjDXZ7Emxdi4dHtmztsvvxCcrhNw5jpq
-        rwkBBovRB5OaUJL6rHa8iWGz7K4czLPIyXCnssaxaJ5uxeD0YDwzT3z65TmemAjXIlrf1SpORAwEIDHE
-        lWDjgGYpskQwxdMwMbH0aoogJj5DxADmxs9f4vN3wA3legllnDGM9fj7np4MuFjkNESciBg0QvISuYB5
-        BYEECo6FMk6TNofRrOtKQLjo4zrhH1sQhaBW5mI+auIEeFoVgzHJT00fxXBzMLeIEODYYpDQhkpXDj7M
-        e6RzhXoNSAjzNlYTAwHxkQzjA2JAPoZoPuOLEApTyiHRrLU+fumDOomTigH8GwcvcbwPxxKDneaRrF0l
-        nhwKK92fEJcKhD/ramK4EVzLs2JbGwQC4jAeT3J6siIkWvJ55pecCEkeiU9JJ6diw03aWw5HEoMG3OUm
-        K4EiKJ4mFkWfGNYQ8/NOPkXCJwUkWU8th2IgnifQ3lnPWsdTMQA3BYIxTz1s3hoGi0Fgd4dGolwRABFo
-        hsaxvkJyqBHljqSmuOtifSURo1D4RGMM8gHv+CEAa7z+GI/P+JR4APpgxs5hsBgAAtgJBKz9SyogiuaG
-        HNEcEJCmcw3QILWksRnDavUR190tSdFSMbhyqMNcioExz2br65GY+Hll5rCQGP8bEJQdXyLa+SEbE/QJ
-        1sQYEZoYI0ITY0RoYowITYwR4Q8x2tchqwG8RzEOfTe193l/7tbwN7H//Wf2u6n2ReE4bNNPPNu3tquz
-        +be2a2u/AAYLfjK0E4QUAAAAAElFTkSuQmCC
-</value>
-  </data>
+  <metadata name="ButtonImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>139, 15</value>
+  </metadata>
   <data name="ButtonImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        rwMAAk1TRnQBSQFMAgEBFQEAAcgBAAHIAQABYwEAAR0BAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAGM
+        rwMAAk1TRnQBSQFMAgEBFQEAAegBAAHoAQABYwEAAR0BAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAGM
         AQECAAGuAwABAQEAARAFAAFQARoBAhMAAf8BfwHeAXsB2QFSAdQBIQGTARkBkwEZAZMBGQGTARkBkwEZ
         AZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZ
         AZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZAZMBGQGTARkBkwEZ
@@ -4194,7 +4160,4 @@
         CwABMAsAAQIMAAHACwABEP8A/wD/AP8A/wCDAAGACwABOAsAAQcMAAHACwABEAIACw==
 </value>
   </data>
-  <metadata name="MenuComｍand.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>157, 17</value>
-  </metadata>
 </root>

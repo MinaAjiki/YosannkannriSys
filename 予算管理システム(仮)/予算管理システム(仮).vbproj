@@ -70,13 +70,19 @@
     <Reference Include="C1.Win.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1Command.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.Classic.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1GanttView.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Input.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a" />
+    <Reference Include="C1.Win.C1InputPanel.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1List.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=6b24f8f981dbd7bc, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Schedule.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.C1SplitContainer.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1SuperTooltip.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.C1Themes.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Themes.Extended.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.DashboardLayout.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.Input.MultiSelect.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.TreeView.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -117,16 +123,22 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="DB選択.Designer.vb">
+      <DependentUpon>DB選択.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="DB選択.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="予算選択.Designer.vb">
+      <DependentUpon>予算選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="予算選択.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="出来高入力.Designer.vb">
       <DependentUpon>出来高入力.vb</DependentUpon>
@@ -153,10 +165,6 @@
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -166,6 +174,12 @@
       <DependentUpon>印刷代価選択.vb</DependentUpon>
     </Compile>
     <Compile Include="印刷代価選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form参照作成.Designer.vb">
+      <DependentUpon>Form参照作成.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form参照作成.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="業者選択%28Export%29.Designer.vb">
@@ -200,8 +214,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="DB選択.resx">
+      <DependentUpon>DB選択.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form参照作成.resx">
+      <DependentUpon>Form参照作成.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="予算選択.resx">
+      <DependentUpon>予算選択.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="出来高入力.resx">
       <DependentUpon>出来高入力.vb</DependentUpon>
@@ -244,8 +264,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <EmbeddedResource Include="Themes\テーマ.c1theme" />
-    <None Include="テーマ.c1theme" />
+    <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database1.mdf">
@@ -255,8 +274,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
-    <None Include="Resources\Default.png" />
-    <None Include="Resources\Entry.png" />
+    <None Include="Resources\OpenFile.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -270,5 +288,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
