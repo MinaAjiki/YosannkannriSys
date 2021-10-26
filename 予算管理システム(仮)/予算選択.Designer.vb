@@ -102,6 +102,8 @@ Partial Class 予算選択
         Me.Controls.Add(Me.OK)
         Me.Controls.Add(Me.Contract_NoList)
         Me.Controls.Add(Me.Contract_No)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "予算選択"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "予算選択"

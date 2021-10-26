@@ -23,36 +23,36 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
-        Dim C1TreeNode1 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode2 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode3 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode4 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode5 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode6 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode7 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode8 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode9 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode10 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode11 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode12 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode13 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode14 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode15 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode16 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode17 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode18 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode19 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode20 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode21 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode22 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode23 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode24 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode25 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode26 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode27 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode28 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode29 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeNode30 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode31 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode32 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode33 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode34 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode35 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode36 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode37 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode38 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode39 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode40 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode41 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode42 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode43 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode44 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode45 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode46 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode47 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode48 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode49 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode50 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode51 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode52 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode53 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode54 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode55 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode56 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode57 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
+        Dim C1TreeNode58 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -66,7 +66,6 @@ Partial Class ホーム
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
         Me.C1Label2 = New C1.Win.C1Input.C1Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -266,7 +265,6 @@ Partial Class ホーム
         Me.TreePanel.SuspendLayout()
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormPanel.SuspendLayout()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -387,76 +385,76 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = "DD0000 テスト工事"
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = "DD0000 テスト工事"
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
-        C1TreeNode1.Expanded = True
-        C1TreeNode2.Expanded = True
-        C1TreeNode3.SetValue("1 東西道路")
-        C1TreeNode4.SetValue("2 掘削工事(A-0020)")
-        C1TreeNode5.SetValue("3 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode6.SetValue("4 路体盛土(BH+HR)(K-00291)")
-        C1TreeNode7.Expanded = True
-        C1TreeNode8.SetValue("DT運搬 4t(K-00271)")
-        C1TreeNode7.Nodes.Add(C1TreeNode8)
-        C1TreeNode7.SetValue("5 掘削工事(公園東道路)(A-00026)")
-        C1TreeNode9.SetValue("5 客土")
-        C1TreeNode10.SetValue("6 残土処理工(A-00022)")
-        C1TreeNode11.SetValue("7 南北道路")
-        C1TreeNode12.SetValue("8 掘削工事(A-00020)")
-        C1TreeNode13.SetValue("9 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode14.SetValue("10 植樹帯客土工")
-        C1TreeNode15.SetValue("11 残土処理工(A-00022)")
-        C1TreeNode16.SetValue("12 公園東道路")
-        C1TreeNode17.SetValue("13 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode18.Expanded = True
-        C1TreeNode19.Expanded = True
-        C1TreeNode20.SetValue("DT運搬 4t(K-00298)")
-        C1TreeNode19.Nodes.Add(C1TreeNode20)
-        C1TreeNode19.SetValue("DT運搬 4t(B-00005)")
-        C1TreeNode18.Nodes.Add(C1TreeNode19)
-        C1TreeNode18.SetValue("14 残土処理工(A-00023)")
-        C1TreeNode2.Nodes.Add(C1TreeNode3)
-        C1TreeNode2.Nodes.Add(C1TreeNode4)
-        C1TreeNode2.Nodes.Add(C1TreeNode5)
-        C1TreeNode2.Nodes.Add(C1TreeNode6)
-        C1TreeNode2.Nodes.Add(C1TreeNode7)
-        C1TreeNode2.Nodes.Add(C1TreeNode9)
-        C1TreeNode2.Nodes.Add(C1TreeNode10)
-        C1TreeNode2.Nodes.Add(C1TreeNode11)
-        C1TreeNode2.Nodes.Add(C1TreeNode12)
-        C1TreeNode2.Nodes.Add(C1TreeNode13)
-        C1TreeNode2.Nodes.Add(C1TreeNode14)
-        C1TreeNode2.Nodes.Add(C1TreeNode15)
-        C1TreeNode2.Nodes.Add(C1TreeNode16)
-        C1TreeNode2.Nodes.Add(C1TreeNode17)
-        C1TreeNode2.Nodes.Add(C1TreeNode18)
-        C1TreeNode2.SetValue("101 土工")
-        C1TreeNode21.Expanded = True
-        C1TreeNode21.SetValue("103 法面工")
-        C1TreeNode22.SetValue("105 地盤改良工")
-        C1TreeNode23.SetValue("111 舗装工")
-        C1TreeNode24.SetValue("113 ｺﾝｸﾘｰﾄ舗装工")
-        C1TreeNode1.Nodes.Add(C1TreeNode2)
-        C1TreeNode1.Nodes.Add(C1TreeNode21)
-        C1TreeNode1.Nodes.Add(C1TreeNode22)
-        C1TreeNode1.Nodes.Add(C1TreeNode23)
-        C1TreeNode1.Nodes.Add(C1TreeNode24)
-        C1TreeNode1.SetValue("100 直接工事費")
-        C1TreeNode25.SetValue("200 仮設費")
-        C1TreeNode26.SetValue("840 現場経費")
-        C1TreeNode27.SetValue("860 材料差額")
-        C1TreeNode28.SetValue("880 合算経費見込")
-        C1TreeNode29.SetValue("890 見積作成用経費")
-        Me.HomeTreeView.Nodes.Add(C1TreeNode1)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode25)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode26)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode27)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode28)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode29)
+        C1TreeNode30.Expanded = True
+        C1TreeNode31.Expanded = True
+        C1TreeNode32.SetValue("1 東西道路")
+        C1TreeNode33.SetValue("2 掘削工事(A-0020)")
+        C1TreeNode34.SetValue("3 路体盛土(BH+HR)(K-00298)")
+        C1TreeNode35.SetValue("4 路体盛土(BH+HR)(K-00291)")
+        C1TreeNode36.Expanded = True
+        C1TreeNode37.SetValue("DT運搬 4t(K-00271)")
+        C1TreeNode36.Nodes.Add(C1TreeNode37)
+        C1TreeNode36.SetValue("5 掘削工事(公園東道路)(A-00026)")
+        C1TreeNode38.SetValue("5 客土")
+        C1TreeNode39.SetValue("6 残土処理工(A-00022)")
+        C1TreeNode40.SetValue("7 南北道路")
+        C1TreeNode41.SetValue("8 掘削工事(A-00020)")
+        C1TreeNode42.SetValue("9 路体盛土(BH+HR)(K-00298)")
+        C1TreeNode43.SetValue("10 植樹帯客土工")
+        C1TreeNode44.SetValue("11 残土処理工(A-00022)")
+        C1TreeNode45.SetValue("12 公園東道路")
+        C1TreeNode46.SetValue("13 路体盛土(BH+HR)(K-00298)")
+        C1TreeNode47.Expanded = True
+        C1TreeNode48.Expanded = True
+        C1TreeNode49.SetValue("DT運搬 4t(K-00298)")
+        C1TreeNode48.Nodes.Add(C1TreeNode49)
+        C1TreeNode48.SetValue("DT運搬 4t(B-00005)")
+        C1TreeNode47.Nodes.Add(C1TreeNode48)
+        C1TreeNode47.SetValue("14 残土処理工(A-00023)")
+        C1TreeNode31.Nodes.Add(C1TreeNode32)
+        C1TreeNode31.Nodes.Add(C1TreeNode33)
+        C1TreeNode31.Nodes.Add(C1TreeNode34)
+        C1TreeNode31.Nodes.Add(C1TreeNode35)
+        C1TreeNode31.Nodes.Add(C1TreeNode36)
+        C1TreeNode31.Nodes.Add(C1TreeNode38)
+        C1TreeNode31.Nodes.Add(C1TreeNode39)
+        C1TreeNode31.Nodes.Add(C1TreeNode40)
+        C1TreeNode31.Nodes.Add(C1TreeNode41)
+        C1TreeNode31.Nodes.Add(C1TreeNode42)
+        C1TreeNode31.Nodes.Add(C1TreeNode43)
+        C1TreeNode31.Nodes.Add(C1TreeNode44)
+        C1TreeNode31.Nodes.Add(C1TreeNode45)
+        C1TreeNode31.Nodes.Add(C1TreeNode46)
+        C1TreeNode31.Nodes.Add(C1TreeNode47)
+        C1TreeNode31.SetValue("101 土工")
+        C1TreeNode50.Expanded = True
+        C1TreeNode50.SetValue("103 法面工")
+        C1TreeNode51.SetValue("105 地盤改良工")
+        C1TreeNode52.SetValue("111 舗装工")
+        C1TreeNode53.SetValue("113 ｺﾝｸﾘｰﾄ舗装工")
+        C1TreeNode30.Nodes.Add(C1TreeNode31)
+        C1TreeNode30.Nodes.Add(C1TreeNode50)
+        C1TreeNode30.Nodes.Add(C1TreeNode51)
+        C1TreeNode30.Nodes.Add(C1TreeNode52)
+        C1TreeNode30.Nodes.Add(C1TreeNode53)
+        C1TreeNode30.SetValue("100 直接工事費")
+        C1TreeNode54.SetValue("200 仮設費")
+        C1TreeNode55.SetValue("840 現場経費")
+        C1TreeNode56.SetValue("860 材料差額")
+        C1TreeNode57.SetValue("880 合算経費見込")
+        C1TreeNode58.SetValue("890 見積作成用経費")
+        Me.HomeTreeView.Nodes.Add(C1TreeNode30)
+        Me.HomeTreeView.Nodes.Add(C1TreeNode54)
+        Me.HomeTreeView.Nodes.Add(C1TreeNode55)
+        Me.HomeTreeView.Nodes.Add(C1TreeNode56)
+        Me.HomeTreeView.Nodes.Add(C1TreeNode57)
+        Me.HomeTreeView.Nodes.Add(C1TreeNode58)
         Me.HomeTreeView.Size = New System.Drawing.Size(266, 662)
         Me.HomeTreeView.Styles.Border = 0
         Me.HomeTreeView.Styles.BorderColor = System.Drawing.Color.AliceBlue
@@ -475,7 +473,6 @@ Partial Class ホーム
         Me.FormPanel.AutoScroll = True
         Me.FormPanel.BackColor = System.Drawing.Color.White
         Me.FormPanel.Controls.Add(Me.Button3)
-        Me.FormPanel.Controls.Add(Me.C1FlexGrid1)
         Me.FormPanel.Controls.Add(Me.C1Label3)
         Me.FormPanel.Controls.Add(Me.C1Label2)
         Me.FormPanel.Controls.Add(Me.Label1)
@@ -512,26 +509,6 @@ Partial Class ホーム
         Me.Button3.Size = New System.Drawing.Size(300, 90)
         Me.Button3.TabIndex = 35
         Me.Button3.UseVisualStyleBackColor = False
-        '
-        'C1FlexGrid1
-        '
-        Me.C1FlexGrid1.AllowAddNew = True
-        Me.C1FlexGrid1.AllowDelete = True
-        Me.C1FlexGrid1.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
-        Me.C1FlexGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.C1FlexGrid1.AutoClipboard = True
-        Me.C1FlexGrid1.BackColor = System.Drawing.Color.White
-        Me.C1FlexGrid1.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.C1FlexGrid1.ColumnInfo = "10,1,0,0,0,-1,Columns:"
-        Me.C1FlexGrid1.Location = New System.Drawing.Point(22, 29)
-        Me.C1FlexGrid1.Name = "C1FlexGrid1"
-        Me.C1FlexGrid1.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
-        Me.C1FlexGrid1.Size = New System.Drawing.Size(941, 243)
-        Me.C1FlexGrid1.StyleInfo = resources.GetString("C1FlexGrid1.StyleInfo")
-        Me.C1FlexGrid1.TabIndex = 34
-        Me.C1FlexGrid1.Visible = False
         '
         'C1Label3
         '
@@ -1902,7 +1879,6 @@ Partial Class ホーム
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1935,7 +1911,6 @@ Partial Class ホーム
     Friend WithEvents C1Label2 As C1.Win.C1Input.C1Label
     Friend WithEvents Label1 As Label
     Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
-    Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Button3 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
