@@ -66,7 +66,6 @@ Partial Class ホーム
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
         Me.C1Label2 = New C1.Win.C1Input.C1Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -266,7 +265,6 @@ Partial Class ホーム
         Me.TreePanel.SuspendLayout()
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormPanel.SuspendLayout()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -475,7 +473,6 @@ Partial Class ホーム
         Me.FormPanel.AutoScroll = True
         Me.FormPanel.BackColor = System.Drawing.Color.White
         Me.FormPanel.Controls.Add(Me.Button3)
-        Me.FormPanel.Controls.Add(Me.C1FlexGrid1)
         Me.FormPanel.Controls.Add(Me.C1Label3)
         Me.FormPanel.Controls.Add(Me.C1Label2)
         Me.FormPanel.Controls.Add(Me.Label1)
@@ -512,26 +509,6 @@ Partial Class ホーム
         Me.Button3.Size = New System.Drawing.Size(300, 90)
         Me.Button3.TabIndex = 35
         Me.Button3.UseVisualStyleBackColor = False
-        '
-        'C1FlexGrid1
-        '
-        Me.C1FlexGrid1.AllowAddNew = True
-        Me.C1FlexGrid1.AllowDelete = True
-        Me.C1FlexGrid1.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
-        Me.C1FlexGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.C1FlexGrid1.AutoClipboard = True
-        Me.C1FlexGrid1.BackColor = System.Drawing.Color.White
-        Me.C1FlexGrid1.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.C1FlexGrid1.ColumnInfo = "10,1,0,0,0,-1,Columns:"
-        Me.C1FlexGrid1.Location = New System.Drawing.Point(22, 29)
-        Me.C1FlexGrid1.Name = "C1FlexGrid1"
-        Me.C1FlexGrid1.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
-        Me.C1FlexGrid1.Size = New System.Drawing.Size(941, 243)
-        Me.C1FlexGrid1.StyleInfo = resources.GetString("C1FlexGrid1.StyleInfo")
-        Me.C1FlexGrid1.TabIndex = 34
-        Me.C1FlexGrid1.Visible = False
         '
         'C1Label3
         '
@@ -1902,7 +1879,6 @@ Partial Class ホーム
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1935,7 +1911,6 @@ Partial Class ホーム
     Friend WithEvents C1Label2 As C1.Win.C1Input.C1Label
     Friend WithEvents Label1 As Label
     Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
-    Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Button3 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
