@@ -15,13 +15,10 @@ Public Class ホーム
         Form参照作成.Show()
     End Sub
 
-    Private Sub 管理者登録_Click(sender As Object, e As ClickEventArgs) Handles 管理者登録.Click
-        管理者マスタ一覧.Show()
-        Me.Enabled = False
+    Private Sub 協力業者登録_Click(sender As Object, e As ClickEventArgs) Handles 協力業者登録.Click
+        協力業者入力.TopLevel = False
+        FormPanel.Controls.Add(協力業者入力)
+        協力業者入力.Show()
     End Sub
 
-    Private Sub マスタ_Click(sender As Object, e As ClickEventArgs) Handles マスタ.Click
-        マスタメンテナンス.Show()
-        Me.Enabled = False
-    End Sub
 End Class

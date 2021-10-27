@@ -25,16 +25,16 @@ Partial Class 業者一覧
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(業者一覧))
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1TextBox5 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox7 = New C1.Win.C1Input.C1TextBox()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.C1FlexGrid2 = New C1.Win.C1FlexGrid.C1FlexGrid()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -42,26 +42,11 @@ Partial Class 業者一覧
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(13, 15)
+        Me.Label2.Location = New System.Drawing.Point(15, 22)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(80, 18)
         Me.Label2.TabIndex = 27
         Me.Label2.Text = "<< 業者一覧"
-        '
-        'C1FlexGrid1
-        '
-        Me.C1FlexGrid1.AllowAddNew = True
-        Me.C1FlexGrid1.AllowDelete = True
-        Me.C1FlexGrid1.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Both
-        Me.C1FlexGrid1.AllowFiltering = True
-        Me.C1FlexGrid1.ColumnContextMenuEnabled = True
-        Me.C1FlexGrid1.ColumnInfo = "6,1,0,0,0,-1,Columns:1{Caption:""業者ｺｰﾄﾞ"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Caption:""業者名"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Caption:""住所"";Style:" &
-    """TextAlign:GeneralCenter;"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Caption:""電話番号"";Style:""TextAlign:GeneralCenter;"";}" &
-    "" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Caption:""取引品目"";}" & Global.Microsoft.VisualBasic.ChrW(9)
-        Me.C1FlexGrid1.Location = New System.Drawing.Point(16, 445)
-        Me.C1FlexGrid1.Name = "C1FlexGrid1"
-        Me.C1FlexGrid1.Size = New System.Drawing.Size(502, 150)
-        Me.C1FlexGrid1.TabIndex = 26
         '
         'C1TextBox5
         '
@@ -70,9 +55,10 @@ Partial Class 業者一覧
         Me.C1TextBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.C1TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox5.Location = New System.Drawing.Point(132, 49)
+        Me.C1TextBox5.Location = New System.Drawing.Point(92, 75)
+        Me.C1TextBox5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.C1TextBox5.Name = "C1TextBox5"
-        Me.C1TextBox5.Size = New System.Drawing.Size(213, 20)
+        Me.C1TextBox5.Size = New System.Drawing.Size(248, 30)
         Me.C1TextBox5.TabIndex = 49
         Me.C1TextBox5.Tag = Nothing
         Me.C1TextBox5.Value = ""
@@ -83,11 +69,12 @@ Partial Class 業者一覧
         Me.C1TextBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1TextBox7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.C1TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.C1TextBox7.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.C1TextBox7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox7.Location = New System.Drawing.Point(31, 49)
+        Me.C1TextBox7.Location = New System.Drawing.Point(35, 75)
+        Me.C1TextBox7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.C1TextBox7.Name = "C1TextBox7"
-        Me.C1TextBox7.Size = New System.Drawing.Size(100, 20)
+        Me.C1TextBox7.Size = New System.Drawing.Size(59, 30)
         Me.C1TextBox7.TabIndex = 48
         Me.C1TextBox7.Tag = Nothing
         Me.C1TextBox7.Value = "業者名："
@@ -128,62 +115,68 @@ Partial Class 業者一覧
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button1.ImageIndex = 0
         Me.Button1.ImageList = Me.ButtonImageList
-        Me.Button1.Location = New System.Drawing.Point(351, 40)
+        Me.Button1.Location = New System.Drawing.Point(346, 75)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(102, 31)
+        Me.Button1.Size = New System.Drawing.Size(100, 30)
         Me.Button1.TabIndex = 50
         Me.Button1.Text = "検　索"
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'C1FlexGrid2
+        'VendorList
         '
-        Me.C1FlexGrid2.AllowAddNew = True
-        Me.C1FlexGrid2.AllowDelete = True
-        Me.C1FlexGrid2.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
-        Me.C1FlexGrid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.C1FlexGrid2.AutoClipboard = True
-        Me.C1FlexGrid2.BackColor = System.Drawing.Color.White
-        Me.C1FlexGrid2.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.C1FlexGrid2.ColumnInfo = "6,1,0,0,0,-1,Columns:"
-        Me.C1FlexGrid2.Location = New System.Drawing.Point(31, 87)
-        Me.C1FlexGrid2.Name = "C1FlexGrid2"
-        Me.C1FlexGrid2.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
-        Me.C1FlexGrid2.Size = New System.Drawing.Size(544, 177)
-        Me.C1FlexGrid2.StyleInfo = resources.GetString("C1FlexGrid2.StyleInfo")
-        Me.C1FlexGrid2.TabIndex = 51
+        Me.VendorList.AllowAddNew = True
+        Me.VendorList.AllowDelete = True
+        Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.VendorList.ColumnInfo = "5,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:100;Caption:""取引先コード"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:270;Capti" &
+    "on:""業者名"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:300;Caption:""住所"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Width:100;Caption:""電話番号"";}" & Global.Microsoft.VisualBasic.ChrW(9)
+        Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.VendorList.Location = New System.Drawing.Point(18, 115)
+        Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.VendorList.Name = "VendorList"
+        Me.VendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.VendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.VendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.VendorList.Size = New System.Drawing.Size(792, 501)
+        Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
+        Me.VendorList.TabIndex = 51
+        Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
         '業者一覧
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(800, 620)
-        Me.Controls.Add(Me.C1FlexGrid2)
+        Me.ClientSize = New System.Drawing.Size(830, 662)
+        Me.Controls.Add(Me.VendorList)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.C1TextBox5)
         Me.Controls.Add(Me.C1TextBox7)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.C1FlexGrid1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "業者一覧"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "業者一覧"
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Label2 As Label
-    Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents C1TextBox5 As C1.Win.C1Input.C1TextBox
     Friend WithEvents C1TextBox7 As C1.Win.C1Input.C1TextBox
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Button1 As Button
-    Friend WithEvents C1FlexGrid2 As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
 End Class
