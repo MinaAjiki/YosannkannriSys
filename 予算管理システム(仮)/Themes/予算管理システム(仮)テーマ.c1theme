@@ -4948,6 +4948,14 @@
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Editor">
               <Ref>C1FlexGrid\Styles\Normal</Ref>
+              <Children>
+                <Background Name="Background">
+                  <AllowedTypes>Solid</AllowedTypes>
+                  <Value Type="Solid">
+                    <Color>255, 248, 186</Color>
+                  </Value>
+                </Background>
+              </Children>
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Search">
               <Ref>C1FlexGrid\Styles\Highlight</Ref>
@@ -4969,6 +4977,12 @@
             <C1FlexGridStyle Name="NewRow">
               <Ref>C1FlexGrid\Styles\Normal</Ref>
               <Children>
+                <Background Name="Background">
+                  <AllowedTypes>Solid</AllowedTypes>
+                  <Value Type="Solid">
+                    <Color>255, 255, 255</Color>
+                  </Value>
+                </Background>
                 <Color Name="ForeColor">
                   <Value>GrayText</Value>
                 </Color>
@@ -4980,7 +4994,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>AppWorkspace</Color>
+                    <Color>255, 255, 255</Color>
                   </Value>
                 </Background>
                 <C1.Win.C1Themes.C1FlexGridBorderPropBag Name="Border">
