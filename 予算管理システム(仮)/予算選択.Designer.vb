@@ -26,9 +26,9 @@ Partial Class 予算選択
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(予算選択))
         Me.Contract_No = New System.Windows.Forms.Label()
         Me.Contract_NoList = New System.Windows.Forms.ComboBox()
-        Me.OK = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.OK = New System.Windows.Forms.Button()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -51,21 +51,6 @@ Partial Class 予算選択
         Me.Contract_NoList.Name = "Contract_NoList"
         Me.Contract_NoList.Size = New System.Drawing.Size(96, 20)
         Me.Contract_NoList.TabIndex = 51
-        '
-        'OK
-        '
-        Me.OK.FlatAppearance.BorderSize = 0
-        Me.OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OK.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.OK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.OK.ImageIndex = 0
-        Me.OK.ImageList = Me.ButtonImageList
-        Me.OK.Location = New System.Drawing.Point(54, 72)
-        Me.OK.Name = "OK"
-        Me.OK.Size = New System.Drawing.Size(100, 30)
-        Me.OK.TabIndex = 52
-        Me.OK.Text = "OK"
-        Me.OK.UseVisualStyleBackColor = True
         '
         'ButtonImageList
         '
@@ -93,12 +78,28 @@ Partial Class 予算選択
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
+        'OK
+        '
+        Me.OK.FlatAppearance.BorderSize = 0
+        Me.OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OK.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.OK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.OK.ImageIndex = 0
+        Me.OK.ImageList = Me.ButtonImageList
+        Me.OK.Location = New System.Drawing.Point(54, 72)
+        Me.OK.Name = "OK"
+        Me.OK.Size = New System.Drawing.Size(100, 30)
+        Me.OK.TabIndex = 52
+        Me.OK.Text = "OK"
+        Me.OK.UseVisualStyleBackColor = True
+        '
         '予算選択
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(207, 114)
+        Me.ControlBox = False
         Me.Controls.Add(Me.OK)
         Me.Controls.Add(Me.Contract_NoList)
         Me.Controls.Add(Me.Contract_No)
