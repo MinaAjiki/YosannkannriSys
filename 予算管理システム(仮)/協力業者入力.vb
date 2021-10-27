@@ -3,7 +3,7 @@
 
     End Sub
 
-    Private Sub C1FlexGrid1_Click(sender As Object, e As EventArgs) Handles C1FlexGrid1.Click
+    Private Sub C1FlexGrid1_Click(sender As Object, e As EventArgs)
 
     End Sub
     Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles Button1.MouseLeave
@@ -37,6 +37,6 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        業者一覧.Show()
     End Sub
 End Class

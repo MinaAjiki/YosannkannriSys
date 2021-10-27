@@ -66,6 +66,7 @@ Partial Class ホーム
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
         Me.C1Label2 = New C1.Win.C1Input.C1Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -245,6 +246,7 @@ Partial Class ホーム
         Me.注文内訳書_Excel = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink90 = New C1.Win.C1Command.C1CommandLink()
         Me.注文書明細_CSV = New C1.Win.C1Command.C1Command()
+        Me.マスタ = New C1.Win.C1Command.C1CommandMenu()
         Me.ヘルプ = New C1.Win.C1Command.C1CommandMenu()
         Me.C1CommandLink14 = New C1.Win.C1Command.C1CommandLink()
         Me.アップデート = New C1.Win.C1Command.C1Command()
@@ -256,15 +258,15 @@ Partial Class ホーム
         Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink7 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink9 = New C1.Win.C1Command.C1CommandLink()
+        Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink13 = New C1.Win.C1Command.C1CommandLink()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
-        Me.マスタ = New C1.Win.C1Command.C1Command()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormPanel.SuspendLayout()
+        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -473,6 +475,7 @@ Partial Class ホーム
         Me.FormPanel.AutoScroll = True
         Me.FormPanel.BackColor = System.Drawing.Color.White
         Me.FormPanel.Controls.Add(Me.Button3)
+        Me.FormPanel.Controls.Add(Me.C1FlexGrid1)
         Me.FormPanel.Controls.Add(Me.C1Label3)
         Me.FormPanel.Controls.Add(Me.C1Label2)
         Me.FormPanel.Controls.Add(Me.Label1)
@@ -509,6 +512,26 @@ Partial Class ホーム
         Me.Button3.Size = New System.Drawing.Size(300, 90)
         Me.Button3.TabIndex = 35
         Me.Button3.UseVisualStyleBackColor = False
+        '
+        'C1FlexGrid1
+        '
+        Me.C1FlexGrid1.AllowAddNew = True
+        Me.C1FlexGrid1.AllowDelete = True
+        Me.C1FlexGrid1.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
+        Me.C1FlexGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.C1FlexGrid1.AutoClipboard = True
+        Me.C1FlexGrid1.BackColor = System.Drawing.Color.White
+        Me.C1FlexGrid1.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.C1FlexGrid1.ColumnInfo = "10,1,0,0,0,-1,Columns:"
+        Me.C1FlexGrid1.Location = New System.Drawing.Point(22, 29)
+        Me.C1FlexGrid1.Name = "C1FlexGrid1"
+        Me.C1FlexGrid1.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
+        Me.C1FlexGrid1.Size = New System.Drawing.Size(941, 243)
+        Me.C1FlexGrid1.StyleInfo = resources.GetString("C1FlexGrid1.StyleInfo")
+        Me.C1FlexGrid1.TabIndex = 34
+        Me.C1FlexGrid1.Visible = False
         '
         'C1Label3
         '
@@ -669,6 +692,7 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.見積)
         Me.MenuComｍand.Commands.Add(Me.外注管理)
         Me.MenuComｍand.Commands.Add(Me.出力)
+        Me.MenuComｍand.Commands.Add(Me.マスタ)
         Me.MenuComｍand.Commands.Add(Me.ヘルプ)
         Me.MenuComｍand.Commands.Add(Me.開く)
         Me.MenuComｍand.Commands.Add(Me.材料表インポート)
@@ -752,7 +776,6 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.注文書_金抜)
         Me.MenuComｍand.Commands.Add(Me.注文内訳書_Excel)
         Me.MenuComｍand.Commands.Add(Me.注文書明細_CSV)
-        Me.MenuComｍand.Commands.Add(Me.マスタ)
         Me.MenuComｍand.Owner = Me
         '
         'ファイル
@@ -1763,6 +1786,16 @@ Partial Class ホーム
         Me.注文書明細_CSV.ShortcutText = ""
         Me.注文書明細_CSV.Text = "注文書明細(CSV)"
         '
+        'マスタ
+        '
+        Me.マスタ.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.マスタ.HideNonRecentLinks = False
+        Me.マスタ.Name = "マスタ"
+        Me.マスタ.ShortcutText = ""
+        Me.マスタ.Text = "マスタ"
+        Me.マスタ.VisualStyle = C1.Win.C1Command.VisualStyle.Custom
+        Me.マスタ.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2007Blue
+        '
         'ヘルプ
         '
         Me.ヘルプ.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink14, Me.C1CommandLink12})
@@ -1834,6 +1867,11 @@ Partial Class ホーム
         Me.C1CommandLink9.Command = Me.出力
         Me.C1CommandLink9.SortOrder = 4
         '
+        'C1CommandLink11
+        '
+        Me.C1CommandLink11.Command = Me.マスタ
+        Me.C1CommandLink11.SortOrder = 5
+        '
         'C1CommandLink13
         '
         Me.C1CommandLink13.Command = Me.ヘルプ
@@ -1842,18 +1880,6 @@ Partial Class ホーム
         'SystemTheme
         '
         Me.SystemTheme.Theme = "予算管理テーマ"
-        '
-        'C1CommandLink11
-        '
-        Me.C1CommandLink11.ButtonLook = C1.Win.C1Command.ButtonLookFlags.Text
-        Me.C1CommandLink11.Command = Me.マスタ
-        Me.C1CommandLink11.SortOrder = 5
-        '
-        'マスタ
-        '
-        Me.マスタ.Name = "マスタ"
-        Me.マスタ.ShortcutText = ""
-        Me.マスタ.Text = "マスタ"
         '
         'ホーム
         '
@@ -1876,6 +1902,7 @@ Partial Class ホーム
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
+        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1908,6 +1935,7 @@ Partial Class ホーム
     Friend WithEvents C1Label2 As C1.Win.C1Input.C1Label
     Friend WithEvents Label1 As Label
     Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
+    Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Button3 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
@@ -1925,10 +1953,12 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink8 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出力 As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink10 As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents マスタ As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents ヘルプ As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink14 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink7 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink9 As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents C1CommandLink11 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink13 As C1.Win.C1Command.C1CommandLink
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents C1CommandLink15 As C1.Win.C1Command.C1CommandLink
@@ -2092,6 +2122,4 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink90 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 注文書明細_CSV As C1.Win.C1Command.C1Command
     Friend WithEvents HomeTreeView As C1.Win.TreeView.C1TreeView
-    Friend WithEvents マスタ As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink11 As C1.Win.C1Command.C1CommandLink
 End Class
