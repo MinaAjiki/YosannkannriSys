@@ -146,6 +146,12 @@
     <Compile Include="ホーム.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="マスタメンテナンス.Designer.vb">
+      <DependentUpon>マスタメンテナンス.vb</DependentUpon>
+    </Compile>
+    <Compile Include="マスタメンテナンス.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="予算選択.Designer.vb">
       <DependentUpon>予算選択.vb</DependentUpon>
     </Compile>
@@ -223,6 +229,12 @@
     <Compile Include="注文書番号入力.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="管理者マスタ一覧.Designer.vb">
+      <DependentUpon>管理者マスタ一覧.vb</DependentUpon>
+    </Compile>
+    <Compile Include="管理者マスタ一覧.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="締切日入力.Designer.vb">
       <DependentUpon>締切日入力.vb</DependentUpon>
     </Compile>
@@ -239,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ホーム.resx">
       <DependentUpon>ホーム.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="マスタメンテナンス.resx">
+      <DependentUpon>マスタメンテナンス.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="予算選択.resx">
       <DependentUpon>予算選択.vb</DependentUpon>
@@ -277,6 +292,9 @@
     <EmbeddedResource Include="注文書番号入力.resx">
       <DependentUpon>注文書番号入力.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="管理者マスタ一覧.resx">
+      <DependentUpon>管理者マスタ一覧.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="締切日入力.resx">
       <DependentUpon>締切日入力.vb</DependentUpon>
     </EmbeddedResource>
@@ -296,13 +314,6 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database1_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
     <None Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
     <None Include="Resources\Entry.png" />
