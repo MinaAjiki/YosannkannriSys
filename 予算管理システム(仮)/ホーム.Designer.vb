@@ -245,7 +245,6 @@ Partial Class ホーム
         Me.注文内訳書_Excel = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink90 = New C1.Win.C1Command.C1CommandLink()
         Me.注文書明細_CSV = New C1.Win.C1Command.C1Command()
-        Me.マスタ = New C1.Win.C1Command.C1CommandMenu()
         Me.ヘルプ = New C1.Win.C1Command.C1CommandMenu()
         Me.C1CommandLink14 = New C1.Win.C1Command.C1CommandLink()
         Me.アップデート = New C1.Win.C1Command.C1Command()
@@ -257,9 +256,10 @@ Partial Class ホーム
         Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink7 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink9 = New C1.Win.C1Command.C1CommandLink()
-        Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink13 = New C1.Win.C1Command.C1CommandLink()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
+        Me.マスタ = New C1.Win.C1Command.C1Command()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -669,7 +669,6 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.見積)
         Me.MenuComｍand.Commands.Add(Me.外注管理)
         Me.MenuComｍand.Commands.Add(Me.出力)
-        Me.MenuComｍand.Commands.Add(Me.マスタ)
         Me.MenuComｍand.Commands.Add(Me.ヘルプ)
         Me.MenuComｍand.Commands.Add(Me.開く)
         Me.MenuComｍand.Commands.Add(Me.材料表インポート)
@@ -753,6 +752,7 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.注文書_金抜)
         Me.MenuComｍand.Commands.Add(Me.注文内訳書_Excel)
         Me.MenuComｍand.Commands.Add(Me.注文書明細_CSV)
+        Me.MenuComｍand.Commands.Add(Me.マスタ)
         Me.MenuComｍand.Owner = Me
         '
         'ファイル
@@ -1763,16 +1763,6 @@ Partial Class ホーム
         Me.注文書明細_CSV.ShortcutText = ""
         Me.注文書明細_CSV.Text = "注文書明細(CSV)"
         '
-        'マスタ
-        '
-        Me.マスタ.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.マスタ.HideNonRecentLinks = False
-        Me.マスタ.Name = "マスタ"
-        Me.マスタ.ShortcutText = ""
-        Me.マスタ.Text = "マスタ"
-        Me.マスタ.VisualStyle = C1.Win.C1Command.VisualStyle.Custom
-        Me.マスタ.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2007Blue
-        '
         'ヘルプ
         '
         Me.ヘルプ.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink14, Me.C1CommandLink12})
@@ -1844,11 +1834,6 @@ Partial Class ホーム
         Me.C1CommandLink9.Command = Me.出力
         Me.C1CommandLink9.SortOrder = 4
         '
-        'C1CommandLink11
-        '
-        Me.C1CommandLink11.Command = Me.マスタ
-        Me.C1CommandLink11.SortOrder = 5
-        '
         'C1CommandLink13
         '
         Me.C1CommandLink13.Command = Me.ヘルプ
@@ -1857,6 +1842,18 @@ Partial Class ホーム
         'SystemTheme
         '
         Me.SystemTheme.Theme = "予算管理テーマ"
+        '
+        'C1CommandLink11
+        '
+        Me.C1CommandLink11.ButtonLook = C1.Win.C1Command.ButtonLookFlags.Text
+        Me.C1CommandLink11.Command = Me.マスタ
+        Me.C1CommandLink11.SortOrder = 5
+        '
+        'マスタ
+        '
+        Me.マスタ.Name = "マスタ"
+        Me.マスタ.ShortcutText = ""
+        Me.マスタ.Text = "マスタ"
         '
         'ホーム
         '
@@ -1928,12 +1925,10 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink8 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出力 As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink10 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents マスタ As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents ヘルプ As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink14 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink7 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink9 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents C1CommandLink11 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents C1CommandLink13 As C1.Win.C1Command.C1CommandLink
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents C1CommandLink15 As C1.Win.C1Command.C1CommandLink
@@ -2097,4 +2092,6 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink90 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 注文書明細_CSV As C1.Win.C1Command.C1Command
     Friend WithEvents HomeTreeView As C1.Win.TreeView.C1TreeView
+    Friend WithEvents マスタ As C1.Win.C1Command.C1Command
+    Friend WithEvents C1CommandLink11 As C1.Win.C1Command.C1CommandLink
 End Class

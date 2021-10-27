@@ -19,4 +19,9 @@ Public Class ホーム
         管理者マスタ一覧.Show()
         Me.Enabled = False
     End Sub
+
+    Private Sub マスタ_Click(sender As Object, e As ClickEventArgs) Handles マスタ.Click
+        マスタメンテナンス.Show()
+        Me.Enabled = False
+    End Sub
 End Class
