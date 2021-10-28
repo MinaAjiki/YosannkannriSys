@@ -27,4 +27,7 @@ Public Class ホーム
         協力業者入力.Show()
     End Sub
 
+    Private Sub マスタ_Click(sender As Object, e As ClickEventArgs) Handles マスタ.Click
+        マスタメンテナンス.Show()
+    End Sub
 End Class
