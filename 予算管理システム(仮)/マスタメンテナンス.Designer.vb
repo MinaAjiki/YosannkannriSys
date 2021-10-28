@@ -25,19 +25,19 @@ Partial Class マスタメンテナンス
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.CostMaster = New System.Windows.Forms.GroupBox()
         Me.Labor = New System.Windows.Forms.Button()
-        Me.Button14 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Out_EquipmentCosts = New System.Windows.Forms.Button()
+        Me.ExperimentCosts = New System.Windows.Forms.Button()
+        Me.In_EquipmentCosts = New System.Windows.Forms.Button()
         Me.Cost = New System.Windows.Forms.Button()
         Me.SubContract = New System.Windows.Forms.Button()
         Me.Machine = New System.Windows.Forms.Button()
         Me.Material = New System.Windows.Forms.Button()
         Me.OtherMaster = New System.Windows.Forms.GroupBox()
-        Me.Button16 = New System.Windows.Forms.Button()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.StampTaxes = New System.Windows.Forms.Button()
+        Me.Insurances = New System.Windows.Forms.Button()
+        Me.LevyCosts = New System.Windows.Forms.Button()
+        Me.BranchCosts = New System.Windows.Forms.Button()
+        Me.Salaries = New System.Windows.Forms.Button()
         Me.Costs = New System.Windows.Forms.GroupBox()
         Me.ProjectCosts = New System.Windows.Forms.Button()
         Me.BasicCosts = New System.Windows.Forms.Button()
@@ -60,9 +60,9 @@ Partial Class マスタメンテナンス
         'CostMaster
         '
         Me.CostMaster.Controls.Add(Me.Labor)
-        Me.CostMaster.Controls.Add(Me.Button14)
-        Me.CostMaster.Controls.Add(Me.Button13)
-        Me.CostMaster.Controls.Add(Me.Button12)
+        Me.CostMaster.Controls.Add(Me.Out_EquipmentCosts)
+        Me.CostMaster.Controls.Add(Me.ExperimentCosts)
+        Me.CostMaster.Controls.Add(Me.In_EquipmentCosts)
         Me.CostMaster.Controls.Add(Me.Cost)
         Me.CostMaster.Controls.Add(Me.SubContract)
         Me.CostMaster.Controls.Add(Me.Machine)
@@ -89,44 +89,44 @@ Partial Class マスタメンテナンス
         Me.Labor.Text = "労務費"
         Me.Labor.UseVisualStyleBackColor = False
         '
-        'Button14
+        'Out_EquipmentCosts
         '
-        Me.Button14.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button14.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Location = New System.Drawing.Point(35, 297)
-        Me.Button14.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(85, 30)
-        Me.Button14.TabIndex = 8
-        Me.Button14.Text = "社外機材費"
-        Me.Button14.UseVisualStyleBackColor = False
+        Me.Out_EquipmentCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Out_EquipmentCosts.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.Out_EquipmentCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Out_EquipmentCosts.Location = New System.Drawing.Point(35, 297)
+        Me.Out_EquipmentCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Out_EquipmentCosts.Name = "Out_EquipmentCosts"
+        Me.Out_EquipmentCosts.Size = New System.Drawing.Size(85, 30)
+        Me.Out_EquipmentCosts.TabIndex = 8
+        Me.Out_EquipmentCosts.Text = "社外機材費"
+        Me.Out_EquipmentCosts.UseVisualStyleBackColor = False
         '
-        'Button13
+        'ExperimentCosts
         '
-        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button13.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Location = New System.Drawing.Point(35, 221)
-        Me.Button13.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(85, 30)
-        Me.Button13.TabIndex = 6
-        Me.Button13.Text = "試験費"
-        Me.Button13.UseVisualStyleBackColor = False
+        Me.ExperimentCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.ExperimentCosts.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.ExperimentCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ExperimentCosts.Location = New System.Drawing.Point(35, 221)
+        Me.ExperimentCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ExperimentCosts.Name = "ExperimentCosts"
+        Me.ExperimentCosts.Size = New System.Drawing.Size(85, 30)
+        Me.ExperimentCosts.TabIndex = 6
+        Me.ExperimentCosts.Text = "試験費"
+        Me.ExperimentCosts.UseVisualStyleBackColor = False
         '
-        'Button12
+        'In_EquipmentCosts
         '
-        Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(35, 259)
-        Me.Button12.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(85, 30)
-        Me.Button12.TabIndex = 7
-        Me.Button12.Text = "社内機材費"
-        Me.Button12.UseVisualStyleBackColor = False
+        Me.In_EquipmentCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.In_EquipmentCosts.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.In_EquipmentCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.In_EquipmentCosts.Location = New System.Drawing.Point(35, 259)
+        Me.In_EquipmentCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.In_EquipmentCosts.Name = "In_EquipmentCosts"
+        Me.In_EquipmentCosts.Size = New System.Drawing.Size(85, 30)
+        Me.In_EquipmentCosts.TabIndex = 7
+        Me.In_EquipmentCosts.Text = "社内機材費"
+        Me.In_EquipmentCosts.UseVisualStyleBackColor = False
         '
         'Cost
         '
@@ -182,11 +182,11 @@ Partial Class マスタメンテナンス
         '
         'OtherMaster
         '
-        Me.OtherMaster.Controls.Add(Me.Button16)
-        Me.OtherMaster.Controls.Add(Me.Button15)
-        Me.OtherMaster.Controls.Add(Me.Button4)
-        Me.OtherMaster.Controls.Add(Me.Button5)
-        Me.OtherMaster.Controls.Add(Me.Button6)
+        Me.OtherMaster.Controls.Add(Me.StampTaxes)
+        Me.OtherMaster.Controls.Add(Me.Insurances)
+        Me.OtherMaster.Controls.Add(Me.LevyCosts)
+        Me.OtherMaster.Controls.Add(Me.BranchCosts)
+        Me.OtherMaster.Controls.Add(Me.Salaries)
         Me.OtherMaster.Location = New System.Drawing.Point(220, 44)
         Me.OtherMaster.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.OtherMaster.Name = "OtherMaster"
@@ -196,65 +196,65 @@ Partial Class マスタメンテナンス
         Me.OtherMaster.TabStop = False
         Me.OtherMaster.Text = "その他マスタ"
         '
-        'Button16
+        'StampTaxes
         '
-        Me.Button16.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Location = New System.Drawing.Point(33, 183)
-        Me.Button16.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(85, 30)
-        Me.Button16.TabIndex = 13
-        Me.Button16.Text = "印紙税"
-        Me.Button16.UseVisualStyleBackColor = False
+        Me.StampTaxes.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.StampTaxes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.StampTaxes.Location = New System.Drawing.Point(33, 183)
+        Me.StampTaxes.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.StampTaxes.Name = "StampTaxes"
+        Me.StampTaxes.Size = New System.Drawing.Size(85, 30)
+        Me.StampTaxes.TabIndex = 13
+        Me.StampTaxes.Text = "印紙税"
+        Me.StampTaxes.UseVisualStyleBackColor = False
         '
-        'Button15
+        'Insurances
         '
-        Me.Button15.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Location = New System.Drawing.Point(33, 145)
-        Me.Button15.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(85, 30)
-        Me.Button15.TabIndex = 12
-        Me.Button15.Text = "労災保険"
-        Me.Button15.UseVisualStyleBackColor = False
+        Me.Insurances.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.Insurances.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Insurances.Location = New System.Drawing.Point(33, 145)
+        Me.Insurances.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Insurances.Name = "Insurances"
+        Me.Insurances.Size = New System.Drawing.Size(85, 30)
+        Me.Insurances.TabIndex = 12
+        Me.Insurances.Text = "労災保険"
+        Me.Insurances.UseVisualStyleBackColor = False
         '
-        'Button4
+        'LevyCosts
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(33, 107)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(85, 30)
-        Me.Button4.TabIndex = 11
-        Me.Button4.Text = "賦課金"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.LevyCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.LevyCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.LevyCosts.Location = New System.Drawing.Point(33, 107)
+        Me.LevyCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LevyCosts.Name = "LevyCosts"
+        Me.LevyCosts.Size = New System.Drawing.Size(85, 30)
+        Me.LevyCosts.TabIndex = 11
+        Me.LevyCosts.Text = "賦課金"
+        Me.LevyCosts.UseVisualStyleBackColor = False
         '
-        'Button5
+        'BranchCosts
         '
-        Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Location = New System.Drawing.Point(33, 69)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(85, 30)
-        Me.Button5.TabIndex = 10
-        Me.Button5.Text = "部門費"
-        Me.Button5.UseVisualStyleBackColor = False
+        Me.BranchCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.BranchCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BranchCosts.Location = New System.Drawing.Point(33, 69)
+        Me.BranchCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BranchCosts.Name = "BranchCosts"
+        Me.BranchCosts.Size = New System.Drawing.Size(85, 30)
+        Me.BranchCosts.TabIndex = 10
+        Me.BranchCosts.Text = "部門費"
+        Me.BranchCosts.UseVisualStyleBackColor = False
         '
-        'Button6
+        'Salaries
         '
-        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(33, 31)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(85, 30)
-        Me.Button6.TabIndex = 9
-        Me.Button6.Text = "給与"
-        Me.Button6.UseVisualStyleBackColor = False
+        Me.Salaries.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.Salaries.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Salaries.Location = New System.Drawing.Point(33, 31)
+        Me.Salaries.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Salaries.Name = "Salaries"
+        Me.Salaries.Size = New System.Drawing.Size(85, 30)
+        Me.Salaries.TabIndex = 9
+        Me.Salaries.Text = "給与"
+        Me.Salaries.UseVisualStyleBackColor = False
         '
         'Costs
         '
@@ -317,21 +317,21 @@ Partial Class マスタメンテナンス
     End Sub
     Friend WithEvents HeadLine As Label
     Friend WithEvents CostMaster As GroupBox
-    Friend WithEvents Button12 As Button
+    Friend WithEvents In_EquipmentCosts As Button
     Friend WithEvents Cost As Button
     Friend WithEvents SubContract As Button
     Friend WithEvents Machine As Button
     Friend WithEvents Material As Button
     Friend WithEvents OtherMaster As GroupBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
+    Friend WithEvents LevyCosts As Button
+    Friend WithEvents BranchCosts As Button
+    Friend WithEvents Salaries As Button
     Friend WithEvents Costs As GroupBox
     Friend WithEvents Labor As Button
     Friend WithEvents ProjectCosts As Button
     Friend WithEvents BasicCosts As Button
-    Friend WithEvents Button14 As Button
-    Friend WithEvents Button13 As Button
-    Friend WithEvents Button16 As Button
-    Friend WithEvents Button15 As Button
+    Friend WithEvents Out_EquipmentCosts As Button
+    Friend WithEvents ExperimentCosts As Button
+    Friend WithEvents StampTaxes As Button
+    Friend WithEvents Insurances As Button
 End Class
