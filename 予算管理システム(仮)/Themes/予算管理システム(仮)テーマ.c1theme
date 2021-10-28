@@ -4979,9 +4979,7 @@
               <Children>
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                 </Background>
                 <Color Name="ForeColor">
                   <Value>GrayText</Value>
@@ -4993,9 +4991,7 @@
               <Children>
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                 </Background>
                 <C1.Win.C1Themes.C1FlexGridBorderPropBag Name="Border">
                   <Children>
@@ -19505,7 +19501,7 @@
         <Node Name="Common">
           <Children>
             <Color Name="BackColor">
-              <Value>Control</Value>
+              <Value>White</Value>
               <Description>The background color of the control.</Description>
             </Color>
             <Color Name="ForeColor">
@@ -19522,7 +19518,7 @@
         <Node Name="Splitter">
           <Children>
             <Color Name="SplitterColor">
-              <Value>160, 160, 180</Value>
+              <Value>White</Value>
               <Description>The color of a splitter element.</Description>
             </Color>
             <Color Name="SplitterMovingColor">
@@ -19534,7 +19530,7 @@
               <Description>The opacity level of a splitter being moved by the user.</Description>
             </Double>
             <Int Name="SplitterWidth">
-              <Value>4</Value>
+              <Value>0</Value>
               <Description>Specifies the width of a splitter element.</Description>
             </Int>
             <Bool Name="UseSizingCursor">
@@ -19562,7 +19558,7 @@
         <Node Name="PanelHeader">
           <Children>
             <Int Name="HeaderHeight">
-              <Value>21</Value>
+              <Value>0</Value>
               <Description>Specifies the height of the C1SplitterPanel header.</Description>
             </Int>
             <Bool Name="BoldHeaderFont">
@@ -19585,8 +19581,8 @@
               <Description>Indicates whether a horizontal line should appear below panel headers.</Description>
             </Bool>
             <Int Name="HeaderLineWidth">
+              <Value>0</Value>
               <Description>Specifies the width of a horizontal line that appears below panel headers.</Description>
-              <Ref>C1SplitContainer\Miscellaneous\FixedLineWidth</Ref>
             </Int>
           </Children>
         </Node>

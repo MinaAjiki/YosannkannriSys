@@ -10,16 +10,16 @@
 
     End Sub
 
-    Private Sub Entry_MouseDown(sender As Object, e As MouseEventArgs)
+    Private Sub Entry_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
         Entry.ImageIndex = 5
     End Sub
 
-    Private Sub Entry_MouseEnter(sender As Object, e As EventArgs)
+    Private Sub Entry_MouseEnter(sender As Object, e As EventArgs) Handles Entry.MouseEnter
         Entry.Cursor = Cursors.Hand
         Entry.ImageIndex = 4
     End Sub
 
-    Private Sub Entry_MouseLeave(sender As Object, e As EventArgs)
+    Private Sub Entry_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
     End Sub
 
@@ -27,11 +27,24 @@
         ホーム.Enabled = True
     End Sub
 
-    Private Sub Entry_Click(sender As Object, e As EventArgs)
-        Me.Close()
+    Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
+        Cancel.ImageIndex = 8
     End Sub
 
-    Private Sub C1SplitContainer1_Click(sender As Object, e As EventArgs) Handles FormSplitContainer.Click
+    Private Sub Cancel_MouseEnter(sender As Object, e As EventArgs) Handles Cancel.MouseEnter
+        Cancel.Cursor = Cursors.Hand
+        Cancel.ImageIndex = 7
+    End Sub
 
+    Private Sub Cancel_MouseLeave(sender As Object, e As EventArgs) Handles Cancel.MouseLeave
+        Cancel.ImageIndex = 6
+    End Sub
+
+    Private Sub Cancel_MouseUp(sender As Object, e As MouseEventArgs) Handles Cancel.MouseUp
+        Cancel.ImageIndex = 6
+    End Sub
+
+    Private Sub Entry_MouseUp(sender As Object, e As MouseEventArgs) Handles Entry.MouseUp
+        Entry.ImageIndex = 3
     End Sub
 End Class

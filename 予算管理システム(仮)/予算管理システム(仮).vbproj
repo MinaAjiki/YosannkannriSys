@@ -152,6 +152,12 @@
     <Compile Include="マスタメンテナンス.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="マスタ一覧.Designer.vb">
+      <DependentUpon>マスタ一覧.vb</DependentUpon>
+    </Compile>
+    <Compile Include="マスタ一覧.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="予算選択.Designer.vb">
       <DependentUpon>予算選択.vb</DependentUpon>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="マスタメンテナンス.resx">
       <DependentUpon>マスタメンテナンス.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="マスタ一覧.resx">
+      <DependentUpon>マスタ一覧.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="予算選択.resx">
       <DependentUpon>予算選択.vb</DependentUpon>
