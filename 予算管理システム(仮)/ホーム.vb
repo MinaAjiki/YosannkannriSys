@@ -16,6 +16,12 @@ Public Class ホーム
     End Sub
 
     Private Sub 協力業者登録_Click(sender As Object, e As ClickEventArgs) Handles 協力業者登録.Click
+
+        協力業者入力.Anchor = AnchorStyles.Top
+        '協力業者入力.Anchor = AnchorStyles.Bottom
+        協力業者入力.Anchor = AnchorStyles.Left
+        '協力業者入力.Anchor = AnchorStyles.Right
+
         協力業者入力.TopLevel = False
         FormPanel.Controls.Add(協力業者入力)
         協力業者入力.Show()

@@ -25,29 +25,19 @@ Partial Class 協力業者入力
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(協力業者入力))
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.C1TextBox4 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox5 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox6 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox7 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox8 = New C1.Win.C1Input.C1TextBox()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.VendorSelect = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.C1SplitContainer1 = New C1.Win.C1SplitContainer.C1SplitContainer()
+        Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.C1SplitContainer1.SuspendLayout()
+        Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label2
@@ -60,134 +50,6 @@ Partial Class 協力業者入力
         Me.Label2.Size = New System.Drawing.Size(104, 18)
         Me.Label2.TabIndex = 25
         Me.Label2.Text = "<< 協力業者入力"
-        '
-        'C1TextBox4
-        '
-        Me.C1TextBox4.AutoSize = False
-        Me.C1TextBox4.BackColor = System.Drawing.Color.White
-        Me.C1TextBox4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox4.Location = New System.Drawing.Point(156, 702)
-        Me.C1TextBox4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox4.Name = "C1TextBox4"
-        Me.C1TextBox4.Size = New System.Drawing.Size(248, 30)
-        Me.C1TextBox4.TabIndex = 35
-        Me.C1TextBox4.Tag = Nothing
-        Me.C1TextBox4.Value = ""
-        '
-        'C1TextBox3
-        '
-        Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
-        Me.C1TextBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox3.Location = New System.Drawing.Point(156, 670)
-        Me.C1TextBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox3.Name = "C1TextBox3"
-        Me.C1TextBox3.Size = New System.Drawing.Size(248, 30)
-        Me.C1TextBox3.TabIndex = 34
-        Me.C1TextBox3.Tag = Nothing
-        Me.C1TextBox3.Value = ""
-        '
-        'C1TextBox2
-        '
-        Me.C1TextBox2.AutoSize = False
-        Me.C1TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox2.Location = New System.Drawing.Point(38, 702)
-        Me.C1TextBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox2.Name = "C1TextBox2"
-        Me.C1TextBox2.Size = New System.Drawing.Size(117, 30)
-        Me.C1TextBox2.TabIndex = 33
-        Me.C1TextBox2.Tag = Nothing
-        Me.C1TextBox2.Value = " 取引先名"
-        Me.C1TextBox2.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'C1TextBox1
-        '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.Location = New System.Drawing.Point(38, 670)
-        Me.C1TextBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(117, 30)
-        Me.C1TextBox1.TabIndex = 32
-        Me.C1TextBox1.Tag = Nothing
-        Me.C1TextBox1.Value = " 取引先コード"
-        Me.C1TextBox1.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'C1TextBox5
-        '
-        Me.C1TextBox5.AutoSize = False
-        Me.C1TextBox5.BackColor = System.Drawing.Color.White
-        Me.C1TextBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox5.Location = New System.Drawing.Point(156, 765)
-        Me.C1TextBox5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox5.Name = "C1TextBox5"
-        Me.C1TextBox5.Size = New System.Drawing.Size(248, 30)
-        Me.C1TextBox5.TabIndex = 39
-        Me.C1TextBox5.Tag = Nothing
-        Me.C1TextBox5.Value = ""
-        '
-        'C1TextBox6
-        '
-        Me.C1TextBox6.AutoSize = False
-        Me.C1TextBox6.BackColor = System.Drawing.Color.White
-        Me.C1TextBox6.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox6.Location = New System.Drawing.Point(156, 734)
-        Me.C1TextBox6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox6.Name = "C1TextBox6"
-        Me.C1TextBox6.Size = New System.Drawing.Size(248, 30)
-        Me.C1TextBox6.TabIndex = 38
-        Me.C1TextBox6.Tag = Nothing
-        Me.C1TextBox6.Value = ""
-        '
-        'C1TextBox7
-        '
-        Me.C1TextBox7.AutoSize = False
-        Me.C1TextBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox7.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox7.Location = New System.Drawing.Point(38, 765)
-        Me.C1TextBox7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox7.Name = "C1TextBox7"
-        Me.C1TextBox7.Size = New System.Drawing.Size(117, 30)
-        Me.C1TextBox7.TabIndex = 37
-        Me.C1TextBox7.Tag = Nothing
-        Me.C1TextBox7.Value = " 発注形態"
-        Me.C1TextBox7.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'C1TextBox8
-        '
-        Me.C1TextBox8.AutoSize = False
-        Me.C1TextBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox8.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox8.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox8.Location = New System.Drawing.Point(38, 734)
-        Me.C1TextBox8.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox8.Name = "C1TextBox8"
-        Me.C1TextBox8.Size = New System.Drawing.Size(117, 30)
-        Me.C1TextBox8.TabIndex = 36
-        Me.C1TextBox8.Tag = Nothing
-        Me.C1TextBox8.Value = " 実施工期"
-        Me.C1TextBox8.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
         '
         'ButtonImageList
         '
@@ -237,26 +99,27 @@ Partial Class 協力業者入力
         Me.VendorList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
-        'Button1
+        'VendorSelect
         '
-        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Button1.ImageIndex = 0
-        Me.Button1.ImageList = Me.ButtonImageList
-        Me.Button1.Location = New System.Drawing.Point(38, 70)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 30)
-        Me.Button1.TabIndex = 42
-        Me.Button1.Text = "業 者 選 択"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.VendorSelect.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.VendorSelect.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.VendorSelect.FlatAppearance.BorderSize = 0
+        Me.VendorSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.VendorSelect.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.VendorSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.VendorSelect.ImageIndex = 0
+        Me.VendorSelect.ImageList = Me.ButtonImageList
+        Me.VendorSelect.Location = New System.Drawing.Point(38, 70)
+        Me.VendorSelect.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.VendorSelect.Name = "VendorSelect"
+        Me.VendorSelect.Size = New System.Drawing.Size(100, 30)
+        Me.VendorSelect.TabIndex = 42
+        Me.VendorSelect.Text = "業 者 選 択"
+        Me.VendorSelect.UseVisualStyleBackColor = True
         '
         'Button4
         '
+        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -264,7 +127,7 @@ Partial Class 協力業者入力
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button4.ImageIndex = 3
         Me.Button4.ImageList = Me.ButtonImageList
-        Me.Button4.Location = New System.Drawing.Point(144, 70)
+        Me.Button4.Location = New System.Drawing.Point(878, 4)
         Me.Button4.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(100, 30)
@@ -272,56 +135,81 @@ Partial Class 協力業者入力
         Me.Button4.Text = "　登　録"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'C1SplitContainer1
+        '
+        Me.C1SplitContainer1.AutoSizeElement = C1.Framework.AutoSizeElement.Both
+        Me.C1SplitContainer1.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.C1SplitContainer1.CollapsingAreaColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.C1SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.C1SplitContainer1.FixedLineColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
+        Me.C1SplitContainer1.HeaderHeight = 0
+        Me.C1SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitContainer1.Name = "C1SplitContainer1"
+        Me.C1SplitContainer1.Panels.Add(Me.C1SplitterPanel1)
+        Me.C1SplitContainer1.Panels.Add(Me.C1SplitterPanel2)
+        Me.C1SplitContainer1.Size = New System.Drawing.Size(990, 662)
+        Me.C1SplitContainer1.SplitterColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.SplitterWidth = 1
+        Me.C1SplitContainer1.TabIndex = 44
+        Me.C1SplitContainer1.ToolTipGradient = C1.Win.C1SplitContainer.ToolTipGradient.Blue
+        Me.C1SplitContainer1.UseParentVisualStyle = False
+        '
+        'C1SplitterPanel1
+        '
+        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Height = 621
+        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
+        Me.C1SplitterPanel1.ResizeWhileDragging = True
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
+        Me.C1SplitterPanel1.SizeRatio = 94.1R
+        Me.C1SplitterPanel1.TabIndex = 0
+        Me.C1SplitterPanel1.Text = "パネル1"
+        '
+        'C1SplitterPanel2
+        '
+        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.YellowGreen
+        Me.C1SplitterPanel2.Controls.Add(Me.Button4)
+        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
+        Me.C1SplitterPanel2.Height = 40
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
+        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
+        Me.C1SplitterPanel2.TabIndex = 1
+        Me.C1SplitterPanel2.Text = "パネル2"
+        '
         '協力業者入力
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(990, 662)
         Me.Controls.Add(Me.VendorList)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.C1TextBox5)
-        Me.Controls.Add(Me.C1TextBox6)
-        Me.Controls.Add(Me.C1TextBox7)
-        Me.Controls.Add(Me.C1TextBox8)
-        Me.Controls.Add(Me.C1TextBox4)
-        Me.Controls.Add(Me.C1TextBox3)
-        Me.Controls.Add(Me.C1TextBox2)
-        Me.Controls.Add(Me.C1TextBox1)
+        Me.Controls.Add(Me.VendorSelect)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.C1SplitContainer1)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "協力業者入力"
         Me.Opacity = 0.2R
         Me.Text = "協力業者入力"
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.C1SplitContainer1.ResumeLayout(False)
+        Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label2 As Label
-    Friend WithEvents C1TextBox4 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox2 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox5 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox6 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox7 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox8 As C1.Win.C1Input.C1TextBox
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents VendorSelect As Button
     Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
+    Friend WithEvents C1SplitContainer1 As C1.Win.C1SplitContainer.C1SplitContainer
+    Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
 End Class

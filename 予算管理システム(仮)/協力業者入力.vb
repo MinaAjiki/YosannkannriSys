@@ -6,17 +6,17 @@
     Private Sub C1FlexGrid1_Click(sender As Object, e As EventArgs)
 
     End Sub
-    Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles Button1.MouseLeave
-        Button1.ImageIndex = 0
+    Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles VendorSelect.MouseLeave
+        VendorSelect.ImageIndex = 0
     End Sub
 
-    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
-        Button1.Cursor = Cursors.Hand
-        Button1.ImageIndex = 1
+    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles VendorSelect.MouseEnter
+        VendorSelect.Cursor = Cursors.Hand
+        VendorSelect.ImageIndex = 1
     End Sub
 
-    Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles Button1.MouseDown
-        Button1.ImageIndex = 2
+    Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles VendorSelect.MouseDown
+        VendorSelect.ImageIndex = 2
     End Sub
 
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Button4.MouseLeave
@@ -36,7 +36,7 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles VendorSelect.Click
         業者一覧.Show()
     End Sub
 End Class

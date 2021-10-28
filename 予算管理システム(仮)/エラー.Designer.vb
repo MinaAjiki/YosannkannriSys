@@ -23,12 +23,12 @@ Partial Class エラー
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.StackTrace = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.StackTrace_Label = New System.Windows.Forms.Label()
         Me.ErrorMessage = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ErrorMessage_Label = New System.Windows.Forms.Label()
+        Me.Message3 = New System.Windows.Forms.Label()
+        Me.Message2 = New System.Windows.Forms.Label()
+        Me.Message1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'StackTrace
@@ -44,15 +44,15 @@ Partial Class エラー
         Me.StackTrace.Size = New System.Drawing.Size(380, 212)
         Me.StackTrace.TabIndex = 13
         '
-        'Label5
+        'StackTrace_Label
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(29, 232)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(116, 18)
-        Me.Label5.TabIndex = 12
-        Me.Label5.Text = "スタックトレース："
+        Me.StackTrace_Label.AutoSize = True
+        Me.StackTrace_Label.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.StackTrace_Label.Location = New System.Drawing.Point(29, 232)
+        Me.StackTrace_Label.Name = "StackTrace_Label"
+        Me.StackTrace_Label.Size = New System.Drawing.Size(116, 18)
+        Me.StackTrace_Label.TabIndex = 12
+        Me.StackTrace_Label.Text = "スタックトレース："
         '
         'ErrorMessage
         '
@@ -67,45 +67,45 @@ Partial Class エラー
         Me.ErrorMessage.Size = New System.Drawing.Size(380, 58)
         Me.ErrorMessage.TabIndex = 11
         '
-        'Label4
+        'ErrorMessage_Label
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(29, 153)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(116, 18)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "エラーメッセージ："
+        Me.ErrorMessage_Label.AutoSize = True
+        Me.ErrorMessage_Label.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ErrorMessage_Label.Location = New System.Drawing.Point(29, 153)
+        Me.ErrorMessage_Label.Name = "ErrorMessage_Label"
+        Me.ErrorMessage_Label.Size = New System.Drawing.Size(116, 18)
+        Me.ErrorMessage_Label.TabIndex = 10
+        Me.ErrorMessage_Label.Text = "エラーメッセージ："
         '
-        'Label3
+        'Message3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(72, 101)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(428, 18)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "なお、下記の情報が必要になりますのでこの画面を開いたままご連絡下さい。"
+        Me.Message3.AutoSize = True
+        Me.Message3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Message3.Location = New System.Drawing.Point(72, 101)
+        Me.Message3.Name = "Message3"
+        Me.Message3.Size = New System.Drawing.Size(428, 18)
+        Me.Message3.TabIndex = 9
+        Me.Message3.Text = "なお、下記の情報が必要になりますのでこの画面を開いたままご連絡下さい。"
         '
-        'Label2
+        'Message2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(137, 73)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(284, 18)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "お手数ですがシステム課までお問い合わせ下さい。"
+        Me.Message2.AutoSize = True
+        Me.Message2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Message2.Location = New System.Drawing.Point(137, 73)
+        Me.Message2.Name = "Message2"
+        Me.Message2.Size = New System.Drawing.Size(284, 18)
+        Me.Message2.TabIndex = 8
+        Me.Message2.Text = "お手数ですがシステム課までお問い合わせ下さい。"
         '
-        'Label1
+        'Message1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(202, 46)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(140, 18)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "エラーが発生しました。"
+        Me.Message1.AutoSize = True
+        Me.Message1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Message1.Location = New System.Drawing.Point(202, 46)
+        Me.Message1.Name = "Message1"
+        Me.Message1.Size = New System.Drawing.Size(140, 18)
+        Me.Message1.TabIndex = 7
+        Me.Message1.Text = "エラーが発生しました。"
         '
         'エラー
         '
@@ -114,12 +114,12 @@ Partial Class エラー
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(565, 484)
         Me.Controls.Add(Me.StackTrace)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.StackTrace_Label)
         Me.Controls.Add(Me.ErrorMessage)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ErrorMessage_Label)
+        Me.Controls.Add(Me.Message3)
+        Me.Controls.Add(Me.Message2)
+        Me.Controls.Add(Me.Message1)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "エラー"
@@ -130,10 +130,10 @@ Partial Class エラー
     End Sub
 
     Friend WithEvents StackTrace As TextBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents StackTrace_Label As Label
     Friend WithEvents ErrorMessage As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents ErrorMessage_Label As Label
+    Friend WithEvents Message3 As Label
+    Friend WithEvents Message2 As Label
+    Friend WithEvents Message1 As Label
 End Class
