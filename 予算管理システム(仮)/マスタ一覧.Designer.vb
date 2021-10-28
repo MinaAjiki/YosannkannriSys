@@ -29,9 +29,16 @@ Partial Class マスタ一覧
         Me.TableName = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.C1SplitContainer1 = New C1.Win.C1SplitContainer.C1SplitContainer()
+        Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.C1SplitContainer1.SuspendLayout()
+        Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -53,17 +60,15 @@ Partial Class マスタ一覧
         Me.MasterContentsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
-        Me.MasterContentsList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MasterContentsList.Location = New System.Drawing.Point(39, 71)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MasterContentsList.Name = "MasterContentsList"
-        Me.MasterContentsList.Rows.Count = 12
         Me.MasterContentsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.MasterContentsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.MasterContentsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.MasterContentsList.Size = New System.Drawing.Size(472, 289)
+        Me.MasterContentsList.Size = New System.Drawing.Size(470, 289)
         Me.MasterContentsList.StyleInfo = resources.GetString("MasterContentsList.StyleInfo")
         Me.MasterContentsList.TabIndex = 56
         Me.SystemTheme.SetTheme(Me.MasterContentsList, "予算管理テーマ")
@@ -105,15 +110,78 @@ Partial Class マスタ一覧
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
+        'C1SplitContainer1
+        '
+        Me.C1SplitContainer1.AutoSizeElement = C1.Framework.AutoSizeElement.Both
+        Me.C1SplitContainer1.BackColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.CollapsingAreaColor = System.Drawing.Color.GhostWhite
+        Me.C1SplitContainer1.CollapsingCueColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.FixedLineColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1SplitContainer1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.C1SplitContainer1.HeaderForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.C1SplitContainer1.HeaderHeight = 0
+        Me.C1SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitContainer1.Name = "C1SplitContainer1"
+        Me.C1SplitContainer1.Panels.Add(Me.C1SplitterPanel1)
+        Me.C1SplitContainer1.Panels.Add(Me.C1SplitterPanel2)
+        Me.C1SplitContainer1.Size = New System.Drawing.Size(538, 478)
+        Me.C1SplitContainer1.SplitterColor = System.Drawing.Color.White
+        Me.C1SplitContainer1.SplitterMovingColor = System.Drawing.Color.Black
+        Me.C1SplitContainer1.SplitterWidth = 0
+        Me.C1SplitContainer1.TabIndex = 60
+        Me.SystemTheme.SetTheme(Me.C1SplitContainer1, "予算管理テーマ")
+        Me.C1SplitContainer1.UseParentVisualStyle = False
+        '
+        'C1SplitterPanel1
+        '
+        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Height = 438
+        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(538, 438)
+        Me.C1SplitterPanel1.SizeRatio = 91.632R
+        Me.C1SplitterPanel1.TabIndex = 0
+        Me.C1SplitterPanel1.Text = "パネル1"
+        '
+        'C1SplitterPanel2
+        '
+        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.Button2)
+        Me.C1SplitterPanel2.Controls.Add(Me.Button1)
+        Me.C1SplitterPanel2.Height = 40
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 438)
+        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(538, 40)
+        Me.C1SplitterPanel2.TabIndex = 1
+        Me.C1SplitterPanel2.Text = "パネル2"
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Button2.ImageIndex = 6
+        Me.Button2.ImageList = Me.ButtonImageList
+        Me.Button2.Location = New System.Drawing.Point(409, 3)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(100, 30)
+        Me.Button2.TabIndex = 60
+        Me.Button2.Text = "　登 録"
+        Me.SystemTheme.SetTheme(Me.Button2, "(default)")
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Button1
         '
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button1.ImageIndex = 3
         Me.Button1.ImageList = Me.ButtonImageList
-        Me.Button1.Location = New System.Drawing.Point(239, 37)
+        Me.Button1.Location = New System.Drawing.Point(304, 3)
         Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(100, 30)
@@ -126,17 +194,20 @@ Partial Class マスタ一覧
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(933, 675)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(535, 474)
         Me.Controls.Add(Me.TableName)
         Me.Controls.Add(Me.MasterContentsList)
         Me.Controls.Add(Me.HeadLine)
+        Me.Controls.Add(Me.C1SplitContainer1)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "マスタ一覧"
         Me.Text = "マスタ一覧"
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.C1SplitContainer1.ResumeLayout(False)
+        Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -148,4 +219,8 @@ Partial Class マスタ一覧
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents Button1 As Button
+    Friend WithEvents C1SplitContainer1 As C1.Win.C1SplitContainer.C1SplitContainer
+    Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents Button2 As Button
 End Class

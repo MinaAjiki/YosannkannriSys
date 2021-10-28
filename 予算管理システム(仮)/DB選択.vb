@@ -7,37 +7,38 @@
         FileList(2, 2) = "C:\Users\206029\デスクトップ\現場データ\DH0000テスト舗装.mdf"
     End Sub
 
-    Private Sub FileOpen_MouseEnter(sender As Object, e As EventArgs) Handles FileOpen.MouseEnter
-        FileOpen.Cursor = Cursors.Hand
-        FileOpen.ImageIndex = 1
+    Private Sub Open_MouseEnter(sender As Object, e As EventArgs) Handles Open.MouseEnter
+        Open.Cursor = Cursors.Hand
+        Open.ImageIndex = 1
     End Sub
 
-    Private Sub FileOpen_MouseDown(sender As Object, e As MouseEventArgs) Handles FileOpen.MouseDown
-        FileOpen.ImageIndex = 2
+    Private Sub Open_MouseDown(sender As Object, e As MouseEventArgs) Handles Open.MouseDown
+        Open.ImageIndex = 2
     End Sub
 
-    Private Sub OK_MouseEnter(sender As Object, e As EventArgs) Handles OK.MouseEnter
-        OK.Cursor = Cursors.Hand
-        OK.ImageIndex = 1
+    Private Sub OtherFile_MouseEnter(sender As Object, e As EventArgs) Handles OtherFile.MouseEnter
+        OtherFile.Cursor = Cursors.Hand
+        OtherFile.ImageIndex = 1
     End Sub
 
-    Private Sub OK_MouseDown(sender As Object, e As MouseEventArgs) Handles OK.MouseDown
-        OK.ImageIndex = 2
+    Private Sub OtherFile_MouseDown(sender As Object, e As MouseEventArgs) Handles OtherFile.MouseDown
+        OtherFile.ImageIndex = 2
     End Sub
 
-    Private Sub FileOpen_MouseLeave(sender As Object, e As EventArgs) Handles FileOpen.MouseLeave
-        FileOpen.ImageIndex = 0
+    Private Sub Open_MouseLeave(sender As Object, e As EventArgs) Handles Open.MouseLeave
+        Open.ImageIndex = 0
     End Sub
 
-    Private Sub FileOpen_MouseUp(sender As Object, e As MouseEventArgs) Handles FileOpen.MouseUp
-        FileOpen.ImageIndex = 0
+    Private Sub Open_MouseUp(sender As Object, e As MouseEventArgs) Handles Open.MouseUp
+        Open.ImageIndex = 0
     End Sub
 
-    Private Sub OK_MouseLeave(sender As Object, e As EventArgs) Handles OK.MouseLeave
-        OK.ImageIndex = 0
+    Private Sub OtherFile_MouseLeave(sender As Object, e As EventArgs) Handles OtherFile.MouseLeave
+        OtherFile.ImageIndex = 0
     End Sub
 
-    Private Sub OK_MouseUp(sender As Object, e As MouseEventArgs) Handles OK.MouseUp
-        OK.ImageIndex = 0
+    Private Sub OtherFile_MouseUp(sender As Object, e As MouseEventArgs) Handles OtherFile.MouseUp
+        OtherFile.ImageIndex = 0
     End Sub
+
 End Class
