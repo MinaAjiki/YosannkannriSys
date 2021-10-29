@@ -85,6 +85,7 @@ Partial Class 協力業者入力
         Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
+        Me.VendorList.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.VendorList.Location = New System.Drawing.Point(15, 115)
         Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -158,6 +159,7 @@ Partial Class 協力業者入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
@@ -188,7 +190,7 @@ Partial Class 協力業者入力
         Me.Controls.Add(Me.VendorSelect)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.C1SplitContainer1)
-        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "協力業者入力"
