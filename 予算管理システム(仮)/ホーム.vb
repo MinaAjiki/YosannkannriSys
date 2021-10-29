@@ -30,4 +30,8 @@ Public Class ホーム
     Private Sub マスタ_Click(sender As Object, e As ClickEventArgs) Handles マスタ.Click
         マスタメンテナンス.Show()
     End Sub
+
+    Private Sub 管理者登録_Click(sender As Object, e As ClickEventArgs) Handles 管理者登録.Click
+        管理者マスタ一覧.Show()
+    End Sub
 End Class
