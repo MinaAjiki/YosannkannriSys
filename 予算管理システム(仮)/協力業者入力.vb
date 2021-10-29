@@ -1,6 +1,6 @@
 ﻿Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        VendorList.SetCellImage(1, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
     End Sub
 
     Private Sub C1FlexGrid1_Click(sender As Object, e As EventArgs)
@@ -19,20 +19,20 @@
         VendorSelect.ImageIndex = 2
     End Sub
 
-    Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Button4.MouseLeave
-        Button4.ImageIndex = 3
+    Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
+        Entry.ImageIndex = 3
     End Sub
 
-    Private Sub Button4_MouseEnter(sender As Object, e As EventArgs) Handles Button4.MouseEnter
-        Button4.Cursor = Cursors.Hand
-        Button4.ImageIndex = 4
+    Private Sub Button4_MouseEnter(sender As Object, e As EventArgs) Handles Entry.MouseEnter
+        Entry.Cursor = Cursors.Hand
+        Entry.ImageIndex = 4
     End Sub
 
-    Private Sub Button4_MouseDown(sender As Object, e As MouseEventArgs) Handles Button4.MouseDown
-        Button4.ImageIndex = 5
+    Private Sub Button4_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
+        Entry.ImageIndex = 5
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Entry.Click
 
     End Sub
 
