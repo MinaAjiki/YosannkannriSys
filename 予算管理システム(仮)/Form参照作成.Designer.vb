@@ -302,22 +302,19 @@ Partial Class Form参照作成
         'FormSplitContainer
         '
         Me.FormSplitContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
-        Me.FormSplitContainer.BackColor = System.Drawing.Color.White
+        Me.FormSplitContainer.BackColor = System.Drawing.SystemColors.Control
         Me.FormSplitContainer.CollapsingAreaColor = System.Drawing.Color.GhostWhite
-        Me.FormSplitContainer.CollapsingCueColor = System.Drawing.Color.White
-        Me.FormSplitContainer.FixedLineColor = System.Drawing.Color.White
+        Me.FormSplitContainer.CollapsingCueColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.FormSplitContainer.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.FormSplitContainer.HeaderForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.FormSplitContainer.HeaderHeight = 0
+        Me.FormSplitContainer.HeaderLineWidth = 1
         Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.MainPanel)
         Me.FormSplitContainer.Panels.Add(Me.FooterPanel)
         Me.FormSplitContainer.Size = New System.Drawing.Size(636, 503)
-        Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.FormSplitContainer.SplitterMovingColor = System.Drawing.Color.Black
-        Me.FormSplitContainer.SplitterWidth = 0
         Me.FormSplitContainer.TabIndex = 51
         Me.SystemTheme.SetTheme(Me.FormSplitContainer, "(default)")
         Me.FormSplitContainer.UseParentVisualStyle = False
@@ -325,10 +322,10 @@ Partial Class Form参照作成
         'MainPanel
         '
         Me.MainPanel.BackColor = System.Drawing.Color.White
-        Me.MainPanel.Height = 463
-        Me.MainPanel.Location = New System.Drawing.Point(0, 0)
+        Me.MainPanel.Height = 459
+        Me.MainPanel.Location = New System.Drawing.Point(0, 21)
         Me.MainPanel.Name = "MainPanel"
-        Me.MainPanel.Size = New System.Drawing.Size(636, 463)
+        Me.MainPanel.Size = New System.Drawing.Size(636, 438)
         Me.MainPanel.SizeRatio = 92.048R
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
