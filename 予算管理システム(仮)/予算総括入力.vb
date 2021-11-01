@@ -23,4 +23,8 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         業者一覧.Show()
     End Sub
+
+    Private Sub FormPanel_Click(sender As Object, e As EventArgs) Handles FormPanel.Click
+
+    End Sub
 End Class
