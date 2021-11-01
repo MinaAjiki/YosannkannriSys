@@ -341,7 +341,7 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\OpenFile.png" />
+    <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
     <None Include="Resources\Entry.png" />
   </ItemGroup>
@@ -360,7 +360,7 @@
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />
     <Content Include="Resources\Modify.png" />
-    <None Include="Resources\Search.png" />
+    <Content Include="Resources\Search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
