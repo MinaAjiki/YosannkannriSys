@@ -56,4 +56,8 @@
     Private Sub Search_MouseUp(sender As Object, e As MouseEventArgs) Handles Search.MouseUp
         Search.ImageIndex = 0
     End Sub
+
+    Private Sub MainPanel_Click(sender As Object, e As EventArgs) Handles MainPanel.Click
+
+    End Sub
 End Class

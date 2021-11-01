@@ -125,13 +125,14 @@ Partial Class 費用マスタ一覧
         'Search
         '
         Me.Search.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(182, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Search.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Search.Image = Global.予算管理システム_仮_.My.Resources.Resources.Search
-        Me.Search.Location = New System.Drawing.Point(1155, 57)
+        Me.Search.Location = New System.Drawing.Point(1157, 57)
         Me.Search.Name = "Search"
-        Me.Search.Size = New System.Drawing.Size(25, 20)
-        Me.Search.TabIndex = 66
+        Me.Search.Size = New System.Drawing.Size(24, 20)
+        Me.Search.TabIndex = 63
         Me.Search.UseVisualStyleBackColor = True
         '
         'SearchName
@@ -141,7 +142,7 @@ Partial Class 費用マスタ一覧
         Me.SearchName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.SearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.SearchName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.SearchName.Location = New System.Drawing.Point(905, 57)
+        Me.SearchName.Location = New System.Drawing.Point(907, 57)
         Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SearchName.Name = "SearchName"
         Me.SearchName.Size = New System.Drawing.Size(248, 20)
@@ -170,7 +171,7 @@ Partial Class 費用マスタ一覧
         Me.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.NameLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.NameLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.NameLabel.Location = New System.Drawing.Point(845, 57)
+        Me.NameLabel.Location = New System.Drawing.Point(847, 57)
         Me.NameLabel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.NameLabel.Name = "NameLabel"
         Me.NameLabel.Size = New System.Drawing.Size(59, 20)
@@ -201,7 +202,6 @@ Partial Class 費用マスタ一覧
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
-        Me.MasterContentsList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MasterContentsList.Location = New System.Drawing.Point(29, 78)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -256,7 +256,7 @@ Partial Class 費用マスタ一覧
         Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Entry.ImageIndex = 3
         Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(951, 6)
+        Me.Entry.Location = New System.Drawing.Point(957, 6)
         Me.Entry.Margin = New System.Windows.Forms.Padding(0)
         Me.Entry.Name = "Entry"
         Me.Entry.Size = New System.Drawing.Size(100, 30)
