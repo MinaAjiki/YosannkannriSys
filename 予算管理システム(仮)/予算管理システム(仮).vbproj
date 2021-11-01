@@ -217,10 +217,10 @@
     <Compile Include="Form参照作成.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="業者選択%28Export%29.Designer.vb">
-      <DependentUpon>業者選択%28Export%29.vb</DependentUpon>
+    <Compile Include="業者選択_Export.Designer.vb">
+      <DependentUpon>業者選択_Export.vb</DependentUpon>
     </Compile>
-    <Compile Include="業者選択%28Export%29.vb">
+    <Compile Include="業者選択_Export.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="業者一覧.Designer.vb">
@@ -229,16 +229,22 @@
     <Compile Include="業者一覧.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="業者選択%28出来高%29.Designer.vb">
-      <DependentUpon>業者選択%28出来高%29.vb</DependentUpon>
+    <Compile Include="業者選択_出来高.Designer.vb">
+      <DependentUpon>業者選択_出来高.vb</DependentUpon>
     </Compile>
-    <Compile Include="業者選択%28出来高%29.vb">
+    <Compile Include="業者選択_出来高.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="注文書番号入力.Designer.vb">
       <DependentUpon>注文書番号入力.vb</DependentUpon>
     </Compile>
     <Compile Include="注文書番号入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="注文書番号入力_小工種.Designer.vb">
+      <DependentUpon>注文書番号入力_小工種.vb</DependentUpon>
+    </Compile>
+    <Compile Include="注文書番号入力_小工種.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="管理者マスタ一覧.Designer.vb">
@@ -313,14 +319,17 @@
     <EmbeddedResource Include="業者一覧.resx">
       <DependentUpon>業者一覧.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="業者選択%28Export%29.resx">
-      <DependentUpon>業者選択%28Export%29.vb</DependentUpon>
+    <EmbeddedResource Include="業者選択_Export.resx">
+      <DependentUpon>業者選択_Export.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="業者選択%28出来高%29.resx">
-      <DependentUpon>業者選択%28出来高%29.vb</DependentUpon>
+    <EmbeddedResource Include="業者選択_出来高.resx">
+      <DependentUpon>業者選択_出来高.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="注文書番号入力.resx">
       <DependentUpon>注文書番号入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="注文書番号入力_小工種.resx">
+      <DependentUpon>注文書番号入力_小工種.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="管理者マスタ一覧.resx">
       <DependentUpon>管理者マスタ一覧.vb</DependentUpon>
