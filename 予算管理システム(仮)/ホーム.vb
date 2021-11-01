@@ -27,6 +27,18 @@ Public Class ホーム
         協力業者入力.Show()
     End Sub
 
+    Private Sub 注文書番号入力_Click(sender As Object, e As ClickEventArgs) Handles 注文書番号登録.Click
+
+        注文書番号入力.Anchor = AnchorStyles.Top
+        '協力業者入力.Anchor = AnchorStyles.Bottom
+        注文書番号入力.Anchor = AnchorStyles.Left
+        '協力業者入力.Anchor = AnchorStyles.Right
+
+        注文書番号入力.TopLevel = False
+        FormPanel.Controls.Add(注文書番号入力)
+        注文書番号入力.Show()
+    End Sub
+
     Private Sub 出来高登録_Click(sender As Object, e As ClickEventArgs) Handles 出来高登録.Click
 
         業者選択_出来高.Anchor = AnchorStyles.Top

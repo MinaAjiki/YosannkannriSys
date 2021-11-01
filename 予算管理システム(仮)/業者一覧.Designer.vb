@@ -24,70 +24,38 @@ Partial Class 業者一覧
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(業者一覧))
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.C1TextBox5 = New C1.Win.C1Input.C1TextBox()
-        Me.VendorName = New C1.Win.C1Input.C1TextBox()
+        Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
-        Me.Search = New System.Windows.Forms.Button()
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.SearchSelect = New System.Windows.Forms.ComboBox()
+        Me.Search = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.SearchName = New C1.Win.C1Input.C1TextBox()
+        Me.NameLabel = New C1.Win.C1Input.C1TextBox()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VendorName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
+        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Label2
+        'HeadLine
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(15, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(80, 18)
-        Me.Label2.TabIndex = 27
-        Me.Label2.Text = "<< 業者一覧"
-        '
-        'C1TextBox5
-        '
-        Me.C1TextBox5.AutoSize = False
-        Me.C1TextBox5.BackColor = System.Drawing.Color.White
-        Me.C1TextBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox5.Location = New System.Drawing.Point(91, 76)
-        Me.C1TextBox5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.C1TextBox5.Name = "C1TextBox5"
-        Me.C1TextBox5.Size = New System.Drawing.Size(248, 24)
-        Me.C1TextBox5.TabIndex = 1
-        Me.C1TextBox5.Tag = Nothing
-        Me.C1TextBox5.Value = ""
-        '
-        'VendorName
-        '
-        Me.VendorName.AutoSize = False
-        Me.VendorName.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.VendorName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.VendorName.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.VendorName.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.VendorName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.VendorName.Location = New System.Drawing.Point(36, 76)
-        Me.VendorName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.VendorName.Name = "VendorName"
-        Me.VendorName.Size = New System.Drawing.Size(59, 24)
-        Me.VendorName.TabIndex = 48
-        Me.VendorName.Tag = Nothing
-        Me.VendorName.Value = "業者名："
-        Me.VendorName.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
+        Me.HeadLine.AutoSize = True
+        Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.HeadLine.Location = New System.Drawing.Point(15, 22)
+        Me.HeadLine.Name = "HeadLine"
+        Me.HeadLine.Size = New System.Drawing.Size(80, 18)
+        Me.HeadLine.TabIndex = 27
+        Me.HeadLine.Text = "<< 業者一覧"
         '
         'ButtonImageList
         '
@@ -115,24 +83,6 @@ Partial Class 業者一覧
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
-        'Search
-        '
-        Me.Search.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Search.FlatAppearance.BorderSize = 0
-        Me.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Search.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Search.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Search.ImageIndex = 0
-        Me.Search.ImageList = Me.ButtonImageList
-        Me.Search.Location = New System.Drawing.Point(345, 72)
-        Me.Search.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Search.Name = "Search"
-        Me.Search.Size = New System.Drawing.Size(100, 30)
-        Me.Search.TabIndex = 50
-        Me.Search.Text = "検　索"
-        Me.Search.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Search.UseVisualStyleBackColor = True
-        '
         'VendorList
         '
         Me.VendorList.AllowAddNew = True
@@ -155,6 +105,30 @@ Partial Class 業者一覧
         Me.VendorList.TabIndex = 51
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
+        'SearchSelect
+        '
+        Me.SearchSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.SearchSelect.FormattingEnabled = True
+        Me.SearchSelect.Items.AddRange(New Object() {"正式名称で検索", "カナ名称で検索"})
+        Me.SearchSelect.Location = New System.Drawing.Point(358, 82)
+        Me.SearchSelect.Name = "SearchSelect"
+        Me.SearchSelect.Size = New System.Drawing.Size(133, 28)
+        Me.SearchSelect.TabIndex = 51
+        Me.SystemTheme.SetTheme(Me.SearchSelect, "(default)")
+        '
+        'Search
+        '
+        Me.Search.BackColor = System.Drawing.Color.Transparent
+        Me.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Search.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Search.Image = Global.予算管理システム_仮_.My.Resources.Resources.Search
+        Me.Search.Location = New System.Drawing.Point(328, 85)
+        Me.Search.Name = "Search"
+        Me.Search.Size = New System.Drawing.Size(24, 20)
+        Me.Search.TabIndex = 66
+        Me.SystemTheme.SetTheme(Me.Search, "(default)")
+        Me.Search.UseVisualStyleBackColor = True
+        '
         'Cancel
         '
         Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -173,17 +147,6 @@ Partial Class 業者一覧
         Me.Cancel.Text = "キャンセル"
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"正式名称で検索", "カナ名称で検索"})
-        Me.ComboBox1.Location = New System.Drawing.Point(451, 74)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(133, 28)
-        Me.ComboBox1.TabIndex = 51
-        Me.SystemTheme.SetTheme(Me.ComboBox1, "(default)")
         '
         'FormSplitContainer
         '
@@ -209,10 +172,10 @@ Partial Class 業者一覧
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.ComboBox1)
-        Me.C1SplitterPanel1.Controls.Add(Me.VendorName)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox5)
         Me.C1SplitterPanel1.Controls.Add(Me.Search)
+        Me.C1SplitterPanel1.Controls.Add(Me.SearchName)
+        Me.C1SplitterPanel1.Controls.Add(Me.NameLabel)
+        Me.C1SplitterPanel1.Controls.Add(Me.SearchSelect)
         Me.C1SplitterPanel1.Height = 620
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
@@ -221,6 +184,39 @@ Partial Class 業者一覧
         Me.C1SplitterPanel1.SizeRatio = 93.797R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
+        '
+        'SearchName
+        '
+        Me.SearchName.AutoSize = False
+        Me.SearchName.BackColor = System.Drawing.Color.White
+        Me.SearchName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.SearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SearchName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.SearchName.Location = New System.Drawing.Point(78, 85)
+        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SearchName.Name = "SearchName"
+        Me.SearchName.Size = New System.Drawing.Size(248, 20)
+        Me.SearchName.TabIndex = 65
+        Me.SearchName.Tag = Nothing
+        Me.SearchName.Value = ""
+        '
+        'NameLabel
+        '
+        Me.NameLabel.AutoSize = False
+        Me.NameLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.NameLabel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NameLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NameLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.NameLabel.Location = New System.Drawing.Point(18, 85)
+        Me.NameLabel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.NameLabel.Name = "NameLabel"
+        Me.NameLabel.Size = New System.Drawing.Size(59, 20)
+        Me.NameLabel.TabIndex = 64
+        Me.NameLabel.Tag = Nothing
+        Me.NameLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NameLabel.Value = "名称検索"
+        Me.NameLabel.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
         '
         'C1SplitterPanel2
         '
@@ -240,7 +236,7 @@ Partial Class 業者一覧
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(830, 662)
         Me.Controls.Add(Me.VendorList)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.ForeColor = System.Drawing.SystemColors.ControlText
@@ -248,29 +244,29 @@ Partial Class 業者一覧
         Me.Name = "業者一覧"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "業者一覧"
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VendorName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
+        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Label2 As Label
-    Friend WithEvents C1TextBox5 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents VendorName As C1.Win.C1Input.C1TextBox
+    Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Search As Button
     Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents Cancel As Button
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents SearchSelect As ComboBox
+    Friend WithEvents Search As Button
+    Friend WithEvents SearchName As C1.Win.C1Input.C1TextBox
+    Friend WithEvents NameLabel As C1.Win.C1Input.C1TextBox
 End Class
