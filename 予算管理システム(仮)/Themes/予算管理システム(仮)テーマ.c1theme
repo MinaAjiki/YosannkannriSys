@@ -7373,7 +7373,7 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Default\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
                       <Ref>C1Input\C1DropDownControl\Buttons\Default\ArrowShadowColor</Ref>
@@ -7383,7 +7383,9 @@
                 <Node Name="Hot">
                   <Children>
                     <Background Name="Background">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\Background</Ref>
+                      <Value Type="Solid">
+                        <Color>216, 216, 216</Color>
+                      </Value>
                     </Background>
                     <C1FrameworkBorder Name="Border">
                       <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
@@ -7397,10 +7399,10 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\ArrowShadowColor</Ref>
+                      <Value>Transparent</Value>
                     </Color>
                   </Children>
                 </Node>
@@ -7408,7 +7410,9 @@
                   <DisplayName>Hot &amp; Pressed</DisplayName>
                   <Children>
                     <Background Name="Background">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\Background</Ref>
+                      <Value Type="Solid">
+                        <Color>216, 216, 216</Color>
+                      </Value>
                     </Background>
                     <C1FrameworkBorder Name="Border">
                       <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
@@ -7422,10 +7426,10 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\ArrowShadowColor</Ref>
+                      <Value>Transparent</Value>
                     </Color>
                   </Children>
                 </Node>
@@ -7477,7 +7481,7 @@
                   <Ref>BaseThemeProperties\Styles\Highlight\Background</Ref>
                 </Color>
                 <Color Name="SelectionForeColor">
-                  <Ref>BaseThemeProperties\Styles\Highlight\ForeColor</Ref>
+                  <Value>68, 68, 68</Value>
                 </Color>
                 <Color Name="TitleBackColor">
                   <Ref>BaseThemeProperties\Styles\Header\Background</Ref>
@@ -8149,7 +8153,7 @@
               <Ref>C1Input\VisualStyle</Ref>
             </Enum-C1.Win.C1Themes.ThemeVisualStyle>
             <Font Name="Font">
-              <Ref>C1Input\C1TextBox\Font</Ref>
+              <Value>Arial; 9</Value>
             </Font>
             <Thickness Name="Padding">
               <Ref>C1Input\C1TextBox\Padding</Ref>
@@ -8577,11 +8581,16 @@
                 </Color>
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Default\Background</Ref>
+                  <Value Type="Solid">
+                    <Color>255, 255, 214</Color>
+                  </Value>
                 </Background>
                 <C1FrameworkBorder Name="Border">
                   <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
                   <Children>
+                    <Color Name="Color">
+                      <Value>216, 216, 216</Value>
+                    </Color>
                     <Thickness Name="Thickness">
                       <Value>0</Value>
                     </Thickness>
@@ -8785,7 +8794,7 @@
                       <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\ArrowShadowColor</Ref>
+                      <Value>Transparent</Value>
                     </Color>
                   </Children>
                 </Node>
@@ -8809,10 +8818,10 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
-                      <Value>68, 68, 68</Value>
+                      <Value>Transparent</Value>
                     </Color>
                   </Children>
                 </Node>
@@ -19045,9 +19054,7 @@
               <Description>Describes appearance of the scrollbar track in its normal state.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid">
-                    <Color>Transparent</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Track background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
@@ -19082,7 +19089,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Transparent</Color>
+                    <Color>255, 255, 255</Color>
                   </Value>
                   <Description>Track background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19100,8 +19107,10 @@
               <Description>Describes appearance of the pressed scrollbar track.</Description>
               <Children>
                 <Background Name="Background">
+                  <Value Type="Solid">
+                    <Color>255, 255, 255</Color>
+                  </Value>
                   <Description>Track background for vertical and horizontal scrollbars.</Description>
-                  <Ref>C1ScrollBar\Track\Default\Background</Ref>
                 </Background>
                 <Background Name="BackgroundHorz">
                   <Description>Track background for a horizontal scrollbar.</Description>
@@ -19156,24 +19165,28 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Transparent</Color>
+                    <Color>255, 255, 255</Color>
                   </Value>
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
-                  <Value Type="Solid" />
+                  <Value Type="Solid">
+                    <Color>255, 255, 255</Color>
+                  </Value>
                   <Description>Button background for the horizontal scrollbar.</Description>
                 </Background>
                 <Background Name="BackgroundVert">
-                  <Value Type="Solid" />
+                  <Value Type="Solid">
+                    <Color>255, 255, 255</Color>
+                  </Value>
                   <Description>Button background for the vertical scrollbar.</Description>
                 </Background>
                 <Color Name="ArrowColor">
-                  <Value>68, 68, 68</Value>
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the scrollbar arrow image.</Description>
                 </Color>
                 <Color Name="BorderColor">
-                  <Value>68, 68, 68</Value>
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
                 </Color>
                 <Color Name="CornerColor">
@@ -19186,7 +19199,9 @@
               <Description>Describes appearance of a disabled scroll button.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid" />
+                  <Value Type="Solid">
+                    <Color>255, 255, 255</Color>
+                  </Value>
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
@@ -19198,11 +19213,11 @@
                   <Ref>C1ScrollBar\Buttons\Disabled\Background</Ref>
                 </Background>
                 <Color Name="ArrowColor">
-                  <Value>68, 68, 68</Value>
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the scrollbar arrow image.</Description>
                 </Color>
                 <Color Name="BorderColor">
-                  <Value>68, 68, 68</Value>
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
                 </Color>
                 <Color Name="CornerColor">
@@ -19216,7 +19231,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Control</Color>
+                    <Color>211, 222, 241</Color>
                   </Value>
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19229,8 +19244,8 @@
                   <Ref>C1ScrollBar\Buttons\Hot\Background</Ref>
                 </Background>
                 <Color Name="ArrowColor">
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the scrollbar arrow image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Hot\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
                   <Value>Transparent</Value>
@@ -19246,8 +19261,10 @@
               <Description>Describes appearance of a pressed scroll button.</Description>
               <Children>
                 <Background Name="Background">
+                  <Value Type="Solid">
+                    <Color>211, 222, 241</Color>
+                  </Value>
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\HotPressed\Background</Ref>
                 </Background>
                 <Background Name="BackgroundHorz">
                   <Description>Button background for the horizontal scrollbar.</Description>
@@ -19258,8 +19275,8 @@
                   <Ref>C1ScrollBar\Buttons\HotPressed\Background</Ref>
                 </Background>
                 <Color Name="ArrowColor">
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the scrollbar arrow image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\HotPressed\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
                   <Value>Transparent</Value>
@@ -19276,7 +19293,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Control</Color>
+                    <Color>211, 222, 241</Color>
                   </Value>
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19289,12 +19306,12 @@
                   <Ref>C1ScrollBar\Buttons\Hover\Background</Ref>
                 </Background>
                 <Color Name="ArrowColor">
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the scrollbar arrow image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Highlight\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
-                  <Ref>BaseThemeProperties\Styles\Highlight\BorderColor</Ref>
                 </Color>
                 <Color Name="CornerColor">
                   <Description>The color of the corner pixels.</Description>
@@ -19330,7 +19347,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Transparent</Color>
+                    <Color>211, 222, 241</Color>
                   </Value>
                   <Description>Thumb background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19343,12 +19360,12 @@
                   <Ref>C1ScrollBar\Thumb\Default\Background</Ref>
                 </Background>
                 <Color Name="GripColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the grip handle image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Default\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Default\BorderColor</Ref>
                 </Color>
                 <Color Name="CornerColor">
                   <Description>The color of the corner pixels.</Description>
@@ -19361,7 +19378,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Control</Color>
+                    <Color>211, 222, 241</Color>
                   </Value>
                   <Description>Thumb background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19374,12 +19391,12 @@
                   <Ref>C1ScrollBar\Thumb\Hot\Background</Ref>
                 </Background>
                 <Color Name="GripColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the grip handle image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Hot\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\Hot\BorderColor</Ref>
                 </Color>
                 <Color Name="CornerColor">
                   <Description>The color of the corner pixels.</Description>
@@ -19391,8 +19408,10 @@
               <Description>Describes appearance of a pressed scroll thumb.</Description>
               <Children>
                 <Background Name="Background">
+                  <Value Type="Solid">
+                    <Color>211, 222, 241</Color>
+                  </Value>
                   <Description>Thumb background for vertical and horizontal scrollbars.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\HotPressed\Background</Ref>
                 </Background>
                 <Background Name="BackgroundHorz">
                   <Description>Thumb background for the horizontal scrollbar.</Description>
@@ -19403,12 +19422,12 @@
                   <Ref>C1ScrollBar\Thumb\HotPressed\Background</Ref>
                 </Background>
                 <Color Name="GripColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the grip handle image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\HotPressed\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
-                  <Ref>BaseThemeProperties\Styles\Clickable\HotPressed\BorderColor</Ref>
                 </Color>
                 <Color Name="CornerColor">
                   <Description>The color of the corner pixels.</Description>
@@ -19421,7 +19440,7 @@
               <Children>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>231, 0, 0</Color>
+                    <Color>211, 222, 241</Color>
                   </Value>
                   <Description>Thumb background for vertical and horizontal scrollbars.</Description>
                 </Background>
@@ -19434,12 +19453,12 @@
                   <Ref>C1ScrollBar\Thumb\Hover\Background</Ref>
                 </Background>
                 <Color Name="GripColor">
+                  <Value>51, 102, 153</Value>
                   <Description>The color of the grip handle image.</Description>
-                  <Ref>BaseThemeProperties\Styles\Highlight\ForeColor</Ref>
                 </Color>
                 <Color Name="BorderColor">
+                  <Value>Transparent</Value>
                   <Description>The color of the button border.</Description>
-                  <Ref>BaseThemeProperties\Styles\Highlight\BorderColor</Ref>
                 </Color>
                 <Color Name="CornerColor">
                   <Description>The color of the corner pixels.</Description>
