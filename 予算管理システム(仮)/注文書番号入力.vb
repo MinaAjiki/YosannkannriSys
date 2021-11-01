@@ -11,4 +11,8 @@
     Private Sub Button4_MouseDown(sender As Object, e As MouseEventArgs) Handles Button4.MouseDown
         Button4.ImageIndex = 5
     End Sub
+
+    Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
+
+    End Sub
 End Class

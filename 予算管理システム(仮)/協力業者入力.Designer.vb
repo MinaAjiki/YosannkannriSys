@@ -27,12 +27,12 @@ Partial Class 協力業者入力
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.VendorSelect = New System.Windows.Forms.Button()
-        Me.Entry = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.VendorSelect = New System.Windows.Forms.Button()
+        Me.Entry = New System.Windows.Forms.Button()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,7 +45,7 @@ Partial Class 協力業者入力
         Me.HeadLine.AutoSize = True
         Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.HeadLine.Location = New System.Drawing.Point(15, 22)
+        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
         Me.HeadLine.Name = "HeadLine"
         Me.HeadLine.Size = New System.Drawing.Size(104, 18)
         Me.HeadLine.TabIndex = 25
@@ -99,6 +99,52 @@ Partial Class 協力業者入力
         Me.VendorList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
+        'FormSplitContainer
+        '
+        Me.FormSplitContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
+        Me.FormSplitContainer.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.FormSplitContainer.CollapsingAreaColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.FormSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FormSplitContainer.FixedLineColor = System.Drawing.Color.White
+        Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
+        Me.FormSplitContainer.HeaderHeight = 0
+        Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.FormSplitContainer.Name = "FormSplitContainer"
+        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
+        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(990, 662)
+        Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
+        Me.FormSplitContainer.SplitterWidth = 1
+        Me.FormSplitContainer.TabIndex = 44
+        Me.FormSplitContainer.ToolTipGradient = C1.Win.C1SplitContainer.ToolTipGradient.Blue
+        Me.FormSplitContainer.UseParentVisualStyle = False
+        '
+        'C1SplitterPanel1
+        '
+        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
+        Me.C1SplitterPanel1.Height = 621
+        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
+        Me.C1SplitterPanel1.ResizeWhileDragging = True
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
+        Me.C1SplitterPanel1.SizeRatio = 94.1R
+        Me.C1SplitterPanel1.TabIndex = 0
+        Me.C1SplitterPanel1.Text = "パネル1"
+        Me.C1SplitterPanel1.Width = 990
+        '
+        'C1SplitterPanel2
+        '
+        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
+        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
+        Me.C1SplitterPanel2.Height = 40
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
+        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
+        Me.C1SplitterPanel2.TabIndex = 1
+        Me.C1SplitterPanel2.Text = "パネル2"
+        '
         'VendorSelect
         '
         Me.VendorSelect.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -134,51 +180,6 @@ Partial Class 協力業者入力
         Me.Entry.TabIndex = 41
         Me.Entry.Text = "　登　録"
         Me.Entry.UseVisualStyleBackColor = True
-        '
-        'FormSplitContainer
-        '
-        Me.FormSplitContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
-        Me.FormSplitContainer.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.FormSplitContainer.CollapsingAreaColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.FormSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FormSplitContainer.FixedLineColor = System.Drawing.Color.White
-        Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
-        Me.FormSplitContainer.HeaderHeight = 0
-        Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
-        Me.FormSplitContainer.Name = "FormSplitContainer"
-        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
-        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
-        Me.FormSplitContainer.Size = New System.Drawing.Size(990, 662)
-        Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
-        Me.FormSplitContainer.SplitterWidth = 1
-        Me.FormSplitContainer.TabIndex = 44
-        Me.FormSplitContainer.ToolTipGradient = C1.Win.C1SplitContainer.ToolTipGradient.Blue
-        Me.FormSplitContainer.UseParentVisualStyle = False
-        '
-        'C1SplitterPanel1
-        '
-        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
-        Me.C1SplitterPanel1.Height = 621
-        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
-        Me.C1SplitterPanel1.ResizeWhileDragging = True
-        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
-        Me.C1SplitterPanel1.SizeRatio = 94.1R
-        Me.C1SplitterPanel1.TabIndex = 0
-        Me.C1SplitterPanel1.Text = "パネル1"
-        '
-        'C1SplitterPanel2
-        '
-        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
-        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
-        Me.C1SplitterPanel2.Height = 40
-        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
-        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
-        Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
-        Me.C1SplitterPanel2.TabIndex = 1
-        Me.C1SplitterPanel2.Text = "パネル2"
         '
         '協力業者入力
         '

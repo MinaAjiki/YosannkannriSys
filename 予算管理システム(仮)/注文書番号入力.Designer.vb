@@ -31,8 +31,8 @@ Partial Class 注文書番号入力
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         CType(Me.OrderNoList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
@@ -46,7 +46,7 @@ Partial Class 注文書番号入力
         Me.HeadLine.AutoSize = True
         Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.HeadLine.Location = New System.Drawing.Point(13, 15)
+        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
         Me.HeadLine.Name = "HeadLine"
         Me.HeadLine.Size = New System.Drawing.Size(116, 18)
         Me.HeadLine.TabIndex = 50
@@ -87,7 +87,8 @@ Partial Class 注文書番号入力
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button4.ImageIndex = 3
         Me.Button4.ImageList = Me.ButtonImageList
-        Me.Button4.Location = New System.Drawing.Point(30, 67)
+        Me.Button4.Location = New System.Drawing.Point(38, 70)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(100, 30)
         Me.Button4.TabIndex = 51
@@ -104,14 +105,14 @@ Partial Class 注文書番号入力
         Me.OrderNoList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OrderNoList.ColumnInfo = resources.GetString("OrderNoList.ColumnInfo")
         Me.OrderNoList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.OrderNoList.Location = New System.Drawing.Point(30, 107)
-        Me.OrderNoList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.OrderNoList.Location = New System.Drawing.Point(15, 115)
+        Me.OrderNoList.Margin = New System.Windows.Forms.Padding(3, 9, 3, 9)
         Me.OrderNoList.Name = "OrderNoList"
         Me.OrderNoList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.OrderNoList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.OrderNoList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OrderNoList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.OrderNoList.Size = New System.Drawing.Size(630, 506)
+        Me.OrderNoList.Size = New System.Drawing.Size(630, 461)
         Me.OrderNoList.StyleInfo = resources.GetString("OrderNoList.StyleInfo")
         Me.OrderNoList.TabIndex = 61
         Me.SystemTheme.SetTheme(Me.OrderNoList, "予算管理テーマ")
@@ -126,6 +127,7 @@ Partial Class 注文書番号入力
         Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
         Me.FormSplitContainer.HeaderHeight = 0
         Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.FormSplitContainer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
@@ -139,13 +141,14 @@ Partial Class 注文書番号入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Controls.Add(Me.Button4)
         Me.C1SplitterPanel1.Controls.Add(Me.OrderNoList)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
         Me.C1SplitterPanel1.ResizeWhileDragging = True
         Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
-        Me.C1SplitterPanel1.SizeRatio = 93.949R
+        Me.C1SplitterPanel1.SizeRatio = 100.0R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
         Me.C1SplitterPanel1.Width = 990
@@ -154,6 +157,7 @@ Partial Class 注文書番号入力
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1SplitterPanel2.Controls.Add(Me.Button1)
+        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
         Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
@@ -164,14 +168,15 @@ Partial Class 注文書番号入力
         '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Button1.ImageIndex = 3
         Me.Button1.ImageList = Me.ButtonImageList
-        Me.Button1.Location = New System.Drawing.Point(876, 5)
+        Me.Button1.Location = New System.Drawing.Point(878, 6)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(100, 30)
         Me.Button1.TabIndex = 63
@@ -182,14 +187,14 @@ Partial Class 注文書番号入力
         '
         '注文書番号入力
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(990, 662)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
+        Me.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "注文書番号入力"
         Me.Text = "注文書番号入力"
         CType(Me.OrderNoList, System.ComponentModel.ISupportInitialize).EndInit()
