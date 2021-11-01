@@ -1,0 +1,325 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class 費用マスタ一覧
+    Inherits System.Windows.Forms.Form
+
+    'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Windows フォーム デザイナーで必要です。
+    Private components As System.ComponentModel.IContainer
+
+    'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
+    'Windows フォーム デザイナーを使用して変更できます。  
+    'コード エディターを使って変更しないでください。
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(費用マスタ一覧))
+        Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
+        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.FormContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
+        Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.SearchPanel = New System.Windows.Forms.Panel()
+        Me.SearchName = New C1.Win.C1Input.C1TextBox()
+        Me.NameLabel = New C1.Win.C1Input.C1TextBox()
+        Me.Search = New System.Windows.Forms.Button()
+        Me.TableName = New System.Windows.Forms.Label()
+        Me.HeadLine = New System.Windows.Forms.Label()
+        Me.MasterContentsList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Cancel = New System.Windows.Forms.Button()
+        Me.Entry = New System.Windows.Forms.Button()
+        CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FormContainer.SuspendLayout()
+        Me.MainPanel.SuspendLayout()
+        Me.SearchPanel.SuspendLayout()
+        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FooterPanel.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'ButtonImageList
+        '
+        Me.ButtonImageList.ImageStream = CType(resources.GetObject("ButtonImageList.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ButtonImageList.TransparentColor = System.Drawing.Color.Transparent
+        Me.ButtonImageList.Images.SetKeyName(0, "Default.png")
+        Me.ButtonImageList.Images.SetKeyName(1, "Default_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(2, "Default_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(3, "Entry.png")
+        Me.ButtonImageList.Images.SetKeyName(4, "Entry_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(5, "Entry_mousedownpng.png")
+        Me.ButtonImageList.Images.SetKeyName(6, "Cancel.png")
+        Me.ButtonImageList.Images.SetKeyName(7, "Cancel_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(8, "Cancel_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(9, "CreateCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(10, "CreateCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(11, "CreateCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(12, "ModifiyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(13, "ModifyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(14, "ModifyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(15, "CopyCosts.png")
+        Me.ButtonImageList.Images.SetKeyName(16, "CopyCosts_mouseenter.png")
+        Me.ButtonImageList.Images.SetKeyName(17, "CopyCosts_mousedown.png")
+        Me.ButtonImageList.Images.SetKeyName(18, "Recalculation.png")
+        Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
+        Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
+        '
+        'SystemTheme
+        '
+        Me.SystemTheme.Theme = "(none)"
+        '
+        'FormContainer
+        '
+        Me.FormContainer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.FormContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
+        Me.FormContainer.BackColor = System.Drawing.Color.White
+        Me.FormContainer.CollapsingAreaColor = System.Drawing.Color.GhostWhite
+        Me.FormContainer.CollapsingCueColor = System.Drawing.Color.White
+        Me.FormContainer.FixedLineColor = System.Drawing.Color.White
+        Me.FormContainer.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.FormContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.FormContainer.HeaderForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.FormContainer.HeaderHeight = 0
+        Me.FormContainer.Location = New System.Drawing.Point(0, 2)
+        Me.FormContainer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FormContainer.Name = "FormContainer"
+        Me.FormContainer.Panels.Add(Me.MainPanel)
+        Me.FormContainer.Panels.Add(Me.FooterPanel)
+        Me.FormContainer.Size = New System.Drawing.Size(1058, 659)
+        Me.FormContainer.SplitterColor = System.Drawing.Color.White
+        Me.FormContainer.SplitterMovingColor = System.Drawing.Color.Black
+        Me.FormContainer.SplitterWidth = 0
+        Me.FormContainer.TabIndex = 0
+        Me.SystemTheme.SetTheme(Me.FormContainer, "予算管理テーマ")
+        Me.FormContainer.UseParentVisualStyle = False
+        '
+        'MainPanel
+        '
+        Me.MainPanel.Controls.Add(Me.SearchPanel)
+        Me.MainPanel.Controls.Add(Me.TableName)
+        Me.MainPanel.Controls.Add(Me.HeadLine)
+        Me.MainPanel.Controls.Add(Me.MasterContentsList)
+        Me.MainPanel.Height = 619
+        Me.MainPanel.Location = New System.Drawing.Point(0, 0)
+        Me.MainPanel.MinHeight = 0
+        Me.MainPanel.MinWidth = 0
+        Me.MainPanel.Name = "MainPanel"
+        Me.MainPanel.Size = New System.Drawing.Size(1058, 619)
+        Me.MainPanel.SizeRatio = 93.93R
+        Me.MainPanel.TabIndex = 0
+        Me.MainPanel.Text = "パネル1"
+        Me.MainPanel.Width = 1058
+        '
+        'SearchPanel
+        '
+        Me.SearchPanel.BackColor = System.Drawing.Color.White
+        Me.SearchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SearchPanel.Controls.Add(Me.SearchName)
+        Me.SearchPanel.Controls.Add(Me.NameLabel)
+        Me.SearchPanel.Controls.Add(Me.Search)
+        Me.SearchPanel.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SearchPanel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.SearchPanel.Location = New System.Drawing.Point(583, 42)
+        Me.SearchPanel.Name = "SearchPanel"
+        Me.SearchPanel.Size = New System.Drawing.Size(428, 35)
+        Me.SearchPanel.TabIndex = 65
+        Me.SystemTheme.SetTheme(Me.SearchPanel, "(default)")
+        '
+        'SearchName
+        '
+        Me.SearchName.AutoSize = False
+        Me.SearchName.BackColor = System.Drawing.Color.White
+        Me.SearchName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.SearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SearchName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.SearchName.Location = New System.Drawing.Point(66, 7)
+        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SearchName.Name = "SearchName"
+        Me.SearchName.Size = New System.Drawing.Size(248, 20)
+        Me.SearchName.TabIndex = 62
+        Me.SearchName.Tag = Nothing
+        Me.SearchName.Value = ""
+        '
+        'NameLabel
+        '
+        Me.NameLabel.AutoSize = False
+        Me.NameLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.NameLabel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NameLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NameLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.NameLabel.Location = New System.Drawing.Point(9, 7)
+        Me.NameLabel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.NameLabel.Name = "NameLabel"
+        Me.NameLabel.Size = New System.Drawing.Size(59, 20)
+        Me.NameLabel.TabIndex = 61
+        Me.NameLabel.Tag = Nothing
+        Me.NameLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NameLabel.Value = "名称検索"
+        Me.NameLabel.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
+        '
+        'Search
+        '
+        Me.Search.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Search.FlatAppearance.BorderSize = 0
+        Me.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Search.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Search.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Search.ImageIndex = 0
+        Me.Search.ImageList = Me.ButtonImageList
+        Me.Search.Location = New System.Drawing.Point(320, 1)
+        Me.Search.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Search.Name = "Search"
+        Me.Search.Size = New System.Drawing.Size(100, 30)
+        Me.Search.TabIndex = 63
+        Me.Search.Text = "検　索"
+        Me.Search.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Search.UseVisualStyleBackColor = True
+        '
+        'TableName
+        '
+        Me.TableName.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.TableName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TableName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TableName.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TableName.Location = New System.Drawing.Point(40, 42)
+        Me.TableName.Name = "TableName"
+        Me.TableName.Size = New System.Drawing.Size(82, 35)
+        Me.TableName.TabIndex = 59
+        Me.TableName.Text = "労務費マスタ"
+        Me.TableName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'HeadLine
+        '
+        Me.HeadLine.AutoSize = True
+        Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
+        Me.HeadLine.Name = "HeadLine"
+        Me.HeadLine.Size = New System.Drawing.Size(112, 18)
+        Me.HeadLine.TabIndex = 58
+        Me.HeadLine.Text = "<<費用マスタ一覧"
+        '
+        'MasterContentsList
+        '
+        Me.MasterContentsList.AllowAddNew = True
+        Me.MasterContentsList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.MasterContentsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.MasterContentsList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
+        Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.MasterContentsList.Location = New System.Drawing.Point(40, 78)
+        Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.MasterContentsList.Name = "MasterContentsList"
+        Me.MasterContentsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.MasterContentsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.MasterContentsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.MasterContentsList.Size = New System.Drawing.Size(971, 532)
+        Me.MasterContentsList.StyleInfo = resources.GetString("MasterContentsList.StyleInfo")
+        Me.MasterContentsList.TabIndex = 60
+        Me.SystemTheme.SetTheme(Me.MasterContentsList, "予算管理テーマ")
+        '
+        'FooterPanel
+        '
+        Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.FooterPanel.Controls.Add(Me.Cancel)
+        Me.FooterPanel.Controls.Add(Me.Entry)
+        Me.FooterPanel.Height = 40
+        Me.FooterPanel.Location = New System.Drawing.Point(0, 619)
+        Me.FooterPanel.Name = "FooterPanel"
+        Me.FooterPanel.Size = New System.Drawing.Size(1058, 40)
+        Me.FooterPanel.TabIndex = 1
+        Me.FooterPanel.Text = "パネル2"
+        Me.FooterPanel.Width = 1058
+        '
+        'Cancel
+        '
+        Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Cancel.FlatAppearance.BorderSize = 0
+        Me.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Cancel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Cancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Cancel.ImageIndex = 6
+        Me.Cancel.ImageList = Me.ButtonImageList
+        Me.Cancel.Location = New System.Drawing.Point(942, 6)
+        Me.Cancel.Margin = New System.Windows.Forms.Padding(0)
+        Me.Cancel.Name = "Cancel"
+        Me.Cancel.Size = New System.Drawing.Size(100, 30)
+        Me.Cancel.TabIndex = 62
+        Me.Cancel.Text = "キャンセル"
+        Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Cancel.UseVisualStyleBackColor = True
+        '
+        'Entry
+        '
+        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Entry.FlatAppearance.BorderSize = 0
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Entry.ImageIndex = 3
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(836, 6)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(0)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 61
+        Me.Entry.Text = "　登 録"
+        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Entry.UseVisualStyleBackColor = True
+        '
+        '費用マスタ一覧
+        '
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(1057, 661)
+        Me.Controls.Add(Me.FormContainer)
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Name = "費用マスタ一覧"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "費用マスタ一覧"
+        CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FormContainer.ResumeLayout(False)
+        Me.MainPanel.ResumeLayout(False)
+        Me.MainPanel.PerformLayout()
+        Me.SearchPanel.ResumeLayout(False)
+        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FooterPanel.ResumeLayout(False)
+        Me.ResumeLayout(False)
+
+    End Sub
+
+    Private WithEvents ButtonImageList As ImageList
+    Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
+    Friend WithEvents FormContainer As C1.Win.C1SplitContainer.C1SplitContainer
+    Friend WithEvents MainPanel As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents FooterPanel As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents TableName As Label
+    Friend WithEvents HeadLine As Label
+    Friend WithEvents MasterContentsList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents Cancel As Button
+    Friend WithEvents Entry As Button
+    Friend WithEvents Search As Button
+    Friend WithEvents SearchName As C1.Win.C1Input.C1TextBox
+    Friend WithEvents NameLabel As C1.Win.C1Input.C1TextBox
+    Friend WithEvents SearchPanel As Panel
+End Class

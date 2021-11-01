@@ -1,6 +1,7 @@
-﻿Public Class マスタ一覧
-    Private Sub マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MasterContentsList.SetCellImage(1, 6, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+﻿Public Class 費用マスタ一覧
+    Private Sub 費用マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        MasterContentsList.SetCellImage(1, 9, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+
     End Sub
     Private Sub Entry_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
         Entry.ImageIndex = 5
@@ -38,5 +39,21 @@
 
     Private Sub Entry_MouseUp(sender As Object, e As MouseEventArgs) Handles Entry.MouseUp
         Entry.ImageIndex = 3
+    End Sub
+    Private Sub Search_MouseEnter(sender As Object, e As EventArgs) Handles Search.MouseEnter
+        Search.Cursor = Cursors.Hand
+        Search.ImageIndex = 1
+    End Sub
+
+    Private Sub Search_MouseDown(sender As Object, e As MouseEventArgs) Handles Search.MouseDown
+        Search.ImageIndex = 2
+    End Sub
+
+    Private Sub Search_MouseLeave(sender As Object, e As EventArgs) Handles Search.MouseLeave
+        Search.ImageIndex = 0
+    End Sub
+
+    Private Sub Search_MouseUp(sender As Object, e As MouseEventArgs) Handles Search.MouseUp
+        Search.ImageIndex = 0
     End Sub
 End Class
