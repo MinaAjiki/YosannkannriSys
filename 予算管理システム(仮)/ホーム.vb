@@ -27,6 +27,18 @@ Public Class ホーム
         協力業者入力.Show()
     End Sub
 
+    Private Sub 出来高登録_Click(sender As Object, e As ClickEventArgs) Handles 出来高登録.Click
+
+        業者選択_出来高.Anchor = AnchorStyles.Top
+        '協力業者入力.Anchor = AnchorStyles.Bottom
+        業者選択_出来高.Anchor = AnchorStyles.Left
+        '協力業者入力.Anchor = AnchorStyles.Right
+
+        業者選択_出来高.TopLevel = False
+        FormPanel.Controls.Add(業者選択_出来高)
+        業者選択_出来高.Show()
+    End Sub
+
     Private Sub マスタ_Click(sender As Object, e As ClickEventArgs) Handles マスタ.Click
         マスタメンテナンス.Show()
     End Sub
