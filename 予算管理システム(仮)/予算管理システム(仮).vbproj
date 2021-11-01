@@ -170,6 +170,12 @@
     <Compile Include="出来高入力.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="予算総括入力.Designer.vb">
+      <DependentUpon>予算総括入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="予算総括入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="協力業者入力.Designer.vb">
       <DependentUpon>協力業者入力.vb</DependentUpon>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="出来高入力.resx">
       <DependentUpon>出来高入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="予算総括入力.resx">
+      <DependentUpon>予算総括入力.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="協力業者入力.resx">
       <DependentUpon>協力業者入力.vb</DependentUpon>

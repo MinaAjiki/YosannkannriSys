@@ -8097,7 +8097,7 @@
                 </Color>
                 <Background Name="Background">
                   <Value Type="Solid">
-                    <Color>Transparent</Color>
+                    <Color>216, 216, 216</Color>
                   </Value>
                 </Background>
                 <C1FrameworkBorder Name="Border">
@@ -8560,7 +8560,7 @@
                   <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
                   <Children>
                     <Color Name="Color">
-                      <Ref>BaseThemeProperties\Styles\Clickable\Default\BorderColor</Ref>
+                      <Value>216, 216, 216</Value>
                     </Color>
                     <Thickness Name="Thickness">
                       <Value>1</Value>
@@ -8661,7 +8661,7 @@
                   <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
                   <Children>
                     <Color Name="Color">
-                      <Ref>C1Input\C1DropDownControl\Default\Border\Color</Ref>
+                      <Value>216, 216, 216</Value>
                     </Color>
                     <Thickness Name="Thickness">
                       <Value>1</Value>
@@ -8756,7 +8756,7 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Default\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
                       <Ref>C1Input\C1DropDownControl\Buttons\Default\ArrowShadowColor</Ref>
@@ -8766,7 +8766,9 @@
                 <Node Name="Hot">
                   <Children>
                     <Background Name="Background">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\Background</Ref>
+                      <Value Type="Solid">
+                        <Color>216, 216, 216</Color>
+                      </Value>
                     </Background>
                     <C1FrameworkBorder Name="Border">
                       <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
@@ -8780,7 +8782,7 @@
                       </Children>
                     </C1FrameworkBorder>
                     <Color Name="ArrowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\Hot\ArrowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                     <Color Name="ArrowShadowColor">
                       <Ref>C1Input\C1DropDownControl\Buttons\Hot\ArrowShadowColor</Ref>
@@ -8791,7 +8793,9 @@
                   <DisplayName>Hot &amp; Pressed</DisplayName>
                   <Children>
                     <Background Name="Background">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\Background</Ref>
+                      <Value Type="Solid">
+                        <Color>216, 216, 216</Color>
+                      </Value>
                     </Background>
                     <C1FrameworkBorder Name="Border">
                       <HiddenChildren>Thickness,BorderEdges</HiddenChildren>
@@ -8808,7 +8812,7 @@
                       <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\ArrowColor</Ref>
                     </Color>
                     <Color Name="ArrowShadowColor">
-                      <Ref>C1Input\C1DropDownControl\Buttons\HotPressed\ArrowShadowColor</Ref>
+                      <Value>68, 68, 68</Value>
                     </Color>
                   </Children>
                 </Node>
@@ -8880,7 +8884,9 @@
                   <Description>Item in hot state.</Description>
                   <Children>
                     <Background Name="Background">
-                      <Ref>C1Input\C1SplitButton\SubMenu\Item\Hot\Background</Ref>
+                      <Value Type="Solid">
+                        <Color>255, 255, 214</Color>
+                      </Value>
                     </Background>
                     <Color Name="ForeColor">
                       <Ref>C1Input\C1SplitButton\SubMenu\Item\Hot\ForeColor</Ref>
