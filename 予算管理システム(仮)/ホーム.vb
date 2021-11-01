@@ -46,4 +46,10 @@ Public Class ホーム
     Private Sub 管理者登録_Click(sender As Object, e As ClickEventArgs) Handles 管理者登録.Click
         管理者マスタ一覧.Show()
     End Sub
+
+    Private Sub 予算総括登録_Click(sender As Object, e As ClickEventArgs) Handles 予算総括登録.Click
+        予算総括入力.TopLevel = False
+        FormPanel.Controls.Add(予算総括入力)
+        予算総括入力.Show()
+    End Sub
 End Class
