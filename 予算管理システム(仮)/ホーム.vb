@@ -76,4 +76,8 @@ Public Class ホーム
         FormPanel.Controls.Add(予算総括入力)
         予算総括入力.Show()
     End Sub
+
+    Private Sub 材料表インポート_Click(sender As Object, e As ClickEventArgs) Handles 材料表インポート.Click
+        進行状況.Show()
+    End Sub
 End Class

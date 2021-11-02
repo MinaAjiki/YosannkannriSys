@@ -360,6 +360,7 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
     <None Include="Resources\Entry.png" />

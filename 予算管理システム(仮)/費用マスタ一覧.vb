@@ -57,7 +57,4 @@
         Search.ImageIndex = 0
     End Sub
 
-    Private Sub MainPanel_Click(sender As Object, e As EventArgs) Handles MainPanel.Click
-
-    End Sub
 End Class
