@@ -25,16 +25,19 @@ Partial Class 締切日入力
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(締切日入力))
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.C1FlexGrid1 = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.C1FlexGrid2 = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
+        Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Entry = New System.Windows.Forms.Button()
+        Me.HeadLine = New System.Windows.Forms.Label()
+        Me.Deadline = New C1.Win.C1FlexGrid.C1FlexGrid()
+        CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FormSplitContainer.SuspendLayout()
+        Me.C1SplitterPanel1.SuspendLayout()
+        Me.C1SplitterPanel2.SuspendLayout()
+        CType(Me.Deadline, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -42,25 +45,11 @@ Partial Class 締切日入力
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(13, 15)
+        Me.Label2.Location = New System.Drawing.Point(15, 22)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(92, 18)
         Me.Label2.TabIndex = 46
         Me.Label2.Text = "<< 締切日入力"
-        '
-        'C1FlexGrid1
-        '
-        Me.C1FlexGrid1.AllowAddNew = True
-        Me.C1FlexGrid1.AllowDelete = True
-        Me.C1FlexGrid1.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Both
-        Me.C1FlexGrid1.AllowFiltering = True
-        Me.C1FlexGrid1.ColumnContextMenuEnabled = True
-        Me.C1FlexGrid1.ColumnInfo = "3,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Caption:""ID"";AllowMerging:True;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:166;C" &
-    "aption:""締切日"";}" & Global.Microsoft.VisualBasic.ChrW(9)
-        Me.C1FlexGrid1.Location = New System.Drawing.Point(30, 384)
-        Me.C1FlexGrid1.Name = "C1FlexGrid1"
-        Me.C1FlexGrid1.Size = New System.Drawing.Size(349, 150)
-        Me.C1FlexGrid1.TabIndex = 45
         '
         'ButtonImageList
         '
@@ -97,92 +86,143 @@ Partial Class 締切日入力
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button4.ImageIndex = 3
         Me.Button4.ImageList = Me.ButtonImageList
-        Me.Button4.Location = New System.Drawing.Point(350, 288)
+        Me.Button4.Location = New System.Drawing.Point(750, 473)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(102, 31)
+        Me.Button4.Size = New System.Drawing.Size(100, 30)
         Me.Button4.TabIndex = 47
         Me.Button4.Text = "　登　録"
         Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'C1FlexGrid2
+        'FormSplitContainer
         '
-        Me.C1FlexGrid2.AllowAddNew = True
-        Me.C1FlexGrid2.AllowDelete = True
-        Me.C1FlexGrid2.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
-        Me.C1FlexGrid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.C1FlexGrid2.AutoClipboard = True
-        Me.C1FlexGrid2.BackColor = System.Drawing.Color.White
-        Me.C1FlexGrid2.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.C1FlexGrid2.ColumnInfo = "10,1,0,0,0,-1,Columns:"
-        Me.C1FlexGrid2.Location = New System.Drawing.Point(30, 52)
-        Me.C1FlexGrid2.Name = "C1FlexGrid2"
-        Me.C1FlexGrid2.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange
-        Me.C1FlexGrid2.Size = New System.Drawing.Size(457, 177)
-        Me.C1FlexGrid2.StyleInfo = resources.GetString("C1FlexGrid2.StyleInfo")
-        Me.C1FlexGrid2.TabIndex = 48
+        Me.FormSplitContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
+        Me.FormSplitContainer.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.FormSplitContainer.CollapsingAreaColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.FormSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FormSplitContainer.FixedLineColor = System.Drawing.Color.White
+        Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
+        Me.FormSplitContainer.HeaderHeight = 0
+        Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.FormSplitContainer.Name = "FormSplitContainer"
+        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
+        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(990, 662)
+        Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
+        Me.FormSplitContainer.SplitterWidth = 1
+        Me.FormSplitContainer.TabIndex = 48
+        Me.FormSplitContainer.ToolTipGradient = C1.Win.C1SplitContainer.ToolTipGradient.Blue
+        Me.FormSplitContainer.UseParentVisualStyle = False
         '
-        'C1TextBox3
+        'C1SplitterPanel1
         '
-        Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
-        Me.C1TextBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox3.Location = New System.Drawing.Point(131, 299)
-        Me.C1TextBox3.Name = "C1TextBox3"
-        Me.C1TextBox3.Size = New System.Drawing.Size(213, 20)
-        Me.C1TextBox3.TabIndex = 50
-        Me.C1TextBox3.Tag = Nothing
-        Me.C1TextBox3.Value = ""
+        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Controls.Add(Me.Deadline)
+        Me.C1SplitterPanel1.Controls.Add(Me.HeadLine)
+        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
+        Me.C1SplitterPanel1.Height = 621
+        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
+        Me.C1SplitterPanel1.ResizeWhileDragging = True
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
+        Me.C1SplitterPanel1.SizeRatio = 94.1R
+        Me.C1SplitterPanel1.TabIndex = 0
+        Me.C1SplitterPanel1.Text = "パネル1"
+        Me.C1SplitterPanel1.Width = 990
         '
-        'C1TextBox1
+        'C1SplitterPanel2
         '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.Location = New System.Drawing.Point(30, 299)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.C1TextBox1.TabIndex = 49
-        Me.C1TextBox1.Tag = Nothing
-        Me.C1TextBox1.Value = "締切日"
-        Me.C1TextBox1.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
+        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
+        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
+        Me.C1SplitterPanel2.Height = 40
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
+        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
+        Me.C1SplitterPanel2.TabIndex = 1
+        Me.C1SplitterPanel2.Text = "パネル2"
+        '
+        'Entry
+        '
+        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Entry.FlatAppearance.BorderSize = 0
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Entry.ImageIndex = 3
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(878, 5)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 41
+        Me.Entry.Text = "　登　録"
+        Me.Entry.UseVisualStyleBackColor = True
+        '
+        'HeadLine
+        '
+        Me.HeadLine.AutoSize = True
+        Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
+        Me.HeadLine.Name = "HeadLine"
+        Me.HeadLine.Size = New System.Drawing.Size(92, 18)
+        Me.HeadLine.TabIndex = 26
+        Me.HeadLine.Text = "<< 締切日入力"
+        '
+        'Deadline
+        '
+        Me.Deadline.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.Deadline.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.Deadline.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.Deadline.ColumnInfo = resources.GetString("Deadline.ColumnInfo")
+        Me.Deadline.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Deadline.Location = New System.Drawing.Point(14, 69)
+        Me.Deadline.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.Deadline.Name = "Deadline"
+        Me.Deadline.Rows.Count = 20
+        Me.Deadline.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.Deadline.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.Deadline.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.Deadline.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.Deadline.Size = New System.Drawing.Size(194, 53)
+        Me.Deadline.StyleInfo = resources.GetString("Deadline.StyleInfo")
+        Me.Deadline.TabIndex = 44
         '
         '締切日入力
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(800, 620)
-        Me.Controls.Add(Me.C1TextBox3)
-        Me.Controls.Add(Me.C1TextBox1)
-        Me.Controls.Add(Me.C1FlexGrid2)
+        Me.ClientSize = New System.Drawing.Size(990, 662)
+        Me.Controls.Add(Me.FormSplitContainer)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.C1FlexGrid1)
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "締切日入力"
         Me.Text = "締切日入力"
-        CType(Me.C1FlexGrid1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1FlexGrid2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FormSplitContainer.ResumeLayout(False)
+        Me.C1SplitterPanel1.ResumeLayout(False)
+        Me.C1SplitterPanel1.PerformLayout()
+        Me.C1SplitterPanel2.ResumeLayout(False)
+        CType(Me.Deadline, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Label2 As Label
-    Friend WithEvents C1FlexGrid1 As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Button4 As Button
-    Friend WithEvents C1FlexGrid2 As C1.Win.C1FlexGrid.C1FlexGrid
-    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
+    Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents Entry As Button
+    Friend WithEvents HeadLine As Label
+    Friend WithEvents Deadline As C1.Win.C1FlexGrid.C1FlexGrid
 End Class

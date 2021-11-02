@@ -31,14 +31,15 @@ Partial Class 注文書番号入力
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         CType(Me.OrderNoList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -87,7 +88,7 @@ Partial Class 注文書番号入力
         Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Button4.ImageIndex = 3
         Me.Button4.ImageList = Me.ButtonImageList
-        Me.Button4.Location = New System.Drawing.Point(38, 70)
+        Me.Button4.Location = New System.Drawing.Point(878, 6)
         Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(100, 30)
@@ -105,14 +106,14 @@ Partial Class 注文書番号入力
         Me.OrderNoList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OrderNoList.ColumnInfo = resources.GetString("OrderNoList.ColumnInfo")
         Me.OrderNoList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.OrderNoList.Location = New System.Drawing.Point(15, 115)
+        Me.OrderNoList.Location = New System.Drawing.Point(17, 41)
         Me.OrderNoList.Margin = New System.Windows.Forms.Padding(3, 9, 3, 9)
         Me.OrderNoList.Name = "OrderNoList"
         Me.OrderNoList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.OrderNoList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.OrderNoList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OrderNoList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.OrderNoList.Size = New System.Drawing.Size(630, 461)
+        Me.OrderNoList.Size = New System.Drawing.Size(631, 147)
         Me.OrderNoList.StyleInfo = resources.GetString("OrderNoList.StyleInfo")
         Me.OrderNoList.TabIndex = 61
         Me.SystemTheme.SetTheme(Me.OrderNoList, "予算管理テーマ")
@@ -141,7 +142,7 @@ Partial Class 注文書番号入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.Button4)
+        Me.C1SplitterPanel1.Controls.Add(Me.VendorList)
         Me.C1SplitterPanel1.Controls.Add(Me.OrderNoList)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
@@ -156,7 +157,7 @@ Partial Class 注文書番号入力
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1SplitterPanel2.Controls.Add(Me.Button1)
+        Me.C1SplitterPanel2.Controls.Add(Me.Button4)
         Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
@@ -166,24 +167,26 @@ Partial Class 注文書番号入力
         Me.C1SplitterPanel2.Text = "パネル2"
         Me.C1SplitterPanel2.Width = 990
         '
-        'Button1
+        'VendorList
         '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Button1.ImageIndex = 3
-        Me.Button1.ImageList = Me.ButtonImageList
-        Me.Button1.Location = New System.Drawing.Point(878, 6)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 30)
-        Me.Button1.TabIndex = 63
-        Me.Button1.Text = "　登　録"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.SystemTheme.SetTheme(Me.Button1, "(default)")
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.VendorList.AllowAddNew = True
+        Me.VendorList.AllowDelete = True
+        Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
+        Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.VendorList.Location = New System.Drawing.Point(17, 223)
+        Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.VendorList.Name = "VendorList"
+        Me.VendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.VendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.VendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.VendorList.Size = New System.Drawing.Size(751, 390)
+        Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
+        Me.VendorList.TabIndex = 62
+        Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
         '注文書番号入力
         '
@@ -203,6 +206,7 @@ Partial Class 注文書番号入力
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -216,5 +220,5 @@ Partial Class 注文書番号入力
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
-    Friend WithEvents Button1 As Button
+    Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
 End Class
