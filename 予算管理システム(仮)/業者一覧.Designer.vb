@@ -123,64 +123,12 @@ Partial Class 業者一覧
         Me.SystemTheme.SetTheme(Me.Search, "(default)")
         Me.Search.UseVisualStyleBackColor = True
         '
-        'C1ComboBox1
-        '
-        Me.C1ComboBox1.AllowSpinLoop = False
-        Me.C1ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"10", "11", "12", "13", "14", "15"})
-        Me.C1ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.C1ComboBox1.AutoSize = False
-        Me.C1ComboBox1.BackColor = System.Drawing.Color.White
-        Me.C1ComboBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1ComboBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1ComboBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1ComboBox1.GapHeight = 0
-        Me.C1ComboBox1.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1ComboBox1.Items.Add("市川工務店,1")
-        Me.C1ComboBox1.Items.Add("巴産業,2")
-        Me.C1ComboBox1.Items.Add("岐阜アイシー3")
-        Me.C1ComboBox1.Items.Add("岐阜北建設")
-        Me.C1ComboBox1.Items.Add("飛高建設")
-        Me.C1ComboBox1.Location = New System.Drawing.Point(0, 0)
-        Me.C1ComboBox1.Name = "C1ComboBox1"
-        Me.C1ComboBox1.Size = New System.Drawing.Size(200, 23)
-        Me.C1ComboBox1.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1ComboBox1.TabIndex = 0
-        Me.C1ComboBox1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1ComboBox1, "(default)")
-        Me.C1ComboBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1ComboBox2
-        '
-        Me.C1ComboBox2.AllowSpinLoop = False
-        Me.C1ComboBox2.AutoCompleteCustomSource.AddRange(New String() {"10", "11", "12", "13", "14", "15"})
-        Me.C1ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.C1ComboBox2.AutoSize = False
-        Me.C1ComboBox2.BackColor = System.Drawing.Color.White
-        Me.C1ComboBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1ComboBox2.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1ComboBox2.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1ComboBox2.GapHeight = 0
-        Me.C1ComboBox2.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1ComboBox2.Items.Add("市川工務店,1")
-        Me.C1ComboBox2.Items.Add("巴産業,2")
-        Me.C1ComboBox2.Items.Add("岐阜アイシー3")
-        Me.C1ComboBox2.Items.Add("岐阜北建設")
-        Me.C1ComboBox2.Items.Add("飛高建設")
-        Me.C1ComboBox2.Location = New System.Drawing.Point(0, 0)
-        Me.C1ComboBox2.Name = "C1ComboBox2"
-        Me.C1ComboBox2.Size = New System.Drawing.Size(200, 23)
-        Me.C1ComboBox2.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1ComboBox2.TabIndex = 0
-        Me.C1ComboBox2.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1ComboBox2, "(default)")
-        Me.C1ComboBox2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
+        
         'SearchSelect
         '
         Me.SearchSelect.AllowSpinLoop = False
         Me.SearchSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.SearchSelect.AutoSize = False
-        Me.SearchSelect.BackColor = System.Drawing.Color.White
         Me.SearchSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.SearchSelect.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.SearchSelect.Font = New System.Drawing.Font("メイリオ", 9.0!)

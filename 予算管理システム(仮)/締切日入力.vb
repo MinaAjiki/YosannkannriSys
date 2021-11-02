@@ -1,6 +1,6 @@
 ﻿Public Class 締切日入力
     Private Sub 締切日入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Deadline.Rows.Count = 2
     End Sub
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Button4.MouseLeave
         Button4.ImageIndex = 3
@@ -15,4 +15,7 @@
         Button4.ImageIndex = 5
     End Sub
 
+    Private Sub Deadline_Click(sender As Object, e As EventArgs) Handles Deadline.Click
+
+    End Sub
 End Class
