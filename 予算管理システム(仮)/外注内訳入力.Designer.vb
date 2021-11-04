@@ -29,12 +29,11 @@ Partial Class 外注内訳入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+
         Me.Grid = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.Contract_No = New System.Windows.Forms.Label()
         Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
-        Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.ChangeDetails = New C1.Win.C1Input.C1TextBox()
+       me.ChangeDetails = New C1.Win.C1Input.C1TextBox()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -43,6 +42,9 @@ Partial Class 外注内訳入力
         Me.FooterPanel.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+      
         Me.SuspendLayout()
         '
         'ButtonImageList
@@ -123,8 +125,10 @@ Partial Class 外注内訳入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+
         Me.FormPanel.Controls.Add(Me.ChangeDetails)
         Me.FormPanel.Controls.Add(Me.Grid)
+
         Me.FormPanel.Controls.Add(Me.Contract_No)
         Me.FormPanel.Controls.Add(Me.SearchSelect)
         Me.FormPanel.Height = 621
@@ -135,6 +139,7 @@ Partial Class 外注内訳入力
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
         '
+
         'Grid
         '
         Me.Grid.AllowAddNew = True
@@ -172,7 +177,18 @@ Partial Class 外注内訳入力
         Me.Contract_No.Text = "契約回数"
         Me.Contract_No.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SystemTheme.SetTheme(Me.Contract_No, "(default)")
+=======
+        'FooterPanel
         '
+        Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.FooterPanel.Controls.Add(Me.Button4)
+        Me.FooterPanel.Height = 40
+        Me.FooterPanel.Location = New System.Drawing.Point(0, 622)
+        Me.FooterPanel.Name = "FooterPanel"
+        Me.FooterPanel.Size = New System.Drawing.Size(990, 40)
+        Me.FooterPanel.TabIndex = 1
+        Me.FooterPanel.Text = "パネル2"
+
         'SearchSelect
         '
         Me.SearchSelect.AllowSpinLoop = False
@@ -194,16 +210,7 @@ Partial Class 外注内訳入力
         Me.SearchSelect.Tag = Nothing
         Me.SearchSelect.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'FooterPanel
-        '
-        Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.FooterPanel.Controls.Add(Me.Button4)
-        Me.FooterPanel.Height = 40
-        Me.FooterPanel.Location = New System.Drawing.Point(0, 622)
-        Me.FooterPanel.Name = "FooterPanel"
-        Me.FooterPanel.Size = New System.Drawing.Size(990, 40)
-        Me.FooterPanel.TabIndex = 1
-        Me.FooterPanel.Text = "パネル2"
+
         '
         'ChangeDetails
         '
@@ -222,7 +229,7 @@ Partial Class 外注内訳入力
         Me.ChangeDetails.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ChangeDetails, "予算管理テーマ")
         Me.ChangeDetails.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
+
         '外注内訳入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -239,11 +246,12 @@ Partial Class 外注内訳入力
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
+
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+              Me.FooterPanel.ResumeLayout(False)
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.FooterPanel.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ChangeDetails, System.ComponentModel.ISupportInitialize).EndInit()
+
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -260,4 +268,5 @@ Partial Class 外注内訳入力
     Friend WithEvents Contract_No As Label
     Friend WithEvents Grid As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents ChangeDetails As C1.Win.C1Input.C1TextBox
+
 End Class
