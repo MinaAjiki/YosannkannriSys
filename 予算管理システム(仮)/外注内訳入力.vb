@@ -59,7 +59,7 @@ Public Class 外注内訳入力
 
     End Sub
 
-    Private Sub C1FlexGrid2_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub C1FlexGrid2_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

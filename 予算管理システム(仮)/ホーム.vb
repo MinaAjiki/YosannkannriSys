@@ -28,14 +28,6 @@ Public Class ホーム
     End Sub
 
     Private Sub 締切処理_Click(sender As Object, e As ClickEventArgs) Handles 締切処理.Click
-
-        締切日入力.Anchor = AnchorStyles.Top
-        '協力業者入力.Anchor = AnchorStyles.Bottom
-        締切日入力.Anchor = AnchorStyles.Left
-        '協力業者入力.Anchor = AnchorStyles.Right
-
-        締切日入力.TopLevel = False
-        FormPanel.Controls.Add(締切日入力)
         締切日入力.Show()
     End Sub
 

@@ -32,14 +32,12 @@ Partial Class 注文書番号入力
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         CType(Me.OrderNoList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -106,14 +104,14 @@ Partial Class 注文書番号入力
         Me.OrderNoList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OrderNoList.ColumnInfo = resources.GetString("OrderNoList.ColumnInfo")
         Me.OrderNoList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.OrderNoList.Location = New System.Drawing.Point(17, 41)
+        Me.OrderNoList.Location = New System.Drawing.Point(18, 66)
         Me.OrderNoList.Margin = New System.Windows.Forms.Padding(3, 9, 3, 9)
         Me.OrderNoList.Name = "OrderNoList"
         Me.OrderNoList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.OrderNoList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.OrderNoList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OrderNoList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.OrderNoList.Size = New System.Drawing.Size(631, 147)
+        Me.OrderNoList.Size = New System.Drawing.Size(640, 507)
         Me.OrderNoList.StyleInfo = resources.GetString("OrderNoList.StyleInfo")
         Me.OrderNoList.TabIndex = 61
         Me.SystemTheme.SetTheme(Me.OrderNoList, "予算管理テーマ")
@@ -142,7 +140,6 @@ Partial Class 注文書番号入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.VendorList)
         Me.C1SplitterPanel1.Controls.Add(Me.OrderNoList)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
@@ -167,27 +164,6 @@ Partial Class 注文書番号入力
         Me.C1SplitterPanel2.Text = "パネル2"
         Me.C1SplitterPanel2.Width = 990
         '
-        'VendorList
-        '
-        Me.VendorList.AllowAddNew = True
-        Me.VendorList.AllowDelete = True
-        Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
-        Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.VendorList.Location = New System.Drawing.Point(17, 223)
-        Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.VendorList.Name = "VendorList"
-        Me.VendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.VendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.VendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.VendorList.Size = New System.Drawing.Size(751, 390)
-        Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
-        Me.VendorList.TabIndex = 62
-        Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
-        '
         '注文書番号入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -206,7 +182,6 @@ Partial Class 注文書番号入力
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -220,5 +195,4 @@ Partial Class 注文書番号入力
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
-    Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
 End Class
