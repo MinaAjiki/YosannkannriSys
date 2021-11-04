@@ -78,4 +78,10 @@ Public Class ホーム
         FormPanel.Controls.Add(大工種選択)
         大工種選択.Show()
     End Sub
+
+    Private Sub 外注計画登録_Click(sender As Object, e As ClickEventArgs) Handles 外注計画登録.Click
+        外注内訳入力.TopLevel = False
+        FormPanel.Controls.Add(外注内訳入力)
+        外注内訳入力.Show()
+    End Sub
 End Class
