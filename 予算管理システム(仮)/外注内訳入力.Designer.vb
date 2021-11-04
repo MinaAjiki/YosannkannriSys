@@ -29,22 +29,20 @@ Partial Class 外注内訳入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-
+        Me.ChangeDetails = New C1.Win.C1Input.C1TextBox()
         Me.Grid = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.Contract_No = New System.Windows.Forms.Label()
         Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
-       me.ChangeDetails = New C1.Win.C1Input.C1TextBox()
+        Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
+        CType(Me.ChangeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ChangeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-      
         Me.SuspendLayout()
         '
         'ButtonImageList
@@ -125,10 +123,8 @@ Partial Class 外注内訳入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
-
         Me.FormPanel.Controls.Add(Me.ChangeDetails)
         Me.FormPanel.Controls.Add(Me.Grid)
-
         Me.FormPanel.Controls.Add(Me.Contract_No)
         Me.FormPanel.Controls.Add(Me.SearchSelect)
         Me.FormPanel.Height = 621
@@ -139,7 +135,22 @@ Partial Class 外注内訳入力
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
         '
-
+        'ChangeDetails
+        '
+        Me.ChangeDetails.BackColor = System.Drawing.Color.White
+        Me.ChangeDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ChangeDetails.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ChangeDetails.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ChangeDetails.Location = New System.Drawing.Point(596, 14)
+        Me.ChangeDetails.Multiline = True
+        Me.ChangeDetails.Name = "ChangeDetails"
+        Me.ChangeDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.ChangeDetails.Size = New System.Drawing.Size(362, 50)
+        Me.ChangeDetails.TabIndex = 70
+        Me.ChangeDetails.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.ChangeDetails, "予算管理テーマ")
+        Me.ChangeDetails.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'Grid
         '
         Me.Grid.AllowAddNew = True
@@ -166,7 +177,6 @@ Partial Class 外注内訳入力
         '
         'Contract_No
         '
-        Me.Contract_No.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Contract_No.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Contract_No.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Contract_No.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -177,18 +187,7 @@ Partial Class 外注内訳入力
         Me.Contract_No.Text = "契約回数"
         Me.Contract_No.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SystemTheme.SetTheme(Me.Contract_No, "(default)")
-=======
-        'FooterPanel
         '
-        Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.FooterPanel.Controls.Add(Me.Button4)
-        Me.FooterPanel.Height = 40
-        Me.FooterPanel.Location = New System.Drawing.Point(0, 622)
-        Me.FooterPanel.Name = "FooterPanel"
-        Me.FooterPanel.Size = New System.Drawing.Size(990, 40)
-        Me.FooterPanel.TabIndex = 1
-        Me.FooterPanel.Text = "パネル2"
-
         'SearchSelect
         '
         Me.SearchSelect.AllowSpinLoop = False
@@ -202,7 +201,7 @@ Partial Class 外注内訳入力
         Me.SearchSelect.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.SearchSelect.Items.Add("正式名称で検索")
         Me.SearchSelect.Items.Add("カナ名称で検索")
-        Me.SearchSelect.Location = New System.Drawing.Point(145, 42)
+        Me.SearchSelect.Location = New System.Drawing.Point(278, 42)
         Me.SearchSelect.Name = "SearchSelect"
         Me.SearchSelect.Size = New System.Drawing.Size(147, 20)
         Me.SearchSelect.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
@@ -210,26 +209,17 @@ Partial Class 外注内訳入力
         Me.SearchSelect.Tag = Nothing
         Me.SearchSelect.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-
+        'FooterPanel
         '
-        'ChangeDetails
+        Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.FooterPanel.Controls.Add(Me.Button4)
+        Me.FooterPanel.Height = 40
+        Me.FooterPanel.Location = New System.Drawing.Point(0, 622)
+        Me.FooterPanel.Name = "FooterPanel"
+        Me.FooterPanel.Size = New System.Drawing.Size(990, 40)
+        Me.FooterPanel.TabIndex = 1
+        Me.FooterPanel.Text = "パネル2"
         '
-        Me.ChangeDetails.BackColor = System.Drawing.Color.White
-        Me.ChangeDetails.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.ChangeDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ChangeDetails.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.ChangeDetails.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ChangeDetails.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ChangeDetails.Location = New System.Drawing.Point(596, 14)
-        Me.ChangeDetails.Multiline = True
-        Me.ChangeDetails.Name = "ChangeDetails"
-        Me.ChangeDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.ChangeDetails.Size = New System.Drawing.Size(362, 50)
-        Me.ChangeDetails.TabIndex = 70
-        Me.ChangeDetails.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.ChangeDetails, "予算管理テーマ")
-        Me.ChangeDetails.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-
         '外注内訳入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -246,12 +236,11 @@ Partial Class 外注内訳入力
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
-
+        CType(Me.ChangeDetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-              Me.FooterPanel.ResumeLayout(False)
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FooterPanel.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
