@@ -1,4 +1,7 @@
 ﻿Public Class 進行状況
+    Private Sub Message2_Click(sender As Object, e As EventArgs) Handles Message2.Click
+
+    End Sub
     'Dim Bar As ProgressBar
     'Dim button As Button
     'Dim label As Label

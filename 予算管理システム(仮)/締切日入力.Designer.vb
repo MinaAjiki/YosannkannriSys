@@ -29,15 +29,15 @@ Partial Class 締切日入力
         Me.Button4 = New System.Windows.Forms.Button()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Deadline = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.HeadLine = New System.Windows.Forms.Label()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Entry = New System.Windows.Forms.Button()
-        Me.HeadLine = New System.Windows.Forms.Label()
-        Me.Deadline = New C1.Win.C1FlexGrid.C1FlexGrid()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
-        Me.C1SplitterPanel2.SuspendLayout()
         CType(Me.Deadline, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label2
@@ -108,7 +108,7 @@ Partial Class 締切日入力
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
-        Me.FormSplitContainer.Size = New System.Drawing.Size(990, 662)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(221, 206)
         Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.FormSplitContainer.SplitterWidth = 1
         Me.FormSplitContainer.TabIndex = 48
@@ -121,56 +121,15 @@ Partial Class 締切日入力
         Me.C1SplitterPanel1.Controls.Add(Me.Deadline)
         Me.C1SplitterPanel1.Controls.Add(Me.HeadLine)
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
-        Me.C1SplitterPanel1.Height = 621
+        Me.C1SplitterPanel1.Height = 165
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
         Me.C1SplitterPanel1.ResizeWhileDragging = True
-        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(221, 165)
         Me.C1SplitterPanel1.SizeRatio = 94.1R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
-        Me.C1SplitterPanel1.Width = 990
-        '
-        'C1SplitterPanel2
-        '
-        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
-        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
-        Me.C1SplitterPanel2.Height = 40
-        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
-        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
-        Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
-        Me.C1SplitterPanel2.TabIndex = 1
-        Me.C1SplitterPanel2.Text = "パネル2"
-        '
-        'Entry
-        '
-        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Entry.FlatAppearance.BorderSize = 0
-        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Entry.ImageIndex = 3
-        Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(878, 5)
-        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Entry.Name = "Entry"
-        Me.Entry.Size = New System.Drawing.Size(100, 30)
-        Me.Entry.TabIndex = 41
-        Me.Entry.Text = "　登　録"
-        Me.Entry.UseVisualStyleBackColor = True
-        '
-        'HeadLine
-        '
-        Me.HeadLine.AutoSize = True
-        Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
-        Me.HeadLine.Name = "HeadLine"
-        Me.HeadLine.Size = New System.Drawing.Size(92, 18)
-        Me.HeadLine.TabIndex = 26
-        Me.HeadLine.Text = "<< 締切日入力"
+        Me.C1SplitterPanel1.Width = 221
         '
         'Deadline
         '
@@ -191,17 +150,57 @@ Partial Class 締切日入力
         Me.Deadline.StyleInfo = resources.GetString("Deadline.StyleInfo")
         Me.Deadline.TabIndex = 44
         '
+        'HeadLine
+        '
+        Me.HeadLine.AutoSize = True
+        Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
+        Me.HeadLine.Name = "HeadLine"
+        Me.HeadLine.Size = New System.Drawing.Size(92, 18)
+        Me.HeadLine.TabIndex = 26
+        Me.HeadLine.Text = "<< 締切日入力"
+        '
+        'C1SplitterPanel2
+        '
+        Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
+        Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
+        Me.C1SplitterPanel2.Height = 40
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 166)
+        Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(221, 40)
+        Me.C1SplitterPanel2.TabIndex = 1
+        Me.C1SplitterPanel2.Text = "パネル2"
+        '
+        'Entry
+        '
+        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Entry.FlatAppearance.BorderSize = 0
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Entry.ImageIndex = 3
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(109, 6)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 41
+        Me.Entry.Text = "　登　録"
+        Me.Entry.UseVisualStyleBackColor = True
+        '
         '締切日入力
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(990, 662)
+        Me.ClientSize = New System.Drawing.Size(221, 206)
         Me.Controls.Add(Me.FormSplitContainer)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label2)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "締切日入力"
         Me.Text = "締切日入力"
@@ -209,8 +208,8 @@ Partial Class 締切日入力
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel1.PerformLayout()
-        Me.C1SplitterPanel2.ResumeLayout(False)
         CType(Me.Deadline, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

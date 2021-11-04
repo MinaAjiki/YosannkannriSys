@@ -35,7 +35,7 @@ Partial Class 業者選択_出来高
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(15, 22)
+        Me.Label2.Location = New System.Drawing.Point(14, 14)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(80, 18)
         Me.Label2.TabIndex = 44

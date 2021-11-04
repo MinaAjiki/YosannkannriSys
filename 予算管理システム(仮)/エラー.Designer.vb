@@ -123,6 +123,7 @@ Partial Class エラー
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "エラー"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "エラー"
         Me.ResumeLayout(False)
         Me.PerformLayout()

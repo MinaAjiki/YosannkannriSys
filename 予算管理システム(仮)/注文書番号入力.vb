@@ -15,4 +15,8 @@
     Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
 
     End Sub
+
+    Private Sub 注文書番号入力_Load(sender As Object, e As EventArgs) Handles Me.Load
+        OrderNoList.SetCellImage(1, 5, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+    End Sub
 End Class
