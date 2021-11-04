@@ -72,4 +72,10 @@ Public Class ホーム
     Private Sub 材料表インポート_Click(sender As Object, e As ClickEventArgs) Handles 材料表インポート.Click
         進行状況.Show()
     End Sub
+
+    Private Sub 予算内訳登録_Click(sender As Object, e As ClickEventArgs) Handles 予算内訳登録.Click
+        大工種選択.TopLevel = False
+        FormPanel.Controls.Add(大工種選択)
+        大工種選択.Show()
+    End Sub
 End Class
