@@ -348,7 +348,7 @@ Partial Class ホーム
         Me.HomeSplitContainer.Name = "HomeSplitContainer"
         Me.HomeSplitContainer.Panels.Add(Me.TreePanel)
         Me.HomeSplitContainer.Panels.Add(Me.FormPanel)
-        Me.HomeSplitContainer.Size = New System.Drawing.Size(1263, 662)
+        Me.HomeSplitContainer.Size = New System.Drawing.Size(1263, 664)
         Me.HomeSplitContainer.SplitterColor = System.Drawing.Color.FromArgb(CType(CType(105, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(131, Byte), Integer))
         Me.HomeSplitContainer.SplitterWidth = 3
         Me.HomeSplitContainer.TabIndex = 28
@@ -360,10 +360,10 @@ Partial Class ホーム
         Me.TreePanel.BackColor = System.Drawing.Color.White
         Me.TreePanel.Controls.Add(Me.HomeTreeView)
         Me.TreePanel.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Left
-        Me.TreePanel.Height = 662
+        Me.TreePanel.Height = 664
         Me.TreePanel.Location = New System.Drawing.Point(0, 0)
         Me.TreePanel.Name = "TreePanel"
-        Me.TreePanel.Size = New System.Drawing.Size(270, 662)
+        Me.TreePanel.Size = New System.Drawing.Size(270, 664)
         Me.TreePanel.SizeRatio = 21.412R
         Me.TreePanel.TabIndex = 0
         Me.TreePanel.Text = "パネル1"
@@ -455,7 +455,7 @@ Partial Class ホーム
         Me.HomeTreeView.Nodes.Add(C1TreeNode27)
         Me.HomeTreeView.Nodes.Add(C1TreeNode28)
         Me.HomeTreeView.Nodes.Add(C1TreeNode29)
-        Me.HomeTreeView.Size = New System.Drawing.Size(266, 662)
+        Me.HomeTreeView.Size = New System.Drawing.Size(266, 664)
         Me.HomeTreeView.Styles.Border = 0
         Me.HomeTreeView.Styles.BorderColor = System.Drawing.Color.AliceBlue
         Me.HomeTreeView.Styles.ColumnHeader.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -486,10 +486,10 @@ Partial Class ホーム
         Me.FormPanel.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FormPanel.ForeColor = System.Drawing.Color.White
         Me.FormPanel.HeaderTextAlign = C1.Win.C1SplitContainer.PanelTextAlign.Right
-        Me.FormPanel.Height = 662
+        Me.FormPanel.Height = 664
         Me.FormPanel.Location = New System.Drawing.Point(273, 0)
         Me.FormPanel.Name = "FormPanel"
-        Me.FormPanel.Size = New System.Drawing.Size(990, 662)
+        Me.FormPanel.Size = New System.Drawing.Size(990, 664)
         Me.FormPanel.TabIndex = 1
         Me.FormPanel.Text = "パネル2"
         '

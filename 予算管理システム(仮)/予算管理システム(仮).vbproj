@@ -177,6 +177,24 @@
     <Compile Include="予算総括入力.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="明細書入力.Designer.vb">
+      <DependentUpon>明細書入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="明細書入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="小工種選択.Designer.vb">
+      <DependentUpon>小工種選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="小工種選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="大工種選択.Designer.vb">
+      <DependentUpon>大工種選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="大工種選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="協力業者入力.Designer.vb">
       <DependentUpon>協力業者入力.vb</DependentUpon>
     </Compile>
@@ -300,6 +318,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="予算総括入力.resx">
       <DependentUpon>予算総括入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="明細書入力.resx">
+      <DependentUpon>明細書入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="小工種選択.resx">
+      <DependentUpon>小工種選択.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="大工種選択.resx">
+      <DependentUpon>大工種選択.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="協力業者入力.resx">
       <DependentUpon>協力業者入力.vb</DependentUpon>
