@@ -4870,7 +4870,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>213, 234, 209</Color>
+                    <Color>213, 234, 216</Color>
                   </Value>
                 </Background>
                 <C1.Win.C1Themes.C1FlexGridBorderPropBag Name="Border">
@@ -4896,7 +4896,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>255, 248, 186</Color>
+                    <Color>255, 255, 214</Color>
                   </Value>
                 </Background>
                 <Image Name="BackImage">
@@ -4952,7 +4952,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>255, 248, 186</Color>
+                    <Color>255, 255, 214</Color>
                   </Value>
                 </Background>
               </Children>
@@ -4996,7 +4996,7 @@
                 <C1.Win.C1Themes.C1FlexGridBorderPropBag Name="Border">
                   <Children>
                     <Color Name="Color">
-                      <Value>ControlDarkDark</Value>
+                      <Value>216, 216, 216</Value>
                     </Color>
                     <Enum-C1.Win.C1Themes.Flex_BorderStyleEnum Name="Style">
                       <Value>Flat</Value>
@@ -19088,9 +19088,7 @@
               <Description>Describes appearance of the 'hot' scrollbar track.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Track background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
@@ -19107,9 +19105,7 @@
               <Description>Describes appearance of the pressed scrollbar track.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Track background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
@@ -19164,21 +19160,15 @@
               <Description>Describes appearance of a scroll button in its normal state.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Button background for the horizontal scrollbar.</Description>
                 </Background>
                 <Background Name="BackgroundVert">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Button background for the vertical scrollbar.</Description>
                 </Background>
                 <Color Name="ArrowColor">
@@ -19199,9 +19189,7 @@
               <Description>Describes appearance of a disabled scroll button.</Description>
               <Children>
                 <Background Name="Background">
-                  <Value Type="Solid">
-                    <Color>255, 255, 255</Color>
-                  </Value>
+                  <Value Type="Solid" />
                   <Description>Button background for vertical and horizontal scrollbars.</Description>
                 </Background>
                 <Background Name="BackgroundHorz">
