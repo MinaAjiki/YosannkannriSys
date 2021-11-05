@@ -336,7 +336,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="代価表入力.resx">
       <DependentUpon>代価表入力.vb</DependentUpon>
-    </EmbeddedResource>
+
     <EmbeddedResource Include="明細書入力.resx">
       <DependentUpon>明細書入力.vb</DependentUpon>
     </EmbeddedResource>
