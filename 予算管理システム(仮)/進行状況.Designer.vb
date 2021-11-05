@@ -22,30 +22,30 @@ Partial Class 進行状況
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Message2 = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.WaitProcessPic = New System.Windows.Forms.PictureBox()
+        Me.WaitProcessText = New System.Windows.Forms.Label()
+        CType(Me.WaitProcessPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox1
+        'WaitProcessPic
         '
-        Me.PictureBox1.Image = Global.予算管理システム_仮_.My.Resources.Resources.loader
-        Me.PictureBox1.Location = New System.Drawing.Point(150, 33)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(54, 44)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.WaitProcessPic.Image = Global.予算管理システム_仮_.My.Resources.Resources.loader
+        Me.WaitProcessPic.Location = New System.Drawing.Point(150, 33)
+        Me.WaitProcessPic.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.WaitProcessPic.Name = "WaitProcessPic"
+        Me.WaitProcessPic.Size = New System.Drawing.Size(54, 44)
+        Me.WaitProcessPic.TabIndex = 0
+        Me.WaitProcessPic.TabStop = False
         '
-        'Message2
+        'WaitProcessText
         '
-        Me.Message2.AutoSize = True
-        Me.Message2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Message2.Location = New System.Drawing.Point(62, 98)
-        Me.Message2.Name = "Message2"
-        Me.Message2.Size = New System.Drawing.Size(224, 18)
-        Me.Message2.TabIndex = 9
-        Me.Message2.Text = "処理中です。しばらくお待ちください…"
+        Me.WaitProcessText.AutoSize = True
+        Me.WaitProcessText.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.WaitProcessText.Location = New System.Drawing.Point(62, 98)
+        Me.WaitProcessText.Name = "WaitProcessText"
+        Me.WaitProcessText.Size = New System.Drawing.Size(224, 18)
+        Me.WaitProcessText.TabIndex = 9
+        Me.WaitProcessText.Text = "処理中です。しばらくお待ちください…"
         '
         '進行状況
         '
@@ -53,19 +53,19 @@ Partial Class 進行状況
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(334, 161)
-        Me.Controls.Add(Me.Message2)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.WaitProcessText)
+        Me.Controls.Add(Me.WaitProcessPic)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "進行状況"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "進行状況"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WaitProcessPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Message2 As Label
+    Friend WithEvents WaitProcessPic As PictureBox
+    Friend WithEvents WaitProcessText As Label
 End Class
