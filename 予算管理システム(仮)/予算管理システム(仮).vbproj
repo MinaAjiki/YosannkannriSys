@@ -124,6 +124,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="項目選択.Designer.vb">
+      <DependentUpon>項目選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="項目選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DB選択.Designer.vb">
       <DependentUpon>DB選択.vb</DependentUpon>
     </Compile>
@@ -175,6 +181,12 @@
       <DependentUpon>予算総括入力.vb</DependentUpon>
     </Compile>
     <Compile Include="予算総括入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="代価表入力.Designer.vb">
+      <DependentUpon>代価表入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="代価表入力.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="明細書入力.Designer.vb">
@@ -292,6 +304,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="項目選択.resx">
+      <DependentUpon>項目選択.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DB選択.resx">
       <DependentUpon>DB選択.vb</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="予算総括入力.resx">
       <DependentUpon>予算総括入力.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="代価表入力.resx">
+      <DependentUpon>代価表入力.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="明細書入力.resx">
       <DependentUpon>明細書入力.vb</DependentUpon>

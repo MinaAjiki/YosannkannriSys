@@ -44,4 +44,8 @@
         ホーム.FormPanel.Controls.Add(明細書入力)
         明細書入力.Show()
     End Sub
+
+    Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
+
+    End Sub
 End Class

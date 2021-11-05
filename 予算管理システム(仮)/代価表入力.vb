@@ -1,7 +1,7 @@
 ﻿Imports C1.Win.C1FlexGrid
-Public Class 明細書入力
+Public Class 代価表入力
 
-    Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub 代価表入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'DetailsList.Rows(1).AllowMerging = True
         DetailsList(0, 2) = "削除"
@@ -19,50 +19,20 @@ Public Class 明細書入力
         DetailsList(1, 6) = "単価"
         DetailsList(2, 6) = "金額"
 
-        OutsoucerList(0, 2) = "8256950"
-        OutsoucerList(1, 2) = "(株)岐阜造園"
-        OutsoucerList(0, 3) = "8197780"
-        OutsoucerList(1, 3) = "(株)川田電機工務店"
-        OutsoucerList(0, 4) = "8876310"
-        OutsoucerList(1, 4) = "岐阜北建設(株)"
-        OutsoucerList(0, 5) = "8772020"
-        OutsoucerList(1, 5) = "(株)丸徳鉄工"
-        OutsoucerList(0, 6) = "8330210"
-        OutsoucerList(1, 6) = "(有)宏春工業"
-
         DetailsList.MergedRanges.Add(0, 2, 2, 2)
         DetailsList.MergedRanges.Add(0, 3, 2, 3)
         DetailsList.MergedRanges.Add(0, 4, 0, 5)
         DetailsList.MergedRanges.Add(1, 4, 1, 5)
-
-        CategoryList.MergedRanges.Add(0, 2, 2, 2)
-        CategoryList.MergedRanges.Add(0, 3, 2, 3)
-        CategoryList.MergedRanges.Add(0, 4, 2, 4)
-        CategoryList.MergedRanges.Add(0, 5, 2, 5)
-        CategoryList.MergedRanges.Add(0, 6, 2, 6)
-
-        OutsoucerList.MergedRanges.Add(1, 2, 2, 2)
-        OutsoucerList.MergedRanges.Add(1, 3, 2, 3)
-        OutsoucerList.MergedRanges.Add(1, 4, 2, 4)
-        OutsoucerList.MergedRanges.Add(1, 5, 2, 5)
-        OutsoucerList.MergedRanges.Add(1, 6, 2, 6)
-        OutsoucerList.Visible = False
+        DetailsList.MergedRanges.Add(0, 7, 2, 7)
+        DetailsList.MergedRanges.Add(0, 8, 2, 8)
+        DetailsList.MergedRanges.Add(0, 9, 2, 9)
+        DetailsList.MergedRanges.Add(0, 10, 2, 10)
+        DetailsList.MergedRanges.Add(0, 11, 2, 11)
 
         DetailsList.Rows(0).Height = 17
         DetailsList.Rows(1).Height = 17
         DetailsList.Rows(2).Height = 17
-        CategoryList.Rows(0).Height = 17
-        CategoryList.Rows(1).Height = 17
-        CategoryList.Rows(2).Height = 17
-        OutsoucerList.Rows(0).Height = 17
-        OutsoucerList.Rows(1).Height = 17
-        OutsoucerList.Rows(2).Height = 17
 
-        CategoryTotalList.Rows(0).Height = 20
-        OutsoucerTotalList.Rows(0).Height = 20
-
-
-        Category.Checked = True
 
         Me.Anchor = AnchorStyles.Top
         Me.Anchor = AnchorStyles.Left
@@ -103,24 +73,6 @@ Public Class 明細書入力
         Entry.ImageIndex = 3
     End Sub
 
-
-    Private Sub Outsoucing_CheckedChanged(sender As Object, e As EventArgs) Handles Outsoucing.CheckedChanged
-        If Outsoucing.Checked = True Then
-            CategoryList.Visible = False
-            CategoryTotalList.Visible = False
-            OutsoucerList.Visible = True
-            OutsoucerTotalList.Visible = True
-        End If
-    End Sub
-
-    Private Sub Category_CheckedChanged(sender As Object, e As EventArgs) Handles Category.CheckedChanged
-        If Category.Checked = True Then
-            OutsoucerList.Visible = False
-            OutsoucerTotalList.Visible = False
-            CategoryList.Visible = True
-            CategoryTotalList.Visible = True
-        End If
-    End Sub
 
     Private Sub CostCreation_MouseDown(sender As Object, e As MouseEventArgs) Handles CostCreation.MouseDown
         CostCreation.ImageIndex = 11
@@ -171,14 +123,4 @@ Public Class 明細書入力
         CostCopy.ImageIndex = 15
     End Sub
 
-    Private Sub DetailsList_DoubleClick(sender As Object, e As EventArgs) Handles DetailsList.DoubleClick
-        Me.Close()
-        代価表入力.TopLevel = False
-        ホーム.FormPanel.Controls.Add(代価表入力)
-        代価表入力.Show()
-    End Sub
-
-    Private Sub ContextMenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ContextMenuStrip1.ItemClicked
-        項目選択.Show()
-    End Sub
 End Class
