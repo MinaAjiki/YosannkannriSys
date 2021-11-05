@@ -45,13 +45,8 @@ Public Class ホーム
 
     Private Sub 出来高登録_Click(sender As Object, e As ClickEventArgs) Handles 出来高登録.Click
 
-        出来高入力.Anchor = AnchorStyles.Top
-        '協力業者入力.Anchor = AnchorStyles.Bottom
-        出来高入力.Anchor = AnchorStyles.Left
-        '協力業者入力.Anchor = AnchorStyles.Right
-
-        出来高入力.TopLevel = False
-        FormPanel.Controls.Add(出来高入力)
+        '出来高入力.TopLevel = False
+        'FormPanel.Controls.Add(出来高入力)
         出来高入力.Show()
     End Sub
 
@@ -80,8 +75,12 @@ Public Class ホーム
     End Sub
 
     Private Sub 外注計画登録_Click(sender As Object, e As ClickEventArgs) Handles 外注計画登録.Click
-        外注内訳入力.TopLevel = False
-        FormPanel.Controls.Add(外注内訳入力)
+        '外注内訳入力.TopLevel = False
+        'FormPanel.Controls.Add(外注内訳入力)
         外注内訳入力.Show()
+    End Sub
+
+    Private Sub 代価表_Click(sender As Object, e As ClickEventArgs) Handles 代価表.Click
+        印刷代価選択.Show()
     End Sub
 End Class
