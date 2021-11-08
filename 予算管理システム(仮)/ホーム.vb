@@ -2,8 +2,17 @@
 Imports System.Windows.Forms.Form
 
 Public Class ホーム
+    Public ErrorMessage As String 'エラーメッセージ
+    Public StackTrace As String 'スタックトレース
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        予算選択.Show()
+        Try
+            予算選択.Show()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
 
     End Sub
 
@@ -17,14 +26,21 @@ Public Class ホーム
 
     Private Sub 協力業者登録_Click(sender As Object, e As ClickEventArgs) Handles 協力業者登録.Click
 
-        協力業者入力.Anchor = AnchorStyles.Top
-        '協力業者入力.Anchor = AnchorStyles.Bottom
-        協力業者入力.Anchor = AnchorStyles.Left
-        '協力業者入力.Anchor = AnchorStyles.Right
+        Try
+            協力業者入力.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者入力.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
 
-        協力業者入力.TopLevel = False
-        FormPanel.Controls.Add(協力業者入力)
-        協力業者入力.Show()
+            協力業者入力.TopLevel = False
+            FormPanel.Controls.Add(協力業者入力)
+            協力業者入力.Show()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 
     Private Sub 締切処理_Click(sender As Object, e As ClickEventArgs) Handles 締切処理.Click
