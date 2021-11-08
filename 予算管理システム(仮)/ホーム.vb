@@ -1,10 +1,38 @@
 ﻿Imports C1.Win.C1Command
+Imports System.Data.SqlClient
+Imports System.Deployment.Application
+Imports System.IO.DirectoryInfo
+Imports System.ComponentModel
+Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 
 Public Class ホーム
+
+    Public Connection As New SqlConnection 'サーバーへの接続
     Public ErrorMessage As String 'エラーメッセージ
-    Public StackTrace As String 'スタックトレース
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public StackTrace As String 'スタクとレース
+    Public SQL As New SqlCommand 'SQLコマンド
+    Public systmcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath & "\予算管理システム(system_sql).mdf;Integrated Security=True")
+    Public systemsql As New SqlCommand
+
+    Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        systmcnnctn.Open()
+        systemsql.Connection = systmcnnctn
+        Dim path As String = ""
+        systemsql.CommandText = "SELECT MAX(updatedate),filepath FROM userfiles GROUP BY filepath"
+        Dim filereader As SqlDataReader = systemsql.ExecuteReader
+        While filereader.Read
+            path = filereader.Item("filepath")
+        End While
+        filereader.Close()
+
+        If path <> "" Then
+            予算選択.Show()
+        Else
+            Me.Enabled = True
+        End If
+
         Try
             予算選択.Show()
         Catch ex As Exception
@@ -13,6 +41,7 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+
 
     End Sub
 

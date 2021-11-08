@@ -35,6 +35,7 @@ Partial Class DB選択
         Me.Open = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.OtherFile = New System.Windows.Forms.Button()
+        Me.OtherFileOpenDialog = New System.Windows.Forms.OpenFileDialog()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +57,7 @@ Partial Class DB選択
         '
         'C1TextBox1
         '
-        Me.C1TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1TextBox1.BackColor = System.Drawing.Color.White
         Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
@@ -202,6 +203,10 @@ Partial Class DB選択
         Me.OtherFile.Text = "他ファイル参照"
         Me.OtherFile.UseVisualStyleBackColor = True
         '
+        'OtherFileOpenDialog
+        '
+        Me.OtherFileOpenDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
+        '
         'DB選択
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
@@ -239,4 +244,5 @@ Partial Class DB選択
     Friend WithEvents FooterPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents Open As Button
     Friend WithEvents OtherFile As Button
+    Friend WithEvents OtherFileOpenDialog As OpenFileDialog
 End Class

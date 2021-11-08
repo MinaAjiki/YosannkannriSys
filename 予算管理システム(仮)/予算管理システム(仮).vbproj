@@ -417,6 +417,13 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="予算管理システム%28system_sql%29.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="予算管理システム%28system_sql%29_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>予算管理システム%28system_sql%29.mdf</DependentUpon>
+    </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
@@ -438,6 +445,28 @@
     <Content Include="Resources\Edit_source.png" />
     <Content Include="Resources\Modify.png" />
     <Content Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="予算管理システム%28system_sql%29.mdf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>DataFile</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="予算管理システム%28system_sql%29_log.ldf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>DataFile</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
