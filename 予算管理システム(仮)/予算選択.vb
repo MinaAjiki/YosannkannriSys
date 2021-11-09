@@ -16,42 +16,36 @@ Public Class 予算選択
 
     Private Sub 予算選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim path As String = ""
-        ホーム.systemsql.CommandText = "SELECT MAX(updatedate),filepath FROM userfiles GROUP BY filepath"
-        Dim filereader As SqlDataReader = ホーム.systemsql.ExecuteReader
-        While filereader.Read
-            path = filereader.Item("filepath")
-        End While
-        filereader.Close()
+        If ホーム.UserDataName <> "" Then
 
-        If path <> "" Then
-            Dim latestcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & path & ";Integrated Security=True")
-            Dim latestsql As New SqlCommand
-            latestcnnctn.Open()
-            latestsql.Connection = latestcnnctn
-            Dim prjct_name As String = ""
-            Dim prjct_code As String = ""
-            Dim cntrct_no As Integer = 0
-            latestsql.CommandText = "select max(cntrct_no),prjct_code,prjct_name from budgetsummary"
-            Dim latestreader As SqlDataReader = latestsql.ExecuteReader
-            While latestreader.Read
-                prjct_code = latestreader.Item("prjct_code")
-                prjct_name = latestreader.Item("prjct_name")
-                cntrct_no = latestreader.Item("contract_no")
+            Dim Prjct_Name As String
+            Dim Prjct_Code As String
+            Dim Cntrct_No As Integer = 0
+
+            ホーム.Sql.CommandText = "select max(cntrct_no) from budget_summary"
+            Dim LatestReader As SqlDataReader = ホーム.Sql.ExecuteReader
+            While LatestReader.Read
+                Cntrct_No = LatestReader.Item("cntrct_no")
             End While
-            latestreader.Close()
+            LatestReader.Close()
+
+            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
+            Prjct_Code = ホーム.Sql.ExecuteScalar
+
+            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=21"
+            Prjct_Name = ホーム.Sql.ExecuteScalar
 
             Contract_NoList.Items.Add("当初")
 
-            For contrctno As Integer = 1 To cntrct_no
-                Contract_NoList.Items.Add("第" & contrctno & "回変更")
+            For No As Integer = 1 To Cntrct_No
+                Contract_NoList.Items.Add("第" & No & "回変更")
             Next
 
             Contract_NoList.Items.Add("変更予算作成")
 
-            Project.Value = prjct_code & " " & prjct_name
-            FilePath.Value = path
-            Contract_NoList.SelectedItem = cntrct_no
+            Project.Value = Prjct_Code & " " & Prjct_Name
+            FilePath.Value = ホーム.UserDataPath & "\" & ホーム.UserDataName
+            Contract_NoList.SelectedItem = Cntrct_No
 
         Else
 

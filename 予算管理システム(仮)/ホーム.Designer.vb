@@ -24,35 +24,6 @@ Partial Class ホーム
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
-        Dim C1TreeNode1 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode2 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode3 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode4 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode5 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode6 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode7 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode8 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode9 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode10 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode11 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode12 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode13 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode14 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode15 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode16 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode17 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode18 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode19 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode20 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode21 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode22 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode23 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode24 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode25 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode26 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode27 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode28 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
-        Dim C1TreeNode29 As C1.Win.TreeView.C1TreeNode = New C1.Win.TreeView.C1TreeNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,10 +36,12 @@ Partial Class ホーム
         Me.TreePanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.C1Label3 = New C1.Win.C1Input.C1Label()
         Me.C1Label2 = New C1.Win.C1Input.C1Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.C1Label1 = New C1.Win.C1Input.C1Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.C1TextBox4 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
         Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
@@ -251,15 +224,14 @@ Partial Class ホーム
         Me.バージョン情報 = New C1.Win.C1Command.C1Command()
         Me.MainMenu = New C1.Win.C1Command.C1MainMenu()
         Me.C1CommandLink2 = New C1.Win.C1Command.C1CommandLink()
-        Me.C1CommandLink1 = New C1.Win.C1Command.C1CommandLink()
-        Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
+        Me.BudgetMenu = New C1.Win.C1Command.C1CommandLink()
+        Me.EstimateMenu = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink7 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink9 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink13 = New C1.Win.C1Command.C1CommandLink()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -386,76 +358,12 @@ Partial Class ホーム
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
         C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = "DD0000 テスト工事"
+        C1TreeColumn1.HeaderText = Nothing
         C1TreeColumn1.Name = "Column1"
         Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
-        C1TreeNode1.Expanded = True
-        C1TreeNode2.Expanded = True
-        C1TreeNode3.SetValue("1 東西道路")
-        C1TreeNode4.SetValue("2 掘削工事(A-0020)")
-        C1TreeNode5.SetValue("3 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode6.SetValue("4 路体盛土(BH+HR)(K-00291)")
-        C1TreeNode7.Expanded = True
-        C1TreeNode8.SetValue("DT運搬 4t(K-00271)")
-        C1TreeNode7.Nodes.Add(C1TreeNode8)
-        C1TreeNode7.SetValue("5 掘削工事(公園東道路)(A-00026)")
-        C1TreeNode9.SetValue("5 客土")
-        C1TreeNode10.SetValue("6 残土処理工(A-00022)")
-        C1TreeNode11.SetValue("7 南北道路")
-        C1TreeNode12.SetValue("8 掘削工事(A-00020)")
-        C1TreeNode13.SetValue("9 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode14.SetValue("10 植樹帯客土工")
-        C1TreeNode15.SetValue("11 残土処理工(A-00022)")
-        C1TreeNode16.SetValue("12 公園東道路")
-        C1TreeNode17.SetValue("13 路体盛土(BH+HR)(K-00298)")
-        C1TreeNode18.Expanded = True
-        C1TreeNode19.Expanded = True
-        C1TreeNode20.SetValue("DT運搬 4t(K-00298)")
-        C1TreeNode19.Nodes.Add(C1TreeNode20)
-        C1TreeNode19.SetValue("DT運搬 4t(B-00005)")
-        C1TreeNode18.Nodes.Add(C1TreeNode19)
-        C1TreeNode18.SetValue("14 残土処理工(A-00023)")
-        C1TreeNode2.Nodes.Add(C1TreeNode3)
-        C1TreeNode2.Nodes.Add(C1TreeNode4)
-        C1TreeNode2.Nodes.Add(C1TreeNode5)
-        C1TreeNode2.Nodes.Add(C1TreeNode6)
-        C1TreeNode2.Nodes.Add(C1TreeNode7)
-        C1TreeNode2.Nodes.Add(C1TreeNode9)
-        C1TreeNode2.Nodes.Add(C1TreeNode10)
-        C1TreeNode2.Nodes.Add(C1TreeNode11)
-        C1TreeNode2.Nodes.Add(C1TreeNode12)
-        C1TreeNode2.Nodes.Add(C1TreeNode13)
-        C1TreeNode2.Nodes.Add(C1TreeNode14)
-        C1TreeNode2.Nodes.Add(C1TreeNode15)
-        C1TreeNode2.Nodes.Add(C1TreeNode16)
-        C1TreeNode2.Nodes.Add(C1TreeNode17)
-        C1TreeNode2.Nodes.Add(C1TreeNode18)
-        C1TreeNode2.SetValue("101 土工")
-        C1TreeNode21.Expanded = True
-        C1TreeNode21.SetValue("103 法面工")
-        C1TreeNode22.SetValue("105 地盤改良工")
-        C1TreeNode23.SetValue("111 舗装工")
-        C1TreeNode24.SetValue("113 ｺﾝｸﾘｰﾄ舗装工")
-        C1TreeNode1.Nodes.Add(C1TreeNode2)
-        C1TreeNode1.Nodes.Add(C1TreeNode21)
-        C1TreeNode1.Nodes.Add(C1TreeNode22)
-        C1TreeNode1.Nodes.Add(C1TreeNode23)
-        C1TreeNode1.Nodes.Add(C1TreeNode24)
-        C1TreeNode1.SetValue("100 直接工事費")
-        C1TreeNode25.SetValue("200 仮設費")
-        C1TreeNode26.SetValue("840 現場経費")
-        C1TreeNode27.SetValue("860 材料差額")
-        C1TreeNode28.SetValue("880 合算経費見込")
-        C1TreeNode29.SetValue("890 見積作成用経費")
-        Me.HomeTreeView.Nodes.Add(C1TreeNode1)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode25)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode26)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode27)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode28)
-        Me.HomeTreeView.Nodes.Add(C1TreeNode29)
-        Me.HomeTreeView.Size = New System.Drawing.Size(266, 664)
+        Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
         Me.HomeTreeView.Styles.Border = 0
         Me.HomeTreeView.Styles.BorderColor = System.Drawing.Color.AliceBlue
         Me.HomeTreeView.Styles.ColumnHeader.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -492,6 +400,23 @@ Partial Class ホーム
         Me.FormPanel.Size = New System.Drawing.Size(990, 664)
         Me.FormPanel.TabIndex = 1
         Me.FormPanel.Text = "パネル2"
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.White
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
+        Me.Button3.Location = New System.Drawing.Point(-1512, 120)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(300, 90)
+        Me.Button3.TabIndex = 35
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'C1Label3
         '
@@ -533,6 +458,21 @@ Partial Class ホーム
         Me.C1Label1.Size = New System.Drawing.Size(60, 12)
         Me.C1Label1.TabIndex = 30
         Me.C1Label1.Tag = Nothing
+        '
+        'Button2
+        '
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
+        Me.Button2.Location = New System.Drawing.Point(-1188, 120)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(300, 90)
+        Me.Button2.TabIndex = 29
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'C1TextBox4
         '
@@ -1777,7 +1717,7 @@ Partial Class ホーム
         '
         Me.MainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.MainMenu.CommandHolder = Me.MenuComｍand
-        Me.MainMenu.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink2, Me.C1CommandLink1, Me.C1CommandLink5, Me.C1CommandLink7, Me.C1CommandLink9, Me.C1CommandLink11, Me.C1CommandLink13})
+        Me.MainMenu.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink2, Me.BudgetMenu, Me.EstimateMenu, Me.C1CommandLink7, Me.C1CommandLink9, Me.C1CommandLink11, Me.C1CommandLink13})
         Me.MainMenu.Dock = System.Windows.Forms.DockStyle.Top
         Me.MainMenu.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold)
         Me.MainMenu.Location = New System.Drawing.Point(0, 0)
@@ -1792,15 +1732,15 @@ Partial Class ホーム
         '
         Me.C1CommandLink2.Command = Me.ファイル
         '
-        'C1CommandLink1
+        'BudgetMenu
         '
-        Me.C1CommandLink1.Command = Me.予算
-        Me.C1CommandLink1.SortOrder = 1
+        Me.BudgetMenu.Command = Me.予算
+        Me.BudgetMenu.SortOrder = 1
         '
-        'C1CommandLink5
+        'EstimateMenu
         '
-        Me.C1CommandLink5.Command = Me.見積
-        Me.C1CommandLink5.SortOrder = 2
+        Me.EstimateMenu.Command = Me.見積
+        Me.EstimateMenu.SortOrder = 2
         '
         'C1CommandLink7
         '
@@ -1826,37 +1766,11 @@ Partial Class ホーム
         '
         Me.SystemTheme.Theme = "予算管理テーマ"
         '
-        'Button3
+        'CreateFileDialog
         '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(-1512, 120)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(300, 90)
-        Me.Button3.TabIndex = 35
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(-1188, 120)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(300, 90)
-        Me.Button2.TabIndex = 29
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.CreateFileDialog.FileName = "現場データ"
+        Me.CreateFileDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
+        Me.CreateFileDialog.InitialDirectory = "c:\"
         '
         'ホーム
         '
@@ -1922,8 +1836,8 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink6 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents MainMenu As C1.Win.C1Command.C1MainMenu
     Friend WithEvents C1CommandLink2 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents C1CommandLink1 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents C1CommandLink5 As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents BudgetMenu As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents EstimateMenu As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 外注管理 As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink8 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出力 As C1.Win.C1Command.C1CommandMenu
@@ -2097,4 +2011,5 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink90 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 注文書明細_CSV As C1.Win.C1Command.C1Command
     Friend WithEvents HomeTreeView As C1.Win.TreeView.C1TreeView
+    Friend WithEvents CreateFileDialog As SaveFileDialog
 End Class

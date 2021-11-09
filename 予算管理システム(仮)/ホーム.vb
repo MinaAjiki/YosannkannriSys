@@ -8,33 +8,63 @@ Imports System.Windows.Forms.Form
 
 Public Class ホーム
 
-    Public Connection As New SqlConnection 'サーバーへの接続
     Public ErrorMessage As String 'エラーメッセージ
     Public StackTrace As String 'スタクとレース
-    Public SQL As New SqlCommand 'SQLコマンド
-    Public systmcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath & "\予算管理システム(system_sql).mdf;Integrated Security=True")
-    Public systemsql As New SqlCommand
+    'Public systmcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath & "\予算管理システム(system_sql).mdf;Integrated Security=True")
+    Public SystmCnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\206029\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システム(system_sql).mdf;Integrated Security=True")
+    Public SystemSql As New SqlCommand
+    Public UserDataName As String = ""
+    Public UserDataPath As String = ""
+    Public Connection As New SqlConnection 'サーバーへの接続
+    Public Sql As New SqlCommand 'SQLコマンド
+
+
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        systmcnnctn.Open()
-        systemsql.Connection = systmcnnctn
-        Dim path As String = ""
-        systemsql.CommandText = "SELECT MAX(updatedate),filepath FROM userfiles GROUP BY filepath"
-        Dim filereader As SqlDataReader = systemsql.ExecuteReader
-        While filereader.Read
-            path = filereader.Item("filepath")
-        End While
-        filereader.Close()
-
-        If path <> "" Then
-            予算選択.Show()
-        Else
-            Me.Enabled = True
-        End If
-
         Try
-            予算選択.Show()
+            SystmCnnctn.Open()
+            SystemSql.Connection = SystmCnnctn
+            SystemSql.CommandText = "SELECT TOP 1 * FROM userfiles ORDER BY updatedate ASC"
+            Dim FileReader As SqlDataReader = SystemSql.ExecuteReader
+            While FileReader.Read
+                UserDataName = FileReader.Item("filename")
+                UserDataPath = FileReader.Item("filepath")
+            End While
+            FileReader.Close()
+
+            If UserDataName <> "" Then
+
+                Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & UserDataPath & "\" & UserDataName & ";Integrated Security=True"
+                Connection.Open()
+                Sql.Connection = Connection
+
+
+                Sql.CommandText = "SELECT Count(cntrct_no) FROM budget_summary"
+                Dim DataCount As Integer = Sql.ExecuteScalar
+
+                If DataCount >= 1 Then
+                    予算選択.Show()
+
+                Else
+                    Me.Enabled = True
+                    Me.Text = "予算管理システム　(" & UserDataPath & "\" & UserDataName & ")"
+
+
+
+                End If
+
+            Else
+
+                Me.Enabled = True
+                予算.Enabled = False
+                見積.Enabled = False
+                外注管理.Enabled = False
+                出力.Enabled = False
+                マスタ.Enabled = False
+
+            End If
+
+
         Catch ex As Exception
             ErrorMessage = ex.Message
             StackTrace = ex.StackTrace
@@ -127,5 +157,33 @@ Public Class ホーム
 
     Private Sub 代価表_Click(sender As Object, e As ClickEventArgs) Handles 代価表.Click
         印刷代価選択.Show()
+    End Sub
+
+    Private Sub 新規作成_Click(sender As Object, e As ClickEventArgs) Handles 新規作成.Click
+        If MsgBox("新しい現場データファイルを作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
+            CreateFileDialog.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
+
+        System.IO.File.Copy("C:\Users\206029\OneDrive - 株式会社市川工務店\デスクトップ\現場データ.mdf", CreateFileDialog.FileName)
+
+        Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
+        Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
+
+        systemsql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALUES (@filename,@filepath,@updatedate)"
+        systemsql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+        systemsql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
+        systemsql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
+        systemsql.Parameters("@filename").Value = FileName
+        systemsql.Parameters("@filepath").Value = FilePath
+        systemsql.Parameters("@updatedate").Value = Today
+        systemsql.ExecuteNonQuery()
+
+        MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
+
+
+
     End Sub
 End Class
