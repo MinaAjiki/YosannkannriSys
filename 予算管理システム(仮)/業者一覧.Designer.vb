@@ -29,9 +29,9 @@ Partial Class 業者一覧
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.Search = New System.Windows.Forms.Button()
+        Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
         Me.C1ComboBox2 = New C1.Win.C1Input.C1ComboBox()
-        Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
@@ -40,9 +40,9 @@ Partial Class 業者一覧
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
@@ -123,12 +123,12 @@ Partial Class 業者一覧
         Me.SystemTheme.SetTheme(Me.Search, "(default)")
         Me.Search.UseVisualStyleBackColor = True
         '
-        
         'SearchSelect
         '
         Me.SearchSelect.AllowSpinLoop = False
         Me.SearchSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.SearchSelect.AutoSize = False
+        Me.SearchSelect.BackColor = System.Drawing.Color.White
         Me.SearchSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.SearchSelect.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.SearchSelect.Font = New System.Drawing.Font("メイリオ", 9.0!)
@@ -144,6 +144,28 @@ Partial Class 業者一覧
         Me.SearchSelect.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.SearchSelect, "予算管理テーマ")
         Me.SearchSelect.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'C1ComboBox1
+        '
+        Me.C1ComboBox1.AllowSpinLoop = False
+        Me.C1ComboBox1.GapHeight = 0
+        Me.C1ComboBox1.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.C1ComboBox1.Location = New System.Drawing.Point(0, 0)
+        Me.C1ComboBox1.Name = "C1ComboBox1"
+        Me.C1ComboBox1.Size = New System.Drawing.Size(200, 17)
+        Me.C1ComboBox1.TabIndex = 0
+        Me.C1ComboBox1.Tag = Nothing
+        '
+        'C1ComboBox2
+        '
+        Me.C1ComboBox2.AllowSpinLoop = False
+        Me.C1ComboBox2.GapHeight = 0
+        Me.C1ComboBox2.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.C1ComboBox2.Location = New System.Drawing.Point(0, 0)
+        Me.C1ComboBox2.Name = "C1ComboBox2"
+        Me.C1ComboBox2.Size = New System.Drawing.Size(200, 17)
+        Me.C1ComboBox2.TabIndex = 0
+        Me.C1ComboBox2.Tag = Nothing
         '
         'Cancel
         '
@@ -262,9 +284,9 @@ Partial Class 業者一覧
         Me.Text = "業者一覧"
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
