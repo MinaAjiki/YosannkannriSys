@@ -5,23 +5,23 @@ Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Public Class DB選択
-    Dim systmcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath & "\予算管理システム(system_sql).mdf;Integrated Security=True")
-    Dim systemsql As New SqlCommand
 
     Private Sub DB選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FileList.Rows(0).Height = 20
 
-        systmcnnctn.Open()
-        systemsql.Connection = systmcnnctn
-        Dim datacount As Integer = 1
-        systemsql.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY updatedate ASC"
-        Dim filereader As SqlDataReader = systemsql.ExecuteReader
-        While filereader.Read
-            FileList(datacount, 1) = filereader.Item("filename")
-            FileList(datacount, 2) = filereader.Item("filepath")
-            datacount += 1
+        ホーム.SystmCnnctn.Open()
+        ホーム.SystemSql.Connection = ホーム.SystmCnnctn
+
+        Dim DataCount As Integer = 1
+
+        ホーム.SystemSql.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY updatedate ASC"
+        Dim FileReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        While FileReader.Read
+            FileList(DataCount, 1) = FileReader.Item("filename")
+            FileList(DataCount, 2) = FileReader.Item("filepath")
+            DataCount += 1
         End While
-        filereader.Close()
+        FileReader.Close()
 
     End Sub
 
@@ -65,43 +65,40 @@ Public Class DB選択
 
     Private Sub OtherFileOpenDialog_FileOk(sender As Object, e As CancelEventArgs) Handles OtherFileOpenDialog.FileOk
 
-        Dim openfilename As String = OtherFileOpenDialog.FileName
+        Dim OpenFileName As String = IO.Path.GetFileName(OtherFileOpenDialog.FileName)
+        Dim OpenFilePath As String = IO.Path.GetDirectoryName(OtherFileOpenDialog.FileName)
 
-        If openfilename.Contains(".mdf") = False Then
+        If OpenFileName.Contains(".mdf") = False Then
             MsgBox("mdfファイルを選択してください。", MsgBoxStyle.Exclamation, "エラー")
             Exit Sub
 
         Else
 
-            ホーム.Connection.Close()
-            ホーム.Connection.Dispose()
 
-            ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & openfilename & ";Integrated Security=True"
-            ホーム.Connection.Open()
-            ホーム.SQL.Connection = ホーム.Connection
+            ホーム.SystemSql.CommandText = "SELECT Count(filename) FROM userfiles WHERE filename=" & OpenFileName
+            Dim Filecount As Integer = ホーム.SystemSql.ExecuteScalar
 
-            Dim lastindex As Integer = openfilename.LastIndexOf("\")
-            Dim length As Integer = openfilename.Length
-
-            Dim filename As String = openfilename.Remove(0, lastindex + 1)
-
-            systemsql.CommandText = "SELECT Count(filename) FROM userfiles WHERE filename=" & filename
-            Dim filecount As Integer = systemsql.ExecuteScalar
-
-            If filecount >= 1 Then
-                systemsql.CommandText = "UPDATE userfiles SET updatedate=" & Today & " WHERE filename=" & filename
-                systemsql.ExecuteNonQuery()
+            If Filecount >= 1 Then
+                ホーム.SystemSql.CommandText = "UPDATE userfiles SET updatedate=" & Today & " WHERE filename=" & OpenFileName
+                ホーム.SystemSql.ExecuteNonQuery()
             Else
-                systemsql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALLUES (@filename,@failepath,@updatedate)"
-                systemsql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
-                systemsql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
-                systemsql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
-                systemsql.Parameters("@filename").Value = filename
-                systemsql.Parameters("@filepath").Value = openfilename
-                systemsql.Parameters("@updatedate").Value = Today
-                systemsql.ExecuteNonQuery()
+                ホーム.SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALLUES (@filename,@failepath,@updatedate)"
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
+                ホーム.SystemSql.Parameters("@filename").Value = OpenFileName
+                ホーム.SystemSql.Parameters("@filepath").Value = OpenFilePath
+                ホーム.SystemSql.Parameters("@updatedate").Value = Today
+                ホーム.SystemSql.ExecuteNonQuery()
             End If
         End If
+
+        ホーム.Connection.Close()
+        ホーム.Connection.Dispose()
+
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFileName & ";Integrated Security=True"
+        ホーム.Connection.Open()
+        ホーム.SQL.Connection = ホーム.Connection
 
     End Sub
 End Class
