@@ -26,14 +26,14 @@ Partial Class 協力業者入力
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(協力業者入力))
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
-        Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.CoopVendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.VendorSelect = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
-        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.VendorSelect = New System.Windows.Forms.Button()
+        CType(Me.CoopVendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
@@ -77,27 +77,27 @@ Partial Class 協力業者入力
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
-        'VendorList
+        'CoopVendorList
         '
-        Me.VendorList.AllowAddNew = True
-        Me.VendorList.AllowDelete = True
-        Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
-        Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.VendorList.Location = New System.Drawing.Point(15, 115)
-        Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.VendorList.Name = "VendorList"
-        Me.VendorList.Rows.Count = 20
-        Me.VendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.VendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.VendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.VendorList.Size = New System.Drawing.Size(963, 483)
-        Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
-        Me.VendorList.TabIndex = 43
-        Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
+        Me.CoopVendorList.AllowAddNew = True
+        Me.CoopVendorList.AllowDelete = True
+        Me.CoopVendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.CoopVendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.CoopVendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.CoopVendorList.ColumnInfo = resources.GetString("CoopVendorList.ColumnInfo")
+        Me.CoopVendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CoopVendorList.Location = New System.Drawing.Point(15, 115)
+        Me.CoopVendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.CoopVendorList.Name = "CoopVendorList"
+        Me.CoopVendorList.Rows.Count = 20
+        Me.CoopVendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.CoopVendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.CoopVendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.CoopVendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.CoopVendorList.Size = New System.Drawing.Size(963, 483)
+        Me.CoopVendorList.StyleInfo = resources.GetString("CoopVendorList.StyleInfo")
+        Me.CoopVendorList.TabIndex = 43
+        Me.SystemTheme.SetTheme(Me.CoopVendorList, "予算管理テーマ")
         '
         'FormSplitContainer
         '
@@ -145,24 +145,6 @@ Partial Class 協力業者入力
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
-        'VendorSelect
-        '
-        Me.VendorSelect.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.VendorSelect.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.VendorSelect.FlatAppearance.BorderSize = 0
-        Me.VendorSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.VendorSelect.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.VendorSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.VendorSelect.ImageIndex = 0
-        Me.VendorSelect.ImageList = Me.ButtonImageList
-        Me.VendorSelect.Location = New System.Drawing.Point(38, 70)
-        Me.VendorSelect.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.VendorSelect.Name = "VendorSelect"
-        Me.VendorSelect.Size = New System.Drawing.Size(100, 30)
-        Me.VendorSelect.TabIndex = 42
-        Me.VendorSelect.Text = "業 者 選 択"
-        Me.VendorSelect.UseVisualStyleBackColor = True
-        '
         'Entry
         '
         Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -181,12 +163,30 @@ Partial Class 協力業者入力
         Me.Entry.Text = "　登　録"
         Me.Entry.UseVisualStyleBackColor = True
         '
+        'VendorSelect
+        '
+        Me.VendorSelect.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.VendorSelect.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.VendorSelect.FlatAppearance.BorderSize = 0
+        Me.VendorSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.VendorSelect.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.VendorSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.VendorSelect.ImageIndex = 0
+        Me.VendorSelect.ImageList = Me.ButtonImageList
+        Me.VendorSelect.Location = New System.Drawing.Point(38, 70)
+        Me.VendorSelect.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.VendorSelect.Name = "VendorSelect"
+        Me.VendorSelect.Size = New System.Drawing.Size(100, 30)
+        Me.VendorSelect.TabIndex = 42
+        Me.VendorSelect.Text = "業 者 選 択"
+        Me.VendorSelect.UseVisualStyleBackColor = True
+        '
         '協力業者入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(990, 662)
-        Me.Controls.Add(Me.VendorList)
+        Me.Controls.Add(Me.CoopVendorList)
         Me.Controls.Add(Me.VendorSelect)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
@@ -196,7 +196,7 @@ Partial Class 協力業者入力
         Me.Name = "協力業者入力"
         Me.Opacity = 0.2R
         Me.Text = "協力業者入力"
-        CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CoopVendorList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
@@ -209,7 +209,7 @@ Partial Class 協力業者入力
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Entry As Button
     Friend WithEvents VendorSelect As Button
-    Friend WithEvents VendorList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents CoopVendorList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel

@@ -1,6 +1,30 @@
-﻿Public Class 協力業者入力
+﻿Imports System.Data.SqlClient
+Imports System.Deployment.Application
+Imports System.IO.DirectoryInfo
+Imports System.ComponentModel
+Imports System.Deployment.Application.ApplicationDeployment
+Imports System.Windows.Forms.Form
+Public Class 協力業者入力
+    Dim systmcnnctn As New SqlConnection()
+    ''"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath &
+    Dim systemsql As New SqlCommand
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        VendorList.SetCellImage(1, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+
+        'CoopVendorList.SetCellImage(1, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        systmcnnctn.Open()
+        systemsql.Connection = systmcnnctn
+        Dim datacount As Integer = 1
+        systemsql.CommandText = "SELECT * FROM outsourcers"
+        Dim Coopreader As SqlDataReader = ホーム.SQL.ExecuteReader
+        While Coopreader.Read
+            CoopVendorList(datacount, 1) = Coopreader.Item("outsrcr_code")
+            CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_name")
+            CoopVendorList(datacount, 3) = Coopreader.Item("outsrcr_trm_s")
+            CoopVendorList(datacount, 4) = Coopreader.Item("outsrcr_trm_e")
+            datacount += 1
+        End While
+        Coopreader.Close()
+
     End Sub
 
     Private Sub C1FlexGrid1_Click(sender As Object, e As EventArgs)
@@ -33,7 +57,7 @@
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Entry.Click
-
+        Me.Close()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles VendorSelect.Click
