@@ -5,17 +5,15 @@ Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Public Class 協力業者入力
-    Dim systmcnnctn As New SqlConnection()
-    ''"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath &
-    Dim systemsql As New SqlCommand
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        'CoopVendorList.SetCellImage(1, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
-        systmcnnctn.Open()
-        systemsql.Connection = systmcnnctn
+        ホーム.Connection.Close()
+        ホーム.Connection.Dispose()
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\現場データ.mdf;Integrated Security=True"
+        ホーム.Connection.Open()
+        ホーム.SystemSql.Connection = ホーム.Connection
+        ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
         Dim datacount As Integer = 1
-        systemsql.CommandText = "SELECT * FROM outsourcers"
-        Dim Coopreader As SqlDataReader = ホーム.SQL.ExecuteReader
+        Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
         While Coopreader.Read
             CoopVendorList(datacount, 1) = Coopreader.Item("outsrcr_code")
             CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_name")
@@ -24,6 +22,9 @@ Public Class 協力業者入力
             datacount += 1
         End While
         Coopreader.Close()
+
+        ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
+        Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
 
     End Sub
 

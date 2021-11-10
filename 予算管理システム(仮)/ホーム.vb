@@ -11,7 +11,7 @@ Public Class ホーム
     Public ErrorMessage As String 'エラーメッセージ
     Public StackTrace As String 'スタクとレース
     'Public systmcnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & Application.StartupPath & "\予算管理システム(system_sql).mdf;Integrated Security=True")
-    Public SystmCnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\206029\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システム(system_sql).mdf;Integrated Security=True")
+    Public SystmCnnctn As New SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システム(system_sql).mdf;Integrated Security=True")
     Public SystemSql As New SqlCommand
     Public UserDataName As String = ""
     Public UserDataPath As String = ""
@@ -21,8 +21,8 @@ Public Class ホーム
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            SystmCnnctn.Open()
+        'Try
+        SystmCnnctn.Open()
             SystemSql.Connection = SystmCnnctn
             SystemSql.CommandText = "SELECT TOP 1 * FROM userfiles ORDER BY updatedate ASC"
             Dim FileReader As SqlDataReader = SystemSql.ExecuteReader
@@ -65,12 +65,12 @@ Public Class ホーム
             End If
 
 
-        Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ErrorMessage = ex.Message
+        '    StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
 
 
     End Sub
@@ -167,19 +167,19 @@ Public Class ホーム
 
     Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
 
-        System.IO.File.Copy("C:\Users\206029\OneDrive - 株式会社市川工務店\デスクトップ\現場データ.mdf", CreateFileDialog.FileName)
+        System.IO.File.Copy("D:\現場データ.mdf", CreateFileDialog.FileName)
 
         Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
         Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
 
-        systemsql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALUES (@filename,@filepath,@updatedate)"
-        systemsql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
-        systemsql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
-        systemsql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
-        systemsql.Parameters("@filename").Value = FileName
-        systemsql.Parameters("@filepath").Value = FilePath
-        systemsql.Parameters("@updatedate").Value = Today
-        systemsql.ExecuteNonQuery()
+        SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALUES (@filename,@filepath,@updatedate)"
+        SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+        SystemSql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
+        SystemSql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
+        SystemSql.Parameters("@filename").Value = FileName
+        SystemSql.Parameters("@filepath").Value = FilePath
+        SystemSql.Parameters("@updatedate").Value = Today
+        SystemSql.ExecuteNonQuery()
 
         MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
 
