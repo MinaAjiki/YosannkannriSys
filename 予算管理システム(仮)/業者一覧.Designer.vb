@@ -27,9 +27,14 @@ Partial Class 業者一覧
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.MTORBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataSet1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataSet1 = New 予算管理システム_仮_.DataSet1()
+        Me.MTORBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.Search = New System.Windows.Forms.Button()
         Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
+        Me.C1FlexGridSearchPanel1 = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
         Me.C1ComboBox2 = New C1.Win.C1Input.C1ComboBox()
         Me.Cancel = New System.Windows.Forms.Button()
@@ -38,7 +43,13 @@ Partial Class 業者一覧
         Me.SearchName = New C1.Win.C1Input.C1TextBox()
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.M_TORTableAdapter = New 予算管理システム_仮_.DataSet1TableAdapters.M_TORTableAdapter()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSet1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,12 +106,13 @@ Partial Class 業者一覧
         Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.VendorList.ColumnInfo = "5,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:100;Caption:""取引先コード"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:270;Capti" &
-    "on:""業者名"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:300;Caption:""住所"";}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Width:100;Caption:""電話番号"";}" & Global.Microsoft.VisualBasic.ChrW(9)
+        Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
+        Me.VendorList.DataSource = Me.MTORBindingSource
         Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.VendorList.Location = New System.Drawing.Point(18, 115)
         Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.VendorList.Name = "VendorList"
+        Me.VendorList.Rows.Count = 1
         Me.VendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.VendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
@@ -109,6 +121,26 @@ Partial Class 業者一覧
         Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
         Me.VendorList.TabIndex = 51
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
+        '
+        'MTORBindingSource
+        '
+        Me.MTORBindingSource.DataMember = "M_TOR"
+        Me.MTORBindingSource.DataSource = Me.DataSet1BindingSource
+        '
+        'DataSet1BindingSource
+        '
+        Me.DataSet1BindingSource.DataSource = Me.DataSet1
+        Me.DataSet1BindingSource.Position = 0
+        '
+        'DataSet1
+        '
+        Me.DataSet1.DataSetName = "DataSet1"
+        Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'MTORBindingSource1
+        '
+        Me.MTORBindingSource1.DataMember = "M_TOR"
+        Me.MTORBindingSource1.DataSource = Me.DataSet1BindingSource
         '
         'Search
         '
@@ -144,6 +176,18 @@ Partial Class 業者一覧
         Me.SearchSelect.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.SearchSelect, "予算管理テーマ")
         Me.SearchSelect.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'C1FlexGridSearchPanel1
+        '
+        Me.C1FlexGridSearchPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.C1FlexGridSearchPanel1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.C1FlexGridSearchPanel1.Location = New System.Drawing.Point(78, 45)
+        Me.C1FlexGridSearchPanel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.C1FlexGridSearchPanel1.Name = "C1FlexGridSearchPanel1"
+        Me.C1FlexGridSearchPanel1.ShowClearButton = False
+        Me.C1FlexGridSearchPanel1.Size = New System.Drawing.Size(274, 32)
+        Me.C1FlexGridSearchPanel1.TabIndex = 68
+        Me.SystemTheme.SetTheme(Me.C1FlexGridSearchPanel1, "予算管理テーマ")
         '
         'C1ComboBox1
         '
@@ -210,6 +254,7 @@ Partial Class 業者一覧
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Controls.Add(Me.C1FlexGridSearchPanel1)
         Me.C1SplitterPanel1.Controls.Add(Me.SearchSelect)
         Me.C1SplitterPanel1.Controls.Add(Me.Search)
         Me.C1SplitterPanel1.Controls.Add(Me.SearchName)
@@ -267,6 +312,10 @@ Partial Class 業者一覧
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
+        'M_TORTableAdapter
+        '
+        Me.M_TORTableAdapter.ClearBeforeFill = True
+        '
         '業者一覧
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
@@ -283,6 +332,10 @@ Partial Class 業者一覧
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "業者一覧"
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSet1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -312,4 +365,11 @@ Partial Class 業者一覧
     Friend WithEvents SearchSelect As C1.Win.C1Input.C1ComboBox
     Friend WithEvents C1ComboBox1 As C1.Win.C1Input.C1ComboBox
     Friend WithEvents C1ComboBox2 As C1.Win.C1Input.C1ComboBox
+    Friend WithEvents DataSet1BindingSource As BindingSource
+    Friend WithEvents DataSet1 As DataSet1
+    Friend WithEvents MTORBindingSource As BindingSource
+    Friend WithEvents M_TORTableAdapter As DataSet1TableAdapters.M_TORTableAdapter
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents C1FlexGridSearchPanel1 As C1.Win.C1FlexGrid.C1FlexGridSearchPanel
+    Friend WithEvents MTORBindingSource1 As BindingSource
 End Class
