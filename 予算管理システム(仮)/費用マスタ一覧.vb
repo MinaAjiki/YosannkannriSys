@@ -40,21 +40,24 @@
     Private Sub Entry_MouseUp(sender As Object, e As MouseEventArgs) Handles Entry.MouseUp
         Entry.ImageIndex = 3
     End Sub
-    Private Sub Search_MouseEnter(sender As Object, e As EventArgs) Handles Search.MouseEnter
-        Search.Cursor = Cursors.Hand
-        Search.ImageIndex = 1
-    End Sub
+    'Private Sub Search_MouseEnter(sender As Object, e As EventArgs)
+    '    Search.Cursor = Cursors.Hand
+    '    Search.ImageIndex = 1
+    'End Sub
 
-    Private Sub Search_MouseDown(sender As Object, e As MouseEventArgs) Handles Search.MouseDown
-        Search.ImageIndex = 2
-    End Sub
+    'Private Sub Search_MouseDown(sender As Object, e As MouseEventArgs)
+    '    Search.ImageIndex = 2
+    'End Sub
 
-    Private Sub Search_MouseLeave(sender As Object, e As EventArgs) Handles Search.MouseLeave
-        Search.ImageIndex = 0
-    End Sub
+    'Private Sub Search_MouseLeave(sender As Object, e As EventArgs)
+    '    Search.ImageIndex = 0
+    'End Sub
 
-    Private Sub Search_MouseUp(sender As Object, e As MouseEventArgs) Handles Search.MouseUp
-        Search.ImageIndex = 0
-    End Sub
+    'Private Sub Search_MouseUp(sender As Object, e As MouseEventArgs)
+    '    Search.ImageIndex = 0
+    'End Sub
 
+    Private Sub SearchName_Load(sender As Object, e As EventArgs) Handles SearchName.Load
+        SearchName.SetC1FlexGridSearchPanel(MasterContentsList, SearchName)
+    End Sub
 End Class
