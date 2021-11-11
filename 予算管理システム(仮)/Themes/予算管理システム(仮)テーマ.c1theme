@@ -4857,12 +4857,17 @@
               <Ref>BaseThemeProperties\Styles\Content</Ref>
               <Children>
                 <Color Name="SearchBackColor">
-                  <Value>Yellow</Value>
+                  <Value>Transparent</Value>
                 </Color>
               </Children>
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Alternate">
               <Ref>C1FlexGrid\Styles\Normal</Ref>
+              <Children>
+                <Color Name="SearchBackColor">
+                  <Value>Transparent</Value>
+                </Color>
+              </Children>
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Fixed">
               <Ref>C1FlexGrid\Styles\Normal</Ref>
@@ -4924,7 +4929,7 @@
                   <Ref>C1FlexGrid\Styles\Normal\Margins</Ref>
                 </Thickness>
                 <Color Name="SearchBackColor">
-                  <Value>Orange</Value>
+                  <Value>Transparent</Value>
                 </Color>
                 <Enum-C1.Win.C1Themes.Flex_TextAlignEnum Name="TextAlign">
                   <Ref>C1FlexGrid\Styles\Normal\TextAlign</Ref>
@@ -4959,6 +4964,11 @@
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Search">
               <Ref>C1FlexGrid\Styles\Highlight</Ref>
+              <Children>
+                <Color Name="SearchBackColor">
+                  <Value>Transparent</Value>
+                </Color>
+              </Children>
             </C1FlexGridStyle>
             <C1FlexGridStyle Name="Frozen">
               <Ref>C1FlexGrid\Styles\Normal</Ref>

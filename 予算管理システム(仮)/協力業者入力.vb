@@ -4,6 +4,8 @@ Imports System.IO.DirectoryInfo
 Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
+Imports C1.Win.C1FlexGrid
+
 Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ホーム.Connection.Close()
@@ -11,6 +13,10 @@ Public Class 協力業者入力
         ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\現場データ.mdf;Integrated Security=True"
         ホーム.Connection.Open()
         ホーム.SystemSql.Connection = ホーム.Connection
+
+        ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
+        Dim Outsrcrcount As Integer = ホーム.SystemSql.ExecuteScalar
+
         ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
         Dim datacount As Integer = 1
         Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
@@ -22,9 +28,6 @@ Public Class 協力業者入力
             datacount += 1
         End While
         Coopreader.Close()
-
-        ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
-        Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
 
     End Sub
 
@@ -63,5 +66,10 @@ Public Class 協力業者入力
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles VendorSelect.Click
         業者一覧.Show()
+    End Sub
+
+    Private Sub CoopVendorList_CellChanged(sender As Object, e As RowColEventArgs) Handles CoopVendorList.AfterEdit
+        Dim c As Integer = e.Row
+        CoopVendorList.SetCellImage(c, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
     End Sub
 End Class
