@@ -27,20 +27,22 @@ Partial Class DB選択
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
-        Me.FileList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.TableName = New System.Windows.Forms.Label()
         Me.MainSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.FileList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Open = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.OtherFile = New System.Windows.Forms.Button()
         Me.OtherFileOpenDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.C1XLBook1 = New C1.C1Excel.C1XLBook()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.FileList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainSplitContainer.SuspendLayout()
+        Me.MainPanel.SuspendLayout()
+        CType(Me.FileList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -68,25 +70,6 @@ Partial Class DB選択
         Me.C1TextBox1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.C1TextBox1, "(default)")
         Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'FileList
-        '
-        Me.FileList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.FileList.AllowEditing = False
-        Me.FileList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.FileList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.FileList.ColumnInfo = resources.GetString("FileList.ColumnInfo")
-        Me.FileList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.FileList.Location = New System.Drawing.Point(35, 66)
-        Me.FileList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.FileList.Name = "FileList"
-        Me.FileList.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.FileList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.FileList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.FileList.Size = New System.Drawing.Size(602, 142)
-        Me.FileList.StyleInfo = resources.GetString("FileList.StyleInfo")
-        Me.FileList.TabIndex = 51
-        Me.SystemTheme.SetTheme(Me.FileList, "予算管理テーマ")
         '
         'TableName
         '
@@ -125,6 +108,7 @@ Partial Class DB選択
         '
         'MainPanel
         '
+        Me.MainPanel.Controls.Add(Me.FileList)
         Me.MainPanel.Height = 241
         Me.MainPanel.Location = New System.Drawing.Point(0, 0)
         Me.MainPanel.Name = "MainPanel"
@@ -132,6 +116,29 @@ Partial Class DB選択
         Me.MainPanel.SizeRatio = 85.765R
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
+        '
+        'FileList
+        '
+        Me.FileList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.FileList.AllowEditing = False
+        Me.FileList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.FileList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.FileList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.FileList.ColumnInfo = resources.GetString("FileList.ColumnInfo")
+        Me.FileList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FileList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.FileList.Location = New System.Drawing.Point(35, 66)
+        Me.FileList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FileList.Name = "FileList"
+        Me.FileList.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.FileList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.FileList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.FileList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.FileList.Size = New System.Drawing.Size(603, 147)
+        Me.FileList.StyleInfo = resources.GetString("FileList.StyleInfo")
+        Me.FileList.TabIndex = 58
+        Me.SystemTheme.SetTheme(Me.FileList, "予算管理テーマ")
         '
         'FooterPanel
         '
@@ -206,6 +213,7 @@ Partial Class DB選択
         'OtherFileOpenDialog
         '
         Me.OtherFileOpenDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
+        Me.OtherFileOpenDialog.InitialDirectory = "D:\"
         '
         'DB選択
         '
@@ -213,7 +221,6 @@ Partial Class DB選択
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(657, 280)
-        Me.Controls.Add(Me.FileList)
         Me.Controls.Add(Me.TableName)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.MainSplitContainer)
@@ -224,9 +231,10 @@ Partial Class DB選択
         Me.Text = "DB選択"
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.FileList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MainSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainSplitContainer.ResumeLayout(False)
+        Me.MainPanel.ResumeLayout(False)
+        CType(Me.FileList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FooterPanel.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -236,7 +244,6 @@ Partial Class DB選択
     Friend WithEvents HeadLine As Label
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents FileList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents TableName As Label
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents MainSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
@@ -245,4 +252,6 @@ Partial Class DB選択
     Friend WithEvents Open As Button
     Friend WithEvents OtherFile As Button
     Friend WithEvents OtherFileOpenDialog As OpenFileDialog
+    Friend WithEvents FileList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents C1XLBook1 As C1.C1Excel.C1XLBook
 End Class

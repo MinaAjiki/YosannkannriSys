@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\206029\OneDrive - 株式会社市川工務店\デスクトップ\YosankanriSys\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,9 +25,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -65,10 +66,28 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9017E4EDD732C97B8C061DCF2224D51104C27135</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>予算管理システム%28仮%29_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.C1Excel.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.C1Zip.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.Bitmap.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1Command.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1DX.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.Classic.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.GroupPanel.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
@@ -100,6 +119,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -415,14 +435,34 @@
     </None>
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
+    <None Include="予算管理システム%28仮%29_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Release\予算管理システム%28system_sql%29.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Release\予算管理システム%28system_sql%29_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Release\現場データ.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Release\現場データ_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="予算管理システム%28system_sql%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="予算管理システム%28system_sql%29_log.ldf">
-      <DependentUpon>予算管理システム%28system_sql%29.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>予算管理システム%28system_sql%29.mdf</DependentUpon>
+    </Content>
+    <Content Include="現場データ.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="現場データ_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>現場データ.mdf</DependentUpon>
     </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
@@ -440,11 +480,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.15.0">
-      <Visible>False</Visible>
-      <ProductName>SQL Server 2019 Express LocalDB</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />
@@ -452,19 +487,30 @@
     <Content Include="Resources\Search.png" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="予算管理システム%28system_sql%29_log.ldf">
+    <Folder Include="App_Data\" />
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="予算管理システム%28system_sql%29.mdf">
       <Visible>False</Visible>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>DataFile</PublishState>
+      <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
+    <PublishFile Include="現場データ.mdf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
