@@ -4,17 +4,16 @@ Imports System.IO.DirectoryInfo
 Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
+Imports C1.Win.C1FlexGrid
 Public Class DB選択
 
     Private Sub DB選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FileList.Rows(0).Height = 20
 
-        ホーム.SystmCnnctn.Open()
-        ホーム.SystemSql.Connection = ホーム.SystmCnnctn
+        FileList.Rows(0).Height = 20
 
         Dim DataCount As Integer = 1
 
-        ホーム.SystemSql.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY updatedate ASC"
+        ホーム.SystemSql.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY filedate DESC"
         Dim FileReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
         While FileReader.Read
             FileList(DataCount, 1) = FileReader.Item("filename")
@@ -74,31 +73,76 @@ Public Class DB選択
 
         Else
 
+            ホーム.SystemSql.CommandText = ""
+            ホーム.SystemSql.Parameters.Clear()
 
-            ホーム.SystemSql.CommandText = "SELECT Count(filename) FROM userfiles WHERE filename=" & OpenFileName
+            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM userfiles WHERE filename=@filename"
+            ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+            ホーム.SystemSql.Parameters("@filename").Value = OpenFileName
             Dim Filecount As Integer = ホーム.SystemSql.ExecuteScalar
 
             If Filecount >= 1 Then
-                ホーム.SystemSql.CommandText = "UPDATE userfiles SET updatedate=" & Today & " WHERE filename=" & OpenFileName
+                ホーム.SystemSql.CommandText = "UPDATE userfiles SET filedate='" & Now & "' WHERE filename=@filename"
                 ホーム.SystemSql.ExecuteNonQuery()
             Else
-                ホーム.SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,updatedate) VALLUES (@filename,@failepath,@updatedate)"
-                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+                ホーム.SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
                 ホーム.SystemSql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
-                ホーム.SystemSql.Parameters.Add(New SqlParameter("@updatedate", SqlDbType.Date))
-                ホーム.SystemSql.Parameters("@filename").Value = OpenFileName
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
                 ホーム.SystemSql.Parameters("@filepath").Value = OpenFilePath
-                ホーム.SystemSql.Parameters("@updatedate").Value = Today
+                ホーム.SystemSql.Parameters("@filedate").Value = Now
                 ホーム.SystemSql.ExecuteNonQuery()
             End If
         End If
 
+
+
         ホーム.Connection.Close()
         ホーム.Connection.Dispose()
 
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFileName & ";Integrated Security=True"
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OtherFileOpenDialog.FileName & ";Integrated Security=True"
         ホーム.Connection.Open()
-        ホーム.SQL.Connection = ホーム.Connection
+        ホーム.Sql.Connection = ホーム.Connection
+        ホーム.Text = "予算管理システム　(" & OpenFilePath & "\" & OpenFileName & ")"
+
+        Me.Close()
+        ホーム.TopMost = True
+        ホーム.TopMost = False
+
+        MsgBox(OtherFileOpenDialog.FileName & vbCrLf & vbCrLf & "を開きました。", MsgBoxStyle.Information, "DB選択")
+
+
+    End Sub
+
+    Private Sub Open_Click(sender As Object, e As EventArgs) Handles Open.Click
+
+        Dim SelectRow As Integer = FileList.Row
+        Dim OpenFileName As CellRange = FileList.GetCellRange(SelectRow, 1)
+        Dim OpenFilePath As CellRange = FileList.GetCellRange(SelectRow, 2)
+
+
+        ホーム.SystemSql.CommandText = ""
+        ホーム.SystemSql.Parameters.Clear()
+        ホーム.SystemSql.CommandText = "UPDATE userfiles SET filedate=@filedate WHERE filename=@filename"
+        ホーム.SystemSql.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
+        ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+        ホーム.SystemSql.Parameters("@filedate").Value = Now
+        ホーム.SystemSql.Parameters("@filename").Value = OpenFileName.Data
+        ホーム.SystemSql.ExecuteNonQuery()
+
+        ホーム.Connection.Close()
+        ホーム.Connection.Dispose()
+
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & "\" & OpenFileName.Data & ";Integrated Security=True"
+        ホーム.Connection.Open()
+        ホーム.Sql.Connection = ホーム.Connection
+        ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & "\" & OpenFileName.Data & ")"
+
+        Me.Close()
+
+        MsgBox(OpenFilePath.Data & "\" & OpenFileName.Data & vbCrLf & vbCrLf & "を開きました。", MsgBoxStyle.Information, "DB選択")
+
+        ホーム.TopMost = True
+        ホーム.TopMost = False
 
     End Sub
 End Class

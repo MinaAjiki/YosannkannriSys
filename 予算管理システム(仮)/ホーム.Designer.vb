@@ -399,7 +399,6 @@ Partial Class ホーム
         Me.FormPanel.Name = "FormPanel"
         Me.FormPanel.Size = New System.Drawing.Size(990, 664)
         Me.FormPanel.TabIndex = 1
-        Me.FormPanel.Text = "パネル2"
         '
         'Button3
         '
@@ -1770,7 +1769,7 @@ Partial Class ホーム
         '
         Me.CreateFileDialog.FileName = "現場データ"
         Me.CreateFileDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
-        Me.CreateFileDialog.InitialDirectory = "c:\"
+        Me.CreateFileDialog.InitialDirectory = "D:\"
         '
         'ホーム
         '
