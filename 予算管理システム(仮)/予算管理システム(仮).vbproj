@@ -151,21 +151,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="_予算管理システム_system_sql_DataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_予算管理システム_system_sql_DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </Compile>
     <Compile Include="代価内訳.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="現場データDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>現場データDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="項目選択.Designer.vb">
       <DependentUpon>項目選択.vb</DependentUpon>
@@ -454,32 +444,6 @@
     </None>
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
-
-    <None Include="予算管理システム%28仮%29_TemporaryKey.pfx" />
-
-    <None Include="_予算管理システム_system_sql_DataSet.xsc">
-      <DependentUpon>_予算管理システム_system_sql_DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="_予算管理システム_system_sql_DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>_予算管理システム_system_sql_DataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="_予算管理システム_system_sql_DataSet.xss">
-      <DependentUpon>_予算管理システム_system_sql_DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="現場データDataSet.xsc">
-      <DependentUpon>現場データDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="現場データDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>現場データDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="現場データDataSet.xss">
-      <DependentUpon>現場データDataSet.xsd</DependentUpon>
-    </None>
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Release\予算管理システム%28system_sql%29.mdf">
