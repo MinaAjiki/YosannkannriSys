@@ -41,7 +41,7 @@ Public Class ホーム
 
             If UserDataName <> "" Then
 
-                Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & UserDataPath & "\" & UserDataName & ";Integrated Security=True"
+                Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & UserDataPath & UserDataName & ";Integrated Security=True"
                 Connection.Open()
                 Sql.Connection = Connection
 
@@ -54,7 +54,7 @@ Public Class ホーム
 
                 Else
                     Me.Enabled = True
-                    Me.Text = "予算管理システム　(" & UserDataPath & "\" & UserDataName & ")"
+                    Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
 
                 End If
 

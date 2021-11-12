@@ -132,7 +132,7 @@ Public Class DB選択
         ホーム.Connection.Close()
         ホーム.Connection.Dispose()
 
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & "\" & OpenFileName.Data & ";Integrated Security=True"
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & OpenFileName.Data & ";Integrated Security=True"
         ホーム.Connection.Open()
         ホーム.Sql.Connection = ホーム.Connection
         ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & "\" & OpenFileName.Data & ")"
