@@ -80,6 +80,7 @@ Public Class 業者一覧
 
         '業者一覧を閉じる
         Me.Close()
+        協力業者入力.CoopVendorList.StartEditing(r, 3)
     End Sub
 
     Private Sub VendorList_MouseEnterCell(ByVal sender As Object, ByVal e As C1.Win.C1FlexGrid.RowColEventArgs)
