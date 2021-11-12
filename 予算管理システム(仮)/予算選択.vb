@@ -25,9 +25,11 @@ Public Class 予算選択
             ホーム.Sql.CommandText = "select max(cntrct_no) from budget_summary"
             Dim LatestReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While LatestReader.Read
-                Cntrct_No = LatestReader.Item("cntrct_no")
+                ホーム.ContractNo = LatestReader.Item("cntrct_no")
             End While
             LatestReader.Close()
+
+
 
             ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
             Prjct_Code = ホーム.Sql.ExecuteScalar
@@ -44,7 +46,7 @@ Public Class 予算選択
             Contract_NoList.Items.Add("変更予算作成")
 
             Project.Value = Prjct_Code & " " & Prjct_Name
-            FilePath.Value = ホーム.UserDataPath & "\" & ホーム.UserDataName
+            FilePath.Value = ホーム.UserDataPath & ホーム.UserDataName
             Contract_NoList.SelectedItem = Cntrct_No
 
         Else

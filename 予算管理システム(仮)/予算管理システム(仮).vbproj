@@ -446,6 +446,13 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\bin\現場データ.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\bin\現場データ_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>現場データ.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Release\予算管理システム%28system_sql%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -457,6 +464,7 @@
     </Content>
     <Content Include="bin\Release\現場データ_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>現場データ.mdf</DependentUpon>
     </Content>
     <Content Include="予算管理システム%28system_sql%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -496,7 +504,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="予算管理システム%28system_sql%29.mdf">

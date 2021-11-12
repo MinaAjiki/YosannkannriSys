@@ -1,14 +1,19 @@
-﻿Imports C1.Win.C1FlexGrid
+﻿
+Imports C1.Win.C1FlexGrid
 
 Public Class 予算総括入力
     Private Sub 予算総括入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+
         OutsoucersList.Cols(0).ShowButtons = ShowButtonsEnum.Always
         OutsoucersList(1, 1) = "8545670"
 
     End Sub
-    Private Sub C1FlexGrid1_CellButtonClick(sender As Object, e As C1.Win.C1FlexGrid.RowColEventArgs) Handles OutsoucersList.CellButtonClick
+    Private Sub OutsoucersList_CellButtonClick(sender As Object, e As C1.Win.C1FlexGrid.RowColEventArgs) Handles OutsoucersList.CellButtonClick
+        業者一覧.ParentFormName = "予算総括入力"
+        業者一覧.SelectRowIndex = e.Row
         業者一覧.Show()
-        Me.Enabled = False
     End Sub
     Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
         Cancel.ImageIndex = 8
@@ -43,4 +48,7 @@ Public Class 予算総括入力
         Entry.ImageIndex = 3
     End Sub
 
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+
+    End Sub
 End Class

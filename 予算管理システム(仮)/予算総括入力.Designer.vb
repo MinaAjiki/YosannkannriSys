@@ -279,7 +279,7 @@ Partial Class 予算総括入力
         Me.Company.Name = "Company"
         Me.Company.Size = New System.Drawing.Size(150, 20)
         Me.Company.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.Company.TabIndex = 28
+        Me.Company.TabIndex = 1
         Me.Company.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Company, "予算管理テーマ")
         Me.Company.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -294,7 +294,7 @@ Partial Class 予算総括入力
         Me.ProjectCode.Location = New System.Drawing.Point(101, 61)
         Me.ProjectCode.Name = "ProjectCode"
         Me.ProjectCode.Size = New System.Drawing.Size(150, 20)
-        Me.ProjectCode.TabIndex = 30
+        Me.ProjectCode.TabIndex = 2
         Me.ProjectCode.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectCode, "予算管理テーマ")
         Me.ProjectCode.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -309,7 +309,7 @@ Partial Class 予算総括入力
         Me.ProjectName.Location = New System.Drawing.Point(323, 61)
         Me.ProjectName.Name = "ProjectName"
         Me.ProjectName.Size = New System.Drawing.Size(150, 20)
-        Me.ProjectName.TabIndex = 32
+        Me.ProjectName.TabIndex = 3
         Me.ProjectName.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectName, "予算管理テーマ")
         Me.ProjectName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -324,7 +324,7 @@ Partial Class 予算総括入力
         Me.ProjectAddress.Location = New System.Drawing.Point(101, 82)
         Me.ProjectAddress.Name = "ProjectAddress"
         Me.ProjectAddress.Size = New System.Drawing.Size(372, 20)
-        Me.ProjectAddress.TabIndex = 34
+        Me.ProjectAddress.TabIndex = 4
         Me.ProjectAddress.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectAddress, "予算管理テーマ")
         Me.ProjectAddress.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -339,7 +339,7 @@ Partial Class 予算総括入力
         Me.Contractee.Location = New System.Drawing.Point(101, 103)
         Me.Contractee.Name = "Contractee"
         Me.Contractee.Size = New System.Drawing.Size(372, 20)
-        Me.Contractee.TabIndex = 36
+        Me.Contractee.TabIndex = 5
         Me.Contractee.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Contractee, "予算管理テーマ")
         Me.Contractee.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -390,7 +390,7 @@ Partial Class 予算総括入力
         Me.TermS.Location = New System.Drawing.Point(101, 145)
         Me.TermS.Name = "TermS"
         Me.TermS.Size = New System.Drawing.Size(150, 20)
-        Me.TermS.TabIndex = 39
+        Me.TermS.TabIndex = 8
         Me.TermS.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.TermS, "予算管理テーマ")
         Me.TermS.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
@@ -454,7 +454,7 @@ Partial Class 予算総括入力
         Me.TermE.Location = New System.Drawing.Point(101, 187)
         Me.TermE.Name = "TermE"
         Me.TermE.Size = New System.Drawing.Size(150, 20)
-        Me.TermE.TabIndex = 41
+        Me.TermE.TabIndex = 9
         Me.TermE.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.TermE, "予算管理テーマ")
         Me.TermE.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
@@ -471,7 +471,7 @@ Partial Class 予算総括入力
         Me.Category.Name = "Category"
         Me.Category.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Category.Size = New System.Drawing.Size(150, 41)
-        Me.Category.TabIndex = 45
+        Me.Category.TabIndex = 11
         Me.Category.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Category, "予算管理テーマ")
         Me.Category.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -508,7 +508,7 @@ Partial Class 予算総括入力
         Me.Amount.Location = New System.Drawing.Point(101, 124)
         Me.Amount.Name = "Amount"
         Me.Amount.Size = New System.Drawing.Size(150, 20)
-        Me.Amount.TabIndex = 46
+        Me.Amount.TabIndex = 6
         Me.Amount.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Amount, "予算管理テーマ")
         Me.Amount.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -559,7 +559,7 @@ Partial Class 予算総括入力
         Me.CnsdrtnDate.Location = New System.Drawing.Point(323, 145)
         Me.CnsdrtnDate.Name = "CnsdrtnDate"
         Me.CnsdrtnDate.Size = New System.Drawing.Size(150, 20)
-        Me.CnsdrtnDate.TabIndex = 48
+        Me.CnsdrtnDate.TabIndex = 10
         Me.CnsdrtnDate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CnsdrtnDate, "予算管理テーマ")
         Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -576,7 +576,7 @@ Partial Class 予算総括入力
         Me.Summary.Name = "Summary"
         Me.Summary.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Summary.Size = New System.Drawing.Size(372, 60)
-        Me.Summary.TabIndex = 50
+        Me.Summary.TabIndex = 22
         Me.Summary.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Summary, "予算管理テーマ")
         Me.Summary.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -593,7 +593,7 @@ Partial Class 予算総括入力
         Me.Remarks.Name = "Remarks"
         Me.Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Remarks.Size = New System.Drawing.Size(372, 60)
-        Me.Remarks.TabIndex = 52
+        Me.Remarks.TabIndex = 24
         Me.Remarks.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Remarks, "予算管理テーマ")
         Me.Remarks.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -610,7 +610,7 @@ Partial Class 予算総括入力
         Me.SubContractRate.Name = "SubContractRate"
         Me.SubContractRate.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.SubContractRate.Size = New System.Drawing.Size(372, 60)
-        Me.SubContractRate.TabIndex = 54
+        Me.SubContractRate.TabIndex = 23
         Me.SubContractRate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.SubContractRate, "予算管理テーマ")
         Me.SubContractRate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -631,7 +631,7 @@ Partial Class 予算総括入力
         Me.OutsoucersList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucersList.Size = New System.Drawing.Size(372, 122)
         Me.OutsoucersList.StyleInfo = resources.GetString("OutsoucersList.StyleInfo")
-        Me.OutsoucersList.TabIndex = 56
+        Me.OutsoucersList.TabIndex = 25
         Me.SystemTheme.SetTheme(Me.OutsoucersList, "予算管理テーマ")
         '
         'Department
@@ -644,7 +644,7 @@ Partial Class 予算総括入力
         Me.Department.Location = New System.Drawing.Point(323, 124)
         Me.Department.Name = "Department"
         Me.Department.Size = New System.Drawing.Size(150, 20)
-        Me.Department.TabIndex = 58
+        Me.Department.TabIndex = 7
         Me.Department.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Department, "予算管理テーマ")
         Me.Department.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -659,7 +659,7 @@ Partial Class 予算総括入力
         Me.Director.Location = New System.Drawing.Point(101, 208)
         Me.Director.Name = "Director"
         Me.Director.Size = New System.Drawing.Size(150, 20)
-        Me.Director.TabIndex = 60
+        Me.Director.TabIndex = 12
         Me.Director.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Director, "予算管理テーマ")
         Me.Director.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -674,7 +674,7 @@ Partial Class 予算総括入力
         Me.Chief.Location = New System.Drawing.Point(101, 229)
         Me.Chief.Name = "Chief"
         Me.Chief.Size = New System.Drawing.Size(150, 20)
-        Me.Chief.TabIndex = 70
+        Me.Chief.TabIndex = 13
         Me.Chief.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Chief, "予算管理テーマ")
         Me.Chief.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -689,7 +689,7 @@ Partial Class 予算総括入力
         Me.Expert2.Location = New System.Drawing.Point(101, 250)
         Me.Expert2.Name = "Expert2"
         Me.Expert2.Size = New System.Drawing.Size(150, 20)
-        Me.Expert2.TabIndex = 71
+        Me.Expert2.TabIndex = 14
         Me.Expert2.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert2, "予算管理テーマ")
         Me.Expert2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -704,7 +704,7 @@ Partial Class 予算総括入力
         Me.Staff1.Location = New System.Drawing.Point(101, 271)
         Me.Staff1.Name = "Staff1"
         Me.Staff1.Size = New System.Drawing.Size(150, 20)
-        Me.Staff1.TabIndex = 72
+        Me.Staff1.TabIndex = 15
         Me.Staff1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff1, "予算管理テーマ")
         Me.Staff1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -719,7 +719,7 @@ Partial Class 予算総括入力
         Me.Staff2.Location = New System.Drawing.Point(101, 292)
         Me.Staff2.Name = "Staff2"
         Me.Staff2.Size = New System.Drawing.Size(150, 20)
-        Me.Staff2.TabIndex = 73
+        Me.Staff2.TabIndex = 16
         Me.Staff2.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff2, "予算管理テーマ")
         Me.Staff2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -734,7 +734,7 @@ Partial Class 予算総括入力
         Me.Manager.Location = New System.Drawing.Point(323, 208)
         Me.Manager.Name = "Manager"
         Me.Manager.Size = New System.Drawing.Size(150, 20)
-        Me.Manager.TabIndex = 74
+        Me.Manager.TabIndex = 17
         Me.Manager.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Manager, "予算管理テーマ")
         Me.Manager.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -749,7 +749,7 @@ Partial Class 予算総括入力
         Me.Expert1.Location = New System.Drawing.Point(323, 229)
         Me.Expert1.Name = "Expert1"
         Me.Expert1.Size = New System.Drawing.Size(150, 20)
-        Me.Expert1.TabIndex = 75
+        Me.Expert1.TabIndex = 18
         Me.Expert1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert1, "予算管理テーマ")
         Me.Expert1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -764,7 +764,7 @@ Partial Class 予算総括入力
         Me.Expert3.Location = New System.Drawing.Point(323, 250)
         Me.Expert3.Name = "Expert3"
         Me.Expert3.Size = New System.Drawing.Size(150, 20)
-        Me.Expert3.TabIndex = 76
+        Me.Expert3.TabIndex = 19
         Me.Expert3.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert3, "予算管理テーマ")
         Me.Expert3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -779,7 +779,7 @@ Partial Class 予算総括入力
         Me.Staff3.Location = New System.Drawing.Point(323, 271)
         Me.Staff3.Name = "Staff3"
         Me.Staff3.Size = New System.Drawing.Size(150, 20)
-        Me.Staff3.TabIndex = 77
+        Me.Staff3.TabIndex = 20
         Me.Staff3.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff3, "予算管理テーマ")
         Me.Staff3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -794,7 +794,7 @@ Partial Class 予算総括入力
         Me.Staff4.Location = New System.Drawing.Point(323, 292)
         Me.Staff4.Name = "Staff4"
         Me.Staff4.Size = New System.Drawing.Size(150, 20)
-        Me.Staff4.TabIndex = 78
+        Me.Staff4.TabIndex = 21
         Me.Staff4.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff4, "予算管理テーマ")
         Me.Staff4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -849,7 +849,7 @@ Partial Class 予算総括入力
         Me.BdgtDprtmnt.Name = "BdgtDprtmnt"
         Me.BdgtDprtmnt.Size = New System.Drawing.Size(114, 20)
         Me.BdgtDprtmnt.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.BdgtDprtmnt.TabIndex = 82
+        Me.BdgtDprtmnt.TabIndex = 26
         Me.BdgtDprtmnt.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.BdgtDprtmnt, "予算管理テーマ")
         Me.BdgtDprtmnt.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -867,7 +867,7 @@ Partial Class 予算総括入力
         Me.CostRate.Location = New System.Drawing.Point(798, 40)
         Me.CostRate.Name = "CostRate"
         Me.CostRate.Size = New System.Drawing.Size(61, 20)
-        Me.CostRate.TabIndex = 84
+        Me.CostRate.TabIndex = 27
         Me.CostRate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostRate, "予算管理テーマ")
         Me.CostRate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
