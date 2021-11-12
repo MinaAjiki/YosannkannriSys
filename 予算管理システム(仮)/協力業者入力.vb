@@ -10,7 +10,8 @@ Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ホーム.Connection.Close()
         ホーム.Connection.Dispose()
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\現場データ.mdf;Integrated Security=True"
+        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
+        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
         ホーム.Connection.Open()
         ホーム.SystemSql.Connection = ホーム.Connection
 
@@ -21,11 +22,20 @@ Public Class 協力業者入力
         Dim datacount As Integer = 1
         Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
         While Coopreader.Read
+            Me.CoopVendorList.Rows.Add()
             CoopVendorList(datacount, 1) = Coopreader.Item("outsrcr_code")
             CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_name")
             CoopVendorList(datacount, 3) = Coopreader.Item("outsrcr_trm_s")
             CoopVendorList(datacount, 4) = Coopreader.Item("outsrcr_trm_e")
+            Dim ecn As String = Coopreader.Item("e-cntrct")
+            If ecn = "true" Then
+                CoopVendorList.SetCellCheck(datacount, 6, CheckEnum.Checked)
+            Else
+                CoopVendorList.SetCellCheck(datacount, 6, CheckEnum.Unchecked)
+            End If
+
             datacount += 1
+
         End While
         Coopreader.Close()
 

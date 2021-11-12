@@ -89,7 +89,7 @@ Partial Class 協力業者入力
         Me.CoopVendorList.Location = New System.Drawing.Point(15, 115)
         Me.CoopVendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CoopVendorList.Name = "CoopVendorList"
-        Me.CoopVendorList.Rows.Count = 2
+        Me.CoopVendorList.Rows.Count = 1
         Me.CoopVendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CoopVendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.CoopVendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
