@@ -3,6 +3,9 @@ Imports C1.Win.C1FlexGrid
 Imports System.Windows.Forms.Form
 Imports System.Data.SqlClient
 Public Class 業者一覧
+    Public ParentFormName As String '親フォーム 予算総括or 協力業者入力
+    Public SelectRowIndex As Integer '親フォームで選択された行インデックス
+
     Private Sub 業者一覧_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: このコード行はデータを 'DataSet1.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
         Me.M_TORTableAdapter.Fill(Me.DataSet1.M_TOR)
@@ -43,16 +46,37 @@ Public Class 業者一覧
         '協力業者テーブルのレコード数取得
         'ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
         'Dim Outsrcrcount As Integer = ホーム.SystemSql.ExecuteScalar
-        Dim r As Integer = 協力業者入力.CoopVendorList.Rows.Count - 1
-        Dim RowIndex As Integer = VendorList.Selection.TopRow
 
-        'セルの値を変数に代入する
-        Dim Code As Integer = VendorList(RowIndex, 1)
-        Dim Name As String = VendorList(RowIndex, 2)
+        Dim r As Integer = 0
+        Dim RowIndex As Integer = 0
+        Dim Code As Integer = 0
+        Dim Name As String = ""
 
-        '協力業者入力に値を代入する
-        協力業者入力.CoopVendorList(r, 1) = Code
-        協力業者入力.CoopVendorList(r, 2) = Name
+        If ParentFormName = "予算総括入力" Then
+            r = 予算総括入力.OutsoucersList.Rows.Count - 1
+            RowIndex = VendorList.Selection.TopRow
+
+            'セルの値を変数に代入する
+            Code = VendorList(RowIndex, 1)
+            Name = VendorList(RowIndex, 2)
+
+            '予算総括入力に値を代入する
+            予算総括入力.OutsoucersList(SelectRowIndex, 1) = Code
+            予算総括入力.OutsoucersList(SelectRowIndex, 2) = Name
+
+        Else
+            r = 協力業者入力.CoopVendorList.Rows.Count - 1
+            RowIndex = VendorList.Selection.TopRow
+
+            'セルの値を変数に代入する
+            Code = VendorList(RowIndex, 1)
+            Name = VendorList(RowIndex, 2)
+
+            '協力業者入力に値を代入する
+            協力業者入力.CoopVendorList(r, 1) = Code
+            協力業者入力.CoopVendorList(r, 2) = Name
+        End If
+
 
         '業者一覧を閉じる
         Me.Close()

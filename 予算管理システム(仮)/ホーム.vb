@@ -16,6 +16,7 @@ Public Class ホーム
     Public UserDataPath As String = ""
     Public Connection As New SqlConnection 'サーバーへの接続
     Public Sql As New SqlCommand 'SQLコマンド
+    Public ContractNo As Integer
 
 
 
@@ -50,12 +51,13 @@ Public Class ホーム
                 Dim DataCount As Integer = Sql.ExecuteScalar
 
                 If DataCount >= 1 Then
+
                     予算選択.Show()
 
                 Else
                     Me.Enabled = True
                     Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
-
+                    ContractNo = 0
                 End If
 
             Else
@@ -66,7 +68,9 @@ Public Class ホーム
                 外注管理.Enabled = False
                 出力.Enabled = False
                 マスタ.Enabled = False
-
+                開く.Enabled = False
+                材料表インポート.Enabled = False
+                参照作成.Enabled = False
             End If
         Else
 
@@ -76,6 +80,9 @@ Public Class ホーム
             外注管理.Enabled = False
             出力.Enabled = False
             マスタ.Enabled = False
+            開く.Enabled = False
+            材料表インポート.Enabled = False
+            参照作成.Enabled = False
         End If
 
         'Catch ex As Exception
@@ -180,18 +187,19 @@ Public Class ホーム
 
     Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
 
+        If System.IO.File.Exists("D:\予算管理システム\system\予算管理システム(system_sql).mdf") = False Then
+            System.IO.Directory.CreateDirectory("D:\予算管理システム\system")
+            System.IO.File.Copy(Application.StartupPath & "\予算管理システム(system_sql).mdf", "D:\予算管理システム\system\予算管理システム(system_sql).mdf")
+            SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\予算管理システム\system\予算管理システム(system_sql).mdf;Integrated Security=True"
+            SystmCnnctn.Open()
+        End If
 
-        System.IO.Directory.CreateDirectory("D:\予算管理システム\system")
-        System.IO.File.Copy(Application.StartupPath & "\予算管理システム(system_sql).mdf", "D:\予算管理システム\system\予算管理システム(system_sql).mdf")
         System.IO.File.Copy(Application.StartupPath & "\現場データ.mdf", CreateFileDialog.FileName)
 
 
         Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
         Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
 
-
-        SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\予算管理システム\system\予算管理システム(system_sql).mdf;Integrated Security=True"
-        SystmCnnctn.Open()
         SystemSql.Connection = SystmCnnctn
         SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
         SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
@@ -205,9 +213,14 @@ Public Class ホーム
 
         MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
 
-        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
+        If Connection.State = ConnectionState.Open Then
+            Connection.Close()
+            Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
+        End If
+
         Connection.Open()
         Sql.Connection = Connection
+
         Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"
 
         予算.Enabled = True
@@ -215,6 +228,20 @@ Public Class ホーム
         外注管理.Enabled = True
         出力.Enabled = True
         マスタ.Enabled = True
+        開く.Enabled = True
+        材料表インポート.Enabled = True
+        参照作成.Enabled = True
+
+    End Sub
+
+    Private Sub ホーム_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
+        If Connection.State = ConnectionState.Open Then
+            Connection.Close()
+        End If
+        If SystmCnnctn.State = ConnectionState.Open Then
+            SystmCnnctn.Close()
+        End If
 
     End Sub
 End Class
