@@ -22,6 +22,7 @@ Public Class ホーム
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
 
+
         If System.IO.File.Exists("D:\予算管理システム\system\予算管理システム(system_sql).mdf") = True Then
 
 
@@ -179,12 +180,15 @@ Public Class ホーム
 
     Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
 
+
         System.IO.Directory.CreateDirectory("D:\予算管理システム\system")
         System.IO.File.Copy(Application.StartupPath & "\予算管理システム(system_sql).mdf", "D:\予算管理システム\system\予算管理システム(system_sql).mdf")
         System.IO.File.Copy(Application.StartupPath & "\現場データ.mdf", CreateFileDialog.FileName)
 
+
         Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
         Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
+
 
         SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\予算管理システム\system\予算管理システム(system_sql).mdf;Integrated Security=True"
         SystmCnnctn.Open()
@@ -196,6 +200,7 @@ Public Class ホーム
         SystemSql.Parameters("@filename").Value = FileName
         SystemSql.Parameters("@filepath").Value = FilePath
         SystemSql.Parameters("@filedate").Value = Today
+
         SystemSql.ExecuteNonQuery()
 
         MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")

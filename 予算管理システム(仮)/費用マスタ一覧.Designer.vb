@@ -28,8 +28,6 @@ Partial Class 費用マスタ一覧
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Search = New System.Windows.Forms.Button()
-        Me.SearchName = New C1.Win.C1Input.C1TextBox()
         Me.TableName = New System.Windows.Forms.Label()
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
         Me.HeadLine = New System.Windows.Forms.Label()
@@ -37,11 +35,11 @@ Partial Class 費用マスタ一覧
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
+        Me.SearchName = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormContainer.SuspendLayout()
         Me.MainPanel.SuspendLayout()
-        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
@@ -105,7 +103,7 @@ Partial Class 費用マスタ一覧
         '
         'MainPanel
         '
-        Me.MainPanel.Controls.Add(Me.Search)
+        Me.MainPanel.BackColor = System.Drawing.Color.Transparent
         Me.MainPanel.Controls.Add(Me.SearchName)
         Me.MainPanel.Controls.Add(Me.TableName)
         Me.MainPanel.Controls.Add(Me.NameLabel)
@@ -121,34 +119,6 @@ Partial Class 費用マスタ一覧
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
         Me.MainPanel.Width = 1195
-        '
-        'Search
-        '
-        Me.Search.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(182, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(227, Byte), Integer))
-        Me.Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Search.Image = Global.予算管理システム_仮_.My.Resources.Resources.Search
-        Me.Search.Location = New System.Drawing.Point(1157, 57)
-        Me.Search.Name = "Search"
-        Me.Search.Size = New System.Drawing.Size(24, 20)
-        Me.Search.TabIndex = 63
-        Me.Search.UseVisualStyleBackColor = True
-        '
-        'SearchName
-        '
-        Me.SearchName.AutoSize = False
-        Me.SearchName.BackColor = System.Drawing.Color.White
-        Me.SearchName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.SearchName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.SearchName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.SearchName.Location = New System.Drawing.Point(907, 57)
-        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.SearchName.Name = "SearchName"
-        Me.SearchName.Size = New System.Drawing.Size(248, 20)
-        Me.SearchName.TabIndex = 62
-        Me.SearchName.Tag = Nothing
-        Me.SearchName.Value = ""
         '
         'TableName
         '
@@ -171,10 +141,10 @@ Partial Class 費用マスタ一覧
         Me.NameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.NameLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.NameLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.NameLabel.Location = New System.Drawing.Point(847, 57)
+        Me.NameLabel.Location = New System.Drawing.Point(857, 50)
         Me.NameLabel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.NameLabel.Name = "NameLabel"
-        Me.NameLabel.Size = New System.Drawing.Size(59, 20)
+        Me.NameLabel.Size = New System.Drawing.Size(59, 23)
         Me.NameLabel.TabIndex = 61
         Me.NameLabel.Tag = Nothing
         Me.NameLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -265,6 +235,17 @@ Partial Class 費用マスタ一覧
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
         '
+        'SearchName
+        '
+        Me.SearchName.BackColor = System.Drawing.Color.Transparent
+        Me.SearchName.Location = New System.Drawing.Point(915, 46)
+        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SearchName.Name = "SearchName"
+        Me.SearchName.ShowClearButton = False
+        Me.SearchName.Size = New System.Drawing.Size(269, 31)
+        Me.SearchName.TabIndex = 64
+        Me.SystemTheme.SetTheme(Me.SearchName, "予算管理テーマ")
+        '
         '費用マスタ一覧
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -281,7 +262,6 @@ Partial Class 費用マスタ一覧
         Me.FormContainer.ResumeLayout(False)
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
-        CType(Me.SearchName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FooterPanel.ResumeLayout(False)
@@ -299,7 +279,6 @@ Partial Class 費用マスタ一覧
     Friend WithEvents MasterContentsList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Cancel As Button
     Friend WithEvents Entry As Button
-    Friend WithEvents SearchName As C1.Win.C1Input.C1TextBox
     Friend WithEvents NameLabel As C1.Win.C1Input.C1TextBox
-    Friend WithEvents Search As Button
+    Friend WithEvents SearchName As C1.Win.C1FlexGrid.C1FlexGridSearchPanel
 End Class
