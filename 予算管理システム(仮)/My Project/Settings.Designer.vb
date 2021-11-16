@@ -79,8 +79,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;Persist Security Info=True;User ID=CAP21_ICK_01;Password=CAP21_"& _ 
-            "ICK_01;Unicode=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Dsn=cap21;uid=CAP21_ICK_01;pwd=CAP21_ICK_01")>  _
         Public ReadOnly Property CAP21() As String
             Get
                 Return CType(Me("CAP21"),String)

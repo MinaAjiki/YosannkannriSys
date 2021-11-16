@@ -31,7 +31,6 @@ Partial Class 代価表入力
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
         Me.C1NumericEdit1 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit3 = New C1.Win.C1Input.C1NumericEdit()
@@ -47,6 +46,7 @@ Partial Class 代価表入力
         Me.C1NumericEdit13 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit14 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit15 = New C1.Win.C1Input.C1NumericEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -209,21 +209,6 @@ Partial Class 代価表入力
         Me.C1TextBox2.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.C1TextBox2, "予算管理テーマ")
         Me.C1TextBox2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'Label9
-        '
-        Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Label9.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label9.Location = New System.Drawing.Point(470, 143)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(475, 20)
-        Me.Label9.TabIndex = 69
-        Me.Label9.Text = "単位当り単価"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'C1TextBox3
         '
@@ -600,6 +585,21 @@ Partial Class 代価表入力
         Me.SystemTheme.SetTheme(Me.C1NumericEdit15, "予算管理テーマ")
         Me.C1NumericEdit15.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.C1NumericEdit15.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'Label9
+        '
+        Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Label9.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label9.Location = New System.Drawing.Point(470, 143)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(475, 20)
+        Me.Label9.TabIndex = 69
+        Me.Label9.Text = "単位当り単価"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FormSplitContainer
         '
