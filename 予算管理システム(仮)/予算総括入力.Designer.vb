@@ -55,7 +55,7 @@ Partial Class 予算総括入力
         Me.Staff4 = New C1.Win.C1Input.C1TextBox()
         Me.C1ComboBox2 = New C1.Win.C1Input.C1ComboBox()
         Me.BdgtDprtmnt = New C1.Win.C1Input.C1ComboBox()
-        Me.CostRate = New C1.Win.C1Input.C1TextBox()
+        Me.ExpenseRate = New C1.Win.C1Input.C1TextBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.BudgetBreakDown = New System.Windows.Forms.GroupBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -119,11 +119,14 @@ Partial Class 予算総括入力
         Me.CirculatorLabel4 = New System.Windows.Forms.Label()
         Me.Circulator1 = New C1.Win.C1Input.C1TextBox()
         Me.CirculatorLabel5 = New System.Windows.Forms.Label()
+        Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
+        Me.Year = New C1.Win.C1Input.C1ComboBox()
         Me.RemarksLabel = New System.Windows.Forms.Label()
         Me.SubContractRateLabel = New System.Windows.Forms.Label()
         Me.OutsourcersLabel = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.CostRateLabel = New System.Windows.Forms.Label()
         Me.BdgtDprtmntLabel = New System.Windows.Forms.Label()
         Me.Staff4Label = New System.Windows.Forms.Label()
@@ -178,7 +181,7 @@ Partial Class 予算総括入力
         CType(Me.Staff4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BdgtDprtmnt, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CostRate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ExpenseRate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BudgetBreakDown.SuspendLayout()
         Me.Panel5.SuspendLayout()
         CType(Me.ProfitAndLossRate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +217,8 @@ Partial Class 予算総括入力
         CType(Me.Circulator4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Circulator2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Circulator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Year, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -291,10 +296,12 @@ Partial Class 予算総括入力
         Me.ProjectCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProjectCode.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.ProjectCode.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ProjectCode.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.ProjectCode.Location = New System.Drawing.Point(101, 61)
+        Me.ProjectCode.MaxLength = 6
         Me.ProjectCode.Name = "ProjectCode"
         Me.ProjectCode.Size = New System.Drawing.Size(150, 20)
-        Me.ProjectCode.TabIndex = 2
+        Me.ProjectCode.TabIndex = 3
         Me.ProjectCode.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectCode, "予算管理テーマ")
         Me.ProjectCode.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -306,10 +313,11 @@ Partial Class 予算総括入力
         Me.ProjectName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProjectName.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.ProjectName.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ProjectName.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.ProjectName.Location = New System.Drawing.Point(323, 61)
         Me.ProjectName.Name = "ProjectName"
         Me.ProjectName.Size = New System.Drawing.Size(150, 20)
-        Me.ProjectName.TabIndex = 3
+        Me.ProjectName.TabIndex = 4
         Me.ProjectName.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectName, "予算管理テーマ")
         Me.ProjectName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -321,10 +329,11 @@ Partial Class 予算総括入力
         Me.ProjectAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProjectAddress.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.ProjectAddress.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ProjectAddress.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.ProjectAddress.Location = New System.Drawing.Point(101, 82)
         Me.ProjectAddress.Name = "ProjectAddress"
         Me.ProjectAddress.Size = New System.Drawing.Size(372, 20)
-        Me.ProjectAddress.TabIndex = 4
+        Me.ProjectAddress.TabIndex = 5
         Me.ProjectAddress.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.ProjectAddress, "予算管理テーマ")
         Me.ProjectAddress.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -336,10 +345,11 @@ Partial Class 予算総括入力
         Me.Contractee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Contractee.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Contractee.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Contractee.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Contractee.Location = New System.Drawing.Point(101, 103)
         Me.Contractee.Name = "Contractee"
         Me.Contractee.Size = New System.Drawing.Size(372, 20)
-        Me.Contractee.TabIndex = 5
+        Me.Contractee.TabIndex = 6
         Me.Contractee.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Contractee, "予算管理テーマ")
         Me.Contractee.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -387,10 +397,11 @@ Partial Class 予算総括入力
         Me.TermS.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.TermS.GapHeight = 0
         Me.TermS.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.TermS.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.TermS.Location = New System.Drawing.Point(101, 145)
         Me.TermS.Name = "TermS"
         Me.TermS.Size = New System.Drawing.Size(150, 20)
-        Me.TermS.TabIndex = 8
+        Me.TermS.TabIndex = 9
         Me.TermS.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.TermS, "予算管理テーマ")
         Me.TermS.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
@@ -451,10 +462,11 @@ Partial Class 予算総括入力
         Me.TermE.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.TermE.GapHeight = 0
         Me.TermE.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.TermE.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.TermE.Location = New System.Drawing.Point(101, 187)
         Me.TermE.Name = "TermE"
         Me.TermE.Size = New System.Drawing.Size(150, 20)
-        Me.TermE.TabIndex = 9
+        Me.TermE.TabIndex = 10
         Me.TermE.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.TermE, "予算管理テーマ")
         Me.TermE.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
@@ -466,12 +478,13 @@ Partial Class 予算総括入力
         Me.Category.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Category.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Category.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Category.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Category.Location = New System.Drawing.Point(323, 166)
         Me.Category.Multiline = True
         Me.Category.Name = "Category"
         Me.Category.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Category.Size = New System.Drawing.Size(150, 41)
-        Me.Category.TabIndex = 11
+        Me.Category.TabIndex = 12
         Me.Category.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Category, "予算管理テーマ")
         Me.Category.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -505,10 +518,11 @@ Partial Class 予算総括入力
         Me.Amount.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.Amount.GapHeight = 0
         Me.Amount.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.Amount.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.Amount.Location = New System.Drawing.Point(101, 124)
         Me.Amount.Name = "Amount"
         Me.Amount.Size = New System.Drawing.Size(150, 20)
-        Me.Amount.TabIndex = 6
+        Me.Amount.TabIndex = 7
         Me.Amount.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Amount, "予算管理テーマ")
         Me.Amount.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -556,10 +570,11 @@ Partial Class 予算総括入力
         Me.CnsdrtnDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.CnsdrtnDate.GapHeight = 0
         Me.CnsdrtnDate.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CnsdrtnDate.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.CnsdrtnDate.Location = New System.Drawing.Point(323, 145)
         Me.CnsdrtnDate.Name = "CnsdrtnDate"
         Me.CnsdrtnDate.Size = New System.Drawing.Size(150, 20)
-        Me.CnsdrtnDate.TabIndex = 10
+        Me.CnsdrtnDate.TabIndex = 11
         Me.CnsdrtnDate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CnsdrtnDate, "予算管理テーマ")
         Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -571,12 +586,13 @@ Partial Class 予算総括入力
         Me.Summary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Summary.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Summary.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Summary.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Summary.Location = New System.Drawing.Point(101, 313)
         Me.Summary.Multiline = True
         Me.Summary.Name = "Summary"
         Me.Summary.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Summary.Size = New System.Drawing.Size(372, 60)
-        Me.Summary.TabIndex = 22
+        Me.Summary.TabIndex = 23
         Me.Summary.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Summary, "予算管理テーマ")
         Me.Summary.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -588,12 +604,13 @@ Partial Class 予算総括入力
         Me.Remarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Remarks.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Remarks.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Remarks.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Remarks.Location = New System.Drawing.Point(101, 435)
         Me.Remarks.Multiline = True
         Me.Remarks.Name = "Remarks"
         Me.Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Remarks.Size = New System.Drawing.Size(372, 60)
-        Me.Remarks.TabIndex = 24
+        Me.Remarks.TabIndex = 25
         Me.Remarks.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Remarks, "予算管理テーマ")
         Me.Remarks.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -605,12 +622,13 @@ Partial Class 予算総括入力
         Me.SubContractRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.SubContractRate.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.SubContractRate.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SubContractRate.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.SubContractRate.Location = New System.Drawing.Point(101, 374)
         Me.SubContractRate.Multiline = True
         Me.SubContractRate.Name = "SubContractRate"
         Me.SubContractRate.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.SubContractRate.Size = New System.Drawing.Size(372, 60)
-        Me.SubContractRate.TabIndex = 23
+        Me.SubContractRate.TabIndex = 24
         Me.SubContractRate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.SubContractRate, "予算管理テーマ")
         Me.SubContractRate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -641,27 +659,32 @@ Partial Class 予算総括入力
         Me.Department.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Department.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Department.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Department.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Department.Location = New System.Drawing.Point(323, 124)
         Me.Department.Name = "Department"
         Me.Department.Size = New System.Drawing.Size(150, 20)
-        Me.Department.TabIndex = 7
+        Me.Department.TabIndex = 8
         Me.Department.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Department, "予算管理テーマ")
         Me.Department.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Director
         '
+        Me.Director.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Director.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Director.AutoSize = False
         Me.Director.BackColor = System.Drawing.Color.White
         Me.Director.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Director.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Director.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Director.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Director.Location = New System.Drawing.Point(101, 208)
         Me.Director.Name = "Director"
         Me.Director.Size = New System.Drawing.Size(150, 20)
-        Me.Director.TabIndex = 12
+        Me.Director.TabIndex = 13
         Me.Director.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Director, "予算管理テーマ")
+        Me.Director.Value = ""
         Me.Director.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Chief
@@ -671,10 +694,11 @@ Partial Class 予算総括入力
         Me.Chief.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Chief.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Chief.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Chief.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Chief.Location = New System.Drawing.Point(101, 229)
         Me.Chief.Name = "Chief"
         Me.Chief.Size = New System.Drawing.Size(150, 20)
-        Me.Chief.TabIndex = 13
+        Me.Chief.TabIndex = 15
         Me.Chief.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Chief, "予算管理テーマ")
         Me.Chief.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -686,10 +710,11 @@ Partial Class 予算総括入力
         Me.Expert2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Expert2.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Expert2.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Expert2.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Expert2.Location = New System.Drawing.Point(101, 250)
         Me.Expert2.Name = "Expert2"
         Me.Expert2.Size = New System.Drawing.Size(150, 20)
-        Me.Expert2.TabIndex = 14
+        Me.Expert2.TabIndex = 17
         Me.Expert2.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert2, "予算管理テーマ")
         Me.Expert2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -701,10 +726,11 @@ Partial Class 予算総括入力
         Me.Staff1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Staff1.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Staff1.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Staff1.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Staff1.Location = New System.Drawing.Point(101, 271)
         Me.Staff1.Name = "Staff1"
         Me.Staff1.Size = New System.Drawing.Size(150, 20)
-        Me.Staff1.TabIndex = 15
+        Me.Staff1.TabIndex = 19
         Me.Staff1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff1, "予算管理テーマ")
         Me.Staff1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -716,10 +742,11 @@ Partial Class 予算総括入力
         Me.Staff2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Staff2.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Staff2.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Staff2.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Staff2.Location = New System.Drawing.Point(101, 292)
         Me.Staff2.Name = "Staff2"
         Me.Staff2.Size = New System.Drawing.Size(150, 20)
-        Me.Staff2.TabIndex = 16
+        Me.Staff2.TabIndex = 21
         Me.Staff2.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff2, "予算管理テーマ")
         Me.Staff2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -731,10 +758,11 @@ Partial Class 予算総括入力
         Me.Manager.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Manager.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Manager.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Manager.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Manager.Location = New System.Drawing.Point(323, 208)
         Me.Manager.Name = "Manager"
         Me.Manager.Size = New System.Drawing.Size(150, 20)
-        Me.Manager.TabIndex = 17
+        Me.Manager.TabIndex = 14
         Me.Manager.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Manager, "予算管理テーマ")
         Me.Manager.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -746,10 +774,11 @@ Partial Class 予算総括入力
         Me.Expert1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Expert1.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Expert1.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Expert1.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Expert1.Location = New System.Drawing.Point(323, 229)
         Me.Expert1.Name = "Expert1"
         Me.Expert1.Size = New System.Drawing.Size(150, 20)
-        Me.Expert1.TabIndex = 18
+        Me.Expert1.TabIndex = 16
         Me.Expert1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert1, "予算管理テーマ")
         Me.Expert1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -761,10 +790,11 @@ Partial Class 予算総括入力
         Me.Expert3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Expert3.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Expert3.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Expert3.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Expert3.Location = New System.Drawing.Point(323, 250)
         Me.Expert3.Name = "Expert3"
         Me.Expert3.Size = New System.Drawing.Size(150, 20)
-        Me.Expert3.TabIndex = 19
+        Me.Expert3.TabIndex = 18
         Me.Expert3.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Expert3, "予算管理テーマ")
         Me.Expert3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -776,6 +806,7 @@ Partial Class 予算総括入力
         Me.Staff3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Staff3.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Staff3.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Staff3.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Staff3.Location = New System.Drawing.Point(323, 271)
         Me.Staff3.Name = "Staff3"
         Me.Staff3.Size = New System.Drawing.Size(150, 20)
@@ -791,10 +822,11 @@ Partial Class 予算総括入力
         Me.Staff4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Staff4.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Staff4.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Staff4.ImeMode = System.Windows.Forms.ImeMode.Hiragana
         Me.Staff4.Location = New System.Drawing.Point(323, 292)
         Me.Staff4.Name = "Staff4"
         Me.Staff4.Size = New System.Drawing.Size(150, 20)
-        Me.Staff4.TabIndex = 21
+        Me.Staff4.TabIndex = 22
         Me.Staff4.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Staff4, "予算管理テーマ")
         Me.Staff4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -854,23 +886,23 @@ Partial Class 予算総括入力
         Me.SystemTheme.SetTheme(Me.BdgtDprtmnt, "予算管理テーマ")
         Me.BdgtDprtmnt.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'CostRate
+        'ExpenseRate
         '
-        Me.CostRate.AutoSize = False
-        Me.CostRate.BackColor = System.Drawing.Color.White
-        Me.CostRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.CostRate.CustomFormat = "##.00"
-        Me.CostRate.DataType = GetType(Decimal)
-        Me.CostRate.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.CostRate.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CostRate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CostRate.Location = New System.Drawing.Point(798, 40)
-        Me.CostRate.Name = "CostRate"
-        Me.CostRate.Size = New System.Drawing.Size(61, 20)
-        Me.CostRate.TabIndex = 27
-        Me.CostRate.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.CostRate, "予算管理テーマ")
-        Me.CostRate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ExpenseRate.AutoSize = False
+        Me.ExpenseRate.BackColor = System.Drawing.Color.White
+        Me.ExpenseRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ExpenseRate.CustomFormat = "##.00"
+        Me.ExpenseRate.DataType = GetType(Decimal)
+        Me.ExpenseRate.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpenseRate.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ExpenseRate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.ExpenseRate.Location = New System.Drawing.Point(798, 40)
+        Me.ExpenseRate.Name = "ExpenseRate"
+        Me.ExpenseRate.Size = New System.Drawing.Size(61, 20)
+        Me.ExpenseRate.TabIndex = 27
+        Me.ExpenseRate.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.ExpenseRate, "予算管理テーマ")
+        Me.ExpenseRate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label28
         '
@@ -940,7 +972,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ProfitAndLossRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ProfitAndLossRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ProfitAndLossRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ProfitAndLossRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ProfitAndLossRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.ProfitAndLossRate.Enabled = False
@@ -963,7 +995,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ProfitAndLoss.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ProfitAndLoss.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ProfitAndLoss.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ProfitAndLoss.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ProfitAndLoss.DataType = GetType(Long)
         Me.ProfitAndLoss.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1012,7 +1044,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ConstractionCostRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ConstractionCostRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ConstractionCostRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ConstractionCostRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ConstractionCostRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.ConstractionCostRate.Enabled = False
@@ -1047,7 +1079,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ConstractionCost.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ConstractionCost.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ConstractionCost.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ConstractionCost.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ConstractionCost.DataType = GetType(Long)
         Me.ConstractionCost.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1084,7 +1116,7 @@ Partial Class 予算総括入力
         '
         '
         Me.SiteCostsRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.SiteCostsRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SiteCostsRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.SiteCostsRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SiteCostsRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.SiteCostsRate.Enabled = False
@@ -1107,7 +1139,7 @@ Partial Class 予算総括入力
         '
         '
         Me.SiteCosts.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.SiteCosts.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SiteCosts.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.SiteCosts.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SiteCosts.DataType = GetType(Long)
         Me.SiteCosts.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1168,7 +1200,7 @@ Partial Class 予算総括入力
         '
         '
         Me.SubTotalRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.SubTotalRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SubTotalRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.SubTotalRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SubTotalRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.SubTotalRate.Enabled = False
@@ -1191,7 +1223,7 @@ Partial Class 予算総括入力
         '
         '
         Me.SubTotal.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.SubTotal.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SubTotal.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.SubTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SubTotal.DataType = GetType(Long)
         Me.SubTotal.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1240,7 +1272,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ProjectAmount.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ProjectAmount.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ProjectAmount.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ProjectAmount.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ProjectAmount.DataType = GetType(Long)
         Me.ProjectAmount.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1313,7 +1345,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ExpectedTotal.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ExpectedTotal.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ExpectedTotal.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ExpectedTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ExpectedTotal.DataType = GetType(Long)
         Me.ExpectedTotal.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1378,7 +1410,7 @@ Partial Class 予算総括入力
         '
         '
         Me.DrctCnstrctnCst.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DrctCnstrctnCst.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.DrctCnstrctnCst.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.DrctCnstrctnCst.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.DrctCnstrctnCst.DataType = GetType(Long)
         Me.DrctCnstrctnCst.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1440,7 +1472,7 @@ Partial Class 予算総括入力
         '
         '
         Me.ExpectedTotalRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ExpectedTotalRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ExpectedTotalRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.ExpectedTotalRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ExpectedTotalRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.ExpectedTotalRate.Enabled = False
@@ -1475,7 +1507,7 @@ Partial Class 予算総括入力
         '
         '
         Me.TmprryExpnss.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TmprryExpnss.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.TmprryExpnss.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.TmprryExpnss.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.TmprryExpnss.DataType = GetType(Long)
         Me.TmprryExpnss.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -1500,7 +1532,7 @@ Partial Class 予算総括入力
         '
         '
         Me.MtrldffrncRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.MtrldffrncRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.MtrldffrncRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.MtrldffrncRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.MtrldffrncRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MtrldffrncRate.Enabled = False
@@ -1535,7 +1567,7 @@ Partial Class 予算総括入力
         '
         '
         Me.TmprryExpnssRate.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.TmprryExpnssRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.TmprryExpnssRate.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.TmprryExpnssRate.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.TmprryExpnssRate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.TmprryExpnssRate.Enabled = False
@@ -1558,7 +1590,7 @@ Partial Class 予算総括入力
         '
         '
         Me.DrctCnstrctnCstRt.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.DrctCnstrctnCstRt.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.DrctCnstrctnCstRt.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
         Me.DrctCnstrctnCstRt.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.DrctCnstrctnCstRt.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DrctCnstrctnCstRt.Enabled = False
@@ -1875,6 +1907,51 @@ Partial Class 予算総括入力
         Me.CirculatorLabel5.Text = "回覧者 5"
         Me.CirculatorLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'C1ComboBox1
+        '
+        Me.C1ComboBox1.AllowSpinLoop = False
+        Me.C1ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"10", "11", "12", "13", "14", "15"})
+        Me.C1ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.C1ComboBox1.AutoSize = False
+        Me.C1ComboBox1.BackColor = System.Drawing.Color.White
+        Me.C1ComboBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.C1ComboBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1ComboBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1ComboBox1.GapHeight = 0
+        Me.C1ComboBox1.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.C1ComboBox1.Items.Add("市川工務店")
+        Me.C1ComboBox1.Items.Add("巴産業")
+        Me.C1ComboBox1.Items.Add("岐阜アイシー")
+        Me.C1ComboBox1.Items.Add("岐阜北建設")
+        Me.C1ComboBox1.Items.Add("飛高建設")
+        Me.C1ComboBox1.Location = New System.Drawing.Point(0, 0)
+        Me.C1ComboBox1.Name = "C1ComboBox1"
+        Me.C1ComboBox1.Size = New System.Drawing.Size(200, 23)
+        Me.C1ComboBox1.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1ComboBox1.TabIndex = 0
+        Me.C1ComboBox1.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.C1ComboBox1, "(default)")
+        Me.C1ComboBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'Year
+        '
+        Me.Year.AllowSpinLoop = False
+        Me.Year.AutoSize = False
+        Me.Year.BackColor = System.Drawing.Color.White
+        Me.Year.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Year.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.Year.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Year.GapHeight = 0
+        Me.Year.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.Year.Location = New System.Drawing.Point(323, 40)
+        Me.Year.Name = "Year"
+        Me.Year.Size = New System.Drawing.Size(150, 20)
+        Me.Year.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Year.TabIndex = 2
+        Me.Year.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.Year, "予算管理テーマ")
+        Me.Year.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'RemarksLabel
         '
         Me.RemarksLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
@@ -1934,9 +2011,11 @@ Partial Class 予算総括入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.Year)
+        Me.FormPanel.Controls.Add(Me.Label1)
         Me.FormPanel.Controls.Add(Me.GroupBox2)
         Me.FormPanel.Controls.Add(Me.Label28)
-        Me.FormPanel.Controls.Add(Me.CostRate)
+        Me.FormPanel.Controls.Add(Me.ExpenseRate)
         Me.FormPanel.Controls.Add(Me.CostRateLabel)
         Me.FormPanel.Controls.Add(Me.BdgtDprtmnt)
         Me.FormPanel.Controls.Add(Me.BdgtDprtmntLabel)
@@ -2001,6 +2080,18 @@ Partial Class 予算総括入力
         Me.FormPanel.SizeRatio = 94.1R
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(252, 40)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(70, 20)
+        Me.Label1.TabIndex = 88
+        Me.Label1.Text = "単価年度"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'CostRateLabel
         '
@@ -2369,7 +2460,7 @@ Partial Class 予算総括入力
         CType(Me.Staff4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BdgtDprtmnt, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CostRate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ExpenseRate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BudgetBreakDown.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         CType(Me.ProfitAndLossRate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2405,6 +2496,8 @@ Partial Class 予算総括入力
         CType(Me.Circulator4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Circulator2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Circulator1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Year, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
@@ -2472,7 +2565,7 @@ Partial Class 予算総括入力
     Friend WithEvents Expert2 As C1.Win.C1Input.C1TextBox
     Friend WithEvents Chief As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label28 As Label
-    Friend WithEvents CostRate As C1.Win.C1Input.C1TextBox
+    Friend WithEvents ExpenseRate As C1.Win.C1Input.C1TextBox
     Friend WithEvents CostRateLabel As Label
     Friend WithEvents BdgtDprtmnt As C1.Win.C1Input.C1ComboBox
     Friend WithEvents BdgtDprtmntLabel As Label
@@ -2539,4 +2632,7 @@ Partial Class 予算総括入力
     Friend WithEvents SiteCostsRate As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents SiteCosts As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Panel6 As Panel
+    Friend WithEvents Year As C1.Win.C1Input.C1ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents C1ComboBox1 As C1.Win.C1Input.C1ComboBox
 End Class

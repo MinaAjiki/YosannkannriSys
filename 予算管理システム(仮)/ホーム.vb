@@ -5,6 +5,7 @@ Imports System.IO.DirectoryInfo
 Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
+Imports System.Data.Odbc
 
 Public Class ホーム
 
@@ -17,9 +18,9 @@ Public Class ホーム
     Public Connection As New SqlConnection 'サーバーへの接続
     Public Sql As New SqlCommand 'SQLコマンド
     Public ContractNo As Integer
-
-
-
+    Public AutoCmpCllctn As New AutoCompleteStringCollection
+    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21)
+    Public CAP21CommandText As New OdbcCommand
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
 
@@ -60,7 +61,18 @@ Public Class ホーム
                     ContractNo = 0
                 End If
 
+                CAP21Connection.Open()
+                CAP21CommandText.Connection = CAP21Connection
+
+                CAP21CommandText.CommandText = "SELECT NAME FROM M_TANT WHERE NON_SEARCH=0 AND TANTO_KB=0"
+                Dim M_TANTReader As OdbcDataReader = CAP21CommandText.ExecuteReader
+                While M_TANTReader.Read
+                    AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
+                End While
+                M_TANTReader.Close()
+
             Else
+
 
                 Me.Enabled = True
                 予算.Enabled = False
@@ -215,9 +227,10 @@ Public Class ホーム
 
         If Connection.State = ConnectionState.Open Then
             Connection.Close()
-            Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
         End If
 
+
+        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
         Connection.Open()
         Sql.Connection = Connection
 
