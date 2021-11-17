@@ -29,6 +29,9 @@ Partial Class 外注内訳入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.CreatedDateBox = New C1.Win.C1Input.C1TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ContractNo = New C1.Win.C1Input.C1NumericEdit()
         Me.Total = New C1.Win.C1Input.C1NumericEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -38,7 +41,6 @@ Partial Class 外注内訳入力
         Me.DetailList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ChangeDetail = New C1.Win.C1Input.C1TextBox()
         Me.ContractNoLabel = New System.Windows.Forms.Label()
-        Me.ContractNo = New C1.Win.C1Input.C1ComboBox()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
@@ -46,12 +48,13 @@ Partial Class 外注内訳入力
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
+        CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Total, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +138,9 @@ Partial Class 外注内訳入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.CreatedDateBox)
+        Me.FormPanel.Controls.Add(Me.Label1)
+        Me.FormPanel.Controls.Add(Me.ContractNo)
         Me.FormPanel.Controls.Add(Me.Total)
         Me.FormPanel.Controls.Add(Me.Label4)
         Me.FormPanel.Controls.Add(Me.Label3)
@@ -144,7 +150,6 @@ Partial Class 外注内訳入力
         Me.FormPanel.Controls.Add(Me.DetailList)
         Me.FormPanel.Controls.Add(Me.ChangeDetail)
         Me.FormPanel.Controls.Add(Me.ContractNoLabel)
-        Me.FormPanel.Controls.Add(Me.ContractNo)
         Me.FormPanel.Height = 643
         Me.FormPanel.Location = New System.Drawing.Point(0, 0)
         Me.FormPanel.Name = "FormPanel"
@@ -152,6 +157,61 @@ Partial Class 外注内訳入力
         Me.FormPanel.SizeRatio = 94.46R
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
+        '
+        'CreatedDateBox
+        '
+        Me.CreatedDateBox.AutoSize = False
+        Me.CreatedDateBox.BackColor = System.Drawing.Color.White
+        Me.CreatedDateBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CreatedDateBox.DataType = GetType(Object)
+        Me.CreatedDateBox.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CreatedDateBox.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CreatedDateBox.Location = New System.Drawing.Point(352, 44)
+        Me.CreatedDateBox.Name = "CreatedDateBox"
+        Me.CreatedDateBox.Size = New System.Drawing.Size(146, 20)
+        Me.CreatedDateBox.TabIndex = 83
+        Me.CreatedDateBox.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CreatedDateBox, "予算管理テーマ")
+        Me.CreatedDateBox.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Label1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label1.Location = New System.Drawing.Point(253, 44)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(99, 20)
+        Me.Label1.TabIndex = 82
+        Me.Label1.Text = "変更計画作成日"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'ContractNo
+        '
+        Me.ContractNo.AutoSize = False
+        Me.ContractNo.BackColor = System.Drawing.Color.White
+        Me.ContractNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.ContractNo.Calculator.BackColor = System.Drawing.Color.White
+        Me.ContractNo.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ContractNo.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ContractNo.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.ContractNo.DataType = GetType(Long)
+        Me.ContractNo.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ContractNo.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.ContractNo.GapHeight = 0
+        Me.ContractNo.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.ContractNo.Location = New System.Drawing.Point(72, 44)
+        Me.ContractNo.Name = "ContractNo"
+        Me.ContractNo.Size = New System.Drawing.Size(147, 20)
+        Me.ContractNo.TabIndex = 81
+        Me.ContractNo.Tag = Nothing
+        Me.ContractNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.ContractNo, "予算管理テーマ")
+        Me.ContractNo.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.UpDown
+        Me.ContractNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Total
         '
@@ -229,10 +289,11 @@ Partial Class 外注内訳入力
         Me.Breakdown.Location = New System.Drawing.Point(474, 64)
         Me.Breakdown.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Breakdown.Name = "Breakdown"
-        Me.Breakdown.Rows.Count = 30
+        Me.Breakdown.Rows.Count = 100
         Me.Breakdown.Rows.Fixed = 3
         Me.Breakdown.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.Breakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.Breakdown.ShowCellLabels = True
         Me.Breakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.Breakdown.Size = New System.Drawing.Size(782, 548)
         Me.Breakdown.StyleInfo = resources.GetString("Breakdown.StyleInfo")
@@ -266,7 +327,7 @@ Partial Class 外注内訳入力
         Me.DetailList.Location = New System.Drawing.Point(12, 64)
         Me.DetailList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailList.Name = "DetailList"
-        Me.DetailList.Rows.Count = 25
+        Me.DetailList.Rows.Count = 100
         Me.DetailList.Rows.Fixed = 3
         Me.DetailList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
@@ -298,37 +359,12 @@ Partial Class 外注内訳入力
         Me.ContractNoLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.ContractNoLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.ContractNoLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ContractNoLabel.Location = New System.Drawing.Point(12, 45)
+        Me.ContractNoLabel.Location = New System.Drawing.Point(12, 44)
         Me.ContractNoLabel.Name = "ContractNoLabel"
         Me.ContractNoLabel.Size = New System.Drawing.Size(60, 20)
         Me.ContractNoLabel.TabIndex = 52
-        Me.ContractNoLabel.Text = "契約回数"
+        Me.ContractNoLabel.Text = "変更回数"
         Me.ContractNoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'ContractNo
-        '
-        Me.ContractNo.AllowSpinLoop = False
-        Me.ContractNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.ContractNo.AutoSize = False
-        Me.ContractNo.BackColor = System.Drawing.Color.White
-        Me.ContractNo.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.ContractNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ContractNo.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.ContractNo.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ContractNo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ContractNo.GapHeight = 0
-        Me.ContractNo.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.ContractNo.Items.Add("正式名称で検索")
-        Me.ContractNo.Items.Add("カナ名称で検索")
-        Me.ContractNo.Location = New System.Drawing.Point(68, 45)
-        Me.ContractNo.Name = "ContractNo"
-        Me.ContractNo.Size = New System.Drawing.Size(147, 20)
-        Me.ContractNo.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ContractNo.TabIndex = 68
-        Me.ContractNo.Tag = Nothing
-        Me.ContractNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.SystemTheme.SetTheme(Me.ContractNo, "予算管理テーマ")
-        Me.ContractNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'FooterPanel
         '
@@ -403,12 +439,13 @@ Partial Class 外注内訳入力
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
+        CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Total, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FooterPanel.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -423,7 +460,6 @@ Partial Class 外注内訳入力
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents FooterPanel As C1.Win.C1SplitContainer.C1SplitterPanel
-    Friend WithEvents ContractNo As C1.Win.C1Input.C1ComboBox
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents ContractNoLabel As Label
     Friend WithEvents ChangeDetail As C1.Win.C1Input.C1TextBox
@@ -436,4 +472,7 @@ Partial Class 外注内訳入力
     Friend WithEvents TotalBreakdown As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Breakdown As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents C1NumericEdit2 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents ContractNo As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CreatedDateBox As C1.Win.C1Input.C1TextBox
 End Class
