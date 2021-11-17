@@ -153,6 +153,7 @@ Partial Class 予算総括入力
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
+        Me.OutsrcrToolTip = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Company, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProjectCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -646,6 +647,7 @@ Partial Class 予算総括入力
         Me.OutsoucersList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.OutsoucersList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.OutsoucersList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.OutsoucersList.ShowCellLabels = True
         Me.OutsoucersList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucersList.Size = New System.Drawing.Size(372, 122)
         Me.OutsoucersList.StyleInfo = resources.GetString("OutsoucersList.StyleInfo")
@@ -898,6 +900,7 @@ Partial Class 予算総括入力
         Me.ExpenseRate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.ExpenseRate.Location = New System.Drawing.Point(798, 40)
         Me.ExpenseRate.Name = "ExpenseRate"
+        Me.ExpenseRate.NullText = "0"
         Me.ExpenseRate.Size = New System.Drawing.Size(61, 20)
         Me.ExpenseRate.TabIndex = 27
         Me.ExpenseRate.Tag = Nothing
@@ -2419,6 +2422,11 @@ Partial Class 予算総括入力
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
         '
+        'OutsrcrToolTip
+        '
+        Me.OutsrcrToolTip.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.OutsrcrToolTip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        '
         '予算総括入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -2635,4 +2643,5 @@ Partial Class 予算総括入力
     Friend WithEvents Year As C1.Win.C1Input.C1ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents C1ComboBox1 As C1.Win.C1Input.C1ComboBox
+    Friend WithEvents OutsrcrToolTip As ToolTip
 End Class

@@ -22,8 +22,9 @@ Public Class 予算総括入力
     End Sub
     Private Sub OutsoucersList_CellButtonClick(sender As Object, e As C1.Win.C1FlexGrid.RowColEventArgs) Handles OutsoucersList.CellButtonClick
         業者一覧.ParentFormName = "予算総括入力"
-        業者一覧.SelectRowIndex = e.Row
         業者一覧.Show()
+        業者一覧.SelectRowIndex = e.Row
+
     End Sub
     Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
         Cancel.ImageIndex = 8
@@ -110,7 +111,7 @@ Public Class 予算総括入力
         ControlData(5, 1) = ProjectAddress.Text
 
         ホーム.Sql.Parameters.Add(New SqlParameter("@classcode", SqlDbType.SmallInt))
-        ホーム.Sql.Parameters.Add(New SqlParameter("@contents", SqlDbType.VarChar))
+        ホーム.Sql.Parameters.Add(New SqlParameter("@contents", SqlDbType.NVarChar))
 
         For ControlDataCount As Integer = 0 To 5
             ホーム.Sql.CommandText = "UPDATE ControlData SET contents=@contents WHERE class_code=@classcode"
@@ -136,23 +137,27 @@ Public Class 予算総括入力
         ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
         ホーム.Sql.Parameters.Add(New SqlParameter("@amount", SqlDbType.Money)).Value = Amount.Value
         ホーム.Sql.Parameters.Add(New SqlParameter("@category", SqlDbType.NVarChar)).Value = Category.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@cnsdrtndate", SqlDbType.DateTime)).Value = DateTime.Parse("")
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@summary", SqlDbType.NVarChar)).Value = Summary.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@subcontractrate", SqlDbType.NVarChar)).Value = SubContractRate.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = Remarks.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@department", SqlDbType.NVarChar)).Value = Department.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@director", SqlDbType.NVarChar)).Value = Director.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@manager", SqlDbType.NVarChar)).Value = Manager.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@chief", SqlDbType.NVarChar)).Value = Chief.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@expert1", SqlDbType.NVarChar)).Value = Expert1.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@expert2", SqlDbType.NVarChar)).Value = Expert2.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@expert3", SqlDbType.NVarChar)).Value = Expert3.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@staff1", SqlDbType.NVarChar)).Value = Staff1.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@staff2", SqlDbType.NVarChar)).Value = Staff2.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@staff3", SqlDbType.NVarChar)).Value = Staff3.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@staff4", SqlDbType.NVarChar)).Value = Staff4.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@bdgtdprtmnt", SqlDbType.NVarChar)).Value = BdgtDprtmnt.Text
-        'ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = ExpenseRate.Text
+        If Not CnsdrtnDate.Text <> "" Then
+            ホーム.Sql.Parameters.Add(New SqlParameter("@cnsdrtndate", SqlDbType.DateTime)).Value = DateTime.Parse("1900/01/01")
+        Else
+            ホーム.Sql.Parameters.Add(New SqlParameter("@cnsdrtndate", SqlDbType.DateTime)).Value = DateTime.Parse(CnsdrtnDate.Text)
+        End If
+        ホーム.Sql.Parameters.Add(New SqlParameter("@summary", SqlDbType.NVarChar)).Value = Summary.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@subcontractrate", SqlDbType.NVarChar)).Value = SubContractRate.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = Remarks.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@department", SqlDbType.NVarChar)).Value = Department.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@director", SqlDbType.NVarChar)).Value = Director.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@manager", SqlDbType.NVarChar)).Value = Manager.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@chief", SqlDbType.NVarChar)).Value = Chief.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@expert1", SqlDbType.NVarChar)).Value = Expert1.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@expert2", SqlDbType.NVarChar)).Value = Expert2.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@expert3", SqlDbType.NVarChar)).Value = Expert3.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@staff1", SqlDbType.NVarChar)).Value = Staff1.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@staff2", SqlDbType.NVarChar)).Value = Staff2.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@staff3", SqlDbType.NVarChar)).Value = Staff3.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@staff4", SqlDbType.NVarChar)).Value = Staff4.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@bdgtdprtmnt", SqlDbType.NVarChar)).Value = BdgtDprtmnt.Text
+        ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = Decimal.Parse(ExpenseRate.Text)
 
         If DataCount >= 1 Then
 
@@ -162,23 +167,61 @@ Public Class 予算総括入力
                                         ,staff_3=@staff3,staff_4=@staff4,bdgt_dprtmnt=@bdgtdprtmnt,expense_rate=@expenserate WHERE cntrct_no=@cntrctno"
         Else
 
-            ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e,cntrct_amount) 
-                                      VALUES (@cntrctno,@terms,@terme,@amount)"
+            'ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e,cntrct_amount) 
+            '                          VALUES (@cntrctno,@terms,@terme,@amount)"
 
-            'ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e=,cntrct_amount,prjct_category,cnsdrtn_date,prjct_summary
-            '                                                       ,subcontract_rate,remarks,department,director,manager,chief,expert_1,expert_2
-            '                                                        ,expert_3,staff_1,staff_2,staff_3,staff_4,bdgt_dprtmnt,expense_rate) 
-            '                          VALUES (@cntrctno,@terms,@terme,@amount,@category,@cnsdrtndate,@summary,@subcontractrate,@remarks,@department,
-            '                                  @director,@manager,@chief,@expert1,@expert2,@expert3,@staff1,@staff2,@staff3,@staff4,@bdgtdprtmnt,@expenserate)"
+            ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e,cntrct_amount,prjct_category,cnsdrtn_date,prjct_summary
+                                                                   ,subcontract_rate,remarks,department,director,manager,chief,expert_1,expert_2
+                                                                    ,expert_3,staff_1,staff_2,staff_3,staff_4,bdgt_dprtmnt,expense_rate) 
+                                      VALUES (@cntrctno,@terms,@terme,@amount,@category,@cnsdrtndate,@summary,@subcontractrate,@remarks,@department,
+                                              @director,@manager,@chief,@expert1,@expert2,@expert3,@staff1,@staff2,@staff3,@staff4,@bdgtdprtmnt,@expenserate)"
 
 
         End If
-
         ホーム.Sql.ExecuteNonQuery()
 
+        Dim ListRowCount As Integer = OutsoucersList.Rows.Count
+
+        For ListRow As Integer = 1 To ListRowCount - 1
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+
+            Dim IDCell As CellRange = OutsoucersList.GetCellRange(ListRow + 1, 1)
+            Dim DeleteCell As CellRange = OutsoucersList.GetCellRange(ListRow + 1, 2)
+            Dim OutsrcrCodeCell As CellRange = OutsoucersList.GetCellRange(ListRow + 1, 3)
+            Dim OutsrceNameCell As CellRange = OutsoucersList.GetCellRange(ListRow + 1, 4)
+            Dim WorkTypeCell As CellRange = OutsoucersList.GetCellRange(ListRow + 1, 5)
+
+            If IDCell.Data <> "" AndAlso DeleteCell.Data = False Then
+                ホーム.Sql.CommandText = "UPDATE outsourcers SET worktype=@worktype WHERE id=" & IDCell.Data
+                ホーム.Sql.Parameters.Add(New SqlParameter("@worktype", SqlDbType.NVarChar)).Value = WorkTypeCell.Data
+                ホーム.Sql.ExecuteNonQuery()
+
+            ElseIf Not IDCell.Data <> "" AndAlso OutsrceNameCell.Data <> "" AndAlso DeleteCell.Data = False Then
+                ホーム.Sql.CommandText = "INSERT INTO outsourcers (outsrcr_code=@code,outsrcr_name=@name,outsrcr_term_s=@terms,outsrcr_term_e=@terme,
+                                        worktype=@worktype,ordrfrm=@ordrfrm,e_cntrct=@ecntrct"
+                If OutsrcrCodeCell.Data <> "" Then
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@code", SqlDbType.Int)).Value = Integer.Parse(OutsrcrCodeCell.Data)
+                Else
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@code", SqlDbType.Int)).Value = 0
+                End If
+                ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = OutsrceNameCell.Data
+                ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse("1900/01/01")
+                ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse("1900/01/01")
+                ホーム.Sql.Parameters.Add(New SqlParameter("@worktype", SqlDbType.NVarChar)).Value = WorkTypeCell.Data
+                ホーム.Sql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt)).Value = 0
+                ホーム.Sql.Parameters.Add(New SqlParameter("@ecntrct", SqlDbType.NVarChar)).Value = ""
+                ホーム.Sql.ExecuteNonQuery()
+
+            ElseIf IDCell.Data <> "" AndAlso DeleteCell.Data = True Then
+                ホーム.Sql.CommandText = "DELETE FROM outsourcers WHERE ID=" & IDCell.Data
+                ホーム.Sql.ExecuteNonQuery()
+
+            End If
+
+        Next
+
     End Sub
 
-    Private Sub FormPanel_Click(sender As Object, e As EventArgs) Handles FormPanel.Click
-
-    End Sub
 End Class

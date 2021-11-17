@@ -53,7 +53,6 @@ Public Class 業者一覧
         Dim Name As String = ""
 
         If ParentFormName = "予算総括入力" Then
-            r = 予算総括入力.OutsoucersList.Rows.Count - 1
             RowIndex = VendorList.Selection.TopRow
 
             'セルの値を変数に代入する
@@ -61,8 +60,8 @@ Public Class 業者一覧
             Name = VendorList(RowIndex, 2)
 
             '予算総括入力に値を代入する
-            予算総括入力.OutsoucersList(SelectRowIndex, 1) = Code
-            予算総括入力.OutsoucersList(SelectRowIndex, 2) = Name
+            予算総括入力.OutsoucersList(SelectRowIndex, 3) = Code
+            予算総括入力.OutsoucersList(SelectRowIndex, 4) = Name
 
         Else
             r = 協力業者入力.CoopVendorList.Rows.Count - 1
@@ -80,7 +79,6 @@ Public Class 業者一覧
 
         '業者一覧を閉じる
         Me.Close()
-        協力業者入力.CoopVendorList.StartEditing(r, 3)
     End Sub
 
     Private Sub VendorList_MouseEnterCell(ByVal sender As Object, ByVal e As C1.Win.C1FlexGrid.RowColEventArgs)

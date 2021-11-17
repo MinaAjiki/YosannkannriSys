@@ -106,7 +106,7 @@
     <Reference Include="C1.Win.TreeView.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="Microsoft.CSharp" />
@@ -446,12 +446,12 @@
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\bin\現場データ.mdf">
+    <Content Include="bin\Debug\現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\Debug\bin\現場データ_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="bin\Debug\現場データ_log.ldf">
       <DependentUpon>現場データ.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\Release\予算管理システム%28system_sql%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -508,22 +508,22 @@
   <ItemGroup>
     <PublishFile Include="予算管理システム%28system_sql%29.mdf">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="現場データ.mdf">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

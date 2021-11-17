@@ -52,7 +52,6 @@ Partial Class 予算選択
         'Contract_NoList
         '
         Me.Contract_NoList.FormattingEnabled = True
-        Me.Contract_NoList.Items.AddRange(New Object() {"当初", "第1回"})
         Me.Contract_NoList.Location = New System.Drawing.Point(156, 101)
         Me.Contract_NoList.Name = "Contract_NoList"
         Me.Contract_NoList.Size = New System.Drawing.Size(101, 20)

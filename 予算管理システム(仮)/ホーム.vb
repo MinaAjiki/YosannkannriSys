@@ -19,7 +19,7 @@ Public Class ホーム
     Public Sql As New SqlCommand 'SQLコマンド
     Public ContractNo As Integer
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21)
+    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC)
     Public CAP21CommandText As New OdbcCommand
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
