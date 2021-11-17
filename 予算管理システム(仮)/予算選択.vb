@@ -6,9 +6,13 @@ Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Public Class 予算選択
     Private Sub OK_Click(sender As Object, e As EventArgs) Handles OK.Click
+        If ホーム.Connection.State = ConnectionState.Open Then
+            ホーム.Connection.Close()
+        End If
+
         ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & FilePath.Text & ";Integrated Security=True"
         ホーム.Connection.Open()
-        ホーム.SQL.Connection = ホーム.Connection
+        ホーム.Sql.Connection = ホーム.Connection
 
         ホーム.Enabled = True
         Me.Close()
@@ -23,13 +27,7 @@ Public Class 予算選択
             Dim Cntrct_No As Integer = 0
 
             ホーム.Sql.CommandText = "select max(cntrct_no) from budget_summary"
-            Dim LatestReader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While LatestReader.Read
-                ホーム.ContractNo = LatestReader.Item("cntrct_no")
-            End While
-            LatestReader.Close()
-
-
+            ホーム.ContractNo = ホーム.Sql.ExecuteScalar
 
             ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
             Prjct_Code = ホーム.Sql.ExecuteScalar
