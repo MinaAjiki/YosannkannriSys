@@ -61,6 +61,7 @@ Public Class 予算総括入力
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
 
+
         Dim ErrorText As String = ""
 
         For CntrlCnt As Integer = 0 To FormPanel.Controls.Count - 1
@@ -123,7 +124,7 @@ Public Class 予算総括入力
         ホーム.Sql.CommandText = ""
         ホーム.Sql.Parameters.Clear()
 
-        ホーム.Sql.CommandText = "SELECT Count(cntrct_no) FROM budget_summary"
+        ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
         Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
         Dim Item(21) As String
@@ -132,7 +133,7 @@ Public Class 予算総括入力
 
         Next
 
-        ホーム.Sql.Parameters.Add(New SqlParameter("@cntrctno", SqlDbType.SmallInt)).Value = Integer.Parse(ホーム.ContractNo)
+        ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = Integer.Parse(ホーム.BudgetNo)
         ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse(TermS.Text)
         ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
         ホーム.Sql.Parameters.Add(New SqlParameter("@amount", SqlDbType.Money)).Value = Amount.Value
@@ -164,16 +165,16 @@ Public Class 予算総括入力
             ホーム.Sql.CommandText = "UPDATE budget_summary SET prjct_term_s=@terms,prjct_term_e=@terme,cntrct_amount=@amount,prjct_category=@category 
                                         ,cnsdrtn_date=@cnsdrtndate,prjct_summary=@summary,subcontract_rate=@subcontractrate,remarks=@remarks,department=@department,director=@director
                                         ,manager=@manager,chief=@chief,expert_1=@expert1,expert_2=@expert2,expert_3=@expert3,staff_1=@staff1,staff_2=@staff2
-                                        ,staff_3=@staff3,staff_4=@staff4,bdgt_dprtmnt=@bdgtdprtmnt,expense_rate=@expenserate WHERE cntrct_no=@cntrctno"
+                                        ,staff_3=@staff3,staff_4=@staff4,bdgt_dprtmnt=@bdgtdprtmnt,expense_rate=@expenserate WHERE budget_no=@budgetno"
         Else
 
             'ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e,cntrct_amount) 
             '                          VALUES (@cntrctno,@terms,@terme,@amount)"
 
-            ホーム.Sql.CommandText = "INSERT INTO budget_summary (cntrct_no,prjct_term_s,prjct_term_e,cntrct_amount,prjct_category,cnsdrtn_date,prjct_summary
+            ホーム.Sql.CommandText = "INSERT INTO budget_summary (budget_no,prjct_term_s,prjct_term_e,cntrct_amount,prjct_category,cnsdrtn_date,prjct_summary
                                                                    ,subcontract_rate,remarks,department,director,manager,chief,expert_1,expert_2
                                                                     ,expert_3,staff_1,staff_2,staff_3,staff_4,bdgt_dprtmnt,expense_rate) 
-                                      VALUES (@cntrctno,@terms,@terme,@amount,@category,@cnsdrtndate,@summary,@subcontractrate,@remarks,@department,
+                                      VALUES (@budgetno,@terms,@terme,@amount,@category,@cnsdrtndate,@summary,@subcontractrate,@remarks,@department,
                                               @director,@manager,@chief,@expert1,@expert2,@expert3,@staff1,@staff2,@staff3,@staff4,@bdgtdprtmnt,@expenserate)"
 
 
@@ -182,7 +183,7 @@ Public Class 予算総括入力
 
         Dim ListRowCount As Integer = OutsoucersList.Rows.Count
 
-        For ListRow As Integer = 1 To ListRowCount - 1
+        For ListRow As Integer = 1 To ListRowCount - 2
 
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
@@ -221,6 +222,10 @@ Public Class 予算総括入力
             End If
 
         Next
+
+        ホーム.見積.Enabled = True
+        ホーム.外注管理.Enabled = True
+
 
     End Sub
 

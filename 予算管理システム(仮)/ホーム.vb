@@ -17,7 +17,7 @@ Public Class ホーム
     Public UserDataPath As String = ""
     Public Connection As New SqlConnection 'サーバーへの接続
     Public Sql As New SqlCommand 'SQLコマンド
-    Public ContractNo As Integer
+    Public BudgetNo As Integer
     Public AutoCmpCllctn As New AutoCompleteStringCollection
     Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC)
     Public CAP21CommandText As New OdbcCommand
@@ -48,7 +48,7 @@ Public Class ホーム
                 Sql.Connection = Connection
 
 
-                Sql.CommandText = "SELECT Count(cntrct_no) FROM budget_summary"
+                Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
                 Dim DataCount As Integer = Sql.ExecuteScalar
 
                 If DataCount >= 1 Then
@@ -58,7 +58,11 @@ Public Class ホーム
                 Else
                     Me.Enabled = True
                     Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
-                    ContractNo = 0
+                    BudgetNo = 0
+
+                    見積.Enabled = False
+                    外注管理.Enabled = False
+
                 End If
 
                 CAP21Connection.Open()
@@ -237,9 +241,6 @@ Public Class ホーム
         Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"
 
         予算.Enabled = True
-        見積.Enabled = True
-        外注管理.Enabled = True
-        出力.Enabled = True
         マスタ.Enabled = True
         開く.Enabled = True
         材料表インポート.Enabled = True

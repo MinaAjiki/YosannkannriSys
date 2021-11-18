@@ -75,7 +75,7 @@ Partial Class Form参照作成
         'FileName
         '
         Me.FileName.AutoSize = False
-        Me.FileName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.FileName.BackColor = System.Drawing.Color.White
         Me.FileName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FileName.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.FileName.Font = New System.Drawing.Font("メイリオ", 9.0!)
@@ -128,7 +128,7 @@ Partial Class Form参照作成
         Me.Contract_No.Name = "Contract_No"
         Me.Contract_No.Size = New System.Drawing.Size(66, 18)
         Me.Contract_No.TabIndex = 51
-        Me.Contract_No.Text = "[契約回数]"
+        Me.Contract_No.Text = "[変更回数]"
         Me.SystemTheme.SetTheme(Me.Contract_No, "(default)")
         '
         'Contract_NoList

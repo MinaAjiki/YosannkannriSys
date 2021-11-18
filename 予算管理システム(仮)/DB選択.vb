@@ -104,11 +104,24 @@ Public Class DB選択
         ホーム.Sql.Connection = ホーム.Connection
         ホーム.Text = "予算管理システム　(" & OpenFilePath & "\" & OpenFileName & ")"
 
-        Me.Close()
-        ホーム.TopMost = True
-        ホーム.TopMost = False
 
-        MsgBox(OtherFileOpenDialog.FileName & vbCrLf & vbCrLf & "を開きました。", MsgBoxStyle.Information, "DB選択")
+        Me.Close()
+
+        ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
+        Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
+
+
+        If DataCount >= 1 Then
+            予算選択.Show()
+
+            予算選択.TopMost = True
+            予算選択.TopMost = False
+
+        Else
+            ホーム.Enabled = True
+            ホーム.BudgetNo = 0
+        End If
+
 
 
     End Sub
@@ -137,12 +150,24 @@ Public Class DB選択
         ホーム.Sql.Connection = ホーム.Connection
         ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & "\" & OpenFileName.Data & ")"
 
+
+        ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
+        Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
+
         Me.Close()
 
-        MsgBox(OpenFilePath.Data & "\" & OpenFileName.Data & vbCrLf & vbCrLf & "を開きました。", MsgBoxStyle.Information, "DB選択")
+        If DataCount >= 1 Then
+            予算選択.Show()
 
-        ホーム.TopMost = True
-        ホーム.TopMost = False
+            予算選択.TopMost = True
+            予算選択.TopMost = False
+
+        Else
+            ホーム.Enabled = True
+            ホーム.BudgetNo = 0
+        End If
+
+
 
     End Sub
 End Class
