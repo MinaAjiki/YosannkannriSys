@@ -46,7 +46,7 @@ Partial Class 予算選択
         Me.Contract_No.Name = "Contract_No"
         Me.Contract_No.Size = New System.Drawing.Size(120, 20)
         Me.Contract_No.TabIndex = 50
-        Me.Contract_No.Text = "契約回数"
+        Me.Contract_No.Text = "変更回数"
         Me.Contract_No.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Contract_NoList

@@ -15,6 +15,20 @@ Public Class 予算選択
         ホーム.Sql.Connection = ホーム.Connection
 
         ホーム.Enabled = True
+
+        If Contract_NoList.SelectedItem = "当初" Then
+            ホーム.Text = ホーム.Text & "(当初予算)" & FilePath.Text
+            ホーム.BudgetNo = 0
+        ElseIf Contract_NoList.SelectedItem = "変更予算作成" Then
+
+        Else
+            ホーム.Text = ホーム.Text & "(" & Contract_NoList.SelectedItem & ")" & FilePath.Text
+            Dim BudgetNo As String = Contract_NoList.SelectedItem
+            BudgetNo = BudgetNo.Replace("第", "")
+            BudgetNo = BudgetNo.Replace("回変更", "")
+            ホーム.BudgetNo = BudgetNo
+        End If
+
         Me.Close()
     End Sub
 
@@ -24,10 +38,10 @@ Public Class 予算選択
 
             Dim Prjct_Name As String
             Dim Prjct_Code As String
-            Dim Cntrct_No As Integer = 0
+            Dim budget_no As Integer = 0
 
-            ホーム.Sql.CommandText = "select max(cntrct_no) from budget_summary"
-            ホーム.ContractNo = ホーム.Sql.ExecuteScalar
+            ホーム.Sql.CommandText = "select max(budget_no) from budget_summary"
+            ホーム.BudgetNo = ホーム.Sql.ExecuteScalar
 
             ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
             Prjct_Code = ホーム.Sql.ExecuteScalar
@@ -37,7 +51,7 @@ Public Class 予算選択
 
             Contract_NoList.Items.Add("当初")
 
-            For No As Integer = 1 To Cntrct_No
+            For No As Integer = 1 To budget_no
                 Contract_NoList.Items.Add("第" & No & "回変更")
             Next
 
@@ -45,7 +59,7 @@ Public Class 予算選択
 
             Project.Value = Prjct_Code & " " & Prjct_Name
             FilePath.Value = ホーム.UserDataPath & ホーム.UserDataName
-            Contract_NoList.SelectedItem = Cntrct_No
+            Contract_NoList.SelectedItem = budget_no
 
         Else
 
