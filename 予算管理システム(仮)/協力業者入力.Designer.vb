@@ -93,6 +93,7 @@ Partial Class 協力業者入力
         Me.CoopVendorList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CoopVendorList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.CoopVendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.CoopVendorList.ShowCellLabels = True
         Me.CoopVendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.CoopVendorList.Size = New System.Drawing.Size(963, 483)
         Me.CoopVendorList.StyleInfo = resources.GetString("CoopVendorList.StyleInfo")

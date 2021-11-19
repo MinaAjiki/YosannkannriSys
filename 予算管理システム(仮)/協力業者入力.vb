@@ -38,6 +38,8 @@ Public Class 協力業者入力
 
         End While
         Coopreader.Close()
+        'Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
+        'CoopVendorList.StartEditing(RowIndex, 3)
 
     End Sub
 
