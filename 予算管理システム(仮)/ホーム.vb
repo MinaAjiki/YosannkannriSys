@@ -21,6 +21,8 @@ Public Class ホーム
     Public AutoCmpCllctn As New AutoCompleteStringCollection
     Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC)
     Public CAP21CommandText As New OdbcCommand
+    Public Modified As String = ""
+
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
 

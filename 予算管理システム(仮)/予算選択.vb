@@ -17,7 +17,7 @@ Public Class 予算選択
         ホーム.Enabled = True
 
         If Contract_NoList.SelectedItem = "当初" Then
-            ホーム.Text = ホーム.Text & "(当初予算)" & FilePath.Text
+            ホーム.Text = ホーム.Text & "(当初)" & FilePath.Text
             ホーム.BudgetNo = 0
         ElseIf Contract_NoList.SelectedItem = "変更予算作成" Then
 
@@ -57,9 +57,14 @@ Public Class 予算選択
 
             Contract_NoList.Items.Add("変更予算作成")
 
+            If ホーム.BudgetNo = 0 Then
+                Contract_NoList.SelectedItem = "当初"
+            Else
+                Contract_NoList.SelectedItem = "第" & ホーム.BudgetNo & "回変更"
+            End If
+
             Project.Value = Prjct_Code & " " & Prjct_Name
             FilePath.Value = ホーム.UserDataPath & ホーム.UserDataName
-            Contract_NoList.SelectedItem = budget_no
 
         Else
 

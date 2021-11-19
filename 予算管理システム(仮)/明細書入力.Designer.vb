@@ -117,7 +117,7 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.DetailsList.Location = New System.Drawing.Point(24, 68)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
@@ -128,7 +128,6 @@ Partial Class 明細書入力
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.DetailsList.Size = New System.Drawing.Size(463, 497)
-        Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ")
         '
@@ -150,9 +149,9 @@ Partial Class 明細書入力
         'C1TextBox1
         '
         Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.White
+        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1TextBox1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1TextBox1.Enabled = False
         Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.C1TextBox1.Location = New System.Drawing.Point(86, 43)
@@ -202,7 +201,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CategoryList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CategoryList.ColumnInfo = resources.GetString("CategoryList.ColumnInfo")
-        Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CategoryList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
@@ -213,7 +212,6 @@ Partial Class 明細書入力
         Me.CategoryList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.CategoryList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.CategoryList.Size = New System.Drawing.Size(496, 497)
-        Me.CategoryList.StyleInfo = resources.GetString("CategoryList.StyleInfo")
         Me.CategoryList.TabIndex = 96
         Me.SystemTheme.SetTheme(Me.CategoryList, "予算管理テーマ")
         '
@@ -255,7 +253,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerList.ColumnInfo = resources.GetString("OutsoucerList.ColumnInfo")
-        Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.OutsoucerList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.OutsoucerList.Location = New System.Drawing.Point(0, 0)
         Me.OutsoucerList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerList.Name = "OutsoucerList"
@@ -265,7 +263,6 @@ Partial Class 明細書入力
         Me.OutsoucerList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OutsoucerList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucerList.Size = New System.Drawing.Size(496, 514)
-        Me.OutsoucerList.StyleInfo = resources.GetString("OutsoucerList.StyleInfo")
         Me.OutsoucerList.TabIndex = 97
         Me.SystemTheme.SetTheme(Me.OutsoucerList, "予算管理テーマ")
         '
@@ -280,7 +277,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerTotalList.ColumnInfo = resources.GetString("OutsoucerTotalList.ColumnInfo")
-        Me.OutsoucerTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.OutsoucerTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.OutsoucerTotalList.Location = New System.Drawing.Point(466, 564)
         Me.OutsoucerTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerTotalList.Name = "OutsoucerTotalList"
@@ -291,7 +288,6 @@ Partial Class 明細書入力
         Me.OutsoucerTotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OutsoucerTotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucerTotalList.Size = New System.Drawing.Size(478, 44)
-        Me.OutsoucerTotalList.StyleInfo = resources.GetString("OutsoucerTotalList.StyleInfo")
         Me.OutsoucerTotalList.TabIndex = 100
         Me.SystemTheme.SetTheme(Me.OutsoucerTotalList, "予算管理テーマ")
         '
@@ -306,7 +302,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CategoryTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CategoryTotalList.ColumnInfo = resources.GetString("CategoryTotalList.ColumnInfo")
-        Me.CategoryTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CategoryTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CategoryTotalList.Location = New System.Drawing.Point(466, 564)
         Me.CategoryTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryTotalList.Name = "CategoryTotalList"
@@ -317,7 +313,6 @@ Partial Class 明細書入力
         Me.CategoryTotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.CategoryTotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.CategoryTotalList.Size = New System.Drawing.Size(478, 44)
-        Me.CategoryTotalList.StyleInfo = resources.GetString("CategoryTotalList.StyleInfo")
         Me.CategoryTotalList.TabIndex = 99
         Me.SystemTheme.SetTheme(Me.CategoryTotalList, "予算管理テーマ")
         '
