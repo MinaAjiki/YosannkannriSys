@@ -79,6 +79,9 @@ Public Class 業者一覧
 
         '業者一覧を閉じる
         Me.Close()
+        If 協力業者入力.IsDisposed = False Then
+            協力業者入力.CoopVendorList.StartEditing(r, 3)
+        End If
     End Sub
 
     Private Sub VendorList_MouseEnterCell(ByVal sender As Object, ByVal e As C1.Win.C1FlexGrid.RowColEventArgs)
