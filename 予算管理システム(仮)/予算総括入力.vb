@@ -1,8 +1,9 @@
 ﻿
 Imports C1.Win.C1FlexGrid
 Imports System.Data.SqlClient
-
 Public Class 予算総括入力
+
+
     Private Sub 予算総括入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Director.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
@@ -127,12 +128,6 @@ Public Class 予算総括入力
         ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
         Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
-        Dim Item(21) As String
-
-        For ItemCount As Integer = 0 To 21
-
-        Next
-
         ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = Integer.Parse(ホーム.BudgetNo)
         ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse(TermS.Text)
         ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
@@ -227,6 +222,20 @@ Public Class 予算総括入力
         ホーム.外注管理.Enabled = True
 
 
+
+
     End Sub
 
+    Private Sub ProjectCode_ValueChanged(sender As Object, e As EventArgs) Handles ProjectCode.ValueChanged, TermS.ValueChanged, TermE.ValueChanged, Summary.ValueChanged, SubContractRate.ValueChanged, Staff4.ValueChanged, Staff3.ValueChanged, Staff2.ValueChanged, Staff1.ValueChanged, Remarks.ValueChanged, ProjectName.ValueChanged, ProjectAddress.ValueChanged, Manager.ValueChanged, Expert3.ValueChanged, Expert2.ValueChanged, Expert1.ValueChanged, ExpenseRate.ValueChanged, Director.ValueChanged, Department.ValueChanged, Contractee.ValueChanged, CnsdrtnDate.ValueChanged, Chief.ValueChanged, Category.ValueChanged, Amount.ValueChanged, Year.ValueChanged, Company.ValueChanged
+        ホーム.Modified = "True"
+    End Sub
+
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+
+        Dim CancelClick As String = ""
+
+        Dim CancelClickLoad As New CancelClick(Me)
+        CancelClick = CancelClickLoad.ModifyCheck
+
+    End Sub
 End Class
