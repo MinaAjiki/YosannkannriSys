@@ -24,7 +24,9 @@ Public Class ホーム
     Public AutoCmpCllctn As New AutoCompleteStringCollection
     Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
     Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
-    Public Modified As String = "False"                                 　'データ修正判断
+    Public Modified As String = "False"                                    'データ修正判断
+    Public lworktypecode As Integer
+    Public lworktypename As String
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
