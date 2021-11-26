@@ -165,19 +165,23 @@ Public Class 予算総括入力
                     ExpectedTotal.Value = ExpectedTotalValue
                 End If
 
+
+
+                SubTotal.Value = DrctCnstrctnCstValue + TmprryExpnssValue + MtrldffrncValue + ExpectedTotalValue
+                ConstractionCost.Value = SubTotal.Value + SiteCostsValue
+                ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
+                DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+
             End If
 
-            SubTotal.Value = DrctCnstrctnCstValue + TmprryExpnssValue + MtrldffrncValue + ExpectedTotalValue
-            ConstractionCost.Value = SubTotal.Value + SiteCostsValue
-            ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
-            DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-            ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+
             ホーム.Modified = "False"
             FormLoad = "False"
 
@@ -484,17 +488,18 @@ Public Class 予算総括入力
         Try
             If FormLoad = "False" Then
                 ホーム.Modified = "True"
-
-                ProjectAmount.Value = Amount.Value
-                ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
-                DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-                ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                If IsDBNull(Amount.Value) = False Then
+                    ProjectAmount.Value = Amount.Value
+                    ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
+                    DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                    ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+                End If
             End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

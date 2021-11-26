@@ -534,7 +534,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
     </Content>
-
     <Content Include="bin\Release\現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -543,6 +542,10 @@
       <DependentUpon>現場データ.mdf</DependentUpon>
     </Content>
     <Content Include="予算管理システム%28system_mdf%29.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="予算管理システム%28system_mdf%29_log.ldf">
+      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="現場データ.mdf">
@@ -578,26 +581,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="bin\Debug\現場データ_log.ldf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="bin\Release\現場データ_log.ldf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
     <PublishFile Include="予算管理システム%28system_mdf%29.mdf">
       <Visible>False</Visible>
       <Group>

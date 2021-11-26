@@ -28,7 +28,7 @@ Partial Class 小工種選択
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.S_WorkTypesList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
+        Me.L_WorkType = New C1.Win.C1Input.C1TextBox()
         Me.C1NumericEdit1 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit3 = New C1.Win.C1Input.C1NumericEdit()
@@ -44,7 +44,7 @@ Partial Class 小工種選択
         Me.Entry = New System.Windows.Forms.Button()
         CType(Me.S_WorkTypesList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L_WorkType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,21 +116,21 @@ Partial Class 小工種選択
         Me.S_WorkTypesList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.S_WorkTypesList, "予算管理テーマ")
         '
-        'C1TextBox1
+        'L_WorkType
         '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.White
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1TextBox1.Enabled = False
-        Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1TextBox1.Location = New System.Drawing.Point(101, 53)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(173, 20)
-        Me.C1TextBox1.TabIndex = 45
-        Me.C1TextBox1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1TextBox1, "予算管理テーマ")
-        Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.L_WorkType.AutoSize = False
+        Me.L_WorkType.BackColor = System.Drawing.Color.White
+        Me.L_WorkType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.L_WorkType.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.L_WorkType.Enabled = False
+        Me.L_WorkType.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.L_WorkType.Location = New System.Drawing.Point(101, 53)
+        Me.L_WorkType.Name = "L_WorkType"
+        Me.L_WorkType.Size = New System.Drawing.Size(173, 20)
+        Me.L_WorkType.TabIndex = 45
+        Me.L_WorkType.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.L_WorkType, "予算管理テーマ")
+        Me.L_WorkType.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'C1NumericEdit1
         '
@@ -319,7 +319,7 @@ Partial Class 小工種選択
         Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit2)
         Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit1)
         Me.C1SplitterPanel1.Controls.Add(Me.Label2)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox1)
+        Me.C1SplitterPanel1.Controls.Add(Me.L_WorkType)
         Me.C1SplitterPanel1.Controls.Add(Me.Label1)
         Me.C1SplitterPanel1.Controls.Add(Me.S_WorkTypesList)
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
@@ -426,7 +426,7 @@ Partial Class 小工種選択
         Me.Text = "協力業者入力"
         CType(Me.S_WorkTypesList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L_WorkType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -450,7 +450,7 @@ Partial Class 小工種選択
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents Cancel As Button
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents L_WorkType As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents C1NumericEdit6 As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents C1NumericEdit5 As C1.Win.C1Input.C1NumericEdit
