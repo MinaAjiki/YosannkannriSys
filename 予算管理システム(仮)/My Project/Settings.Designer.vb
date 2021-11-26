@@ -57,28 +57,6 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\予算管理システム(syst"& _ 
-            "em_sql).mdf;Integrated Security=True")>  _
-        Public ReadOnly Property 予算管理システム_system_sql_ConnectionString() As String
-            Get
-                Return CType(Me("予算管理システム_system_sql_ConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\現場データ.mdf;Integrated Secur"& _ 
-            "ity=True;Connect Timeout=30")>  _
-        Public ReadOnly Property 現場データConnectionString() As String
-            Get
-                Return CType(Me("現場データConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;User ID=CAP21_ICK_01;Password=CAP21_ICK_01;Unicode=True")>  _
         Public ReadOnly Property CAP21() As String
             Get
@@ -93,6 +71,17 @@ Namespace My
         Public ReadOnly Property CAP21_ODBC() As String
             Get
                 Return CType(Me("CAP21_ODBC"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=SVACD001;Initial Catalog=ProjectManagementSuite;Integrated Security=T"& _ 
+            "rue")>  _
+        Public ReadOnly Property SystemSql() As String
+            Get
+                Return CType(Me("SystemSql"),String)
             End Get
         End Property
     End Class

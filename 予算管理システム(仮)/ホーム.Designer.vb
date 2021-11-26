@@ -35,18 +35,6 @@ Partial Class ホーム
         Me.HomeSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.TreePanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
-        Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.C1Label3 = New C1.Win.C1Input.C1Label()
-        Me.C1Label2 = New C1.Win.C1Input.C1Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.C1Label1 = New C1.Win.C1Input.C1Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.C1TextBox4 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.MenuComｍand = New C1.Win.C1Command.C1CommandHolder()
         Me.ファイル = New C1.Win.C1Command.C1CommandMenu()
@@ -231,21 +219,17 @@ Partial Class ホーム
         Me.C1CommandLink11 = New C1.Win.C1Command.C1CommandLink()
         Me.C1CommandLink13 = New C1.Win.C1Command.C1CommandLink()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.FormPanel.SuspendLayout()
-        CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MenuComｍand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ファイルToolStripMenuItem
@@ -360,6 +344,23 @@ Partial Class ホーム
         C1TreeColumn1.DisplayFieldName = Nothing
         C1TreeColumn1.HeaderText = Nothing
         C1TreeColumn1.Name = "Column1"
+        C1TreeColumn1.Styles.ColumnHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        C1TreeColumn1.Styles.ColumnHeader.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        C1TreeColumn1.Styles.ColumnHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.ColumnHeader.VerticalAlign = System.Windows.Forms.VisualStyles.VerticalAlignment.Center
+        C1TreeColumn1.Styles.Default.BackColor = System.Drawing.Color.White
+        C1TreeColumn1.Styles.Default.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.Disabled.BackColor = System.Drawing.Color.White
+        C1TreeColumn1.Styles.Disabled.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        C1TreeColumn1.Styles.Hot.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        C1TreeColumn1.Styles.Hot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.HotSelected.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        C1TreeColumn1.Styles.HotSelected.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.Selected.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        C1TreeColumn1.Styles.Selected.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        C1TreeColumn1.Styles.UnfocusedSelected.BackColor = System.Drawing.Color.White
+        C1TreeColumn1.Styles.UnfocusedSelected.ForeColor = System.Drawing.SystemColors.GrayText
         Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
@@ -375,172 +376,6 @@ Partial Class ホーム
         Me.HomeTreeView.Styles.UnfocusedSelected.BackColor = System.Drawing.Color.White
         Me.HomeTreeView.TabIndex = 44
         Me.SystemTheme.SetTheme(Me.HomeTreeView, "予算管理テーマ")
-        '
-        'FormPanel
-        '
-        Me.FormPanel.AutoScroll = True
-        Me.FormPanel.BackColor = System.Drawing.Color.White
-        Me.FormPanel.Controls.Add(Me.Button3)
-        Me.FormPanel.Controls.Add(Me.C1Label3)
-        Me.FormPanel.Controls.Add(Me.C1Label2)
-        Me.FormPanel.Controls.Add(Me.Label1)
-        Me.FormPanel.Controls.Add(Me.C1Label1)
-        Me.FormPanel.Controls.Add(Me.Button2)
-        Me.FormPanel.Controls.Add(Me.C1TextBox4)
-        Me.FormPanel.Controls.Add(Me.C1TextBox3)
-        Me.FormPanel.Controls.Add(Me.C1TextBox2)
-        Me.FormPanel.Controls.Add(Me.C1TextBox1)
-        Me.FormPanel.Controls.Add(Me.Label2)
-        Me.FormPanel.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FormPanel.ForeColor = System.Drawing.Color.White
-        Me.FormPanel.HeaderTextAlign = C1.Win.C1SplitContainer.PanelTextAlign.Right
-        Me.FormPanel.Height = 664
-        Me.FormPanel.Location = New System.Drawing.Point(273, 0)
-        Me.FormPanel.Name = "FormPanel"
-        Me.FormPanel.Size = New System.Drawing.Size(990, 664)
-        Me.FormPanel.TabIndex = 1
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(-1512, 120)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(300, 90)
-        Me.Button3.TabIndex = 35
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'C1Label3
-        '
-        Me.C1Label3.AutoSize = True
-        Me.C1Label3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1Label3.Location = New System.Drawing.Point(-1366, 125)
-        Me.C1Label3.Name = "C1Label3"
-        Me.C1Label3.Size = New System.Drawing.Size(60, 12)
-        Me.C1Label3.TabIndex = 33
-        Me.C1Label3.Tag = Nothing
-        Me.C1Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'C1Label2
-        '
-        Me.C1Label2.AutoSize = True
-        Me.C1Label2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1Label2.Location = New System.Drawing.Point(-1534, 115)
-        Me.C1Label2.Name = "C1Label2"
-        Me.C1Label2.Size = New System.Drawing.Size(60, 12)
-        Me.C1Label2.TabIndex = 32
-        Me.C1Label2.Tag = Nothing
-        Me.C1Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(-1427, 89)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 12)
-        Me.Label1.TabIndex = 31
-        Me.Label1.Text = "Label1"
-        '
-        'C1Label1
-        '
-        Me.C1Label1.AutoSize = True
-        Me.C1Label1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1Label1.Location = New System.Drawing.Point(-1413, 147)
-        Me.C1Label1.Name = "C1Label1"
-        Me.C1Label1.Size = New System.Drawing.Size(60, 12)
-        Me.C1Label1.TabIndex = 30
-        Me.C1Label1.Tag = Nothing
-        '
-        'Button2
-        '
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(81, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(-1188, 120)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(300, 90)
-        Me.Button2.TabIndex = 29
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'C1TextBox4
-        '
-        Me.C1TextBox4.AutoSize = False
-        Me.C1TextBox4.BackColor = System.Drawing.Color.White
-        Me.C1TextBox4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox4.Location = New System.Drawing.Point(-1422, 108)
-        Me.C1TextBox4.Name = "C1TextBox4"
-        Me.C1TextBox4.Size = New System.Drawing.Size(178, 20)
-        Me.C1TextBox4.TabIndex = 28
-        Me.C1TextBox4.Tag = Nothing
-        Me.C1TextBox4.Value = ""
-        '
-        'C1TextBox3
-        '
-        Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
-        Me.C1TextBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox3.Location = New System.Drawing.Point(-1422, 87)
-        Me.C1TextBox3.Name = "C1TextBox3"
-        Me.C1TextBox3.Size = New System.Drawing.Size(178, 20)
-        Me.C1TextBox3.TabIndex = 27
-        Me.C1TextBox3.Tag = Nothing
-        Me.C1TextBox3.Value = ""
-        Me.C1TextBox3.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'C1TextBox2
-        '
-        Me.C1TextBox2.AutoSize = False
-        Me.C1TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox2.Location = New System.Drawing.Point(-1523, 108)
-        Me.C1TextBox2.Name = "C1TextBox2"
-        Me.C1TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.C1TextBox2.TabIndex = 26
-        Me.C1TextBox2.Tag = Nothing
-        Me.C1TextBox2.Value = "工事名"
-        Me.C1TextBox2.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'C1TextBox1
-        '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1TextBox1.BorderColor = System.Drawing.Color.White
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.C1TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.C1TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1TextBox1.Location = New System.Drawing.Point(-1523, 87)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.C1TextBox1.TabIndex = 25
-        Me.C1TextBox1.Tag = Nothing
-        Me.C1TextBox1.Value = "工事コード"
-        Me.C1TextBox1.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(0, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(0, 12)
-        Me.Label2.TabIndex = 42
         '
         'ButtonImageList
         '
@@ -1765,12 +1600,48 @@ Partial Class ホーム
         '
         Me.SystemTheme.Theme = "予算管理テーマ"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(0, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(0, 12)
+        Me.Label2.TabIndex = 42
+        Me.SystemTheme.SetTheme(Me.Label2, "(default)")
+        '
+        'C1TextBox1
+        '
+        Me.C1TextBox1.AutoSize = False
+        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1TextBox1.Location = New System.Drawing.Point(-1523, 87)
+        Me.C1TextBox1.Name = "C1TextBox1"
+        Me.C1TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.C1TextBox1.TabIndex = 25
+        Me.C1TextBox1.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.C1TextBox1, "(default)")
+        Me.C1TextBox1.Value = "工事コード"
+        Me.C1TextBox1.VerticalAlign = C1.Win.C1Input.VerticalAlignEnum.Middle
+        Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'CreateFileDialog
         '
         Me.CreateFileDialog.FileName = "現場データ"
         Me.CreateFileDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
         Me.CreateFileDialog.InitialDirectory = "D:\"
         Me.CreateFileDialog.OverwritePrompt = False
+        '
+        'FormPanel
+        '
+        Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Height = 664
+        Me.FormPanel.Location = New System.Drawing.Point(273, 0)
+        Me.FormPanel.Name = "FormPanel"
+        Me.FormPanel.Size = New System.Drawing.Size(990, 664)
+        Me.FormPanel.TabIndex = 1
+        Me.FormPanel.Text = "パネル2"
         '
         'ホーム
         '
@@ -1791,17 +1662,9 @@ Partial Class ホーム
         Me.HomeSplitContainer.ResumeLayout(False)
         Me.TreePanel.ResumeLayout(False)
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.FormPanel.ResumeLayout(False)
-        Me.FormPanel.PerformLayout()
-        CType(Me.C1Label3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1Label2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1Label1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MenuComｍand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1812,20 +1675,8 @@ Partial Class ホーム
     Friend WithEvents 見積ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HomeSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents TreePanel As C1.Win.C1SplitContainer.C1SplitterPanel
-    Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
-    Friend WithEvents Button2 As Button
-    Friend WithEvents C1TextBox4 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox2 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents Label2 As Label
     Friend WithEvents マスタToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ヘルプToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents C1Label3 As C1.Win.C1Input.C1Label
-    Friend WithEvents C1Label2 As C1.Win.C1Input.C1Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents C1Label1 As C1.Win.C1Input.C1Label
-    Friend WithEvents Button3 As Button
     Friend WithEvents MenuComｍand As C1.Win.C1Command.C1CommandHolder
     Friend WithEvents ファイル As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink3 As C1.Win.C1Command.C1CommandLink
@@ -2012,4 +1863,7 @@ Partial Class ホーム
     Friend WithEvents 注文書明細_CSV As C1.Win.C1Command.C1Command
     Friend WithEvents HomeTreeView As C1.Win.TreeView.C1TreeView
     Friend WithEvents CreateFileDialog As SaveFileDialog
+    Friend WithEvents Label2 As Label
+    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
 End Class
