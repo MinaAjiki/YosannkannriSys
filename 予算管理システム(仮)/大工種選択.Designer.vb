@@ -123,6 +123,7 @@ Partial Class 大工種選択
         Me.LWorktypeTotal.Size = New System.Drawing.Size(110, 20)
         Me.LWorktypeTotal.TabIndex = 48
         Me.LWorktypeTotal.Tag = Nothing
+        Me.LWorktypeTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.LWorktypeTotal, "(default)")
         Me.LWorktypeTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.LWorktypeTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue

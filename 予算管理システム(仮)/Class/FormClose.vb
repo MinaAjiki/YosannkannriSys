@@ -12,6 +12,7 @@
 
             If MsgBox("変更した内容は登録されません。" & vbCrLf & "現在の画面を閉じますか？" _
                         , MsgBoxStyle.OkCancel, "予算管理システム(仮)") = MsgBoxResult.Ok Then
+                ホーム.Modified = "False"
                 FormName.Close()
             End If
         Else

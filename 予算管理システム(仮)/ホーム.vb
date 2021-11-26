@@ -9,22 +9,22 @@ Imports System.Data.Odbc
 
 Public Class ホーム
 
-    Public ErrorMessage As String 'エラーメッセージ
-    Public StackTrace As String 'スタクとレース
-    Public SystmMdfCnnctn As New SqlConnection
-    Public SystemMdf As New SqlCommand
-    Public SystemSqlCnnctn As New SqlConnection(My.Settings.SystemSql)
-    Public SystemSql As New SqlCommand
+    Public ErrorMessage As String                                       'エラーメッセージ
+    Public StackTrace As String                                       　 'スタックトレース
+    Public SystmMdfCnnctn As New SqlConnection                          'system_mdf
+    Public SystemMdf As New SqlCommand                                  'system_mdf
+    Public SystemSqlCnnctn As New SqlConnection(My.Settings.SystemSql)  'system_sql
+    Public SystemSql As New SqlCommand                                  'system_sql
     Public UserDataName As String = ""
     Public UserDataPath As String = ""
-    Public Connection As New SqlConnection 'サーバーへの接続
-    Public Sql As New SqlCommand 'SQLコマンド
+    Public Connection As New SqlConnection                              'user_mdf
+    Public Sql As New SqlCommand                                        'user_mdf
     Public Transaction As SqlTransaction
-    Public BudgetNo As Integer
+    Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC)
-    Public CAP21CommandText As New OdbcCommand
-    Public Modified As String = "False"
+    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
+    Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
+    Public Modified As String = "False"                                 　'データ修正判断
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
