@@ -524,8 +524,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\Debug\現場データ_log.ldf">
-      <DependentUpon>現場データ.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>現場データ.mdf</DependentUpon>
     </Content>
     <Content Include="bin\Release\予算管理システム%28system_mdf%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -534,7 +534,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
     </Content>
-
     <Content Include="bin\Release\現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -545,12 +544,16 @@
     <Content Include="予算管理システム%28system_mdf%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="予算管理システム%28system_mdf%29_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
+    </Content>
     <Content Include="現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="現場データ_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>現場データ.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
