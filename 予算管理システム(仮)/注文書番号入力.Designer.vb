@@ -26,7 +26,7 @@ Partial Class 注文書番号入力
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(注文書番号入力))
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Entry = New System.Windows.Forms.Button()
         Me.OrderNoList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
@@ -77,23 +77,23 @@ Partial Class 注文書番号入力
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
-        'Button4
+        'Entry
         '
-        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Button4.ImageIndex = 3
-        Me.Button4.ImageList = Me.ButtonImageList
-        Me.Button4.Location = New System.Drawing.Point(878, 6)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 30)
-        Me.Button4.TabIndex = 51
-        Me.Button4.Text = "　登　録"
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Entry.FlatAppearance.BorderSize = 0
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Entry.ImageIndex = 3
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(878, 6)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 51
+        Me.Entry.Text = "　登　録"
+        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Entry.UseVisualStyleBackColor = True
         '
         'OrderNoList
         '
@@ -110,6 +110,7 @@ Partial Class 注文書番号入力
         Me.OrderNoList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.OrderNoList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.OrderNoList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.OrderNoList.ShowCellLabels = True
         Me.OrderNoList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OrderNoList.Size = New System.Drawing.Size(640, 507)
         Me.OrderNoList.StyleInfo = resources.GetString("OrderNoList.StyleInfo")
@@ -154,7 +155,7 @@ Partial Class 注文書番号入力
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1SplitterPanel2.Controls.Add(Me.Button4)
+        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
         Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
@@ -189,7 +190,7 @@ Partial Class 注文書番号入力
 
     Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Button4 As Button
+    Friend WithEvents Entry As Button
     Friend WithEvents OrderNoList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
