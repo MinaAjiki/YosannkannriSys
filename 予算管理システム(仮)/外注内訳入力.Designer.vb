@@ -42,6 +42,7 @@ Partial Class 外注内訳入力
         Me.ChangeDetail = New C1.Win.C1Input.C1TextBox()
         Me.ContractNoLabel = New System.Windows.Forms.Label()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Create = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
@@ -166,7 +167,7 @@ Partial Class 外注内訳入力
         Me.CreatedDateBox.DataType = GetType(Object)
         Me.CreatedDateBox.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CreatedDateBox.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CreatedDateBox.Location = New System.Drawing.Point(352, 44)
+        Me.CreatedDateBox.Location = New System.Drawing.Point(678, 3)
         Me.CreatedDateBox.Name = "CreatedDateBox"
         Me.CreatedDateBox.Size = New System.Drawing.Size(146, 20)
         Me.CreatedDateBox.TabIndex = 83
@@ -179,7 +180,7 @@ Partial Class 外注内訳入力
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label1.Location = New System.Drawing.Point(253, 44)
+        Me.Label1.Location = New System.Drawing.Point(579, 3)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(99, 20)
         Me.Label1.TabIndex = 82
@@ -205,7 +206,7 @@ Partial Class 外注内訳入力
         Me.ContractNo.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.ContractNo.Location = New System.Drawing.Point(72, 44)
         Me.ContractNo.Name = "ContractNo"
-        Me.ContractNo.Size = New System.Drawing.Size(147, 20)
+        Me.ContractNo.Size = New System.Drawing.Size(83, 20)
         Me.ContractNo.TabIndex = 81
         Me.ContractNo.Tag = Nothing
         Me.ContractNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -369,6 +370,7 @@ Partial Class 外注内訳入力
         'FooterPanel
         '
         Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.FooterPanel.Controls.Add(Me.Create)
         Me.FooterPanel.Controls.Add(Me.Cancel)
         Me.FooterPanel.Controls.Add(Me.Entry)
         Me.FooterPanel.Height = 40
@@ -377,6 +379,25 @@ Partial Class 外注内訳入力
         Me.FooterPanel.Size = New System.Drawing.Size(1264, 40)
         Me.FooterPanel.TabIndex = 1
         Me.FooterPanel.Text = "パネル2"
+        '
+        'Create
+        '
+        Me.Create.BackColor = System.Drawing.Color.Transparent
+        Me.Create.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Create.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Create.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Create.ImageIndex = 0
+        Me.Create.ImageList = Me.ButtonImageList
+        Me.Create.Location = New System.Drawing.Point(940, 6)
+        Me.Create.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Create.Name = "Create"
+        Me.Create.Size = New System.Drawing.Size(100, 30)
+        Me.Create.TabIndex = 51
+        Me.Create.Text = "作　成"
+        Me.Create.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.SystemTheme.SetTheme(Me.Create, "(default)")
+        Me.Create.UseVisualStyleBackColor = True
         '
         'Cancel
         '
@@ -475,4 +496,5 @@ Partial Class 外注内訳入力
     Friend WithEvents ContractNo As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents CreatedDateBox As C1.Win.C1Input.C1TextBox
+    Friend WithEvents Create As Button
 End Class

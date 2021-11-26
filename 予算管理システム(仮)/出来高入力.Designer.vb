@@ -116,12 +116,10 @@ Partial Class 出来高入力
         'Deadline
         '
         Me.Deadline.BackColor = System.Drawing.Color.White
-        Me.Deadline.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Deadline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Deadline.DataType = GetType(Long)
         Me.Deadline.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Deadline.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.Deadline.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Deadline.Location = New System.Drawing.Point(807, 12)
         Me.Deadline.Name = "Deadline"
         Me.Deadline.Size = New System.Drawing.Size(171, 23)
