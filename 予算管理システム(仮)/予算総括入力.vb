@@ -15,178 +15,178 @@ Public Class 予算総括入力
             FormLoad = "True"
 
             Director.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Manager.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Chief.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Expert1.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Expert2.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Expert3.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Staff1.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Staff2.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Staff3.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
-        Staff4.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Manager.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Chief.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Expert1.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Expert2.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Expert3.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Staff1.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Staff2.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Staff3.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            Staff4.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
 
-        OutsoucersList.Cols(0).ShowButtons = ShowButtonsEnum.Always
+            OutsoucersList.Cols(0).ShowButtons = ShowButtonsEnum.Always
 
-        ホーム.SystemSql.CommandText = "SELECT year FROM years ORDER BY year ASC"
-        Dim YearsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        While YearsReader.Read
-            Year.Items.Add(YearsReader.Item("year"))
-        End While
-        YearsReader.Close()
+            ホーム.SystemSql.CommandText = "SELECT year FROM years ORDER BY year ASC"
+            Dim YearsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            While YearsReader.Read
+                Year.Items.Add(YearsReader.Item("year"))
+            End While
+            YearsReader.Close()
 
-        ホーム.SystemSql.CommandText = "SELECT item_name,class_code FROM name_masters WHERE class_code<=2"
-        Dim CompanyReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        While CompanyReader.Read
-            If CompanyReader.Item("class_code") = 1 Then
-                Company.Items.Add(CompanyReader.Item("item_name"))
-            Else
-                BdgtDprtmnt.Items.Add(CompanyReader.Item("item_name"))
-            End If
-        End While
-        CompanyReader.Close()
+            ホーム.SystemSql.CommandText = "SELECT item_name,class_code FROM name_masters WHERE class_code<=2"
+            Dim CompanyReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            While CompanyReader.Read
+                If CompanyReader.Item("class_code") = 1 Then
+                    Company.Items.Add(CompanyReader.Item("item_name"))
+                Else
+                    BdgtDprtmnt.Items.Add(CompanyReader.Item("item_name"))
+                End If
+            End While
+            CompanyReader.Close()
 
-        SubContractRate.Value = "岐阜県〔県内企業の活用率〕" & vbCrLf & "■90％以上" & vbCrLf & "□50％以上90％未満" & vbCrLf & "□50％未満" & vbCrLf &
+            SubContractRate.Value = "岐阜県〔県内企業の活用率〕" & vbCrLf & "■90％以上" & vbCrLf & "□50％以上90％未満" & vbCrLf & "□50％未満" & vbCrLf &
                                 "岐阜市〔市内企業の活用率〕" & vbCrLf & "□100％" & vbCrLf & "□50％以上100％未満" & vbCrLf & "□50％未満"
 
 
-        Authorizer1.Value = "常務取締役"
-        Authorizer2.Value = "取締役"
-        Authorizer3.Value = "部長"
-        Authorizer4.Value = "工事部長"
-        Authorizer5.Value = "工事課長"
-        Circulator1.Value = ""
-        Circulator2.Value = ""
-        Circulator3.Value = "取締役工務部長"
-        Circulator4.Value = "工務部長"
-        Circulator5.Value = "工務課"
+            Authorizer1.Value = "常務取締役"
+            Authorizer2.Value = "取締役"
+            Authorizer3.Value = "部長"
+            Authorizer4.Value = "工事部長"
+            Authorizer5.Value = "工事課長"
+            Circulator1.Value = ""
+            Circulator2.Value = ""
+            Circulator3.Value = "取締役工務部長"
+            Circulator4.Value = "工務部長"
+            Circulator5.Value = "工務課"
 
-        ホーム.Sql.CommandText = "SELECT Count(*) FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
-        Dim BudgetCount As Integer = ホーム.Sql.ExecuteScalar
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
+            Dim BudgetCount As Integer = ホーム.Sql.ExecuteScalar
 
-        If BudgetCount > 0 Then
+            If BudgetCount > 0 Then
 
-            Dim ClassCode(5) As Integer
-            Dim ControlName(5) As String
-            ClassCode(0) = 11
-            ClassCode(1) = 12
-            ClassCode(2) = 20
-            ClassCode(3) = 21
-            ClassCode(4) = 22
-            ClassCode(5) = 23
-            ControlName(0) = "Company"
-            ControlName(1) = "Year"
-            ControlName(2) = "ProjectCode"
-            ControlName(3) = "ProjectName"
-            ControlName(4) = "ProjectAddress"
-            ControlName(5) = "Contractee"
+                Dim ClassCode(5) As Integer
+                Dim ControlName(5) As String
+                ClassCode(0) = 11
+                ClassCode(1) = 12
+                ClassCode(2) = 20
+                ClassCode(3) = 21
+                ClassCode(4) = 22
+                ClassCode(5) = 23
+                ControlName(0) = "Company"
+                ControlName(1) = "Year"
+                ControlName(2) = "ProjectCode"
+                ControlName(3) = "ProjectName"
+                ControlName(4) = "ProjectAddress"
+                ControlName(5) = "Contractee"
 
-            For ControlCount As Integer = 0 To 5
-                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & ClassCode(ControlCount)
-                FormPanel.Controls.Item(ControlName(ControlCount)).Text = ホーム.Sql.ExecuteScalar
-            Next
+                For ControlCount As Integer = 0 To 5
+                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & ClassCode(ControlCount)
+                    FormPanel.Controls.Item(ControlName(ControlCount)).Text = ホーム.Sql.ExecuteScalar
+                Next
 
-            For AuthorizerCount As Integer = 1 To 5
-                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 49 + AuthorizerCount
-                AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text = ホーム.Sql.ExecuteScalar
-            Next
+                For AuthorizerCount As Integer = 1 To 5
+                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 49 + AuthorizerCount
+                    AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text = ホーム.Sql.ExecuteScalar
+                Next
 
-            For CirculatorCount As Integer = 1 To 5
-                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 59 + CirculatorCount
-                CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text = ホーム.Sql.ExecuteScalar
-            Next
+                For CirculatorCount As Integer = 1 To 5
+                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 59 + CirculatorCount
+                    CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text = ホーム.Sql.ExecuteScalar
+                Next
 
-            ホーム.Sql.CommandText = "SELECT * FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
-            Dim BudgetReader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While BudgetReader.Read
-                TermS.Value = BudgetReader.Item("prjct_term_s")
-                TermE.Value = BudgetReader.Item("prjct_term_e")
-                Amount.Value = BudgetReader.Item("cntrct_amount")
-                Category.Value = BudgetReader.Item("prjct_category")
-                If Not BudgetReader.Item("cnsdrtn_date") = DateTime.Parse("1900/01/01") Then
-                    CnsdrtnDate.Value = BudgetReader.Item("cnsdrtn_date")
+                ホーム.Sql.CommandText = "SELECT * FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
+                Dim BudgetReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While BudgetReader.Read
+                    TermS.Value = BudgetReader.Item("prjct_term_s")
+                    TermE.Value = BudgetReader.Item("prjct_term_e")
+                    Amount.Value = BudgetReader.Item("cntrct_amount")
+                    Category.Value = BudgetReader.Item("prjct_category")
+                    If Not BudgetReader.Item("cnsdrtn_date") = DateTime.Parse("1900/01/01") Then
+                        CnsdrtnDate.Value = BudgetReader.Item("cnsdrtn_date")
+                    End If
+                    Summary.Value = BudgetReader.Item("prjct_summary")
+                    SubContractRate.Value = BudgetReader.Item("subcontract_rate")
+                    Remarks.Value = BudgetReader.Item("remarks")
+                    Department.Value = BudgetReader.Item("department")
+                    Director.Value = BudgetReader.Item("director")
+                    Manager.Value = BudgetReader.Item("manager")
+                    Chief.Value = BudgetReader.Item("chief")
+                    Expert1.Value = BudgetReader.Item("expert_1")
+                    Expert2.Value = BudgetReader.Item("expert_2")
+                    Expert3.Value = BudgetReader.Item("expert_3")
+                    Staff1.Value = BudgetReader.Item("staff_1")
+                    Staff2.Value = BudgetReader.Item("staff_2")
+                    Staff3.Value = BudgetReader.Item("staff_3")
+                    Staff4.Value = BudgetReader.Item("staff_4")
+                    BdgtDprtmnt.Value = BudgetReader.Item("bdgt_dprtmnt")
+                    ExpenseRate.Value = BudgetReader.Item("expense_rate")
+                End While
+                BudgetReader.Close()
+
+                ProjectAmount.Value = Amount.Value
+
+            End If
+
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+            Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar
+            If SiteExpenseCount > 0 Then
+                ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+                If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                    SiteCostsValue = ホーム.Sql.ExecuteScalar
+                    SiteCosts.Value = SiteCostsValue
                 End If
-                Summary.Value = BudgetReader.Item("prjct_summary")
-                SubContractRate.Value = BudgetReader.Item("subcontract_rate")
-                Remarks.Value = BudgetReader.Item("remarks")
-                Department.Value = BudgetReader.Item("department")
-                Director.Value = BudgetReader.Item("director")
-                Manager.Value = BudgetReader.Item("manager")
-                Chief.Value = BudgetReader.Item("chief")
-                Expert1.Value = BudgetReader.Item("expert_1")
-                Expert2.Value = BudgetReader.Item("expert_2")
-                Expert3.Value = BudgetReader.Item("expert_3")
-                Staff1.Value = BudgetReader.Item("staff_1")
-                Staff2.Value = BudgetReader.Item("staff_2")
-                Staff3.Value = BudgetReader.Item("staff_3")
-                Staff4.Value = BudgetReader.Item("staff_4")
-                BdgtDprtmnt.Value = BudgetReader.Item("bdgt_dprtmnt")
-                ExpenseRate.Value = BudgetReader.Item("expense_rate")
-            End While
-            BudgetReader.Close()
-
-            ProjectAmount.Value = Amount.Value
-
-        End If
-
-        ホーム.Sql.CommandText = "SELECT Count(*) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
-        Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar
-        If SiteExpenseCount > 0 Then
-            ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
-            If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-                SiteCostsValue = ホーム.Sql.ExecuteScalar
-                SiteCosts.Value = SiteCostsValue
-            End If
-        End If
-
-        ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
-        Dim DetailCount As Integer = ホーム.Sql.ExecuteScalar
-        If DetailCount > 0 Then
-            ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code <200"
-            If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-                DrctCnstrctnCstValue = ホーム.Sql.ExecuteScalar
-                DrctCnstrctnCst.Value = DrctCnstrctnCstValue
             End If
 
-            ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code>=200 AND s_worktype_code <800"
-            If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-                TmprryExpnssValue = ホーム.Sql.ExecuteScalar
-                TmprryExpnss.Value = TmprryExpnssValue
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
+            Dim DetailCount As Integer = ホーム.Sql.ExecuteScalar
+            If DetailCount > 0 Then
+                ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code <200"
+                If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                    DrctCnstrctnCstValue = ホーム.Sql.ExecuteScalar
+                    DrctCnstrctnCst.Value = DrctCnstrctnCstValue
+                End If
+
+                ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code>=200 AND s_worktype_code <800"
+                If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                    TmprryExpnssValue = ホーム.Sql.ExecuteScalar
+                    TmprryExpnss.Value = TmprryExpnssValue
+                End If
+
+                ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=861"
+                If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                    MtrldffrncValue = ホーム.Sql.ExecuteScalar
+                    Mtrldffrnc.Value = MtrldffrncValue
+                End If
+
+                ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=881"
+                If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                    ExpectedTotalValue = ホーム.Sql.ExecuteScalar
+                    ExpectedTotal.Value = ExpectedTotalValue
+                End If
+
             End If
 
-            ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=861"
-            If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-                MtrldffrncValue = ホーム.Sql.ExecuteScalar
-                Mtrldffrnc.Value = MtrldffrncValue
-            End If
-
-            ホーム.Sql.CommandText = "SELECT SUM(dtl_quanity * dtl_costea) FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=881"
-            If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-                ExpectedTotalValue = ホーム.Sql.ExecuteScalar
-                ExpectedTotal.Value = ExpectedTotalValue
-            End If
-
-        End If
-
-        SubTotal.Value = DrctCnstrctnCstValue + TmprryExpnssValue + MtrldffrncValue + ExpectedTotalValue
-        ConstractionCost.Value = SubTotal.Value + SiteCostsValue
-        ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
-        DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
-        ホーム.Modified = "False"
-        FormLoad = "False"
+            SubTotal.Value = DrctCnstrctnCstValue + TmprryExpnssValue + MtrldffrncValue + ExpectedTotalValue
+            ConstractionCost.Value = SubTotal.Value + SiteCostsValue
+            ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
+            DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            TmprryExpnssRate.Value = Math.Round((TmprryExpnssValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            MtrldffrncRate.Value = Math.Round((MtrldffrncValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            ExpectedTotalRate.Value = Math.Round((ExpectedTotalValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            SubTotalRate.Value = Math.Round((SubTotal.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            SiteCostsRate.Value = Math.Round((SiteCostsValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            ConstractionCostRate.Value = Math.Round((ConstractionCost.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            ProfitAndLossRate.Value = Math.Round((ProfitAndLoss.Value / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
+            ホーム.Modified = "False"
+            FormLoad = "False"
 
 
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
 
 
@@ -194,8 +194,8 @@ Public Class 予算総括入力
     Private Sub OutsoucersList_CellButtonClick(sender As Object, e As C1.Win.C1FlexGrid.RowColEventArgs) Handles OutsoucersList.CellButtonClick
         Try
             業者一覧.ParentFormName = "予算総括入力"
-        業者一覧.Show()
-        業者一覧.SelectRowIndex = e.Row
+            業者一覧.Show()
+            業者一覧.SelectRowIndex = e.Row
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -441,7 +441,9 @@ Public Class 予算総括入力
 
     Private Sub ProjectCode_ValueChanged(sender As Object, e As EventArgs) Handles ProjectCode.ValueChanged, TermS.ValueChanged, TermE.ValueChanged, Summary.ValueChanged, SubContractRate.ValueChanged, Staff4.ValueChanged, Staff3.ValueChanged, Staff2.ValueChanged, Staff1.ValueChanged, Remarks.ValueChanged, ProjectName.ValueChanged, ProjectAddress.ValueChanged, Manager.ValueChanged, Expert3.ValueChanged, Expert2.ValueChanged, Expert1.ValueChanged, ExpenseRate.ValueChanged, Director.ValueChanged, Department.ValueChanged, Contractee.ValueChanged, CnsdrtnDate.ValueChanged, Chief.ValueChanged, Category.ValueChanged, Year.ValueChanged, Company.ValueChanged
         Try
-            ホーム.Modified = "True"
+            If FormLoad = "False" Then
+                ホーム.Modified = "True"
+            End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

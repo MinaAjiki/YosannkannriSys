@@ -65,4 +65,5 @@ Public Class 大工種選択
             Exit Sub
         End Try
     End Sub
+
 End Class
