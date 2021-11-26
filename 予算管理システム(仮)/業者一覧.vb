@@ -18,15 +18,15 @@ Public Class 業者一覧
         'TODO: このコード行はデータを 'DataSet1.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
         Me.M_TORTableAdapter.Fill(Me.DataSet1.M_TOR)
 
-        ホーム.Connection.Close()
-        ホーム.Connection.Dispose()
+        'ホーム.Connection.Close()
+        'ホーム.Connection.Dispose()
         'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-        ホーム.Connection.Open()
-        ホーム.SystemSql.Connection = ホーム.Connection
+        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
+        'ホーム.Connection.Open()
+        'ホーム.SystemSql.Connection = ホーム.Connection
 
-        ホーム.SystemSql.CommandText = "SELECT contents FROM controldata where class_code=11"
-        Dim Outsrcrcount As String = ホーム.SystemSql.ExecuteScalar
+        ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
+        Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
         If Outsrcrcount = Nothing Then
             VendorList.DataSource = Nothing
             MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
