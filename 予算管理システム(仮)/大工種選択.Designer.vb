@@ -28,16 +28,15 @@ Partial Class 大工種選択
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.L_WorkTypesList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.LWorktypeTotal = New C1.Win.C1Input.C1NumericEdit()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.C1NumericEdit1 = New C1.Win.C1Input.C1NumericEdit()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
-        Me.Entry = New System.Windows.Forms.Button()
         CType(Me.L_WorkTypesList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LWorktypeTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
@@ -103,6 +102,31 @@ Partial Class 大工種選択
         Me.L_WorkTypesList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.L_WorkTypesList, "予算管理テーマ")
         '
+        'LWorktypeTotal
+        '
+        Me.LWorktypeTotal.AutoSize = False
+        Me.LWorktypeTotal.BackColor = System.Drawing.Color.White
+        Me.LWorktypeTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.LWorktypeTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.LWorktypeTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.LWorktypeTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.LWorktypeTotal.DataType = GetType(Long)
+        Me.LWorktypeTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LWorktypeTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.LWorktypeTotal.GapHeight = 0
+        Me.LWorktypeTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.LWorktypeTotal.Location = New System.Drawing.Point(341, 240)
+        Me.LWorktypeTotal.Name = "LWorktypeTotal"
+        Me.LWorktypeTotal.Size = New System.Drawing.Size(110, 20)
+        Me.LWorktypeTotal.TabIndex = 48
+        Me.LWorktypeTotal.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.LWorktypeTotal, "(default)")
+        Me.LWorktypeTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.LWorktypeTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'Label2
         '
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
@@ -116,31 +140,6 @@ Partial Class 大工種選択
         Me.Label2.TabIndex = 47
         Me.Label2.Text = "合計"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'C1NumericEdit1
-        '
-        Me.C1NumericEdit1.AutoSize = False
-        Me.C1NumericEdit1.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit1.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit1.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit1.DataType = GetType(Long)
-        Me.C1NumericEdit1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit1.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit1.GapHeight = 0
-        Me.C1NumericEdit1.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit1.Location = New System.Drawing.Point(341, 240)
-        Me.C1NumericEdit1.Name = "C1NumericEdit1"
-        Me.C1NumericEdit1.Size = New System.Drawing.Size(110, 20)
-        Me.C1NumericEdit1.TabIndex = 48
-        Me.C1NumericEdit1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit1, "(default)")
-        Me.C1NumericEdit1.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'FormSplitContainer
         '
@@ -166,7 +165,7 @@ Partial Class 大工種選択
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit1)
+        Me.C1SplitterPanel1.Controls.Add(Me.LWorktypeTotal)
         Me.C1SplitterPanel1.Controls.Add(Me.Label2)
         Me.C1SplitterPanel1.Controls.Add(Me.L_WorkTypesList)
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
@@ -184,7 +183,6 @@ Partial Class 大工種選択
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
-        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
         Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
@@ -211,25 +209,6 @@ Partial Class 大工種選択
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True
         '
-        'Entry
-        '
-        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Entry.FlatAppearance.BorderSize = 0
-        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Entry.ImageIndex = 3
-        Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(776, 6)
-        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Entry.Name = "Entry"
-        Me.Entry.Size = New System.Drawing.Size(100, 30)
-        Me.Entry.TabIndex = 41
-        Me.Entry.Text = "　登　録"
-        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Entry.UseVisualStyleBackColor = True
-        '
         '大工種選択
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -245,7 +224,7 @@ Partial Class 大工種選択
         Me.Text = "協力業者入力"
         CType(Me.L_WorkTypesList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LWorktypeTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
@@ -256,7 +235,6 @@ Partial Class 大工種選択
     End Sub
     Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Entry As Button
     Friend WithEvents L_WorkTypesList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
@@ -264,5 +242,5 @@ Partial Class 大工種選択
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents Cancel As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents C1NumericEdit1 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents LWorktypeTotal As C1.Win.C1Input.C1NumericEdit
 End Class

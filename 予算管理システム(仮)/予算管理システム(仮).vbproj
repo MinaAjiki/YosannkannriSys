@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\CancelClick.vb" />
+    <Compile Include="Class\FormClose.vb" />
     <Compile Include="DataSet1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -519,7 +520,7 @@
       <DependentUpon>現場データ.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\Release\予算管理システム%28system_sql%29.mdf">
+    <Content Include="bin\Release\予算管理システム%28system_mdf%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\Release\予算管理システム%28system_sql%29_log.ldf">
@@ -532,12 +533,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>現場データ.mdf</DependentUpon>
     </Content>
-    <Content Include="予算管理システム%28system_sql%29.mdf">
+    <Content Include="予算管理システム%28system_mdf%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="予算管理システム%28system_sql%29_log.ldf">
+    <Content Include="予算管理システム%28system_mdf%29_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>予算管理システム%28system_sql%29.mdf</DependentUpon>
+      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
     </Content>
     <Content Include="現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -572,7 +573,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="予算管理システム%28system_sql%29.mdf">
+    <PublishFile Include="予算管理システム%28system_mdf%29.mdf">
       <Visible>False</Visible>
       <Group>
       </Group>

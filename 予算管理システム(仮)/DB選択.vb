@@ -13,8 +13,8 @@ Public Class DB選択
 
         Dim DataCount As Integer = 1
 
-        ホーム.SystemSql.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY filedate DESC"
-        Dim FileReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        ホーム.SystemMdf.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY filedate DESC"
+        Dim FileReader As SqlDataReader = ホーム.SystemMdf.ExecuteReader
         While FileReader.Read
             FileList(DataCount, 1) = FileReader.Item("filename")
             FileList(DataCount, 2) = FileReader.Item("filepath")
@@ -73,24 +73,24 @@ Public Class DB選択
 
         Else
 
-            ホーム.SystemSql.CommandText = ""
-            ホーム.SystemSql.Parameters.Clear()
+            ホーム.SystemMdf.CommandText = ""
+            ホーム.SystemMdf.Parameters.Clear()
 
-            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM userfiles WHERE filename=@filename"
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
-            ホーム.SystemSql.Parameters("@filename").Value = OpenFileName
-            Dim Filecount As Integer = ホーム.SystemSql.ExecuteScalar
+            ホーム.SystemMdf.CommandText = "SELECT Count(*) FROM userfiles WHERE filename=@filename"
+            ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+            ホーム.SystemMdf.Parameters("@filename").Value = OpenFileName
+            Dim Filecount As Integer = ホーム.SystemMdf.ExecuteScalar
 
             If Filecount >= 1 Then
-                ホーム.SystemSql.CommandText = "UPDATE userfiles SET filedate='" & Now & "' WHERE filename=@filename"
-                ホーム.SystemSql.ExecuteNonQuery()
+                ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate='" & Now & "' WHERE filename=@filename"
+                ホーム.SystemMdf.ExecuteNonQuery()
             Else
-                ホーム.SystemSql.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
-                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
-                ホーム.SystemSql.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
-                ホーム.SystemSql.Parameters("@filepath").Value = OpenFilePath
-                ホーム.SystemSql.Parameters("@filedate").Value = Now
-                ホーム.SystemSql.ExecuteNonQuery()
+                ホーム.SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
+                ホーム.SystemMdf.Parameters("@filepath").Value = OpenFilePath
+                ホーム.SystemMdf.Parameters("@filedate").Value = Now
+                ホーム.SystemMdf.ExecuteNonQuery()
             End If
         End If
 
@@ -133,14 +133,14 @@ Public Class DB選択
         Dim OpenFilePath As CellRange = FileList.GetCellRange(SelectRow, 2)
 
 
-        ホーム.SystemSql.CommandText = ""
-        ホーム.SystemSql.Parameters.Clear()
-        ホーム.SystemSql.CommandText = "UPDATE userfiles SET filedate=@filedate WHERE filename=@filename"
-        ホーム.SystemSql.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
-        ホーム.SystemSql.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
-        ホーム.SystemSql.Parameters("@filedate").Value = Now
-        ホーム.SystemSql.Parameters("@filename").Value = OpenFileName.Data
-        ホーム.SystemSql.ExecuteNonQuery()
+        ホーム.SystemMdf.CommandText = ""
+        ホーム.SystemMdf.Parameters.Clear()
+        ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate=@filedate WHERE filename=@filename"
+        ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
+        ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+        ホーム.SystemMdf.Parameters("@filedate").Value = Now
+        ホーム.SystemMdf.Parameters("@filename").Value = OpenFileName.Data
+        ホーム.SystemMdf.ExecuteNonQuery()
 
         ホーム.Connection.Close()
         ホーム.Connection.Dispose()
