@@ -3,29 +3,35 @@ Imports System.Data.SqlClient
 Imports System.Windows.Forms.Form
 Public Class 大工種選択
     Private Sub 大工種選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Dim Total As Int64 = 0
 
-        Dim Total As Int64 = 0
+            Dim RowCount As Integer = 1
+            ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktype ORDER BY l_worktype_code ASC"
+            Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            While LWorkTypeReader.Read
 
-        Dim RowCount As Integer = 1
-        ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktype ORDER BY l_worktype_code ASC"
-        Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        While LWorkTypeReader.Read
+                L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_worktype_code")
+                L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_worktype")
 
-            L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_worktype_code")
-            L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_worktype")
+                ホーム.Sql.CommandText = "SELECT SUM(amount) FROM s_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_worktype_code=" _
+                                                & LWorkTypeReader.Item("l_worktype_code")
+                L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
 
-            ホーム.Sql.CommandText = "SELECT SUM(amount) FROM s_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_worktype_code=" _
-                                            & LWorkTypeReader.Item("l_worktype_code")
-            L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+                Total += L_WorkTypesList(RowCount, 3)
 
-            Total += L_WorkTypesList(RowCount, 3)
+                RowCount += 1
+            End While
+            LWorkTypeReader.Close()
 
-            RowCount += 1
-        End While
-        LWorkTypeReader.Close()
+            LWorktypeTotal.Text = Total
 
-        LWorktypeTotal.Text = Total
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
@@ -46,10 +52,22 @@ Public Class 大工種選択
     End Sub
 
     Private Sub L_WorkTypesList_DoubleClick(sender As Object, e As EventArgs) Handles L_WorkTypesList.DoubleClick
-        Me.Close()
-        小工種選択.TopLevel = False
-        ホーム.FormPanel.Controls.Add(小工種選択)
-        小工種選択.Show()
+        Try
+            Dim ClickRow As Integer = L_WorkTypesList.Selection.TopRow
+            ホーム.lworktypecode = L_WorkTypesList(ClickRow, 1)
+            ホーム.lworktypename = L_WorkTypesList(ClickRow, 2)
+
+            Me.Close()
+            小工種選択.TopLevel = False
+            ホーム.FormPanel.Controls.Add(小工種選択)
+            小工種選択.Show()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click

@@ -82,9 +82,8 @@ Partial Class 大工種選択
         '
         'L_WorkTypesList
         '
-        Me.L_WorkTypesList.AllowAddNew = True
-        Me.L_WorkTypesList.AllowDelete = True
         Me.L_WorkTypesList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.L_WorkTypesList.AllowEditing = False
         Me.L_WorkTypesList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.L_WorkTypesList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.L_WorkTypesList.ColumnInfo = resources.GetString("L_WorkTypesList.ColumnInfo")
@@ -113,9 +112,23 @@ Partial Class 大工種選択
         Me.LWorktypeTotal.Calculator.BackColor = System.Drawing.Color.White
         Me.LWorktypeTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.LWorktypeTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.LWorktypeTotal.CustomFormat = "#,###"
         Me.LWorktypeTotal.DataType = GetType(Long)
         Me.LWorktypeTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LWorktypeTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.LWorktypeTotal.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.LWorktypeTotal.EditFormat.CustomFormat = "#,###"
+        Me.LWorktypeTotal.EditFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.LWorktypeTotal.EditFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.LWorktypeTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.LWorktypeTotal.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.LWorktypeTotal.GapHeight = 0
         Me.LWorktypeTotal.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.LWorktypeTotal.Location = New System.Drawing.Point(341, 240)

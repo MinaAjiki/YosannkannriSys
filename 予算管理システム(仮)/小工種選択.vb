@@ -1,7 +1,8 @@
 ﻿Public Class 小工種選択
+
     Private Sub 小工種選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
+        L_WorkType.Value = ホーム.lworktypecode & " " & ホーム.lworktypename
 
     End Sub
 

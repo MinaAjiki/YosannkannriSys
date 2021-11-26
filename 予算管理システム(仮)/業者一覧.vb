@@ -107,6 +107,7 @@ Public Class 業者一覧
             '予算総括入力に値を代入する
             予算総括入力.OutsoucersList(SelectRowIndex, 3) = Code
             予算総括入力.OutsoucersList(SelectRowIndex, 4) = Name
+            ホーム.Modified = "True"
 
         Else
             r = 協力業者入力.CoopVendorList.Rows.Count - 1
