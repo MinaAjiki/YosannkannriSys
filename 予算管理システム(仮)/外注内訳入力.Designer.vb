@@ -42,10 +42,10 @@ Partial Class 外注内訳入力
         Me.ChangeDetail = New C1.Win.C1Input.C1TextBox()
         Me.ContractNoLabel = New System.Windows.Forms.Label()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Create = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
-        Me.Create = New System.Windows.Forms.Button()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -380,6 +380,25 @@ Partial Class 外注内訳入力
         Me.FooterPanel.TabIndex = 1
         Me.FooterPanel.Text = "パネル2"
         '
+        'Create
+        '
+        Me.Create.BackColor = System.Drawing.Color.Transparent
+        Me.Create.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Create.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Create.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Create.ImageIndex = 0
+        Me.Create.ImageList = Me.ButtonImageList
+        Me.Create.Location = New System.Drawing.Point(940, 6)
+        Me.Create.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Create.Name = "Create"
+        Me.Create.Size = New System.Drawing.Size(100, 30)
+        Me.Create.TabIndex = 51
+        Me.Create.Text = "作　成"
+        Me.Create.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.SystemTheme.SetTheme(Me.Create, "(default)")
+        Me.Create.UseVisualStyleBackColor = True
+        '
         'Cancel
         '
         Me.Cancel.Cursor = System.Windows.Forms.Cursors.Hand
@@ -423,25 +442,6 @@ Partial Class 外注内訳入力
         Me.SystemTheme.SetTheme(Me.C1NumericEdit2, "(default)")
         Me.C1NumericEdit2.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.C1NumericEdit2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'Create
-        '
-        Me.Create.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Create.FlatAppearance.BorderSize = 0
-        Me.Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Create.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Create.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Create.ImageIndex = 0
-        Me.Create.ImageList = Me.ButtonImageList
-        Me.Create.Location = New System.Drawing.Point(940, 6)
-        Me.Create.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Create.Name = "Create"
-        Me.Create.Size = New System.Drawing.Size(100, 30)
-        Me.Create.TabIndex = 51
-        Me.Create.Text = "作　成"
-        Me.Create.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.SystemTheme.SetTheme(Me.Create, "(default)")
-        Me.Create.UseVisualStyleBackColor = True
         '
         '外注内訳入力
         '

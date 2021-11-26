@@ -95,6 +95,48 @@ Namespace My
                 Return CType(Me("CAP21_ODBC"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;Persist Security Info=True;User ID=CAP21_01;Password=CAP21_01;U"& _ 
+            "nicode=True")>  _
+        Public ReadOnly Property ConnectionString() As String
+            Get
+                Return CType(Me("ConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;User ID=CAP21_02;Password=CAP21_02;Unicode=True")>  _
+        Public ReadOnly Property ConnectionString1() As String
+            Get
+                Return CType(Me("ConnectionString1"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;User ID=CAP21_03;Password=CAP21_03;Unicode=True")>  _
+        Public ReadOnly Property ConnectionString2() As String
+            Get
+                Return CType(Me("ConnectionString2"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CAP21;Persist Security Info=True;User ID=CAP21_05;Password=CAP21_05;U"& _ 
+            "nicode=True")>  _
+        Public ReadOnly Property ConnectionString3() As String
+            Get
+                Return CType(Me("ConnectionString3"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

@@ -152,11 +152,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </Compile>
     <Compile Include="代価内訳.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="岐阜アイシーDB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="広小路建設.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>広小路建設.xsd</DependentUpon>
     </Compile>
     <Compile Include="項目選択.Designer.vb">
       <DependentUpon>項目選択.vb</DependentUpon>
@@ -330,6 +345,11 @@
     <Compile Include="進行状況.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="飛高建設DB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>飛高建設DB.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="代価内訳.resx">
@@ -398,6 +418,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="業者一覧.resx">
       <DependentUpon>業者一覧.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="業者選択_Export.resx">
       <DependentUpon>業者選択_Export.vb</DependentUpon>
@@ -433,6 +454,17 @@
     <None Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -445,6 +477,39 @@
     </None>
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
+    <None Include="岐阜アイシーDB.xsc">
+      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
+    </None>
+    <None Include="岐阜アイシーDB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>岐阜アイシーDB.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="岐阜アイシーDB.xss">
+      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
+    </None>
+    <None Include="広小路建設.xsc">
+      <DependentUpon>広小路建設.xsd</DependentUpon>
+    </None>
+    <None Include="広小路建設.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>広小路建設.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="広小路建設.xss">
+      <DependentUpon>広小路建設.xsd</DependentUpon>
+    </None>
+    <None Include="飛高建設DB.xsc">
+      <DependentUpon>飛高建設DB.xsd</DependentUpon>
+    </None>
+    <None Include="飛高建設DB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>飛高建設DB.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="飛高建設DB.xss">
+      <DependentUpon>飛高建設DB.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\現場データ.mdf">

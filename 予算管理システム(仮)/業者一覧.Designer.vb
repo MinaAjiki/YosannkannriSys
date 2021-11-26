@@ -41,6 +41,19 @@ Partial Class 業者一覧
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.M_TORTableAdapter = New 予算管理システム_仮_.DataSet1TableAdapters.M_TORTableAdapter()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.DataSet2 = New 予算管理システム_仮_.DataSet2()
+        Me.DataSet2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.MTORBindingSource2 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.M_TORTableAdapter1 = New 予算管理システム_仮_.DataSet2TableAdapters.M_TORTableAdapter()
+        Me.岐阜アイシーDB = New 予算管理システム_仮_.岐阜アイシーDB()
+        Me.MTORBindingSource3 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.M_TORTableAdapter2 = New 予算管理システム_仮_.岐阜アイシーDBTableAdapters.M_TORTableAdapter()
+        Me.飛高建設DB = New 予算管理システム_仮_.飛高建設DB()
+        Me.MTORBindingSource4 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.M_TORTableAdapter3 = New 予算管理システム_仮_.飛高建設DBTableAdapters.M_TORTableAdapter()
+        Me.広小路建設 = New 予算管理システム_仮_.広小路建設()
+        Me.MTORBindingSource5 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.M_TORTableAdapter4 = New 予算管理システム_仮_.広小路建設TableAdapters.M_TORTableAdapter()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MTORBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +66,15 @@ Partial Class 業者一覧
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
+        CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataSet2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.岐阜アイシーDB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.飛高建設DB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.広小路建設, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORBindingSource5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -100,7 +122,7 @@ Partial Class 業者一覧
         Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
-        Me.VendorList.DataSource = Me.MTORBindingSource
+        Me.VendorList.DataSource = Me.MTORBindingSource1
         Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.VendorList.Location = New System.Drawing.Point(18, 115)
         Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -239,6 +261,67 @@ Partial Class 業者一覧
         '
         Me.M_TORTableAdapter.ClearBeforeFill = True
         '
+        'DataSet2
+        '
+        Me.DataSet2.DataSetName = "DataSet2"
+        Me.DataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DataSet2BindingSource
+        '
+        Me.DataSet2BindingSource.DataSource = Me.DataSet2
+        Me.DataSet2BindingSource.Position = 0
+        '
+        'MTORBindingSource2
+        '
+        Me.MTORBindingSource2.DataMember = "M_TOR"
+        Me.MTORBindingSource2.DataSource = Me.DataSet2BindingSource
+        '
+        'M_TORTableAdapter1
+        '
+        Me.M_TORTableAdapter1.ClearBeforeFill = True
+        '
+        '岐阜アイシーDB
+        '
+        Me.岐阜アイシーDB.DataSetName = "岐阜アイシーDB"
+        Me.岐阜アイシーDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'MTORBindingSource3
+        '
+        Me.MTORBindingSource3.DataMember = "M_TOR"
+        Me.MTORBindingSource3.DataSource = Me.岐阜アイシーDB
+        '
+        'M_TORTableAdapter2
+        '
+        Me.M_TORTableAdapter2.ClearBeforeFill = True
+        '
+        '飛高建設DB
+        '
+        Me.飛高建設DB.DataSetName = "飛高建設DB"
+        Me.飛高建設DB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'MTORBindingSource4
+        '
+        Me.MTORBindingSource4.DataMember = "M_TOR"
+        Me.MTORBindingSource4.DataSource = Me.飛高建設DB
+        '
+        'M_TORTableAdapter3
+        '
+        Me.M_TORTableAdapter3.ClearBeforeFill = True
+        '
+        '広小路建設
+        '
+        Me.広小路建設.DataSetName = "広小路建設"
+        Me.広小路建設.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'MTORBindingSource5
+        '
+        Me.MTORBindingSource5.DataMember = "M_TOR"
+        Me.MTORBindingSource5.DataSource = Me.広小路建設
+        '
+        'M_TORTableAdapter4
+        '
+        Me.M_TORTableAdapter4.ClearBeforeFill = True
+        '
         '業者一覧
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
@@ -266,6 +349,15 @@ Partial Class 業者一覧
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
+        CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataSet2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.岐阜アイシーDB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.飛高建設DB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.広小路建設, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORBindingSource5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -288,4 +380,17 @@ Partial Class 業者一覧
     Friend WithEvents C1FlexGridSearchPanel1 As C1.Win.C1FlexGrid.C1FlexGridSearchPanel
     Friend WithEvents MTORBindingSource1 As BindingSource
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents DataSet2BindingSource As BindingSource
+    Friend WithEvents DataSet2 As DataSet2
+    Friend WithEvents MTORBindingSource2 As BindingSource
+    Friend WithEvents M_TORTableAdapter1 As DataSet2TableAdapters.M_TORTableAdapter
+    Friend WithEvents 岐阜アイシーDB As 岐阜アイシーDB
+    Friend WithEvents MTORBindingSource3 As BindingSource
+    Friend WithEvents M_TORTableAdapter2 As 岐阜アイシーDBTableAdapters.M_TORTableAdapter
+    Friend WithEvents 飛高建設DB As 飛高建設DB
+    Friend WithEvents MTORBindingSource4 As BindingSource
+    Friend WithEvents M_TORTableAdapter3 As 飛高建設DBTableAdapters.M_TORTableAdapter
+    Friend WithEvents 広小路建設 As 広小路建設
+    Friend WithEvents MTORBindingSource5 As BindingSource
+    Friend WithEvents M_TORTableAdapter4 As 広小路建設TableAdapters.M_TORTableAdapter
 End Class
