@@ -11,19 +11,19 @@ Public Class 協力業者入力
 
         CoopVendorList.Cols(5).ComboList = "工務課発注|購買発注"
 
-        ホーム.Connection.Close()
-        ホーム.Connection.Dispose()
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-        ホーム.Connection.Open()
-        ホーム.SystemSql.Connection = ホーム.Connection
+        'ホーム.Connection.Close()
+        'ホーム.Connection.Dispose()
+        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
+        ''ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
+        'ホーム.Connection.Open()
+        'ホーム.SystemSql.Connection = ホーム.Connection
 
-        ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
-        Dim Outsrcrcount As Integer = ホーム.SystemSql.ExecuteScalar
+        ホーム.Sql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
+        Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
 
-        ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
+        ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
         Dim datacount As Integer = 1
-        Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
         While Coopreader.Read
             Me.CoopVendorList.Rows.Add()
             CoopVendorList(datacount, 1) = Coopreader.Item("outsrcr_code")
@@ -100,10 +100,10 @@ Public Class 協力業者入力
             Dim Coopordr As CellRange = CoopVendorList.GetCellRange(Vendorloop, 5)
             Dim Coopcntrct As CellRange = CoopVendorList.GetCellRange(Vendorloop, 6)
             Dim CoopDeleteF As CellRange = CoopVendorList.GetCellRange(Vendorloop, 7)
-            ホーム.SystemSql.CommandText = ""
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "Select count(*) from Outsourcers where outsrcr_code = " & CoopID.Data
-            Dim CoopIDcount As Integer = ホーム.SystemSql.ExecuteScalar
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "Select count(*) from Outsourcers where outsrcr_code = " & CoopID.Data
+            Dim CoopIDcount As Integer = ホーム.Sql.ExecuteScalar
             If Coopterme.Data = Nothing Then
                 MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
@@ -114,33 +114,33 @@ Public Class 協力業者入力
                 End If
             End If
             If CoopIDcount = 0 Then
-                ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = "INSERT INTO Outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,ordrfrm,e_cntrct) VALUES (@outsrcr_code,@outsrcr_name,@outsrcr_term_s,@outsrcr_term_e,@ordrfrm,@e_cntrct)"
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "INSERT INTO Outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,ordrfrm,e_cntrct) VALUES (@outsrcr_code,@outsrcr_name,@outsrcr_term_s,@outsrcr_term_e,@ordrfrm,@e_cntrct)"
             Else
-                ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = "UPDATE Outsourcers SET outsrcr_name=@outsrcr_name,outsrcr_term_s=@outsrcr_term_s,outsrcr_term_e=@outsrcr_term_e,ordrfrm=@ordrfrm,e_cntrct=@e_cntrct where outsrcr_code=@outsrcr_code"
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "UPDATE Outsourcers SET outsrcr_name=@outsrcr_name,outsrcr_term_s=@outsrcr_term_s,outsrcr_term_e=@outsrcr_term_e,ordrfrm=@ordrfrm,e_cntrct=@e_cntrct where outsrcr_code=@outsrcr_code"
             End If
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@outsrcr_code", SqlDbType.Int))
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@outsrcr_name", SqlDbType.NVarChar))
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@outsrcr_term_s", SqlDbType.DateTime))
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@outsrcr_term_e", SqlDbType.DateTime))
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt))
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@e_cntrct", SqlDbType.NVarChar))
-            ホーム.SystemSql.Parameters("@outsrcr_code").Value = CoopID.Data
-            ホーム.SystemSql.Parameters("@outsrcr_name").Value = CoopName.Data
-            ホーム.SystemSql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
-            ホーム.SystemSql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
+            ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_code", SqlDbType.Int))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_name", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_s", SqlDbType.DateTime))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_e", SqlDbType.DateTime))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@e_cntrct", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters("@outsrcr_code").Value = CoopID.Data
+            ホーム.Sql.Parameters("@outsrcr_name").Value = CoopName.Data
+            ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
+            ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
             If Coopordr.Data = "工務課発注" Then
-                ホーム.SystemSql.Parameters("@ordrfrm").Value = 11
+                ホーム.Sql.Parameters("@ordrfrm").Value = 11
             ElseIf Coopordr.Data = "購買発注" Then
-                ホーム.SystemSql.Parameters("@ordrfrm").Value = 12
+                ホーム.Sql.Parameters("@ordrfrm").Value = 12
             End If
             If Coopcntrct.Data = True Then
-                ホーム.SystemSql.Parameters("@e_cntrct").Value = "true"
+                ホーム.Sql.Parameters("@e_cntrct").Value = "true"
             Else
-                ホーム.SystemSql.Parameters("@e_cntrct").Value = "false"
+                ホーム.Sql.Parameters("@e_cntrct").Value = "false"
             End If
 
             If CoopDeleteF.Data = True Then
@@ -150,7 +150,7 @@ Public Class 協力業者入力
             End If
 
 
-            ホーム.SystemSql.ExecuteNonQuery()
+            ホーム.Sql.ExecuteNonQuery()
         Next
 
         Me.Close()

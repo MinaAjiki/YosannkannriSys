@@ -534,6 +534,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
     </Content>
+
     <Content Include="bin\Release\現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -543,10 +544,6 @@
     </Content>
     <Content Include="予算管理システム%28system_mdf%29.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="予算管理システム%28system_mdf%29_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
     </Content>
     <Content Include="現場データ.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
