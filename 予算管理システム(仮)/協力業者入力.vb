@@ -9,14 +9,12 @@ Imports C1.Win.C1FlexGrid
 Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        CoopVendorList.Cols(5).ComboList = "工務課発注|購買発注"
 
-        'ホーム.Connection.Close()
-        'ホーム.Connection.Dispose()
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
-        ''ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-        'ホーム.Connection.Open()
-        'ホーム.SystemSql.Connection = ホーム.Connection
+        'ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters"
+        'Dim Namemaster As SqlDataReader = ホーム.Sql.ExecuteReader
+        'While Namemaster.Read
+        '    CoopVendorList.Cols(5).ComboList = Namemaster.Item("item_name")
+        'End While
 
         ホーム.Sql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
         Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
@@ -106,6 +104,10 @@ Public Class 協力業者入力
             Dim CoopIDcount As Integer = ホーム.Sql.ExecuteScalar
             If Coopterme.Data = Nothing Then
                 MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
+            If CoopVendorList(Vendorloop, 3) >= CoopVendorList(Vendorloop, 4) Then
+                MsgBox("実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
             If CoopDeleteF.Data = True Then
