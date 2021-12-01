@@ -29,13 +29,13 @@ Partial Class 外注内訳入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.TotalBreakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.CreatedDateBox = New C1.Win.C1Input.C1TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ContractNo = New C1.Win.C1Input.C1NumericEdit()
         Me.Total = New C1.Win.C1Input.C1NumericEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TotalBreakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.Breakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ChangeDetailLabel = New System.Windows.Forms.Label()
         Me.DetailList = New C1.Win.C1FlexGrid.C1FlexGrid()
@@ -49,10 +49,10 @@ Partial Class 外注内訳入力
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
+        CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Total, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,13 +139,13 @@ Partial Class 外注内訳入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.TotalBreakdown)
         Me.FormPanel.Controls.Add(Me.CreatedDateBox)
         Me.FormPanel.Controls.Add(Me.Label1)
         Me.FormPanel.Controls.Add(Me.ContractNo)
         Me.FormPanel.Controls.Add(Me.Total)
         Me.FormPanel.Controls.Add(Me.Label4)
         Me.FormPanel.Controls.Add(Me.Label3)
-        Me.FormPanel.Controls.Add(Me.TotalBreakdown)
         Me.FormPanel.Controls.Add(Me.Breakdown)
         Me.FormPanel.Controls.Add(Me.ChangeDetailLabel)
         Me.FormPanel.Controls.Add(Me.DetailList)
@@ -158,6 +158,28 @@ Partial Class 外注内訳入力
         Me.FormPanel.SizeRatio = 94.46R
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
+        '
+        'TotalBreakdown
+        '
+        Me.TotalBreakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.TotalBreakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.TotalBreakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.TotalBreakdown.ColumnInfo = "10,0,0,0,0,-1,Columns:0{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Width" &
+    ":95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "8{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "9{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9)
+        Me.TotalBreakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.TotalBreakdown.Location = New System.Drawing.Point(471, 593)
+        Me.TotalBreakdown.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.TotalBreakdown.Name = "TotalBreakdown"
+        Me.TotalBreakdown.Rows.Count = 1
+        Me.TotalBreakdown.Rows.Fixed = 0
+        Me.TotalBreakdown.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.TotalBreakdown.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.TotalBreakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.TotalBreakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.TotalBreakdown.Size = New System.Drawing.Size(763, 26)
+        Me.TotalBreakdown.StyleInfo = resources.GetString("TotalBreakdown.StyleInfo")
+        Me.TotalBreakdown.TabIndex = 76
+        Me.SystemTheme.SetTheme(Me.TotalBreakdown, "(default)")
         '
         'CreatedDateBox
         '
@@ -229,7 +251,7 @@ Partial Class 外注内訳入力
         Me.Total.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.Total.GapHeight = 0
         Me.Total.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.Total.Location = New System.Drawing.Point(379, 594)
+        Me.Total.Location = New System.Drawing.Point(376, 594)
         Me.Total.Name = "Total"
         Me.Total.Size = New System.Drawing.Size(95, 25)
         Me.Total.TabIndex = 79
@@ -251,43 +273,20 @@ Partial Class 外注内訳入力
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(1237, 594)
+        Me.Label3.Location = New System.Drawing.Point(1231, 594)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(32, 18)
         Me.Label3.TabIndex = 77
         Me.Label3.Text = "　　"
         Me.SystemTheme.SetTheme(Me.Label3, "(default)")
         '
-        'TotalBreakdown
-        '
-        Me.TotalBreakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.TotalBreakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.TotalBreakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.TotalBreakdown.ColumnInfo = "10,0,0,0,0,-1,Columns:0{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Width" &
-    ":95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "8{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "9{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9)
-        Me.TotalBreakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.TotalBreakdown.Location = New System.Drawing.Point(474, 593)
-        Me.TotalBreakdown.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.TotalBreakdown.Name = "TotalBreakdown"
-        Me.TotalBreakdown.Rows.Count = 1
-        Me.TotalBreakdown.Rows.Fixed = 0
-        Me.TotalBreakdown.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.TotalBreakdown.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.TotalBreakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.TotalBreakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.TotalBreakdown.Size = New System.Drawing.Size(763, 26)
-        Me.TotalBreakdown.StyleInfo = resources.GetString("TotalBreakdown.StyleInfo")
-        Me.TotalBreakdown.TabIndex = 76
-        Me.SystemTheme.SetTheme(Me.TotalBreakdown, "(default)")
-        '
         'Breakdown
         '
-        Me.Breakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.Breakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.Breakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.Breakdown.ColumnInfo = resources.GetString("Breakdown.ColumnInfo")
         Me.Breakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Breakdown.Location = New System.Drawing.Point(474, 64)
+        Me.Breakdown.Location = New System.Drawing.Point(470, 64)
         Me.Breakdown.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Breakdown.Name = "Breakdown"
         Me.Breakdown.Rows.Count = 100
@@ -316,7 +315,6 @@ Partial Class 外注内訳入力
         '
         'DetailList
         '
-        Me.DetailList.AllowDelete = True
         Me.DetailList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.DetailList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.DetailList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
@@ -330,14 +328,14 @@ Partial Class 外注内訳入力
         Me.DetailList.Name = "DetailList"
         Me.DetailList.Rows.Count = 100
         Me.DetailList.Rows.Fixed = 3
-        Me.DetailList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.DetailList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.DetailList.ShowCellLabels = True
         Me.DetailList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.DetailList.Size = New System.Drawing.Size(481, 530)
         Me.DetailList.StyleInfo = resources.GetString("DetailList.StyleInfo")
         Me.DetailList.TabIndex = 71
-        Me.SystemTheme.SetTheme(Me.DetailList, "予算管理テーマ")
+        Me.SystemTheme.SetTheme(Me.DetailList, "(default)")
         '
         'ChangeDetail
         '
@@ -460,10 +458,10 @@ Partial Class 外注内訳入力
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
+        CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Total, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).EndInit()

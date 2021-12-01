@@ -117,7 +117,6 @@ Partial Class 出来高入力
         '
         Me.Deadline.BackColor = System.Drawing.Color.White
         Me.Deadline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Deadline.DataType = GetType(Long)
         Me.Deadline.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Deadline.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.Deadline.Location = New System.Drawing.Point(807, 12)
@@ -146,7 +145,7 @@ Partial Class 出来高入力
         Me.DetailsList.Rows.Fixed = 3
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.DetailsList.Size = New System.Drawing.Size(841, 506)
         Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
@@ -238,10 +237,9 @@ Partial Class 出来高入力
         Me.VendorList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.VendorList.GapHeight = 0
         Me.VendorList.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.VendorList.Items.Add("㈱市川工務店")
         Me.VendorList.Location = New System.Drawing.Point(112, 54)
         Me.VendorList.Name = "VendorList"
-        Me.VendorList.Size = New System.Drawing.Size(200, 23)
+        Me.VendorList.Size = New System.Drawing.Size(295, 23)
         Me.VendorList.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.VendorList.TabIndex = 72
         Me.VendorList.Tag = Nothing
@@ -307,13 +305,13 @@ Partial Class 出来高入力
         '
         Me.VendorNo.BorderColor = System.Drawing.Color.Silver
         Me.VendorNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.VendorNo.DataType = GetType(Integer)
         Me.VendorNo.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.VendorNo.Location = New System.Drawing.Point(17, 54)
         Me.VendorNo.Name = "VendorNo"
         Me.VendorNo.Size = New System.Drawing.Size(89, 23)
         Me.VendorNo.TabIndex = 73
         Me.VendorNo.Tag = Nothing
-        Me.VendorNo.Text = "9999999"
         Me.VendorNo.TextDetached = True
         Me.VendorNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -368,6 +366,7 @@ Partial Class 出来高入力
         Me.Cancel.FlatAppearance.BorderSize = 0
         Me.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Cancel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Cancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Cancel.ImageIndex = 6
         Me.Cancel.ImageList = Me.ButtonImageList
         Me.Cancel.Location = New System.Drawing.Point(878, 6)
