@@ -105,6 +105,7 @@
     <Reference Include="C1.Win.Input.MultiSelect.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.TreeView.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -478,6 +479,7 @@
     </None>
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
+    <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ2.c1theme" />
     <None Include="岐阜アイシーDB.xsc">
       <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
     </None>

@@ -1,5 +1,6 @@
-﻿
-Imports C1.Win.C1FlexGrid
+﻿Imports C1.Win.C1FlexGrid
+Imports System.Windows.Forms.Form
+Imports C1.Win.C1Command
 Imports System.Data.SqlClient
 Public Class 予算総括入力
 
@@ -181,6 +182,24 @@ Public Class 予算総括入力
 
             End If
 
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcers"
+            Dim OutsourcersCount As Integer = ホーム.Sql.ExecuteScalar
+
+            If OutsourcersCount > 0 Then
+                Dim DataCount As Integer = 0
+
+                ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+                Dim OutsourcersReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While OutsourcersReader.Read
+                    DataCount += 1
+
+                    OutsoucersList(DataCount, 3) = OutsourcersReader.Item("outsrcr_code")
+                    OutsoucersList(DataCount, 4) = OutsourcersReader.Item("outsrcr_name")
+                    OutsoucersList(DataCount, 5) = OutsourcersReader.Item("worktype")
+                End While
+                OutsourcersReader.Close()
+            End If
+
 
             ホーム.Modified = "False"
             FormLoad = "False"
@@ -287,7 +306,7 @@ Public Class 予算総括入力
 
             Dim ControlData(5, 1) As String
             ControlData(0, 0) = 11
-            ControlData(0, 1) = Company.Text
+            ControlData(0, 1) = Company.Value
             ControlData(1, 0) = 12
             ControlData(1, 1) = Year.Text
             ControlData(2, 0) = 20
@@ -354,7 +373,7 @@ Public Class 予算総括入力
             ホーム.Sql.Parameters.Add(New SqlParameter("@staff3", SqlDbType.NVarChar)).Value = Staff3.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@staff4", SqlDbType.NVarChar)).Value = Staff4.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@bdgtdprtmnt", SqlDbType.NVarChar)).Value = BdgtDprtmnt.Text
-            ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = Decimal.Parse(ExpenseRate.Text)
+            ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = Decimal.Parse(ExpenseRate.Value)
 
             If DataCount >= 1 Then
 
@@ -386,6 +405,7 @@ Public Class 予算総括入力
                 If IsNothing(OutsoucersList(ListRow + 1, 2)) = False Then
                     DeleteCell = "True"
                 End If
+
 
                 Dim OutsrcrCodeCell As Integer = OutsoucersList(ListRow + 1, 3)
                 Dim OutsrceNameCell As String = OutsoucersList(ListRow + 1, 4)

@@ -6,6 +6,11 @@ Public Class 大工種選択
         Try
             Dim Total As Int64 = 0
 
+            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM l_worktype"
+            Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
+
+            L_WorkTypesList.Rows.Count = Count + 1
+
             Dim RowCount As Integer = 1
             ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktype ORDER BY l_worktype_code ASC"
             Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
@@ -14,7 +19,7 @@ Public Class 大工種選択
                 L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_worktype_code")
                 L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_worktype")
 
-                ホーム.Sql.CommandText = "SELECT SUM(amount) FROM s_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_worktype_code=" _
+                ホーム.Sql.CommandText = "SELECT SUM(amount_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_worktype_code=" _
                                                 & LWorkTypeReader.Item("l_worktype_code")
                 L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
 

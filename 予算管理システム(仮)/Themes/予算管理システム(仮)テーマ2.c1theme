@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<C1Theme DocVersion="1.1.1 4.5.20212.513" Name="予算管理テーマ">
+<C1Theme DocVersion="1.1.1 4.5.20212.513" Name="予算管理テーマ2">
   <Children>
     <BaseThemeProperties Name="BaseThemeProperties">
       <Children>
@@ -4901,7 +4901,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>255, 255, 214</Color>
+                    <Color>221, 236, 253</Color>
                   </Value>
                 </Background>
                 <Image Name="BackImage">
@@ -4962,7 +4962,7 @@
                 <Background Name="Background">
                   <AllowedTypes>Solid</AllowedTypes>
                   <Value Type="Solid">
-                    <Color>255, 255, 214</Color>
+                    <Color>221, 236, 253</Color>
                   </Value>
                 </Background>
               </Children>

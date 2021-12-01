@@ -35,6 +35,7 @@ Partial Class ホーム
         Me.HomeSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.TreePanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
+        Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.MenuComｍand = New C1.Win.C1Command.C1CommandHolder()
         Me.ファイル = New C1.Win.C1Command.C1CommandMenu()
@@ -222,7 +223,6 @@ Partial Class ホーム
         Me.Label2 = New System.Windows.Forms.Label()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -330,7 +330,7 @@ Partial Class ホーム
         Me.HomeTreeView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.HomeTreeView.BackColor = System.Drawing.Color.White
+        Me.HomeTreeView.BackColor = System.Drawing.SystemColors.Control
         '
         '
         '
@@ -344,23 +344,6 @@ Partial Class ホーム
         C1TreeColumn1.DisplayFieldName = Nothing
         C1TreeColumn1.HeaderText = Nothing
         C1TreeColumn1.Name = "Column1"
-        C1TreeColumn1.Styles.ColumnHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
-        C1TreeColumn1.Styles.ColumnHeader.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        C1TreeColumn1.Styles.ColumnHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.ColumnHeader.VerticalAlign = System.Windows.Forms.VisualStyles.VerticalAlignment.Center
-        C1TreeColumn1.Styles.Default.BackColor = System.Drawing.Color.White
-        C1TreeColumn1.Styles.Default.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.Disabled.BackColor = System.Drawing.Color.White
-        C1TreeColumn1.Styles.Disabled.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        C1TreeColumn1.Styles.Hot.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
-        C1TreeColumn1.Styles.Hot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.HotSelected.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
-        C1TreeColumn1.Styles.HotSelected.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.Selected.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
-        C1TreeColumn1.Styles.Selected.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        C1TreeColumn1.Styles.UnfocusedSelected.BackColor = System.Drawing.Color.White
-        C1TreeColumn1.Styles.UnfocusedSelected.ForeColor = System.Drawing.SystemColors.GrayText
         Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
@@ -376,6 +359,16 @@ Partial Class ホーム
         Me.HomeTreeView.Styles.UnfocusedSelected.BackColor = System.Drawing.Color.White
         Me.HomeTreeView.TabIndex = 44
         Me.SystemTheme.SetTheme(Me.HomeTreeView, "予算管理テーマ")
+        '
+        'FormPanel
+        '
+        Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Height = 664
+        Me.FormPanel.Location = New System.Drawing.Point(273, 0)
+        Me.FormPanel.Name = "FormPanel"
+        Me.FormPanel.Size = New System.Drawing.Size(990, 664)
+        Me.FormPanel.TabIndex = 1
+        Me.FormPanel.Text = "パネル2"
         '
         'ButtonImageList
         '
@@ -1561,6 +1554,8 @@ Partial Class ホーム
         Me.MainMenu.Name = "MainMenu"
         Me.MainMenu.Size = New System.Drawing.Size(1264, 20)
         Me.SystemTheme.SetTheme(Me.MainMenu, "予算管理テーマ")
+        Me.MainMenu.VisualStyle = C1.Win.C1Command.VisualStyle.Office2010Blue
+        Me.MainMenu.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue
         '
         'C1CommandLink2
         '
@@ -1613,6 +1608,7 @@ Partial Class ホーム
         'C1TextBox1
         '
         Me.C1TextBox1.AutoSize = False
+        Me.C1TextBox1.BackColor = System.Drawing.Color.White
         Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
@@ -1633,27 +1629,16 @@ Partial Class ホーム
         Me.CreateFileDialog.InitialDirectory = "D:\"
         Me.CreateFileDialog.OverwritePrompt = False
         '
-        'FormPanel
-        '
-        Me.FormPanel.BackColor = System.Drawing.Color.White
-        Me.FormPanel.Height = 664
-        Me.FormPanel.Location = New System.Drawing.Point(273, 0)
-        Me.FormPanel.Name = "FormPanel"
-        Me.FormPanel.Size = New System.Drawing.Size(990, 664)
-        Me.FormPanel.TabIndex = 1
-        Me.FormPanel.Text = "パネル2"
-        '
         'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
-        Me.BackColor = System.Drawing.Color.White
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1264, 684)
         Me.Controls.Add(Me.HomeSplitContainer)
         Me.Controls.Add(Me.MainMenu)
         Me.Enabled = False
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Name = "ホーム"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "予算管理システム(仮)"
