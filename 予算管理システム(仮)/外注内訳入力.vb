@@ -69,15 +69,9 @@ Public Class 外注内訳入力
         Breakdown.Rows(1).Height = 17
         Breakdown.Rows(2).Height = 17
 
-        ホーム.Connection.Close()
-        ホーム.Connection.Dispose()
-        ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-
         '一番大きい変更回数を取得し、変更回数の上限下限をセット
-        ホーム.Connection.Open()
-        ホーム.SystemSql.Connection = ホーム.Connection
-        ホーム.SystemSql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
-        Dim Maxoutsrc As Integer = ホーム.SystemSql.ExecuteScalar
+        ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
+        Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
 
         ContractNo.PostValidation.Validation = PostValidationTypeEnum.ValuesAndIntervals
         Dim valInteval_1 As ValueInterval = New ValueInterval(0, Maxoutsrc, True, True)
@@ -87,49 +81,26 @@ Public Class 外注内訳入力
         Breakdown.Footers.Descriptions.Add(New FooterDescription())
         Breakdown.Footers.Fixed = True
 
+        '協力業者テーブルからレコード数を取得
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
+        Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-        ''協力業者テーブルからレコード数を取得
-        'ホーム.SystemSql.Parameters.Clear()
-        'ホーム.SystemSql.CommandText = "SELECT count(outsrcr_code) from Outsourcers"
-        'Dim Vendorcount As Integer = ホーム.SystemSql.ExecuteScalar
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
 
-        'ホーム.SystemSql.Parameters.Clear()
-        'ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
+        Dim Coopcount As Integer = 1
+        Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
+        While Coopreader.Read
+            Me.Breakdown.Rows.Add()
+            Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
+            Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
+            Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+            Coopcount += 1
 
-        'Dim Coopcount As Integer = 1
-        'Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        'While Coopreader.Read
-        '    Me.Breakdown.Rows.Add()
-        '    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
-        '    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
-        '    Coopcount += 1
+        End While
+        Coopreader.Close()
 
-        'End While
-        'Coopreader.Close()
-
-        'For Vendorloop As Integer = 1 To Vendorcount
-        '    ホーム.SystemSql.Parameters.Clear()
-        '    ホーム.SystemSql.CommandText = "SELECT * FROM outsourcing_plans where outsrcr_code =" & Breakdown(0, Vendorloop) & "AND outsrc_no=" & ContractNo.Value 'ここにDetailListから工種コード検索を追加
-        '    Dim Planreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        '    Dim Planrow1 As Integer = 3
-        '    Dim Planrow2 As Integer = 4
-        '    Dim Planrow3 As Integer = 5
-        '    Dim quanity As Integer
-        '    Dim costea As Integer
-        '    While Planreader.Read
-        '        Me.Breakdown.Rows.Add()
-        '        Breakdown(Planrow1, Vendorloop) = Planreader.Item("outsrcng_quanity")
-        '        Breakdown(Planrow2, Vendorloop) = Planreader.Item("outsrcng_costea")
-        '        quanity = Breakdown(Planrow1, Vendorloop)
-        '        costea = Breakdown(Planrow2, Vendorloop)
-        '        Breakdown(Planrow3, Vendorloop) = quanity * costea
-        '        Planrow1 += 3
-        '        Planrow2 += 3
-        '        Planrow3 += 3
-
-        '    End While
-        '    Planreader.Close()
-        'Next
     End Sub
 
     Private Sub C1FlexGrid2_Click(sender As Object, e As EventArgs)
@@ -141,7 +112,7 @@ Public Class 外注内訳入力
     End Sub
 
     Private Sub DetailList_AfterScroll(sender As Object, e As RangeEventArgs) Handles DetailList.AfterScroll
-        DetailList.ScrollPosition = Breakdown.ScrollPosition
+        Breakdown.ScrollPosition = DetailList.ScrollPosition
 
     End Sub
 
@@ -156,57 +127,56 @@ Public Class 外注内訳入力
     Private Sub ContractNo_ValueChanged(sender As Object, e As EventArgs) Handles ContractNo.ValueChanged
         Breakdown.Clear(ClearFlags.Content)
 
-        '協力業者テーブルからレコード数を取得
-        ホーム.SystemSql.Parameters.Clear()
-        ホーム.SystemSql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
-        Dim Vendorcount As Integer = ホーム.SystemSql.ExecuteScalar
+        ''協力業者テーブルからレコード数を取得
+        'ホーム.Sql.Parameters.Clear()
+        'ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
+        'Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-        ホーム.SystemSql.Parameters.Clear()
-        ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
+        'ホーム.Sql.Parameters.Clear()
+        'ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
 
-        Dim Coopcount As Integer = 1
-        Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-        While Coopreader.Read
-            Me.Breakdown.Rows.Add()
-            Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-            Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-            Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
-            Coopcount += 1
+        'Dim Coopcount As Integer = 1
+        'Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
+        'While Coopreader.Read
+        '    Me.Breakdown.Rows.Add()
+        '    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
+        '    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
+        '    Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+        '    Coopcount += 1
 
-        End While
-        Coopreader.Close()
-        Dim Command As New SqlCommand
+        'End While
+        'Coopreader.Close()
 
-        For Vendorloop As Integer = 1 To Vendorcount
-            '明細書テーブルから明細書IDで取引先コードを取得
-            Command.CommandText = "SELECT outsrcr_code FROM details where dtl_id =" & DetailList(0, Vendorloop)
-            Dim VendorCode As Integer = ホーム.SystemSql.ExecuteScalar
+        'For Vendorloop As Integer = 1 To Vendorcount
+        '    '明細書テーブルから明細書IDで取引先IDを取得
+        '    Command.CommandText = "SELECT outsrcr_id FROM details where dtl_id =" & DetailList(0, Vendorloop)
+        '    Dim VendorCode As Integer = ホーム.Sql.ExecuteScalar
 
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT * FROM outsourcing_plan where cost_id =" & DetailList(0, Vendorloop) '& "AND outsrc_no=" & ContractNo.Value 'ここにDetailListから工種コード検索を追加
-            Dim Planreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-            ホーム.SystemSql.CommandText = "SELECT  FROM details where cost_id =" & DetailList(0, Vendorloop)
-            Dim Planrow1 As Integer = 3
-            Dim Planrow2 As Integer = 4
-            Dim Planrow3 As Integer = 5
-            Dim quanity As Integer
-            Dim costea As Integer
-            While Planreader.Read
-                Me.Breakdown.Rows.Add()
-                If DetailList(Planrow1, Vendorloop) = Planreader.Item("cost_id") Then
-                    Breakdown(Planrow1, Vendorloop) = Planreader.Item("outsrcng_quanity")
-                    Breakdown(Planrow2, Vendorloop) = Planreader.Item("outsrcng_costea")
-                    quanity = Breakdown(Planrow1, Vendorloop)
-                    costea = Breakdown(Planrow2, Vendorloop)
-                    Breakdown(Planrow3, Vendorloop) = quanity * costea
-                    Breakdown.Rows(Planrow3).AllowEditing = False
-                    Planrow1 += 3
-                    Planrow2 += 3
-                    Planrow3 += 3
-                End If
-            End While
-            Planreader.Close()
-        Next
+        '    ホーム.Sql.Parameters.Clear()
+        '    ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans where outsrcr_id =" & DetailList(0, Vendorloop) '& "AND outsrc_no=" & ContractNo.Value 'ここにDetailListから工種コード検索を追加
+        '    Dim Planreader As SqlDataReader = ホーム.Sql.ExecuteReader
+        '    'ホーム.Sql.CommandText = "SELECT  FROM details where dtl_id =" & DetailList(0, Vendorloop)
+        '    Dim Planrow1 As Integer = 3
+        '    Dim Planrow2 As Integer = 4
+        '    Dim Planrow3 As Integer = 5
+        '    Dim quanity As Integer
+        '    Dim costea As Integer
+        '    While Planreader.Read
+        '        Me.Breakdown.Rows.Add()
+        '        If DetailList(Planrow1, Vendorloop) = Planreader.Item("dtl_id") Then
+        '            Breakdown(Planrow1, Vendorloop) = Planreader.Item("outsrcng_quanity")
+        '            Breakdown(Planrow2, Vendorloop) = Planreader.Item("outsrcng_costea")
+        '            quanity = Breakdown(Planrow1, Vendorloop)
+        '            costea = Breakdown(Planrow2, Vendorloop)
+        '            Breakdown(Planrow3, Vendorloop) = quanity * costea
+        '            Breakdown.Rows(Planrow3).AllowEditing = False
+        '            Planrow1 += 3
+        '            Planrow2 += 3
+        '            Planrow3 += 3
+        '        End If
+        '    End While
+        '    Planreader.Close()
+        'Next
 
     End Sub
 
@@ -231,35 +201,35 @@ Public Class 外注内訳入力
     End Sub
 
     Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
-        ホーム.SystemSql.Parameters.Clear()
-        ホーム.SystemSql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
-        Dim Maxoutsrc As Integer = ホーム.SystemSql.ExecuteScalar
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
+        Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
 
         If MsgBox("第" & ホーム.BudgetNo & "回予算計画の最新の変更計画をもとに、新しい変更計画を作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
             ContractNo.Value = Maxoutsrc + 1
 
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT created_date FROM Outsourcing_plans WHERE outsrc_no=" & ContractNo.Value - 1
-            Dim CreatedDate As String = ホーム.SystemSql.ExecuteScalar
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT created_date FROM Outsourcing_plans WHERE outsrc_no=" & ContractNo.Value - 1
+            Dim CreatedDate As String = ホーム.Sql.ExecuteScalar
             CreatedDateBox.Value = CreatedDate
 
 
             '協力業者テーブルからレコード数を取得
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
-            Dim Vendorcount As Integer = ホーム.SystemSql.ExecuteScalar
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
+            Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
             '外注計画報告書テーブルから変更内容を取得
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value - 1
-            Dim change As String = ホーム.SystemSql.ExecuteScalar
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value - 1
+            Dim change As String = ホーム.Sql.ExecuteScalar
             ChangeDetail.Value = change
 
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT * FROM outsourcers"
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
 
             Dim Coopcount As Integer = 1
-            Dim Coopreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Coopreader.Read
                 Me.Breakdown.Rows.Add()
                 Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
@@ -271,9 +241,9 @@ Public Class 外注内訳入力
             Coopreader.Close()
 
             For Vendorloop As Integer = 1 To Vendorcount
-                ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = "SELECT * FROM details where outsrcr_id =" & Breakdown(0, Vendorloop) ' & "AND outsrc_no=" & ContractNo.Value 'ここにDetailListから工種コード検索を追加
-                Dim Planreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT * FROM details where outsrcr_id =" & Breakdown(0, Vendorloop) ' & "AND outsrc_no=" & ContractNo.Value 'ここにDetailListから工種コード検索を追加
+                Dim Planreader As SqlDataReader = ホーム.Sql.ExecuteReader
                 Dim Planrow1 As Integer = 3
                 Dim Planrow2 As Integer = 4
                 Dim Planrow3 As Integer = 5

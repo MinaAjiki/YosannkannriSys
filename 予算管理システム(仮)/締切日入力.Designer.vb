@@ -203,6 +203,7 @@ Partial Class 締切日入力
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "締切日入力"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "締切日入力"
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)

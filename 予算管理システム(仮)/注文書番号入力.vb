@@ -20,12 +20,6 @@ Public Class 注文書番号入力
     End Sub
 
     Private Sub 注文書番号入力_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'ホーム.Connection.Close()
-        'ホーム.Connection.Dispose()
-        ''ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-        'ホーム.Connection.Open()
-        'ホーム.SystemSql.Connection = ホーム.Connection
 
         '行数取得のため協力業者数カウント
         ホーム.Sql.Parameters.Clear()
@@ -56,7 +50,7 @@ Public Class 注文書番号入力
         Dim SystemSql As New SqlCommand
         SystmCnnctn.Close()
         SystmCnnctn.Dispose()
-        SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
+        SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
         SystmCnnctn.Open()
         SystemSql.Connection = SystmCnnctn
 
@@ -74,7 +68,7 @@ Public Class 注文書番号入力
             Dim Total As New Integer
             While DtlID.Read
                 SystemSql.Parameters.Clear()
-                SystemSql.CommandText = "SELECT SUM(outsrcng_quanity*outsrcng_costea) FROM outsourcing_plans WHERE dtl_id = " & DtlID.Item("dtl_id")
+                SystemSql.CommandText = "SELECT ISNULL(outsrcng_quanity*outsrcng_costea,0) FROM outsourcing_plans WHERE dtl_id = " & DtlID.Item("dtl_id")
                 Dim quacos As Integer = SystemSql.ExecuteScalar
                 Total += quacos
             End While
