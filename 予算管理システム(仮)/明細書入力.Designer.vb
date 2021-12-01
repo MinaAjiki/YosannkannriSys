@@ -28,17 +28,20 @@ Partial Class 明細書入力
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.行の挿入 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.行のコピー = New System.Windows.Forms.ToolStripMenuItem()
+        Me.コピーした行を貼り付け = New System.Windows.Forms.ToolStripMenuItem()
+        Me.代価表作成 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
+        Me.SWorkType = New C1.Win.C1Input.C1TextBox()
         Me.Category = New System.Windows.Forms.RadioButton()
         Me.Outsoucing = New System.Windows.Forms.RadioButton()
         Me.CategoryList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.CategoryTotalList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.OutsoucerList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.OutsoucerTotalList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.CategoryTotalList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
@@ -54,12 +57,12 @@ Partial Class 明細書入力
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SWorkType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CategoryList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OutsoucerList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OutsoucerTotalList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
@@ -107,9 +110,8 @@ Partial Class 明細書入力
         '
         'DetailsList
         '
+        Me.DetailsList.AllowAddNew = True
         Me.DetailsList.AllowDelete = True
-        Me.DetailsList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.DetailsList.AllowEditing = False
         Me.DetailsList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.DetailsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.DetailsList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -117,50 +119,71 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.DetailsList.Location = New System.Drawing.Point(24, 68)
+        Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.DetailsList.Location = New System.Drawing.Point(10, 68)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 25
+        Me.DetailsList.Rows.Count = 21
         Me.DetailsList.Rows.Fixed = 3
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
+        Me.DetailsList.ShowCellLabels = True
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.DetailsList.Size = New System.Drawing.Size(463, 497)
+        Me.DetailsList.Size = New System.Drawing.Size(483, 497)
+        Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 43
-        Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ")
+        Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.行の挿入, Me.行のコピー, Me.コピーした行を貼り付け, Me.代価表作成})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.ShowImageMargin = False
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(100, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 92)
         Me.ContextMenuStrip1.Text = "項目選択"
         '
-        'ToolStripMenuItem1
+        '行の挿入
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(99, 22)
-        Me.ToolStripMenuItem1.Text = "項目選択"
+        Me.行の挿入.Name = "行の挿入"
+        Me.行の挿入.Size = New System.Drawing.Size(170, 22)
+        Me.行の挿入.Text = "項目選択"
         '
-        'C1TextBox1
+        '行のコピー
         '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox1.Enabled = False
-        Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1TextBox1.Location = New System.Drawing.Point(86, 43)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(173, 20)
-        Me.C1TextBox1.TabIndex = 45
-        Me.C1TextBox1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1TextBox1, "予算管理テーマ")
-        Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.行のコピー.Name = "行のコピー"
+        Me.行のコピー.Size = New System.Drawing.Size(170, 22)
+        Me.行のコピー.Text = "ToolStripMenuItem1"
+        '
+        'コピーした行を貼り付け
+        '
+        Me.コピーした行を貼り付け.Name = "コピーした行を貼り付け"
+        Me.コピーした行を貼り付け.Size = New System.Drawing.Size(170, 22)
+        Me.コピーした行を貼り付け.Text = "ToolStripMenuItem1"
+        '
+        '代価表作成
+        '
+        Me.代価表作成.Name = "代価表作成"
+        Me.代価表作成.Size = New System.Drawing.Size(170, 22)
+        Me.代価表作成.Text = "ToolStripMenuItem1"
+        '
+        'SWorkType
+        '
+        Me.SWorkType.AutoSize = False
+        Me.SWorkType.BackColor = System.Drawing.Color.White
+        Me.SWorkType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SWorkType.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SWorkType.Enabled = False
+        Me.SWorkType.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SWorkType.Location = New System.Drawing.Point(72, 43)
+        Me.SWorkType.Name = "SWorkType"
+        Me.SWorkType.Size = New System.Drawing.Size(173, 20)
+        Me.SWorkType.TabIndex = 45
+        Me.SWorkType.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.SWorkType, "予算管理テーマ")
+        Me.SWorkType.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Category
         '
@@ -192,32 +215,36 @@ Partial Class 明細書入力
         '
         'CategoryList
         '
+        Me.CategoryList.AllowAddNew = True
         Me.CategoryList.AllowDelete = True
-        Me.CategoryList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.CategoryList.AllowEditing = False
+        Me.CategoryList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
         Me.CategoryList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.CategoryList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.CategoryList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CategoryList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CategoryList.ColumnInfo = resources.GetString("CategoryList.ColumnInfo")
-        Me.CategoryList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CategoryList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
-        Me.CategoryList.Rows.Count = 25
+        Me.CategoryList.Rows.Count = 21
         Me.CategoryList.Rows.Fixed = 3
         Me.CategoryList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CategoryList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.CategoryList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.CategoryList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
         Me.CategoryList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.CategoryList.Size = New System.Drawing.Size(496, 497)
+        Me.CategoryList.StyleInfo = resources.GetString("CategoryList.StyleInfo")
         Me.CategoryList.TabIndex = 96
-        Me.SystemTheme.SetTheme(Me.CategoryList, "予算管理テーマ")
+        Me.SystemTheme.SetTheme(Me.CategoryList, "予算管理テーマ2")
         '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.CategoryTotalList)
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.CategoryList)
         Me.Panel3.Controls.Add(Me.OutsoucerList)
@@ -228,6 +255,32 @@ Partial Class 明細書入力
         Me.Panel3.Size = New System.Drawing.Size(507, 517)
         Me.Panel3.TabIndex = 97
         Me.SystemTheme.SetTheme(Me.Panel3, "(default)")
+        '
+        'CategoryTotalList
+        '
+        Me.CategoryTotalList.AllowDelete = True
+        Me.CategoryTotalList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.CategoryTotalList.AllowEditing = False
+        Me.CategoryTotalList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
+        Me.CategoryTotalList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.CategoryTotalList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CategoryTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.CategoryTotalList.ColumnInfo = resources.GetString("CategoryTotalList.ColumnInfo")
+        Me.CategoryTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CategoryTotalList.Location = New System.Drawing.Point(0, 496)
+        Me.CategoryTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.CategoryTotalList.Name = "CategoryTotalList"
+        Me.CategoryTotalList.Rows.Count = 1
+        Me.CategoryTotalList.Rows.Fixed = 0
+        Me.CategoryTotalList.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.CategoryTotalList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.CategoryTotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.CategoryTotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.CategoryTotalList.Size = New System.Drawing.Size(478, 44)
+        Me.CategoryTotalList.StyleInfo = resources.GetString("CategoryTotalList.StyleInfo")
+        Me.CategoryTotalList.TabIndex = 99
+        Me.SystemTheme.SetTheme(Me.CategoryTotalList, "予算管理テーマ")
         '
         'Label3
         '
@@ -253,18 +306,21 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerList.ColumnInfo = resources.GetString("OutsoucerList.ColumnInfo")
-        Me.OutsoucerList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.OutsoucerList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.OutsoucerList.Location = New System.Drawing.Point(0, 0)
         Me.OutsoucerList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerList.Name = "OutsoucerList"
-        Me.OutsoucerList.Rows.Count = 25
+        Me.OutsoucerList.Rows.Count = 60
         Me.OutsoucerList.Rows.Fixed = 3
         Me.OutsoucerList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.OutsoucerList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.OutsoucerList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
+        Me.OutsoucerList.ShowCellLabels = True
         Me.OutsoucerList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucerList.Size = New System.Drawing.Size(496, 514)
+        Me.OutsoucerList.StyleInfo = resources.GetString("OutsoucerList.StyleInfo")
         Me.OutsoucerList.TabIndex = 97
-        Me.SystemTheme.SetTheme(Me.OutsoucerList, "予算管理テーマ")
+        Me.SystemTheme.SetTheme(Me.OutsoucerList, "予算管理テーマ2")
         '
         'OutsoucerTotalList
         '
@@ -277,7 +333,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerTotalList.ColumnInfo = resources.GetString("OutsoucerTotalList.ColumnInfo")
-        Me.OutsoucerTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.OutsoucerTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerTotalList.Location = New System.Drawing.Point(466, 564)
         Me.OutsoucerTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerTotalList.Name = "OutsoucerTotalList"
@@ -288,37 +344,14 @@ Partial Class 明細書入力
         Me.OutsoucerTotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.OutsoucerTotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucerTotalList.Size = New System.Drawing.Size(478, 44)
+        Me.OutsoucerTotalList.StyleInfo = resources.GetString("OutsoucerTotalList.StyleInfo")
         Me.OutsoucerTotalList.TabIndex = 100
         Me.SystemTheme.SetTheme(Me.OutsoucerTotalList, "予算管理テーマ")
-        '
-        'CategoryTotalList
-        '
-        Me.CategoryTotalList.AllowDelete = True
-        Me.CategoryTotalList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.CategoryTotalList.AllowEditing = False
-        Me.CategoryTotalList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
-        Me.CategoryTotalList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.CategoryTotalList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CategoryTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.CategoryTotalList.ColumnInfo = resources.GetString("CategoryTotalList.ColumnInfo")
-        Me.CategoryTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CategoryTotalList.Location = New System.Drawing.Point(466, 564)
-        Me.CategoryTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.CategoryTotalList.Name = "CategoryTotalList"
-        Me.CategoryTotalList.Rows.Count = 1
-        Me.CategoryTotalList.Rows.Fixed = 0
-        Me.CategoryTotalList.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.CategoryTotalList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.CategoryTotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.CategoryTotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.CategoryTotalList.Size = New System.Drawing.Size(478, 44)
-        Me.CategoryTotalList.TabIndex = 99
-        Me.SystemTheme.SetTheme(Me.CategoryTotalList, "予算管理テーマ")
         '
         'C1NumericEdit2
         '
         Me.C1NumericEdit2.AutoSize = False
+        Me.C1NumericEdit2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
         Me.C1NumericEdit2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1NumericEdit2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
@@ -367,16 +400,15 @@ Partial Class 明細書入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.CategoryTotalList)
         Me.C1SplitterPanel1.Controls.Add(Me.OutsoucerTotalList)
         Me.C1SplitterPanel1.Controls.Add(Me.SwitchingPanel)
         Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit2)
         Me.C1SplitterPanel1.Controls.Add(Me.Label2)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox1)
+        Me.C1SplitterPanel1.Controls.Add(Me.SWorkType)
         Me.C1SplitterPanel1.Controls.Add(Me.Label1)
         Me.C1SplitterPanel1.Controls.Add(Me.Panel3)
         Me.C1SplitterPanel1.Controls.Add(Me.DetailsList)
-        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
+        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
@@ -416,7 +448,7 @@ Partial Class 明細書入力
         Me.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(25, 43)
+        Me.Label1.Location = New System.Drawing.Point(11, 43)
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(60, 20)
@@ -541,7 +573,7 @@ Partial Class 明細書入力
         Me.ClientSize = New System.Drawing.Size(990, 662)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
-        Me.Font = New System.Drawing.Font("メイリオ", 10.0!)
+        Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "明細書入力"
@@ -550,12 +582,12 @@ Partial Class 明細書入力
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SWorkType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CategoryList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
+        CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutsoucerList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutsoucerTotalList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
@@ -575,7 +607,7 @@ Partial Class 明細書入力
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents Cancel As Button
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents SWorkType As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents C1NumericEdit2 As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Label2 As Label
@@ -592,5 +624,8 @@ Partial Class 明細書入力
     Friend WithEvents Label3 As Label
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents 行の挿入 As ToolStripMenuItem
+    Friend WithEvents 行のコピー As ToolStripMenuItem
+    Friend WithEvents コピーした行を貼り付け As ToolStripMenuItem
+    Friend WithEvents 代価表作成 As ToolStripMenuItem
 End Class

@@ -27,6 +27,8 @@ Public Class ホーム
     Public Modified As String = "False"                                    'データ修正判断
     Public lworktypecode As Integer
     Public lworktypename As String
+    Public sworktypecode As Integer
+    Public sworktypename As String
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -213,8 +215,8 @@ Public Class ホーム
             FormClose = FormCloseLoad.FormCheck
         End If
 
-        大工種選択.TopLevel = False
-        FormPanel.Controls.Add(大工種選択)
+            大工種選択.TopLevel = False
+            FormPanel.Controls.Add(大工種選択)
             大工種選択.Show()
 
         Catch ex As Exception
