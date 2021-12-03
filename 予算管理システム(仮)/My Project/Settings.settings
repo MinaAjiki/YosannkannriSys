@@ -13,10 +13,10 @@
     <Setting Name="SystemSql" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=SVACD001;Initial Catalog=ProjectManagementSuite;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=SVACD001;Initial Catalog=PMS;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=SVACD001;Initial Catalog=ProjectManagementSuite;Integrated Security=True</Value>
+      <Value Profile="(Default)">Data Source=SVACD001;Initial Catalog=PMS;Integrated Security=True</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -49,7 +49,14 @@
   &lt;ProviderName&gt;System.Data.OracleClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=CAP21;Persist Security Info=True;User ID=CAP21_05;Password=CAP21_05;Unicode=True</Value>
-
+    </Setting>
+    <Setting Name="CAP21" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=CAP21;User ID=CAP21_ICK_01;Password=CAP21_ICK_01;Unicode=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.OracleClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=CAP21;User ID=CAP21_ICK_01;Password=CAP21_ICK_01;Unicode=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
