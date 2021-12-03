@@ -30,7 +30,7 @@ Partial Class 出来高入力
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.Deadline = New C1.Win.C1Input.C1TextBox()
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.Total = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.TotalList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.TotalLabel = New System.Windows.Forms.Label()
         Me.SearchSelect = New C1.Win.C1Input.C1ComboBox()
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
@@ -47,7 +47,7 @@ Partial Class 出来高入力
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Deadline, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Total, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TotalList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,7 @@ Partial Class 出来高入力
         '
         Me.Deadline.BackColor = System.Drawing.Color.White
         Me.Deadline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Deadline.DataType = GetType(Object)
         Me.Deadline.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Deadline.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.Deadline.Location = New System.Drawing.Point(807, 12)
@@ -129,7 +130,6 @@ Partial Class 出来高入力
         '
         'DetailsList
         '
-        Me.DetailsList.AllowDelete = True
         Me.DetailsList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.DetailsList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.DetailsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
@@ -141,7 +141,7 @@ Partial Class 出来高入力
         Me.DetailsList.Location = New System.Drawing.Point(17, 83)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 25
+        Me.DetailsList.Rows.Count = 3
         Me.DetailsList.Rows.Fixed = 3
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
@@ -150,31 +150,34 @@ Partial Class 出来高入力
         Me.DetailsList.Size = New System.Drawing.Size(841, 506)
         Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 66
-        Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ")
+        Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")
         '
-        'Total
+        'TotalList
         '
-        Me.Total.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.Total.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.Total.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.Total.ColumnInfo = resources.GetString("Total.ColumnInfo")
-        Me.Total.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Total.Location = New System.Drawing.Point(237, 594)
-        Me.Total.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Total.Name = "Total"
-        Me.Total.Rows.Count = 1
-        Me.Total.Rows.Fixed = 0
-        Me.Total.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.Total.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.Total.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.Total.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.Total.Size = New System.Drawing.Size(602, 25)
-        Me.Total.StyleInfo = resources.GetString("Total.StyleInfo")
-        Me.Total.TabIndex = 67
-        Me.SystemTheme.SetTheme(Me.Total, "(default)")
+        Me.TotalList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.TotalList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.TotalList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.TotalList.ColumnInfo = resources.GetString("TotalList.ColumnInfo")
+        Me.TotalList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.TotalList.Location = New System.Drawing.Point(237, 594)
+        Me.TotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.TotalList.Name = "TotalList"
+        Me.TotalList.Rows.Count = 1
+        Me.TotalList.Rows.Fixed = 0
+        Me.TotalList.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.TotalList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.TotalList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.TotalList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.TotalList.Size = New System.Drawing.Size(602, 25)
+        Me.TotalList.StyleInfo = resources.GetString("TotalList.StyleInfo")
+        Me.TotalList.TabIndex = 67
+        Me.SystemTheme.SetTheme(Me.TotalList, "(default)")
         '
         'TotalLabel
         '
+        Me.TotalLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TotalLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.TotalLabel.Location = New System.Drawing.Point(198, 594)
         Me.TotalLabel.Name = "TotalLabel"
@@ -287,7 +290,7 @@ Partial Class 出来高入力
         Me.FormPanel.Controls.Add(Me.Unit2)
         Me.FormPanel.Controls.Add(Me.Unit1)
         Me.FormPanel.Controls.Add(Me.TotalLabel)
-        Me.FormPanel.Controls.Add(Me.Total)
+        Me.FormPanel.Controls.Add(Me.TotalList)
         Me.FormPanel.Controls.Add(Me.DetailsList)
         Me.FormPanel.Controls.Add(Me.Deadline)
         Me.FormPanel.Controls.Add(Me.DeadlineLabel)
@@ -394,7 +397,7 @@ Partial Class 出来高入力
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Deadline, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Total, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TotalList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchSelect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -418,7 +421,7 @@ Partial Class 出来高入力
     Friend WithEvents DeadlineLabel As Label
     Friend WithEvents Deadline As C1.Win.C1Input.C1TextBox
     Friend WithEvents DetailsList As C1.Win.C1FlexGrid.C1FlexGrid
-    Friend WithEvents Total As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents TotalList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents TotalLabel As Label
     Friend WithEvents Unit3 As Label
     Friend WithEvents Unit2 As Label
