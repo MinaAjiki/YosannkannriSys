@@ -28,6 +28,7 @@ Partial Class 費用マスタ一覧
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.SearchName = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         Me.TableName = New System.Windows.Forms.Label()
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
         Me.HeadLine = New System.Windows.Forms.Label()
@@ -35,7 +36,6 @@ Partial Class 費用マスタ一覧
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
-        Me.SearchName = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormContainer.SuspendLayout()
@@ -120,9 +120,20 @@ Partial Class 費用マスタ一覧
         Me.MainPanel.Text = "パネル1"
         Me.MainPanel.Width = 1195
         '
+        'SearchName
+        '
+        Me.SearchName.BackColor = System.Drawing.Color.Transparent
+        Me.SearchName.Location = New System.Drawing.Point(915, 46)
+        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SearchName.Name = "SearchName"
+        Me.SearchName.ShowClearButton = False
+        Me.SearchName.Size = New System.Drawing.Size(269, 31)
+        Me.SearchName.TabIndex = 64
+        Me.SystemTheme.SetTheme(Me.SearchName, "予算管理テーマ")
+        '
         'TableName
         '
-        Me.TableName.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.TableName.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.TableName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TableName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.TableName.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -234,17 +245,6 @@ Partial Class 費用マスタ一覧
         Me.Entry.Text = "　登 録"
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
-        '
-        'SearchName
-        '
-        Me.SearchName.BackColor = System.Drawing.Color.Transparent
-        Me.SearchName.Location = New System.Drawing.Point(915, 46)
-        Me.SearchName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.SearchName.Name = "SearchName"
-        Me.SearchName.ShowClearButton = False
-        Me.SearchName.Size = New System.Drawing.Size(269, 31)
-        Me.SearchName.TabIndex = 64
-        Me.SystemTheme.SetTheme(Me.SearchName, "予算管理テーマ")
         '
         '費用マスタ一覧
         '

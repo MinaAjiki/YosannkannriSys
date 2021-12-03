@@ -288,6 +288,8 @@ Public Class ホーム
         材料表インポート.Enabled = True
             参照作成.Enabled = True
 
+            SystemMdf.Parameters.Clear()
+
 
         Catch ex As Exception
             ErrorMessage = ex.Message

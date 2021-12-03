@@ -27,11 +27,12 @@ Partial Class 明細書入力
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.行の挿入 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.行のコピー = New System.Windows.Forms.ToolStripMenuItem()
-        Me.コピーした行を貼り付け = New System.Windows.Forms.ToolStripMenuItem()
-        Me.代価表作成 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ItemSelect = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Insert = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Copy = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Pasting = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CostCreate = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.SWorkType = New C1.Win.C1Input.C1TextBox()
         Me.Category = New System.Windows.Forms.RadioButton()
@@ -55,7 +56,7 @@ Partial Class 明細書入力
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
+        Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SWorkType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CategoryList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +119,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
-        Me.DetailsList.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.DetailsList.ContextMenuStrip = Me.右クリックメニュー
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.DetailsList.Location = New System.Drawing.Point(10, 68)
@@ -136,38 +137,44 @@ Partial Class 明細書入力
         Me.DetailsList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")
         '
-        'ContextMenuStrip1
+        '右クリックメニュー
         '
-        Me.ContextMenuStrip1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.行の挿入, Me.行のコピー, Me.コピーした行を貼り付け, Me.代価表作成})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.ShowImageMargin = False
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 92)
-        Me.ContextMenuStrip1.Text = "項目選択"
+        Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelect, Me.Insert, Me.Copy, Me.Pasting, Me.CostCreate})
+        Me.右クリックメニュー.Name = "ContextMenuStrip1"
+        Me.右クリックメニュー.ShowImageMargin = False
+        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 114)
+        Me.右クリックメニュー.Text = "項目選択"
         '
-        '行の挿入
+        'ItemSelect
         '
-        Me.行の挿入.Name = "行の挿入"
-        Me.行の挿入.Size = New System.Drawing.Size(170, 22)
-        Me.行の挿入.Text = "項目選択"
+        Me.ItemSelect.Name = "ItemSelect"
+        Me.ItemSelect.Size = New System.Drawing.Size(123, 22)
+        Me.ItemSelect.Text = "項目選択"
         '
-        '行のコピー
+        'Insert
         '
-        Me.行のコピー.Name = "行のコピー"
-        Me.行のコピー.Size = New System.Drawing.Size(170, 22)
-        Me.行のコピー.Text = "ToolStripMenuItem1"
+        Me.Insert.Name = "Insert"
+        Me.Insert.Size = New System.Drawing.Size(123, 22)
+        Me.Insert.Text = "行の挿入"
         '
-        'コピーした行を貼り付け
+        'Copy
         '
-        Me.コピーした行を貼り付け.Name = "コピーした行を貼り付け"
-        Me.コピーした行を貼り付け.Size = New System.Drawing.Size(170, 22)
-        Me.コピーした行を貼り付け.Text = "ToolStripMenuItem1"
+        Me.Copy.Name = "Copy"
+        Me.Copy.Size = New System.Drawing.Size(123, 22)
+        Me.Copy.Text = "行のコピー"
         '
-        '代価表作成
+        'Pasting
         '
-        Me.代価表作成.Name = "代価表作成"
-        Me.代価表作成.Size = New System.Drawing.Size(170, 22)
-        Me.代価表作成.Text = "ToolStripMenuItem1"
+        Me.Pasting.Name = "Pasting"
+        Me.Pasting.Size = New System.Drawing.Size(123, 22)
+        Me.Pasting.Text = "行の貼り付け"
+        '
+        'CostCreate
+        '
+        Me.CostCreate.Name = "CostCreate"
+        Me.CostCreate.Size = New System.Drawing.Size(123, 22)
+        Me.CostCreate.Text = "代価表作成"
         '
         'SWorkType
         '
@@ -218,6 +225,7 @@ Partial Class 明細書入力
         Me.CategoryList.AllowAddNew = True
         Me.CategoryList.AllowDelete = True
         Me.CategoryList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
+        Me.CategoryList.AllowEditing = False
         Me.CategoryList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.CategoryList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.CategoryList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -580,7 +588,7 @@ Partial Class 明細書入力
         Me.Opacity = 0.2R
         Me.Text = "協力業者入力"
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.右クリックメニュー.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SWorkType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CategoryList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -623,9 +631,10 @@ Partial Class 明細書入力
     Friend WithEvents CategoryTotalList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Label3 As Label
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents 行の挿入 As ToolStripMenuItem
-    Friend WithEvents 行のコピー As ToolStripMenuItem
-    Friend WithEvents コピーした行を貼り付け As ToolStripMenuItem
-    Friend WithEvents 代価表作成 As ToolStripMenuItem
+    Friend WithEvents 右クリックメニュー As ContextMenuStrip
+    Friend WithEvents CostCreate As ToolStripMenuItem
+    Friend WithEvents ItemSelect As ToolStripMenuItem
+    Friend WithEvents Insert As ToolStripMenuItem
+    Friend WithEvents Copy As ToolStripMenuItem
+    Friend WithEvents Pasting As ToolStripMenuItem
 End Class

@@ -575,7 +575,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Edit_source.png" />
+    <Content Include="bin\Debug\Edit_source.png" />
     <Content Include="Resources\Modify.png" />
     <Content Include="Resources\Search.png" />
   </ItemGroup>
