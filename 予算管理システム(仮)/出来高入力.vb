@@ -17,6 +17,14 @@ Public Class 出来高入力
     End Sub
 
     Private Sub 出来高入力_Load(sender As Object, e As EventArgs) Handles Me.Load
+        VendorList.Focus()
+        DetailsList.Visible = False
+        Unit1.Visible = False
+        Unit2.Visible = False
+        Unit3.Visible = False
+        TotalList.Visible = False
+        TotalLabel.Visible = False
+
         DetailsList(0, 2) = "工種ｺｰﾄﾞ"
         DetailsList(0, 3) = "工種"
         DetailsList(0, 4) = "単位"
@@ -31,7 +39,8 @@ Public Class 出来高入力
         DetailsList.MergedRanges.Add(0, 8, 2, 8)
 
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
-        Deadline.Text = ホーム.Sql.ExecuteScalar
+        Dim deadlineDate As String = ホーム.Sql.ExecuteScalar
+        Deadline.Text = DeadlineDate.Replace("-", "/")
 
         Dim dt As DataTable
         dt = New DataTable
@@ -80,7 +89,18 @@ Public Class 出来高入力
     End Sub
 
     Private Sub VendorList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles VendorList.SelectedIndexChanged
+
         DetailsList.Clear(ClearFlags.Content)
+        VendorList.Focus()
+        DetailsList.Visible = True
+        Unit1.Visible = True
+        Unit2.Visible = True
+        Unit3.Visible = True
+        TotalList.Visible = True
+        TotalLabel.Visible = True
+
+        Me.DetailsList.Rows.Count = 3
+        Me.DetailsList.Rows.Count = 21
         DetailsList(0, 2) = "工種ｺｰﾄﾞ"
         DetailsList(0, 3) = "工種"
         DetailsList(0, 4) = "単位"
@@ -98,9 +118,22 @@ Public Class 出来高入力
         DetailsList.MergedRanges.Add(0, 7, 2, 7)
         DetailsList.MergedRanges.Add(0, 8, 2, 8)
 
+        DetailsList.Cols（0）.Width = 0
+        DetailsList.Cols（1）.Width = 0
+        DetailsList.Cols（2）.Width = 60
+        DetailsList.Cols（3）.Width = 120
+        DetailsList.Cols（4）.Width = 40
+        DetailsList.Cols（5）.Width = 150
+        DetailsList.Cols（6）.Width = 150
+        DetailsList.Cols（7）.Width = 150
+        DetailsList.Cols（8）.Width = 150
+
+        'DetailsList.Rows(1).
+
         '管理データから締切日を取得
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
-        Deadline.Text = ホーム.Sql.ExecuteScalar
+        Dim DeadlineDate As String = ホーム.Sql.ExecuteScalar
+        Deadline.Text = DeadlineDate.Replace("-", "/")
 
         '外注業者テーブルからデータを取得し、コンボボックスに入れる
         Dim dt As DataTable
@@ -130,6 +163,8 @@ Public Class 出来高入力
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorList.Value
         Dim Coopid As Integer = ホーム.Sql.ExecuteScalar
 
+        Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
+
         '明細テーブルから外注業者IDで明細書IDを取得しリストに入れる
         ホーム.Sql.Parameters.Clear()
         ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & Coopid
@@ -149,11 +184,14 @@ Public Class 出来高入力
         Dim quanity As Integer
         Dim costea As Integer
         Dim total As Integer
+
         For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop)
             Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
             While outsrcng.Read
+                Me.DetailsList.Rows.Add()
+                Me.DetailsList.Rows.Add()
                 Me.DetailsList.Rows.Add()
                 DetailsList(Conrow1, 5) = outsrcng.Item("outsrcng_costea")
                 Dim stl As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("AliceBlue")
@@ -189,6 +227,13 @@ Public Class 出来高入力
                 DetailsList(Detarow3, 3) = details.Item("dtl_spec")
                 DetailsList(Detarow3, 4) = details.Item("dtl_spec")
                 DetailsList.MergedRanges.Add(Detarow3, 2, Detarow3, 4)
+
+                If Detarow1 Mod 2 = 0 Then
+                    DetailsList.Rows(Detarow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailsList.Rows(Detarow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailsList.Rows(Detarow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                End If
+
             End While
             Detarow1 += 3
             Detarow2 += 3
@@ -196,18 +241,24 @@ Public Class 出来高入力
             details.Close()
         Next
 
+        '前月出来高を取得し、当月出来高を計算する
         Dim totalrow1 As Integer = 4
         Dim totalrow2 As Integer = 5
-        'Dim lastrow1 As Integer = 3
-        'Dim lastrow2 As Integer = 4
-        'Dim lastrow3 As Integer = 5
+        Dim lastrow1 As Integer = 3
+        Dim lastrow2 As Integer = 4
+        Dim lastrow3 As Integer = 5
         For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) ' & "AND closing_date=" & Deadline.Text
+            ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE"
+            ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
+            ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
             Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
             While production.Read
                 DetailsList(totalrow1, 7) = production.Item("total_quanity")
                 DetailsList(totalrow2, 7) = production.Item("total_amount")
+                DetailsList(lastrow1, 6) = production.Item("last_costea")
+                DetailsList(lastrow2, 6) = production.Item("last_quanity")
+                DetailsList(lastrow3, 6) = production.Item("last_amount")
             End While
             production.Close()
 
@@ -227,6 +278,10 @@ Public Class 出来高入力
 
             totalrow1 += 3
             totalrow2 += 3
+            lastrow1 += 3
+            lastrow2 += 3
+            lastrow3 += 3
+
         Next
 
     End Sub
@@ -235,8 +290,6 @@ Public Class 出来高入力
         Dim quanity As Integer
         Dim Concostea As Integer
         Dim total As Integer
-        Dim Conquanity As Integer
-        Dim Contotal As Integer
         Dim Lquanity As Integer
         Dim Ltotal As Integer
         Dim Cuquanity As Integer
@@ -277,16 +330,38 @@ Public Class 出来高入力
         End If
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+
+        '選択した業者の業者IDを取得
+        If VendorList.SelectedIndex >= 0 Then
+            VendorNo.Text = VendorList.SelectedItem
+        End If
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorList.Value
+        Dim CoopIDcount As Integer = ホーム.Sql.ExecuteScalar
+
+        Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
+
+        '明細テーブルから外注業者IDで明細書IDを取得しリストに入れる
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & CoopIDcount
+        Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
+        While DtlID.Read
+            DtlIDlist.Add(DtlID.Item("dtl_id"))
+        End While
+        DtlID.Close()
+
         Dim Rowcount As Integer = 3
         For Detailsloop As Integer = 1 To DtlIDlist.Count
             Dim CoopID As Integer = VendorNo.Text
             Dim Dline As Date = Deadline.Text
-            Dim DtlID As CellRange = DetailsList.GetCellRange(Rowcount, 1)
+            Dim DetailsID As CellRange = DetailsList.GetCellRange(Rowcount, 1)
             Dim TCostea As CellRange = DetailsList.GetCellRange(Rowcount, 5)
             Dim Tquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 7)
             Dim Tamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 7)
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "Select isnull(count(dtl_id),0) from productions where dtl_id = " & DtlID.Data
+            ホーム.Sql.CommandText = "Select isnull(count(dtl_id),0) from productions where dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
+            ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
+            ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
             Dim DtlIDcount As Integer = ホーム.Sql.ExecuteScalar
             If DtlIDcount = 0 Then
                 ホーム.Sql.CommandText = ""
@@ -295,15 +370,17 @@ Public Class 出来高入力
             Else
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where dtl_id = " & DtlID.Data
+                ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
             End If
+            ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
+            ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
             ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
             ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
             ホーム.Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
             ホーム.Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
             ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
             ホーム.Sql.Parameters("@closing_date").Value = Dline.Date
-            ホーム.Sql.Parameters("@dtl_id").Value = DtlID.Data
+            ホーム.Sql.Parameters("@dtl_id").Value = DetailsID.Data
             ホーム.Sql.Parameters("@total_costea").Value = TCostea.Data
             ホーム.Sql.Parameters("@total_quanity").Value = Tquanity.Data
             ホーム.Sql.Parameters("@total_amount").Value = Tamount.Data
