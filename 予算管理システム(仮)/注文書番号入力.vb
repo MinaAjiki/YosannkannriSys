@@ -58,23 +58,32 @@ Public Class 注文書番号入力
 
         datacount = 1
 
+        '合計注文金額を計算_旧
+        'For Vendorloop As Integer = 1 To Outsrcrcount
+        '    '外注業者IDで明細書テーブルから明細書IDを取得
+        '    ホーム.Sql.Parameters.Clear()
+        '    ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & OrderNoList(datacount, 0)
+        '    Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
+        '    '明細書IDごとに計算し合計して出力
+        '    Dim Total As New Integer
+        '    While DtlID.Read
+        '        SystemSql.Parameters.Clear()
+        '        SystemSql.CommandText = "SELECT ISNULL(outsrcng_quanity*outsrcng_costea,0) FROM outsourcing_plans WHERE dtl_id = " & DtlID.Item("dtl_id")
+        '        Dim quacos As Integer = SystemSql.ExecuteScalar
+        '        Total += quacos
+        '    End While
+        '    OrderNoList(datacount, 4) = Total
+        '    datacount += 1
+        '    DtlID.Close()
+        'Next
+
         '合計注文金額を計算
         For Vendorloop As Integer = 1 To Outsrcrcount
-            '外注業者IDで明細書テーブルから明細書IDを取得
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & OrderNoList(datacount, 0)
-            Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
-            '明細書IDごとに計算し合計して出力
-            Dim Total As New Integer
-            While DtlID.Read
-                SystemSql.Parameters.Clear()
-                SystemSql.CommandText = "SELECT ISNULL(outsrcng_quanity*outsrcng_costea,0) FROM outsourcing_plans WHERE dtl_id = " & DtlID.Item("dtl_id")
-                Dim quacos As Integer = SystemSql.ExecuteScalar
-                Total += quacos
-            End While
-            OrderNoList(datacount, 4) = Total
+            ホーム.Sql.CommandText = "SELECT ISNULL(SUM(outsrcng_quanity*outsrcng_costea),0) FROM outsourcing_plans WHERE outsrcr_id = " & OrderNoList(datacount, 0)
+            Dim Amount As Integer = ホーム.Sql.ExecuteScalar
+            OrderNoList(datacount, 4) = Amount
             datacount += 1
-            DtlID.Close()
         Next
 
         datacount = 1
@@ -132,6 +141,7 @@ Public Class 注文書番号入力
             ホーム.Sql.Parameters("@no").Value = OrderNo.Data
             ホーム.Sql.ExecuteNonQuery()
         Next
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "注文書番号登録")
         Me.Close()
     End Sub
 End Class

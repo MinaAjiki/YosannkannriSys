@@ -9,7 +9,7 @@ Imports C1.Win.C1FlexGrid
 Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
+        ''namemasterからデータを取得
         'ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters"
         'Dim Namemaster As SqlDataReader = ホーム.Sql.ExecuteReader
         'While Namemaster.Read
@@ -45,8 +45,6 @@ Public Class 協力業者入力
 
         End While
         Coopreader.Close()
-        'Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
-        'CoopVendorList.StartEditing(RowIndex, 3)
 
     End Sub
 
@@ -106,6 +104,10 @@ Public Class 協力業者入力
                 MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
+            If Coopordr.Data = Nothing Then
+                MsgBox("発注形態を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
             If CoopVendorList(Vendorloop, 3) >= CoopVendorList(Vendorloop, 4) Then
                 MsgBox("実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
@@ -154,7 +156,7 @@ Public Class 協力業者入力
 
             ホーム.Sql.ExecuteNonQuery()
         Next
-
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
         Me.Close()
     End Sub
 End Class

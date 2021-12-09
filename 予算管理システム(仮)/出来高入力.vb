@@ -40,6 +40,10 @@ Public Class 出来高入力
 
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
         Dim deadlineDate As String = ホーム.Sql.ExecuteScalar
+        If deadlineDate = "" Then
+            MsgBox("先に締切日を登録してください。", MsgBoxStyle.OkOnly, "エラー")
+            Exit Sub
+        End If
         Deadline.Text = DeadlineDate.Replace("-", "/")
 
         Dim dt As DataTable
@@ -165,9 +169,9 @@ Public Class 出来高入力
 
         Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
 
-        '明細テーブルから外注業者IDで明細書IDを取得しリストに入れる
+        '外注計画テーブルから指定の外注業者IDで明細書IDを取得しリストに入れる
         ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & Coopid
+        ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & Coopid
         Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
         While DtlID.Read
             DtlIDlist.Add(DtlID.Item("dtl_id"))
@@ -187,7 +191,7 @@ Public Class 出来高入力
 
         For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop)
+            ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND budget_no = (SELECT MAX(budget_no) FROM details"
             Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
             While outsrcng.Read
                 Me.DetailsList.Rows.Add()
@@ -212,7 +216,7 @@ Public Class 出来高入力
 
             '明細書IDで明細書テーブルからデータを取得
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM details WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop)
+            ホーム.Sql.CommandText = "SELECT * FROM details WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND budget_no = (SELECT MAX(budget_no) FROM details"
             Dim details As SqlDataReader = ホーム.Sql.ExecuteReader
             While details.Read
                 DetailsList(Detarow1, 1) = details.Item("dtl_id")
@@ -311,17 +315,33 @@ Public Class 出来高入力
 
             Cutotal = total - Ltotal
             DetailsList(e.Row + 1, 8) = Cutotal
+            If total > DetailsList(e.Row + 1, 5) Then
+                Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                errorco.StyleNew.ForeColor = Color.Red
+                MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+            Else
+                Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+            End If
         Else
             Ltotal = DetailsList(e.Row, 6)
             total = DetailsList(e.Row, e.Col)
             Cutotal = total - Ltotal
             DetailsList(e.Row, 8) = Cutotal
+            If total > DetailsList(e.Row + 1, 5) Then
+                Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                errorco.StyleNew.ForeColor = Color.Red
+                MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+            Else
+                Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+            End If
         End If
 
     End Sub
 
     Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
-        '一式の場合は、数量１とし、金額を入力する。
+        '一式の場合は、数量１とし、金額を入力させる。
         If DetailsList(e.Row - 1, 4) = "式" Then
             DetailsList(e.Row, e.Col) = 1
             DetailsList(e.Row, 8) = 1
@@ -341,9 +361,9 @@ Public Class 出来高入力
 
         Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
 
-        '明細テーブルから外注業者IDで明細書IDを取得しリストに入れる
+        '外注計画テーブルから外注業者IDで明細書IDを取得しリストに入れる
         ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & CoopIDcount
+        ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & CoopIDcount
         Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
         While DtlID.Read
             DtlIDlist.Add(DtlID.Item("dtl_id"))
@@ -388,6 +408,7 @@ Public Class 出来高入力
 
             Rowcount += 3
         Next
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "出来高登録")
         Me.Close()
     End Sub
 End Class
