@@ -122,6 +122,7 @@ Public Class 締切日入力
 
 
         ホーム.Transaction.Commit()
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "締切日")
         Me.Close()
     End Sub
 End Class

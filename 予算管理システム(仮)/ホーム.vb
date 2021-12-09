@@ -135,6 +135,13 @@ Public Class ホーム
     Private Sub 協力業者登録_Click(sender As Object, e As ClickEventArgs) Handles 協力業者登録.Click
 
         Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
             協力業者入力.Anchor = AnchorStyles.Top
             '協力業者入力.Anchor = AnchorStyles.Bottom
             協力業者入力.Anchor = AnchorStyles.Left
@@ -156,6 +163,13 @@ Public Class ホーム
     End Sub
 
     Private Sub 注文書番号入力_Click(sender As Object, e As ClickEventArgs) Handles 注文書番号登録.Click
+
+        If FormPanel.Controls.Count > 0 Then
+            Dim FormClose As String = ""
+
+            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+            FormClose = FormCloseLoad.FormCheck
+        End If
 
         注文書番号入力.Anchor = AnchorStyles.Top
         '協力業者入力.Anchor = AnchorStyles.Bottom

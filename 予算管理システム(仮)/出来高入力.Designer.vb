@@ -159,7 +159,6 @@ Partial Class 出来高入力
         Me.TotalList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.TotalList.ColumnInfo = resources.GetString("TotalList.ColumnInfo")
-        Me.TotalList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.TotalList.Location = New System.Drawing.Point(237, 594)
         Me.TotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
