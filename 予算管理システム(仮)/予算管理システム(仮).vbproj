@@ -175,6 +175,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>広小路建設.xsd</DependentUpon>
     </Compile>
+    <Compile Include="作成代価選択.Designer.vb">
+      <DependentUpon>作成代価選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="作成代価選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="項目選択.Designer.vb">
       <DependentUpon>項目選択.vb</DependentUpon>
     </Compile>
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="印刷代価選択.resx">
       <DependentUpon>印刷代価選択.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="作成代価選択.resx">
+      <DependentUpon>作成代価選択.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="項目選択.resx">
       <DependentUpon>項目選択.vb</DependentUpon>

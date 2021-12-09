@@ -1,5 +1,6 @@
 ﻿Imports C1.Win.C1FlexGrid
 Public Class 代価表入力
+    Public SelectRow As Integer
 
     Private Sub 代価表入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -37,6 +38,7 @@ Public Class 代価表入力
         Me.Anchor = AnchorStyles.Top
         Me.Anchor = AnchorStyles.Left
         Me.Anchor = AnchorStyles.Bottom
+
 
     End Sub
 

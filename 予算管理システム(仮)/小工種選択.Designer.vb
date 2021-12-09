@@ -105,7 +105,7 @@ Partial Class 小工種選択
         Me.S_WorkTypesList.Location = New System.Drawing.Point(37, 75)
         Me.S_WorkTypesList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.S_WorkTypesList.Name = "S_WorkTypesList"
-        Me.S_WorkTypesList.Rows.Count = 75
+        Me.S_WorkTypesList.Rows.Count = 21
         Me.S_WorkTypesList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.S_WorkTypesList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.S_WorkTypesList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row

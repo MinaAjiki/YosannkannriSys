@@ -4,11 +4,14 @@ Imports C1.Win.C1Command
 Imports System.Data.SqlClient
 Public Class 明細書入力
     Public SelectRow As Integer = 0
+    Public CopyList(10) As String
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
+
+            Me.TopMost = False
+
             SWorkType.Value = ホーム.sworktypecode & " " & ホーム.sworktypename
-            'DetailsList.Rows(1).AllowMerging = True
             DetailsList(0, 2) = "削除"
             DetailsList(1, 2) = "削除"
             DetailsList(2, 2) = "削除"
@@ -108,7 +111,8 @@ Public Class 明細書入力
                         OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
                         OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
                         OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        OutsoucerList.Rows((RowCount * 3) + 2).AllowEditing = False
+                        'CategoryList.Rows(RowCount * 3).AllowEditing = False
+                        'CategoryList.Rows((RowCount * 3) + 2).AllowEditing = False
                     End If
                     DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
                     DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
@@ -129,13 +133,76 @@ Public Class 明細書入力
 
                 End While
                 DetailsReader.Close()
+
+                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 0, DetailsList.Rows.Count - 1, 0)
+                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 2, DetailsList.Rows.Count - 1, 2)
+                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 3, DetailsList.Rows.Count - 1, 3)
+                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 4, DetailsList.Rows.Count - 3, 5)
+                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 2, 4, DetailsList.Rows.Count - 2, 5)
+
+                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
+                Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While TotalReader.Read
+                    CategoryTotalList(0, 2) = TotalReader.Item("labor")
+                    CategoryTotalList(0, 3) = TotalReader.Item("material")
+                    CategoryTotalList(0, 4) = TotalReader.Item("machine")
+                    CategoryTotalList(0, 5) = TotalReader.Item("subcntrct")
+                    CategoryTotalList(0, 6) = TotalReader.Item("expens")
+
+                End While
+                TotalReader.Close()
+            Else
+
+                For RowCount = 1 To 6
+                    RowNo += 1
+
+                    Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+
+                    If RowCount Mod 2 = 0 Then
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).AllowEditing = False
+                    End If
+
+                    DetailsList(RowCount * 3, 7) = RowNo * RowNo
+                    DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                    DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                    If (RowNo * RowNo) + 2 = 6 Then
+                        RowNo = 0
+                    End If
+
+                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
+
+                CategoryTotalList(1, 2) = 0
+                CategoryTotalList(1, 3) = 0
+                CategoryTotalList(1, 4) = 0
+                CategoryTotalList(1, 5) = 0
+                CategoryTotalList(1, 6) = 0
+
             End If
 
-            DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 0, DetailsList.Rows.Count - 1, 0)
-            DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 2, DetailsList.Rows.Count - 1, 2)
-            DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 3, DetailsList.Rows.Count - 1, 3)
-            DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 4, DetailsList.Rows.Count - 3, 5)
-            DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 2, 4, DetailsList.Rows.Count - 2, 5)
+
 
 
             ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcers"
@@ -392,7 +459,7 @@ Public Class 明細書入力
         End Try
     End Sub
 
-    Private Sub ItemSelect_Click(sender As Object, e As EventArgs) Handles ItemSelect.Click
+    Private Sub ItemSelect_Click(sender As Object, e As EventArgs) Handles ItemSelectMenu.Click
 
         Try
             For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
@@ -425,25 +492,442 @@ Public Class 明細書入力
     Private Sub CategoryList_AfterEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.AfterEdit
 
         Dim Row As Integer = e.Row
-        Dim Col As Integer = 0
+        Dim Col As Integer = e.Col
 
-        ホーム.Sql.CommandText = "SELECT cstclss_name FROM cost_classes WHERE cstclss_code=" & DetailsList(Row, 8)
-        Dim CostClassName As String = ホーム.Sql.ExecuteScalar
-        If CostClassName = "労務費" Then
-            Col = 2
-        ElseIf CostClassName = "材料費" Or CostClassName = "社内機材費" Or CostClassName = "社外機材費" Then
-            Col = 3
-        ElseIf CostClassName = "機械費" Then
-            Col = 4
-        ElseIf CostClassName = "外注費" Then
-            Col = 5
-        ElseIf CostClassName = "諸経費" Then
-            Col = 6
-        End If
 
         If IsNumeric(CategoryList(Row, Col)) = True Then
             CategoryList(Row + 1, Col) = Math.Round((DetailsList(Row - 1, 6) * CategoryList(Row, Col)), 0, MidpointRounding.AwayFromZero)
+
+            Dim RowNo As Integer = 0
+            Dim EditRow As Integer = e.Row + 1
+            Dim ColTotal As Int64 = 0
+            For RowCount = EditRow To ((DetailsList.Rows.Count - 3) / 3)
+
+                RowNo += 1
+                ColTotal += CategoryList(EditRow * 3, Col)
+            Next
+
+            CategoryTotalList(1, Col) = ColTotal
         End If
+
+    End Sub
+
+    Private Sub CategoryList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.BeforeEdit
+
+        If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
+            CategoryList.Rows(e.Row).AllowEditing = False
+            CategoryList.Rows(e.Row + 2).AllowEditing = False
+        ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
+            CategoryList.Rows(e.Row - 1).AllowEditing = False
+            CategoryList.Rows(e.Row + 1).AllowEditing = False
+        Else
+            CategoryList.Rows(e.Row - 2).AllowEditing = False
+            CategoryList.Rows(e.Row).AllowEditing = False
+        End If
+
+    End Sub
+
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        Try
+            Dim CancelClick As String = ""
+
+            Dim CancelClickLoad As New CancelClick(Me)
+            CancelClick = CancelClickLoad.ModifyCheck
+
+            小工種選択.TopLevel = False
+            ホーム.FormPanel.Controls.Add(小工種選択)
+            小工種選択.Show()
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+    Private Sub Insert_Click(sender As Object, e As EventArgs) Handles InsertMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+                DetailsList.Rows.Insert(SelectRow)
+                DetailsList.Rows.Insert(SelectRow + 1)
+                DetailsList.Rows.Insert(SelectRow + 2)
+                CategoryList.Rows.Insert(SelectRow)
+                CategoryList.Rows.Insert(SelectRow + 1)
+                CategoryList.Rows.Insert(SelectRow + 2)
+                OutsoucerList.Rows.Insert(SelectRow)
+                OutsoucerList.Rows.Insert(SelectRow + 1)
+                OutsoucerList.Rows.Insert(SelectRow + 2)
+
+
+                Dim RowNo As Integer = 0
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    RowNo += 1
+
+                    Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+
+                    If RowCount Mod 2 = 0 Then
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+
+                    DetailsList(RowCount * 3, 7) = RowNo * RowNo
+                    DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                    DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                    If (RowNo * RowNo) + 2 = 6 Then
+                        RowNo = 0
+                    End If
+
+                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
+
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Copy_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                    If DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                        SelectRow = DetailsRowCount + 2
+                    End If
+                    DetailsList.Rows(DetailsRowCount + 2).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+
+                DetailsList.Rows(SelectRow).StyleFixedNew.BackColor = Color.FromArgb(105, 189, 131)
+                CopyList(0) = DetailsList(SelectRow, 1)
+                CopyList(1) = DetailsList(SelectRow, 3)
+                CopyList(2) = DetailsList(SelectRow, 4)
+                CopyList(3) = DetailsList(SelectRow + 1, 4)
+                CopyList(4) = DetailsList(SelectRow + 2, 4)
+                CopyList(5) = DetailsList(SelectRow + 2, 5)
+                CopyList(6) = DetailsList(SelectRow, 6)
+                CopyList(7) = DetailsList(SelectRow + 1, 6)
+                CopyList(8) = DetailsList(SelectRow + 2, 6)
+                CopyList(9) = DetailsList(SelectRow, 8)
+                CopyList(10) = DetailsList(SelectRow, 9)
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub Pasting_Click(sender As Object, e As EventArgs) Handles PastingMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+
+                DetailsList.Rows.Insert(SelectRow)
+                DetailsList.Rows.Insert(SelectRow + 1)
+                DetailsList.Rows.Insert(SelectRow + 2)
+                CategoryList.Rows.Insert(SelectRow)
+                CategoryList.Rows.Insert(SelectRow + 1)
+                CategoryList.Rows.Insert(SelectRow + 2)
+                OutsoucerList.Rows.Insert(SelectRow)
+                OutsoucerList.Rows.Insert(SelectRow + 1)
+                OutsoucerList.Rows.Insert(SelectRow + 2)
+                DetailsList(SelectRow, 1) = CopyList(0)
+                DetailsList(SelectRow, 3) = CopyList(1)
+                DetailsList(SelectRow, 4) = CopyList(2)
+                DetailsList(SelectRow + 1, 4) = CopyList(3)
+                DetailsList(SelectRow + 2, 4) = CopyList(4)
+                DetailsList(SelectRow + 2, 5) = CopyList(5)
+                DetailsList(SelectRow, 6) = CopyList(6)
+                DetailsList(SelectRow + 1, 6) = CopyList(7)
+                DetailsList(SelectRow + 2, 6) = CopyList(8)
+                DetailsList(SelectRow, 8) = CopyList(9)
+                DetailsList(SelectRow, 9) = CopyList(10)
+
+
+                Dim RowNo As Integer = 0
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                    RowNo += 1
+
+                    If RowCount < ((DetailsList.Rows.Count - 3) / 3) Then
+                        DetailsList(RowCount * 3, 3) = RowCount
+                    End If
+
+                    Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+                    DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                    If RowCount Mod 2 = 0 Then
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+
+                    DetailsList(RowCount * 3, 7) = RowNo * RowNo
+                    DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                    DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                    If (RowNo * RowNo) + 2 = 6 Then
+                        RowNo = 0
+                    End If
+
+                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Cut_Click(sender As Object, e As EventArgs) Handles CutMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+                CopyList(0) = DetailsList(SelectRow, 1)
+                CopyList(1) = DetailsList(SelectRow, 3)
+                CopyList(2) = DetailsList(SelectRow, 4)
+                CopyList(3) = DetailsList(SelectRow + 1, 4)
+                CopyList(4) = DetailsList(SelectRow + 2, 4)
+                CopyList(5) = DetailsList(SelectRow + 2, 5)
+                CopyList(6) = DetailsList(SelectRow, 6)
+                CopyList(7) = DetailsList(SelectRow + 1, 6)
+                CopyList(8) = DetailsList(SelectRow + 2, 6)
+                CopyList(9) = DetailsList(SelectRow, 8)
+                CopyList(10) = DetailsList(SelectRow, 9)
+                DetailsList.Rows.RemoveRange(SelectRow, 3)
+                CategoryList.Rows.RemoveRange(SelectRow, 3)
+                OutsoucerList.Rows.RemoveRange(SelectRow, 3)
+
+                Dim RowNo As Integer = 0
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    RowNo += 1
+
+                    Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+                    DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                    If RowCount Mod 2 = 0 Then
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+
+                    DetailsList(RowCount * 3, 7) = RowNo * RowNo
+                    DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                    DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                    If (RowNo * RowNo) + 2 = 6 Then
+                        RowNo = 0
+                    End If
+
+                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostCreate_Click(sender As Object, e As EventArgs) Handles CostCreateMenu.Click
+        作成代価選択.ShowDialog()
+        作成代価選択.TopMost = True
+        作成代価選択.TopMost = False
+    End Sub
+
+    Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
+        作成代価選択.ShowDialog()
+        作成代価選択.TopMost = True
+        作成代価選択.TopMost = False
+    End Sub
+    Private Sub ItemSelect_MouseLeave(sender As Object, e As EventArgs) Handles ItemSelect.MouseLeave
+        ItemSelect.ImageIndex = 0
+    End Sub
+
+    Private Sub ItemSelect_MouseUp(sender As Object, e As MouseEventArgs) Handles ItemSelect.MouseUp
+        ItemSelect.ImageIndex = 0
+    End Sub
+
+    Private Sub ItemSelect_MouseEnter(sender As Object, e As EventArgs) Handles ItemSelect.MouseEnter
+        ItemSelect.Cursor = Cursors.Hand
+        ItemSelect.ImageIndex = 1
+    End Sub
+
+    Private Sub ItemSelect_MouseDown(sender As Object, e As MouseEventArgs) Handles ItemSelect.MouseDown
+        ItemSelect.ImageIndex = 2
+    End Sub
+    Private Sub Reference_MouseLeave(sender As Object, e As EventArgs) Handles Reference.MouseLeave
+        Reference.ImageIndex = 0
+    End Sub
+
+    Private Sub Reference_MouseUp(sender As Object, e As MouseEventArgs) Handles Reference.MouseUp
+        Reference.ImageIndex = 0
+    End Sub
+
+    Private Sub Reference_MouseEnter(sender As Object, e As EventArgs) Handles Reference.MouseEnter
+        Reference.Cursor = Cursors.Hand
+        Reference.ImageIndex = 1
+    End Sub
+
+    Private Sub Reference_MouseDown(sender As Object, e As MouseEventArgs) Handles Reference.MouseDown
+        Reference.ImageIndex = 2
+    End Sub
+
+    Private Sub ItemSelect_Click_1(sender As Object, e As EventArgs) Handles ItemSelect.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+
+                項目選択.Show()
+                項目選択.TopMost = True
+                項目選択.TopMost = False
+
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
 
     End Sub
 End Class

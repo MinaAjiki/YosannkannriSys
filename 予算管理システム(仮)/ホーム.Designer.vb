@@ -72,7 +72,6 @@ Partial Class ホーム
         Me.協力業者登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink8 = New C1.Win.C1Command.C1CommandLink()
         Me.外注計画登録 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink26 = New C1.Win.C1Command.C1CommandLink()
         Me.変更内容登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink27 = New C1.Win.C1Command.C1CommandLink()
         Me.締切処理 = New C1.Win.C1Command.C1Command()
@@ -330,7 +329,7 @@ Partial Class ホーム
         Me.HomeTreeView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.HomeTreeView.BackColor = System.Drawing.SystemColors.Control
+        Me.HomeTreeView.BackColor = System.Drawing.Color.White
         '
         '
         '
@@ -672,7 +671,7 @@ Partial Class ホーム
         '
         '外注管理
         '
-        Me.外注管理.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink25, Me.C1CommandLink8, Me.C1CommandLink26, Me.C1CommandLink27, Me.C1CommandLink28, Me.C1CommandLink29})
+        Me.外注管理.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink25, Me.C1CommandLink8, Me.C1CommandLink27, Me.C1CommandLink28, Me.C1CommandLink29})
         Me.外注管理.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.外注管理.HideNonRecentLinks = False
         Me.外注管理.Name = "外注管理"
@@ -703,11 +702,6 @@ Partial Class ホーム
         Me.外注計画登録.ShortcutText = ""
         Me.外注計画登録.Text = "外注計画登録"
         '
-        'C1CommandLink26
-        '
-        Me.C1CommandLink26.Command = Me.変更内容登録
-        Me.C1CommandLink26.SortOrder = 2
-        '
         '変更内容登録
         '
         Me.変更内容登録.Name = "変更内容登録"
@@ -718,7 +712,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink27.Command = Me.締切処理
         Me.C1CommandLink27.Delimiter = True
-        Me.C1CommandLink27.SortOrder = 3
+        Me.C1CommandLink27.SortOrder = 2
         '
         '締切処理
         '
@@ -729,7 +723,7 @@ Partial Class ホーム
         'C1CommandLink28
         '
         Me.C1CommandLink28.Command = Me.出来高登録
-        Me.C1CommandLink28.SortOrder = 4
+        Me.C1CommandLink28.SortOrder = 3
         '
         '出来高登録
         '
@@ -741,7 +735,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink29.Command = Me.注文書番号登録
         Me.C1CommandLink29.Delimiter = True
-        Me.C1CommandLink29.SortOrder = 5
+        Me.C1CommandLink29.SortOrder = 4
         '
         '注文書番号登録
         '
@@ -1554,8 +1548,6 @@ Partial Class ホーム
         Me.MainMenu.Name = "MainMenu"
         Me.MainMenu.Size = New System.Drawing.Size(1264, 20)
         Me.SystemTheme.SetTheme(Me.MainMenu, "予算管理テーマ")
-        Me.MainMenu.VisualStyle = C1.Win.C1Command.VisualStyle.Office2010Blue
-        Me.MainMenu.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue
         '
         'C1CommandLink2
         '
@@ -1633,12 +1625,13 @@ Partial Class ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
-        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1264, 684)
         Me.Controls.Add(Me.HomeSplitContainer)
         Me.Controls.Add(Me.MainMenu)
         Me.Enabled = False
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Name = "ホーム"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "予算管理システム(仮)"
@@ -1712,7 +1705,6 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink25 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 協力業者登録 As C1.Win.C1Command.C1Command
     Friend WithEvents 外注計画登録 As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink26 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 変更内容登録 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink27 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 締切処理 As C1.Win.C1Command.C1Command
