@@ -126,7 +126,6 @@ Partial Class DB選択
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FileList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.FileList.ColumnInfo = resources.GetString("FileList.ColumnInfo")
-        Me.FileList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FileList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.FileList.Location = New System.Drawing.Point(35, 66)
         Me.FileList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)

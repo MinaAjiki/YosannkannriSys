@@ -15,13 +15,17 @@ Public Class 小工種選択
             Dim SubcntrctTotal As Int64 = 0
             Dim ExpensTotal As Int64 = 0
 
-            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM s_worktype"
+            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM s_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
             Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
 
-            S_WorkTypesList.Rows.Count = Count + 1
+            If Count < 21 Then
+                S_WorkTypesList.Rows.Count = Count + (21 - Count)
+            Else
+                S_WorkTypesList.Rows.Count = Count + 1
+            End If
 
             Dim RowCount As Integer = 1
-            ホーム.SystemSql.CommandText = "SELECT  * FROM s_worktype ORDER BY s_worktype_code ASC"
+            ホーム.SystemSql.CommandText = "SELECT  * FROM s_worktype WHERE l_worktype_code=" & ホーム.lworktypecode & " ORDER BY s_worktype_code ASC"
             Dim SWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
             While SWorkTypeReader.Read
 

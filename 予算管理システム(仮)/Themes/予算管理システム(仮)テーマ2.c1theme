@@ -243,7 +243,9 @@
                 <Node Name="Default">
                   <Children>
                     <Background Name="Background">
-                      <Value Type="Solid" />
+                      <Value Type="Solid">
+                        <Color>211, 222, 241</Color>
+                      </Value>
                       <Description>Normal background of the scrollbar thumb.</Description>
                     </Background>
                     <Color Name="BorderColor">

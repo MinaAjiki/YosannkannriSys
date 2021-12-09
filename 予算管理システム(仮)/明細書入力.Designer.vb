@@ -28,11 +28,15 @@ Partial Class 明細書入力
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ItemSelect = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Insert = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Copy = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Pasting = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CostCreate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ItemSelectMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InsertMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CutMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PastingMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CostCreateMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CostModifyMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CostCopyMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReferenceMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.SWorkType = New C1.Win.C1Input.C1TextBox()
         Me.Category = New System.Windows.Forms.RadioButton()
@@ -50,6 +54,8 @@ Partial Class 明細書入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Reference = New System.Windows.Forms.Button()
+        Me.ItemSelect = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
         Me.CostCopy = New System.Windows.Forms.Button()
@@ -125,7 +131,7 @@ Partial Class 明細書入力
         Me.DetailsList.Location = New System.Drawing.Point(10, 68)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 21
+        Me.DetailsList.Rows.Count = 20
         Me.DetailsList.Rows.Fixed = 3
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
@@ -140,41 +146,68 @@ Partial Class 明細書入力
         '右クリックメニュー
         '
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelect, Me.Insert, Me.Copy, Me.Pasting, Me.CostCreate})
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 114)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(171, 202)
         Me.右クリックメニュー.Text = "項目選択"
         '
-        'ItemSelect
+        'ItemSelectMenu
         '
-        Me.ItemSelect.Name = "ItemSelect"
-        Me.ItemSelect.Size = New System.Drawing.Size(123, 22)
-        Me.ItemSelect.Text = "項目選択"
+        Me.ItemSelectMenu.Name = "ItemSelectMenu"
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ItemSelectMenu.Text = "項目選択"
         '
-        'Insert
+        'InsertMenu
         '
-        Me.Insert.Name = "Insert"
-        Me.Insert.Size = New System.Drawing.Size(123, 22)
-        Me.Insert.Text = "行の挿入"
+        Me.InsertMenu.Name = "InsertMenu"
+        Me.InsertMenu.Size = New System.Drawing.Size(170, 22)
+        Me.InsertMenu.Text = "行の挿入"
         '
-        'Copy
+        'CutMenu
         '
-        Me.Copy.Name = "Copy"
-        Me.Copy.Size = New System.Drawing.Size(123, 22)
-        Me.Copy.Text = "行のコピー"
+        Me.CutMenu.Name = "CutMenu"
+        Me.CutMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
+        Me.CutMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CutMenu.Text = "行の切り取り"
         '
-        'Pasting
+        'CopyMenu
         '
-        Me.Pasting.Name = "Pasting"
-        Me.Pasting.Size = New System.Drawing.Size(123, 22)
-        Me.Pasting.Text = "行の貼り付け"
+        Me.CopyMenu.Name = "CopyMenu"
+        Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.CopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CopyMenu.Text = "行のコピー"
         '
-        'CostCreate
+        'PastingMenu
         '
-        Me.CostCreate.Name = "CostCreate"
-        Me.CostCreate.Size = New System.Drawing.Size(123, 22)
-        Me.CostCreate.Text = "代価表作成"
+        Me.PastingMenu.Name = "PastingMenu"
+        Me.PastingMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
+        Me.PastingMenu.Size = New System.Drawing.Size(170, 22)
+        Me.PastingMenu.Text = "行の貼り付け"
+        '
+        'CostCreateMenu
+        '
+        Me.CostCreateMenu.Name = "CostCreateMenu"
+        Me.CostCreateMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCreateMenu.Text = "代価表作成"
+        '
+        'CostModifyMenu
+        '
+        Me.CostModifyMenu.Name = "CostModifyMenu"
+        Me.CostModifyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostModifyMenu.Text = "代価表修正"
+        '
+        'CostCopyMenu
+        '
+        Me.CostCopyMenu.Name = "CostCopyMenu"
+        Me.CostCopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCopyMenu.Text = "代価表コピー"
+        '
+        'ReferenceMenu
+        '
+        Me.ReferenceMenu.Name = "ReferenceMenu"
+        Me.ReferenceMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ReferenceMenu.Text = "代価表参照"
         '
         'SWorkType
         '
@@ -225,7 +258,6 @@ Partial Class 明細書入力
         Me.CategoryList.AllowAddNew = True
         Me.CategoryList.AllowDelete = True
         Me.CategoryList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.Rows
-        Me.CategoryList.AllowEditing = False
         Me.CategoryList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.CategoryList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.CategoryList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -467,6 +499,8 @@ Partial Class 明細書入力
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.Reference)
+        Me.C1SplitterPanel2.Controls.Add(Me.ItemSelect)
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
         Me.C1SplitterPanel2.Controls.Add(Me.Entry)
         Me.C1SplitterPanel2.Controls.Add(Me.CostCopy)
@@ -479,6 +513,38 @@ Partial Class 明細書入力
         Me.C1SplitterPanel2.Size = New System.Drawing.Size(990, 40)
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
+        '
+        'Reference
+        '
+        Me.Reference.FlatAppearance.BorderSize = 0
+        Me.Reference.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Reference.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Reference.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Reference.ImageIndex = 0
+        Me.Reference.ImageList = Me.ButtonImageList
+        Me.Reference.Location = New System.Drawing.Point(412, 5)
+        Me.Reference.Margin = New System.Windows.Forms.Padding(0)
+        Me.Reference.Name = "Reference"
+        Me.Reference.Size = New System.Drawing.Size(100, 30)
+        Me.Reference.TabIndex = 102
+        Me.Reference.Text = "代価表参照"
+        Me.Reference.UseVisualStyleBackColor = True
+        '
+        'ItemSelect
+        '
+        Me.ItemSelect.FlatAppearance.BorderSize = 0
+        Me.ItemSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ItemSelect.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ItemSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.ItemSelect.ImageIndex = 0
+        Me.ItemSelect.ImageList = Me.ButtonImageList
+        Me.ItemSelect.Location = New System.Drawing.Point(8, 5)
+        Me.ItemSelect.Margin = New System.Windows.Forms.Padding(0)
+        Me.ItemSelect.Name = "ItemSelect"
+        Me.ItemSelect.Size = New System.Drawing.Size(100, 30)
+        Me.ItemSelect.TabIndex = 101
+        Me.ItemSelect.Text = "項目選択"
+        Me.ItemSelect.UseVisualStyleBackColor = True
         '
         'Cancel
         '
@@ -527,7 +593,7 @@ Partial Class 明細書入力
         Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.CostCopy.ImageIndex = 15
         Me.CostCopy.ImageList = Me.ButtonImageList
-        Me.CostCopy.Location = New System.Drawing.Point(206, 5)
+        Me.CostCopy.Location = New System.Drawing.Point(311, 5)
         Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CostCopy.Name = "CostCopy"
         Me.CostCopy.Size = New System.Drawing.Size(100, 30)
@@ -546,7 +612,7 @@ Partial Class 明細書入力
         Me.CostCreation.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.CostCreation.ImageIndex = 9
         Me.CostCreation.ImageList = Me.ButtonImageList
-        Me.CostCreation.Location = New System.Drawing.Point(4, 5)
+        Me.CostCreation.Location = New System.Drawing.Point(109, 5)
         Me.CostCreation.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CostCreation.Name = "CostCreation"
         Me.CostCreation.Size = New System.Drawing.Size(100, 30)
@@ -565,7 +631,7 @@ Partial Class 明細書入力
         Me.CostModify.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.CostModify.ImageIndex = 12
         Me.CostModify.ImageList = Me.ButtonImageList
-        Me.CostModify.Location = New System.Drawing.Point(105, 5)
+        Me.CostModify.Location = New System.Drawing.Point(210, 5)
         Me.CostModify.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CostModify.Name = "CostModify"
         Me.CostModify.Size = New System.Drawing.Size(100, 30)
@@ -632,9 +698,15 @@ Partial Class 明細書入力
     Friend WithEvents Label3 As Label
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents 右クリックメニュー As ContextMenuStrip
-    Friend WithEvents CostCreate As ToolStripMenuItem
-    Friend WithEvents ItemSelect As ToolStripMenuItem
-    Friend WithEvents Insert As ToolStripMenuItem
-    Friend WithEvents Copy As ToolStripMenuItem
-    Friend WithEvents Pasting As ToolStripMenuItem
+    Friend WithEvents CostCreateMenu As ToolStripMenuItem
+    Friend WithEvents ItemSelectMenu As ToolStripMenuItem
+    Friend WithEvents InsertMenu As ToolStripMenuItem
+    Friend WithEvents CopyMenu As ToolStripMenuItem
+    Friend WithEvents PastingMenu As ToolStripMenuItem
+    Friend WithEvents CutMenu As ToolStripMenuItem
+    Friend WithEvents CostModifyMenu As ToolStripMenuItem
+    Friend WithEvents CostCopyMenu As ToolStripMenuItem
+    Friend WithEvents ReferenceMenu As ToolStripMenuItem
+    Friend WithEvents ItemSelect As Button
+    Friend WithEvents Reference As Button
 End Class

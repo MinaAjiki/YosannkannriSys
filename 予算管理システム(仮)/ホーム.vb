@@ -29,6 +29,8 @@ Public Class ホーム
     Public lworktypename As String
     Public sworktypecode As Integer
     Public sworktypename As String
+    Public CostClassCode As String
+    Public CostClassName As String
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try

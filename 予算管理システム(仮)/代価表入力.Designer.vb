@@ -138,7 +138,7 @@ Partial Class 代価表入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
-        Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.DetailsList.Location = New System.Drawing.Point(28, 184)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
@@ -149,16 +149,15 @@ Partial Class 代価表入力
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.DetailsList.Size = New System.Drawing.Size(936, 408)
-        Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ")
         '
         'C1TextBox1
         '
         Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.White
+        Me.C1TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1TextBox1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1TextBox1.Enabled = False
         Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.C1TextBox1.Location = New System.Drawing.Point(99, 60)
@@ -198,9 +197,9 @@ Partial Class 代価表入力
         'C1TextBox2
         '
         Me.C1TextBox2.AutoSize = False
-        Me.C1TextBox2.BackColor = System.Drawing.Color.White
+        Me.C1TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox2.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1TextBox2.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1TextBox2.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.C1TextBox2.Location = New System.Drawing.Point(99, 81)
         Me.C1TextBox2.Name = "C1TextBox2"
@@ -213,9 +212,9 @@ Partial Class 代価表入力
         'C1TextBox3
         '
         Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
+        Me.C1TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1TextBox3.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1TextBox3.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.C1TextBox3.Location = New System.Drawing.Point(402, 81)
         Me.C1TextBox3.Name = "C1TextBox3"
@@ -228,15 +227,16 @@ Partial Class 代価表入力
         'C1NumericEdit1
         '
         Me.C1NumericEdit1.AutoSize = False
-        Me.C1NumericEdit1.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit1.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit1.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit1.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit1.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit1.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit1.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit1.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit1.GapHeight = 0
         Me.C1NumericEdit1.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -252,16 +252,17 @@ Partial Class 代価表入力
         'C1NumericEdit3
         '
         Me.C1NumericEdit3.AutoSize = False
-        Me.C1NumericEdit3.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit3.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit3.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit3.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit3.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit3.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit3.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit3.DataType = GetType(Long)
-        Me.C1NumericEdit3.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit3.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit3.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit3.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit3.GapHeight = 0
@@ -278,16 +279,17 @@ Partial Class 代価表入力
         'C1NumericEdit4
         '
         Me.C1NumericEdit4.AutoSize = False
-        Me.C1NumericEdit4.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit4.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit4.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit4.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit4.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit4.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit4.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit4.DataType = GetType(Long)
-        Me.C1NumericEdit4.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit4.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit4.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit4.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit4.GapHeight = 0
@@ -304,16 +306,17 @@ Partial Class 代価表入力
         'C1NumericEdit5
         '
         Me.C1NumericEdit5.AutoSize = False
-        Me.C1NumericEdit5.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit5.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit5.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit5.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit5.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit5.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit5.DataType = GetType(Long)
-        Me.C1NumericEdit5.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit5.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit5.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit5.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit5.GapHeight = 0
@@ -330,16 +333,17 @@ Partial Class 代価表入力
         'C1NumericEdit6
         '
         Me.C1NumericEdit6.AutoSize = False
-        Me.C1NumericEdit6.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit6.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit6.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit6.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit6.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit6.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit6.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit6.DataType = GetType(Long)
-        Me.C1NumericEdit6.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit6.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit6.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit6.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit6.GapHeight = 0
@@ -356,16 +360,17 @@ Partial Class 代価表入力
         'C1NumericEdit7
         '
         Me.C1NumericEdit7.AutoSize = False
-        Me.C1NumericEdit7.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit7.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit7.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit7.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit7.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit7.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit7.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit7.DataType = GetType(Long)
-        Me.C1NumericEdit7.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit7.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit7.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit7.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit7.GapHeight = 0
@@ -382,16 +387,17 @@ Partial Class 代価表入力
         'C1NumericEdit8
         '
         Me.C1NumericEdit8.AutoSize = False
-        Me.C1NumericEdit8.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit8.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit8.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit8.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit8.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit8.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit8.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit8.DataType = GetType(Long)
-        Me.C1NumericEdit8.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit8.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit8.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit8.GapHeight = 0
         Me.C1NumericEdit8.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -407,16 +413,17 @@ Partial Class 代価表入力
         'C1NumericEdit9
         '
         Me.C1NumericEdit9.AutoSize = False
-        Me.C1NumericEdit9.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit9.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit9.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit9.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit9.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit9.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit9.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit9.DataType = GetType(Long)
-        Me.C1NumericEdit9.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit9.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit9.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit9.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit9.GapHeight = 0
@@ -433,16 +440,17 @@ Partial Class 代価表入力
         'C1NumericEdit10
         '
         Me.C1NumericEdit10.AutoSize = False
-        Me.C1NumericEdit10.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit10.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit10.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit10.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit10.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit10.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit10.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit10.DataType = GetType(Long)
-        Me.C1NumericEdit10.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit10.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit10.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit10.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit10.GapHeight = 0
@@ -459,16 +467,17 @@ Partial Class 代価表入力
         'C1NumericEdit11
         '
         Me.C1NumericEdit11.AutoSize = False
-        Me.C1NumericEdit11.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit11.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit11.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit11.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit11.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit11.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit11.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit11.DataType = GetType(Long)
-        Me.C1NumericEdit11.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit11.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit11.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit11.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit11.GapHeight = 0
@@ -485,16 +494,17 @@ Partial Class 代価表入力
         'C1NumericEdit12
         '
         Me.C1NumericEdit12.AutoSize = False
-        Me.C1NumericEdit12.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit12.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit12.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit12.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit12.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit12.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit12.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit12.DataType = GetType(Long)
-        Me.C1NumericEdit12.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit12.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit12.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit12.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit12.GapHeight = 0
@@ -511,16 +521,17 @@ Partial Class 代価表入力
         'C1NumericEdit13
         '
         Me.C1NumericEdit13.AutoSize = False
-        Me.C1NumericEdit13.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit13.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit13.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit13.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit13.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit13.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit13.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit13.DataType = GetType(Long)
-        Me.C1NumericEdit13.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit13.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit13.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit13.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit13.GapHeight = 0
@@ -537,16 +548,17 @@ Partial Class 代価表入力
         'C1NumericEdit14
         '
         Me.C1NumericEdit14.AutoSize = False
-        Me.C1NumericEdit14.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit14.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit14.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit14.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit14.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit14.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit14.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit14.DataType = GetType(Long)
-        Me.C1NumericEdit14.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit14.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit14.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit14.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit14.GapHeight = 0
@@ -563,16 +575,17 @@ Partial Class 代価表入力
         'C1NumericEdit15
         '
         Me.C1NumericEdit15.AutoSize = False
-        Me.C1NumericEdit15.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit15.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit15.Calculator.BackColor = System.Drawing.Color.White
+        Me.C1NumericEdit15.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.C1NumericEdit15.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.C1NumericEdit15.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit15.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.C1NumericEdit15.DataType = GetType(Long)
-        Me.C1NumericEdit15.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.C1NumericEdit15.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
         Me.C1NumericEdit15.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.C1NumericEdit15.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.C1NumericEdit15.GapHeight = 0
