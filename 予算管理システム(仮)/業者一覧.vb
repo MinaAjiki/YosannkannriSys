@@ -7,62 +7,69 @@ Public Class 業者一覧
     Public SelectRowIndex As Integer '親フォームで選択された行インデックス
 
     Private Sub 業者一覧_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: このコード行はデータを '広小路建設.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-        Me.M_TORTableAdapter4.Fill(Me.広小路建設.M_TOR)
-        'TODO: このコード行はデータを '飛高建設DB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-        Me.M_TORTableAdapter3.Fill(Me.飛高建設DB.M_TOR)
-        'TODO: このコード行はデータを '岐阜アイシーDB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-        Me.M_TORTableAdapter2.Fill(Me.岐阜アイシーDB.M_TOR)
-        'TODO: このコード行はデータを 'DataSet2.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-        Me.M_TORTableAdapter1.Fill(Me.DataSet2.M_TOR)
-        'TODO: このコード行はデータを 'DataSet1.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-        Me.M_TORTableAdapter.Fill(Me.DataSet1.M_TOR)
+        Try
+            'TODO: このコード行はデータを '広小路建設.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TORTableAdapter4.Fill(Me.広小路建設.M_TOR)
+            'TODO: このコード行はデータを '飛高建設DB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TORTableAdapter3.Fill(Me.飛高建設DB.M_TOR)
+            'TODO: このコード行はデータを '岐阜アイシーDB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TORTableAdapter2.Fill(Me.岐阜アイシーDB.M_TOR)
+            'TODO: このコード行はデータを 'DataSet2.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TORTableAdapter1.Fill(Me.DataSet2.M_TOR)
+            'TODO: このコード行はデータを 'DataSet1.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TORTableAdapter.Fill(Me.DataSet1.M_TOR)
 
-        'ホーム.Connection.Close()
-        'ホーム.Connection.Dispose()
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-        'ホーム.Connection.Open()
-        'ホーム.SystemSql.Connection = ホーム.Connection
+            'ホーム.Connection.Close()
+            'ホーム.Connection.Dispose()
+            'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
+            'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
+            'ホーム.Connection.Open()
+            'ホーム.SystemSql.Connection = ホーム.Connection
 
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
-        Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
-        If Outsrcrcount = Nothing Then
-            VendorList.DataSource = Nothing
-            MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
-            Me.Close()
-            If Outsrcrcount = "巴産業" Then
-                VendorList.DataSource = MTORBindingSource2
-            ElseIf Outsrcrcount = "岐阜アイシー" Then
-                VendorList.DataSource = MTORBindingSource3
-            ElseIf Outsrcrcount = "岐阜北建設" Then
+            ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
+            Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
+            If Outsrcrcount = Nothing Then
                 VendorList.DataSource = Nothing
-                MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
+                MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
                 Me.Close()
-            ElseIf Outsrcrcount = "飛高建設" Then
-                VendorList.DataSource = MTORBindingSource4
-            ElseIf Outsrcrcount = "広小路建設" Then
-                VendorList.DataSource = MTORBindingSource5
+                If Outsrcrcount = "巴産業" Then
+                    VendorList.DataSource = MTORBindingSource2
+                ElseIf Outsrcrcount = "岐阜アイシー" Then
+                    VendorList.DataSource = MTORBindingSource3
+                ElseIf Outsrcrcount = "岐阜北建設" Then
+                    VendorList.DataSource = Nothing
+                    MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
+                    Me.Close()
+                ElseIf Outsrcrcount = "飛高建設" Then
+                    VendorList.DataSource = MTORBindingSource4
+                ElseIf Outsrcrcount = "広小路建設" Then
+                    VendorList.DataSource = MTORBindingSource5
+                End If
             End If
-        End If
 
-        VendorList.Cols(1).Width = 100
-        VendorList.Cols(2).Width = 270
-        VendorList.Cols(3).Width = 0
-        VendorList.Cols(4).Width = 170
-        VendorList.Cols(5).Width = 130
-        VendorList.Cols(6).Width = 100
+            VendorList.Cols(1).Width = 100
+            VendorList.Cols(2).Width = 270
+            VendorList.Cols(3).Width = 0
+            VendorList.Cols(4).Width = 170
+            VendorList.Cols(5).Width = 130
+            VendorList.Cols(6).Width = 100
 
-        VendorList(0, 1) = "取引先コード"
-        VendorList(0, 2) = "業者名"
-        VendorList(0, 3) = ""
-        VendorList(0, 4) = "住所"
-        VendorList(0, 5) = ""
-        VendorList(0, 6) = "電話番号"
-        'カスタムツールチップ
-        'For i As Integer = VendorList.Rows.Fixed To VendorList.Rows.Count - 1
-        'VendorList.Rows(i).UserData = "Employee: " & VendorList(i, 2) & " " + VendorList(i, 3)
-        'Next
+            VendorList(0, 1) = "取引先コード"
+            VendorList(0, 2) = "業者名"
+            VendorList(0, 3) = ""
+            VendorList(0, 4) = "住所"
+            VendorList(0, 5) = ""
+            VendorList(0, 6) = "電話番号"
+            'カスタムツールチップ
+            'For i As Integer = VendorList.Rows.Fixed To VendorList.Rows.Count - 1
+            'VendorList.Rows(i).UserData = "Employee: " & VendorList(i, 2) & " " + VendorList(i, 3)
+            'Next
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Cancel_MouseLeave(sender As Object, e As EventArgs) Handles Cancel.MouseLeave
@@ -92,42 +99,50 @@ Public Class 業者一覧
     End Sub
 
     Private Sub VendorList_DoubleClick(sender As Object, e As EventArgs) Handles VendorList.DoubleClick
-        Dim r As Integer = 0
-        Dim RowIndex As Integer = 0
-        Dim Code As Integer = 0
-        Dim Name As String = ""
+        Try
+            Dim r As Integer = 0
+            Dim RowIndex As Integer = 0
+            Dim Code As Integer = 0
+            Dim Name As String = ""
 
-        If ParentFormName = "予算総括入力" Then
-            RowIndex = VendorList.Selection.TopRow
+            If ParentFormName = "予算総括入力" Then
+                RowIndex = VendorList.Selection.TopRow
 
-            'セルの値を変数に代入する
-            Code = VendorList(RowIndex, 1)
-            Name = VendorList(RowIndex, 2)
+                'セルの値を変数に代入する
+                Code = VendorList(RowIndex, 1)
+                Name = VendorList(RowIndex, 2)
 
-            '予算総括入力に値を代入する
-            予算総括入力.OutsoucersList(SelectRowIndex, 3) = Code
-            予算総括入力.OutsoucersList(SelectRowIndex, 4) = Name
-            ホーム.Modified = "True"
+                '予算総括入力に値を代入する
+                予算総括入力.OutsoucersList(SelectRowIndex, 3) = Code
+                予算総括入力.OutsoucersList(SelectRowIndex, 4) = Name
+                ホーム.Modified = "True"
 
-        Else
-            r = 協力業者入力.CoopVendorList.Rows.Count - 1
-            RowIndex = VendorList.Selection.TopRow
+            Else
+                r = 協力業者入力.CoopVendorList.Rows.Count - 1
+                RowIndex = VendorList.Selection.TopRow
 
-            'セルの値を変数に代入する
-            Code = VendorList(RowIndex, 1)
-            Name = VendorList(RowIndex, 2)
+                'セルの値を変数に代入する
+                Code = VendorList(RowIndex, 1)
+                Name = VendorList(RowIndex, 2)
 
-            '協力業者入力に値を代入する
-            協力業者入力.CoopVendorList(r, 1) = Code
-            協力業者入力.CoopVendorList(r, 2) = Name
-        End If
+                '協力業者入力に値を代入する
+                協力業者入力.CoopVendorList(r, 1) = Code
+                協力業者入力.CoopVendorList(r, 2) = Name
+            End If
 
 
-        '業者一覧を閉じる
-        Me.Close()
-        If 協力業者入力.IsDisposed = False Then
-            協力業者入力.CoopVendorList.StartEditing(r, 3)
-        End If
+            '業者一覧を閉じる
+            Me.Close()
+            If 協力業者入力.IsDisposed = False Then
+                協力業者入力.CoopVendorList.StartEditing(r, 3)
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub VendorList_MouseEnterCell(ByVal sender As Object, ByVal e As C1.Win.C1FlexGrid.RowColEventArgs)
