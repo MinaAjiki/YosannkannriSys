@@ -33,7 +33,7 @@ Partial Class 外注内訳入力
         Me.CreatedDateBox = New C1.Win.C1Input.C1TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ContractNo = New C1.Win.C1Input.C1NumericEdit()
-        Me.Total = New C1.Win.C1Input.C1NumericEdit()
+        Me.TotalBox = New C1.Win.C1Input.C1NumericEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Breakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ChangeDetailLabel = New System.Windows.Forms.Label()
@@ -45,13 +45,14 @@ Partial Class 外注内訳入力
         Me.Cancel = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
         CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Total, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TotalBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +143,7 @@ Partial Class 外注内訳入力
         Me.FormPanel.Controls.Add(Me.CreatedDateBox)
         Me.FormPanel.Controls.Add(Me.Label1)
         Me.FormPanel.Controls.Add(Me.ContractNo)
-        Me.FormPanel.Controls.Add(Me.Total)
+        Me.FormPanel.Controls.Add(Me.TotalBox)
         Me.FormPanel.Controls.Add(Me.Label4)
         Me.FormPanel.Controls.Add(Me.Breakdown)
         Me.FormPanel.Controls.Add(Me.ChangeDetailLabel)
@@ -234,44 +235,44 @@ Partial Class 外注内訳入力
         Me.ContractNo.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.UpDown
         Me.ContractNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'Total
+        'TotalBox
         '
-        Me.Total.AutoSize = False
-        Me.Total.BackColor = System.Drawing.Color.White
-        Me.Total.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TotalBox.AutoSize = False
+        Me.TotalBox.BackColor = System.Drawing.Color.White
+        Me.TotalBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.Total.Calculator.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Total.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.Total.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.Total.DataType = GetType(Long)
-        Me.Total.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Total.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Total.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
+        Me.TotalBox.Calculator.BackColor = System.Drawing.Color.White
+        Me.TotalBox.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.TotalBox.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.TotalBox.DataType = GetType(Long)
+        Me.TotalBox.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.TotalBox.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
+        Me.TotalBox.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
-        Me.Total.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.Total.GapHeight = 0
-        Me.Total.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.Total.Location = New System.Drawing.Point(376, 594)
-        Me.Total.Name = "Total"
-        Me.Total.Size = New System.Drawing.Size(95, 21)
-        Me.Total.TabIndex = 79
-        Me.Total.Tag = Nothing
-        Me.Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.SystemTheme.SetTheme(Me.Total, "予算管理テーマ")
-        Me.Total.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.Total.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.TotalBox.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.TotalBox.GapHeight = 0
+        Me.TotalBox.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.TotalBox.Location = New System.Drawing.Point(376, 595)
+        Me.TotalBox.Name = "TotalBox"
+        Me.TotalBox.Size = New System.Drawing.Size(95, 20)
+        Me.TotalBox.TabIndex = 79
+        Me.TotalBox.Tag = Nothing
+        Me.TotalBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.TotalBox, "予算管理テーマ")
+        Me.TotalBox.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.TotalBox.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label4
         '
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(341, 594)
+        Me.Label4.Location = New System.Drawing.Point(341, 595)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 21)
+        Me.Label4.Size = New System.Drawing.Size(38, 20)
         Me.Label4.TabIndex = 78
         Me.Label4.Text = "合計"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -284,7 +285,6 @@ Partial Class 外注内訳入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Breakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.Breakdown.ColumnInfo = resources.GetString("Breakdown.ColumnInfo")
-        Me.Breakdown.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Breakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Breakdown.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.Breakdown.Location = New System.Drawing.Point(470, 64)
@@ -444,6 +444,10 @@ Partial Class 外注内訳入力
         Me.C1NumericEdit2.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.C1NumericEdit2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        '
         '外注内訳入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -463,7 +467,7 @@ Partial Class 外注内訳入力
         CType(Me.TotalBreakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CreatedDateBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ContractNo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Total, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TotalBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Breakdown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangeDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -487,7 +491,7 @@ Partial Class 外注内訳入力
     Friend WithEvents DetailList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents ChangeDetailLabel As Label
     Friend WithEvents Cancel As Button
-    Friend WithEvents Total As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents TotalBox As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Label4 As Label
     Friend WithEvents TotalBreakdown As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents Breakdown As C1.Win.C1FlexGrid.C1FlexGrid
@@ -496,4 +500,5 @@ Partial Class 外注内訳入力
     Friend WithEvents Label1 As Label
     Friend WithEvents CreatedDateBox As C1.Win.C1Input.C1TextBox
     Friend WithEvents Create As Button
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

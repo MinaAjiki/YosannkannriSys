@@ -246,6 +246,7 @@ Public Class ホーム
     Private Sub 外注計画登録_Click(sender As Object, e As ClickEventArgs) Handles 外注計画登録.Click
         '外注内訳入力.TopLevel = False
         'FormPanel.Controls.Add(外注内訳入力)
+        '外注内訳入力.BackgroundWorker1.RunWorkerAsync()
         外注内訳入力.Show()
     End Sub
 

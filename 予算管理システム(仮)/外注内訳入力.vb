@@ -40,128 +40,139 @@ Public Class 外注内訳入力
     End Sub
 
     Private Sub 外注内訳入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DetailList(0, 2) = "工種"
-        DetailList(1, 2) = "工種"
-        DetailList(2, 2) = "工種"
-        DetailList(0, 3) = "工種名"
-        DetailList(0, 5) = "数量"
-        DetailList(1, 3) = "名称"
-        DetailList(1, 4) = "名称"
-        DetailList(2, 3) = "規格"
-        DetailList(2, 4) = "規格"
-        DetailList(0, 4) = "単位"
-        DetailList(1, 5) = "単価"
-        DetailList(2, 5) = "金額"
-        DetailList(0, 6) = "直営分"
-        DetailList(2, 6) = "金額"
+        Try
+            進行状況.Show()
+            進行状況.Refresh()
+            DetailList(0, 2) = "工種"
+            DetailList(1, 2) = "工種"
+            DetailList(2, 2) = "工種"
+            DetailList(0, 3) = "工種名"
+            DetailList(0, 5) = "数量"
+            DetailList(1, 3) = "名称"
+            DetailList(1, 4) = "名称"
+            DetailList(2, 3) = "規格"
+            DetailList(2, 4) = "規格"
+            DetailList(0, 4) = "単位"
+            DetailList(1, 5) = "単価"
+            DetailList(2, 5) = "金額"
+            DetailList(0, 6) = "直営分"
+            DetailList(2, 6) = "金額"
 
-        DetailList.MergedRanges.Add(0, 2, 2, 2)
-        DetailList.MergedRanges.Add(1, 3, 1, 4)
-        DetailList.MergedRanges.Add(2, 3, 2, 4)
-        DetailList.MergedRanges.Add(0, 6, 1, 6)
+            DetailList.MergedRanges.Add(0, 2, 2, 2)
+            DetailList.MergedRanges.Add(1, 3, 1, 4)
+            DetailList.MergedRanges.Add(2, 3, 2, 4)
+            DetailList.MergedRanges.Add(0, 6, 1, 6)
 
-        DetailList.Rows(0).Height = 17
-        DetailList.Rows(1).Height = 17
-        DetailList.Rows(2).Height = 17
-        Breakdown.Rows(0).Height = 17
-        Breakdown.Rows(1).Height = 17
-        Breakdown.Rows(2).Height = 17
+            DetailList.Rows(0).Height = 17
+            DetailList.Rows(1).Height = 17
+            DetailList.Rows(2).Height = 17
+            Breakdown.Rows(0).Height = 17
+            Breakdown.Rows(1).Height = 17
+            Breakdown.Rows(2).Height = 17
 
-        'Breakdown.Footers.Descriptions.Add(New FooterDescription())
-        'Breakdown.Footers.Fixed = True
+            'Breakdown.Footers.Descriptions.Add(New FooterDescription())
+            'Breakdown.Footers.Fixed = True
+            'Breakdown.Footers.Descriptions(0).Aggregates.Add(New AggregateDefinition())
 
-        TotalBreakdown.ScrollBars = ScrollBars.None
+            TotalBreakdown.ScrollBars = ScrollBars.None
 
-        '協力業者テーブルからレコード数を取得
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
-        Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
+            '協力業者テーブルからレコード数を取得
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
+            Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
 
-        Dim Coopcount As Integer = 1
-        Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
-        While Coopreader.Read
-            Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-            Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-            Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
-            Coopcount += 1
-        End While
-        Coopreader.Close()
+            Dim Coopcount As Integer = 1
+            Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
+            While Coopreader.Read
+                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
+                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
+                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+                Coopcount += 1
+            End While
+            Coopreader.Close()
 
-        Dim Drow1 As Integer = 3
-        Dim Drow2 As Integer = 4
-        Dim Drow3 As Integer = 5
-        Dim quanity As Integer
-        Dim costea As Integer
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
-        Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
-        While Detailreader.Read
-            Me.DetailList.Rows.Add()
-            Me.DetailList.Rows.Add()
-            Me.DetailList.Rows.Add()
-            Me.Breakdown.Rows.Add()
-            Me.Breakdown.Rows.Add()
-            Me.Breakdown.Rows.Add()
+            Dim Drow1 As Integer = 3
+            Dim Drow2 As Integer = 4
+            Dim Drow3 As Integer = 5
+            Dim quanity As Integer
+            Dim costea As Integer
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
+            Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
+            While Detailreader.Read
+                Me.DetailList.Rows.Add()
+                Me.DetailList.Rows.Add()
+                Me.DetailList.Rows.Add()
+                Me.Breakdown.Rows.Add()
+                Me.Breakdown.Rows.Add()
+                Me.Breakdown.Rows.Add()
 
-            DetailList(Drow1, 0) = Detailreader.Item("dtl_id")
-            DetailList(Drow1, 1) = Detailreader.Item("dtl_no")
-            DetailList(Drow1, 2) = Detailreader.Item("s_worktype_code")
-            DetailList(Drow1, 4) = Detailreader.Item("dtl_unit")
-            DetailList(Drow1, 5) = Detailreader.Item("dtl_quanity")
-            Dim Dtlquanity As CellRange = DetailList.GetCellRange(Drow1, 5)
-            Dtlquanity.StyleNew.Format = "N1"
-            DetailList(Drow2, 3) = Detailreader.Item("dtl_name")
-            DetailList.MergedRanges.Add(Drow2, 3, Drow2, 4)
-            DetailList(Drow2, 5) = Detailreader.Item("dtl_costea")
-            Dim Dtlcostea As CellRange = DetailList.GetCellRange(Drow2, 5)
-            Dtlcostea.StyleNew.Format = "N0"
-            DetailList(Drow3, 3) = Detailreader.Item("dtl_spec")
-            DetailList.MergedRanges.Add(Drow3, 3, Drow3, 4)
-            quanity = DetailList(Drow1, 5)
-            costea = DetailList(Drow2, 5)
-            DetailList(Drow3, 5) = quanity * costea
-            Dim Dtlamount As CellRange = DetailList.GetCellRange(Drow3, 5)
-            Dtlamount.StyleNew.Format = "N0"
+                DetailList(Drow1, 0) = Detailreader.Item("dtl_id")
+                DetailList(Drow1, 1) = Detailreader.Item("dtl_no")
+                DetailList(Drow1, 2) = Detailreader.Item("s_worktype_code")
+                DetailList(Drow1, 4) = Detailreader.Item("dtl_unit")
+                DetailList(Drow1, 5) = Detailreader.Item("dtl_quanity")
+                Dim Dtlquanity As CellRange = DetailList.GetCellRange(Drow1, 5)
+                Dtlquanity.StyleNew.Format = "N1"
+                DetailList(Drow2, 3) = Detailreader.Item("dtl_name")
+                DetailList.MergedRanges.Add(Drow2, 3, Drow2, 4)
+                DetailList(Drow2, 5) = Detailreader.Item("dtl_costea")
+                Dim Dtlcostea As CellRange = DetailList.GetCellRange(Drow2, 5)
+                Dtlcostea.StyleNew.Format = "N0"
+                DetailList(Drow3, 3) = Detailreader.Item("dtl_spec")
+                DetailList.MergedRanges.Add(Drow3, 3, Drow3, 4)
+                quanity = DetailList(Drow1, 5)
+                costea = DetailList(Drow2, 5)
+                DetailList(Drow3, 5) = quanity * costea
+                Dim Dtlamount As CellRange = DetailList.GetCellRange(Drow3, 5)
+                Dtlamount.StyleNew.Format = "N0"
 
-            If Drow1 Mod 2 = 0 Then
-                DetailList.Rows(Drow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                DetailList.Rows(Drow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                DetailList.Rows(Drow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                Breakdown.Rows(Drow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                Breakdown.Rows(Drow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                Breakdown.Rows(Drow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-            End If
+                If Drow1 Mod 2 = 0 Then
+                    DetailList.Rows(Drow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailList.Rows(Drow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailList.Rows(Drow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Breakdown.Rows(Drow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Breakdown.Rows(Drow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Breakdown.Rows(Drow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                End If
 
-            Drow1 += 3
-            Drow2 += 3
-            Drow3 += 3
+                Drow1 += 3
+                Drow2 += 3
+                Drow3 += 3
 
-        End While
-        Detailreader.Close()
+            End While
+            Detailreader.Close()
 
-        '工種名を取得
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
-        Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
+            '工種名を取得
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
+            Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
 
-        For SWORKTYPEloop As Integer = 1 To Detailscount
-            ホーム.SystemSql.CommandText = "SELECT s_worktype FROM s_worktype WHERE s_worktype_code=" & DetailList(SWORKTYPEloop * 3, 2)
-            Dim SwrktypName As String = ホーム.SystemSql.ExecuteScalar
-            DetailList(SWORKTYPEloop * 3, 3) = SwrktypName
-        Next
+            For SWORKTYPEloop As Integer = 1 To Detailscount
+                ホーム.SystemSql.CommandText = "SELECT s_worktype FROM s_worktype WHERE s_worktype_code=" & DetailList(SWORKTYPEloop * 3, 2)
+                Dim SwrktypName As String = ホーム.SystemSql.ExecuteScalar
+                DetailList(SWORKTYPEloop * 3, 3) = SwrktypName
+            Next
 
-        '一番大きい変更回数を取得し、変更回数の上限下限をセット
-        ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
-        Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
+            '一番大きい変更回数を取得し、変更回数の上限下限をセット
+            ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
+            Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
 
-        ContractNo.PostValidation.Validation = PostValidationTypeEnum.ValuesAndIntervals
-        Dim valInteval_1 As ValueInterval = New ValueInterval(0, Maxoutsrc, True, True)
-        ContractNo.PostValidation.Intervals.Add(valInteval_1)
-        ContractNo.Value = Maxoutsrc
+            ContractNo.PostValidation.Validation = PostValidationTypeEnum.ValuesAndIntervals
+            Dim valInteval_1 As ValueInterval = New ValueInterval(0, Maxoutsrc, True, True)
+            ContractNo.PostValidation.Intervals.Add(valInteval_1)
+            ContractNo.Value = Maxoutsrc
 
+            進行状況.Close()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub C1FlexGrid2_Click(sender As Object, e As EventArgs)
@@ -185,181 +196,32 @@ Public Class 外注内訳入力
         Breakdown.ScrollPosition = TotalBreakdown.ScrollPosition
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        Me.Close()
+        If MsgBox("外注計画入力を閉じます。よろしいですか？", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub ContractNo_ValueChanged(sender As Object, e As EventArgs) Handles ContractNo.ValueChanged
-        Breakdown.Clear(ClearFlags.Content)
+        Try
+            進行状況.Show()
+            進行状況.Refresh()
+            Breakdown.Clear(ClearFlags.Content)
 
-        '協力業者テーブルから業者数を取得
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
-        Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
-
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
-
-        Dim Coopcount As Integer = 1
-        Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
-        While Coopreader.Read
-            If Vendorcount >= 8 Then
-                Me.Breakdown.Cols.Count = Vendorcount + 1
-                Me.TotalBreakdown.Cols.Count = Vendorcount + 1
-            End If
-            Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-            Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-            Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
-            Coopcount += 1
-        End While
-        Coopreader.Close()
-
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
-        Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
-
-        For vendorloop As Integer = 1 To Vendorcount
-            Dim total As Integer = 0
-            For BDloop As Integer = 1 To Detailscount
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
-                Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
-                If Oquanity = 0 Then
-                    Breakdown(BDloop * 3, vendorloop) = 0
-                    Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
-                Else
-                    Breakdown(BDloop * 3, vendorloop) = Oquanity
-                    Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
-                End If
-                Breakdown.Rows(BDloop * 3).AllowEditing = True
-
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
-                Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
-                If Ocostea = 0 Then
-                    Breakdown(BDloop * 3 + 1, vendorloop) = 0
-                    Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
-                Else
-                    Breakdown(BDloop * 3 + 1, vendorloop) = Ocostea
-                    Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
-                End If
-                Breakdown.Rows(BDloop * 3 + 1).AllowEditing = True
-
-                Dim Amount As Integer = 0
-                Amount = Oquanity * Ocostea
-                Breakdown(BDloop * 3 + 2, vendorloop) = Amount
-                Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"
-                total += Amount
-                TotalBreakdown(0, vendorloop) = total
-                TotalBreakdown.Rows(0).StyleNew.Format = "N0"
-
-            Next
-        Next
-
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT created_date FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & "AND outsrc_no=" & ContractNo.Value
-        Dim CreateDate As Date = ホーム.Sql.ExecuteScalar
-        CreatedDateBox.Value = CreateDate.ToString("D")
-
-        '外注計画報告書テーブルから変更内容を取得
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value
-        Dim change As String = ホーム.Sql.ExecuteScalar
-        ChangeDetail.Value = change
-
-        '直営計算
-        Dim Gtotal As Int64 '直営合計
-        Dim DMtotal As Int64 '直営金額
-        For DTloop As Integer = 1 To Detailscount
-            Dim DM As Int64 = 0
-            For DMloop As Integer = 1 To Vendorcount
-                DM += Breakdown(DTloop * 3 + 2, DMloop)
-            Next
-            Dim CoTotal As Int64 = DetailList(DTloop * 3 + 2, 5)
-            DMtotal = CoTotal - DM
-            DetailList(DTloop * 3 + 2, 6) = DMtotal
-            Gtotal += DMtotal
-        Next
-        Total.Value = Gtotal
-
-    End Sub
-
-    Private Sub Breakdown_AfterEdit(sender As Object, e As RowColEventArgs) Handles Breakdown.AfterEdit
-
-        Dim quanity As Integer
-        Dim costea As Integer
-        Dim total As Integer
-
-        If e.Row Mod 2 = 0 Then
-            quanity = Breakdown(e.Row - 1, e.Col)
-            costea = Breakdown(e.Row, e.Col)
-            total = quanity * costea
-            Breakdown(e.Row + 1, e.Col) = total
-        Else
-            quanity = Breakdown(e.Row, e.Col)
-            costea = Breakdown(e.Row + 1, e.Col)
-            total = quanity * costea
-            Breakdown(e.Row + 2, e.Col) = total
-        End If
-
-        quanity = 0
-        costea = 0
-        total = 0
-
-        '直営計算
-        Dim Gtotal As Int64 '直営合計
-        Dim DMtotal As Int64 '直営金額
-        Dim DM As Int64 '外注合計
-        Dim CoTotal As Int64
-        Dim Vendorcount As Integer = Breakdown.Cols.Count - 1
-
-        If e.Row Mod 2 = 0 Then
-            For Vendorloop As Integer = 1 To Vendorcount
-                DM += Breakdown(e.Row + 1, Vendorloop)
-            Next
-            CoTotal = DetailList(e.Row + 1, 5)
-            DMtotal = CoTotal - DM
-            DetailList(e.Row + 1, 6) = DMtotal
-        Else
-            For Vendorloop As Integer = 1 To Vendorcount
-                DM += Breakdown(e.Row + 2, Vendorloop)
-            Next
-            CoTotal = DetailList(e.Row + 2, 5)
-            DMtotal = CoTotal - DM
-            DetailList(e.Row + 2, 6) = DMtotal
-        End If
-
-    End Sub
-
-    Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
-        Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
-
-        If MsgBox("第" & ホーム.BudgetNo & "回予算計画の最新の変更計画をもとに、新しい変更計画を作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
-            ContractNo.Value = Maxoutsrc + 1
-
-            ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT created_date FROM Outsourcing_plans WHERE outsrc_no=" & ContractNo.Value - 1
-            Dim CreatedDate As String = ホーム.Sql.ExecuteScalar
-            CreatedDateBox.Value = CreatedDate
-
-
-            '協力業者テーブルからレコード数を取得
+            '協力業者テーブルから業者数を取得
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
             Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-            '外注計画報告書テーブルから変更内容を取得
-            ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value - 1
-            Dim change As String = ホーム.Sql.ExecuteScalar
-            ChangeDetail.Value = change
-
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+
             Dim Coopcount As Integer = 1
             Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Coopreader.Read
+                If Vendorcount >= 8 Then
+                    Me.Breakdown.Cols.Count = Vendorcount + 1
+                    Me.TotalBreakdown.Cols.Count = Vendorcount + 1
+                End If
                 Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
                 Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
                 Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
@@ -367,7 +229,354 @@ Public Class 外注内訳入力
             End While
             Coopreader.Close()
 
-        End If
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
+            Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
+
+            For vendorloop As Integer = 1 To Vendorcount
+                Dim total As Integer = 0
+                For BDloop As Integer = 1 To Detailscount
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
+                    Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
+                    If Oquanity = 0 Then
+                        Breakdown(BDloop * 3, vendorloop) = 0
+                        Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
+                    Else
+                        Breakdown(BDloop * 3, vendorloop) = Oquanity
+                        Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
+                    End If
+
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
+                    Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
+                    If Ocostea = 0 Then
+                        Breakdown(BDloop * 3 + 1, vendorloop) = 0
+                        Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
+                    Else
+                        Breakdown(BDloop * 3 + 1, vendorloop) = Ocostea
+                        Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
+                    End If
+
+                    Dim Amount As Integer = 0
+                    Amount = Oquanity * Ocostea
+                    Breakdown(BDloop * 3 + 2, vendorloop) = Amount
+                    Breakdown.Rows(BDloop * 3 + 2).AllowEditing = False
+                    Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"
+                    total += Amount
+                    TotalBreakdown(0, vendorloop) = total
+                    TotalBreakdown.Rows(0).StyleNew.Format = "N0"
+
+                Next
+            Next
+
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT created_date FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & "AND outsrc_no=" & ContractNo.Value
+            Dim CreateDate As Date = ホーム.Sql.ExecuteScalar
+            If CreateDate = Nothing Then
+                CreateDate = "1900/01/01"
+            End If
+            CreatedDateBox.Value = CreateDate.ToString("D")
+
+            '外注計画報告書テーブルから変更内容を取得
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value
+            Dim change As String = ホーム.Sql.ExecuteScalar
+            ChangeDetail.Value = change
+
+            '直営計算
+            Dim Gtotal As Int64 '直営合計
+            Dim DMtotal As Int64 '直営金額
+            For DTloop As Integer = 1 To Detailscount
+                Dim DM As Int64 = 0
+                For DMloop As Integer = 1 To Vendorcount
+                    DM += Breakdown(DTloop * 3 + 2, DMloop)
+                Next
+                Dim CoTotal As Int64 = DetailList(DTloop * 3 + 2, 5)
+                DMtotal = CoTotal - DM
+                DetailList(DTloop * 3 + 2, 6) = DMtotal
+                Gtotal += DMtotal
+            Next
+            TotalBox.Value = Gtotal
+            進行状況.Close()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
+    Private Sub Breakdown_AfterEdit(sender As Object, e As RowColEventArgs) Handles Breakdown.AfterEdit
+        Try
+
+            Dim quanity As Int64
+            Dim costea As Int64
+            Dim amount As Int64
+            Dim total As Int64
+
+            If Breakdown(e.Row, e.Col) = "" Then
+                Breakdown(e.Row, e.Col) = 0
+            End If
+
+            If e.Row Mod 3 = 0 Then
+                quanity = Breakdown(e.Row, e.Col)
+                costea = Breakdown(e.Row + 1, e.Col)
+                amount = quanity * costea
+                Breakdown(e.Row + 2, e.Col) = amount
+                Breakdown.Rows(e.Row).StyleNew.Format = "N1"
+            Else
+                quanity = Breakdown(e.Row - 1, e.Col)
+                costea = Breakdown(e.Row, e.Col)
+                amount = quanity * costea
+                Breakdown(e.Row + 1, e.Col) = amount
+                Breakdown.Rows(e.Row).StyleNew.Format = "N0"
+            End If
+
+            Dim Detailscount As Integer = Breakdown.Rows.Count / 3 - 1
+
+            For BDloop As Integer = 1 To Detailscount
+                total += Breakdown(BDloop * 3 + 2, e.Col)
+            Next
+            TotalBreakdown(0, e.Col) = total
+
+            '直営計算
+            Dim Gtotal As Int64 '直営合計
+            Dim DMtotal As Int64 '直営金額
+            Dim DM As Int64 '外注合計
+            Dim CoTotal As Int64
+            Dim Vendorcount As Integer = Breakdown.Cols.Count - 1
+
+            If e.Row Mod 3 = 0 Then
+                For Vendorloop As Integer = 1 To Vendorcount
+                    DM += Breakdown(e.Row + 2, Vendorloop)
+                Next
+                CoTotal = DetailList(e.Row + 2, 5)
+                DMtotal = CoTotal - DM
+                DetailList(e.Row + 2, 6) = DMtotal
+            Else
+                For Vendorloop As Integer = 1 To Vendorcount
+                    DM += Breakdown(e.Row + 1, Vendorloop)
+                Next
+                CoTotal = DetailList(e.Row + 1, 5)
+                DMtotal = CoTotal - DM
+                DetailList(e.Row + 1, 6) = DMtotal
+            End If
+
+            For DTloop As Integer = 1 To Vendorcount
+                Gtotal += DetailList(DTloop * 3 + 2, 6)
+            Next
+            TotalBox.Value = Gtotal
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
+        Try
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
+            Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
+
+            '協力業者テーブルからレコード数を取得
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
+            Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
+
+            If MsgBox("第" & ホーム.BudgetNo & "回予算計画の最新の変更計画をもとに、新しい変更計画を作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
+                Breakdown.Clear(ClearFlags.Content)
+                TotalBreakdown.Clear(ClearFlags.Content)
+                ChangeDetail.Clear()
+                ContractNo.Value = Maxoutsrc + 1
+
+                '今日の日付を表示
+                Dim dt1 As DateTime = DateTime.Today
+                CreatedDateBox.Value = dt1.ToString("D")
+
+                '外注計画報告書テーブルから変更内容を取得
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value - 1
+                Dim change As String = ホーム.Sql.ExecuteScalar
+                ChangeDetail.Value = change
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+                Dim Coopcount As Integer = 1
+                Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While Coopreader.Read
+                    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
+                    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
+                    Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+                    Coopcount += 1
+                End While
+                Coopreader.Close()
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
+                Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
+
+                For vendorloop As Integer = 1 To Vendorcount
+                    Dim total As Integer = 0
+                    For BDloop As Integer = 1 To Detailscount
+                        ホーム.Sql.Parameters.Clear()
+                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
+                        Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
+                        If Oquanity = 0 Then
+                            Breakdown(BDloop * 3, vendorloop) = 0
+                            Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
+                        Else
+                            Breakdown(BDloop * 3, vendorloop) = Oquanity
+                            Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
+                        End If
+
+                        ホーム.Sql.Parameters.Clear()
+                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
+                        Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
+                        If Ocostea = 0 Then
+                            Breakdown(BDloop * 3 + 1, vendorloop) = 0
+                            Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
+                        Else
+                            Breakdown(BDloop * 3 + 1, vendorloop) = Ocostea
+                            Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
+                        End If
+
+                        Dim Amount As Integer = 0
+                        Amount = Oquanity * Ocostea
+                        Breakdown(BDloop * 3 + 2, vendorloop) = Amount
+                        Breakdown.Rows(BDloop * 3 + 2).AllowEditing = False
+                        Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"
+                        total += Amount
+                        TotalBreakdown(0, vendorloop) = total
+                        TotalBreakdown.Rows(0).StyleNew.Format = "N0"
+
+                    Next
+                Next
+
+                '直営計算
+                Dim Gtotal As Int64 '直営合計
+                Dim DMtotal As Int64 '直営金額
+                For DTloop As Integer = 1 To Detailscount
+                    Dim DM As Int64 = 0
+                    For DMloop As Integer = 1 To Vendorcount
+                        DM += Breakdown(DTloop * 3 + 2, DMloop)
+                    Next
+                    Dim CoTotal As Int64 = DetailList(DTloop * 3 + 2, 5)
+                    DMtotal = CoTotal - DM
+                    DetailList(DTloop * 3 + 2, 6) = DMtotal
+                    Gtotal += DMtotal
+                Next
+                TotalBox.Value = Gtotal
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+        Try
+            Dim Vendorcount As Integer = Breakdown.Cols.Count - 1
+            Dim Detailscount As Integer = Breakdown.Rows.Count / 3 - 1
+            Dim createddate As Date = CreatedDateBox.Value
+            Dim outsrcno As Integer = ContractNo.Value
+            Dim Changedetailtext As String = ChangeDetail.Text
+
+            For Vendorloop As Integer = 1 To Vendorcount
+                Dim outsrcrid As Integer = Breakdown(0, Vendorloop)
+                For Detailloop As Integer = 1 To Detailscount
+                    Dim dtlid As Integer = DetailList(Detailloop * 3, 0)
+                    Dim Oquanity As Integer = Breakdown(Detailloop * 3, Vendorloop)
+                    Dim Ocostea As Integer = Breakdown(Detailloop * 3 + 1, Vendorloop)
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM outsourcing_plans WHERE outsrc_no =" & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid
+                    Dim OutsrcnoCount As Integer = ホーム.Sql.ExecuteScalar
+                    If OutsrcnoCount = 0 Then
+                        If Oquanity = 0 Or Ocostea = 0 Then
+                            Continue For
+                        Else
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,outsrcr_id,dtl_id,outsrcng_quanity,outsrcng_costea,created_date)VALUES(@budget_no,@outsrc_no,@outsrcr_id,@dtl_id,@outsrcng_quanity,@outsrcng_costea,@created_date)"
+                        End If
+                    Else
+                        ホーム.Sql.CommandText = ""
+                        ホーム.Sql.Parameters.Clear()
+                        ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET budget_no=@budget_no,outsrc_no=@outsrc_no,outsrcr_id=@outsrcr_id,dtl_id=@dtl_id,outsrcng_quanity=@outsrcng_quanity,outsrcng_costea=@outsrcng_costea,created_date=@created_date WHERE outsrc_no = " & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid
+                    End If
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.Int))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrc_no", SqlDbType.Int))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcng_quanity", SqlDbType.Decimal))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcng_costea", SqlDbType.Money))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@created_date", SqlDbType.Date))
+                    ホーム.Sql.Parameters("@budget_no").Value = ホーム.BudgetNo
+                    ホーム.Sql.Parameters("@outsrc_no").Value = outsrcno
+                    ホーム.Sql.Parameters("@outsrcr_id").Value = outsrcrid
+                    ホーム.Sql.Parameters("@dtl_id").Value = dtlid
+                    ホーム.Sql.Parameters("@outsrcng_quanity").Value = Oquanity
+                    ホーム.Sql.Parameters("@outsrcng_costea").Value = Ocostea
+                    ホーム.Sql.Parameters("@created_date").Value = createddate
+                    ホーム.Sql.ExecuteNonQuery()
+
+                Next
+            Next
+
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(outsrc_no),0) FROM outsourcing_reports WHERE outsrc_no = " & outsrcno
+            Dim ReportCount As Integer = ホーム.Sql.ExecuteScalar
+            If ReportCount = 0 Then
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "INSERT INTO outsourcing_reports (prjct_code,outsrc_no,created_date,changes)VALUES(@prjct_code,@outsrc_no,@created_date,@changes)"
+            Else
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "UPDATE outsourcing_reports SET prjct_code=@prjct_code,outsrc_no=@outsrc_no,created_date=@created_date,changes=@changes WHERE outsrc_no = " & outsrcno
+            End If
+            ホーム.Sql.Parameters.Add(New SqlParameter("@prjct_code", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@outsrc_no", SqlDbType.Int))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@created_date", SqlDbType.Date))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@changes", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters("@prjct_code").Value = "DD0000"
+            ホーム.Sql.Parameters("@outsrc_no").Value = outsrcno
+            ホーム.Sql.Parameters("@created_date").Value = createddate
+            ホーム.Sql.Parameters("@changes").Value = ChangeDetail.Text
+            ホーム.Sql.ExecuteNonQuery()
+
+            '一番大きい変更回数を取得し、変更回数の上限下限をセット
+            ホーム.Sql.CommandText = "SELECT ISNULL(MAX(outsrc_no),0) from Outsourcing_plans"
+            Dim Maxoutsrc As Integer = ホーム.Sql.ExecuteScalar
+
+            ContractNo.PostValidation.Validation = PostValidationTypeEnum.ValuesAndIntervals
+            Dim valInteval_1 As ValueInterval = New ValueInterval(0, Maxoutsrc, True, True)
+            ContractNo.PostValidation.Intervals.Add(valInteval_1)
+            ContractNo.Value = Maxoutsrc
+
+
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "外注計画登録")
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        'Me.BackgroundWorker1.ReportProgress(1)
+    End Sub
+
+    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+
+    End Sub
 End Class
