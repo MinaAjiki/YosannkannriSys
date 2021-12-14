@@ -131,7 +131,7 @@ Partial Class 作成代価選択
         Me.MinimizeBox = False
         Me.Name = "作成代価選択"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "項目選択"
+        Me.Text = "作成代価選択"
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

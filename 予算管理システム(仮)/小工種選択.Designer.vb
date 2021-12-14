@@ -144,10 +144,10 @@ Partial Class 小工種選択
         Me.SWorkTypeTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SWorkTypeTotal.DataType = GetType(Long)
         Me.SWorkTypeTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.SWorkTypeTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.SWorkTypeTotal.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.SWorkTypeTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.SWorkTypeTotal.DisplayFormat.EmptyAsNull = True
+        Me.SWorkTypeTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.SWorkTypeTotal.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.SWorkTypeTotal.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -176,10 +176,10 @@ Partial Class 小工種選択
         Me.Labor.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.Labor.DataType = GetType(Long)
         Me.Labor.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Labor.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Labor.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.Labor.DisplayFormat.CustomFormat = "#,###"
+        Me.Labor.DisplayFormat.EmptyAsNull = True
+        Me.Labor.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Labor.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.Labor.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -208,10 +208,10 @@ Partial Class 小工種選択
         Me.Material.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.Material.DataType = GetType(Long)
         Me.Material.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Material.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Material.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.Material.DisplayFormat.CustomFormat = "#,###"
+        Me.Material.DisplayFormat.EmptyAsNull = True
+        Me.Material.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Material.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.Material.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -240,10 +240,10 @@ Partial Class 小工種選択
         Me.Machine.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.Machine.DataType = GetType(Long)
         Me.Machine.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Machine.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Machine.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.Machine.DisplayFormat.CustomFormat = "#,###"
+        Me.Machine.DisplayFormat.EmptyAsNull = True
+        Me.Machine.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Machine.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.Machine.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -272,10 +272,10 @@ Partial Class 小工種選択
         Me.Subcntrct.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.Subcntrct.DataType = GetType(Long)
         Me.Subcntrct.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Subcntrct.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Subcntrct.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.Subcntrct.DisplayFormat.CustomFormat = "#,###"
+        Me.Subcntrct.DisplayFormat.EmptyAsNull = True
+        Me.Subcntrct.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Subcntrct.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.Subcntrct.Font = New System.Drawing.Font("Arial", 9.0!)
@@ -304,10 +304,10 @@ Partial Class 小工種選択
         Me.Expens.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.Expens.DataType = GetType(Long)
         Me.Expens.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.Expens.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Expens.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+        Me.Expens.DisplayFormat.CustomFormat = "#,###"
+        Me.Expens.DisplayFormat.EmptyAsNull = True
+        Me.Expens.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Expens.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.Expens.Font = New System.Drawing.Font("Arial", 9.0!)

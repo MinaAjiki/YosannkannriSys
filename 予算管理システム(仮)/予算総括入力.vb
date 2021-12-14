@@ -415,7 +415,7 @@ Public Class 予算総括入力
                 End If
 
                 If Not IDCell = 0 AndAlso DeleteCell = "False" Then
-                    ホーム.Sql.CommandText = "UPDATE outsourcers SET worktype=@worktype WHERE id=" & IDCell
+                    ホーム.Sql.CommandText = "UPDATE outsourcers SET worktype=@worktype WHERE outsrcr_id=" & IDCell
                     ホーム.Sql.Parameters.Add(New SqlParameter("@worktype", SqlDbType.NVarChar)).Value = WorkTypeCell
                     ホーム.Sql.ExecuteNonQuery()
 
@@ -432,7 +432,7 @@ Public Class 予算総括入力
                     ホーム.Sql.ExecuteNonQuery()
 
                 ElseIf Not IDCell = 0 AndAlso DeleteCell = "True" Then
-                    ホーム.Sql.CommandText = "DELETE FROM outsourcers WHERE ID=" & IDCell
+                    ホーム.Sql.CommandText = "DELETE FROM outsourcers WHERE outsrcr_id=" & IDCell
                     ホーム.Sql.ExecuteNonQuery()
 
                 End If

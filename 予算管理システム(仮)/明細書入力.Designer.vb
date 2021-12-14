@@ -47,7 +47,7 @@ Partial Class 明細書入力
         Me.Label3 = New System.Windows.Forms.Label()
         Me.OutsoucerList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.OutsoucerTotalList = New C1.Win.C1FlexGrid.C1FlexGrid()
-        Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
+        Me.DetailTotal = New C1.Win.C1Input.C1NumericEdit()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.SwitchingPanel = New System.Windows.Forms.Panel()
@@ -70,7 +70,7 @@ Partial Class 明細書入力
         CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OutsoucerList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OutsoucerTotalList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DetailTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
@@ -117,7 +117,6 @@ Partial Class 明細書入力
         '
         'DetailsList
         '
-        Me.DetailsList.AllowAddNew = True
         Me.DetailsList.AllowDelete = True
         Me.DetailsList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.DetailsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
@@ -131,7 +130,7 @@ Partial Class 明細書入力
         Me.DetailsList.Location = New System.Drawing.Point(10, 68)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 20
+        Me.DetailsList.Rows.Count = 21
         Me.DetailsList.Rows.Fixed = 3
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
@@ -270,7 +269,7 @@ Partial Class 明細書入力
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
-        Me.CategoryList.Rows.Count = 21
+        Me.CategoryList.Rows.Count = 22
         Me.CategoryList.Rows.Fixed = 3
         Me.CategoryList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.CategoryList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
@@ -388,32 +387,38 @@ Partial Class 明細書入力
         Me.OutsoucerTotalList.TabIndex = 100
         Me.SystemTheme.SetTheme(Me.OutsoucerTotalList, "予算管理テーマ")
         '
-        'C1NumericEdit2
+        'DetailTotal
         '
-        Me.C1NumericEdit2.AutoSize = False
-        Me.C1NumericEdit2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
-        Me.C1NumericEdit2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.C1NumericEdit2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.DetailTotal.AutoSize = False
+        Me.DetailTotal.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.DetailTotal.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.DetailTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit2.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit2.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit2.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
-        Me.C1NumericEdit2.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit2.DataType = GetType(Long)
-        Me.C1NumericEdit2.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.C1NumericEdit2.Enabled = False
-        Me.C1NumericEdit2.GapHeight = 0
-        Me.C1NumericEdit2.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit2.Location = New System.Drawing.Point(355, 565)
-        Me.C1NumericEdit2.Name = "C1NumericEdit2"
-        Me.C1NumericEdit2.Size = New System.Drawing.Size(111, 20)
-        Me.C1NumericEdit2.TabIndex = 48
-        Me.C1NumericEdit2.Tag = Nothing
-        Me.C1NumericEdit2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.C1NumericEdit2.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.DetailTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.DetailTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.DetailTotal.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System
+        Me.DetailTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.DetailTotal.DataType = GetType(Long)
+        Me.DetailTotal.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.DetailTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.DetailTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.DetailTotal.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.DetailTotal.Enabled = False
+        Me.DetailTotal.GapHeight = 0
+        Me.DetailTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.DetailTotal.Location = New System.Drawing.Point(355, 565)
+        Me.DetailTotal.Name = "DetailTotal"
+        Me.DetailTotal.Size = New System.Drawing.Size(111, 20)
+        Me.DetailTotal.TabIndex = 48
+        Me.DetailTotal.Tag = Nothing
+        Me.DetailTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.DetailTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.DetailTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'FormSplitContainer
         '
@@ -442,7 +447,7 @@ Partial Class 明細書入力
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
         Me.C1SplitterPanel1.Controls.Add(Me.OutsoucerTotalList)
         Me.C1SplitterPanel1.Controls.Add(Me.SwitchingPanel)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit2)
+        Me.C1SplitterPanel1.Controls.Add(Me.DetailTotal)
         Me.C1SplitterPanel1.Controls.Add(Me.Label2)
         Me.C1SplitterPanel1.Controls.Add(Me.SWorkType)
         Me.C1SplitterPanel1.Controls.Add(Me.Label1)
@@ -528,6 +533,7 @@ Partial Class 明細書入力
         Me.Reference.Size = New System.Drawing.Size(100, 30)
         Me.Reference.TabIndex = 102
         Me.Reference.Text = "代価表参照"
+        Me.Reference.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Reference.UseVisualStyleBackColor = True
         '
         'ItemSelect
@@ -544,6 +550,7 @@ Partial Class 明細書入力
         Me.ItemSelect.Size = New System.Drawing.Size(100, 30)
         Me.ItemSelect.TabIndex = 101
         Me.ItemSelect.Text = "項目選択"
+        Me.ItemSelect.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.ItemSelect.UseVisualStyleBackColor = True
         '
         'Cancel
@@ -662,7 +669,7 @@ Partial Class 明細書入力
         CType(Me.CategoryTotalList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutsoucerList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OutsoucerTotalList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DetailTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
@@ -683,7 +690,7 @@ Partial Class 明細書入力
     Friend WithEvents Cancel As Button
     Friend WithEvents SWorkType As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents C1NumericEdit2 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents DetailTotal As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents CostCopy As Button
     Friend WithEvents CostModify As Button
