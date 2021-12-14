@@ -58,6 +58,10 @@ Public Class 明細書入力
                 DetailsList.Rows.Count = (DetailsCount * 3) + 6
                 CategoryList.Rows.Count = (DetailsCount * 3) + 6
                 OutsoucerList.Rows.Count = (DetailsCount * 3) + 6
+            Else
+                DetailsList.Rows.Count = 21
+                CategoryList.Rows.Count = 21
+                OutsoucerList.Rows.Count = 21
             End If
             Dim RowCount As Integer = 0
             Dim RowNo As Integer = 0
@@ -111,8 +115,6 @@ Public Class 明細書入力
                         OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
                         OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
                         OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        'CategoryList.Rows(RowCount * 3).AllowEditing = False
-                        'CategoryList.Rows((RowCount * 3) + 2).AllowEditing = False
                     End If
                     DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
                     DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
@@ -134,6 +136,19 @@ Public Class 明細書入力
                 End While
                 DetailsReader.Close()
 
+                RowCount += 1
+                RowNo = 1
+                DetailsList((RowCount * 3), 7) = (RowNo * RowNo)
+                DetailsList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
+                DetailsList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
+                Dim LastQuanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                LastQuanity.StyleNew.Format = "N1"
+                Dim LastCostea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                LastCostea.StyleNew.Format = "N0"
+                Dim LastAmount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                LastAmount.StyleNew.Format = "N0"
+
+
                 DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 0, DetailsList.Rows.Count - 1, 0)
                 DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 2, DetailsList.Rows.Count - 1, 2)
                 DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 3, DetailsList.Rows.Count - 1, 3)
@@ -143,6 +158,7 @@ Public Class 明細書入力
                 ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
                 Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While TotalReader.Read
+                    DetailTotal.Text = TotalReader.Item("amount_total")
                     CategoryTotalList(0, 2) = TotalReader.Item("labor")
                     CategoryTotalList(0, 3) = TotalReader.Item("material")
                     CategoryTotalList(0, 4) = TotalReader.Item("machine")
@@ -566,7 +582,16 @@ Public Class 明細書入力
                 OutsoucerList.Rows.Insert(SelectRow)
                 OutsoucerList.Rows.Insert(SelectRow + 1)
                 OutsoucerList.Rows.Insert(SelectRow + 2)
-
+                DetailsList(SelectRow, 8) = 0
+                DetailsList(SelectRow, 9) = 0
+                DetailsList(SelectRow, 1) = 0
+                DetailsList(SelectRow, 6) = 0
+                DetailsList(SelectRow + 1, 6) = 0
+                DetailsList(SelectRow + 2, 6) = 0
+                For Category As Integer = 2 To 6
+                    CategoryList(SelectRow + 1, Category) = 0
+                    CategoryList(SelectRow + 2, Category) = 0
+                Next
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
@@ -930,4 +955,454 @@ Public Class 明細書入力
         End Try
 
     End Sub
+
+    Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
+
+        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+            If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                SelectRow = DetailsRowCount + 2
+                Exit For
+            End If
+        Next
+
+        代価表入力.TopLevel = False
+        ホーム.FormPanel.Controls.Add(代価表入力)
+        代価表入力.SelectRow = SelectRow
+        代価表入力.Show()
+        Me.Visible = False
+
+    End Sub
+
+    Private Sub CostModifyMenu_Click(sender As Object, e As EventArgs) Handles CostModifyMenu.Click
+        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+            If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                SelectRow = DetailsRowCount + 2
+                Exit For
+            End If
+        Next
+
+        代価表入力.TopLevel = False
+        ホーム.FormPanel.Controls.Add(代価表入力)
+        代価表入力.SelectRow = SelectRow
+        代価表入力.CostNo.Value = DetailsList(SelectRow + 2, 4)
+        代価表入力.CostName.Value = DetailsList(SelectRow, 4)
+        代価表入力.CostSpec.Value = DetailsList(SelectRow + 1, 4)
+        代価表入力.CostUnit.Value = DetailsList(SelectRow + 2, 5)
+        代価表入力.BreakDownList.AllowEditing = False
+        代価表入力.Show()
+        Me.Visible = False
+
+    End Sub
+
+    Private Sub CostCopy_Click(sender As Object, e As EventArgs) Handles CostCopy.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+
+                If DetailsList(SelectRow, 8) >= 12 Then
+
+                    作成代価選択.HeadLine.Text = "<<コピー代価選択"
+                    作成代価選択.Text = "コピー代価選択"
+
+
+                    作成代価選択.ShowDialog()
+                    作成代価選択.TopMost = True
+                    作成代価選択.TopMost = False
+                Else
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                End If
+
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostCopyMenu_Click(sender As Object, e As EventArgs) Handles CostCopyMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+            Else
+                If DetailsList(SelectRow, 8) >= 12 Then
+
+                    作成代価選択.HeadLine.Text = "<<コピー代価選択"
+                    作成代価選択.Text = "コピー代価選択"
+
+
+                    作成代価選択.ShowDialog()
+                    作成代価選択.TopMost = True
+                    作成代価選択.TopMost = False
+                Else
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                End If
+
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Reference_Click(sender As Object, e As EventArgs) Handles Reference.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+
+            Else
+                If DetailsList(SelectRow, 8) >= 12 Then
+                    代価表入力.TopLevel = False
+                    ホーム.FormPanel.Controls.Add(代価表入力)
+                    代価表入力.SelectRow = SelectRow
+                    代価表入力.CostNo.ReadOnly = False
+                    代価表入力.CostName.Enabled = False
+                    代価表入力.CostSpec.Enabled = False
+                    代価表入力.CostQuanity.Enabled = False
+                    代価表入力.CostUnit.Enabled = False
+                    代価表入力.CostUnitPrice.Enabled = False
+                    代価表入力.CostCostea.Enabled = False
+                    代価表入力.BreakDownList.AllowEditing = False
+                    代価表入力.Show()
+                    Me.Visible = False
+                Else
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                End If
+            End If
+        Catch ex As Exception
+            ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub ReferenceMenu_Click(sender As Object, e As EventArgs) Handles ReferenceMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If DetailsList(SelectRow, 8) >= 12 Then
+                代価表入力.TopLevel = False
+                ホーム.FormPanel.Controls.Add(代価表入力)
+                代価表入力.SelectRow = SelectRow
+                代価表入力.Enabled = False
+                代価表入力.Show()
+                Me.Visible = False
+            Else
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+            End If
+        Catch ex As Exception
+            ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+
+        Try
+
+            Dim ErrorRow As String = ""
+            Dim ErrorCount As Integer = 0
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                Dim Name As String = DetailsList(RowCount * 3, 4)
+                If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
+                    If Name.Length = 0 Or IsNothing(Name) = True Or IsNothing(DetailsList((RowCount * 3), 3)) = True Then
+                        ErrorCount += 1
+                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    End If
+                Else
+                    If IsNothing(Name) = False AndAlso IsNothing(DetailsList((RowCount * 3), 3)) = True Then
+                        ErrorCount += 1
+                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    ElseIf IsNothing(Name) = True AndAlso IsNothing(DetailsList((RowCount * 3), 3)) = False Then
+                        ErrorCount += 1
+                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    End If
+                End If
+            Next
+
+            If ErrorCount >= 1 Then
+                MsgBox("順または名称が入力されていない行があります。", MsgBoxStyle.Exclamation, "明細書入力")
+                Exit Sub
+            End If
+
+
+            ホーム.Transaction = ホーム.Connection.BeginTransaction
+
+            ホーム.Sql.Transaction = ホーム.Transaction
+
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                    If DetailsList(RowCount * 3, 2) = "False" Or IsNothing(DetailsList(RowCount * 3, 2)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@dtlno", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 3)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3, 4)
+                        If IsNothing(DetailsList(RowCount * 3 + 1, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 1, 4)
+                        End If
+                        If IsNothing(DetailsList(RowCount * 3 + 2, 5)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 5)
+                        End If
+                        If IsNothing(DetailsList(RowCount * 3, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = DetailsList(RowCount * 3, 6)
+                        End If
+                        If IsNothing(DetailsList(RowCount * 3 + 1, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = DetailsList(RowCount * 3 + 1, 6)
+                        End If
+                        If IsNothing(CategoryList(RowCount * 3 + 1, 2)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 2)
+                        End If
+                        If IsNothing(CategoryList(RowCount * 3 + 1, 3)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 3)
+                        End If
+                        If IsNothing(CategoryList(RowCount * 3 + 1, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 4)
+                        End If
+                        If IsNothing(CategoryList(RowCount * 3 + 1, 5)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 5)
+                        End If
+                        If IsNothing(CategoryList(RowCount * 3 + 1, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 6)
+                        End If
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@fraction", SqlDbType.Money)).Value = 0
+                        If IsNothing(DetailsList(RowCount * 3 + 2, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 4)
+                        End If
+
+                        If DetailsList(RowCount * 3, 1) = 0 Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@sworktypecode", SqlDbType.SmallInt)).Value = ホーム.sworktypecode
+                            ホーム.Sql.CommandText = "INSERT INTO details (budget_no,dtl_no,s_worktype_code,cstclss_code,cstmstr_id,dtl_name,dtl_spec
+                                                                   ,dtl_unit,dtl_quanity,dtl_costea,dtl_labor,dtl_material,dtl_machine,dtl_subcntrct,dtl_expens
+                                                                    ,dtl_fraction,dtl_remarks) 
+                                                  VALUES (@budgetno,@dtlno,@sworktypecode,@cstclsscode,@cstmstrid,@name,@spec,@unit,@quanity,@costea,
+                                                  @labor,@material,@machine,@subcntrct,@expens,@fraction,@remarks)"
+                        Else
+                            ホーム.Sql.CommandText = "UPDATE details SET dtl_no=@dtlno,cstclss_code=@cstclsscode,cstmstr_id=@cstmstrid,dtl_name=@name 
+                                        ,dtl_spec=@spec,dtl_unit=@unit,dtl_quanity=@quanity,dtl_costea=@costea,dtl_labor=@labor,dtl_material=@material
+                                        ,dtl_machine=@machine,dtl_subcntrct=@subcntrct,dtl_expens=@expens,dtl_fraction=@fraction,dtl_remarks=@remarks WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                        End If
+                        ホーム.Sql.ExecuteNonQuery()
+                    Else
+                        If Not DetailsList(RowCount * 3, 1) = 0 Then
+                            ホーム.Sql.CommandText = "DELETE FROM details WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                            ホーム.Sql.ExecuteNonQuery()
+                        End If
+                    End If
+                End If
+            Next
+
+            ホーム.Transaction.Commit()
+
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                If RowCount * 3 <= (DetailsList.Rows.Count - 3) Then
+                    If DetailsList(RowCount * 3, 2) = "True" Then
+                        DetailsList.Rows.RemoveRange(RowCount * 3, 3)
+                        CategoryList.Rows.RemoveRange(RowCount * 3, 3)
+                        OutsoucerList.Rows.RemoveRange(RowCount * 3, 3)
+                    End If
+                    If RowCount * 3 = (DetailsList.Rows.Count - 3) Then
+                        Dim Name As String = DetailsList(RowCount * 3, 4)
+                        If Name.Length > 0 Or IsNothing(Name) = False Or IsNothing(DetailsList((RowCount * 3), 3)) = False Then
+                            DetailsList.Rows.Insert(RowCount * 3)
+                            DetailsList.Rows.Insert((RowCount * 3) + 1)
+                            DetailsList.Rows.Insert((RowCount * 3) + 2)
+                            CategoryList.Rows.Insert(RowCount * 3)
+                            CategoryList.Rows.Insert((RowCount * 3) + 1)
+                            CategoryList.Rows.Insert((RowCount * 3) + 2)
+                            OutsoucerList.Rows.Insert(RowCount * 3)
+                            OutsoucerList.Rows.Insert((RowCount * 3) + 1)
+                            OutsoucerList.Rows.Insert((RowCount * 3) + 2)
+                        End If
+
+                    End If
+                End If
+            Next
+
+
+            Dim RowNo As Integer = 0
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                RowNo += 1
+
+                Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                Quanity.StyleNew.Format = "N1"
+                Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                Costea.StyleNew.Format = "N0"
+                Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                Amount.StyleNew.Format = "N0"
+                DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                If RowCount Mod 2 = 0 Then
+                    DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                    CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                    OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                Else
+                    DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                    CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                    OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                End If
+
+                DetailsList(RowCount * 3, 7) = RowNo * RowNo
+                DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                If (RowNo * RowNo) + 2 = 6 Then
+                    RowNo = 0
+                End If
+
+                DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+            Next
+
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+
+        Catch ex As Exception
+            ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub DetailsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.AfterEdit
+        Try
+            Dim Row As Integer = e.Row
+            Dim Col As Integer = e.Col
+
+            If Col = 6 Then
+                If IsNumeric(DetailsList(Row, 6)) = True Then
+                    If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
+                        DetailsList(Row + 2, 6) = Math.Round((DetailsList(Row, 6) * DetailsList(Row + 1, 6)), 0, MidpointRounding.AwayFromZero)
+                    ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
+                        DetailsList(Row + 1, 6) = Math.Round((DetailsList(Row, 6) * DetailsList(Row - 1, 6)), 0, MidpointRounding.AwayFromZero)
+                    End If
+
+                    Dim RowNo As Integer = 0
+                    Dim ColTotal As Int64 = 0
+
+                    For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                        ColTotal += DetailsList((RowCount * 3) + 2, 6)
+
+                    Next
+
+                    DetailTotal.Text = ColTotal
+
+                End If
+
+            ElseIf Col = 3 Then
+
+                Dim ErrorCount As Integer = 0
+
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                    If Not e.Row = RowCount * 3 AndAlso DetailsList(e.Row, e.Col) = DetailsList(RowCount * 3, 3) Then
+                        If DetailsList(e.Row, 2) = "False" Or IsNothing(DetailsList(e.Row, 2)) = True Then
+                            ErrorCount += 1
+                            DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                        End If
+                    Else
+                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+                    End If
+                Next
+                If ErrorCount >= 1 Then
+                    MsgBox("順：" & DetailsList(e.Row, e.Col) & " は重複しています。", MsgBoxStyle.Exclamation, "明細書入力")
+                End If
+
+            End If
+
+        Catch ex As Exception
+            ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+
 End Class

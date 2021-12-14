@@ -15,7 +15,7 @@ Public Class 小工種選択
             Dim SubcntrctTotal As Int64 = 0
             Dim ExpensTotal As Int64 = 0
 
-            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM s_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
+            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM S_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
             Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
 
             If Count < 21 Then
@@ -24,41 +24,36 @@ Public Class 小工種選択
                 S_WorkTypesList.Rows.Count = Count + 1
             End If
 
-            Dim RowCount As Integer = 1
-            ホーム.SystemSql.CommandText = "SELECT  * FROM s_worktype WHERE l_worktype_code=" & ホーム.lworktypecode & " ORDER BY s_worktype_code ASC"
-            Dim SWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-            While SWorkTypeReader.Read
-
-                S_WorkTypesList(RowCount, 1) = SWorkTypeReader.Item("s_worktype_code")
-                S_WorkTypesList(RowCount, 2) = SWorkTypeReader.Item("s_worktype")
+            Dim RowCount As Integer = 0
+            ホーム.SystemSql.CommandText = "SELECT * FROM S_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
+            Dim SWorktypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            While SWorktypeReader.Read
                 RowCount += 1
-            End While
-            SWorkTypeReader.Close()
+                S_WorkTypesList(RowCount, 1) = SWorktypeReader.Item("s_worktype_code")
+                S_WorkTypesList(RowCount, 2) = SWorktypeReader.Item("s_worktype")
 
-
-            For SWorkTypeCount As Integer = 1 To RowCount - 1
-                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & S_WorkTypesList(SWorkTypeCount, 1)
+                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & S_WorkTypesList(RowCount, 1)
                 Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While SWorkTypeTotalReader.Read
-                    S_WorkTypesList(SWorkTypeCount, 3) = SWorkTypeTotalReader.Item("amount_total")
-                    S_WorkTypesList(SWorkTypeCount, 4) = SWorkTypeTotalReader.Item("labor")
-                    S_WorkTypesList(SWorkTypeCount, 5) = SWorkTypeTotalReader.Item("material")
-                    S_WorkTypesList(SWorkTypeCount, 6) = SWorkTypeTotalReader.Item("machine")
-                    S_WorkTypesList(SWorkTypeCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
-                    S_WorkTypesList(SWorkTypeCount, 8) = SWorkTypeTotalReader.Item("expens")
+                    S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amount_total")
+                    S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
+                    S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
+                    S_WorkTypesList(RowCount, 6) = SWorkTypeTotalReader.Item("machine")
+                    S_WorkTypesList(RowCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
+                    S_WorkTypesList(RowCount, 8) = SWorkTypeTotalReader.Item("expens")
 
+
+                    Total += S_WorkTypesList(RowCount, 3)
+                    LaborTotal += S_WorkTypesList(RowCount, 4)
+                    MaterialTotal += S_WorkTypesList(RowCount, 5)
+                    MachineTotal += S_WorkTypesList(RowCount, 6)
+                    SubcntrctTotal += S_WorkTypesList(RowCount, 7)
+                    ExpensTotal += S_WorkTypesList(RowCount, 8)
                 End While
                 SWorkTypeTotalReader.Close()
 
-                Total += S_WorkTypesList(SWorkTypeCount, 3)
-                LaborTotal += S_WorkTypesList(SWorkTypeCount, 4)
-                MaterialTotal += S_WorkTypesList(SWorkTypeCount, 5)
-                MachineTotal += S_WorkTypesList(SWorkTypeCount, 6)
-                SubcntrctTotal += S_WorkTypesList(SWorkTypeCount, 7)
-                ExpensTotal += S_WorkTypesList(SWorkTypeCount, 8)
-
-            Next
-
+            End While
+            SWorktypeReader.Close()
 
             SWorkTypeTotal.Value = Total
             Labor.Value = LaborTotal
