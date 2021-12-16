@@ -187,6 +187,7 @@ Partial Class 外注内訳入力
         Me.CreatedDateBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CreatedDateBox.DataType = GetType(Object)
         Me.CreatedDateBox.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CreatedDateBox.EditMask = "####年##月##日"
         Me.CreatedDateBox.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CreatedDateBox.Location = New System.Drawing.Point(678, 3)
         Me.CreatedDateBox.Name = "CreatedDateBox"
@@ -257,9 +258,10 @@ Partial Class 外注内訳入力
         Me.TotalBox.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.TotalBox.GapHeight = 0
         Me.TotalBox.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.TotalBox.Location = New System.Drawing.Point(376, 595)
+        Me.TotalBox.Location = New System.Drawing.Point(361, 595)
         Me.TotalBox.Name = "TotalBox"
-        Me.TotalBox.Size = New System.Drawing.Size(95, 20)
+        Me.TotalBox.ReadOnly = True
+        Me.TotalBox.Size = New System.Drawing.Size(110, 20)
         Me.TotalBox.TabIndex = 79
         Me.TotalBox.Tag = Nothing
         Me.TotalBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -270,7 +272,7 @@ Partial Class 外注内訳入力
         'Label4
         '
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(341, 595)
+        Me.Label4.Location = New System.Drawing.Point(323, 595)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(38, 20)
         Me.Label4.TabIndex = 78

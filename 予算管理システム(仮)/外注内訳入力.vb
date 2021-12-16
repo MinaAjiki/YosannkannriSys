@@ -2,6 +2,8 @@
 Imports C1.Win.C1Input
 Imports System.Data.SqlClient
 Public Class 外注内訳入力
+    Public ChangeFlag As Integer
+    Public ChangeValue As Integer
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
     End Sub
@@ -196,13 +198,29 @@ Public Class 外注内訳入力
         Breakdown.ScrollPosition = TotalBreakdown.ScrollPosition
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        If MsgBox("外注計画入力を閉じます。よろしいですか？", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
-            Me.Close()
-        End If
+        Try
+            If MsgBox("外注計画入力を閉じます。よろしいですか？", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub ContractNo_ValueChanged(sender As Object, e As EventArgs) Handles ContractNo.ValueChanged
         Try
+            If ChangeFlag >= 1 Then
+                If MsgBox("変更した内容が登録されていません。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                    ContractNo.Value = ChangeValue
+                    Exit Sub
+                Else
+                    ChangeFlag = 0
+                End If
+            End If
+
             進行状況.Show()
             進行状況.Refresh()
             Breakdown.Clear(ClearFlags.Content)
@@ -238,7 +256,7 @@ Public Class 外注内訳入力
                 For BDloop As Integer = 1 To Detailscount
                     ホーム.Sql.Parameters.Clear()
                     ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
-                    Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
+                    Dim Oquanity As Decimal = ホーム.Sql.ExecuteScalar
                     If Oquanity = 0 Then
                         Breakdown(BDloop * 3, vendorloop) = 0
                         Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
@@ -270,13 +288,16 @@ Public Class 外注内訳入力
                 Next
             Next
 
+            '変更計画作成日を取得
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT created_date FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & "AND outsrc_no=" & ContractNo.Value
             Dim CreateDate As Date = ホーム.Sql.ExecuteScalar
             If CreateDate = Nothing Then
-                CreateDate = "1900/01/01"
+                CreateDate = DateTime.Today
+                CreatedDateBox.Value = CreateDate.ToString("D")
+            Else
+                CreatedDateBox.Value = CreateDate.ToString("D")
             End If
-            CreatedDateBox.Value = CreateDate.ToString("D")
 
             '外注計画報告書テーブルから変更内容を取得
             ホーム.Sql.Parameters.Clear()
@@ -299,6 +320,7 @@ Public Class 外注内訳入力
             Next
             TotalBox.Value = Gtotal
             進行状況.Close()
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -309,13 +331,12 @@ Public Class 外注内訳入力
 
     Private Sub Breakdown_AfterEdit(sender As Object, e As RowColEventArgs) Handles Breakdown.AfterEdit
         Try
-
-            Dim quanity As Int64
+            Dim quanity As Decimal
             Dim costea As Int64
             Dim amount As Int64
             Dim total As Int64
 
-            If Breakdown(e.Row, e.Col) = "" Then
+            If Breakdown(e.Row, e.Col) = Nothing Then
                 Breakdown(e.Row, e.Col) = 0
             End If
 
@@ -324,13 +345,11 @@ Public Class 外注内訳入力
                 costea = Breakdown(e.Row + 1, e.Col)
                 amount = quanity * costea
                 Breakdown(e.Row + 2, e.Col) = amount
-                Breakdown.Rows(e.Row).StyleNew.Format = "N1"
             Else
                 quanity = Breakdown(e.Row - 1, e.Col)
                 costea = Breakdown(e.Row, e.Col)
                 amount = quanity * costea
                 Breakdown(e.Row + 1, e.Col) = amount
-                Breakdown.Rows(e.Row).StyleNew.Format = "N0"
             End If
 
             Dim Detailscount As Integer = Breakdown.Rows.Count / 3 - 1
@@ -363,10 +382,14 @@ Public Class 外注内訳入力
                 DetailList(e.Row + 1, 6) = DMtotal
             End If
 
-            For DTloop As Integer = 1 To Vendorcount
+            For DTloop As Integer = 1 To Detailscount
                 Gtotal += DetailList(DTloop * 3 + 2, 6)
             Next
             TotalBox.Value = Gtotal
+
+            ChangeValue = ContractNo.Value
+            ChangeFlag += 1
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -486,6 +509,11 @@ Public Class 外注内訳入力
             Dim outsrcno As Integer = ContractNo.Value
             Dim Changedetailtext As String = ChangeDetail.Text
 
+            If createddate = Nothing Then
+                MsgBox("変更計画作成日を入力してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
+
             For Vendorloop As Integer = 1 To Vendorcount
                 Dim outsrcrid As Integer = Breakdown(0, Vendorloop)
                 For Detailloop As Integer = 1 To Detailscount
@@ -558,8 +586,10 @@ Public Class 外注内訳入力
             ContractNo.PostValidation.Intervals.Add(valInteval_1)
             ContractNo.Value = Maxoutsrc
 
-
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "外注計画登録")
+
+            ChangeFlag = 0
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

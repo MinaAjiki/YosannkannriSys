@@ -101,6 +101,14 @@ Public Class 出来高入力
 
     Private Sub VendorList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles VendorList.SelectedIndexChanged
         Try
+            'If 外注内訳入力.ChangeFlag >= 1 Then
+            '    If MsgBox("変更した内容が登録されていません。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+            '        VendorList.Value = 外注内訳入力.ChangeValue
+            '        Exit Sub
+            '    Else
+            '        外注内訳入力.ChangeFlag = 0
+            '    End If
+            'End If
 
             DetailsList.Clear(ClearFlags.Content)
             VendorList.Focus()
@@ -179,7 +187,7 @@ Public Class 出来高入力
 
             '外注計画テーブルから指定の外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & Coopid
+            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & Coopid & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
             Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
             While DtlID.Read
                 DtlIDlist.Add(DtlID.Item("dtl_id"))
@@ -196,6 +204,7 @@ Public Class 出来高入力
             Dim quanity As Integer
             Dim costea As Integer
             Dim total As Integer
+            Dim OutsourcTotal As Integer
 
             For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
                 ホーム.Sql.Parameters.Clear()
@@ -206,21 +215,37 @@ Public Class 出来高入力
                     Me.DetailsList.Rows.Add()
                     Me.DetailsList.Rows.Add()
                     DetailsList(Conrow1, 5) = outsrcng.Item("outsrcng_costea")
-                    Dim stl As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("AliceBlue")
-                    stl.BackColor = Color.AliceBlue
-                    DetailsList.SetCellStyle(Conrow2, 7, stl)
+                    Dim stl1 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("WhiteSmoke")
+                    stl1.BackColor = Color.WhiteSmoke
+                    DetailsList.SetCellStyle(Conrow1, 7, stl1)
+                    DetailsList.SetCellStyle(Conrow1, 8, stl1)
+                    Dim stl2 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("AliceBlue")
+                    stl2.BackColor = Color.AliceBlue
+                    DetailsList.SetCellStyle(Conrow2, 7, stl2)
+                    Dim Outcostea As CellRange = DetailsList.GetCellRange(Conrow1, 5)
+                    Outcostea.StyleNew.Format = "N0"
+
                     DetailsList(Conrow2, 5) = outsrcng.Item("outsrcng_quanity")
+                    Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
+                    Outquanity.StyleNew.Format = "N1"
+
                     quanity = DetailsList(Conrow1, 5)
                     costea = DetailsList(Conrow2, 5)
                     total = quanity * costea
                     DetailsList(Conrow3, 5) = total
-                    DetailsList.Rows(Conrow3).AllowEditing = False
+                    Dim Outtotal As CellRange = DetailsList.GetCellRange(Conrow3, 5)
+                    Outtotal.StyleNew.Format = "N0"
+
                     DetailsList.Rows(Conrow1).AllowEditing = False
+                    DetailsList.Rows(Conrow2).AllowEditing = True
+                    DetailsList.Rows(Conrow3).AllowEditing = False
+                    OutsourcTotal += total
                 End While
                 Conrow1 += 3
                 Conrow2 += 3
                 Conrow3 += 3
                 outsrcng.Close()
+                TotalList(0, 1) = OutsourcTotal
 
                 '明細書IDで明細書テーブルからデータを取得
                 ホーム.Sql.Parameters.Clear()
@@ -265,14 +290,40 @@ Public Class 出来高入力
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
+                Dim LastTotal As Integer
+                Dim TotalTotal As Integer
                 While production.Read
-                    DetailsList(totalrow1, 7) = production.Item("total_quanity")
-                    DetailsList(totalrow2, 7) = production.Item("total_amount")
+                    Dim LastAmount As Integer
+                    Dim TotalAmount As Integer
+                    Dim TotalQuanity As Integer
+
+                    TotalQuanity = production.Item("total_quanity")
+                    DetailsList(totalrow1, 7) = TotalQuanity
+                    Dim Totalquanitystyle As CellRange = DetailsList.GetCellRange(totalrow1, 7)
+                    Totalquanitystyle.StyleNew.Format = "N1"
+
+                    TotalAmount = production.Item("total_amount")
+                    DetailsList(totalrow2, 7) = TotalAmount
+                    Dim Totalamountstyle As CellRange = DetailsList.GetCellRange(totalrow2, 7)
+                    Totalamountstyle.StyleNew.Format = "N0"
+
                     DetailsList(lastrow1, 6) = production.Item("last_costea")
+                    Dim lastcostea As CellRange = DetailsList.GetCellRange(lastrow2, 6)
+                    lastcostea.StyleNew.Format = "N0"
+
                     DetailsList(lastrow2, 6) = production.Item("last_quanity")
-                    DetailsList(lastrow3, 6) = production.Item("last_amount")
+                    Dim LastQuanityStyle As CellRange = DetailsList.GetCellRange(lastrow2, 6)
+                    LastQuanityStyle.StyleNew.Format = "N1"
+
+                    LastAmount = production.Item("last_amount")
+                    DetailsList(lastrow3, 6) = LastAmount
+
+                    LastTotal += LastAmount
+                    TotalTotal += TotalAmount
                 End While
                 production.Close()
+                TotalList(0, 2) = LastTotal
+                TotalList(0, 3) = TotalTotal
 
                 quanity = DetailsList(totalrow1, 7)
                 total = DetailsList(totalrow2, 7)
@@ -280,13 +331,17 @@ Public Class 出来高入力
                 Dim Lquanity As Integer = DetailsList(totalrow1, 6)
                 Dim Ltotal As Integer = DetailsList(totalrow2, 6)
                 Dim Cuquanity As Integer
+                Dim Cuamount As Integer
                 Dim Cutotal As Integer
 
                 Cuquanity = quanity - Lquanity
                 DetailsList(totalrow1, 8) = Cuquanity
 
-                Cutotal = total - Ltotal
-                DetailsList(totalrow2, 8) = Cutotal
+                Cuamount = total - Ltotal
+                DetailsList(totalrow2, 8) = Cuamount
+
+                Cutotal += Cuamount
+                TotalList(0, 4) = Cutotal
 
                 totalrow1 += 3
                 totalrow2 += 3
@@ -295,6 +350,7 @@ Public Class 出来高入力
                 lastrow3 += 3
 
             Next
+            DetailsList.Rows(totalrow2 - 2).AllowEditing = False
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -306,44 +362,50 @@ Public Class 出来高入力
 
     Private Sub DetailsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.AfterEdit
         Try
-            Dim quanity As Integer
-            Dim Concostea As Integer
-            Dim total As Integer
-            Dim Lquanity As Integer
-            Dim Ltotal As Integer
-            Dim Cuquanity As Integer
-            Dim Cutotal As Integer
+            Dim quanity As Decimal
+            Dim Concostea As Int64
+            Dim amount As Int64
+            Dim Totalamount As Int64
+            Dim Lquanity As Decimal
+            Dim Lamount As Int64
+            Dim Cuquanity As Decimal
+            Dim Cuamount As Int64
+            Dim Cutotal As Int64
 
             '累計出来高の合計と当月出来高を計算する。一式の場合は、数量１とし、金額を入力する。
             If Not DetailsList(e.Row - 2, 4) = "式" Then
-
                 quanity = DetailsList(e.Row, e.Col)
                 Concostea = DetailsList(e.Row - 1, 5)
-                total = quanity * Concostea
-                DetailsList(e.Row + 1, e.Col) = total
-
-                Lquanity = DetailsList(e.Row, 6)
-                Ltotal = DetailsList(e.Row + 1, 6)
-
-                Cuquanity = quanity - Lquanity
-                DetailsList(e.Row, 8) = Cuquanity
-
-                Cutotal = total - Ltotal
-                DetailsList(e.Row + 1, 8) = Cutotal
-                If total > DetailsList(e.Row + 1, 5) Then
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
-                    errorco.StyleNew.ForeColor = Color.Red
-                    MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                If Concostea = 0 Then
+                    'DetailsList.Rows(e.Row + 1).AllowEditing = True
                 Else
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
-                    errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                    Lquanity = DetailsList(e.Row, 6)
+                    Lamount = DetailsList(e.Row + 1, 6)
+
+                    Cuquanity = quanity - Lquanity
+                    DetailsList(e.Row, 8) = Cuquanity
+
+                    amount = quanity * Concostea
+                    DetailsList(e.Row + 1, e.Col) = amount
+
+                    Cuamount = amount - Lamount
+                    DetailsList(e.Row + 1, 8) = Cuamount
+                    If amount > DetailsList(e.Row + 1, 5) Then
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                        errorco.StyleNew.ForeColor = Color.Red
+                        MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                    Else
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                        errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                    End If
+
                 End If
             Else
-                Ltotal = DetailsList(e.Row, 6)
-                total = DetailsList(e.Row, e.Col)
-                Cutotal = total - Ltotal
-                DetailsList(e.Row, 8) = Cutotal
-                If total > DetailsList(e.Row, 5) Then
+                Lamount = DetailsList(e.Row, 6)
+                amount = DetailsList(e.Row, e.Col)
+                Cuamount = amount - Lamount
+                DetailsList(e.Row, 8) = Cuamount
+                If amount > DetailsList(e.Row, 5) Then
                     Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                     errorco.StyleNew.ForeColor = Color.Red
                     MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
@@ -351,7 +413,22 @@ Public Class 出来高入力
                     Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                     errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
                 End If
+
+
             End If
+
+            Dim RowsCount As Integer = DetailsList.Rows.Count / 3 - 1
+            For totalloop As Integer = 1 To RowsCount
+                amount = DetailsList(totalloop * 3 + 2, 7)
+                Totalamount += amount
+                Cuamount = DetailsList(totalloop * 3 + 2, 8)
+                Cutotal += Cuamount
+            Next
+            TotalList(0, 3) = Totalamount
+            TotalList(0, 4) = Cutotal
+
+            '外注内訳入力.ChangeValue = VendorList.SelectedItem
+            '外注内訳入力.ChangeFlag += 1
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -437,6 +514,7 @@ Public Class 出来高入力
                 Rowcount += 3
             Next
 
+            '外注内訳入力.ChangeFlag = 0
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "出来高登録")
 
         Catch ex As Exception
