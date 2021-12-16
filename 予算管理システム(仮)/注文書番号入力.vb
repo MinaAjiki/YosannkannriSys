@@ -80,7 +80,7 @@ Public Class 注文書番号入力
             '合計注文金額を計算
             For Vendorloop As Integer = 1 To Outsrcrcount
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT ISNULL(SUM(outsrcng_quanity*outsrcng_costea),0) FROM outsourcing_plans WHERE outsrcr_id = " & OrderNoList(datacount, 0)
+                ホーム.Sql.CommandText = "SELECT ISNULL(SUM(outsrcng_quanity*outsrcng_costea),0) FROM outsourcing_plans WHERE outsrcr_id = " & OrderNoList(datacount, 0) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
                 Dim Amount As Integer = ホーム.Sql.ExecuteScalar
                 OrderNoList(datacount, 4) = Amount
                 datacount += 1
