@@ -288,12 +288,6 @@
     <Compile Include="印刷代価選択.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="変更内容入力.Designer.vb">
-      <DependentUpon>変更内容入力.vb</DependentUpon>
-    </Compile>
-    <Compile Include="変更内容入力.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="外注内訳入力.Designer.vb">
       <DependentUpon>外注内訳入力.vb</DependentUpon>
     </Compile>
@@ -421,9 +415,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="変更内容入力.resx">
-      <DependentUpon>変更内容入力.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="外注内訳入力.resx">
       <DependentUpon>外注内訳入力.vb</DependentUpon>

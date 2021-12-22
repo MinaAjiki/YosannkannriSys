@@ -1,21 +1,27 @@
 ﻿Public Class マスタメンテナンス
+    Public ClickButton As String 'どのボタンをクリックしたか
     Private Sub Salaries_Click(sender As Object, e As EventArgs) Handles Salaries.Click
+        ClickButton = "Salaries"
         マスタ一覧.Show()
     End Sub
 
     Private Sub BranchCosts_Click(sender As Object, e As EventArgs) Handles BranchCosts.Click
+        ClickButton = "BranchCosts"
         マスタ一覧.Show()
     End Sub
 
     Private Sub LevyCosts_Click(sender As Object, e As EventArgs) Handles LevyCosts.Click
+        ClickButton = "LevyCosts"
         マスタ一覧.Show()
     End Sub
 
     Private Sub Insurances_Click(sender As Object, e As EventArgs) Handles Insurances.Click
+        ClickButton = "Insurances"
         マスタ一覧.Show()
     End Sub
 
     Private Sub StampTaxes_Click(sender As Object, e As EventArgs) Handles StampTaxes.Click
+        ClickButton = "StampTaxes"
         マスタ一覧.Show()
     End Sub
 

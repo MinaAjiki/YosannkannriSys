@@ -39,6 +39,8 @@ Public Class 出来高入力
             DetailsList.MergedRanges.Add(0, 7, 2, 7)
             DetailsList.MergedRanges.Add(0, 8, 2, 8)
 
+
+
             ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
             Dim deadlineDate As String = ホーム.Sql.ExecuteScalar
             If deadlineDate = "" Then
@@ -71,7 +73,7 @@ Public Class 出来高入力
             VendorList.ItemsDisplayMember = "Name"
             VendorList.ItemsValueMember = "Code"
             VendorList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-            VendorList.HtmlPattern = "<table><tr><td width=30>{ID}</td><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+            VendorList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
             VendorList.SelectedIndex = -1
             VendorList.Text = "協力業者を選択"
             VendorNo.Text = Nothing
@@ -201,10 +203,10 @@ Public Class 出来高入力
             Dim Detarow1 As Integer = 3
             Dim Detarow2 As Integer = 4
             Dim Detarow3 As Integer = 5
-            Dim quanity As Integer
-            Dim costea As Integer
-            Dim total As Integer
-            Dim OutsourcTotal As Integer
+            Dim quanity As Decimal
+            Dim costea As Int64
+            Dim total As Int64
+            Dim OutsourcTotal As Int64
 
             For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
                 ホーム.Sql.Parameters.Clear()
@@ -214,6 +216,7 @@ Public Class 出来高入力
                     Me.DetailsList.Rows.Add()
                     Me.DetailsList.Rows.Add()
                     Me.DetailsList.Rows.Add()
+
                     DetailsList(Conrow1, 5) = outsrcng.Item("outsrcng_costea")
                     Dim stl1 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("WhiteSmoke")
                     stl1.BackColor = Color.WhiteSmoke
@@ -226,13 +229,15 @@ Public Class 出来高入力
                     Outcostea.StyleNew.Format = "N0"
 
                     DetailsList(Conrow2, 5) = outsrcng.Item("outsrcng_quanity")
-                    Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
-                    Outquanity.StyleNew.Format = "N1"
+                    DetailsList.Rows(Conrow2).StyleNew.Format = "N1"
+                    'Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
+                    'Outquanity.StyleNew.Format = "N1"
 
                     quanity = DetailsList(Conrow1, 5)
                     costea = DetailsList(Conrow2, 5)
                     total = quanity * costea
                     DetailsList(Conrow3, 5) = total
+                    DetailsList.Rows(Conrow3).StyleNew.Format = "N0"
                     Dim Outtotal As CellRange = DetailsList.GetCellRange(Conrow3, 5)
                     Outtotal.StyleNew.Format = "N0"
 
@@ -295,25 +300,25 @@ Public Class 出来高入力
                 While production.Read
                     Dim LastAmount As Integer
                     Dim TotalAmount As Integer
-                    Dim TotalQuanity As Integer
+                    Dim TotalQuanity As Decimal
 
                     TotalQuanity = production.Item("total_quanity")
                     DetailsList(totalrow1, 7) = TotalQuanity
-                    Dim Totalquanitystyle As CellRange = DetailsList.GetCellRange(totalrow1, 7)
-                    Totalquanitystyle.StyleNew.Format = "N1"
+                    DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
 
                     TotalAmount = production.Item("total_amount")
                     DetailsList(totalrow2, 7) = TotalAmount
                     Dim Totalamountstyle As CellRange = DetailsList.GetCellRange(totalrow2, 7)
-                    Totalamountstyle.StyleNew.Format = "N0"
+                    DetailsList.GetCellRange(totalrow2, 7).StyleNew.Format = "N0"
 
                     DetailsList(lastrow1, 6) = production.Item("last_costea")
-                    Dim lastcostea As CellRange = DetailsList.GetCellRange(lastrow2, 6)
+                    Dim lastcostea As CellRange = DetailsList.GetCellRange(lastrow1, 6)
                     lastcostea.StyleNew.Format = "N0"
 
                     DetailsList(lastrow2, 6) = production.Item("last_quanity")
-                    Dim LastQuanityStyle As CellRange = DetailsList.GetCellRange(lastrow2, 6)
-                    LastQuanityStyle.StyleNew.Format = "N1"
+                    DetailsList.GetCellRange(lastrow2, 6).StyleNew.Format = "N1"
+                    'Dim LastQuanityStyle As CellRange = DetailsList.GetCellRange(lastrow2, 6)
+                    'LastQuanityStyle.StyleNew.Format = "N1"
 
                     LastAmount = production.Item("last_amount")
                     DetailsList(lastrow3, 6) = LastAmount
@@ -331,14 +336,16 @@ Public Class 出来高入力
                 Dim Lquanity As Integer = DetailsList(totalrow1, 6)
                 Dim Ltotal As Integer = DetailsList(totalrow2, 6)
                 Dim Cuquanity As Integer
-                Dim Cuamount As Integer
+                Dim Cuamount As Decimal
                 Dim Cutotal As Integer
 
                 Cuquanity = quanity - Lquanity
                 DetailsList(totalrow1, 8) = Cuquanity
+                DetailsList.GetCellRange(totalrow1, 8).StyleNew.Format = "N1"
 
                 Cuamount = total - Ltotal
                 DetailsList(totalrow2, 8) = Cuamount
+                DetailsList.GetCellRange(totalrow2, 8).StyleNew.Format = "N0"
 
                 Cutotal += Cuamount
                 TotalList(0, 4) = Cutotal
