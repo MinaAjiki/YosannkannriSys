@@ -29,12 +29,12 @@ Partial Class 外注内訳入力
         Me.Label2 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TotalBreakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.CreatedDateBox = New C1.Win.C1Input.C1TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ContractNo = New C1.Win.C1Input.C1NumericEdit()
         Me.TotalBox = New C1.Win.C1Input.C1NumericEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Breakdown = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.ChangeDetailLabel = New System.Windows.Forms.Label()
         Me.DetailList = New C1.Win.C1FlexGrid.C1FlexGrid()
@@ -139,12 +139,12 @@ Partial Class 外注内訳入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.Label4)
         Me.FormPanel.Controls.Add(Me.TotalBreakdown)
         Me.FormPanel.Controls.Add(Me.CreatedDateBox)
         Me.FormPanel.Controls.Add(Me.Label1)
         Me.FormPanel.Controls.Add(Me.ContractNo)
         Me.FormPanel.Controls.Add(Me.TotalBox)
-        Me.FormPanel.Controls.Add(Me.Label4)
         Me.FormPanel.Controls.Add(Me.Breakdown)
         Me.FormPanel.Controls.Add(Me.ChangeDetailLabel)
         Me.FormPanel.Controls.Add(Me.DetailList)
@@ -158,15 +158,26 @@ Partial Class 外注内訳入力
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
         '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label4.Location = New System.Drawing.Point(339, 595)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(38, 26)
+        Me.Label4.TabIndex = 78
+        Me.Label4.Text = "合計"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'TotalBreakdown
         '
         Me.TotalBreakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.TotalBreakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.TotalBreakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.TotalBreakdown.ColumnInfo = "8,0,0,0,0,110,Columns:0{Width:0;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Wid" &
-    "th:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9)
+        Me.TotalBreakdown.ColumnInfo = "8,0,0,0,0,110,Columns:0{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Wi" &
+    "dth:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9)
         Me.TotalBreakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.TotalBreakdown.Location = New System.Drawing.Point(470, 614)
+        Me.TotalBreakdown.Location = New System.Drawing.Point(376, 595)
         Me.TotalBreakdown.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.TotalBreakdown.Name = "TotalBreakdown"
         Me.TotalBreakdown.Rows.Count = 1
@@ -175,7 +186,7 @@ Partial Class 外注内訳入力
         Me.TotalBreakdown.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.TotalBreakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.TotalBreakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.TotalBreakdown.Size = New System.Drawing.Size(771, 26)
+        Me.TotalBreakdown.Size = New System.Drawing.Size(865, 26)
         Me.TotalBreakdown.StyleInfo = resources.GetString("TotalBreakdown.StyleInfo")
         Me.TotalBreakdown.TabIndex = 76
         Me.SystemTheme.SetTheme(Me.TotalBreakdown, "(default)")
@@ -258,7 +269,7 @@ Partial Class 外注内訳入力
         Me.TotalBox.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.TotalBox.GapHeight = 0
         Me.TotalBox.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.TotalBox.Location = New System.Drawing.Point(361, 595)
+        Me.TotalBox.Location = New System.Drawing.Point(8, 601)
         Me.TotalBox.Name = "TotalBox"
         Me.TotalBox.ReadOnly = True
         Me.TotalBox.Size = New System.Drawing.Size(110, 20)
@@ -266,18 +277,9 @@ Partial Class 外注内訳入力
         Me.TotalBox.Tag = Nothing
         Me.TotalBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.TotalBox, "予算管理テーマ")
+        Me.TotalBox.Visible = False
         Me.TotalBox.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.TotalBox.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'Label4
-        '
-        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(323, 595)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 20)
-        Me.Label4.TabIndex = 78
-        Me.Label4.Text = "合計"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Breakdown
         '
@@ -298,7 +300,7 @@ Partial Class 外注内訳入力
         Me.Breakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.Breakdown.ShowCellLabels = True
         Me.Breakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.Breakdown.Size = New System.Drawing.Size(791, 551)
+        Me.Breakdown.Size = New System.Drawing.Size(791, 576)
         Me.Breakdown.StyleInfo = resources.GetString("Breakdown.StyleInfo")
         Me.Breakdown.TabIndex = 75
         Me.SystemTheme.SetTheme(Me.Breakdown, "予算管理テーマ2")

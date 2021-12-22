@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 
 Public Class 注文書番号入力
+    Public ChangeHistory As String
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
     End Sub
@@ -46,36 +47,7 @@ Public Class 注文書番号入力
             End While
             Coopreader.Close()
 
-            Dim SystmCnnctn As New SqlConnection
-            Dim SystemSql As New SqlCommand
-            SystmCnnctn.Close()
-            SystmCnnctn.Dispose()
-            SystmCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
-            SystmCnnctn.Open()
-            SystemSql.Connection = SystmCnnctn
-
-
-
             datacount = 1
-
-            '合計注文金額を計算_旧
-            'For Vendorloop As Integer = 1 To Outsrcrcount
-            '    '外注業者IDで明細書テーブルから明細書IDを取得
-            '    ホーム.Sql.Parameters.Clear()
-            '    ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE outsrcr_id = " & OrderNoList(datacount, 0)
-            '    Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
-            '    '明細書IDごとに計算し合計して出力
-            '    Dim Total As New Integer
-            '    While DtlID.Read
-            '        SystemSql.Parameters.Clear()
-            '        SystemSql.CommandText = "SELECT ISNULL(outsrcng_quanity*outsrcng_costea,0) FROM outsourcing_plans WHERE dtl_id = " & DtlID.Item("dtl_id")
-            '        Dim quacos As Integer = SystemSql.ExecuteScalar
-            '        Total += quacos
-            '    End While
-            '    OrderNoList(datacount, 4) = Total
-            '    datacount += 1
-            '    DtlID.Close()
-            'Next
 
             '合計注文金額を計算
             For Vendorloop As Integer = 1 To Outsrcrcount
@@ -89,20 +61,16 @@ Public Class 注文書番号入力
             datacount = 1
 
             '注文書テーブルから注文番号を取得
-            ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM purchase_orders"
-            Dim OrderNoreader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While OrderNoreader.Read
-                If OrderNoreader.Item("outsrcr_id") = OrderNoList(datacount, 0) Then
-                    If OrderNoreader.Item("no") = Nothing Then
-                        OrderNoList(datacount, 1) = ""
-                    Else
-                        OrderNoList(datacount, 1) = OrderNoreader.Item("no")
-                        datacount += 1
-                    End If
+            For OrderNo As Integer = 1 To Outsrcrcount
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT no FROM purchase_orders WHERE outsrcr_id =" & OrderNoList(OrderNo, 0)
+                Dim OrderNoRead As String = ホーム.Sql.ExecuteScalar
+                If OrderNoRead = Nothing Then
+                    OrderNoList(OrderNo, 1) = ""
+                Else
+                    OrderNoList(OrderNo, 1) = OrderNoRead
                 End If
-            End While
-            OrderNoreader.Close()
+            Next
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -113,8 +81,10 @@ Public Class 注文書番号入力
     End Sub
 
     Private Sub OrderNoList_AfterEdit(sender As Object, e As RowColEventArgs) Handles OrderNoList.AfterEdit
-        Dim SetImageRow As Integer = e.Row
-        OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        If ChangeHistory <> OrderNoList(e.Row, e.Col) Then
+            Dim SetImageRow As Integer = e.Row
+            OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        End If
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
@@ -125,9 +95,13 @@ Public Class 注文書番号入力
             For Vendorloop As Integer = 1 To Outsrcrcount
                 Dim CoopID As CellRange = OrderNoList.GetCellRange(Vendorloop, 0)
                 Dim OrderNo As CellRange = OrderNoList.GetCellRange(Vendorloop, 1)
-                If OrderNo.Data = Nothing Then
-                    MsgBox("注文番号を入力してください。", MsgBoxStyle.OkOnly, "エラー")
-                    Exit Sub
+                Dim d As String = OrderNo.Data
+                Dim length As Integer = d.Length
+                If OrderNo.Data <> "" Then
+                    If length <> 6 Then
+                        MsgBox("注文番号の桁数が正しくありません。", MsgBoxStyle.OkOnly, "エラー")
+                        Exit Sub
+                    End If
                 End If
                 ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = "Select count(outsrcr_id) from purchase_orders where outsrcr_id =" & CoopID.Data
@@ -147,13 +121,18 @@ Public Class 注文書番号入力
                 ホーム.Sql.Parameters("@no").Value = OrderNo.Data
                 ホーム.Sql.ExecuteNonQuery()
             Next
-            MsgBox("登録完了", MsgBoxStyle.OkOnly, "注文書番号登録")
             Me.Close()
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "注文書番号登録")
+
         Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
+    End Sub
+
+    Private Sub OrderNoList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles OrderNoList.BeforeEdit
+        ChangeHistory = OrderNoList(e.Row, e.Col)
     End Sub
 End Class

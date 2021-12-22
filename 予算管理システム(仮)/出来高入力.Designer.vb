@@ -137,7 +137,7 @@ Partial Class 出来高入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
-        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.DetailsList.Location = New System.Drawing.Point(17, 83)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -149,6 +149,7 @@ Partial Class 出来高入力
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.DetailsList.Size = New System.Drawing.Size(841, 506)
+        Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 66
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")
         '
@@ -233,15 +234,16 @@ Partial Class 出来高入力
         Me.VendorList.AllowSpinLoop = False
         Me.VendorList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.VendorList.AutoSize = False
-        Me.VendorList.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.VendorList.BackColor = System.Drawing.Color.White
         Me.VendorList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.VendorList.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.VendorList.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.VendorList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.VendorList.GapHeight = 0
         Me.VendorList.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.VendorList.Location = New System.Drawing.Point(112, 54)
         Me.VendorList.Name = "VendorList"
         Me.VendorList.Size = New System.Drawing.Size(295, 23)
+        Me.VendorList.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.VendorList.TabIndex = 72
         Me.VendorList.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")

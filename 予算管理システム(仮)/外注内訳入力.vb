@@ -72,6 +72,8 @@ Public Class 外注内訳入力
             Breakdown.Rows(1).Height = 17
             Breakdown.Rows(2).Height = 17
 
+            TotalBreakdown.Cols.Frozen = 1
+
             'Breakdown.Footers.Descriptions.Add(New FooterDescription())
             'Breakdown.Footers.Fixed = True
             'Breakdown.Footers.Descriptions(0).Aggregates.Add(New AggregateDefinition())
@@ -89,9 +91,9 @@ Public Class 外注内訳入力
             Dim Coopcount As Integer = 1
             Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Coopreader.Read
-                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_id")
+                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
+                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
                 Coopcount += 1
             End While
             Coopreader.Close()
@@ -99,8 +101,7 @@ Public Class 外注内訳入力
             Dim Drow1 As Integer = 3
             Dim Drow2 As Integer = 4
             Dim Drow3 As Integer = 5
-            Dim quanity As Integer
-            Dim costea As Integer
+
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
             Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -116,19 +117,23 @@ Public Class 外注内訳入力
                 DetailList(Drow1, 1) = Detailreader.Item("dtl_no")
                 DetailList(Drow1, 2) = Detailreader.Item("s_worktype_code")
                 DetailList(Drow1, 4) = Detailreader.Item("dtl_unit")
-                DetailList(Drow1, 5) = Detailreader.Item("dtl_quanity")
-                Dim Dtlquanity As CellRange = DetailList.GetCellRange(Drow1, 5)
-                Dtlquanity.StyleNew.Format = "N1"
                 DetailList(Drow2, 3) = Detailreader.Item("dtl_name")
                 DetailList.MergedRanges.Add(Drow2, 3, Drow2, 4)
-                DetailList(Drow2, 5) = Detailreader.Item("dtl_costea")
+
+                Dim Dtlquanityitem As Decimal = Detailreader.Item("dtl_quanity")
+                DetailList(Drow1, 5) = Dtlquanityitem
+                Dim Dtlquanity As CellRange = DetailList.GetCellRange(Drow1, 5)
+                Dtlquanity.StyleNew.Format = "N1"
+
+                Dim DtlcosteaItem As Decimal = Detailreader.Item("dtl_costea")
+                DetailList(Drow2, 5) = DtlcosteaItem
                 Dim Dtlcostea As CellRange = DetailList.GetCellRange(Drow2, 5)
                 Dtlcostea.StyleNew.Format = "N0"
+
                 DetailList(Drow3, 3) = Detailreader.Item("dtl_spec")
                 DetailList.MergedRanges.Add(Drow3, 3, Drow3, 4)
-                quanity = DetailList(Drow1, 5)
-                costea = DetailList(Drow2, 5)
-                DetailList(Drow3, 5) = quanity * costea
+
+                DetailList(Drow3, 5) = Dtlquanityitem * DtlcosteaItem
                 Dim Dtlamount As CellRange = DetailList.GetCellRange(Drow3, 5)
                 Dtlamount.StyleNew.Format = "N0"
 
@@ -147,6 +152,7 @@ Public Class 外注内訳入力
 
             End While
             Detailreader.Close()
+            Me.Breakdown.Rows.Add()
 
             '工種名を取得
             ホーム.Sql.Parameters.Clear()
@@ -240,9 +246,9 @@ Public Class 外注内訳入力
                     Me.Breakdown.Cols.Count = Vendorcount + 1
                     Me.TotalBreakdown.Cols.Count = Vendorcount + 1
                 End If
-                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_id")
+                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
+                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
                 Coopcount += 1
             End While
             Coopreader.Close()
@@ -255,7 +261,7 @@ Public Class 外注内訳入力
                 Dim total As Integer = 0
                 For BDloop As Integer = 1 To Detailscount
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
+                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value
                     Dim Oquanity As Decimal = ホーム.Sql.ExecuteScalar
                     If Oquanity = 0 Then
                         Breakdown(BDloop * 3, vendorloop) = 0
@@ -266,7 +272,7 @@ Public Class 外注内訳入力
                     End If
 
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value
+                    ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value
                     Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
                     If Ocostea = 0 Then
                         Breakdown(BDloop * 3 + 1, vendorloop) = 0
@@ -318,7 +324,8 @@ Public Class 外注内訳入力
                 DetailList(DTloop * 3 + 2, 6) = DMtotal
                 Gtotal += DMtotal
             Next
-            TotalBox.Value = Gtotal
+            'TotalBox.Value = Gtotal
+            TotalBreakdown(0, 0) = Gtotal
             進行状況.Close()
 
         Catch ex As Exception
@@ -385,7 +392,8 @@ Public Class 外注内訳入力
             For DTloop As Integer = 1 To Detailscount
                 Gtotal += DetailList(DTloop * 3 + 2, 6)
             Next
-            TotalBox.Value = Gtotal
+            'TotalBox.Value = Gtotal
+            TotalBreakdown(0, 0) = Gtotal
 
             ChangeValue = ContractNo.Value
             ChangeFlag += 1
@@ -409,7 +417,7 @@ Public Class 外注内訳入力
             ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
             Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-            If MsgBox("第" & ホーム.BudgetNo & "回予算計画の最新の変更計画をもとに、新しい変更計画を作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
+            If MsgBox("最新の外注計画をコピーして、新しい外注計画を作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
                 Breakdown.Clear(ClearFlags.Content)
                 TotalBreakdown.Clear(ClearFlags.Content)
                 ChangeDetail.Clear()
@@ -430,9 +438,9 @@ Public Class 外注内訳入力
                 Dim Coopcount As Integer = 1
                 Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While Coopreader.Read
-                    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_id")
-                    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_code")
-                    Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_name")
+                    Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_id")
+                    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
+                    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
                     Coopcount += 1
                 End While
                 Coopreader.Close()
@@ -445,7 +453,7 @@ Public Class 外注内訳入力
                     Dim total As Integer = 0
                     For BDloop As Integer = 1 To Detailscount
                         ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
+                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
                         Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
                         If Oquanity = 0 Then
                             Breakdown(BDloop * 3, vendorloop) = 0
@@ -456,7 +464,7 @@ Public Class 外注内訳入力
                         End If
 
                         ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(0, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
+                        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
                         Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
                         If Ocostea = 0 Then
                             Breakdown(BDloop * 3 + 1, vendorloop) = 0
@@ -491,8 +499,12 @@ Public Class 外注内訳入力
                     DetailList(DTloop * 3 + 2, 6) = DMtotal
                     Gtotal += DMtotal
                 Next
-                TotalBox.Value = Gtotal
+                'TotalBox.Value = Gtotal
+                TotalBreakdown(0, 0) = Gtotal
+
+                ChangeDetail.Clear()
             End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -515,7 +527,7 @@ Public Class 外注内訳入力
             End If
 
             For Vendorloop As Integer = 1 To Vendorcount
-                Dim outsrcrid As Integer = Breakdown(0, Vendorloop)
+                Dim outsrcrid As Integer = Breakdown(2, Vendorloop)
                 For Detailloop As Integer = 1 To Detailscount
                     Dim dtlid As Integer = DetailList(Detailloop * 3, 0)
                     Dim Oquanity As Integer = Breakdown(Detailloop * 3, Vendorloop)
