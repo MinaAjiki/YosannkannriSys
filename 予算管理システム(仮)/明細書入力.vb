@@ -5,6 +5,7 @@ Imports System.Data.SqlClient
 Public Class 明細書入力
     Public SelectRow As Integer = 0
     Public CopyList(10) As String
+
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
@@ -46,6 +47,8 @@ Public Class 明細書入力
             OutsoucerTotalList.Rows(0).Height = 20
 
             Category.Checked = True
+
+
 
             Me.Anchor = AnchorStyles.Top
             Me.Anchor = AnchorStyles.Left
@@ -90,7 +93,7 @@ Public Class 明細書入力
                     DetailsList((RowCount * 3) + 1, 6) = DetailsReader.Item("dtl_costea")
                     Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
                     Costea.StyleNew.Format = "N0"
-                    DetailsList((RowCount * 3) + 2, 6) = Math.Round((DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_costea")), 0, MidpointRounding.AwayFromZero)
+                    DetailsList((RowCount * 3) + 2, 6) = Math.Floor((DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_costea")))
                     Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
                     Amount.StyleNew.Format = "N0"
 
@@ -127,11 +130,11 @@ Public Class 明細書入力
                     CategoryList((RowCount * 3) + 1, 4) = DetailsReader.Item("dtl_machine")
                     CategoryList((RowCount * 3) + 1, 5) = DetailsReader.Item("dtl_subcntrct")
                     CategoryList((RowCount * 3) + 1, 6) = DetailsReader.Item("dtl_expens")
-                    CategoryList((RowCount * 3) + 2, 2) = Math.Round(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_labor"), 0, MidpointRounding.AwayFromZero)
-                    CategoryList((RowCount * 3) + 2, 3) = Math.Round(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_material"), 0, MidpointRounding.AwayFromZero)
-                    CategoryList((RowCount * 3) + 2, 4) = Math.Round(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_machine"), 0, MidpointRounding.AwayFromZero)
-                    CategoryList((RowCount * 3) + 2, 5) = Math.Round(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_subcntrct"), 0, MidpointRounding.AwayFromZero)
-                    CategoryList((RowCount * 3) + 2, 6) = Math.Round(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_expens"), 0, MidpointRounding.AwayFromZero)
+                    CategoryList((RowCount * 3) + 2, 2) = Math.Floor(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_labor"))
+                    CategoryList((RowCount * 3) + 2, 3) = Math.Floor(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_material"))
+                    CategoryList((RowCount * 3) + 2, 4) = Math.Floor(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_machine"))
+                    CategoryList((RowCount * 3) + 2, 5) = Math.Floor(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_subcntrct"))
+                    CategoryList((RowCount * 3) + 2, 6) = Math.Floor(DetailsReader.Item("dtl_quanity") * DetailsReader.Item("dtl_expens"))
 
                 End While
                 DetailsReader.Close()
@@ -158,7 +161,7 @@ Public Class 明細書入力
                 ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
                 Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While TotalReader.Read
-                    DetailTotal.Text = TotalReader.Item("amount_total")
+                    DetailTotal.Value = TotalReader.Item("amount_total")
                     CategoryTotalList(0, 2) = TotalReader.Item("labor")
                     CategoryTotalList(0, 3) = TotalReader.Item("material")
                     CategoryTotalList(0, 4) = TotalReader.Item("machine")
@@ -252,6 +255,9 @@ Public Class 明細書入力
                 End While
                 OutsourcersReader.Close()
             End If
+
+            ホーム.Modified = "False"
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -363,13 +369,6 @@ Public Class 明細書入力
         CostCopy.ImageIndex = 15
     End Sub
 
-    'Private Sub DetailsList_DoubleClick(sender As Object, e As EventArgs) Handles DetailsList.DoubleClick
-    '    Me.Close()
-    '    代価表入力.TopLevel = False
-    '    ホーム.FormPanel.Controls.Add(代価表入力)
-    '    代価表入力.Show()
-    'End Sub
-
     Private Sub DetailsList_AfterScroll(sender As Object, e As RangeEventArgs) Handles DetailsList.AfterScroll
         CategoryList.ScrollPosition = DetailsList.ScrollPosition
         OutsoucerList.ScrollPosition = DetailsList.ScrollPosition
@@ -475,7 +474,7 @@ Public Class 明細書入力
         End Try
     End Sub
 
-    Private Sub ItemSelect_Click(sender As Object, e As EventArgs) Handles ItemSelectMenu.Click
+    Private Sub ItemSelect_Click_1(sender As Object, e As EventArgs) Handles ItemSelectMenu.Click
 
         Try
             For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
@@ -512,7 +511,7 @@ Public Class 明細書入力
 
 
         If IsNumeric(CategoryList(Row, Col)) = True Then
-            CategoryList(Row + 1, Col) = Math.Round((DetailsList(Row - 1, 6) * CategoryList(Row, Col)), 0, MidpointRounding.AwayFromZero)
+            CategoryList(Row + 1, Col) = Math.Floor((DetailsList(Row - 1, 6) * CategoryList(Row, Col)))
 
             Dim RowNo As Integer = 0
             Dim EditRow As Integer = e.Row + 1
@@ -573,6 +572,8 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+                ホーム.Modified = "True"
+
                 DetailsList.Rows.Insert(SelectRow)
                 DetailsList.Rows.Insert(SelectRow + 1)
                 DetailsList.Rows.Insert(SelectRow + 2)
@@ -733,7 +734,7 @@ Public Class 明細書入力
 
                     RowNo += 1
 
-                    If RowCount < ((DetailsList.Rows.Count - 3) / 3) Then
+                    If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
                         DetailsList(RowCount * 3, 3) = RowCount
                     End If
 
@@ -807,6 +808,8 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+                ホーム.Modified = "True"
+
                 CopyList(0) = DetailsList(SelectRow, 1)
                 CopyList(1) = DetailsList(SelectRow, 3)
                 CopyList(2) = DetailsList(SelectRow, 4)
@@ -891,9 +894,28 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
-        作成代価選択.ShowDialog()
-        作成代価選択.TopMost = True
-        作成代価選択.TopMost = False
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+
+            Else
+                作成代価選択.ShowDialog()
+                作成代価選択.TopMost = True
+                作成代価選択.TopMost = False
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
     Private Sub ItemSelect_MouseLeave(sender As Object, e As EventArgs) Handles ItemSelect.MouseLeave
         ItemSelect.ImageIndex = 0
@@ -928,7 +950,7 @@ Public Class 明細書入力
         Reference.ImageIndex = 2
     End Sub
 
-    Private Sub ItemSelect_Click_1(sender As Object, e As EventArgs) Handles ItemSelect.Click
+    Private Sub ItemSelect_Click(sender As Object, e As EventArgs) Handles ItemSelect.Click
         Try
             For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
                 If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
@@ -965,11 +987,21 @@ Public Class 明細書入力
             End If
         Next
 
-        代価表入力.TopLevel = False
-        ホーム.FormPanel.Controls.Add(代価表入力)
-        代価表入力.SelectRow = SelectRow
-        代価表入力.Show()
-        Me.Visible = False
+        If DetailsList(SelectRow, 8) >= 12 Then
+
+            ホーム.ProjectCostForm.Add(New 代価表入力)
+            ホーム.ProjectCostForm(0).TopLevel = False
+            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+            ホーム.ProjectCostSelectRow.Add(SelectRow)
+            ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
+            ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
+            ホーム.PrjctCstList.Add(DetailsList)
+            ホーム.ProjectCostForm(0).Show()
+            Me.Visible = False
+
+        Else
+            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+        End If
 
     End Sub
 
@@ -981,16 +1013,20 @@ Public Class 明細書入力
             End If
         Next
 
-        代価表入力.TopLevel = False
-        ホーム.FormPanel.Controls.Add(代価表入力)
-        代価表入力.SelectRow = SelectRow
-        代価表入力.CostNo.Value = DetailsList(SelectRow + 2, 4)
-        代価表入力.CostName.Value = DetailsList(SelectRow, 4)
-        代価表入力.CostSpec.Value = DetailsList(SelectRow + 1, 4)
-        代価表入力.CostUnit.Value = DetailsList(SelectRow + 2, 5)
-        代価表入力.BreakDownList.AllowEditing = False
-        代価表入力.Show()
-        Me.Visible = False
+        If DetailsList(SelectRow, 8) >= 12 Then
+            ホーム.ProjectCostForm.Add(New 代価表入力)
+            ホーム.ProjectCostForm(0).TopLevel = False
+            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+            ホーム.ProjectCostSelectRow.Add(SelectRow)
+            ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
+            ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
+            ホーム.PrjctCstList.Add(DetailsList)
+            ホーム.ProjectCostForm(0).Show()
+            Me.Visible = False
+
+        Else
+            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+        End If
 
     End Sub
 
@@ -1011,7 +1047,7 @@ Public Class 明細書入力
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
                     作成代価選択.Text = "コピー代価選択"
-
+                    作成代価選択.SelectRow = SelectRow
 
                     作成代価選択.ShowDialog()
                     作成代価選択.TopMost = True
@@ -1079,19 +1115,13 @@ Public Class 明細書入力
 
             Else
                 If DetailsList(SelectRow, 8) >= 12 Then
-                    代価表入力.TopLevel = False
-                    ホーム.FormPanel.Controls.Add(代価表入力)
                     代価表入力.SelectRow = SelectRow
-                    代価表入力.CostNo.ReadOnly = False
-                    代価表入力.CostName.Enabled = False
-                    代価表入力.CostSpec.Enabled = False
-                    代価表入力.CostQuanity.Enabled = False
-                    代価表入力.CostUnit.Enabled = False
-                    代価表入力.CostUnitPrice.Enabled = False
-                    代価表入力.CostCostea.Enabled = False
-                    代価表入力.BreakDownList.AllowEditing = False
-                    代価表入力.Show()
-                    Me.Visible = False
+                    代価表入力.CostID = DetailsList(SelectRow, 9)
+                    代価表入力.ClassCode = DetailsList(SelectRow, 8)
+                    Dim ClassLoad As String = ""
+                    Dim ReferenceLoad As New Reference
+                    ClassLoad = ReferenceLoad.ReferenceStyle
+
                 Else
                     MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
                 End If
@@ -1115,12 +1145,13 @@ Public Class 明細書入力
             Next
 
             If DetailsList(SelectRow, 8) >= 12 Then
-                代価表入力.TopLevel = False
-                ホーム.FormPanel.Controls.Add(代価表入力)
                 代価表入力.SelectRow = SelectRow
-                代価表入力.Enabled = False
-                代価表入力.Show()
-                Me.Visible = False
+                代価表入力.CostID = DetailsList(SelectRow, 9)
+                代価表入力.ClassCode = DetailsList(SelectRow, 8)
+                Dim ClassLoad As String = ""
+                Dim ReferenceLoad As New Reference
+                ClassLoad = ReferenceLoad.ReferenceStyle
+
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -1142,15 +1173,14 @@ Public Class 明細書入力
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
                 Dim Name As String = DetailsList(RowCount * 3, 4)
                 If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
-                    If Name.Length = 0 Or IsNothing(Name) = True Or IsNothing(DetailsList((RowCount * 3), 3)) = True Then
-                        ErrorCount += 1
-                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                        If Name.Length = 0 Then
+                            ErrorCount += 1
+                            DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                        End If
                     End If
                 Else
-                    If IsNothing(Name) = False AndAlso IsNothing(DetailsList((RowCount * 3), 3)) = True Then
-                        ErrorCount += 1
-                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
-                    ElseIf IsNothing(Name) = True AndAlso IsNothing(DetailsList((RowCount * 3), 3)) = False Then
+                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                         ErrorCount += 1
                         DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                     End If
@@ -1158,7 +1188,7 @@ Public Class 明細書入力
             Next
 
             If ErrorCount >= 1 Then
-                MsgBox("順または名称が入力されていない行があります。", MsgBoxStyle.Exclamation, "明細書入力")
+                MsgBox("名称が入力されていない行があります。", MsgBoxStyle.Exclamation, "明細書入力")
                 Exit Sub
             End If
 
@@ -1262,20 +1292,21 @@ Public Class 明細書入力
                     End If
                     If RowCount * 3 = (DetailsList.Rows.Count - 3) Then
                         Dim Name As String = DetailsList(RowCount * 3, 4)
-                        If Name.Length > 0 Or IsNothing(Name) = False Or IsNothing(DetailsList((RowCount * 3), 3)) = False Then
-                            DetailsList.Rows.Insert(RowCount * 3)
-                            DetailsList.Rows.Insert((RowCount * 3) + 1)
-                            DetailsList.Rows.Insert((RowCount * 3) + 2)
-                            CategoryList.Rows.Insert(RowCount * 3)
-                            CategoryList.Rows.Insert((RowCount * 3) + 1)
-                            CategoryList.Rows.Insert((RowCount * 3) + 2)
-                            OutsoucerList.Rows.Insert(RowCount * 3)
-                            OutsoucerList.Rows.Insert((RowCount * 3) + 1)
-                            OutsoucerList.Rows.Insert((RowCount * 3) + 2)
+                        If IsNothing(Name) = False Then
+                            If Name.Length > 0 Or IsNothing(DetailsList((RowCount * 3), 3)) = False Then
+                                DetailsList.Rows.Insert(RowCount * 3)
+                                DetailsList.Rows.Insert((RowCount * 3) + 1)
+                                DetailsList.Rows.Insert((RowCount * 3) + 2)
+                                CategoryList.Rows.Insert(RowCount * 3)
+                                CategoryList.Rows.Insert((RowCount * 3) + 1)
+                                CategoryList.Rows.Insert((RowCount * 3) + 2)
+                                OutsoucerList.Rows.Insert(RowCount * 3)
+                                OutsoucerList.Rows.Insert((RowCount * 3) + 1)
+                                OutsoucerList.Rows.Insert((RowCount * 3) + 2)
+                            End If
                         End If
-
                     End If
-                End If
+                    End If
             Next
 
 
@@ -1332,6 +1363,9 @@ Public Class 明細書入力
                 DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
             Next
 
+            ホーム.Modified = "False"
+
+
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
 
             ホーム.Sql.CommandText = ""
@@ -1349,49 +1383,116 @@ Public Class 明細書入力
 
     Private Sub DetailsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.AfterEdit
         Try
+
+            ホーム.Modified = "True"
+
             Dim Row As Integer = e.Row
             Dim Col As Integer = e.Col
+
 
             If Col = 6 Then
                 If IsNumeric(DetailsList(Row, 6)) = True Then
                     If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
-                        DetailsList(Row + 2, 6) = Math.Round((DetailsList(Row, 6) * DetailsList(Row + 1, 6)), 0, MidpointRounding.AwayFromZero)
+                        DetailsList(Row + 2, 6) = Math.Floor((DetailsList(Row, 6) * DetailsList(Row + 1, 6)))
+                        CategoryList(Row + 2, 2) = Math.Floor((DetailsList(Row, 6) * CategoryList(Row + 1, 2)))
+                        CategoryList(Row + 2, 3) = Math.Floor((DetailsList(Row, 6) * CategoryList(Row + 1, 3)))
+                        CategoryList(Row + 2, 4) = Math.Floor((DetailsList(Row, 6) * CategoryList(Row + 1, 4)))
+                        CategoryList(Row + 2, 5) = Math.Floor((DetailsList(Row, 6) * CategoryList(Row + 1, 5)))
+                        CategoryList(Row + 2, 6) = Math.Floor((DetailsList(Row, 6) * CategoryList(Row + 1, 6)))
+
                     ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
-                        DetailsList(Row + 1, 6) = Math.Round((DetailsList(Row, 6) * DetailsList(Row - 1, 6)), 0, MidpointRounding.AwayFromZero)
+                        DetailsList(Row + 1, 6) = Math.Floor((DetailsList(Row, 6) * DetailsList(Row - 1, 6)))
                     End If
 
                     Dim RowNo As Integer = 0
                     Dim ColTotal As Int64 = 0
+                    Dim LaborColTotal As Int64 = 0
+                    Dim MaterialColTotal As Int64 = 0
+                    Dim MachineColTotal As Int64 = 0
+                    Dim SubcntrctColTotal As Int64 = 0
+                    Dim ExpenseColTotal As Int64 = 0
+
 
                     For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
 
                         ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                        LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                        MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                        MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                        SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                        ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
 
                     Next
 
-                    DetailTotal.Text = ColTotal
+                    DetailTotal.Value = ColTotal
+                    CategoryTotalList(0, 2) = LaborColTotal
+                    CategoryTotalList(0, 3) = MaterialColTotal
+                    CategoryTotalList(0, 4) = MachineColTotal
+                    CategoryTotalList(0, 5) = SubcntrctColTotal
+                    CategoryTotalList(0, 6) = ExpenseColTotal
 
                 End If
+            ElseIf Col = 4 Then
+                If Row + 3 = DetailsList.Rows.Count Then
+                    DetailsList.Rows.Add(3)
+                    CategoryList.Rows.Add(3)
+                    OutsoucerList.Rows.Add(3)
+                    Dim NewRow As Integer = Row + 3
 
-            ElseIf Col = 3 Then
+                    Dim Quanity As CellRange = DetailsList.GetCellRange(NewRow, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = DetailsList.GetCellRange(NewRow + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = DetailsList.GetCellRange(NewRow + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+                    DetailsList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
 
-                Dim ErrorCount As Integer = 0
 
-                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    If NewRow Mod 2 = 0 Then
+                        DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
 
-                    If Not e.Row = RowCount * 3 AndAlso DetailsList(e.Row, e.Col) = DetailsList(RowCount * 3, 3) Then
-                        If DetailsList(e.Row, 2) = "False" Or IsNothing(DetailsList(e.Row, 2)) = True Then
-                            ErrorCount += 1
-                            DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
-                        End If
+                        CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        DetailsList(NewRow, 7) = 4
+                        DetailsList(NewRow + 1, 7) = 5
+                        DetailsList(NewRow + 2, 7) = 6
+
                     Else
-                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
-                    End If
-                Next
-                If ErrorCount >= 1 Then
-                    MsgBox("順：" & DetailsList(e.Row, e.Col) & " は重複しています。", MsgBoxStyle.Exclamation, "明細書入力")
-                End If
+                        DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
 
+                        CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+
+                        DetailsList(NewRow, 7) = 1
+                        DetailsList(NewRow + 1, 7) = 2
+                        DetailsList(NewRow + 2, 7) = 3
+
+                    End If
+
+                    DetailsList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
+                    DetailsList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
+                    DetailsList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
+                    DetailsList.MergedRanges.Add(NewRow, 4, NewRow, 5)
+                    DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
+
+                End If
+                DetailsList(Row, 3) = Row / 3
             End If
 
         Catch ex As Exception
@@ -1404,5 +1505,53 @@ Public Class 明細書入力
 
     End Sub
 
+    Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
+        If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
+            DetailsList.Rows(e.Row + 2).AllowEditing = False
+        ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
+            DetailsList.Rows(e.Row + 1).AllowEditing = False
+        Else
+            DetailsList.Rows(e.Row).AllowEditing = False
+        End If
+    End Sub
 
+    Private Sub 明細書入力_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
+
+        If Me.Visible = True Then
+
+            Dim RowNo As Integer = 0
+            Dim ColTotal As Int64 = 0
+
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                ColTotal += DetailsList((RowCount * 3) + 2, 6)
+
+            Next
+
+            DetailTotal.Value = ColTotal
+
+        End If
+
+    End Sub
+
+    Private Sub DetailsList_DoubleClick(sender As Object, e As EventArgs) Handles DetailsList.DoubleClick
+        Try
+            Dim range As CellRange = DetailsList.CursorCell
+
+            Dim row As Integer = range.TopRow
+            Dim col As Integer = range.LeftCol
+
+            If col = 4 Or col = 5 Then
+                DetailsList.Rows(row).AllowEditing = True
+            Else
+                DetailsList.Rows(row).AllowEditing = False
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class

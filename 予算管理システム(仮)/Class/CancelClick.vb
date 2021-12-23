@@ -15,7 +15,6 @@
             End If
         Else
             FormName.Close()
-
         End If
 
         Return ModifyCheck
