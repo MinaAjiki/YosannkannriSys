@@ -30,13 +30,14 @@ Public Class 締切日入力
 
     End Sub
     Private Sub Deadline_BeforeEdit(sender As Object, e As RowColEventArgs) Handles Deadline.BeforeEdit
-        Dim SetImageRow As Integer = e.Row
-        Dim d As DateTime = Deadline.GetData(SetImageRow, 1)
+        注文書番号入力.ChangeHistory = Deadline(1, 1)
     End Sub
 
     Private Sub Deadline_AfterEdit(sender As Object, e As RowColEventArgs) Handles Deadline.AfterEdit
         Dim SetImageRow As Integer = e.Row
-        Deadline.SetCellImage(SetImageRow, 2, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        If 注文書番号入力.ChangeHistory <> Deadline(1, 1) Then
+            Deadline.SetCellImage(SetImageRow, 2, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        End If
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
@@ -51,12 +52,12 @@ Public Class 締切日入力
             Dim Quanity As Integer
             Dim Amount As Integer
 
-            'Dim Coopid As Integer = ホーム.Sql.ExecuteScalar
             Dim AfterDeadline As String = Deadline(1, 1)
             Dim ReBeforeDeadline As String = BeforeDeadline.Replace("-", "/")
             If ReBeforeDeadline >= AfterDeadline Then
-                MsgBox("実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
-                Exit Sub
+                If MsgBox("登録済みの日付より前の日付です。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
             End If
 
             Dim ProductList As New List(Of Integer)
@@ -130,8 +131,9 @@ Public Class 締切日入力
 
 
             ホーム.Transaction.Commit()
-            MsgBox("登録完了", MsgBoxStyle.OkOnly, "締切日")
             Me.Close()
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "締切日")
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

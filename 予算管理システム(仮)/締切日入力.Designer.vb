@@ -108,7 +108,7 @@ Partial Class 締切日入力
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
-        Me.FormSplitContainer.Size = New System.Drawing.Size(221, 206)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(234, 206)
         Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.FormSplitContainer.SplitterWidth = 1
         Me.FormSplitContainer.TabIndex = 48
@@ -125,11 +125,11 @@ Partial Class 締切日入力
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
         Me.C1SplitterPanel1.ResizeWhileDragging = True
-        Me.C1SplitterPanel1.Size = New System.Drawing.Size(221, 165)
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(234, 165)
         Me.C1SplitterPanel1.SizeRatio = 94.1R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
-        Me.C1SplitterPanel1.Width = 221
+        Me.C1SplitterPanel1.Width = 234
         '
         'Deadline
         '
@@ -137,16 +137,18 @@ Partial Class 締切日入力
         Me.Deadline.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.Deadline.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.Deadline.ColumnInfo = resources.GetString("Deadline.ColumnInfo")
+        Me.Deadline.Font = New System.Drawing.Font("メイリオ", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Deadline.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Deadline.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.Deadline.Location = New System.Drawing.Point(14, 69)
         Me.Deadline.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Deadline.Name = "Deadline"
-        Me.Deadline.Rows.Count = 20
+        Me.Deadline.Rows.Count = 2
         Me.Deadline.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.Deadline.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.Deadline.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.Deadline.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.Deadline.Size = New System.Drawing.Size(194, 53)
+        Me.Deadline.Size = New System.Drawing.Size(208, 53)
         Me.Deadline.StyleInfo = resources.GetString("Deadline.StyleInfo")
         Me.Deadline.TabIndex = 44
         '
@@ -169,7 +171,7 @@ Partial Class 締切日入力
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 166)
         Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
-        Me.C1SplitterPanel2.Size = New System.Drawing.Size(221, 40)
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(234, 40)
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
@@ -183,7 +185,7 @@ Partial Class 締切日入力
         Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Entry.ImageIndex = 3
         Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(109, 6)
+        Me.Entry.Location = New System.Drawing.Point(122, 6)
         Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Entry.Name = "Entry"
         Me.Entry.Size = New System.Drawing.Size(100, 30)
@@ -196,7 +198,7 @@ Partial Class 締切日入力
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(221, 206)
+        Me.ClientSize = New System.Drawing.Size(234, 206)
         Me.Controls.Add(Me.FormSplitContainer)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label2)

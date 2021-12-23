@@ -76,7 +76,7 @@ Partial Class 管理者マスタ一覧
         Me.AdminList.Location = New System.Drawing.Point(40, 98)
         Me.AdminList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.AdminList.Name = "AdminList"
-        Me.AdminList.Rows.Count = 12
+        Me.AdminList.Rows.Count = 1
         Me.AdminList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.AdminList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.AdminList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
