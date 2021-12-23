@@ -26,9 +26,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.0.2</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -150,6 +151,7 @@
   <ItemGroup>
     <Compile Include="Class\CancelClick.vb" />
     <Compile Include="Class\FormClose.vb" />
+    <Compile Include="Class\Reference.vb" />
     <Compile Include="DataSet1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,6 +182,12 @@
       <DependentUpon>作成代価選択.vb</DependentUpon>
     </Compile>
     <Compile Include="作成代価選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="代価一覧.Designer.vb">
+      <DependentUpon>代価一覧.vb</DependentUpon>
+    </Compile>
+    <Compile Include="代価一覧.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="項目選択.Designer.vb">
@@ -369,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="作成代価選択.resx">
       <DependentUpon>作成代価選択.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="代価一覧.resx">
+      <DependentUpon>代価一覧.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="項目選択.resx">
       <DependentUpon>項目選択.vb</DependentUpon>

@@ -57,7 +57,7 @@ Partial Class 管理者マスタ一覧
         Me.TableName.AutoSize = True
         Me.TableName.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TableName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.TableName.Location = New System.Drawing.Point(37, 53)
+        Me.TableName.Location = New System.Drawing.Point(37, 76)
         Me.TableName.Name = "TableName"
         Me.TableName.Size = New System.Drawing.Size(68, 18)
         Me.TableName.TabIndex = 52
@@ -73,7 +73,7 @@ Partial Class 管理者マスタ一覧
         Me.AdminList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.AdminList.ColumnInfo = resources.GetString("AdminList.ColumnInfo")
         Me.AdminList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.AdminList.Location = New System.Drawing.Point(40, 75)
+        Me.AdminList.Location = New System.Drawing.Point(40, 98)
         Me.AdminList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.AdminList.Name = "AdminList"
         Me.AdminList.Rows.Count = 12

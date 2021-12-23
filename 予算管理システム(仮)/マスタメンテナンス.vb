@@ -57,4 +57,8 @@
         費用マスタ一覧.Show()
 
     End Sub
+
+    Private Sub ProjectCosts_Click(sender As Object, e As EventArgs) Handles ProjectCosts.Click
+        代価一覧.Show()
+    End Sub
 End Class
