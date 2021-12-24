@@ -30,19 +30,19 @@ Partial Class マスタ一覧
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormSplitContainer1 = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.YearLabel = New System.Windows.Forms.Label()
+        Me.SelectYear = New C1.Win.C1Input.C1ComboBox()
         Me.MasterContentsList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
-        Me.SelectYear = New C1.Win.C1Input.C1ComboBox()
-        Me.YearLabel = New System.Windows.Forms.Label()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer1.SuspendLayout()
         Me.MainPanel.SuspendLayout()
+        CType(Me.SelectYear, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
-        CType(Me.SelectYear, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -134,6 +134,36 @@ Partial Class マスタ一覧
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
         '
+        'YearLabel
+        '
+        Me.YearLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.YearLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.YearLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.YearLabel.Location = New System.Drawing.Point(397, 48)
+        Me.YearLabel.Name = "YearLabel"
+        Me.YearLabel.Size = New System.Drawing.Size(43, 23)
+        Me.YearLabel.TabIndex = 65
+        Me.YearLabel.Text = "年度"
+        Me.YearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'SelectYear
+        '
+        Me.SelectYear.AllowSpinLoop = False
+        Me.SelectYear.BackColor = System.Drawing.Color.White
+        Me.SelectYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SelectYear.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SelectYear.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SelectYear.GapHeight = 0
+        Me.SelectYear.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.SelectYear.Location = New System.Drawing.Point(439, 48)
+        Me.SelectYear.Name = "SelectYear"
+        Me.SelectYear.Size = New System.Drawing.Size(111, 23)
+        Me.SelectYear.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SelectYear.TabIndex = 58
+        Me.SelectYear.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.SelectYear, "(default)")
+        Me.SelectYear.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'MasterContentsList
         '
         Me.MasterContentsList.AllowAddNew = True
@@ -148,6 +178,7 @@ Partial Class マスタ一覧
         Me.MasterContentsList.Location = New System.Drawing.Point(40, 71)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MasterContentsList.Name = "MasterContentsList"
+        Me.MasterContentsList.Rows.Count = 15
         Me.MasterContentsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.MasterContentsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
@@ -205,36 +236,6 @@ Partial Class マスタ一覧
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
         '
-        'SelectYear
-        '
-        Me.SelectYear.AllowSpinLoop = False
-        Me.SelectYear.BackColor = System.Drawing.Color.White
-        Me.SelectYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.SelectYear.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.SelectYear.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.SelectYear.GapHeight = 0
-        Me.SelectYear.ImagePadding = New System.Windows.Forms.Padding(0, 0, 0, 0)
-        Me.SelectYear.Location = New System.Drawing.Point(439, 48)
-        Me.SelectYear.Name = "SelectYear"
-        Me.SelectYear.Size = New System.Drawing.Size(111, 23)
-        Me.SelectYear.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.SelectYear.TabIndex = 58
-        Me.SelectYear.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.SelectYear, "(default)")
-        Me.SelectYear.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'YearLabel
-        '
-        Me.YearLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.YearLabel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.YearLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.YearLabel.Location = New System.Drawing.Point(397, 48)
-        Me.YearLabel.Name = "YearLabel"
-        Me.YearLabel.Size = New System.Drawing.Size(43, 23)
-        Me.YearLabel.TabIndex = 65
-        Me.YearLabel.Text = "年度"
-        Me.YearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'マスタ一覧
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
@@ -253,9 +254,9 @@ Partial Class マスタ一覧
         CType(Me.FormSplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer1.ResumeLayout(False)
         Me.MainPanel.ResumeLayout(False)
+        CType(Me.SelectYear, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FooterPanel.ResumeLayout(False)
-        CType(Me.SelectYear, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

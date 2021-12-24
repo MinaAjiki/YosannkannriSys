@@ -95,7 +95,7 @@ Public Class 協力業者入力
         CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Entry.Click
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Try
             '行数ループ
             Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
