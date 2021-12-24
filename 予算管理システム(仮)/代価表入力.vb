@@ -2,66 +2,364 @@
 Imports System.Windows.Forms.Form
 Imports C1.Win.C1Command
 Imports System.Data.SqlClient
+Imports C1.Win.C1Input
 Public Class 代価表入力
     Public SelectRow As Integer
     Public CopyList(10) As String
+    Public CostID As Integer
+    Public ClassCode As Integer
+
+    Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            BreakDownList(0, 2) = "削除"
+            BreakDownList(1, 2) = "削除"
+            BreakDownList(2, 2) = "削除"
+            BreakDownList(0, 3) = "順"
+            BreakDownList(1, 3) = "順"
+            BreakDownList(2, 3) = "順"
+            BreakDownList(0, 4) = "名称"
+            BreakDownList(0, 5) = "名称"
+            BreakDownList(1, 4) = "規格"
+            BreakDownList(1, 5) = "規格"
+            BreakDownList(2, 4) = "摘要"
+            BreakDownList(2, 5) = "単位"
+            BreakDownList(1, 6) = "単価"
+            BreakDownList(2, 6) = "金額"
+
+            BreakDownList.MergedRanges.Add(0, 0, 2, 0)
+            BreakDownList.MergedRanges.Add(0, 2, 2, 2)
+            BreakDownList.MergedRanges.Add(0, 3, 2, 3)
+            BreakDownList.MergedRanges.Add(0, 4, 0, 5)
+            BreakDownList.MergedRanges.Add(1, 4, 1, 5)
+            BreakDownList.MergedRanges.Add(0, 7, 2, 7)
+            BreakDownList.MergedRanges.Add(0, 8, 2, 8)
+            BreakDownList.MergedRanges.Add(0, 9, 2, 9)
+            BreakDownList.MergedRanges.Add(0, 10, 2, 10)
+            BreakDownList.MergedRanges.Add(0, 11, 2, 11)
+            BreakDownList.MergedRanges.Add(0, 12, 2, 12)
+            BreakDownList.MergedRanges.Add(0, 13, 2, 13)
+            BreakDownList.MergedRanges.Add(0, 14, 2, 14)
+
+            Me.Anchor = AnchorStyles.Top
+            Me.Anchor = AnchorStyles.Left
+            Me.Anchor = AnchorStyles.Bottom
+
+            If Me.FormBorderStyle = FormBorderStyle.None Then
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+                SelectRow = ホーム.ProjectCostSelectRow(FormCount - 1)
+                CostID = ホーム.ProjectCostID(FormCount - 1)
+                ClassCode = ホーム.PrjctCstClassCode(FormCount - 1)
+
+            End If
+
+            Dim CopyCostID As Integer = 0
+            Dim CopyClassCode As Integer = 0
+            If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+
+                CopyCostID = 作成代価選択.CopyCostID
+                CopyClassCode = 作成代価選択.CopyClassCode
+
+            End If
 
 
-    Private Sub 代価表入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            If Me.FormBorderStyle = FormBorderStyle.Sizable Then
+                Me.TopMost = True
+                CostNo.Enabled = False
+                CostName.Enabled = False
+                CostSpec.Enabled = False
+                CostQuanity.Enabled = False
+                CostUnit.Enabled = False
+                CostUnitPrice.Enabled = False
+                CostCostea.Enabled = False
+                BreakDownList.AllowEditing = False
+                ItemSelect.Visible = False
+                CostCreation.Visible = False
+                CostModify.Visible = False
+                CostCopy.Visible = False
+                Reference.Visible = False
+                Entry.Visible = False
+                BreakDownList.ContextMenuStrip.Visible = False
+            End If
 
-        'DetailsList.Rows(1).AllowMerging = True
-        BreakDownList(0, 2) = "削除"
-        BreakDownList(1, 2) = "削除"
-        BreakDownList(2, 2) = "削除"
-        BreakDownList(0, 3) = "順"
-        BreakDownList(1, 3) = "順"
-        BreakDownList(2, 3) = "順"
-        BreakDownList(0, 4) = "名称"
-        BreakDownList(0, 5) = "名称"
-        BreakDownList(1, 4) = "規格"
-        BreakDownList(1, 5) = "規格"
-        BreakDownList(2, 4) = "摘要"
-        BreakDownList(2, 5) = "単位"
-        BreakDownList(1, 6) = "単価"
-        BreakDownList(2, 6) = "金額"
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT cstclss_name FROM cost_classes WHERE cstclss_code=" & ClassCode
+            Dim ClassName As String = ホーム.Sql.ExecuteScalar
 
-        BreakDownList.MergedRanges.Add(0, 2, 2, 2)
-        BreakDownList.MergedRanges.Add(0, 3, 2, 3)
-        BreakDownList.MergedRanges.Add(0, 4, 0, 5)
-        BreakDownList.MergedRanges.Add(1, 4, 1, 5)
-        BreakDownList.MergedRanges.Add(0, 7, 2, 7)
-        BreakDownList.MergedRanges.Add(0, 8, 2, 8)
-        BreakDownList.MergedRanges.Add(0, 9, 2, 9)
-        BreakDownList.MergedRanges.Add(0, 10, 2, 10)
-        BreakDownList.MergedRanges.Add(0, 11, 2, 11)
+            If CostID > 0 Or CopyCostID > 0 Then
+                Dim CreateCostID As Integer = CostID
+                If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+                    CreateCostID = CopyCostID
+                End If
 
-        BreakDownList.Rows(0).Height = 17
-        BreakDownList.Rows(1).Height = 17
-        BreakDownList.Rows(2).Height = 17
+                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CreateCostID
+                Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While ProjectCostsReader.Read
+                    Dim No As String = ProjectCostsReader.Item("prjctcst_no")
+                    If No.Length = 1 Then
+                        No = "0000" & No
+                    ElseIf No.Length = 2 Then
+                        No = "000" & No
+                    ElseIf No.Length = 3 Then
+                        No = "00" & No
+                    ElseIf No.Length = 4 Then
+                        No = "0" & No
+                    End If
+                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+                    CostName.Text = ProjectCostsReader.Item("prjctcst_name")
+                    CostSpec.Text = ProjectCostsReader.Item("prjctcst_spec")
+                    CostUnit.Text = ProjectCostsReader.Item("prjctcst_unit")
+                    CostQuanity.Text = ProjectCostsReader.Item("prjctcst_quanity")
+                    CostCostea.Value = ProjectCostsReader.Item("prjctcst_costea")
+                    LaborCostea.Value = ProjectCostsReader.Item("prjctcst_laborea")
+                    MaterialCostea.Value = ProjectCostsReader.Item("prjctcst_materialea")
+                    MachineCostea.Value = ProjectCostsReader.Item("prjctcst_machineea")
+                    SubcntrctCostea.Value = ProjectCostsReader.Item("prjctcst_subcntrctea")
+                    ExpensCostea.Value = ProjectCostsReader.Item("prjctcst_expenseea")
+                End While
+                ProjectCostsReader.Close()
 
 
-        Me.Anchor = AnchorStyles.Top
-        Me.Anchor = AnchorStyles.Left
-        Me.Anchor = AnchorStyles.Bottom
+                If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
+                    Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
 
-        Dim a As Integer = 明細書入力.DetailsList(SelectRow, 9)
+                    Dim MaxNo As Integer = 0
 
-        ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & 明細書入力.DetailsList(SelectRow, 9)
-        Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
-        While ProjectCostsReader.Read
-            CostQuanity.Text = ProjectCostsReader.Item("prjctcst_quanity")
-            CostCostea.Text = ProjectCostsReader.Item("prjctcst_costea")
-            LaborCostea.Text = ProjectCostsReader.Item("prjctcst_laborea")
-            MaterialCostea.Text = ProjectCostsReader.Item("prjctcst_materialea")
-            MachineCostea.Text = ProjectCostsReader.Item("prjctcst_machineea")
-            SubcntrctCostea.Text = ProjectCostsReader.Item("prjctcst_subcntrctea")
-            ExpensCostea.Text = ProjectCostsReader.Item("prjctcst_expenseea")
-        End While
-        ProjectCostsReader.Close()
+                    If CostCount > 0 Then
+                        ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
+                        MaxNo = ホーム.Sql.ExecuteScalar
+                    End If
 
-        ホーム.Sql.CommandText = "SELECT amount FROM projectcst_bd_total WHERE prjctcst_id=" & 明細書入力.DetailsList(SelectRow, 9)
-        CostUnitPrice.Text = ホーム.Sql.ExecuteScalar
+                    Dim No As String = MaxNo + 1
+                    If No.Length = 1 Then
+                        No = "0000" & No
+                    ElseIf No.Length = 2 Then
+                        No = "000" & No
+                    ElseIf No.Length = 3 Then
+                        No = "00" & No
+                    ElseIf No.Length = 4 Then
+                        No = "0" & No
+                    End If
+                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+                End If
+
+
+                ホーム.Sql.CommandText = "SELECT amount FROM projectcst_bd_total WHERE prjctcst_id=" & CreateCostID
+                CostUnitPrice.Value = ホーム.Sql.ExecuteScalar
+
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID
+                Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
+
+                If BreakDownCount > 5 Then
+                    BreakDownList.Rows.Count = (BreakDownCount * 3) + 6
+                Else
+                    BreakDownList.Rows.Count = 21
+                End If
+
+                Dim RowCount As Integer = 0
+                Dim RowNo As Integer = 0
+
+                Dim OutsrcngSql As New SqlCommand
+                OutsrcngSql.Connection = ホーム.Connection
+
+                If BreakDownCount > 0 Then
+
+                    ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID & " ORDER BY prjctcst_bd_no ASC "
+                    Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While BreakDownReader.Read
+                        RowCount += 1
+                        RowNo += 1
+                        BreakDownList(RowCount * 3, 1) = BreakDownReader.Item("prjctcst_bd_id")
+                        BreakDownList(RowCount * 3, 9) = BreakDownReader.Item("cstmstr_id")
+                        BreakDownList(RowCount * 3, 8) = BreakDownReader.Item("cstclss_code")
+                        BreakDownList(RowCount * 3, 3) = BreakDownReader.Item("prjctcst_bd_no")
+                        BreakDownList(RowCount * 3, 4) = BreakDownReader.Item("prjctcst_bd_name")
+                        BreakDownList((RowCount * 3) + 1, 4) = BreakDownReader.Item("prjctcst_bd_spec")
+                        BreakDownList((RowCount * 3) + 2, 4) = BreakDownReader.Item("prjctcst_bd_remarks")
+                        BreakDownList((RowCount * 3) + 2, 5) = BreakDownReader.Item("prjctcst_bd_unit")
+                        BreakDownList(RowCount * 3, 6) = BreakDownReader.Item("prjctcst_bd_quanity")
+                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                        Quanity.StyleNew.Format = "N1"
+                        BreakDownList((RowCount * 3) + 1, 6) = BreakDownReader.Item("prjctcst_bd_costea")
+                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                        Costea.StyleNew.Format = "N0"
+                        BreakDownList((RowCount * 3) + 2, 6) = Math.Floor((BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_costea")))
+                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                        Amount.StyleNew.Format = "N0"
+
+                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                        If (RowNo * RowNo) + 2 = 6 Then
+                            RowNo = 0
+                        End If
+
+                        If RowCount Mod 2 = 0 Then
+                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        End If
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+
+                        BreakDownList((RowCount * 3) + 1, 10) = BreakDownReader.Item("prjctcst_bd_labor")
+                        BreakDownList((RowCount * 3) + 1, 11) = BreakDownReader.Item("prjctcst_bd_material")
+                        BreakDownList((RowCount * 3) + 1, 12) = BreakDownReader.Item("prjctcst_bd_machine")
+                        BreakDownList((RowCount * 3) + 1, 13) = BreakDownReader.Item("prjctcst_bd_subcntrct")
+                        BreakDownList((RowCount * 3) + 1, 14) = BreakDownReader.Item("prjctcst_bd_expense")
+                        BreakDownList((RowCount * 3) + 2, 10) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_labor"))
+                        BreakDownList((RowCount * 3) + 2, 11) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_material"))
+                        BreakDownList((RowCount * 3) + 2, 12) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_machine"))
+                        BreakDownList((RowCount * 3) + 2, 13) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_subcntrct"))
+                        BreakDownList((RowCount * 3) + 2, 14) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_expense"))
+
+                    End While
+                    BreakDownReader.Close()
+
+                    Dim DataRowCount As Integer = RowCount * 3
+                    Dim BlankRow As Integer = ((BreakDownList.Rows.Count - 3) - DataRowCount) / 3
+                    For BlankLoop As Integer = 0 To BlankRow - 1
+                        RowCount += 1
+                        RowNo = 1
+                        BreakDownList((RowCount * 3), 7) = (RowNo * RowNo)
+                        BreakDownList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
+                        BreakDownList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
+
+                        If RowCount Mod 2 = 0 Then
+                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        End If
+
+                        Dim LastQuanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                        LastQuanity.StyleNew.Format = "N1"
+                        Dim LastCostea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                        LastCostea.StyleNew.Format = "N0"
+                        Dim LastAmount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                        LastAmount.StyleNew.Format = "N0"
+
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                    Next
+
+                    ホーム.Sql.CommandText = "SELECT * FROM projectcst_bd_total WHERE prjctcst_id=" & CreateCostID
+                    Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While TotalReader.Read
+                        LaborTotal.Text = TotalReader.Item("labor")
+                        MaterialTotal.Text = TotalReader.Item("material")
+                        MachineTotal.Text = TotalReader.Item("machine")
+                        SubcntrctTotal.Text = TotalReader.Item("subcntrct")
+                        ExpenseTotal.Text = TotalReader.Item("expens")
+                    End While
+                    TotalReader.Close()
+                Else
+
+                    For RowCount = 1 To 6
+                        RowNo += 1
+
+                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                        Quanity.StyleNew.Format = "N1"
+                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                        Costea.StyleNew.Format = "N0"
+                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                        Amount.StyleNew.Format = "N0"
+
+                        If RowCount Mod 2 = 0 Then
+                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        End If
+
+                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                        If (RowNo * RowNo) + 2 = 6 Then
+                            RowNo = 0
+                        End If
+
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                    Next
+                End If
+            Else
+
+                BreakDownList.Rows.Count = 21
+
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
+                Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
+
+                Dim MaxNo As Integer = 0
+
+                If CostCount > 0 Then
+                    ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
+                    MaxNo = ホーム.Sql.ExecuteScalar
+                End If
+
+                Dim No As String = MaxNo + 1
+                    If No.Length = 1 Then
+                        No = "0000" & No
+                    ElseIf No.Length = 2 Then
+                        No = "000" & No
+                    ElseIf No.Length = 3 Then
+                        No = "00" & No
+                    ElseIf No.Length = 4 Then
+                        No = "0" & No
+                    End If
+                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+
+                    Dim RowNo As Integer = 0
+                    For RowCount = 1 To 6
+                        RowNo += 1
+
+                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                        Quanity.StyleNew.Format = "N1"
+                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                        Costea.StyleNew.Format = "N0"
+                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                        Amount.StyleNew.Format = "N0"
+
+                        If RowCount Mod 2 = 0 Then
+                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        End If
+
+                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                        If (RowNo * RowNo) + 2 = 6 Then
+                            RowNo = 0
+                        End If
+
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                    Next
+
+                End If
+
+
+                ホーム.Modified = "False"
+
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+
 
     End Sub
 
@@ -97,7 +395,6 @@ Public Class 代価表入力
     Private Sub Entry_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
     End Sub
-
 
     Private Sub CostCreation_MouseDown(sender As Object, e As MouseEventArgs) Handles CostCreation.MouseDown
         CostCreation.ImageIndex = 11
@@ -202,6 +499,9 @@ Public Class 代価表入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.PrjctCstList.Add(BreakDownList)
+
                 項目選択.Show()
                 項目選択.TopMost = True
                 項目選択.TopMost = False
@@ -226,12 +526,24 @@ Public Class 代価表入力
             End If
         Next
 
-        Dim OpenForm As New 代価表入力()
-        OpenForm.TopLevel = False
-        ホーム.FormPanel.Controls.Add(OpenForm)
-        OpenForm.SelectRow = SelectRow
-        OpenForm.Show()
-        Me.Visible = False
+        If BreakDownList(SelectRow, 8) >= 12 Then
+
+            Dim count As Integer = ホーム.ProjectCostForm.Count
+
+            ホーム.ProjectCostForm.Add(New 代価表入力)
+            ホーム.ProjectCostForm(count).TopLevel = False
+            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(count))
+            ホーム.ProjectCostSelectRow.Add(SelectRow)
+            ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
+            ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
+            ホーム.PrjctCstList.Add(BreakDownList)
+            ホーム.ProjectCostForm(count).Show()
+            Me.Visible = False
+
+        Else
+            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+        End If
+
 
     End Sub
 
@@ -243,12 +555,22 @@ Public Class 代価表入力
             End If
         Next
 
-        Dim OpenForm As New 代価表入力()
-        OpenForm.TopLevel = False
-        ホーム.FormPanel.Controls.Add(OpenForm)
-        OpenForm.SelectRow = SelectRow
-        OpenForm.Show()
-        Me.Visible = False
+        If BreakDownList(SelectRow, 8) >= 12 Then
+            Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+            ホーム.ProjectCostForm.Add(New 代価表入力)
+            ホーム.ProjectCostForm(FormCount).TopLevel = False
+            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+            ホーム.ProjectCostSelectRow.Add(SelectRow)
+            ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
+            ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
+            ホーム.PrjctCstList.Add(BreakDownList)
+            ホーム.ProjectCostForm(FormCount).Show()
+            Me.Visible = False
+
+        Else
+            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+        End If
 
     End Sub
 
@@ -269,6 +591,8 @@ Public Class 代価表入力
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
                     作成代価選択.Text = "コピー代価選択"
+                    作成代価選択.SelectRow = SelectRow
+                    作成代価選択.CopyList = BreakDownList
 
 
                     作成代価選択.ShowDialog()
@@ -304,6 +628,8 @@ Public Class 代価表入力
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
                     作成代価選択.Text = "コピー代価選択"
+                    作成代価選択.SelectRow = SelectRow
+                    作成代価選択.CopyList = BreakDownList
 
 
                     作成代価選択.ShowDialog()
@@ -333,34 +659,46 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+
+        Else
+            If BreakDownList(SelectRow, 8) >= 12 Then
+                Dim DaikaForm As New 代価表入力
+                DaikaForm.SelectRow = SelectRow
+                DaikaForm.CostID = BreakDownList(SelectRow, 9)
+                DaikaForm.ClassCode = BreakDownList(SelectRow, 8)
+                DaikaForm.TopLevel = True
+                DaikaForm.TopMost = True
+                DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
+                DaikaForm.CostNo.Enabled = False
+                DaikaForm.CostName.Enabled = False
+                DaikaForm.CostSpec.Enabled = False
+                DaikaForm.CostQuanity.Enabled = False
+                DaikaForm.CostUnit.Enabled = False
+                DaikaForm.CostUnitPrice.Enabled = False
+                DaikaForm.CostCostea.Enabled = False
+                DaikaForm.BreakDownList.AllowEditing = False
+                DaikaForm.ItemSelect.Visible = False
+                DaikaForm.CostCreation.Visible = False
+                DaikaForm.CostModify.Visible = False
+                DaikaForm.CostCopy.Visible = False
+                DaikaForm.Reference.Visible = False
+                DaikaForm.Entry.Visible = False
+                DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+                DaikaForm.Show()
+                DaikaForm.TopMost = False
+
+
 
             Else
-                If BreakDownList(SelectRow, 8) >= 12 Then
-                    Dim OpenForm As New 代価表入力()
-                    OpenForm.TopLevel = False
-                    ホーム.FormPanel.Controls.Add(OpenForm)
-                    OpenForm.SelectRow = SelectRow
-                    OpenForm.CostNo.ReadOnly = False
-                    OpenForm.CostName.Enabled = False
-                    OpenForm.CostSpec.Enabled = False
-                    OpenForm.CostQuanity.Enabled = False
-                    OpenForm.CostUnit.Enabled = False
-                    OpenForm.CostUnitPrice.Enabled = False
-                    OpenForm.CostCostea.Enabled = False
-                    OpenForm.BreakDownList.AllowEditing = False
-                    OpenForm.Show()
-                    Me.Visible = False
-                Else
-                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-                End If
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             End If
+        End If
         Catch ex As Exception
-            ホーム.Transaction.Rollback()
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
 
@@ -374,22 +712,38 @@ Public Class 代価表入力
             Next
 
             If BreakDownList(SelectRow, 8) >= 12 Then
-                Dim OpenForm As New 代価表入力()
-                OpenForm.TopLevel = False
-                ホーム.FormPanel.Controls.Add(OpenForm)
-                OpenForm.SelectRow = SelectRow
-                OpenForm.Enabled = False
-                OpenForm.Show()
-                Me.Visible = False
-            Else
-                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-            End If
+            Dim DaikaForm As New 代価表入力
+            DaikaForm.SelectRow = SelectRow
+            DaikaForm.CostID = BreakDownList(SelectRow, 9)
+            DaikaForm.ClassCode = BreakDownList(SelectRow, 8)
+            DaikaForm.TopLevel = True
+            DaikaForm.TopMost = True
+            DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
+            DaikaForm.CostNo.Enabled = False
+            DaikaForm.CostName.Enabled = False
+            DaikaForm.CostSpec.Enabled = False
+            DaikaForm.CostQuanity.Enabled = False
+            DaikaForm.CostUnit.Enabled = False
+            DaikaForm.CostUnitPrice.Enabled = False
+            DaikaForm.CostCostea.Enabled = False
+            DaikaForm.BreakDownList.AllowEditing = False
+            DaikaForm.ItemSelect.Visible = False
+            DaikaForm.CostCreation.Visible = False
+            DaikaForm.CostModify.Visible = False
+            DaikaForm.CostCopy.Visible = False
+            DaikaForm.Reference.Visible = False
+            DaikaForm.Entry.Visible = False
+            DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+            DaikaForm.Show()
+            DaikaForm.TopMost = False
+        Else
+            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        End If
         Catch ex As Exception
-            ホーム.Transaction.Rollback()
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
 
@@ -435,7 +789,7 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
                 項目選択.TopMost = True
@@ -457,14 +811,66 @@ Public Class 代価表入力
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
-            Dim CancelClick As String = ""
 
-            Dim CancelClickLoad As New CancelClick(Me)
-            CancelClick = CancelClickLoad.ModifyCheck
+            Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
-            小工種選択.TopLevel = False
-            ホーム.FormPanel.Controls.Add(小工種選択)
-            小工種選択.Show()
+            If FormCount - 2 < 0 Then
+                ホーム.Modified = "True"
+
+                Dim ProjectCostID As Integer = 明細書入力.DetailsList(明細書入力.SelectRow, 9)
+
+                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
+                Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While ProjectCostReader.Read
+                    明細書入力.DetailsList(明細書入力.SelectRow, 4) = ProjectCostReader.Item("prjctcst_name")
+                    明細書入力.DetailsList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
+                    明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6))
+                End While
+                ProjectCostReader.Close()
+
+                Dim CancelClick As String = ""
+                Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
+                CancelClick = CancelClickLoad.ModifyCheck
+
+                明細書入力.Visible = True
+
+            ElseIf (FormCount - 2) >= 0 Then
+                ホーム.Modified = "True"
+
+                Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
+                Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+
+                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
+                Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While ProjectCostReader.Read
+                    ProjectCostList(ProjectCostRow, 4) = ProjectCostReader.Item("prjctcst_name")
+                    ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
+                    ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
+                    ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
+                End While
+                ProjectCostReader.Close()
+
+                Dim CancelClick As String = ""
+                Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
+                CancelClick = CancelClickLoad.ModifyCheck
+
+                ホーム.ProjectCostForm(FormCount - 2).Visible = True
+            Else
+                ホーム.Modified = "False"
+
+            End If
+
+            ホーム.ProjectCostForm.RemoveAt(FormCount - 1)
+            ホーム.ProjectCostID.RemoveAt(FormCount - 1)
+            ホーム.ProjectCostSelectRow.RemoveAt(FormCount - 1)
+            ホーム.PrjctCstClassCode.RemoveAt(FormCount - 1)
+            ホーム.PrjctCstList.RemoveAt(FormCount - 1)
+
+            FormCount = ホーム.ProjectCostForm.Count
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -483,8 +889,10 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
+                ホーム.Modified = "True"
+
                 BreakDownList.Rows.Insert(SelectRow)
                 BreakDownList.Rows.Insert(SelectRow + 1)
                 BreakDownList.Rows.Insert(SelectRow + 2)
@@ -555,7 +963,7 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
                 BreakDownList.Rows(SelectRow).StyleFixedNew.BackColor = Color.FromArgb(105, 189, 131)
@@ -591,7 +999,7 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
                 BreakDownList.Rows.Insert(SelectRow)
@@ -672,8 +1080,10 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
+                ホーム.Modified = "True"
+
                 CopyList(0) = BreakDownList(SelectRow, 1)
                 CopyList(1) = BreakDownList(SelectRow, 3)
                 CopyList(2) = BreakDownList(SelectRow, 4)
@@ -733,4 +1143,601 @@ Public Class 代価表入力
         End Try
     End Sub
 
+    Private Sub BreakDownList_AfterEdit(sender As Object, e As RowColEventArgs) Handles BreakDownList.AfterEdit
+        Try
+
+            ホーム.Modified = "True"
+
+            Dim Row As Integer = e.Row
+            Dim Col As Integer = e.Col
+
+            If Col = 6 Then
+                If IsNumeric(BreakDownList(Row, 6)) = True Then
+                    If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                        BreakDownList(Row + 2, 6) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 6)))
+                        BreakDownList(Row + 2, 10) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 10)))
+                        BreakDownList(Row + 2, 11) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 11)))
+                        BreakDownList(Row + 2, 12) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 12)))
+                        BreakDownList(Row + 2, 13) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 13)))
+                        BreakDownList(Row + 2, 14) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 14)))
+                    ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                        BreakDownList(Row + 1, 6) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row - 1, 6)))
+                    End If
+
+                    Dim RowNo As Integer = 0
+                    Dim ColTotal As Int64 = 0
+                    Dim LaborColTotal As Int64 = 0
+                    Dim MaterialColTotal As Int64 = 0
+                    Dim MachineColTotal As Int64 = 0
+                    Dim SubcntrctColTotal As Int64 = 0
+                    Dim ExpenseColTotal As Int64 = 0
+
+
+                    For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                        ColTotal += BreakDownList((RowCount * 3) + 2, 6)
+                        LaborColTotal += BreakDownList((RowCount * 3) + 2, 10)
+                        MaterialColTotal += BreakDownList((RowCount * 3) + 2, 11)
+                        MachineColTotal += BreakDownList((RowCount * 3) + 2, 12)
+                        SubcntrctColTotal += BreakDownList((RowCount * 3) + 2, 13)
+                        ExpenseColTotal += BreakDownList((RowCount * 3) + 2, 14)
+
+                    Next
+
+                    CostUnitPrice.Value = ColTotal
+                    Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                    CostCostea.Value = Costea
+
+                    LaborTotal.Value = LaborColTotal
+                    Dim Laborea As Int64 = Math.Floor(LaborColTotal / CostQuanity.Value)
+                    LaborCostea.Value = Laborea
+
+                    MaterialTotal.Value = MaterialColTotal
+                    Dim Materialea As Int64 = Math.Floor(MaterialColTotal / CostQuanity.Value)
+                    MaterialCostea.Value = Materialea
+
+                    MachineTotal.Value = MachineColTotal
+                    Dim Machineea As Int64 = Math.Floor(MachineColTotal / CostQuanity.Value)
+                    MachineCostea.Value = Machineea
+
+                    SubcntrctTotal.Value = SubcntrctColTotal
+                    Dim Subcntrctea As Int64 = Math.Floor(SubcntrctColTotal / CostQuanity.Value)
+                    SubcntrctCostea.Value = Subcntrctea
+
+                    ExpenseTotal.Value = ExpenseColTotal
+                    Dim Expenseea As Int64 = Math.Floor(ExpenseColTotal / CostQuanity.Value)
+                    ExpensCostea.Value = Expenseea
+                End If
+
+            ElseIf Col = 10 Then
+
+                If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                    BreakDownList(Row + 2, 10) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 10)))
+                ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                    BreakDownList(Row + 1, 10) = Math.Floor((BreakDownList(Row - 1, 6) * BreakDownList(Row, 10)))
+                End If
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 10)
+
+                Next
+
+                LaborTotal.Value = ColTotal
+                Dim Laborea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                LaborCostea.Value = Laborea
+
+
+            ElseIf Col = 11 Then
+
+                If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                    BreakDownList(Row + 2, 11) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 11)))
+                ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                    BreakDownList(Row + 1, 11) = Math.Floor((BreakDownList(Row - 1, 6) * BreakDownList(Row, 11)))
+                End If
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 11)
+
+                Next
+
+                MaterialTotal.Value = ColTotal
+                Dim Materialea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                MaterialCostea.Value = Materialea
+
+
+            ElseIf Col = 12 Then
+
+                If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                    BreakDownList(Row + 2, 12) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 12)))
+                ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                    BreakDownList(Row + 1, 12) = Math.Floor((BreakDownList(Row - 1, 6) * BreakDownList(Row, 12)))
+                End If
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 12)
+
+                Next
+
+                MachineTotal.Value = ColTotal
+                Dim Machineea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                MachineCostea.Value = Machineea
+
+
+            ElseIf Col = 13 Then
+
+                If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                    BreakDownList(Row + 2, 13) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 13)))
+                ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                    BreakDownList(Row + 1, 13) = Math.Floor((BreakDownList(Row - 1, 6) * BreakDownList(Row, 13)))
+                End If
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 13)
+
+                Next
+
+                SubcntrctTotal.Value = ColTotal
+                Dim Subcntrctea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                SubcntrctCostea.Value = Subcntrctea
+
+            ElseIf Col = 14 Then
+
+
+                If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
+                    BreakDownList(Row + 2, 14) = Math.Floor((BreakDownList(Row, 6) * BreakDownList(Row + 1, 14)))
+                ElseIf BreakDownList(Row, 7) = 2 Or BreakDownList(Row, 7) = 5 Then
+                    BreakDownList(Row + 1, 14) = Math.Floor((BreakDownList(Row - 1, 6) * BreakDownList(Row, 14)))
+                End If
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 14)
+
+                Next
+
+                ExpenseTotal.Value = ColTotal
+                Dim Expenseea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                ExpensCostea.Value = Expenseea
+
+            ElseIf Col = 4 Then
+                If Row + 3 = BreakDownList.Rows.Count Then
+                    BreakDownList.Rows.Add(3)
+                    Dim NewRow As Integer = Row + 3
+
+                    Dim Quanity As CellRange = BreakDownList.GetCellRange(NewRow, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = BreakDownList.GetCellRange(NewRow + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = BreakDownList.GetCellRange(NewRow + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+                    BreakDownList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                    If NewRow Mod 2 = 0 Then
+                        BreakDownList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        BreakDownList(NewRow, 7) = 4
+                        BreakDownList(NewRow + 1, 7) = 5
+                        BreakDownList(NewRow + 2, 7) = 6
+
+                    Else
+                        BreakDownList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        BreakDownList(NewRow, 7) = 1
+                        BreakDownList(NewRow + 1, 7) = 2
+                        BreakDownList(NewRow + 2, 7) = 3
+
+                    End If
+
+                    BreakDownList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
+                    BreakDownList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
+                    BreakDownList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
+                    BreakDownList.MergedRanges.Add(NewRow, 4, NewRow, 5)
+                    BreakDownList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
+
+                End If
+                BreakDownList(Row, 3) = Row / 3
+
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub BreakDownList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles BreakDownList.BeforeEdit
+        Try
+            If e.Row > 0 Then
+                If BreakDownList(e.Row, 7) = 1 Or BreakDownList(e.Row, 7) = 4 Then
+                    BreakDownList.Rows(e.Row + 2).AllowEditing = False
+                ElseIf BreakDownList(e.Row, 7) = 2 Or BreakDownList(e.Row, 7) = 5 Then
+                    BreakDownList.Rows(e.Row + 1).AllowEditing = False
+                Else
+                    If e.Col = 4 Or e.Col = 5 Then
+                        BreakDownList.Rows(e.Row).AllowEditing = True
+                    Else
+                        BreakDownList.Rows(e.Row).AllowEditing = False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+
+        Try
+
+            Dim ErrorCount As Integer = 0
+
+            If Not CostName.Text <> "" Then
+                ErrorCount += 1
+                CostName.BackColor = Color.FromArgb(255, 192, 192)
+            Else
+                CostName.BackColor = Color.White
+            End If
+
+            If Not CostUnit.Text <> "" Then
+                ErrorCount += 1
+                CostUnit.BackColor = Color.FromArgb(255, 192, 192)
+            Else
+                CostUnit.BackColor = Color.White
+            End If
+
+            If Not CostQuanity.Text <> "" Then
+                ErrorCount += 1
+                CostQuanity.BackColor = Color.FromArgb(255, 192, 192)
+            Else
+                CostQuanity.BackColor = Color.White
+            End If
+
+            If Not CostCostea.Text <> "" Then
+                ErrorCount += 1
+                CostCostea.BackColor = Color.FromArgb(255, 192, 192)
+            Else
+                CostCostea.BackColor = Color.White
+            End If
+
+            If ErrorCount > 0 Then
+                MsgBox("入力されていない項目があります。", MsgBoxStyle.Exclamation, "代価表入力")
+                Exit Sub
+            End If
+
+            Dim ErrorRow As String = ""
+            ErrorCount = 0
+            For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                Dim Name As String = BreakDownList(RowCount * 3, 4)
+                If Not (RowCount * 3) = BreakDownList.Rows.Count - 3 Then
+                    If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
+                        If Name.Length = 0 Then
+                            ErrorCount += 1
+                            BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                        End If
+                    End If
+                Else
+                        If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
+                        ErrorCount += 1
+                        BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    End If
+                End If
+            Next
+
+            If ErrorCount >= 1 Then
+                MsgBox("名称が入力されていない行があります。", MsgBoxStyle.Exclamation, "代価表入力")
+                Exit Sub
+            End If
+
+
+
+            ホーム.Transaction = ホーム.Connection.BeginTransaction
+
+            ホーム.Sql.Transaction = ホーム.Transaction
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = CostName.Value
+        If IsNothing(CostSpec.Value) = True Or Not CostSpec.Text <> "" Then
+            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+        Else
+            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = CostSpec.Value
+            End If
+            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = CostUnit.Value
+            ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = CostQuanity.Value
+            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = CostCostea.Value
+            If IsNothing(LaborCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = LaborCostea.Value
+            End If
+            If IsNothing(MaterialCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = MaterialCostea.Value
+            End If
+            If IsNothing(MachineCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = MachineCostea.Value
+            End If
+            If IsNothing(SubcntrctCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = SubcntrctCostea.Value
+            End If
+            If IsNothing(ExpensCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = ExpensCostea.Value
+            End If
+
+            Dim No As String = CostNo.Text.Remove(0, 2)
+            No = No.Remove(5, 1)
+
+            If CostID = 0 Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = ClassCode
+                ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstno", SqlDbType.SmallInt)).Value = Integer.Parse(No)
+
+                ホーム.Sql.CommandText = "INSERT INTO project_costs (budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,
+                                          prjctcst_quanity,prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea)
+                                            VALULES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
+
+            Else
+                ホーム.Sql.CommandText = "UPDATE project_costs SET prjctcst_name=@name,prjctcst_spec=@spec,prjctcst_unit=@unit,prjctcst_quanity=@quanity,
+                                          prjctcst_costea=@costea,prjctcst_laborea=@labor,prjctcst_materialea=@material,prjctcst_machineea=@machine,
+                                          prjctcst_subcntrctea=@subcntrct,prjctcst_expenseea=@expense WHERE prjctcst_id=" & CostID
+            End If
+            ホーム.Sql.ExecuteNonQuery()
+
+            For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                If IsNothing(BreakDownList(RowCount * 3, 4)) = False AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
+                    If BreakDownList(RowCount * 3, 2) = "False" Or IsNothing(BreakDownList(RowCount * 3, 2)) = True Then
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 8)
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 9)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@bdno", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 3)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@bdname", SqlDbType.NVarChar)).Value = BreakDownList(RowCount * 3, 4)
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = BreakDownList(RowCount * 3 + 1, 4)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 2, 5)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = BreakDownList(RowCount * 3 + 2, 5)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = BreakDownList(RowCount * 3, 6)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 6)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 10)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 10)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 11)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 11)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 12)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 12)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 13)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 13)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 1, 14)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpense", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpens", SqlDbType.Money)).Value = BreakDownList(RowCount * 3 + 1, 14)
+                        End If
+                        If IsNothing(BreakDownList(RowCount * 3 + 2, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = BreakDownList(RowCount * 3 + 2, 4)
+                        End If
+
+                    If BreakDownList(RowCount * 3, 1) = 0 Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstid", SqlDbType.SmallInt)).Value = CostID
+                            ホーム.Sql.CommandText = "INSERT project_cost_breakdowns (prjctcst_id,cstclss_code,cstmstr_id,prjctcst_bd_no,prjctcst_bd_name,prjctcst_bd_spec
+                                                                   ,prjctcst_bd_unit,prjctcst_bd_quanity,prjctcst_bd_costea,prjctcst_bd_labor,prjctcst_bd_material,prjctcst_bd_machine,
+                                                                    prjctcst_bd_subcntrct,prjctcst_bd_expense,prjctcst_bd_remarks) 
+                                                  VALUES (@prjctcstid,@cstclsscode,@cstmstrid,@bdno,@bdname,@bdspec,@bdunit,@bdquanity,@bdcostea,
+                                                  @bdlabor,@bdmaterial,@bdmachine,@bdsubcntrct,@bdexpense,@bdremarks)"
+                    Else
+                        ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET cstclss_code=@cstclsscode,cstmstr_id=@cstmstrid,prjctcst_bd_no=@bdno,
+                                                      prjctcst_bd_name=@bdname,prjctcst_bd_spec=@bdspec,prjctcst_bd_unit=@bdunit,prjctcst_bd_quanity=@bdquanity,prjctcst_bd_costea=@bdcostea,
+                                                      prjctcst_bd_labor=@bdlabor,prjctcst_bd_material=@bdmaterial,prjctcst_bd_machine=@bdmachine,prjctcst_bd_subcntrct=@bdsubcntrct,
+                                                      prjctcst_bd_expense=@bdexpens,prjctcst_bd_remarks=@bdremarks WHERE prjctcst_bd_id=" & BreakDownList(RowCount * 3, 1)
+                    End If
+                        ホーム.Sql.ExecuteNonQuery()
+                    Else
+                        If Not BreakDownList(RowCount * 3, 1) = 0 Then
+                            ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_bd_id=" & BreakDownList(RowCount * 3, 1)
+                            ホーム.Sql.ExecuteNonQuery()
+                        End If
+                    End If
+                End If
+            Next
+
+            ホーム.Transaction.Commit()
+
+            For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                If RowCount * 3 <= (BreakDownList.Rows.Count - 3) Then
+                    If BreakDownList(RowCount * 3, 2) = "True" Then
+                        BreakDownList.Rows.RemoveRange(RowCount * 3, 3)
+                    End If
+                    If RowCount * 3 = (BreakDownList.Rows.Count - 3) Then
+                    Dim Name As String = BreakDownList(RowCount * 3, 4)
+                    If IsNothing(Name) = False Then
+                        If Name.Length > 0 Or IsNothing(BreakDownList((RowCount * 3), 3)) = False Then
+                            BreakDownList.Rows.Insert(RowCount * 3)
+                            BreakDownList.Rows.Insert((RowCount * 3) + 1)
+                            BreakDownList.Rows.Insert((RowCount * 3) + 2)
+                        End If
+                    End If
+                End If
+                End If
+            Next
+
+
+            Dim RowNo As Integer = 0
+            For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                RowNo += 1
+
+                Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                Quanity.StyleNew.Format = "N1"
+                Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                Costea.StyleNew.Format = "N0"
+                Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                Amount.StyleNew.Format = "N0"
+                BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                If RowCount Mod 2 = 0 Then
+                    BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                Else
+                    BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                End If
+
+                BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                If (RowNo * RowNo) + 2 = 6 Then
+                    RowNo = 0
+                End If
+
+                BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+            Next
+
+            ホーム.Modified = "False"
+
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "代価表入力")
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+
+        Catch ex As Exception
+        ホーム.Transaction.Rollback()
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostQuanity_ValueChanged(sender As Object, e As EventArgs) Handles CostQuanity.ValueChanged
+        Try
+            If CostUnitPrice.Text <> "" AndAlso CostQuanity.Text <> "" Then
+                Dim Costea As Int64 = Math.Floor(CostUnitPrice.Value / CostQuanity.Value)
+                CostCostea.Value = Costea
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 代価表入力_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
+        Try
+
+            If CostName.Text <> "" Then
+
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+
+                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+
+                    ColTotal += BreakDownList((RowCount * 3) + 2, 6)
+
+                Next
+
+                CostUnitPrice.Value = ColTotal
+                Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                CostCostea.Value = Costea
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub BreakDownList_DoubleClick(sender As Object, e As EventArgs) Handles BreakDownList.DoubleClick
+
+        Try
+            Dim range As CellRange = BreakDownList.CursorCell
+
+            Dim row As Integer = range.TopRow
+            Dim col As Integer = range.LeftCol
+
+            If col = 4 Or col = 5 Then
+                BreakDownList.Rows(row).AllowEditing = True
+            Else
+                BreakDownList.Rows(row).AllowEditing = False
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class

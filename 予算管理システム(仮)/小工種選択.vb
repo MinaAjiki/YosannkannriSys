@@ -88,22 +88,6 @@ Public Class 小工種選択
         Cancel.ImageIndex = 6
     End Sub
 
-    Private Sub Entry_MouseUp(sender As Object, e As MouseEventArgs) Handles Entry.MouseUp
-        Entry.ImageIndex = 3
-    End Sub
-    Private Sub Entry_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
-        Entry.ImageIndex = 5
-    End Sub
-
-    Private Sub Entry_MouseEnter(sender As Object, e As EventArgs) Handles Entry.MouseEnter
-        Entry.Cursor = Cursors.Hand
-        Entry.ImageIndex = 4
-    End Sub
-
-    Private Sub Entry_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
-        Entry.ImageIndex = 3
-    End Sub
-
     Private Sub S_WorkTypesList_DoubleClick(sender As Object, e As EventArgs) Handles S_WorkTypesList.DoubleClick
 
         Try

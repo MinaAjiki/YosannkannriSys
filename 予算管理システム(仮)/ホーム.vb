@@ -6,6 +6,7 @@ Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Imports System.Data.Odbc
+Imports C1.Win.C1FlexGrid
 
 Public Class ホーム
 
@@ -29,8 +30,12 @@ Public Class ホーム
     Public lworktypename As String
     Public sworktypecode As Integer
     Public sworktypename As String
-    Public CostClassCode As String
-    Public CostClassName As String
+    Public ProjectCostForm As New List(Of Form)
+    Public ProjectCostSelectRow As New List(Of Integer)
+    Public ProjectCostID As New List(Of Integer)
+    Public PrjctCstClassCode As New List(Of Integer)
+    Public PrjctCstList As New List(Of C1FlexGrid)
+
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try

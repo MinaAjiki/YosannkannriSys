@@ -53,7 +53,6 @@ Partial Class 作成代価選択
         Me.CostsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CostsList.FormattingEnabled = True
         Me.CostsList.ItemHeight = 18
-        Me.CostsList.Items.AddRange(New Object() {"工事代価A", "工事代価B", "工事代価C"})
         Me.CostsList.Location = New System.Drawing.Point(43, 46)
         Me.CostsList.Margin = New System.Windows.Forms.Padding(0)
         Me.CostsList.Name = "CostsList"

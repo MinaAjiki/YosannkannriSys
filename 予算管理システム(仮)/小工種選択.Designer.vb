@@ -41,7 +41,6 @@ Partial Class 小工種選択
         Me.Label1 = New System.Windows.Forms.Label()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
-        Me.Entry = New System.Windows.Forms.Button()
         CType(Me.S_WorkTypesList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L_WorkType, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -400,7 +399,6 @@ Partial Class 小工種選択
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
-        Me.C1SplitterPanel2.Controls.Add(Me.Entry)
         Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
         Me.C1SplitterPanel2.Height = 40
         Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 622)
@@ -426,25 +424,6 @@ Partial Class 小工種選択
         Me.Cancel.Text = "キャンセル"
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True
-        '
-        'Entry
-        '
-        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Entry.FlatAppearance.BorderSize = 0
-        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Entry.ImageIndex = 3
-        Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(776, 6)
-        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Entry.Name = "Entry"
-        Me.Entry.Size = New System.Drawing.Size(100, 30)
-        Me.Entry.TabIndex = 41
-        Me.Entry.Text = "　登　録"
-        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Entry.UseVisualStyleBackColor = True
         '
         '小工種選択
         '
@@ -478,7 +457,6 @@ Partial Class 小工種選択
     End Sub
     Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Entry As Button
     Friend WithEvents S_WorkTypesList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer

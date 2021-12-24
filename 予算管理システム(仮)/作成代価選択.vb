@@ -3,6 +3,10 @@ Imports System.Windows.Forms.Form
 Imports C1.Win.C1Command
 Imports System.Data.SqlClient
 Public Class 作成代価選択
+    Public CopyClassCode As Integer = 0
+    Public CopyCostID As Integer = 0
+    Public SelectRow As Integer = 0
+    Public CopyList As C1FlexGrid
     Private Sub AddLevel_MouseLeave(sender As Object, e As EventArgs) Handles AddLevel.MouseLeave
         AddLevel.ImageIndex = 0
     End Sub
@@ -23,7 +27,8 @@ Public Class 作成代価選択
     Private Sub 作成代価選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>=15 ORDER BY cstclss_code ASC"
+            CostsList.Items.Clear()
+            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
             Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While CostClassReader.Read
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))
@@ -71,24 +76,58 @@ Public Class 作成代価選択
             ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
             Dim MaxCode As Integer = ホーム.Sql.ExecuteScalar
 
-            ホーム.CostClassCode = MaxCode + 1
-            ホーム.CostClassName = CostList((MaxCode + 1) - 15)
-
-            For DetailsRowCount As Integer = 0 To 明細書入力.DetailsList.Rows.Count - 1
-                If DetailsRowCount < 明細書入力.DetailsList.Rows.Count - 3 AndAlso 明細書入力.DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                    明細書入力.SelectRow = DetailsRowCount + 2
-                    Exit For
-                End If
-            Next
+            If CostList((MaxCode + 1) - 15) = "Z" Then
+                MsgBox("工事代価 Z 以上の階層は追加できません。", MsgBoxStyle.Exclamation, "作成代価選択")
+                Me.Visible = False
+                Exit Sub
+            End If
 
             If MsgBox("工事代価" & CostList((MaxCode + 1) - 15) & "を作成します。" & vbCrLf & "よろしいですか？", MsgBoxStyle.OkCancel, "代価階層追加") = MsgBoxResult.Ok Then
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.CommandText = "INSERT INTO cost_classes (cstclss_code,cstclss_name) VALUES (@cstclsscode,@cstclssname)"
+                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclssname", SqlDbType.NVarChar))
+                ホーム.Sql.Parameters("@cstclsscode").Value = MaxCode + 1
+                ホーム.Sql.Parameters("@cstclssname").Value = "工事代価" & CostList((MaxCode + 1) - 15)
+                ホーム.Sql.ExecuteNonQuery()
+
+                If 明細書入力.Visible = True Then
+
+                    ホーム.ProjectCostForm.Add(New 代価表入力)
+                    ホーム.ProjectCostForm(0).TopLevel = False
+                    ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+                    ホーム.ProjectCostSelectRow.Add(SelectRow)
+                    ホーム.ProjectCostID.Add(0)
+                    ホーム.PrjctCstClassCode.Add(MaxCode + 1)
+                    ホーム.PrjctCstList.Add(明細書入力.DetailsList)
+                    CopyClassCode = 明細書入力.DetailsList(SelectRow, 8)
+                    CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
+                    ホーム.ProjectCostForm(0).Show()
+                    明細書入力.Visible = False
+                Else
+
+                    Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                    ホーム.ProjectCostForm.Add(New 代価表入力)
+                    ホーム.ProjectCostForm(FormCount).TopLevel = False
+                    ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+                    ホーム.ProjectCostSelectRow.Add(SelectRow)
+                    ホーム.ProjectCostID.Add(0)
+                    ホーム.PrjctCstClassCode.Add(MaxCode + 1)
+                    ホーム.PrjctCstList.Add(CopyList)
+                    CopyClassCode = CopyList(SelectRow, 8)
+                    CopyCostID = CopyList(SelectRow, 9)
+                    ホーム.ProjectCostForm(FormCount).Show()
+                    ホーム.ProjectCostForm(FormCount - 1).Visible = False
+                End If
+
                 Me.Close()
-                代価表入力.TopLevel = False
-                明細書入力.Visible = False
-                ホーム.FormPanel.Controls.Add(代価表入力)
-                代価表入力.SelectRow = 明細書入力.SelectRow
-                代価表入力.Show()
             End If
+            ホーム.Modified = "True"
+
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -97,5 +136,53 @@ Public Class 作成代価選択
         End Try
 
 
+    End Sub
+
+    Private Sub CostsList_DoubleClick(sender As Object, e As EventArgs) Handles CostsList.DoubleClick
+        Try
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@cstclssname"
+            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclssname", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters("@cstclssname").Value = CostsList.SelectedItem
+            Dim ClassCode As Integer = ホーム.Sql.ExecuteScalar
+
+
+            If 明細書入力.Visible = True Then
+
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(0).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(0)
+                ホーム.PrjctCstClassCode.Add(ClassCode)
+                ホーム.PrjctCstList.Add(明細書入力.DetailsList)
+                CopyClassCode = 明細書入力.DetailsList(SelectRow, 8)
+                CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
+                ホーム.ProjectCostForm(0).Show()
+                明細書入力.Visible = False
+            Else
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(FormCount).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(0)
+                ホーム.PrjctCstClassCode.Add(ClassCode)
+                ホーム.PrjctCstList.Add(CopyList)
+                CopyClassCode = CopyList(SelectRow, 8)
+                CopyCostID = CopyList(SelectRow, 9)
+                ホーム.ProjectCostForm(FormCount).Show()
+                ホーム.ProjectCostForm(FormCount - 1).Visible = False
+            End If
+            ホーム.Modified = "True"
+
+            Me.Close()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class

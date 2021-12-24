@@ -148,6 +148,7 @@ Partial Class 項目選択
         Me.Controls.Add(Me.CostMasterList)
         Me.Controls.Add(Me.HeadLine)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "項目選択"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
