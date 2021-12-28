@@ -6,21 +6,21 @@ Public Class 大工種選択
         Try
             Dim Total As Int64 = 0
 
-            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM l_worktype"
+            ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM l_worktypes"
             Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
 
             L_WorkTypesList.Rows.Count = Count + 1
 
             Dim RowCount As Integer = 1
-            ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktype ORDER BY l_worktype_code ASC"
+            ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktypes ORDER BY l_wrktyp_code ASC"
             Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
             While LWorkTypeReader.Read
 
-                L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_worktype_code")
-                L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_worktype")
+                L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_wrktyp_code")
+                L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_wrktyp_name")
 
-                ホーム.Sql.CommandText = "SELECT SUM(amount_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_worktype_code=" _
-                                                & LWorkTypeReader.Item("l_worktype_code")
+                ホーム.Sql.CommandText = "SELECT SUM(amount_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_wrktyp_code=" _
+                                                & LWorkTypeReader.Item("l_wrktyp_code")
                 L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
 
                 Total += L_WorkTypesList(RowCount, 3)

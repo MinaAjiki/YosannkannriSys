@@ -39,7 +39,7 @@ Public Class 代価一覧
                     ProjectCostList(RowCount, 6) = BasicCostsReader.Item("basiscst_unit")
                     ProjectCostList(RowCount, 7) = BasicCostsReader.Item("basiscst_quanity")
                     ProjectCostList(RowCount, 8) = BasicCostsReader.Item("basiscst_costea")
-                    ProjectCostList(RowCount, 9) = Math.Ceiling(BasicCostsReader.Item("basiscst_costea") * BasicCostsReader.Item("basiscst_quanity"))
+                    ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("basiscst_costea") * BasicCostsReader.Item("basiscst_quanity"))
                 End While
                 BasicCostsReader.Close()
 
@@ -71,7 +71,7 @@ Public Class 代価一覧
                     ProjectCostList(RowCount, 6) = ProjectCostsReader.Item("prjctcst_unit")
                     ProjectCostList(RowCount, 7) = ProjectCostsReader.Item("prjctcst_quanity")
                     ProjectCostList(RowCount, 8) = ProjectCostsReader.Item("prjctcst_costea")
-                    ProjectCostList(RowCount, 9) = Math.Ceiling(ProjectCostsReader.Item("prjctcst_costea") * ProjectCostsReader.Item("prjctcst_quanity"))
+                    ProjectCostList(RowCount, 9) = Math.Floor(ProjectCostsReader.Item("prjctcst_costea") * ProjectCostsReader.Item("prjctcst_quanity"))
                 End While
                 ProjectCostsReader.Close()
 
@@ -199,7 +199,7 @@ Public Class 代価一覧
                 明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = ProjectCostList(Row, 6)
                 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = ProjectCostList(Row, 8)
                 If IsNothing(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
-                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Ceiling((明細書入力.DetailsList(明細書入力.SelectRow, 6) * ProjectCostList(Row, 8)))
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor((明細書入力.DetailsList(明細書入力.SelectRow, 6) * ProjectCostList(Row, 8)))
                 End If
 
                 Dim No As String = ProjectCostList(Row, 3)
@@ -296,7 +296,7 @@ Public Class 代価一覧
                 ProjectCostList(ProjectCostRow + 2, 5) = Me.ProjectCostList(Row, 6)
                 ProjectCostList(ProjectCostRow + 1, 6) = Me.ProjectCostList(Row, 8)
                 If IsNothing(ProjectCostList(ProjectCostRow, 6)) = False Then
-                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Ceiling((ProjectCostList(ProjectCostRow, 6) * Me.ProjectCostList(Row, 8)))
+                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor((ProjectCostList(ProjectCostRow, 6) * Me.ProjectCostList(Row, 8)))
                 End If
 
                 Dim No As String = Me.ProjectCostList(Row, 3)

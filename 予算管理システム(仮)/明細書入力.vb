@@ -5,6 +5,9 @@ Imports System.Data.SqlClient
 Public Class 明細書入力
     Public SelectRow As Integer = 0
     Public CopyList(10) As String
+    Dim outsrcr_x As Integer = 0
+    Dim outsrcr_y As Integer = 0
+
 
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -139,24 +142,41 @@ Public Class 明細書入力
                 End While
                 DetailsReader.Close()
 
-                RowCount += 1
-                RowNo = 1
-                DetailsList((RowCount * 3), 7) = (RowNo * RowNo)
-                DetailsList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
-                DetailsList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
-                Dim LastQuanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
-                LastQuanity.StyleNew.Format = "N1"
-                Dim LastCostea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
-                LastCostea.StyleNew.Format = "N0"
-                Dim LastAmount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
-                LastAmount.StyleNew.Format = "N0"
+                Dim DataRowCount As Integer = RowCount * 3
+                Dim BlankRow As Integer = ((DetailsList.Rows.Count - 3) - DataRowCount) / 3
+                For BlankLoop As Integer = 0 To BlankRow - 1
+                    RowCount += 1
+                    RowNo = 1
+                    DetailsList((RowCount * 3), 7) = (RowNo * RowNo)
+                    DetailsList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
+                    DetailsList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
 
+                    If RowCount Mod 2 = 0 Then
+                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
 
-                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 0, DetailsList.Rows.Count - 1, 0)
-                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 2, DetailsList.Rows.Count - 1, 2)
-                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 3, DetailsList.Rows.Count - 1, 3)
-                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 3, 4, DetailsList.Rows.Count - 3, 5)
-                DetailsList.MergedRanges.Add(DetailsList.Rows.Count - 2, 4, DetailsList.Rows.Count - 2, 5)
+                    End If
+
+                    Dim LastQuanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
+                    LastQuanity.StyleNew.Format = "N1"
+                    Dim LastCostea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
+                    LastCostea.StyleNew.Format = "N0"
+                    Dim LastAmount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
+                    LastAmount.StyleNew.Format = "N0"
+
+                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
 
                 ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
                 Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -234,10 +254,11 @@ Public Class 明細書入力
             OutsoucerList.MergedRanges.Add(1, 5, 2, 5)
 
             If OutsourcersCount > 0 Then
-                Dim ColsCount As Integer = OutsoucerList.Cols.Count
+                Dim ColsCount As Integer = OutsoucerList.Cols.Count - 2
 
                 If OutsourcersCount > ColsCount Then
-                    OutsoucerList.Cols.Count = OutsourcersCount + 1
+                    OutsoucerList.Cols.Count = OutsourcersCount + 2
+                    OutsoucerTotalList.Cols.Count = OutsourcersCount + 2
                 End If
 
                 Dim DataCount As Integer = 1
@@ -251,6 +272,14 @@ Public Class 明細書入力
                     OutsoucerList(0, DataCount) = OutsourcersReader.Item("outsrcr_code")
                     OutsoucerList(1, DataCount) = OutsourcersReader.Item("outsrcr_name")
                     OutsoucerList.Cols(DataCount).StyleFixedNew.WordWrap = True
+                    OutsoucerList.Cols(DataCount).Width = 95
+                    OutsoucerList.Cols(DataCount).StyleFixedNew.Font = New Font("メイリオ", 8, FontStyle.Regular)
+                    OutsoucerList.Cols(DataCount).StyleFixedNew.TextAlign = TextAlignEnum.LeftCenter
+                    OutsoucerList.Cols(DataCount).StyleNew.Font = New Font("Arial", 9, FontStyle.Regular)
+                    OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
+                    OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
+                    OutsoucerList.Cols(DataCount).StyleNew.DataType = GetType(Decimal)
+                    OutsoucerList.Cols(DataCount).StyleNew.Format = "N1"
 
                 End While
                 OutsourcersReader.Close()
@@ -303,12 +332,74 @@ Public Class 明細書入力
 
 
     Private Sub Outsoucing_CheckedChanged(sender As Object, e As EventArgs) Handles Outsoucing.CheckedChanged
-        If Outsoucing.Checked = True Then
-            CategoryList.Visible = False
-            CategoryTotalList.Visible = False
-            OutsoucerList.Visible = True
-            OutsoucerTotalList.Visible = True
-        End If
+        Try
+            If Outsoucing.Checked = True Then
+                CategoryList.Visible = False
+                CategoryTotalList.Visible = False
+                OutsoucerList.Visible = True
+                OutsoucerTotalList.Visible = True
+
+                ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
+
+                Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
+                Dim DataCount As Integer = 0
+                For OutsrcrCount As Integer = 1 To ColCount
+                    ホーム.Sql.Parameters.Clear()
+                    If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                        Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+
+                        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid
+                        Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+
+                        If PlanCount > 0 Then
+                            Dim Total As Int64 = 0
+                            DataCount += 1
+                            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                                Dim dtlid As Integer = DetailsList(RowCount * 3, 1)
+                                ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & dtlid
+                                Dim PlanReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                                While PlanReader.Read
+                                    OutsoucerList((RowCount * 3), OutsrcrCount + 1) = PlanReader.Item("outsrcng_quanity")
+                                    Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, OutsrcrCount + 1)
+                                    Quanity.StyleNew.Format = "N1"
+                                    OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1) = PlanReader.Item("outsrcng_costea")
+                                    Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, OutsrcrCount + 1)
+                                    Costea.StyleNew.Format = "N0"
+                                    OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1) = Math.Floor((PlanReader.Item("outsrcng_quanity") * PlanReader.Item("outsrcng_costea")))
+                                    Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, OutsrcrCount + 1)
+                                    Amount.StyleNew.Format = "N0"
+                                    Total += OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1)
+                                End While
+                                PlanReader.Close()
+                            Next
+                        End If
+                    End If
+                Next
+
+
+                Dim BlankCol As Integer = ((OutsoucerList.Cols.Count) - DataCount) - 2
+                For BlankLoop As Integer = 1 To BlankCol
+                    DataCount += 1
+                    For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                        Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, DataCount + 1)
+                        Quanity.StyleNew.Format = "N1"
+
+                        Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, DataCount + 1)
+                        Costea.StyleNew.Format = "N0"
+                        Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, DataCount + 1)
+                        Amount.StyleNew.Format = "N0"
+                    Next
+                Next
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Category_CheckedChanged(sender As Object, e As EventArgs) Handles Category.CheckedChanged
@@ -381,6 +472,11 @@ Public Class 明細書入力
 
     Private Sub OutsoucerList_AfterScroll(sender As Object, e As RangeEventArgs) Handles OutsoucerList.AfterScroll
         DetailsList.ScrollPosition = OutsoucerList.ScrollPosition
+
+        If Not outsrcr_y = OutsoucerList.ScrollPosition.Y Then
+            outsrcr_y = OutsoucerList.ScrollPosition.Y
+        End If
+        OutsoucerList.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
 
     Private Sub DetailsList_AfterRowColChange(sender As Object, e As RangeEventArgs) Handles DetailsList.AfterRowColChange
@@ -888,9 +984,53 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CostCreate_Click(sender As Object, e As EventArgs) Handles CostCreateMenu.Click
-        作成代価選択.ShowDialog()
-        作成代価選択.TopMost = True
-        作成代価選択.TopMost = False
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+
+            Else
+                Try
+                    For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                        If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                            SelectRow = DetailsRowCount + 2
+                            Exit For
+                        End If
+                    Next
+
+                    If SelectRow = 0 Then
+                        MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                    Else
+
+
+                        作成代価選択.SelectRow = SelectRow
+
+                        作成代価選択.ShowDialog()
+                        作成代価選択.TopMost = True
+                        作成代価選択.TopMost = False
+
+                    End If
+
+                Catch ex As Exception
+                    ホーム.ErrorMessage = ex.Message
+                    ホーム.StackTrace = ex.StackTrace
+                    エラー.Show()
+                    Exit Sub
+                End Try
+
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
@@ -906,9 +1046,33 @@ Public Class 明細書入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
 
             Else
-                作成代価選択.ShowDialog()
-                作成代価選択.TopMost = True
-                作成代価選択.TopMost = False
+                Try
+                    For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                        If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                            SelectRow = DetailsRowCount + 2
+                            Exit For
+                        End If
+                    Next
+
+                    If SelectRow = 0 Then
+                        MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
+                    Else
+                        作成代価選択.SelectRow = SelectRow
+                        DetailsList(SelectRow, 3) = SelectRow / 3
+
+                        作成代価選択.ShowDialog()
+                        作成代価選択.TopMost = True
+                        作成代価選択.TopMost = False
+
+                    End If
+
+                Catch ex As Exception
+                    ホーム.ErrorMessage = ex.Message
+                    ホーム.StackTrace = ex.StackTrace
+                    エラー.Show()
+                    Exit Sub
+                End Try
+
             End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -979,55 +1143,66 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
 
-        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
-            If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                SelectRow = DetailsRowCount + 2
-                Exit For
+            If DetailsList(SelectRow, 8) >= 12 Then
+
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(0).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
+                ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
+                ホーム.PrjctCstList.Add(DetailsList)
+                ホーム.ProjectCostForm(0).Show()
+                Me.Visible = False
+
+            Else
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        Next
-
-        If DetailsList(SelectRow, 8) >= 12 Then
-
-            ホーム.ProjectCostForm.Add(New 代価表入力)
-            ホーム.ProjectCostForm(0).TopLevel = False
-            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
-            ホーム.ProjectCostSelectRow.Add(SelectRow)
-            ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
-            ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
-            ホーム.PrjctCstList.Add(DetailsList)
-            ホーム.ProjectCostForm(0).Show()
-            Me.Visible = False
-
-        Else
-            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
-        End If
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostModifyMenu_Click(sender As Object, e As EventArgs) Handles CostModifyMenu.Click
-        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
-            If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                SelectRow = DetailsRowCount + 2
-                Exit For
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If DetailsList(SelectRow, 8) >= 12 Then
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(0).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
+                ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
+                ホーム.PrjctCstList.Add(DetailsList)
+                ホーム.ProjectCostForm(0).Show()
+                Me.Visible = False
+
+            Else
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        Next
-
-        If DetailsList(SelectRow, 8) >= 12 Then
-            ホーム.ProjectCostForm.Add(New 代価表入力)
-            ホーム.ProjectCostForm(0).TopLevel = False
-            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
-            ホーム.ProjectCostSelectRow.Add(SelectRow)
-            ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
-            ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
-            ホーム.PrjctCstList.Add(DetailsList)
-            ホーム.ProjectCostForm(0).Show()
-            Me.Visible = False
-
-        Else
-            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
-        End If
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostCopy_Click(sender As Object, e As EventArgs) Handles CostCopy.Click
@@ -1078,11 +1253,12 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+
                 If DetailsList(SelectRow, 8) >= 12 Then
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
                     作成代価選択.Text = "コピー代価選択"
-
+                    作成代価選択.SelectRow = SelectRow
 
                     作成代価選択.ShowDialog()
                     作成代価選択.TopMost = True
@@ -1180,7 +1356,7 @@ Public Class 明細書入力
                         End If
                     End If
                 Else
-                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                         ErrorCount += 1
                         DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                     End If
@@ -1276,8 +1452,63 @@ Public Class 明細書入力
                         If Not DetailsList(RowCount * 3, 1) = 0 Then
                             ホーム.Sql.CommandText = "DELETE FROM details WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
                             ホーム.Sql.ExecuteNonQuery()
+                            ホーム.Sql.CommandText = "DELETE FROM outsourcing_plans WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                            ホーム.Sql.ExecuteNonQuery()
+                            ホーム.Sql.CommandText = "DELETE FROM productions WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                            ホーム.Sql.ExecuteNonQuery()
                         End If
                     End If
+                End If
+
+                If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                    ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode & " AND dtl_no=" & DetailsList(RowCount * 3, 3)
+                    Dim detailid As Integer = ホーム.Sql.ExecuteScalar
+
+                    ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                    Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
+
+                    Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
+                    Dim DataCount As Integer = 0
+                    For OutsrcrCount As Integer = 1 To ColCount
+                        ホーム.Sql.CommandText = ""
+                        ホーム.Sql.Parameters.Clear()
+                        If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                            Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+
+                            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                            Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+
+                            If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
+                            End If
+                            If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
+                            End If
+                            If PlanCount = 0 Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
+
+                                ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
+                                                                   ,outsrcng_costea,created_date) 
+                                                  VALUES (@budgetno,@outsrcno,@cstclsscode,@outsrcrid,@dtlid,@quanity,@costea,@createddate)"
+                            Else
+                                ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
+                                                     WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                            End If
+                            ホーム.Sql.ExecuteNonQuery()
+
+                        End If
+                    Next
                 End If
             Next
 
@@ -1306,7 +1537,7 @@ Public Class 明細書入力
                             End If
                         End If
                     End If
-                    End If
+                End If
             Next
 
 
@@ -1516,22 +1747,43 @@ Public Class 明細書入力
     End Sub
 
     Private Sub 明細書入力_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
+        Try
+            If Me.Visible = True Then
 
-        If Me.Visible = True Then
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+                Dim LaborColTotal As Int64 = 0
+                Dim MaterialColTotal As Int64 = 0
+                Dim MachineColTotal As Int64 = 0
+                Dim SubcntrctColTotal As Int64 = 0
+                Dim ExpenseColTotal As Int64 = 0
 
-            Dim RowNo As Integer = 0
-            Dim ColTotal As Int64 = 0
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
 
-            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                    LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                    MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                    MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                    SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                    ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
 
-                ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                Next
 
-            Next
+                DetailTotal.Value = ColTotal
+                CategoryTotalList(0, 2) = LaborColTotal
+                CategoryTotalList(0, 3) = MaterialColTotal
+                CategoryTotalList(0, 4) = MachineColTotal
+                CategoryTotalList(0, 5) = SubcntrctColTotal
+                CategoryTotalList(0, 6) = ExpenseColTotal
 
-            DetailTotal.Value = ColTotal
+            End If
 
-        End If
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub DetailsList_DoubleClick(sender As Object, e As EventArgs) Handles DetailsList.DoubleClick
@@ -1553,5 +1805,123 @@ Public Class 明細書入力
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub CategoryList_CellChanged(sender As Object, e As RowColEventArgs) Handles CategoryList.CellChanged
+        Try
+            Dim RowNo As Integer = 0
+            Dim ColTotal As Int64 = 0
+            Dim LaborColTotal As Int64 = 0
+            Dim MaterialColTotal As Int64 = 0
+            Dim MachineColTotal As Int64 = 0
+            Dim SubcntrctColTotal As Int64 = 0
+            Dim ExpenseColTotal As Int64 = 0
+
+
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
+
+            Next
+
+            DetailTotal.Value = ColTotal
+            CategoryTotalList(0, 2) = LaborColTotal
+            CategoryTotalList(0, 3) = MaterialColTotal
+            CategoryTotalList(0, 4) = MachineColTotal
+            CategoryTotalList(0, 5) = SubcntrctColTotal
+            CategoryTotalList(0, 6) = ExpenseColTotal
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub DetailsList_CellChanged(sender As Object, e As RowColEventArgs) Handles DetailsList.CellChanged
+        Try
+            Dim RowNo As Integer = 0
+            Dim ColTotal As Int64 = 0
+            Dim LaborColTotal As Int64 = 0
+            Dim MaterialColTotal As Int64 = 0
+            Dim MachineColTotal As Int64 = 0
+            Dim SubcntrctColTotal As Int64 = 0
+            Dim ExpenseColTotal As Int64 = 0
+
+
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+
+                ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
+
+            Next
+
+            DetailTotal.Value = ColTotal
+            CategoryTotalList(0, 2) = LaborColTotal
+            CategoryTotalList(0, 3) = MaterialColTotal
+            CategoryTotalList(0, 4) = MachineColTotal
+            CategoryTotalList(0, 5) = SubcntrctColTotal
+            CategoryTotalList(0, 6) = ExpenseColTotal
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub OutsoucerTotalList_AfterScroll(sender As Object, e As RangeEventArgs) Handles OutsoucerTotalList.AfterScroll
+
+        If Not outsrcr_x = OutsoucerTotalList.ScrollPosition.X Then
+            outsrcr_x = OutsoucerTotalList.ScrollPosition.X
+        End If
+        If Not outsrcr_y = OutsoucerList.ScrollPosition.Y Then
+            outsrcr_y = OutsoucerList.ScrollPosition.Y
+        End If
+        OutsoucerList.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
+    End Sub
+    Private Sub OutsoucerList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles OutsoucerList.BeforeEdit
+        If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
+            OutsoucerList.Rows(e.Row + 2).AllowEditing = False
+        ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
+            OutsoucerList.Rows(e.Row + 1).AllowEditing = False
+        Else
+            OutsoucerList.Rows(e.Row).AllowEditing = False
+        End If
+    End Sub
+
+    Private Sub OutsoucerList_AfterEdit(sender As Object, e As RowColEventArgs) Handles OutsoucerList.AfterEdit
+        Dim Row As Integer = e.Row
+        Dim Col As Integer = e.Col
+
+
+        If IsNumeric(OutsoucerList(Row, Col)) = True Then
+            Dim ColTotal As Int64
+            If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
+                OutsoucerList(Row + 2, Col) = Math.Floor((OutsoucerList(Row, Col) * OutsoucerList(Row + 1, Col)))
+            ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
+                OutsoucerList(Row + 1, Col) = Math.Floor((OutsoucerList(Row - 1, Col) * OutsoucerList(Row, Col)))
+            End If
+
+            For RowCount As Integer = 1 To ((OutsoucerList.Rows.Count - 3) / 3)
+
+                ColTotal += OutsoucerList((RowCount * 3) + 2, Col)
+            Next
+
+            OutsoucerTotalList(0, Col) = ColTotal
+
+        End If
     End Sub
 End Class
