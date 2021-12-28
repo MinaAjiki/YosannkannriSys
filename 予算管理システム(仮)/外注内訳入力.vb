@@ -43,8 +43,8 @@ Public Class 外注内訳入力
 
     Private Sub 外注内訳入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            進行状況.Show()
-            進行状況.Refresh()
+            '進行状況.Show()
+            '進行状況.Refresh()
             DetailList(0, 2) = "工種"
             DetailList(1, 2) = "工種"
             DetailList(2, 2) = "工種"
@@ -79,6 +79,8 @@ Public Class 外注内訳入力
             'Breakdown.Footers.Descriptions(0).Aggregates.Add(New AggregateDefinition())
 
             TotalBreakdown.ScrollBars = ScrollBars.None
+
+            'BackgroundWorker1.RunWorkerAsync(10)
 
             '協力業者テーブルからレコード数を取得
             ホーム.Sql.Parameters.Clear()
@@ -615,120 +617,10 @@ Public Class 外注内訳入力
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        'Me.BackgroundWorker1.ReportProgress(10)
+        Me.BackgroundWorker1.ReportProgress(10)
 
-        'If ChangeFlag >= 1 Then
-        '    If MsgBox("変更した内容が登録されていません。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
-        '        ContractNo.Value = ChangeValue
-        '        Exit Sub
-        '    Else
-        '        ChangeFlag = 0
-        '    End If
-        'End If
-
-        'Breakdown.Clear(ClearFlags.Content)
-
-        'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
-        'ホーム.Connection.Open()
-        'ホーム.Sql.Connection = ホーム.Connection
-
-
-        ''協力業者テーブルから業者数を取得
-        'ホーム.Sql.Parameters.Clear()
-        'ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
-        'Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
-
-        'ホーム.Sql.Parameters.Clear()
-        'ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
-
-        'Dim Coopcount As Integer = 1
-        'Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
-        'While Coopreader.Read
-        '    If Vendorcount >= 8 Then
-        '        Me.Breakdown.Cols.Count = Vendorcount + 1
-        '        Me.TotalBreakdown.Cols.Count = Vendorcount + 1
-        '    End If
-        '    Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_id")
-        '    Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
-        '    Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
-        '    Coopcount += 1
-        'End While
-        'Coopreader.Close()
-
-        'ホーム.Sql.Parameters.Clear()
-        'ホーム.Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no=" & ホーム.BudgetNo
-        'Dim Detailscount As Integer = ホーム.Sql.ExecuteScalar
-
-        'For vendorloop As Integer = 1 To Vendorcount
-        '    Dim total As Integer = 0
-        '    For BDloop As Integer = 1 To Detailscount
-        '        ホーム.Sql.Parameters.Clear()
-        '        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value
-        '        Dim Oquanity As Decimal = ホーム.Sql.ExecuteScalar
-        '        If Oquanity = 0 Then
-        '            Breakdown(BDloop * 3, vendorloop) = 0
-        '            Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
-        '        Else
-        '            Breakdown(BDloop * 3, vendorloop) = Oquanity
-        '            Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"
-        '        End If
-
-        '        ホーム.Sql.Parameters.Clear()
-        '        ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value
-        '        Dim Ocostea As Integer = ホーム.Sql.ExecuteScalar
-        '        If Ocostea = 0 Then
-        '            Breakdown(BDloop * 3 + 1, vendorloop) = 0
-        '            Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
-        '        Else
-        '            Breakdown(BDloop * 3 + 1, vendorloop) = Ocostea
-        '            Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
-        '        End If
-
-        '        Dim Amount As Integer = 0
-        '        Amount = Oquanity * Ocostea
-        '        Breakdown(BDloop * 3 + 2, vendorloop) = Amount
-        '        Breakdown.Rows(BDloop * 3 + 2).AllowEditing = False
-        '        Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"
-        '        total += Amount
-        '        TotalBreakdown(0, vendorloop) = total
-        '        TotalBreakdown.Rows(0).StyleNew.Format = "N0"
-
-        '    Next
-        'Next
-
-        ''変更計画作成日を取得
-        'ホーム.Sql.Parameters.Clear()
-        'ホーム.Sql.CommandText = "SELECT created_date FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & "AND outsrc_no=" & ContractNo.Value
-        'Dim CreateDate As Date = ホーム.Sql.ExecuteScalar
-        'If CreateDate = Nothing Then
-        '    CreateDate = DateTime.Today
-        '    CreatedDateBox.Value = CreateDate.ToString("D")
-        'Else
-        '    CreatedDateBox.Value = CreateDate.ToString("D")
-        'End If
-
-        ''外注計画報告書テーブルから変更内容を取得
-        'ホーム.Sql.Parameters.Clear()
-        'ホーム.Sql.CommandText = "SELECT changes FROM Outsourcing_reports WHERE outsrc_no=" & ContractNo.Value
-        'Dim change As String = ホーム.Sql.ExecuteScalar
-        'ChangeDetail.Value = change
-
-        ''直営計算
-        'Dim Gtotal As Int64 '直営合計
-        'Dim DMtotal As Int64 '直営金額
-        'For DTloop As Integer = 1 To Detailscount
-        '    Dim DM As Int64 = 0
-        '    For DMloop As Integer = 1 To Vendorcount
-        '        DM += Breakdown(DTloop * 3 + 2, DMloop)
-        '    Next
-        '    Dim CoTotal As Int64 = DetailList(DTloop * 3 + 2, 5)
-        '    DMtotal = CoTotal - DM
-        '    DetailList(DTloop * 3 + 2, 6) = DMtotal
-        '    Gtotal += DMtotal
-        'Next
-        ''TotalBox.Value = Gtotal
-        'TotalBreakdown(0, 0) = Gtotal
-
+        '進行状況.Show()
+        '進行状況.Refresh()
     End Sub
 
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged

@@ -149,7 +149,7 @@ Public Class マスタ一覧
             MasterContentsList.Cols(3).Width = 0
             MasterContentsList.Cols(4).Width = 0
 
-            ホーム.SystemSql.CommandText = "SELECT * FROM stamptaxes"
+            ホーム.SystemSql.CommandText = "SELECT * FROM stamp_taxes"
             Dim Stamptaxreader As SqlDataReader = ホーム.SystemSql.ExecuteReader
             Dim datacount As Integer = 1
             While Stamptaxreader.Read
@@ -249,7 +249,7 @@ Public Class マスタ一覧
             While Branchreader.Read
                 Me.MasterContentsList.Rows.Add()
                 MasterContentsList(datacount, 1) = Branchreader.Item("brnch_name")
-                MasterContentsList(datacount, 2) = Branchreader.Item("brnch_rate")
+                MasterContentsList(datacount, 2) = Branchreader.Item("brnchcst_rate")
                 datacount += 1
             End While
             Branchreader.Close()
@@ -400,17 +400,17 @@ Public Class マスタ一覧
                     If rankCount = 0 Then
                         ホーム.SystemSql.CommandText = ""
                         ホーム.SystemSql.Parameters.Clear()
-                        ホーム.SystemSql.CommandText = "INSERT INTO branch_costs (brnch_name,brnch_rate,year) VALUES (@brnch_name,@brnch_rate,@year)"
+                        ホーム.SystemSql.CommandText = "INSERT INTO branch_costs (brnch_name,brnchcst_rate,year) VALUES (@brnch_name,@brnchcst_rate,@year)"
                     Else
                         ホーム.SystemSql.CommandText = ""
                         ホーム.SystemSql.Parameters.Clear()
-                        ホーム.SystemSql.CommandText = "UPDATE branch_costs SET brnch_rate=@brnch_rate,year=@year where brnch_name=@brnch_name"
+                        ホーム.SystemSql.CommandText = "UPDATE branch_costs SET brnchcst_rate=@brnchcst_rate,year=@year where brnch_name=@brnch_name"
                     End If
                     ホーム.SystemSql.Parameters.Add(New SqlParameter("@brnch_name", SqlDbType.NVarChar))
-                    ホーム.SystemSql.Parameters.Add(New SqlParameter("@brnch_rate", SqlDbType.SmallInt))
+                    ホーム.SystemSql.Parameters.Add(New SqlParameter("@brnchcst_rate", SqlDbType.SmallInt))
                     ホーム.SystemSql.Parameters.Add(New SqlParameter("@year", SqlDbType.SmallInt))
                     ホーム.SystemSql.Parameters("@brnch_name").Value = name.Data
-                    ホーム.SystemSql.Parameters("@brnch_rate").Value = rate.Data
+                    ホーム.SystemSql.Parameters("@brnchcst_rate").Value = rate.Data
                     ホーム.SystemSql.Parameters("@year").Value = year
                     ホーム.SystemSql.ExecuteNonQuery()
                 End If

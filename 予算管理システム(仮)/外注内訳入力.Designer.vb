@@ -296,7 +296,7 @@ Partial Class 外注内訳入力
         Me.Breakdown.Name = "Breakdown"
         Me.Breakdown.Rows.Count = 3
         Me.Breakdown.Rows.Fixed = 3
-        Me.Breakdown.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.Breakdown.ScrollOptions = CType((C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible Or C1.Win.C1FlexGrid.ScrollFlags.ScrollByRowColumn), C1.Win.C1FlexGrid.ScrollFlags)
         Me.Breakdown.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.Breakdown.ShowCellLabels = True
         Me.Breakdown.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
@@ -336,7 +336,7 @@ Partial Class 外注内訳入力
         Me.DetailList.Rows.Count = 3
         Me.DetailList.Rows.Fixed = 3
         Me.DetailList.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.DetailList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.DetailList.ScrollOptions = CType((C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible Or C1.Win.C1FlexGrid.ScrollFlags.ScrollByRowColumn), C1.Win.C1FlexGrid.ScrollFlags)
         Me.DetailList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.DetailList.ShowCellLabels = True
         Me.DetailList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
