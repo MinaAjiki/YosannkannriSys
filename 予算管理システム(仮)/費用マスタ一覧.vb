@@ -98,7 +98,6 @@ Public Class 費用マスタ一覧
 
             If ParentFormName = "明細書" Then
                 ホーム.Modified = "True"
-
                 明細書入力.DetailsList(明細書入力.SelectRow, 9) = MasterContentsList(Row, 1)
                 明細書入力.DetailsList(明細書入力.SelectRow, 8) = CostClassCode
                 明細書入力.DetailsList(明細書入力.SelectRow, 3) = 明細書入力.SelectRow / 3
@@ -107,7 +106,63 @@ Public Class 費用マスタ一覧
                 明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = MasterContentsList(Row, 7)
                 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = MasterContentsList(Row, 8)
                 If IsNothing(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
-                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Ceiling((明細書入力.DetailsList(明細書入力.SelectRow, 6) * MasterContentsList(Row, 8)))
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor((明細書入力.DetailsList(明細書入力.SelectRow, 6) * MasterContentsList(Row, 8)))
+                End If
+                If CostClassCode = 1 Then
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = MasterContentsList(Row, 8)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 6)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = 0
+                ElseIf CostClassCode = 2 Or CostClassCode = 6 Or CostClassCode = 7 Then
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = MasterContentsList(Row, 8)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 6)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = 0
+                ElseIf CostClassCode = 3 Then
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = MasterContentsList(Row, 8)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 6)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = 0
+                ElseIf CostClassCode = 4 Then
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = MasterContentsList(Row, 8)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 6)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = 0
+                Else
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = MasterContentsList(Row, 8)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 6)
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = 0
+                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = 0
                 End If
 
                 If 明細書入力.SelectRow + 3 = 明細書入力.DetailsList.Rows.Count Then
@@ -185,7 +240,66 @@ Public Class 費用マスタ一覧
                 ProjectCostList(ProjectCostRow + 2, 5) = MasterContentsList(Row, 7)
                 ProjectCostList(ProjectCostRow + 1, 6) = MasterContentsList(Row, 8)
                 If IsNothing(ProjectCostList(ProjectCostRow, 6)) = False Then
-                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Ceiling((ProjectCostList(ProjectCostRow, 6) * MasterContentsList(Row, 8)))
+                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor((ProjectCostList(ProjectCostRow, 6) * MasterContentsList(Row, 8)))
+                End If
+                If IsNothing(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor((明細書入力.DetailsList(明細書入力.SelectRow, 6) * MasterContentsList(Row, 8)))
+                End If
+                If CostClassCode = 1 Then
+                    ProjectCostList(ProjectCostRow + 1, 10) = MasterContentsList(Row, 8)
+                    ProjectCostList(ProjectCostRow + 2, 10) = ProjectCostList(ProjectCostRow + 2, 6)
+                    ProjectCostList(ProjectCostRow + 1, 11) = 0
+                    ProjectCostList(ProjectCostRow + 2, 11) = 0
+                    ProjectCostList(ProjectCostRow + 1, 12) = 0
+                    ProjectCostList(ProjectCostRow + 2, 12) = 0
+                    ProjectCostList(ProjectCostRow + 1, 13) = 0
+                    ProjectCostList(ProjectCostRow + 2, 13) = 0
+                    ProjectCostList(ProjectCostRow + 1, 14) = 0
+                    ProjectCostList(ProjectCostRow + 2, 14) = 0
+                ElseIf CostClassCode = 2 Or CostClassCode = 6 Or CostClassCode = 7 Then
+                    ProjectCostList(ProjectCostRow + 1, 11) = MasterContentsList(Row, 8)
+                    ProjectCostList(ProjectCostRow + 2, 11) = ProjectCostList(ProjectCostRow + 2, 6)
+                    ProjectCostList(ProjectCostRow + 1, 10) = 0
+                    ProjectCostList(ProjectCostRow + 2, 10) = 0
+                    ProjectCostList(ProjectCostRow + 1, 12) = 0
+                    ProjectCostList(ProjectCostRow + 2, 12) = 0
+                    ProjectCostList(ProjectCostRow + 1, 13) = 0
+                    ProjectCostList(ProjectCostRow + 2, 13) = 0
+                    ProjectCostList(ProjectCostRow + 1, 14) = 0
+                    ProjectCostList(ProjectCostRow + 2, 14) = 0
+                ElseIf CostClassCode = 3 Then
+                    ProjectCostList(ProjectCostRow + 1, 12) = MasterContentsList(Row, 8)
+                    ProjectCostList(ProjectCostRow + 2, 12) = ProjectCostList(ProjectCostRow + 2, 6)
+                    ProjectCostList(ProjectCostRow + 1, 10) = 0
+                    ProjectCostList(ProjectCostRow + 2, 10) = 0
+                    ProjectCostList(ProjectCostRow + 1, 11) = 0
+                    ProjectCostList(ProjectCostRow + 2, 11) = 0
+                    ProjectCostList(ProjectCostRow + 1, 13) = 0
+                    ProjectCostList(ProjectCostRow + 2, 13) = 0
+                    ProjectCostList(ProjectCostRow + 1, 14) = 0
+                    ProjectCostList(ProjectCostRow + 2, 14) = 0
+                ElseIf CostClassCode = 4 Then
+                    ProjectCostList(ProjectCostRow + 1, 13) = MasterContentsList(Row, 8)
+                    ProjectCostList(ProjectCostRow + 2, 13) = ProjectCostList(ProjectCostRow + 2, 6)
+                    ProjectCostList(ProjectCostRow + 1, 10) = 0
+                    ProjectCostList(ProjectCostRow + 2, 10) = 0
+                    ProjectCostList(ProjectCostRow + 1, 11) = 0
+                    ProjectCostList(ProjectCostRow + 2, 11) = 0
+                    ProjectCostList(ProjectCostRow + 1, 12) = 0
+                    ProjectCostList(ProjectCostRow + 2, 12) = 0
+                    ProjectCostList(ProjectCostRow + 1, 14) = 0
+                    ProjectCostList(ProjectCostRow + 2, 14) = 0
+                Else
+                    ProjectCostList(ProjectCostRow + 1, 14) = MasterContentsList(Row, 8)
+                    ProjectCostList(ProjectCostRow + 2, 14) = ProjectCostList(ProjectCostRow + 2, 6)
+                    ProjectCostList(ProjectCostRow + 1, 10) = 0
+                    ProjectCostList(ProjectCostRow + 2, 10) = 0
+                    ProjectCostList(ProjectCostRow + 1, 11) = 0
+                    ProjectCostList(ProjectCostRow + 2, 11) = 0
+                    ProjectCostList(ProjectCostRow + 1, 12) = 0
+                    ProjectCostList(ProjectCostRow + 2, 12) = 0
+                    ProjectCostList(ProjectCostRow + 1, 13) = 0
+                    ProjectCostList(ProjectCostRow + 2, 13) = 0
                 End If
 
                 If ProjectCostRow + 3 = ProjectCostList.Rows.Count Then

@@ -150,6 +150,7 @@ Partial Class 代価表入力
         Me.BreakDownList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.BreakDownList.ColumnInfo = resources.GetString("BreakDownList.ColumnInfo")
         Me.BreakDownList.ContextMenuStrip = Me.右クリックメニュー
+        Me.BreakDownList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BreakDownList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.BreakDownList.Location = New System.Drawing.Point(28, 160)
         Me.BreakDownList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -243,7 +244,7 @@ Partial Class 代価表入力
         Me.CostNo.Location = New System.Drawing.Point(99, 42)
         Me.CostNo.Name = "CostNo"
         Me.CostNo.Size = New System.Drawing.Size(173, 20)
-        Me.CostNo.TabIndex = 45
+        Me.CostNo.TabIndex = 1
         Me.CostNo.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostNo, "予算管理テーマ")
         Me.CostNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -284,7 +285,7 @@ Partial Class 代価表入力
         Me.CostName.Location = New System.Drawing.Point(99, 63)
         Me.CostName.Name = "CostName"
         Me.CostName.Size = New System.Drawing.Size(228, 20)
-        Me.CostName.TabIndex = 63
+        Me.CostName.TabIndex = 2
         Me.CostName.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostName, "予算管理テーマ")
         Me.CostName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -299,7 +300,7 @@ Partial Class 代価表入力
         Me.CostSpec.Location = New System.Drawing.Point(402, 63)
         Me.CostSpec.Name = "CostSpec"
         Me.CostSpec.Size = New System.Drawing.Size(543, 20)
-        Me.CostSpec.TabIndex = 70
+        Me.CostSpec.TabIndex = 3
         Me.CostSpec.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostSpec, "予算管理テーマ")
         Me.CostSpec.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -322,7 +323,7 @@ Partial Class 代価表入力
         Me.CostQuanity.Location = New System.Drawing.Point(66, 84)
         Me.CostQuanity.Name = "CostQuanity"
         Me.CostQuanity.Size = New System.Drawing.Size(110, 20)
-        Me.CostQuanity.TabIndex = 71
+        Me.CostQuanity.TabIndex = 4
         Me.CostQuanity.Tag = Nothing
         Me.CostQuanity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostQuanity, "予算管理テーマ")
@@ -348,6 +349,7 @@ Partial Class 代価表入力
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.CostUnitPrice.Enabled = False
         Me.CostUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostUnitPrice.GapHeight = 0
         Me.CostUnitPrice.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -386,7 +388,7 @@ Partial Class 代価表入力
         Me.CostCostea.Location = New System.Drawing.Point(522, 84)
         Me.CostCostea.Name = "CostCostea"
         Me.CostCostea.Size = New System.Drawing.Size(110, 20)
-        Me.CostCostea.TabIndex = 74
+        Me.CostCostea.TabIndex = 6
         Me.CostCostea.Tag = Nothing
         Me.CostCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostCostea, "予算管理テーマ")
@@ -771,7 +773,7 @@ Partial Class 代価表入力
         Me.CostUnit.Location = New System.Drawing.Point(218, 84)
         Me.CostUnit.Name = "CostUnit"
         Me.CostUnit.Size = New System.Drawing.Size(109, 20)
-        Me.CostUnit.TabIndex = 85
+        Me.CostUnit.TabIndex = 5
         Me.CostUnit.Tag = Nothing
         Me.CostUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.SystemTheme.SetTheme(Me.CostUnit, "予算管理テーマ")

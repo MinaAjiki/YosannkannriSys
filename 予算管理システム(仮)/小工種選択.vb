@@ -15,7 +15,7 @@ Public Class 小工種選択
             Dim SubcntrctTotal As Int64 = 0
             Dim ExpensTotal As Int64 = 0
 
-            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM S_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
+            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode
             Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
 
             If Count < 21 Then
@@ -25,12 +25,12 @@ Public Class 小工種選択
             End If
 
             Dim RowCount As Integer = 0
-            ホーム.SystemSql.CommandText = "SELECT * FROM S_worktype WHERE l_worktype_code=" & ホーム.lworktypecode
+            ホーム.SystemSql.CommandText = "SELECT * FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode
             Dim SWorktypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
             While SWorktypeReader.Read
                 RowCount += 1
-                S_WorkTypesList(RowCount, 1) = SWorktypeReader.Item("s_worktype_code")
-                S_WorkTypesList(RowCount, 2) = SWorktypeReader.Item("s_worktype")
+                S_WorkTypesList(RowCount, 1) = SWorktypeReader.Item("s_wrktyp_code")
+                S_WorkTypesList(RowCount, 2) = SWorktypeReader.Item("s_wrktyp_name")
 
                 ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & S_WorkTypesList(RowCount, 1)
                 Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader

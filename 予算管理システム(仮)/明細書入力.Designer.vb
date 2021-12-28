@@ -321,15 +321,15 @@ Partial Class 明細書入力
         '
         'OutsoucerList
         '
-        Me.OutsoucerList.AllowDelete = True
         Me.OutsoucerList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.OutsoucerList.AllowEditing = False
         Me.OutsoucerList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.OutsoucerList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.OutsoucerList.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None
         Me.OutsoucerList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerList.ColumnInfo = resources.GetString("OutsoucerList.ColumnInfo")
+        Me.OutsoucerList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.OutsoucerList.Location = New System.Drawing.Point(0, 0)
