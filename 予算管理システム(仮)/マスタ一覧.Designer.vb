@@ -175,6 +175,8 @@ Partial Class マスタ一覧
         Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.MasterContentsList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
+        Me.MasterContentsList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.MasterContentsList.Location = New System.Drawing.Point(40, 71)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MasterContentsList.Name = "MasterContentsList"
@@ -182,6 +184,7 @@ Partial Class マスタ一覧
         Me.MasterContentsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.MasterContentsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.MasterContentsList.ShowCellLabels = True
         Me.MasterContentsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.MasterContentsList.Size = New System.Drawing.Size(511, 339)
         Me.MasterContentsList.StyleInfo = resources.GetString("MasterContentsList.StyleInfo")
