@@ -279,7 +279,6 @@ Public Class 明細書入力
                     OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
                     OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
                     OutsoucerList.Cols(DataCount).StyleNew.DataType = GetType(Decimal)
-                    OutsoucerList.Cols(DataCount).StyleNew.Format = "N1"
 
                 End While
                 OutsourcersReader.Close()
@@ -374,6 +373,8 @@ Public Class 明細書入力
                                 End While
                                 PlanReader.Close()
                             Next
+
+                            OutsoucerTotalList(0, OutsrcrCount + 1) = Total
                         End If
                     End If
                 Next
@@ -1857,6 +1858,16 @@ Public Class 明細書入力
 
 
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                Dim Quanity As Decimal = 0
+                If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
+                    Quanity = DetailsList(RowCount * 3, 6)
+                    DetailsList((RowCount * 3) + 2, 6) = Math.Floor(DetailsList((RowCount * 3) + 1, 6) * Quanity)
+                    CategoryList((RowCount * 3) + 2, 2) = Math.Floor(CategoryList((RowCount * 3) + 1, 2) * Quanity)
+                    CategoryList((RowCount * 3) + 2, 3) = Math.Floor(CategoryList((RowCount * 3) + 1, 3) * Quanity)
+                    CategoryList((RowCount * 3) + 2, 4) = Math.Floor(CategoryList((RowCount * 3) + 1, 4) * Quanity)
+                    CategoryList((RowCount * 3) + 2, 5) = Math.Floor(CategoryList((RowCount * 3) + 1, 5) * Quanity)
+                    CategoryList((RowCount * 3) + 2, 6) = Math.Floor(CategoryList((RowCount * 3) + 1, 6) * Quanity)
+                End If
 
                 ColTotal += DetailsList((RowCount * 3) + 2, 6)
                 LaborColTotal += CategoryList((RowCount * 3) + 2, 2)

@@ -11,7 +11,7 @@ Public Class 代価一覧
             If CostClassName = "基礎代価" Then
                 ホーム.SystemSql.Parameters.Clear()
                 ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basiscosts WHERE cstclss_code=" & CostClassCode
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & CostClassCode
                 Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
 
                 If BasicCostsCount > 21 Then
@@ -28,18 +28,24 @@ Public Class 代価一覧
                 Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
 
                 Dim RowCount As Integer = 0
-                ホーム.SystemSql.CommandText = "SELECT * FROM basiscosts WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & " ORDER BY basiscst_no ASC"
+                ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & " ORDER BY bsscst_no ASC"
                 Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
                 While BasicCostsReader.Read
                     RowCount += 1
-                    ProjectCostList(RowCount, 1) = BasicCostsReader.Item("basiscst_id")
-                    ProjectCostList(RowCount, 3) = BasicCostsReader.Item("basiscst_no")
-                    ProjectCostList(RowCount, 4) = BasicCostsReader.Item("basiscst_name")
-                    ProjectCostList(RowCount, 5) = BasicCostsReader.Item("basiscst_spec")
-                    ProjectCostList(RowCount, 6) = BasicCostsReader.Item("basiscst_unit")
-                    ProjectCostList(RowCount, 7) = BasicCostsReader.Item("basiscst_quanity")
-                    ProjectCostList(RowCount, 8) = BasicCostsReader.Item("basiscst_costea")
-                    ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("basiscst_costea") * BasicCostsReader.Item("basiscst_quanity"))
+                    ProjectCostList(RowCount, 1) = BasicCostsReader.Item("bsscst_id")
+                    ProjectCostList(RowCount, 3) = BasicCostsReader.Item("bsscst_no")
+                    ProjectCostList(RowCount, 4) = BasicCostsReader.Item("bsscst_name")
+                    ProjectCostList(RowCount, 5) = BasicCostsReader.Item("bsscst_spec")
+                    ProjectCostList(RowCount, 6) = BasicCostsReader.Item("bsscst_unit")
+                    ProjectCostList(RowCount, 7) = BasicCostsReader.Item("bsscst_quanity")
+                    ProjectCostList(RowCount, 8) = BasicCostsReader.Item("bsscst_costea")
+                    ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("bsscst_costea") * BasicCostsReader.Item("bsscst_quanity"))
+                    ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
+                    ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
+                    ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
+                    ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
+                    ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
+
                 End While
                 BasicCostsReader.Close()
 
@@ -72,6 +78,12 @@ Public Class 代価一覧
                     ProjectCostList(RowCount, 7) = ProjectCostsReader.Item("prjctcst_quanity")
                     ProjectCostList(RowCount, 8) = ProjectCostsReader.Item("prjctcst_costea")
                     ProjectCostList(RowCount, 9) = Math.Floor(ProjectCostsReader.Item("prjctcst_costea") * ProjectCostsReader.Item("prjctcst_quanity"))
+                    ProjectCostList(RowCount, 10) = ProjectCostsReader.Item("prjctcst_laborea")
+                    ProjectCostList(RowCount, 11) = ProjectCostsReader.Item("prjctcst_materialea")
+                    ProjectCostList(RowCount, 12) = ProjectCostsReader.Item("prjctcst_machineea")
+                    ProjectCostList(RowCount, 13) = ProjectCostsReader.Item("prjctcst_subcntrctea")
+                    ProjectCostList(RowCount, 14) = ProjectCostsReader.Item("prjctcst_expenseea")
+
                 End While
                 ProjectCostsReader.Close()
 
@@ -201,6 +213,12 @@ Public Class 代価一覧
                 If IsNothing(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
                     明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor((明細書入力.DetailsList(明細書入力.SelectRow, 6) * ProjectCostList(Row, 8)))
                 End If
+                明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = ProjectCostList(Row, 10)
+                明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = ProjectCostList(Row, 11)
+                明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = ProjectCostList(Row, 12)
+                明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = ProjectCostList(Row, 13)
+                明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = ProjectCostList(Row, 14)
+
 
                 Dim No As String = ProjectCostList(Row, 3)
                 If No.Length = 1 Then
@@ -298,6 +316,11 @@ Public Class 代価一覧
                 If IsNothing(ProjectCostList(ProjectCostRow, 6)) = False Then
                     ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor((ProjectCostList(ProjectCostRow, 6) * Me.ProjectCostList(Row, 8)))
                 End If
+                ProjectCostList(ProjectCostRow + 1, 10) = Me.ProjectCostList(Row, 10)
+                ProjectCostList(ProjectCostRow + 1, 11) = Me.ProjectCostList(Row, 11)
+                ProjectCostList(ProjectCostRow + 1, 12) = Me.ProjectCostList(Row, 12)
+                ProjectCostList(ProjectCostRow + 1, 13) = Me.ProjectCostList(Row, 13)
+                ProjectCostList(ProjectCostRow + 1, 14) = Me.ProjectCostList(Row, 14)
 
                 Dim No As String = Me.ProjectCostList(Row, 3)
                 If No.Length = 1 Then
@@ -374,6 +397,10 @@ Public Class 代価一覧
             エラー.Show()
             Exit Sub
         End Try
+
+    End Sub
+
+    Private Sub MainPanel_Click(sender As Object, e As EventArgs) Handles MainPanel.Click
 
     End Sub
 End Class

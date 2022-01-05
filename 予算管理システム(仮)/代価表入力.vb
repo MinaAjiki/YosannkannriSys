@@ -1991,6 +1991,17 @@ Public Class 代価表入力
 
             For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
 
+                Dim Quanity As Decimal = 0
+                If IsDBNull(BreakDownList(RowCount * 3, 6)) = False Then
+                    Quanity = BreakDownList(RowCount * 3, 6)
+                    BreakDownList((RowCount * 3) + 2, 6) = Math.Floor(BreakDownList((RowCount * 3) + 1, 6) * Quanity)
+                    BreakDownList((RowCount * 3) + 2, 10) = Math.Floor(BreakDownList((RowCount * 3) + 1, 10) * Quanity)
+                    BreakDownList((RowCount * 3) + 2, 11) = Math.Floor(BreakDownList((RowCount * 3) + 1, 11) * Quanity)
+                    BreakDownList((RowCount * 3) + 2, 12) = Math.Floor(BreakDownList((RowCount * 3) + 1, 12) * Quanity)
+                    BreakDownList((RowCount * 3) + 2, 13) = Math.Floor(BreakDownList((RowCount * 3) + 1, 13) * Quanity)
+                    BreakDownList((RowCount * 3) + 2, 14) = Math.Floor(BreakDownList((RowCount * 3) + 1, 14) * Quanity)
+                End If
+
                 ColTotal += BreakDownList((RowCount * 3) + 2, 6)
                 LaborColTotal += BreakDownList((RowCount * 3) + 2, 10)
                 MaterialColTotal += BreakDownList((RowCount * 3) + 2, 11)
