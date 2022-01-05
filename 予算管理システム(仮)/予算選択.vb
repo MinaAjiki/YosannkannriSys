@@ -30,6 +30,18 @@ Public Class 予算選択
                 ホーム.BudgetNo = BudgetNo
             End If
 
+            ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
+            Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
+
+            If DataCount = 0 Then
+                ホーム.見積.Enabled = False
+                ホーム.外注管理.Enabled = False
+            Else
+                ホーム.見積.Enabled = True
+                ホーム.外注管理.Enabled = True
+
+            End If
+
             Me.Close()
 
         Catch ex As Exception

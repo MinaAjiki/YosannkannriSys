@@ -115,6 +115,13 @@ Public Class DB選択
             ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
             Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
+            ホーム.UserDataPath = OpenFilePath
+            ホーム.UserDataName = OpenFileName
+
+            Dim CancelClick As String = ""
+
+            Dim CancelClickLoad As New CancelClick(Me)
+            CancelClick = CancelClickLoad.ModifyCheck
 
             If DataCount >= 1 Then
                 予算選択.Show()
@@ -125,6 +132,8 @@ Public Class DB選択
             Else
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
+                ホーム.見積.Enabled = False
+                ホーム.外注管理.Enabled = False
             End If
 
         Catch ex As Exception
@@ -168,6 +177,10 @@ Public Class DB選択
 
             Me.Close()
 
+            Dim CancelClick As String = ""
+            Dim CancelClickLoad As New CancelClick(Me)
+            CancelClick = CancelClickLoad.ModifyCheck
+
             If DataCount >= 1 Then
                 予算選択.Show()
 
@@ -177,6 +190,8 @@ Public Class DB選択
             Else
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
+                ホーム.見積.Enabled = False
+                ホーム.外注管理.Enabled = False
             End If
 
         Catch ex As Exception

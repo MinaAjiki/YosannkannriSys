@@ -3,23 +3,30 @@ Imports System.Data.SqlClient
 Imports System.Windows.Forms.Form
 Public Class 大工種選択
     Private Sub 大工種選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Dim Total As Int64 = 0
+        'Try
+        Dim Total As Int64 = 0
 
             ホーム.SystemSql.CommandText = "SELECT  Count(*) FROM l_worktypes"
             Dim Count As Integer = ホーム.SystemSql.ExecuteScalar
 
-            L_WorkTypesList.Rows.Count = Count + 1
+        L_WorkTypesList.Rows.Count = Count + 1
 
-            Dim RowCount As Integer = 1
-            ホーム.SystemSql.CommandText = "SELECT  * FROM l_worktypes ORDER BY l_wrktyp_code ASC"
-            Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-            While LWorkTypeReader.Read
+        ホーム.Sql.Parameters.Clear()
+        ホーム.Sql.CommandText = ""
+
+        Dim RowCount As Integer = 1
+        ホーム.Sql.CommandText = "SELECT * FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " OR budget_no IS NULL ORDER BY s_wrktyp_code ASC"
+        L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+        Dim LWorkTypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        While LWorkTypeReader.Read
 
                 L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_wrktyp_code")
-                L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_wrktyp_name")
+            L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_wrktyp_name")
 
-                ホーム.Sql.CommandText = "SELECT SUM(amount_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_wrktyp_code=" _
+
+
+
+            ホーム.Sql.CommandText = "SELECT SUM(amount_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_wrktyp_code=" _
                                                 & LWorkTypeReader.Item("l_wrktyp_code")
                 L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
 
@@ -31,12 +38,12 @@ Public Class 大工種選択
 
             LWorktypeTotal.Text = Total
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
     End Sub
 
     Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
