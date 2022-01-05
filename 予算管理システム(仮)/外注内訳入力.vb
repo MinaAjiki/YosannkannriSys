@@ -185,14 +185,6 @@ Public Class 外注内訳入力
         End Try
     End Sub
 
-    Private Sub C1FlexGrid2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub ChangeDetails_TextChanged(sender As Object, e As EventArgs) Handles ChangeDetail.TextChanged
-
-    End Sub
-
     Private Sub DetailList_AfterScroll(sender As Object, e As RangeEventArgs) Handles DetailList.AfterScroll
         Breakdown.ScrollPosition = DetailList.ScrollPosition
 
@@ -621,10 +613,6 @@ Public Class 外注内訳入力
 
         '進行状況.Show()
         '進行状況.Refresh()
-    End Sub
-
-    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted

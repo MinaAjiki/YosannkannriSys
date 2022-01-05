@@ -178,10 +178,10 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
                 Next
 
-                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
+                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_wrktyp_code=" & ホーム.sworktypecode
                 Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While TotalReader.Read
-                    DetailTotal.Value = TotalReader.Item("amount_total")
+                    DetailTotal.Value = TotalReader.Item("amout_total")
                     CategoryTotalList(0, 2) = TotalReader.Item("labor")
                     CategoryTotalList(0, 3) = TotalReader.Item("material")
                     CategoryTotalList(0, 4) = TotalReader.Item("machine")

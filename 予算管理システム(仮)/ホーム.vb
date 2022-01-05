@@ -43,11 +43,11 @@ Public Class ホーム
             SystemSqlCnnctn.Open()
             SystemSql.Connection = SystemSqlCnnctn
 
-            If System.IO.File.Exists("D:\予算管理システム\system\予算管理システム(system_mdf).mdf") = True Then
+            If System.IO.File.Exists("C:\PMS\system.mdf") = True Then
 
 
 
-                SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\予算管理システム\system\予算管理システム(system_mdf).mdf;Integrated Security=True"
+                SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
                 SystmMdfCnnctn.Open()
 
                 SystemMdf.Connection = SystmMdfCnnctn
@@ -266,19 +266,38 @@ Public Class ホーム
     End Sub
 
     Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
-        Try
-            If System.IO.File.Exists("D:\予算管理システム\system\予算管理システム(system_mdf).mdf") = False Then
-            System.IO.Directory.CreateDirectory("D:\予算管理システム\system")
-            System.IO.File.Copy(Application.StartupPath & "\予算管理システム(system_mdf).mdf", "D:\予算管理システム\system\予算管理システム(system_mdf).mdf")
-            SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\予算管理システム\system\予算管理システム(system_mdf).mdf;Integrated Security=True"
+        'Try
+        If System.IO.File.Exists("C:\PMS\system.mdf") = False Then
+            SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
             SystmMdfCnnctn.Open()
         End If
 
-        System.IO.File.Copy(Application.StartupPath & "\現場データ.mdf", CreateFileDialog.FileName)
+        If System.IO.File.Exists(CreateFileDialog.FileName) = False Then
 
+            System.IO.File.Copy("C:\PMS\user.mdf", CreateFileDialog.FileName)
+        Else
+            MsgBox("この名前のファイルは既に存在します。", MsgBoxStyle.Exclamation, "新規作成")
+            Exit Sub
+        End If
 
         Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
         Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
+
+        If Connection.State = ConnectionState.Open Then
+            Connection.Close()
+        End If
+        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
+        Connection.Open()
+        Sql.Connection = Connection
+
+        Sql.CommandText = "SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq INTO cost_masters FROM [SVACD001].[PMS].[dbo].[cost_masters]"
+        Sql.ExecuteNonQuery()
+
+        Sql.CommandText = "ALTER TABLE cost_masters ADD cstmstr_id smallint IDENTITY(1,1)"
+        Sql.ExecuteNonQuery()
+
+        Sql.CommandText = "ALTER TABLE cost_masters ADD CONSTRAINT PK_cost_masters PRIMARY KEY (cstmstr_id)"
+        Sql.ExecuteNonQuery()
 
         SystemMdf.Connection = SystmMdfCnnctn
         SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
@@ -288,23 +307,20 @@ Public Class ホーム
         SystemMdf.Parameters("@filename").Value = FileName
         SystemMdf.Parameters("@filepath").Value = FilePath
         SystemMdf.Parameters("@filedate").Value = Today
-
         SystemMdf.ExecuteNonQuery()
-
-        MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
 
         If Connection.State = ConnectionState.Open Then
             Connection.Close()
         End If
 
 
-        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & CreateFileDialog.FileName & ";Integrated Security=True"
-        Connection.Open()
-        Sql.Connection = Connection
 
         Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"
 
-        予算.Enabled = True
+            MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
+
+
+            予算.Enabled = True
         マスタ.Enabled = True
         開く.Enabled = True
         材料表インポート.Enabled = True
@@ -313,12 +329,12 @@ Public Class ホーム
             SystemMdf.Parameters.Clear()
 
 
-        Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ErrorMessage = ex.Message
+        '    StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
 
     End Sub
 

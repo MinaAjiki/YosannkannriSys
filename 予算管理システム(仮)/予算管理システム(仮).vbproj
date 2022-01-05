@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.0.0.4</ApplicationVersion>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.5</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -527,46 +527,46 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\予算管理システム%28system_mdf%29.mdf">
+    <Content Include="bin\Debug\system.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\Debug\予算管理システム%28system_mdf%29_log.ldf">
+    <Content Include="bin\Debug\system_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
+      <DependentUpon>system.mdf</DependentUpon>
     </Content>
-    <Content Include="bin\Debug\現場データ.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Debug\現場データ_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>現場データ.mdf</DependentUpon>
-    </Content>
-    <Content Include="bin\Release\予算管理システム%28system_mdf%29.mdf">
+    <Content Include="bin\Debug\user.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\Release\予算管理システム%28system_mdf%29_log.ldf">
+    <Content Include="bin\Debug\user_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
+      <DependentUpon>user.mdf</DependentUpon>
     </Content>
-    <Content Include="bin\Release\現場データ.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Release\現場データ_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>現場データ.mdf</DependentUpon>
-    </Content>
-    <Content Include="予算管理システム%28system_mdf%29.mdf">
+    <Content Include="bin\Release\system.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="予算管理システム%28system_mdf%29_log.ldf">
+    <Content Include="bin\Release\system_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>予算管理システム%28system_mdf%29.mdf</DependentUpon>
+      <DependentUpon>system.mdf</DependentUpon>
     </Content>
-    <Content Include="現場データ.mdf">
+    <Content Include="bin\Release\user.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="現場データ_log.ldf">
-      <DependentUpon>現場データ.mdf</DependentUpon>
+    <Content Include="bin\Release\user_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>user.mdf</DependentUpon>
+    </Content>
+    <Content Include="system.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="system_log.ldf">
+      <DependentUpon>system.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_log.ldf">
+      <DependentUpon>user.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\loader.gif" />
@@ -596,16 +596,6 @@
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="予算管理システム%28system_mdf%29.mdf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="現場データ.mdf">
       <Visible>False</Visible>
       <Group>
       </Group>
