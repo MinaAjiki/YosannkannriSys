@@ -25,35 +25,36 @@ Public Class 小工種選択
             End If
 
             Dim RowCount As Integer = 0
-            ホーム.SystemSql.CommandText = "SELECT * FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode
-            Dim SWorktypeReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-            While SWorktypeReader.Read
+
+        ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " OR budget_no IS NULL AND l_wrktyp_code=" & ホーム.lworktypecode & " ORDER BY s_wrktyp_code ASC"
+        Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
+            While SWorkTypeTotalReader.Read
+
+            If Not RowCount = Count Then
                 RowCount += 1
-                S_WorkTypesList(RowCount, 1) = SWorktypeReader.Item("s_wrktyp_code")
-                S_WorkTypesList(RowCount, 2) = SWorktypeReader.Item("s_wrktyp_name")
 
-                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & S_WorkTypesList(RowCount, 1)
-                Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While SWorkTypeTotalReader.Read
-                    S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amount_total")
-                    S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
-                    S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
-                    S_WorkTypesList(RowCount, 6) = SWorkTypeTotalReader.Item("machine")
-                    S_WorkTypesList(RowCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
-                    S_WorkTypesList(RowCount, 8) = SWorkTypeTotalReader.Item("expens")
+                ホーム.SystemSql.CommandText = "SELECT s_wrktyp_name FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND s_wrktyp_code=" & SWorkTypeTotalReader.Item("s_wrktyp_code")
+                S_WorkTypesList(RowCount, 2) = ホーム.SystemSql.ExecuteScalar
+
+                S_WorkTypesList(RowCount, 1) = SWorkTypeTotalReader.Item("s_wrktyp_code")
+                S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amout_total")
+                S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
+                S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
+                S_WorkTypesList(RowCount, 6) = SWorkTypeTotalReader.Item("machine")
+                S_WorkTypesList(RowCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
+                S_WorkTypesList(RowCount, 8) = SWorkTypeTotalReader.Item("expens")
 
 
-                    Total += S_WorkTypesList(RowCount, 3)
-                    LaborTotal += S_WorkTypesList(RowCount, 4)
-                    MaterialTotal += S_WorkTypesList(RowCount, 5)
-                    MachineTotal += S_WorkTypesList(RowCount, 6)
-                    SubcntrctTotal += S_WorkTypesList(RowCount, 7)
-                    ExpensTotal += S_WorkTypesList(RowCount, 8)
-                End While
-                SWorkTypeTotalReader.Close()
+                Total += S_WorkTypesList(RowCount, 3)
+                LaborTotal += S_WorkTypesList(RowCount, 4)
+                MaterialTotal += S_WorkTypesList(RowCount, 5)
+                MachineTotal += S_WorkTypesList(RowCount, 6)
+                SubcntrctTotal += S_WorkTypesList(RowCount, 7)
+                ExpensTotal += S_WorkTypesList(RowCount, 8)
+            End If
+        End While
+            SWorkTypeTotalReader.Close()
 
-            End While
-            SWorktypeReader.Close()
 
             SWorkTypeTotal.Value = Total
             Labor.Value = LaborTotal
@@ -63,10 +64,10 @@ Public Class 小工種選択
             Expens.Value = ExpensTotal
 
         Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
 
     End Sub
