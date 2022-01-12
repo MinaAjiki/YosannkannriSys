@@ -20,12 +20,12 @@ Option Explicit On
  Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
  Global.System.ComponentModel.ToolboxItem(true),  _
  Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"),  _
- Global.System.Xml.Serialization.XmlRootAttribute("DataSet2"),  _
+ Global.System.Xml.Serialization.XmlRootAttribute("M_TOR_ICHIKAWA"),  _
  Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")>  _
-Partial Public Class DataSet2
+Partial Public Class M_TOR_ICHIKAWA
     Inherits Global.System.Data.DataSet
     
-    Private tableM_TOR As M_TORDataTable
+    Private tableM_TOR_ICHKAKWA As M_TOR_ICHKAKWADataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -56,8 +56,8 @@ Partial Public Class DataSet2
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("M_TOR")) Is Nothing) Then
-                MyBase.Tables.Add(New M_TORDataTable(ds.Tables("M_TOR")))
+            If (Not (ds.Tables("M_TOR_ICHKAKWA")) Is Nothing) Then
+                MyBase.Tables.Add(New M_TOR_ICHKAKWADataTable(ds.Tables("M_TOR_ICHKAKWA")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -80,9 +80,9 @@ Partial Public Class DataSet2
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property M_TOR() As M_TORDataTable
+    Public ReadOnly Property M_TOR_ICHKAKWA() As M_TOR_ICHKAKWADataTable
         Get
-            Return Me.tableM_TOR
+            Return Me.tableM_TOR_ICHKAKWA
         End Get
     End Property
     
@@ -128,7 +128,7 @@ Partial Public Class DataSet2
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Overrides Function Clone() As Global.System.Data.DataSet
-        Dim cln As DataSet2 = CType(MyBase.Clone,DataSet2)
+        Dim cln As M_TOR_ICHIKAWA = CType(MyBase.Clone,M_TOR_ICHIKAWA)
         cln.InitVars
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
@@ -153,8 +153,8 @@ Partial Public Class DataSet2
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("M_TOR")) Is Nothing) Then
-                MyBase.Tables.Add(New M_TORDataTable(ds.Tables("M_TOR")))
+            If (Not (ds.Tables("M_TOR_ICHKAKWA")) Is Nothing) Then
+                MyBase.Tables.Add(New M_TOR_ICHKAKWADataTable(ds.Tables("M_TOR_ICHKAKWA")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -188,10 +188,10 @@ Partial Public Class DataSet2
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableM_TOR = CType(MyBase.Tables("M_TOR"),M_TORDataTable)
+        Me.tableM_TOR_ICHKAKWA = CType(MyBase.Tables("M_TOR_ICHKAKWA"),M_TOR_ICHKAKWADataTable)
         If (initTable = true) Then
-            If (Not (Me.tableM_TOR) Is Nothing) Then
-                Me.tableM_TOR.InitVars
+            If (Not (Me.tableM_TOR_ICHKAKWA) Is Nothing) Then
+                Me.tableM_TOR_ICHKAKWA.InitVars
             End If
         End If
     End Sub
@@ -199,18 +199,18 @@ Partial Public Class DataSet2
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Sub InitClass()
-        Me.DataSetName = "DataSet2"
+        Me.DataSetName = "M_TOR_ICHIKAWA"
         Me.Prefix = ""
-        Me.Namespace = "http://tempuri.org/DataSet2.xsd"
+        Me.Namespace = "http://tempuri.org/M_TOR_ICHIKAWA.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableM_TOR = New M_TORDataTable()
-        MyBase.Tables.Add(Me.tableM_TOR)
+        Me.tableM_TOR_ICHKAKWA = New M_TOR_ICHKAKWADataTable()
+        MyBase.Tables.Add(Me.tableM_TOR_ICHKAKWA)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Private Function ShouldSerializeM_TOR() As Boolean
+    Private Function ShouldSerializeM_TOR_ICHKAKWA() As Boolean
         Return false
     End Function
     
@@ -225,7 +225,7 @@ Partial Public Class DataSet2
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Shared Function GetTypedDataSetSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-        Dim ds As DataSet2 = New DataSet2()
+        Dim ds As M_TOR_ICHIKAWA = New M_TOR_ICHIKAWA()
         Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
         Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
         Dim any As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
@@ -273,15 +273,15 @@ Partial Public Class DataSet2
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Delegate Sub M_TORRowChangeEventHandler(ByVal sender As Object, ByVal e As M_TORRowChangeEvent)
+    Public Delegate Sub M_TOR_ICHKAKWARowChangeEventHandler(ByVal sender As Object, ByVal e As M_TOR_ICHKAKWARowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class M_TORDataTable
-        Inherits Global.System.Data.TypedTableBase(Of M_TORRow)
+    Partial Public Class M_TOR_ICHKAKWADataTable
+        Inherits Global.System.Data.TypedTableBase(Of M_TOR_ICHKAKWARow)
         
         Private columnCODE As Global.System.Data.DataColumn
         
@@ -299,7 +299,7 @@ Partial Public Class DataSet2
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "M_TOR"
+            Me.TableName = "M_TOR_ICHKAKWA"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -389,50 +389,50 @@ Partial Public Class DataSet2
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As M_TORRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As M_TOR_ICHKAKWARow
             Get
-                Return CType(Me.Rows(index),M_TORRow)
+                Return CType(Me.Rows(index),M_TOR_ICHKAKWARow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event M_TORRowChanging As M_TORRowChangeEventHandler
+        Public Event M_TOR_ICHKAKWARowChanging As M_TOR_ICHKAKWARowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event M_TORRowChanged As M_TORRowChangeEventHandler
+        Public Event M_TOR_ICHKAKWARowChanged As M_TOR_ICHKAKWARowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event M_TORRowDeleting As M_TORRowChangeEventHandler
+        Public Event M_TOR_ICHKAKWARowDeleting As M_TOR_ICHKAKWARowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event M_TORRowDeleted As M_TORRowChangeEventHandler
+        Public Event M_TOR_ICHKAKWARowDeleted As M_TOR_ICHKAKWARowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Sub AddM_TORRow(ByVal row As M_TORRow)
+        Public Overloads Sub AddM_TOR_ICHKAKWARow(ByVal row As M_TOR_ICHKAKWARow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddM_TORRow(ByVal CODE As String, ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String) As M_TORRow
-            Dim rowM_TORRow As M_TORRow = CType(Me.NewRow,M_TORRow)
+        Public Overloads Function AddM_TOR_ICHKAKWARow(ByVal CODE As String, ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String) As M_TOR_ICHKAKWARow
+            Dim rowM_TOR_ICHKAKWARow As M_TOR_ICHKAKWARow = CType(Me.NewRow,M_TOR_ICHKAKWARow)
             Dim columnValuesArray() As Object = New Object() {CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL}
-            rowM_TORRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowM_TORRow)
-            Return rowM_TORRow
+            rowM_TOR_ICHKAKWARow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowM_TOR_ICHKAKWARow)
+            Return rowM_TOR_ICHKAKWARow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function FindByCODE(ByVal CODE As String) As M_TORRow
-            Return CType(Me.Rows.Find(New Object() {CODE}),M_TORRow)
+        Public Function FindByCODE(ByVal CODE As String) As M_TOR_ICHKAKWARow
+            Return CType(Me.Rows.Find(New Object() {CODE}),M_TOR_ICHKAKWARow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As M_TORDataTable = CType(MyBase.Clone,M_TORDataTable)
+            Dim cln As M_TOR_ICHKAKWADataTable = CType(MyBase.Clone,M_TOR_ICHKAKWADataTable)
             cln.InitVars
             Return cln
         End Function
@@ -440,7 +440,7 @@ Partial Public Class DataSet2
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New M_TORDataTable()
+            Return New M_TOR_ICHKAKWADataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -482,28 +482,28 @@ Partial Public Class DataSet2
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function NewM_TORRow() As M_TORRow
-            Return CType(Me.NewRow,M_TORRow)
+        Public Function NewM_TOR_ICHKAKWARow() As M_TOR_ICHKAKWARow
+            Return CType(Me.NewRow,M_TOR_ICHKAKWARow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New M_TORRow(builder)
+            Return New M_TOR_ICHKAKWARow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(M_TORRow)
+            Return GetType(M_TOR_ICHKAKWARow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.M_TORRowChangedEvent) Is Nothing) Then
-                RaiseEvent M_TORRowChanged(Me, New M_TORRowChangeEvent(CType(e.Row,M_TORRow), e.Action))
+            If (Not (Me.M_TOR_ICHKAKWARowChangedEvent) Is Nothing) Then
+                RaiseEvent M_TOR_ICHKAKWARowChanged(Me, New M_TOR_ICHKAKWARowChangeEvent(CType(e.Row,M_TOR_ICHKAKWARow), e.Action))
             End If
         End Sub
         
@@ -511,8 +511,8 @@ Partial Public Class DataSet2
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.M_TORRowChangingEvent) Is Nothing) Then
-                RaiseEvent M_TORRowChanging(Me, New M_TORRowChangeEvent(CType(e.Row,M_TORRow), e.Action))
+            If (Not (Me.M_TOR_ICHKAKWARowChangingEvent) Is Nothing) Then
+                RaiseEvent M_TOR_ICHKAKWARowChanging(Me, New M_TOR_ICHKAKWARowChangeEvent(CType(e.Row,M_TOR_ICHKAKWARow), e.Action))
             End If
         End Sub
         
@@ -520,8 +520,8 @@ Partial Public Class DataSet2
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.M_TORRowDeletedEvent) Is Nothing) Then
-                RaiseEvent M_TORRowDeleted(Me, New M_TORRowChangeEvent(CType(e.Row,M_TORRow), e.Action))
+            If (Not (Me.M_TOR_ICHKAKWARowDeletedEvent) Is Nothing) Then
+                RaiseEvent M_TOR_ICHKAKWARowDeleted(Me, New M_TOR_ICHKAKWARowChangeEvent(CType(e.Row,M_TOR_ICHKAKWARow), e.Action))
             End If
         End Sub
         
@@ -529,14 +529,14 @@ Partial Public Class DataSet2
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.M_TORRowDeletingEvent) Is Nothing) Then
-                RaiseEvent M_TORRowDeleting(Me, New M_TORRowChangeEvent(CType(e.Row,M_TORRow), e.Action))
+            If (Not (Me.M_TOR_ICHKAKWARowDeletingEvent) Is Nothing) Then
+                RaiseEvent M_TOR_ICHKAKWARowDeleting(Me, New M_TOR_ICHKAKWARowChangeEvent(CType(e.Row,M_TOR_ICHKAKWARow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub RemoveM_TORRow(ByVal row As M_TORRow)
+        Public Sub RemoveM_TOR_ICHKAKWARow(ByVal row As M_TOR_ICHKAKWARow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -545,7 +545,7 @@ Partial Public Class DataSet2
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As DataSet2 = New DataSet2()
+            Dim ds As M_TOR_ICHIKAWA = New M_TOR_ICHIKAWA()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -563,7 +563,7 @@ Partial Public Class DataSet2
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "M_TORDataTable"
+            attribute2.FixedValue = "M_TOR_ICHKAKWADataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -610,26 +610,26 @@ Partial Public Class DataSet2
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class M_TORRow
+    Partial Public Class M_TOR_ICHKAKWARow
         Inherits Global.System.Data.DataRow
         
-        Private tableM_TOR As M_TORDataTable
+        Private tableM_TOR_ICHKAKWA As M_TOR_ICHKAKWADataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableM_TOR = CType(Me.Table,M_TORDataTable)
+            Me.tableM_TOR_ICHKAKWA = CType(Me.Table,M_TOR_ICHKAKWADataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property CODE() As String
             Get
-                Return CType(Me(Me.tableM_TOR.CODEColumn),String)
+                Return CType(Me(Me.tableM_TOR_ICHKAKWA.CODEColumn),String)
             End Get
             Set
-                Me(Me.tableM_TOR.CODEColumn) = value
+                Me(Me.tableM_TOR_ICHKAKWA.CODEColumn) = value
             End Set
         End Property
         
@@ -638,13 +638,13 @@ Partial Public Class DataSet2
         Public Property NAME() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableM_TOR.NAMEColumn),String)
+                    Return CType(Me(Me.tableM_TOR_ICHKAKWA.NAMEColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR' にある列 'NAME' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_ICHKAKWA' にある列 'NAME' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableM_TOR.NAMEColumn) = value
+                Me(Me.tableM_TOR_ICHKAKWA.NAMEColumn) = value
             End Set
         End Property
         
@@ -653,13 +653,13 @@ Partial Public Class DataSet2
         Public Property KANA() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableM_TOR.KANAColumn),String)
+                    Return CType(Me(Me.tableM_TOR_ICHKAKWA.KANAColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR' にある列 'KANA' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_ICHKAKWA' にある列 'KANA' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableM_TOR.KANAColumn) = value
+                Me(Me.tableM_TOR_ICHKAKWA.KANAColumn) = value
             End Set
         End Property
         
@@ -668,13 +668,13 @@ Partial Public Class DataSet2
         Public Property ADDRESS1() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableM_TOR.ADDRESS1Column),String)
+                    Return CType(Me(Me.tableM_TOR_ICHKAKWA.ADDRESS1Column),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR' にある列 'ADDRESS1' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_ICHKAKWA' にある列 'ADDRESS1' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableM_TOR.ADDRESS1Column) = value
+                Me(Me.tableM_TOR_ICHKAKWA.ADDRESS1Column) = value
             End Set
         End Property
         
@@ -683,13 +683,13 @@ Partial Public Class DataSet2
         Public Property ADDRESS2() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableM_TOR.ADDRESS2Column),String)
+                    Return CType(Me(Me.tableM_TOR_ICHKAKWA.ADDRESS2Column),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR' にある列 'ADDRESS2' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_ICHKAKWA' にある列 'ADDRESS2' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableM_TOR.ADDRESS2Column) = value
+                Me(Me.tableM_TOR_ICHKAKWA.ADDRESS2Column) = value
             End Set
         End Property
         
@@ -698,74 +698,74 @@ Partial Public Class DataSet2
         Public Property TEL() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableM_TOR.TELColumn),String)
+                    Return CType(Me(Me.tableM_TOR_ICHKAKWA.TELColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR' にある列 'TEL' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_ICHKAKWA' にある列 'TEL' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableM_TOR.TELColumn) = value
+                Me(Me.tableM_TOR_ICHKAKWA.TELColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsNAMENull() As Boolean
-            Return Me.IsNull(Me.tableM_TOR.NAMEColumn)
+            Return Me.IsNull(Me.tableM_TOR_ICHKAKWA.NAMEColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetNAMENull()
-            Me(Me.tableM_TOR.NAMEColumn) = Global.System.Convert.DBNull
+            Me(Me.tableM_TOR_ICHKAKWA.NAMEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsKANANull() As Boolean
-            Return Me.IsNull(Me.tableM_TOR.KANAColumn)
+            Return Me.IsNull(Me.tableM_TOR_ICHKAKWA.KANAColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetKANANull()
-            Me(Me.tableM_TOR.KANAColumn) = Global.System.Convert.DBNull
+            Me(Me.tableM_TOR_ICHKAKWA.KANAColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsADDRESS1Null() As Boolean
-            Return Me.IsNull(Me.tableM_TOR.ADDRESS1Column)
+            Return Me.IsNull(Me.tableM_TOR_ICHKAKWA.ADDRESS1Column)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetADDRESS1Null()
-            Me(Me.tableM_TOR.ADDRESS1Column) = Global.System.Convert.DBNull
+            Me(Me.tableM_TOR_ICHKAKWA.ADDRESS1Column) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsADDRESS2Null() As Boolean
-            Return Me.IsNull(Me.tableM_TOR.ADDRESS2Column)
+            Return Me.IsNull(Me.tableM_TOR_ICHKAKWA.ADDRESS2Column)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetADDRESS2Null()
-            Me(Me.tableM_TOR.ADDRESS2Column) = Global.System.Convert.DBNull
+            Me(Me.tableM_TOR_ICHKAKWA.ADDRESS2Column) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsTELNull() As Boolean
-            Return Me.IsNull(Me.tableM_TOR.TELColumn)
+            Return Me.IsNull(Me.tableM_TOR_ICHKAKWA.TELColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetTELNull()
-            Me(Me.tableM_TOR.TELColumn) = Global.System.Convert.DBNull
+            Me(Me.tableM_TOR_ICHKAKWA.TELColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -773,16 +773,16 @@ Partial Public Class DataSet2
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Class M_TORRowChangeEvent
+    Public Class M_TOR_ICHKAKWARowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As M_TORRow
+        Private eventRow As M_TOR_ICHKAKWARow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New(ByVal row As M_TORRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As M_TOR_ICHKAKWARow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -790,7 +790,7 @@ Partial Public Class DataSet2
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Row() As M_TORRow
+        Public ReadOnly Property Row() As M_TOR_ICHKAKWARow
             Get
                 Return Me.eventRow
             End Get
@@ -806,7 +806,7 @@ Partial Public Class DataSet2
     End Class
 End Class
 
-Namespace DataSet2TableAdapters
+Namespace M_TOR_ICHIKAWATableAdapters
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -817,16 +817,16 @@ Namespace DataSet2TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class M_TORTableAdapter
+    Partial Public Class M_TOR_ICHKAKWATableAdapter
         Inherits Global.System.ComponentModel.Component
         
-        Private WithEvents _adapter As Global.System.Data.OracleClient.OracleDataAdapter
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
         
-        Private _connection As Global.System.Data.OracleClient.OracleConnection
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
         
-        Private _transaction As Global.System.Data.OracleClient.OracleTransaction
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
         
-        Private _commandCollection() As Global.System.Data.OracleClient.OracleCommand
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
         
         Private _clearBeforeFill As Boolean
         
@@ -839,7 +839,7 @@ Namespace DataSet2TableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.OracleClient.OracleDataAdapter
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
             Get
                 If (Me._adapter Is Nothing) Then
                     Me.InitAdapter
@@ -850,7 +850,7 @@ Namespace DataSet2TableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.OracleClient.OracleConnection
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -871,7 +871,7 @@ Namespace DataSet2TableAdapters
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.OracleClient.OracleCommand).Connection = value
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -880,7 +880,7 @@ Namespace DataSet2TableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.OracleClient.OracleTransaction
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
             Get
                 Return Me._transaction
             End Get
@@ -908,7 +908,7 @@ Namespace DataSet2TableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.OracleClient.OracleCommand()
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
             Get
                 If (Me._commandCollection Is Nothing) Then
                     Me.InitCommandCollection
@@ -931,10 +931,10 @@ Namespace DataSet2TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.OracleClient.OracleDataAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "M_TOR"
+            tableMapping.DataSetTable = "M_TOR_ICHKAKWA"
             tableMapping.ColumnMappings.Add("CODE", "CODE")
             tableMapping.ColumnMappings.Add("NAME", "NAME")
             tableMapping.ColumnMappings.Add("KANA", "KANA")
@@ -942,81 +942,22 @@ Namespace DataSet2TableAdapters
             tableMapping.ColumnMappings.Add("ADDRESS2", "ADDRESS2")
             tableMapping.ColumnMappings.Add("TEL", "TEL")
             Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.OracleClient.OracleCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM ""CAP21_01"".""M_TOR"" WHERE ((""CODE"" = :Original_CODE) AND ((:IsNull_NAM"& _ 
-                "E = 1 AND ""NAME"" IS NULL) OR (""NAME"" = :Original_NAME)) AND ((:IsNull_KANA = 1 A"& _ 
-                "ND ""KANA"" IS NULL) OR (""KANA"" = :Original_KANA)) AND ((:IsNull_ADDRESS1 = 1 AND "& _ 
-                """ADDRESS1"" IS NULL) OR (""ADDRESS1"" = :Original_ADDRESS1)) AND ((:IsNull_ADDRESS2"& _ 
-                " = 1 AND ""ADDRESS2"" IS NULL) OR (""ADDRESS2"" = :Original_ADDRESS2)) AND ((:IsNull"& _ 
-                "_TEL = 1 AND ""TEL"" IS NULL) OR (""TEL"" = :Original_TEL)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_CODE", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "CODE", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_NAME", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_NAME", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_KANA", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_KANA", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_ADDRESS1", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_ADDRESS1", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_ADDRESS2", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_ADDRESS2", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_TEL", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_TEL", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.InsertCommand = New Global.System.Data.OracleClient.OracleCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO ""CAP21_01"".""M_TOR"" (""CODE"", ""NAME"", ""KANA"", ""ADDRESS1"", ""ADDRESS2"", """& _ 
-                "TEL"") VALUES (:CODE, :NAME, :KANA, :ADDRESS1, :ADDRESS2, :TEL)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("CODE", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "CODE", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("NAME", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("KANA", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("ADDRESS1", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("ADDRESS2", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("TEL", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand = New Global.System.Data.OracleClient.OracleCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE ""CAP21_01"".""M_TOR"" SET ""CODE"" = :CODE, ""NAME"" = :NAME, ""KANA"" = :KANA, ""AD"& _ 
-                "DRESS1"" = :ADDRESS1, ""ADDRESS2"" = :ADDRESS2, ""TEL"" = :TEL WHERE ((""CODE"" = :Orig"& _ 
-                "inal_CODE) AND ((:IsNull_NAME = 1 AND ""NAME"" IS NULL) OR (""NAME"" = :Original_NAM"& _ 
-                "E)) AND ((:IsNull_KANA = 1 AND ""KANA"" IS NULL) OR (""KANA"" = :Original_KANA)) AND"& _ 
-                " ((:IsNull_ADDRESS1 = 1 AND ""ADDRESS1"" IS NULL) OR (""ADDRESS1"" = :Original_ADDRE"& _ 
-                "SS1)) AND ((:IsNull_ADDRESS2 = 1 AND ""ADDRESS2"" IS NULL) OR (""ADDRESS2"" = :Origi"& _ 
-                "nal_ADDRESS2)) AND ((:IsNull_TEL = 1 AND ""TEL"" IS NULL) OR (""TEL"" = :Original_TE"& _ 
-                "L)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("CODE", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "CODE", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("NAME", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("KANA", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("ADDRESS1", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("ADDRESS2", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("TEL", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_CODE", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "CODE", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_NAME", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_NAME", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "NAME", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_KANA", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_KANA", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "KANA", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_ADDRESS1", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_ADDRESS1", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS1", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_ADDRESS2", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_ADDRESS2", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "ADDRESS2", Global.System.Data.DataRowVersion.Original, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("IsNull_TEL", Global.System.Data.OracleClient.OracleType.Int32, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OracleClient.OracleParameter("Original_TEL", Global.System.Data.OracleClient.OracleType.VarChar, 0, Global.System.Data.ParameterDirection.Input, "TEL", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
-            Me._connection = New Global.System.Data.OracleClient.OracleConnection()
-            Me._connection.ConnectionString = Global.予算管理システム_仮_.My.MySettings.Default.ConnectionString
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.予算管理システム_仮_.My.MySettings.Default.SystemSql
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OracleClient.OracleCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.OracleClient.OracleCommand()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL FROM CAP21_01.M_TOR"
+            Me._commandCollection(0).CommandText = "SELECT CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL FROM dbo.M_TOR_ICHKAKWA"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1024,7 +965,7 @@ Namespace DataSet2TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet2.M_TORDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As M_TOR_ICHIKAWA.M_TOR_ICHKAKWADataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -1037,247 +978,11 @@ Namespace DataSet2TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DataSet2.M_TORDataTable
+        Public Overloads Overridable Function GetData() As M_TOR_ICHIKAWA.M_TOR_ICHKAKWADataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As DataSet2.M_TORDataTable = New DataSet2.M_TORDataTable()
+            Dim dataTable As M_TOR_ICHIKAWA.M_TOR_ICHKAKWADataTable = New M_TOR_ICHIKAWA.M_TOR_ICHKAKWADataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DataSet2.M_TORDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As DataSet2) As Integer
-            Return Me.Adapter.Update(dataSet, "M_TOR")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_CODE As String, ByVal Original_NAME As String, ByVal Original_KANA As String, ByVal Original_ADDRESS1 As String, ByVal Original_ADDRESS2 As String, ByVal Original_TEL As String) As Integer
-            If (Original_CODE Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CODE")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_CODE,String)
-            End If
-            If (Original_NAME Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_NAME,String)
-            End If
-            If (Original_KANA Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_KANA,String)
-            End If
-            If (Original_ADDRESS1 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_ADDRESS1,String)
-            End If
-            If (Original_ADDRESS2 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ADDRESS2,String)
-            End If
-            If (Original_TEL Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_TEL,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal CODE As String, ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String) As Integer
-            If (CODE Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CODE")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(CODE,String)
-            End If
-            If (NAME Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(NAME,String)
-            End If
-            If (KANA Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(KANA,String)
-            End If
-            If (ADDRESS1 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(ADDRESS1,String)
-            End If
-            If (ADDRESS2 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(ADDRESS2,String)
-            End If
-            If (TEL Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(TEL,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal CODE As String, ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String, ByVal Original_CODE As String, ByVal Original_NAME As String, ByVal Original_KANA As String, ByVal Original_ADDRESS1 As String, ByVal Original_ADDRESS2 As String, ByVal Original_TEL As String) As Integer
-            If (CODE Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CODE")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(CODE,String)
-            End If
-            If (NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(NAME,String)
-            End If
-            If (KANA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(KANA,String)
-            End If
-            If (ADDRESS1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ADDRESS1,String)
-            End If
-            If (ADDRESS2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(ADDRESS2,String)
-            End If
-            If (TEL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(TEL,String)
-            End If
-            If (Original_CODE Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_CODE")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_CODE,String)
-            End If
-            If (Original_NAME Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_NAME,String)
-            End If
-            If (Original_KANA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_KANA,String)
-            End If
-            If (Original_ADDRESS1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_ADDRESS1,String)
-            End If
-            If (Original_ADDRESS2 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_ADDRESS2,String)
-            End If
-            If (Original_TEL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_TEL,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String, ByVal Original_CODE As String, ByVal Original_NAME As String, ByVal Original_KANA As String, ByVal Original_ADDRESS1 As String, ByVal Original_ADDRESS2 As String, ByVal Original_TEL As String) As Integer
-            Return Me.Update(Original_CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL, Original_CODE, Original_NAME, Original_KANA, Original_ADDRESS1, Original_ADDRESS2, Original_TEL)
         End Function
     End Class
     
@@ -1294,8 +999,6 @@ Namespace DataSet2TableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _m_TORTableAdapter As M_TORTableAdapter
-        
         Private _backupDataSetBeforeUpdate As Boolean
         
         Private _connection As Global.System.Data.IDbConnection
@@ -1308,20 +1011,6 @@ Namespace DataSet2TableAdapters
             End Get
             Set
                 Me._updateOrder = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property M_TORTableAdapter() As M_TORTableAdapter
-            Get
-                Return Me._m_TORTableAdapter
-            End Get
-            Set
-                Me._m_TORTableAdapter = value
             End Set
         End Property
         
@@ -1344,10 +1033,6 @@ Namespace DataSet2TableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._m_TORTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._m_TORTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._m_TORTableAdapter.Connection
-                End If
                 Return Nothing
             End Get
             Set
@@ -1361,9 +1046,6 @@ Namespace DataSet2TableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
                 Return count
             End Get
         End Property
@@ -1373,17 +1055,8 @@ Namespace DataSet2TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateUpdatedRows(ByVal dataSet As DataSet2, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateUpdatedRows(ByVal dataSet As M_TOR_ICHIKAWA, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.M_TOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._m_TORTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -1392,16 +1065,8 @@ Namespace DataSet2TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateInsertedRows(ByVal dataSet As DataSet2, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateInsertedRows(ByVal dataSet As M_TOR_ICHIKAWA, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.M_TOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._m_TORTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -1410,16 +1075,8 @@ Namespace DataSet2TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Function UpdateDeletedRows(ByVal dataSet As DataSet2, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
+        Private Function UpdateDeletedRows(ByVal dataSet As M_TOR_ICHIKAWA, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.M_TOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._m_TORTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -1454,16 +1111,12 @@ Namespace DataSet2TableAdapters
         '''</summary>
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overridable Function UpdateAll(ByVal dataSet As DataSet2) As Integer
+        Public Overridable Function UpdateAll(ByVal dataSet As M_TOR_ICHIKAWA) As Integer
             If (dataSet Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("dataSet")
             End If
             If (dataSet.HasChanges = false) Then
                 Return 0
-            End If
-            If ((Not (Me._m_TORTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._m_TORTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("TableAdapterManager で管理されるすべての TableAdapter は同一の接続文字列を使用する必要があります。")
             End If
             Dim workConnection As Global.System.Data.IDbConnection = Me.Connection
             If (workConnection Is Nothing) Then
@@ -1496,15 +1149,6 @@ Namespace DataSet2TableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._m_TORTableAdapter, Me._m_TORTableAdapter.Connection)
-                    Me._m_TORTableAdapter.Connection = CType(workConnection,Global.System.Data.OracleClient.OracleConnection)
-                    Me._m_TORTableAdapter.Transaction = CType(workTransaction,Global.System.Data.OracleClient.OracleTransaction)
-                    If Me._m_TORTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._m_TORTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._m_TORTableAdapter.Adapter)
-                    End If
-                End If
                 '
                 '---- Perform updates -----------
                 '
@@ -1564,10 +1208,6 @@ Namespace DataSet2TableAdapters
             Finally
                 If workConnOpened Then
                     workConnection.Close
-                End If
-                If (Not (Me._m_TORTableAdapter) Is Nothing) Then
-                    Me._m_TORTableAdapter.Connection = CType(revertConnections(Me._m_TORTableAdapter),Global.System.Data.OracleClient.OracleConnection)
-                    Me._m_TORTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
