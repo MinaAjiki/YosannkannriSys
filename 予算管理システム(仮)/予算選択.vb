@@ -6,8 +6,8 @@ Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Public Class 予算選択
     Private Sub OK_Click(sender As Object, e As EventArgs) Handles OK.Click
-        Try
-            If ホーム.Connection.State = ConnectionState.Open Then
+        'Try
+        If ホーム.Connection.State = ConnectionState.Open Then
                 ホーム.Connection.Close()
             End If
 
@@ -17,12 +17,87 @@ Public Class 予算選択
 
             ホーム.Enabled = True
 
-            If Contract_NoList.SelectedItem = "当初" Then
-                ホーム.Text = "予算管理システム(当初)" & FilePath.Text
-                ホーム.BudgetNo = 0
-            ElseIf Contract_NoList.SelectedItem = "変更予算作成" Then
+        If Contract_NoList.SelectedItem = "当初" Then
+            ホーム.Text = "予算管理システム(当初)" & FilePath.Text
+            ホーム.BudgetNo = 0
+        ElseIf Contract_NoList.SelectedItem = "変更予算作成" Then
+            ホーム.Transaction = ホーム.Connection.BeginTransaction
 
-            Else
+            ホーム.Sql.Transaction = ホーム.Transaction
+
+            ホーム.Sql.CommandText = "SELECT MAX(budget_no) FROM budget_summary"
+                Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
+
+                ホーム.Sql.CommandText = "SELECT * INTO #tmp_item FROM budget_summary WHERE budget_no=" & MaxNo
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "UPDATE #tmp_item SET budget_no =" & MaxNo + 1
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "INSERT INTO budget_summary SELECT * FROM #tmp_item"
+                ホーム.Sql.ExecuteNonQuery()
+
+            ホーム.Sql.CommandText = "SELECT budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,prjctcst_quanity,
+                                        prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea 
+                                        INTO #projectcost_item FROM project_costs WHERE budget_no=" & MaxNo
+            ホーム.Sql.ExecuteNonQuery()
+
+            ホーム.Sql.CommandText = "SELECT prjctcst_id,prjctcst_no INTO #old_item FROM project_costs WHERE budget_no=" & MaxNo
+            ホーム.Sql.ExecuteNonQuery()
+
+            ホーム.Sql.CommandText = "UPDATE #projectcost_item SET budget_no =" & MaxNo + 1
+                ホーム.Sql.ExecuteNonQuery()
+
+            ホーム.Sql.CommandText = "CREATE TABLE #OutputTbl (new_id INT,no INT,classcode INT)"
+            ホーム.Sql.ExecuteNonQuery()
+
+            ホーム.Sql.CommandText = "INSERT INTO project_costs OUTPUT inserted.prjctcst_id,inserted.prjctcst_no INTO #OutputTbl(new_id,no,classcode) SELECT * FROM #projectcost_item"
+            ホーム.Sql.ExecuteNonQuery()
+
+
+            'ホーム.Sql.CommandText = "UPDATE #OutputTbl SET #OutputTbl.old_id = ( SELECT prjctcst_id FROM #old_item WHERE #OutputTbl.no=#old_item.prjctcst_no)"
+            'ホーム.Sql.ExecuteNonQuery()
+
+            Dim ProcessCommand As New SqlCommand
+            Dim ProcessConnection As New SqlConnection
+            ProcessConnection.ConnectionString = ホーム.Connection.ConnectionString
+            ProcessConnection.Open()
+            ProcessCommand.Connection = ProcessConnection
+
+            ホーム.Sql.CommandText = "SELECT * FROM #OutputTbl"
+            Dim OldIDSelect As SqlDataReader = ホーム.Sql.ExecuteReader
+            While OldIDSelect.Read
+
+                'ProcessCommand.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & MaxNo & " AND prjctcst_no=" & OldIDSelect.Item("no")
+                'Dim OldID As Integer = ProcessCommand.ExecuteScalar
+
+                'ProcessCommand.CommandText = "SELECT * INTO #prjctcst_bd FROM project_cost_breakdowns WHERE prjctcst_id=" & PrjctCstUpdt.Item("prjctcst_id")
+                'ProcessCommand.ExecuteNonQuery()
+
+                'ProcessCommand.CommandText = "UPDATE #prjctcst_bd SET prjctcst_id=" & PrjctCstUpdt.Item("new_id")
+                ProcessCommand.ExecuteNonQuery()
+
+                ProcessCommand.CommandText = "INSERT INTO project_cost_breakdowns SELECT * FROM #prjctcst_bd"
+                ProcessCommand.ExecuteNonQuery()
+
+            End While
+            OldIDSelect.Close()
+
+            ホーム.Sql.CommandText = "SELECT * FROM #OutputTbl"
+            Dim PrjctCstUpdt As SqlDataReader = ホーム.Sql.ExecuteReader
+                While PrjctCstUpdt.Read
+
+
+
+            End While
+                PrjctCstUpdt.Close()
+
+
+            ホーム.Transaction.Commit()
+
+
+
+        Else
                 ホーム.Text = "予算管理システム" & "(" & Contract_NoList.SelectedItem & ")" & FilePath.Text
                 Dim BudgetNo As String = Contract_NoList.SelectedItem
                 BudgetNo = BudgetNo.Replace("第", "")
@@ -44,12 +119,12 @@ Public Class 予算選択
 
             Me.Close()
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
     End Sub
 
     Private Sub 予算選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load

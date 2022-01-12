@@ -130,6 +130,12 @@ Public Class ホーム
     End Sub
 
     Private Sub 開く_Click(sender As Object, e As ClickEventArgs) Handles 開く.Click
+        If FormPanel.Controls.Count > 0 Then
+            Dim FormClose As String = ""
+
+            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+            FormClose = FormCloseLoad.FormCheck
+        End If
         DB選択.Show()
     End Sub
 
@@ -260,6 +266,14 @@ Public Class ホーム
     End Sub
 
     Private Sub 新規作成_Click(sender As Object, e As ClickEventArgs) Handles 新規作成.Click
+
+        If FormPanel.Controls.Count > 0 Then
+            Dim FormClose As String = ""
+
+            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+            FormClose = FormCloseLoad.FormCheck
+        End If
+
         If MsgBox("新しい現場データファイルを作成します。", MsgBoxStyle.OkCancel, "新規作成") = MsgBoxResult.Ok Then
             CreateFileDialog.ShowDialog()
         End If
@@ -281,6 +295,10 @@ Public Class ホーム
             End If
 
             Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
+            If Not FilePath.Last = "\" Then
+                FilePath = FilePath & "\"
+            End If
+
             Dim FileName As String = IO.Path.GetFileName(CreateFileDialog.FileName)
 
             If Connection.State = ConnectionState.Open Then
@@ -314,11 +332,6 @@ Public Class ホーム
             SystemMdf.Parameters("@filepath").Value = FilePath
             SystemMdf.Parameters("@filedate").Value = Today
             SystemMdf.ExecuteNonQuery()
-
-            If Connection.State = ConnectionState.Open Then
-                Connection.Close()
-            End If
-
 
 
             Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"

@@ -118,11 +118,6 @@ Public Class DB選択
             ホーム.UserDataPath = OpenFilePath
             ホーム.UserDataName = OpenFileName
 
-            Dim CancelClick As String = ""
-
-            Dim CancelClickLoad As New CancelClick(Me)
-            CancelClick = CancelClickLoad.ModifyCheck
-
             If DataCount >= 1 Then
                 予算選択.Show()
 
@@ -177,9 +172,6 @@ Public Class DB選択
 
             Me.Close()
 
-            Dim CancelClick As String = ""
-            Dim CancelClickLoad As New CancelClick(Me)
-            CancelClick = CancelClickLoad.ModifyCheck
 
             If DataCount >= 1 Then
                 予算選択.Show()

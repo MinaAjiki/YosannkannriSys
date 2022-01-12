@@ -498,12 +498,10 @@ Partial Class 予算総括入力
         Me.Amount.DataType = GetType(Single)
         Me.Amount.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.Amount.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.Amount.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+        Me.Amount.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
-        Me.Amount.EditFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
         Me.Amount.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
@@ -1338,6 +1336,7 @@ Partial Class 予算総括入力
         Me.ProjectAmount.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.ProjectAmount.Location = New System.Drawing.Point(136, 24)
         Me.ProjectAmount.Name = "ProjectAmount"
+        Me.ProjectAmount.NullText = "0"
         Me.ProjectAmount.Size = New System.Drawing.Size(120, 20)
         Me.ProjectAmount.TabIndex = 88
         Me.ProjectAmount.Tag = Nothing
