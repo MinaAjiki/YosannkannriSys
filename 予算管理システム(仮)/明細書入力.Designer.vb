@@ -61,7 +61,6 @@ Partial Class 明細書入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
-        Me.DataSet11 = New 予算管理システム_仮_.DataSet1()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +76,6 @@ Partial Class 明細書入力
         Me.C1SplitterPanel1.SuspendLayout()
         Me.SwitchingPanel.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
-        CType(Me.DataSet11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -127,6 +125,7 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.右クリックメニュー
+        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.DetailsList.Location = New System.Drawing.Point(10, 65)
@@ -645,11 +644,6 @@ Partial Class 明細書入力
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
         '
-        'DataSet11
-        '
-        Me.DataSet11.DataSetName = "DataSet1"
-        Me.DataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         '明細書入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -678,7 +672,6 @@ Partial Class 明細書入力
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.SwitchingPanel.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
-        CType(Me.DataSet11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -719,6 +712,5 @@ Partial Class 明細書入力
     Friend WithEvents ReferenceMenu As ToolStripMenuItem
     Friend WithEvents ItemSelect As Button
     Friend WithEvents Reference As Button
-    Friend WithEvents DataSet11 As DataSet1
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
 End Class

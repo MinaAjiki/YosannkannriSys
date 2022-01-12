@@ -23,8 +23,8 @@ Public Class ホーム
     Public Transaction As SqlTransaction
     Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
-    Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
+    'Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
+    'Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
     Public Modified As String = "False"                                    'データ修正判断
     Public lworktypecode As Integer
     Public lworktypename As String
@@ -83,20 +83,23 @@ Public Class ホーム
 
                     End If
 
-                    CAP21Connection.Open()
-                    CAP21CommandText.Connection = CAP21Connection
 
-                    CAP21CommandText.CommandText = "SELECT NAME FROM M_TANT WHERE NON_SEARCH=0 AND TANTO_KB=0"
-                    Dim M_TANTReader As OdbcDataReader = CAP21CommandText.ExecuteReader
-                    While M_TANTReader.Read
-                        AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
-                    End While
-                    M_TANTReader.Close()
+                    Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=11"
+                    Dim Company As String = Sql.ExecuteScalar
+
+                    If Company <> "" Then
+                        SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
+                        Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
+                        While M_TANTReader.Read
+                            AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
+                        End While
+                        M_TANTReader.Close()
+                    End If
 
                 Else
 
 
-                    Me.Enabled = True
+                        Me.Enabled = True
                     予算.Enabled = False
                     見積.Enabled = False
                     外注管理.Enabled = False

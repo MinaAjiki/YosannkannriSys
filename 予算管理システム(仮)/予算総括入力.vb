@@ -192,7 +192,7 @@ Public Class 予算総括入力
                 Dim OutsourcersReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While OutsourcersReader.Read
                     DataCount += 1
-
+                    OutsoucersList(DataCount, 1) = OutsourcersReader.Item("outsrcr_id")
                     OutsoucersList(DataCount, 3) = OutsourcersReader.Item("outsrcr_code")
                     OutsoucersList(DataCount, 4) = OutsourcersReader.Item("outsrcr_name")
                     OutsoucersList(DataCount, 5) = OutsourcersReader.Item("worktype")
@@ -378,8 +378,11 @@ Public Class 予算総括入力
             ホーム.Sql.Parameters.Add(New SqlParameter("@staff3", SqlDbType.NVarChar)).Value = Staff3.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@staff4", SqlDbType.NVarChar)).Value = Staff4.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@bdgtdprtmnt", SqlDbType.NVarChar)).Value = BdgtDprtmnt.Text
-            ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = Decimal.Parse(ExpenseRate.Value)
-
+            If IsDBNull(ExpenseRate.Value) = False Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = Decimal.Parse(ExpenseRate.Value)
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expenserate", SqlDbType.Decimal)).Value = 0
+            End If
             If DataCount >= 1 Then
 
                 ホーム.Sql.CommandText = "UPDATE budget_summary SET prjct_term_s=@terms,prjct_term_e=@terme,cntrct_amount=@amount,prjct_category=@category 
@@ -468,7 +471,7 @@ Public Class 予算総括入力
 
     End Sub
 
-    Private Sub ProjectCode_ValueChanged(sender As Object, e As EventArgs) Handles ProjectCode.ValueChanged, TermS.ValueChanged, TermE.ValueChanged, Summary.ValueChanged, SubContractRate.ValueChanged, Staff4.ValueChanged, Staff3.ValueChanged, Staff2.ValueChanged, Staff1.ValueChanged, Remarks.ValueChanged, ProjectName.ValueChanged, ProjectAddress.ValueChanged, Manager.ValueChanged, Expert3.ValueChanged, Expert2.ValueChanged, Expert1.ValueChanged, ExpenseRate.ValueChanged, Director.ValueChanged, Department.ValueChanged, Contractee.ValueChanged, CnsdrtnDate.ValueChanged, Chief.ValueChanged, Category.ValueChanged, Year.ValueChanged, Company.ValueChanged
+    Private Sub ProjectCode_ValueChanged(sender As Object, e As EventArgs) Handles ProjectCode.ValueChanged, TermS.ValueChanged, TermE.ValueChanged, Summary.ValueChanged, SubContractRate.ValueChanged, Staff4.ValueChanged, Staff3.ValueChanged, Staff2.ValueChanged, Staff1.ValueChanged, Remarks.ValueChanged, ProjectName.ValueChanged, ProjectAddress.ValueChanged, Manager.ValueChanged, Expert3.ValueChanged, Expert2.ValueChanged, Expert1.ValueChanged, ExpenseRate.ValueChanged, Director.ValueChanged, Department.ValueChanged, Contractee.ValueChanged, Chief.ValueChanged, Category.ValueChanged, Year.ValueChanged, Company.ValueChanged
         Try
             If FormLoad = "False" Then
                 ホーム.Modified = "True"
@@ -511,10 +514,11 @@ Public Class 予算総括入力
     Private Sub Amount_ValueChanged(sender As Object, e As EventArgs) Handles Amount.ValueChanged
 
         Try
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
-            Dim DetailsCount As Integer = ホーム.Sql.ExecuteScalar
-
             If FormLoad = "False" Then
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
+                Dim DetailsCount As Integer = ホーム.Sql.ExecuteScalar
+
+
                 ホーム.Modified = "True"
                 If IsDBNull(Amount.Value) = False AndAlso DetailsCount > 0 Then
                     ProjectAmount.Value = Amount.Value
