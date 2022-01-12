@@ -152,31 +152,36 @@
     <Compile Include="Class\CancelClick.vb" />
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\Reference.vb" />
-    <Compile Include="DataSet1.Designer.vb">
+    <Compile Include="M_TOR_GIFUIC.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <DependentUpon>M_TOR_GIFUIC.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet2.Designer.vb">
+    <Compile Include="M_TOR_HIDAKA.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet2.xsd</DependentUpon>
+      <DependentUpon>M_TOR_HIDAKA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="M_TOR_HIROKOJI.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M_TOR_HIROKOJI.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="M_TOR_ICHIKAWA.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M_TOR_ICHIKAWA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="M_TOR_TOMOE.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </Compile>
     <Compile Include="代価内訳.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="岐阜アイシーDB.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="広小路建設.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>広小路建設.xsd</DependentUpon>
     </Compile>
     <Compile Include="作成代価選択.Designer.vb">
       <DependentUpon>作成代価選択.vb</DependentUpon>
@@ -356,11 +361,6 @@
     <Compile Include="進行状況.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="飛高建設DB.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>飛高建設DB.xsd</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="代価内訳.resx">
@@ -457,28 +457,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet2.xsc">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSet2.xss">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -492,84 +470,64 @@
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ2.c1theme" />
+    <None Include="M_TOR_GIFUIC.xsc">
+      <DependentUpon>M_TOR_GIFUIC.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_GIFUIC.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>M_TOR_GIFUIC.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="M_TOR_GIFUIC.xss">
+      <DependentUpon>M_TOR_GIFUIC.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_HIDAKA.xsc">
+      <DependentUpon>M_TOR_HIDAKA.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_HIDAKA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>M_TOR_HIDAKA.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="M_TOR_HIDAKA.xss">
+      <DependentUpon>M_TOR_HIDAKA.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_HIROKOJI.xsc">
+      <DependentUpon>M_TOR_HIROKOJI.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_HIROKOJI.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>M_TOR_HIROKOJI.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="M_TOR_HIROKOJI.xss">
+      <DependentUpon>M_TOR_HIROKOJI.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_ICHIKAWA.xsc">
+      <DependentUpon>M_TOR_ICHIKAWA.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_ICHIKAWA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>M_TOR_ICHIKAWA.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="M_TOR_ICHIKAWA.xss">
+      <DependentUpon>M_TOR_ICHIKAWA.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_TOMOE.xsc">
+      <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
+    </None>
+    <None Include="M_TOR_TOMOE.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>M_TOR_TOMOE.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="M_TOR_TOMOE.xss">
+      <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
+    </None>
     <None Include="予算管理システムレポート.flxr" />
-    <None Include="岐阜アイシーDB.xsc">
-      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
-    </None>
-    <None Include="岐阜アイシーDB.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>岐阜アイシーDB.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="岐阜アイシーDB.xss">
-      <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
-    </None>
-    <None Include="広小路建設.xsc">
-      <DependentUpon>広小路建設.xsd</DependentUpon>
-    </None>
-    <None Include="広小路建設.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>広小路建設.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="広小路建設.xss">
-      <DependentUpon>広小路建設.xsd</DependentUpon>
-    </None>
-    <None Include="飛高建設DB.xsc">
-      <DependentUpon>飛高建設DB.xsd</DependentUpon>
-    </None>
-    <None Include="飛高建設DB.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>飛高建設DB.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="飛高建設DB.xss">
-      <DependentUpon>飛高建設DB.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\system.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Debug\system_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>system.mdf</DependentUpon>
-    </Content>
-    <Content Include="bin\Debug\user.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Debug\user_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>user.mdf</DependentUpon>
-    </Content>
-    <Content Include="bin\Release\system.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Release\system_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>system.mdf</DependentUpon>
-    </Content>
-    <Content Include="bin\Release\user.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Release\user_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>user.mdf</DependentUpon>
-    </Content>
-    <Content Include="system.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="system_log.ldf">
-      <DependentUpon>system.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_log.ldf">
-      <DependentUpon>user.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
@@ -594,6 +552,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

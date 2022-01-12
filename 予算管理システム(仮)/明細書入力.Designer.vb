@@ -61,6 +61,7 @@ Partial Class 明細書入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
+
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +77,7 @@ Partial Class 明細書入力
         Me.C1SplitterPanel1.SuspendLayout()
         Me.SwitchingPanel.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
+
         Me.SuspendLayout()
         '
         'HeadLine
@@ -644,6 +646,7 @@ Partial Class 明細書入力
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
         '
+
         '明細書入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -672,6 +675,7 @@ Partial Class 明細書入力
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.SwitchingPanel.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
+
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -712,5 +716,6 @@ Partial Class 明細書入力
     Friend WithEvents ReferenceMenu As ToolStripMenuItem
     Friend WithEvents ItemSelect As Button
     Friend WithEvents Reference As Button
+
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
 End Class

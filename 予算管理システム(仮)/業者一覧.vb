@@ -7,24 +7,18 @@ Public Class 業者一覧
     Public SelectRowIndex As Integer '親フォームで選択された行インデックス
 
     Private Sub 業者一覧_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Try
-            'TODO: このコード行はデータを '広小路建設.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            Me.M_TORTableAdapter4.Fill(Me.広小路建設.M_TOR)
-            'TODO: このコード行はデータを '飛高建設DB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            Me.M_TORTableAdapter3.Fill(Me.飛高建設DB.M_TOR)
-            'TODO: このコード行はデータを '岐阜アイシーDB.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            Me.M_TORTableAdapter2.Fill(Me.岐阜アイシーDB.M_TOR)
-            'TODO: このコード行はデータを 'DataSet2.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            Me.M_TORTableAdapter1.Fill(Me.DataSet2.M_TOR)
-            'TODO: このコード行はデータを 'DataSet1.M_TOR' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            Me.M_TORTableAdapter.Fill(Me.DataSet1.M_TOR)
 
-            'ホーム.Connection.Close()
-            'ホーム.Connection.Dispose()
-            'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & "" & ホーム.UserDataName & ";Integrated Security=True"
-            'ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\現場データ.mdf;Integrated Security=True"
-            'ホーム.Connection.Open()
-            'ホーム.SystemSql.Connection = ホーム.Connection
+        Try
+            'TODO: このコード行はデータを 'M_TOR_HIROKOJI._M_TOR_HIROKOJI' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TOR_HIROKOJITableAdapter.Fill(Me.M_TOR_HIROKOJI._M_TOR_HIROKOJI)
+            'TODO: このコード行はデータを 'M_TOR_HIDAKA._M_TOR_HIDAKA' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TOR_HIDAKATableAdapter.Fill(Me.M_TOR_HIDAKA._M_TOR_HIDAKA)
+            'TODO: このコード行はデータを 'M_TOR_GIFUIC._M_TOR_GIFUIC' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TOR_GIFUICTableAdapter.Fill(Me.M_TOR_GIFUIC._M_TOR_GIFUIC)
+            'TODO: このコード行はデータを 'M_TOR_TOMOE._M_TOR_TOMOE' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TOR_TOMOETableAdapter.Fill(Me.M_TOR_TOMOE._M_TOR_TOMOE)
+            'TODO: このコード行はデータを 'M_TOR_ICHIKAWA.M_TOR_ICHKAKWA' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            Me.M_TOR_ICHKAKWATableAdapter.Fill(Me.M_TOR_ICHIKAWA.M_TOR_ICHKAKWA)
 
             ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
             Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
@@ -34,30 +28,30 @@ Public Class 業者一覧
                     MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
                     Me.Close()
                 ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "巴産業" Then
-                    VendorList.DataSource = MTORBindingSource2
+                    VendorList.DataSource = MTORTOMOEBindingSource
                 ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜アイシー" Then
-                    VendorList.DataSource = MTORBindingSource3
+                    VendorList.DataSource = MTORGIFUICBindingSource
                 ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜北建設" Then
                     VendorList.DataSource = Nothing
                     MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
                     Me.Close()
                 ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "飛高建設" Then
-                    VendorList.DataSource = MTORBindingSource4
+                    VendorList.DataSource = MTORHIDAKABindingSource
                 ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "広小路建設" Then
-                    VendorList.DataSource = MTORBindingSource5
+                    VendorList.DataSource = MTORHIROKOJIBindingSource
                 End If
             ElseIf Outsrcrcount = "巴産業" Then
-                VendorList.DataSource = MTORBindingSource2
+                VendorList.DataSource = MTORTOMOEBindingSource
             ElseIf Outsrcrcount = "岐阜アイシー" Then
-                VendorList.DataSource = MTORBindingSource3
+                VendorList.DataSource = MTORGIFUICBindingSource
             ElseIf Outsrcrcount = "岐阜北建設" Then
-                VendorList.DataSource = Nothing
-                MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
-                Me.Close()
+            VendorList.DataSource = Nothing
+            MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
+            Me.Close()
             ElseIf Outsrcrcount = "飛高建設" Then
-                VendorList.DataSource = MTORBindingSource4
+                VendorList.DataSource = MTORHIDAKABindingSource
             ElseIf Outsrcrcount = "広小路建設" Then
-                VendorList.DataSource = MTORBindingSource5
+                VendorList.DataSource = MTORHIROKOJIBindingSource
             End If
 
             VendorList.Cols(1).Width = 100
