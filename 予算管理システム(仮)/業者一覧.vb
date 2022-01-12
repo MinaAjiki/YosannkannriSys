@@ -29,22 +29,35 @@ Public Class 業者一覧
             ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
             Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
             If Outsrcrcount = Nothing Then
-                VendorList.DataSource = Nothing
-                MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
-                Me.Close()
-                If Outsrcrcount = "巴産業" Then
+                If Not ParentFormName = "予算総括入力" Then
+                    VendorList.DataSource = Nothing
+                    MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
+                    Me.Close()
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "巴産業" Then
                     VendorList.DataSource = MTORBindingSource2
-                ElseIf Outsrcrcount = "岐阜アイシー" Then
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜アイシー" Then
                     VendorList.DataSource = MTORBindingSource3
-                ElseIf Outsrcrcount = "岐阜北建設" Then
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜北建設" Then
                     VendorList.DataSource = Nothing
                     MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
                     Me.Close()
-                ElseIf Outsrcrcount = "飛高建設" Then
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "飛高建設" Then
                     VendorList.DataSource = MTORBindingSource4
-                ElseIf Outsrcrcount = "広小路建設" Then
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "広小路建設" Then
                     VendorList.DataSource = MTORBindingSource5
                 End If
+            ElseIf Outsrcrcount = "巴産業" Then
+                VendorList.DataSource = MTORBindingSource2
+            ElseIf Outsrcrcount = "岐阜アイシー" Then
+                VendorList.DataSource = MTORBindingSource3
+            ElseIf Outsrcrcount = "岐阜北建設" Then
+                VendorList.DataSource = Nothing
+                MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
+                Me.Close()
+            ElseIf Outsrcrcount = "飛高建設" Then
+                VendorList.DataSource = MTORBindingSource4
+            ElseIf Outsrcrcount = "広小路建設" Then
+                VendorList.DataSource = MTORBindingSource5
             End If
 
             VendorList.Cols(1).Width = 100

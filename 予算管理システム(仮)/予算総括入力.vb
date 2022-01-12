@@ -216,9 +216,14 @@ Public Class 予算総括入力
     End Sub
     Private Sub OutsoucersList_CellButtonClick(sender As Object, e As C1.Win.C1FlexGrid.RowColEventArgs) Handles OutsoucersList.CellButtonClick
         Try
-            業者一覧.ParentFormName = "予算総括入力"
-            業者一覧.Show()
-            業者一覧.SelectRowIndex = e.Row
+            If Company.Text <> "" Then
+                業者一覧.ParentFormName = "予算総括入力"
+                業者一覧.Show()
+                業者一覧.SelectRowIndex = e.Row
+            Else
+                MsgBox("会社名を選択して下さい。", MsgBoxStyle.Exclamation, "予算総括入力")
+                Exit Sub
+            End If
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -506,9 +511,12 @@ Public Class 予算総括入力
     Private Sub Amount_ValueChanged(sender As Object, e As EventArgs) Handles Amount.ValueChanged
 
         Try
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
+            Dim DetailsCount As Integer = ホーム.Sql.ExecuteScalar
+
             If FormLoad = "False" Then
                 ホーム.Modified = "True"
-                If IsDBNull(Amount.Value) = False Then
+                If IsDBNull(Amount.Value) = False AndAlso DetailsCount > 0 Then
                     ProjectAmount.Value = Amount.Value
                     ProfitAndLoss.Value = Amount.Value - ConstractionCost.Value
                     DrctCnstrctnCstRt.Value = Math.Round((DrctCnstrctnCstValue / Amount.Value) * 100, 1, MidpointRounding.AwayFromZero)
