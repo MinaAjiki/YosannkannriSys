@@ -338,61 +338,66 @@ Public Class 明細書入力
                 OutsoucerList.Visible = True
                 OutsoucerTotalList.Visible = True
 
-                ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-                Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                Dim TableDataCount As Integer = ホーム.Sql.ExecuteScalar
 
-                Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
-                Dim DataCount As Integer = 0
-                For OutsrcrCount As Integer = 1 To ColCount
-                    ホーム.Sql.Parameters.Clear()
-                    If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
-                        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
-                        Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+                If TableDataCount > 0 Then
+                    ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                    Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
 
-                        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid
-                        Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+                    Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
+                    Dim DataCount As Integer = 0
+                    For OutsrcrCount As Integer = 1 To ColCount
+                        ホーム.Sql.Parameters.Clear()
+                        If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                            Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
-                        If PlanCount > 0 Then
-                            Dim Total As Int64 = 0
-                            DataCount += 1
-                            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                                Dim dtlid As Integer = DetailsList(RowCount * 3, 1)
-                                ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & dtlid
-                                Dim PlanReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                                While PlanReader.Read
-                                    OutsoucerList((RowCount * 3), OutsrcrCount + 1) = PlanReader.Item("outsrcng_quanity")
-                                    Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, OutsrcrCount + 1)
-                                    Quanity.StyleNew.Format = "N1"
-                                    OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1) = PlanReader.Item("outsrcng_costea")
-                                    Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, OutsrcrCount + 1)
-                                    Costea.StyleNew.Format = "N0"
-                                    OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1) = Math.Floor((PlanReader.Item("outsrcng_quanity") * PlanReader.Item("outsrcng_costea")))
-                                    Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, OutsrcrCount + 1)
-                                    Amount.StyleNew.Format = "N0"
-                                    Total += OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1)
-                                End While
-                                PlanReader.Close()
-                            Next
+                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid
+                            Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                            OutsoucerTotalList(0, OutsrcrCount + 1) = Total
+                            If PlanCount > 0 Then
+                                Dim Total As Int64 = 0
+                                DataCount += 1
+                                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                                    Dim dtlid As Integer = DetailsList(RowCount * 3, 1)
+                                    ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & dtlid
+                                    Dim PlanReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                                    While PlanReader.Read
+                                        OutsoucerList((RowCount * 3), OutsrcrCount + 1) = PlanReader.Item("outsrcng_quanity")
+                                        Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, OutsrcrCount + 1)
+                                        Quanity.StyleNew.Format = "N1"
+                                        OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1) = PlanReader.Item("outsrcng_costea")
+                                        Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, OutsrcrCount + 1)
+                                        Costea.StyleNew.Format = "N0"
+                                        OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1) = Math.Floor((PlanReader.Item("outsrcng_quanity") * PlanReader.Item("outsrcng_costea")))
+                                        Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, OutsrcrCount + 1)
+                                        Amount.StyleNew.Format = "N0"
+                                        Total += OutsoucerList((RowCount * 3) + 2, OutsrcrCount + 1)
+                                    End While
+                                    PlanReader.Close()
+                                Next
+
+                                OutsoucerTotalList(0, OutsrcrCount + 1) = Total
+                            End If
                         End If
-                    End If
-                Next
-
-
-                Dim BlankCol As Integer = ((OutsoucerList.Cols.Count) - DataCount) - 2
-                For BlankLoop As Integer = 1 To BlankCol
-                    DataCount += 1
-                    For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                        Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, DataCount + 1)
-                        Quanity.StyleNew.Format = "N1"
-
-                        Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, DataCount + 1)
-                        Costea.StyleNew.Format = "N0"
-                        Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, DataCount + 1)
-                        Amount.StyleNew.Format = "N0"
                     Next
-                Next
+
+
+                    Dim BlankCol As Integer = ((OutsoucerList.Cols.Count) - DataCount) - 2
+                    For BlankLoop As Integer = 1 To BlankCol
+                        DataCount += 1
+                        For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                            Dim Quanity As CellRange = OutsoucerList.GetCellRange(RowCount * 3, DataCount + 1)
+                            Quanity.StyleNew.Format = "N1"
+
+                            Dim Costea As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 1, DataCount + 1)
+                            Costea.StyleNew.Format = "N0"
+                            Dim Amount As CellRange = OutsoucerList.GetCellRange((RowCount * 3) + 2, DataCount + 1)
+                            Amount.StyleNew.Format = "N0"
+                        Next
+                    Next
+                End If
             End If
 
         Catch ex As Exception
@@ -1465,52 +1470,58 @@ Public Class 明細書入力
                     ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode & " AND dtl_no=" & DetailsList(RowCount * 3, 3)
                     Dim detailid As Integer = ホーム.Sql.ExecuteScalar
 
-                    ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-                    Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                    Dim TableDataCount As Integer = ホーム.Sql.ExecuteScalar
+
+                    Dim MaxNo As Integer = 0
+                    If TableDataCount > 0 Then
+                        ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                        MaxNo = ホーム.Sql.ExecuteScalar
+                    End If
 
                     Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
-                    Dim DataCount As Integer = 0
-                    For OutsrcrCount As Integer = 1 To ColCount
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
-                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
-                            Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+                        Dim DataCount As Integer = 0
+                        For OutsrcrCount As Integer = 1 To ColCount
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                                ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                                Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
-                            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
-                            Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+                                ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                                Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
 
-                            If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
-                            Else
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
-                            End If
-                            If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
-                            Else
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
-                            End If
-                            If PlanCount = 0 Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
+                                If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                                Else
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
+                                End If
+                                If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                                Else
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
+                                End If
+                                If PlanCount = 0 Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
 
-                                ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
+                                    ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
                                                                    ,outsrcng_costea,created_date) 
                                                   VALUES (@budgetno,@outsrcno,@cstclsscode,@outsrcrid,@dtlid,@quanity,@costea,@createddate)"
-                            Else
-                                ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
+                                Else
+                                    ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
                                                      WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
-                            End If
-                            ホーム.Sql.ExecuteNonQuery()
+                                End If
+                                ホーム.Sql.ExecuteNonQuery()
 
-                        End If
-                    Next
-                End If
+                            End If
+                        Next
+                    End If
             Next
 
             ホーム.Transaction.Commit()

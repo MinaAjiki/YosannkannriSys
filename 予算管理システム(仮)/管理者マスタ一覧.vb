@@ -18,8 +18,8 @@ Public Class 管理者マスタ一覧
             While AdminReader.Read
                 Me.AdminList.Rows.Add()
                 AdminList(datacount, 1) = AdminReader.Item("admn_no")
-                ホーム.CAP21CommandText.CommandText = "SELECT NAME FROM M_TANT WHERE NON_SEARCH=0 AND TANTO_KB=0 AND CODE =" & AdminList(datacount, 1)
-                AdminList(datacount, 2) = ホーム.CAP21CommandText.ExecuteScalar
+                ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND CODE =" & AdminList(datacount, 1)
+                AdminList(datacount, 2) = ホーム.SystemSql.ExecuteScalar
                 datacount += 1
             End While
             AdminReader.Close()
@@ -73,8 +73,8 @@ Public Class 管理者マスタ一覧
     Private Sub AdminList_AfterEdit(sender As Object, e As RowColEventArgs) Handles AdminList.AfterEdit
         Try
             If AdminList(e.Row, 1) <> Nothing Then
-                ホーム.CAP21CommandText.CommandText = "SELECT NAME FROM M_TANT WHERE NON_SEARCH=0 AND TANTO_KB=0 AND CODE =" & AdminList(e.Row, 1)
-                AdminList(e.Row, 2) = ホーム.CAP21CommandText.ExecuteScalar
+                ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND AND CODE =" & AdminList(e.Row, 1)
+                AdminList(e.Row, 2) = ホーム.SystemSql.ExecuteScalar
                 If AdminList(e.Row, 2) = Nothing Then
                     MsgBox("登録できない番号です。", MsgBoxStyle.OkOnly, "エラー")
                     AdminList(e.Row, 1) = Nothing

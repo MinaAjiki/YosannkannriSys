@@ -37,7 +37,6 @@ Partial Class 予算総括入力
         Me.TermE = New C1.Win.C1Input.C1DateEdit()
         Me.Category = New C1.Win.C1Input.C1TextBox()
         Me.Amount = New C1.Win.C1Input.C1NumericEdit()
-        Me.CnsdrtnDate = New C1.Win.C1Input.C1DateEdit()
         Me.Summary = New C1.Win.C1Input.C1TextBox()
         Me.Remarks = New C1.Win.C1Input.C1TextBox()
         Me.SubContractRate = New C1.Win.C1Input.C1TextBox()
@@ -121,6 +120,7 @@ Partial Class 予算総括入力
         Me.CirculatorLabel5 = New System.Windows.Forms.Label()
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
         Me.Year = New C1.Win.C1Input.C1ComboBox()
+        Me.CnsdrtnDate = New C1.Win.C1Input.C1DateEdit()
         Me.RemarksLabel = New System.Windows.Forms.Label()
         Me.SubContractRateLabel = New System.Windows.Forms.Label()
         Me.OutsourcersLabel = New System.Windows.Forms.Label()
@@ -164,7 +164,6 @@ Partial Class 予算総括入力
         CType(Me.TermE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Category, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Amount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Summary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Remarks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SubContractRate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,6 +219,7 @@ Partial Class 予算総括入力
         CType(Me.Circulator1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Year, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -521,58 +521,6 @@ Partial Class 予算総括入力
         Me.Amount.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.Amount.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'CnsdrtnDate
-        '
-        Me.CnsdrtnDate.AutoSize = False
-        Me.CnsdrtnDate.BackColor = System.Drawing.Color.White
-        Me.CnsdrtnDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.CnsdrtnDate.Calendar.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.BackColor = System.Drawing.Color.White
-        Me.CnsdrtnDate.Calendar.DayNamesColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.DayNamesFont = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CnsdrtnDate.Calendar.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CnsdrtnDate.Calendar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.ShowClearButton = False
-        Me.CnsdrtnDate.Calendar.ShowTodayButton = False
-        Me.CnsdrtnDate.Calendar.TitleBackColor = System.Drawing.Color.White
-        Me.CnsdrtnDate.Calendar.TitleFont = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CnsdrtnDate.Calendar.TitleForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.TodayBorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.CnsdrtnDate.Calendar.TrailingForeColor = System.Drawing.SystemColors.GrayText
-        Me.CnsdrtnDate.Calendar.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.CnsdrtnDate.CustomFormat = "yyyy/MM/dd"
-        Me.CnsdrtnDate.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.CnsdrtnDate.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CnsdrtnDate.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
-        Me.CnsdrtnDate.EditFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CnsdrtnDate.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
-            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
-        Me.CnsdrtnDate.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.CnsdrtnDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CnsdrtnDate.GapHeight = 0
-        Me.CnsdrtnDate.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.CnsdrtnDate.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.CnsdrtnDate.Location = New System.Drawing.Point(323, 145)
-        Me.CnsdrtnDate.Name = "CnsdrtnDate"
-        Me.CnsdrtnDate.Size = New System.Drawing.Size(150, 20)
-        Me.CnsdrtnDate.TabIndex = 11
-        Me.CnsdrtnDate.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.CnsdrtnDate, "予算管理テーマ")
-        Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.CnsdrtnDate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
         'Summary
         '
         Me.Summary.BackColor = System.Drawing.Color.White
@@ -683,6 +631,8 @@ Partial Class 予算総括入力
         '
         'Chief
         '
+        Me.Chief.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Chief.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Chief.AutoSize = False
         Me.Chief.BackColor = System.Drawing.Color.White
         Me.Chief.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -699,6 +649,8 @@ Partial Class 予算総括入力
         '
         'Expert2
         '
+        Me.Expert2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Expert2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Expert2.AutoSize = False
         Me.Expert2.BackColor = System.Drawing.Color.White
         Me.Expert2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -715,6 +667,8 @@ Partial Class 予算総括入力
         '
         'Staff1
         '
+        Me.Staff1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Staff1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Staff1.AutoSize = False
         Me.Staff1.BackColor = System.Drawing.Color.White
         Me.Staff1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -731,6 +685,8 @@ Partial Class 予算総括入力
         '
         'Staff2
         '
+        Me.Staff2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Staff2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Staff2.AutoSize = False
         Me.Staff2.BackColor = System.Drawing.Color.White
         Me.Staff2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -747,6 +703,8 @@ Partial Class 予算総括入力
         '
         'Manager
         '
+        Me.Manager.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Manager.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Manager.AutoSize = False
         Me.Manager.BackColor = System.Drawing.Color.White
         Me.Manager.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -763,6 +721,8 @@ Partial Class 予算総括入力
         '
         'Expert1
         '
+        Me.Expert1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Expert1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Expert1.AutoSize = False
         Me.Expert1.BackColor = System.Drawing.Color.White
         Me.Expert1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -779,6 +739,8 @@ Partial Class 予算総括入力
         '
         'Expert3
         '
+        Me.Expert3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Expert3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Expert3.AutoSize = False
         Me.Expert3.BackColor = System.Drawing.Color.White
         Me.Expert3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -795,6 +757,8 @@ Partial Class 予算総括入力
         '
         'Staff3
         '
+        Me.Staff3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Staff3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Staff3.AutoSize = False
         Me.Staff3.BackColor = System.Drawing.Color.White
         Me.Staff3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -811,6 +775,8 @@ Partial Class 予算総括入力
         '
         'Staff4
         '
+        Me.Staff4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Staff4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Staff4.AutoSize = False
         Me.Staff4.BackColor = System.Drawing.Color.White
         Me.Staff4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2075,6 +2041,43 @@ Partial Class 予算総括入力
         Me.SystemTheme.SetTheme(Me.Year, "予算管理テーマ")
         Me.Year.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
+        'CnsdrtnDate
+        '
+        Me.CnsdrtnDate.AutoSize = False
+        Me.CnsdrtnDate.BackColor = System.Drawing.Color.White
+        Me.CnsdrtnDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.CnsdrtnDate.Calendar.ArrowColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.BackColor = System.Drawing.Color.White
+        Me.CnsdrtnDate.Calendar.DayNamesColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.DayNamesFont = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CnsdrtnDate.Calendar.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CnsdrtnDate.Calendar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.TitleBackColor = System.Drawing.Color.White
+        Me.CnsdrtnDate.Calendar.TitleFont = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CnsdrtnDate.Calendar.TitleForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.TodayBorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.CnsdrtnDate.Calendar.TrailingForeColor = System.Drawing.SystemColors.GrayText
+        Me.CnsdrtnDate.Calendar.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.CnsdrtnDate.CustomFormat = "yyyy/MM/dd"
+        Me.CnsdrtnDate.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CnsdrtnDate.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CnsdrtnDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.CnsdrtnDate.GapHeight = 0
+        Me.CnsdrtnDate.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CnsdrtnDate.Location = New System.Drawing.Point(323, 145)
+        Me.CnsdrtnDate.Name = "CnsdrtnDate"
+        Me.CnsdrtnDate.Size = New System.Drawing.Size(150, 20)
+        Me.CnsdrtnDate.TabIndex = 89
+        Me.CnsdrtnDate.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CnsdrtnDate, "予算管理テーマ")
+        Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
+        Me.CnsdrtnDate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'RemarksLabel
         '
         Me.RemarksLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
@@ -2134,6 +2137,7 @@ Partial Class 予算総括入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.CnsdrtnDate)
         Me.FormPanel.Controls.Add(Me.Year)
         Me.FormPanel.Controls.Add(Me.Label1)
         Me.FormPanel.Controls.Add(Me.GroupBox2)
@@ -2172,7 +2176,6 @@ Partial Class 予算総括入力
         Me.FormPanel.Controls.Add(Me.RemarksLabel)
         Me.FormPanel.Controls.Add(Me.Summary)
         Me.FormPanel.Controls.Add(Me.SummaryLabel)
-        Me.FormPanel.Controls.Add(Me.CnsdrtnDate)
         Me.FormPanel.Controls.Add(Me.CnsdrtnDateLabel)
         Me.FormPanel.Controls.Add(Me.Amount)
         Me.FormPanel.Controls.Add(Me.Category)
@@ -2570,7 +2573,6 @@ Partial Class 予算総括入力
         CType(Me.TermE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Category, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Amount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Summary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Remarks, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SubContractRate, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2626,6 +2628,7 @@ Partial Class 予算総括入力
         CType(Me.Circulator1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Year, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
@@ -2661,7 +2664,6 @@ Partial Class 予算総括入力
     Friend WithEvents Amount As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Summary As C1.Win.C1Input.C1TextBox
     Friend WithEvents SummaryLabel As Label
-    Friend WithEvents CnsdrtnDate As C1.Win.C1Input.C1DateEdit
     Friend WithEvents CnsdrtnDateLabel As Label
     Friend WithEvents SubContractRate As C1.Win.C1Input.C1TextBox
     Friend WithEvents SubContractRateLabel As Label
@@ -2764,4 +2766,5 @@ Partial Class 予算総括入力
     Friend WithEvents Label1 As Label
     Friend WithEvents C1ComboBox1 As C1.Win.C1Input.C1ComboBox
     Friend WithEvents OutsrcrToolTip As ToolTip
+    Friend WithEvents CnsdrtnDate As C1.Win.C1Input.C1DateEdit
 End Class

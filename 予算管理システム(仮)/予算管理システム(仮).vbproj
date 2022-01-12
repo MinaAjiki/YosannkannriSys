@@ -554,17 +554,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="予算管理システム%28system_mdf%29.mdf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
