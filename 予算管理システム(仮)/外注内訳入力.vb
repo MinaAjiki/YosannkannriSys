@@ -2,8 +2,10 @@
 Imports C1.Win.C1Input
 Imports System.Data.SqlClient
 Public Class 外注内訳入力
-    Public ChangeFlag As Integer
-    Public ChangeValue As Integer
+    Dim ChangeFlag As Integer
+    Dim ChangeValue As Integer
+    Dim outsrcr_x As Integer = 0
+    Dim outsrcr_y As Integer = 0
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
     End Sub
@@ -200,10 +202,20 @@ Public Class 外注内訳入力
 
     Private Sub Breakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles Breakdown.AfterScroll
         DetailList.ScrollPosition = Breakdown.ScrollPosition
-        TotalBreakdown.ScrollPosition = Breakdown.ScrollPosition
+
+        If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
+            outsrcr_y = Breakdown.ScrollPosition.Y
+        End If
+        Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
     Private Sub TotalBreakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles TotalBreakdown.AfterScroll
-        Breakdown.ScrollPosition = TotalBreakdown.ScrollPosition
+        If Not outsrcr_x = TotalBreakdown.ScrollPosition.X Then
+            outsrcr_x = TotalBreakdown.ScrollPosition.X
+        End If
+        If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
+            outsrcr_y = Breakdown.ScrollPosition.Y
+        End If
+        Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try

@@ -492,6 +492,7 @@
     <None Include="App.config" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ.c1theme" />
     <EmbeddedResource Include="Themes\予算管理システム%28仮%29テーマ2.c1theme" />
+    <None Include="予算管理システムレポート.flxr" />
     <None Include="岐阜アイシーDB.xsc">
       <DependentUpon>岐阜アイシーDB.xsd</DependentUpon>
     </None>
