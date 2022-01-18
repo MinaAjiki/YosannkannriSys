@@ -35,6 +35,9 @@ Public Class ホーム
     Public ProjectCostID As New List(Of Integer)
     Public PrjctCstClassCode As New List(Of Integer)
     Public PrjctCstList As New List(Of C1FlexGrid)
+    Public ExpnsbdID As Integer
+    Public ExpnsbdCode As Integer
+    Public ExpnsbdName As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -401,5 +404,48 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub 出来高査定チェックフォーム_Click(sender As Object, e As ClickEventArgs) Handles 出来高査定.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            出来高査定チェックフォーム.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            出来高査定チェックフォーム.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            出来高査定チェックフォーム.TopLevel = False
+            FormPanel.Controls.Add(出来高査定チェックフォーム)
+            出来高査定チェックフォーム.Show()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 出来形数量査定書_Excel_Click(sender As Object, e As ClickEventArgs) Handles 出来形数量査定書_Excel.Click
+        If FormPanel.Controls.Count > 0 Then
+            Dim FormClose As String = ""
+
+            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+            FormClose = FormCloseLoad.FormCheck
+        End If
+
+        現場経費作成.Anchor = AnchorStyles.Top
+        '協力業者入力.Anchor = AnchorStyles.Bottom
+        現場経費作成.Anchor = AnchorStyles.Left
+        '協力業者入力.Anchor = AnchorStyles.Right
+
+        現場経費作成.TopLevel = False
+        FormPanel.Controls.Add(現場経費作成)
+        現場経費作成.Show()
     End Sub
 End Class

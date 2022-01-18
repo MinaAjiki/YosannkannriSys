@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -72,7 +72,6 @@ Partial Class ホーム
         Me.協力業者登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink8 = New C1.Win.C1Command.C1CommandLink()
         Me.外注計画登録 = New C1.Win.C1Command.C1Command()
-        Me.変更内容登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink27 = New C1.Win.C1Command.C1CommandLink()
         Me.締切処理 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink28 = New C1.Win.C1Command.C1CommandLink()
@@ -181,7 +180,7 @@ Partial Class ホーム
         Me.C1CommandLink78 = New C1.Win.C1Command.C1CommandLink()
         Me.外注計画報告書 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink79 = New C1.Win.C1Command.C1CommandLink()
-        Me.出来高査定書 = New C1.Win.C1Command.C1Command()
+        Me.出来高査定 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink80 = New C1.Win.C1Command.C1CommandLink()
         Me.出来高査定書_完成 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink81 = New C1.Win.C1Command.C1CommandLink()
@@ -210,6 +209,7 @@ Partial Class ホーム
         Me.アップデート = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink12 = New C1.Win.C1Command.C1CommandLink()
         Me.バージョン情報 = New C1.Win.C1Command.C1Command()
+        Me.変更内容登録 = New C1.Win.C1Command.C1Command()
         Me.MainMenu = New C1.Win.C1Command.C1MainMenu()
         Me.C1CommandLink2 = New C1.Win.C1Command.C1CommandLink()
         Me.BudgetMenu = New C1.Win.C1Command.C1CommandLink()
@@ -340,10 +340,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = Nothing
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = Nothing
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -475,7 +475,7 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.外注計画)
         Me.MenuComｍand.Commands.Add(Me.外注計画_Excel)
         Me.MenuComｍand.Commands.Add(Me.外注計画報告書)
-        Me.MenuComｍand.Commands.Add(Me.出来高査定書)
+        Me.MenuComｍand.Commands.Add(Me.出来高査定)
         Me.MenuComｍand.Commands.Add(Me.出来高査定書_完成)
         Me.MenuComｍand.Commands.Add(Me.出来形数量査定書_Excel)
         Me.MenuComｍand.Commands.Add(Me.出来形数量査定書)
@@ -701,12 +701,6 @@ Partial Class ホーム
         Me.外注計画登録.Name = "外注計画登録"
         Me.外注計画登録.ShortcutText = ""
         Me.外注計画登録.Text = "外注計画登録"
-        '
-        '変更内容登録
-        '
-        Me.変更内容登録.Name = "変更内容登録"
-        Me.変更内容登録.ShortcutText = ""
-        Me.変更内容登録.Text = "変更内容登録"
         '
         'C1CommandLink27
         '
@@ -1309,7 +1303,6 @@ Partial Class ホーム
         '出力_外注計画
         '
         Me.出力_外注計画.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink34, Me.C1CommandLink77, Me.C1CommandLink78, Me.C1CommandLink79, Me.C1CommandLink80, Me.C1CommandLink81, Me.C1CommandLink82, Me.C1CommandLink85, Me.C1CommandLink86, Me.C1CommandLink89, Me.C1CommandLink90})
-        Me.出力_外注計画.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_外注計画.HideNonRecentLinks = False
         Me.出力_外注計画.Name = "出力_外注計画"
         Me.出力_外注計画.ShortcutText = ""
@@ -1352,14 +1345,14 @@ Partial Class ホーム
         '
         'C1CommandLink79
         '
-        Me.C1CommandLink79.Command = Me.出来高査定書
+        Me.C1CommandLink79.Command = Me.出来高査定
         Me.C1CommandLink79.SortOrder = 3
         '
-        '出来高査定書
+        '出来高査定
         '
-        Me.出来高査定書.Name = "出来高査定書"
-        Me.出来高査定書.ShortcutText = ""
-        Me.出来高査定書.Text = "出来高査定書"
+        Me.出来高査定.Name = "出来高査定"
+        Me.出来高査定.ShortcutText = ""
+        Me.出来高査定.Text = "出来高査定"
         '
         'C1CommandLink80
         '
@@ -1533,6 +1526,12 @@ Partial Class ホーム
         Me.バージョン情報.Name = "バージョン情報"
         Me.バージョン情報.ShortcutText = ""
         Me.バージョン情報.Text = "バージョン情報"
+        '
+        '変更内容登録
+        '
+        Me.変更内容登録.Name = "変更内容登録"
+        Me.変更内容登録.ShortcutText = ""
+        Me.変更内容登録.Text = "変更内容登録"
         '
         'MainMenu
         '
@@ -1815,7 +1814,7 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink78 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 外注計画報告書 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink79 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents 出来高査定書 As C1.Win.C1Command.C1Command
+    Friend WithEvents 出来高査定チェック As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink80 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出来高査定書_完成 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink81 As C1.Win.C1Command.C1CommandLink
@@ -1843,4 +1842,5 @@ Partial Class ホーム
     Friend WithEvents Label2 As Label
     Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
     Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents 出来高査定 As C1.Win.C1Command.C1Command
 End Class
