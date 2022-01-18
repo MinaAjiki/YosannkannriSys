@@ -289,7 +289,6 @@ Public Class 予算選択
 
                 Dim Prjct_Name As String
                 Dim Prjct_Code As String
-                Dim budget_no As Integer = 0
 
                 ホーム.Sql.CommandText = "select max(budget_no) from budget_summary"
                 ホーム.BudgetNo = ホーム.Sql.ExecuteScalar
@@ -302,7 +301,7 @@ Public Class 予算選択
 
                 Contract_NoList.Items.Add("当初")
 
-                For No As Integer = 1 To budget_no
+                For No As Integer = 1 To ホーム.BudgetNo
                     Contract_NoList.Items.Add("第" & No & "回変更")
                 Next
 

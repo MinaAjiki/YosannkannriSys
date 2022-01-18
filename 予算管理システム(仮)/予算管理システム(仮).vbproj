@@ -558,6 +558,13 @@
     <None Include="予算管理システムレポート.flxr" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="system.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="system_log.ldf">
+      <DependentUpon>system.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />
