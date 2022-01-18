@@ -195,6 +195,24 @@
     <Compile Include="代価一覧.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="現場経費内訳.Designer.vb">
+      <DependentUpon>現場経費内訳.vb</DependentUpon>
+    </Compile>
+    <Compile Include="現場経費内訳.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="現場経費作成.Designer.vb">
+      <DependentUpon>現場経費作成.vb</DependentUpon>
+    </Compile>
+    <Compile Include="現場経費作成.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="出来高査定チェックフォーム.Designer.vb">
+      <DependentUpon>出来高査定チェックフォーム.vb</DependentUpon>
+    </Compile>
+    <Compile Include="出来高査定チェックフォーム.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="項目選択.Designer.vb">
       <DependentUpon>項目選択.vb</DependentUpon>
     </Compile>
@@ -366,6 +384,15 @@
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="現場経費内訳.resx">
+      <DependentUpon>現場経費内訳.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="現場経費作成.resx">
+      <DependentUpon>現場経費作成.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="出来高査定チェックフォーム.resx">
+      <DependentUpon>出来高査定チェックフォーム.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="印刷代価選択.resx">
       <DependentUpon>印刷代価選択.vb</DependentUpon>
     </EmbeddedResource>
@@ -386,12 +413,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ホーム.resx">
       <DependentUpon>ホーム.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="マスタメンテナンス.resx">
       <DependentUpon>マスタメンテナンス.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="マスタ一覧.resx">
       <DependentUpon>マスタ一覧.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="予算選択.resx">
       <DependentUpon>予算選択.vb</DependentUpon>
@@ -401,6 +430,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="出来高入力.resx">
       <DependentUpon>出来高入力.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="予算総括入力.resx">
       <DependentUpon>予算総括入力.vb</DependentUpon>

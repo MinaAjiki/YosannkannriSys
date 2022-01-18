@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Public Class 出来高入力
     Public DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
+    Dim ErrorCheck As Integer = 0
 
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
         Entry.ImageIndex = 3
@@ -401,9 +402,11 @@ Public Class 出来高入力
                         Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                         errorco.StyleNew.ForeColor = Color.Red
                         MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                        ErrorCheck += 1
                     Else
                         Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                         errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                        ErrorCheck -= 1
                     End If
 
                 End If
@@ -416,9 +419,11 @@ Public Class 出来高入力
                     Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                     errorco.StyleNew.ForeColor = Color.Red
                     MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                    ErrorCheck += 1
                 Else
                     Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                     errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                    ErrorCheck -= 1
                 End If
 
 
@@ -463,6 +468,10 @@ Public Class 出来高入力
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Try
+            If ErrorCheck >= 1 Then
+                MsgBox("累計出来高の金額が、契約金額を超えている行があります。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
             '選択した業者の業者IDを取得
             If VendorList.SelectedIndex >= 0 Then
                 VendorNo.Text = VendorList.SelectedItem

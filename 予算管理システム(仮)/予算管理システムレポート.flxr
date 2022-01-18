@@ -8290,11 +8290,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
     </Fields>
   </Report>
   <Report ref="1">
-    <Name>外注計画報告書</Name>
+    <Name>出来高査定書</Name>
     <DataSourceName />
     <GrowShrinkMode>Access</GrowShrinkMode>
     <Layout>
-      <Width>16515</Width>
+      <Width>16659</Width>
       <Margin>288</Margin>
       <MarginTop>403.2</MarginTop>
       <MarginRight>288</MarginRight>
@@ -8338,7 +8338,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <SubSections>
           <SubSection>
             <Name>SubSection1</Name>
-            <Height>15</Height>
+            <Height>900</Height>
           </SubSection>
         </SubSections>
         <Type>Header</Type>
@@ -8359,7 +8359,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <SubSections>
           <SubSection>
             <Name>SubSection1</Name>
-            <Height>1710</Height>
+            <Height>1725</Height>
           </SubSection>
         </SubSections>
         <Type>PageHeader</Type>
@@ -8408,27 +8408,12 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Top>210</Top>
         <Width>16515</Width>
         <Height>315</Height>
-        <Text>外注計画報告書</Text>
+        <Text>出来高査定書</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
           <Size>14.25</Size>
           <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>PaidVacation</Name>
-        <Section>Detail</Section>
-        <Left>14430</Left>
-        <Top>60</Top>
-        <Width>945</Width>
-        <Height>240</Height>
-        <Text>[PaidVacation]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -8449,9 +8434,9 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ManagedDate1</Name>
         <Section>PageHeader</Section>
-        <Left>15225</Left>
+        <Left>14865</Left>
         <Top>795</Top>
-        <Width>990</Width>
+        <Width>1350</Width>
         <Height>270</Height>
         <Text>[ManagedDate]</Text>
         <Calculated>true</Calculated>
@@ -8523,7 +8508,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Section>PageHeader</Section>
         <Left>0</Left>
         <Top>1125</Top>
-        <Width>16410</Width>
+        <Width>16515</Width>
         <Height>15</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
@@ -8533,10 +8518,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Name>ラベル1</Name>
         <Section>PageHeader</Section>
         <Left>75</Left>
-        <Top>1290</Top>
+        <Top>1170</Top>
         <Width>735</Width>
         <Height>255</Height>
-        <Text>社員番号</Text>
+        <Text>注文番号</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8547,11 +8532,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル2</Name>
         <Section>PageHeader</Section>
-        <Left>960</Left>
-        <Top>1290</Top>
+        <Left>1805</Left>
+        <Top>1170</Top>
         <Width>1110</Width>
-        <Height>255</Height>
-        <Text>氏名</Text>
+        <Height>210</Height>
+        <Text>工種名</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8582,54 +8567,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Section>PageHeader</Section>
         <Left>0</Left>
         <Top>1695</Top>
-        <Width>16410</Width>
+        <Width>16515</Width>
         <Height>0</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル3</Name>
-        <Section>PageHeader</Section>
-        <Left>3055</Left>
-        <Top>1170</Top>
-        <Width>825</Width>
-        <Height>210</Height>
-        <Text>時間外</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field2</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>3015</Left>
-        <Top>1425</Top>
-        <Width>0</Width>
-        <Height>270</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
         </Shape>
       </Field>
       <Field>
@@ -8657,10 +8598,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>2180</Left>
-        <Top>1125</Top>
+        <Left>885</Left>
+        <Top>1140</Top>
         <Width>0</Width>
-        <Height>570</Height>
+        <Height>585</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
         </Shape>
@@ -8686,9 +8627,9 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>2180</Left>
+        <Left>885</Left>
         <Top>1425</Top>
-        <Width>2560</Width>
+        <Width>4780</Width>
         <Height>0</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
@@ -8697,118 +8638,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル4</Name>
         <Section>PageHeader</Section>
-        <Left>2240</Left>
-        <Top>1460</Top>
+        <Left>960</Left>
+        <Top>1175</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>平日+C</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>ラベル5</Name>
-        <Section>PageHeader</Section>
-        <Left>3095</Left>
-        <Top>1460</Top>
-        <Width>700</Width>
-        <Height>195</Height>
-        <Text>休日A</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field4</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>3880</Left>
-        <Top>1425</Top>
-        <Width>0</Width>
-        <Height>265</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル6</Name>
-        <Section>PageHeader</Section>
-        <Left>3975</Left>
-        <Top>1460</Top>
-        <Width>700</Width>
-        <Height>195</Height>
-        <Text>休日B</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field5</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>4750</Left>
-        <Top>1125</Top>
-        <Width>0</Width>
-        <Height>570</Height>
-        <Shape type="LineShape">
-          <LineSlant>Up</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル7</Name>
-        <Section>PageHeader</Section>
-        <Left>4825</Left>
-        <Top>1290</Top>
-        <Width>700</Width>
-        <Height>255</Height>
-        <Text>深夜</Text>
+        <Text>コード</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8841,10 +8675,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>5595</Left>
-        <Top>1110</Top>
-        <Width>0</Width>
-        <Height>570</Height>
+        <Left>6205</Left>
+        <Top>1125</Top>
+        <Width>9</Width>
+        <Height>600</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
         </Shape>
@@ -8852,11 +8686,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル8</Name>
         <Section>PageHeader</Section>
-        <Left>6499</Left>
+        <Left>7464</Left>
         <Top>1170</Top>
         <Width>825</Width>
         <Height>210</Height>
-        <Text>休日出勤</Text>
+        <Text>契約</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8885,9 +8719,9 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>5595</Left>
+        <Left>5665</Left>
         <Top>1425</Top>
-        <Width>7830</Width>
+        <Width>8553</Width>
         <Height>0</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
@@ -8896,11 +8730,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル9</Name>
         <Section>PageHeader</Section>
-        <Left>5665</Left>
-        <Top>1470</Top>
+        <Left>6455</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日A</Text>
+        <Text>数量</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8929,10 +8763,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>6460</Left>
+        <Left>7379</Left>
         <Top>1425</Top>
         <Width>0</Width>
-        <Height>255</Height>
+        <Height>300</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
@@ -8940,11 +8774,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル10</Name>
         <Section>PageHeader</Section>
-        <Left>6545</Left>
-        <Top>1470</Top>
+        <Left>7589</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日B</Text>
+        <Text>単価</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -8977,66 +8811,22 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>8175</Left>
-        <Top>1125</Top>
-        <Width>0</Width>
-        <Height>570</Height>
+        <Left>9615</Left>
+        <Top>1140</Top>
+        <Width>15</Width>
+        <Height>585</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
         </Shape>
       </Field>
       <Field>
-        <Name>Field9</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
+        <Name>ラベル12</Name>
         <Section>PageHeader</Section>
-        <Left>9045</Left>
-        <Top>1440</Top>
-        <Width>0</Width>
-        <Height>255</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル11</Name>
-        <Section>PageHeader</Section>
-        <Left>8255</Left>
+        <Left>9870</Left>
         <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日A</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>ラベル12</Name>
-        <Section>PageHeader</Section>
-        <Left>9135</Left>
-        <Top>1470</Top>
-        <Width>700</Width>
-        <Height>195</Height>
-        <Text>休日B</Text>
+        <Text>数量</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -9047,11 +8837,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル13</Name>
         <Section>PageHeader</Section>
-        <Left>9090</Left>
-        <Top>1185</Top>
-        <Width>825</Width>
+        <Left>10200</Left>
+        <Top>1170</Top>
+        <Width>1560</Width>
         <Height>210</Height>
-        <Text>振休</Text>
+        <Text>前月迄累計出来高</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -9084,134 +8874,27 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>10795</Left>
-        <Top>1125</Top>
+        <Left>11910</Left>
+        <Top>1140</Top>
         <Width>0</Width>
-        <Height>570</Height>
+        <Height>585</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル14</Name>
-        <Section>PageHeader</Section>
-        <Left>10865</Left>
-        <Top>1470</Top>
-        <Width>700</Width>
-        <Height>195</Height>
-        <Text>休日A</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field29</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>11655</Left>
-        <Top>1440</Top>
-        <Width>0</Width>
-        <Height>255</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
         </Shape>
       </Field>
       <Field>
         <Name>ラベル16</Name>
         <Section>PageHeader</Section>
-        <Left>11655</Left>
+        <Left>12523</Left>
         <Top>1170</Top>
-        <Width>825</Width>
+        <Width>1515</Width>
         <Height>210</Height>
-        <Text>代休</Text>
+        <Text>当月迄累計出来高</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
           <Size>8.25</Size>
           <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field30</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>13420</Left>
-        <Top>1140</Top>
-        <Width>5</Width>
-        <Height>570</Height>
-        <Shape type="LineShape">
-          <LineSlant>Up</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>ラベル18</Name>
-        <Section>PageHeader</Section>
-        <Left>13518</Left>
-        <Top>1290</Top>
-        <Width>700</Width>
-        <Height>255</Height>
-        <Text>欠勤</Text>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐゴシック</Name>
-          <Size>8.25</Size>
-          <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>No</Name>
-        <Section>GroupHeader1</Section>
-        <Left>75</Left>
-        <Top>30</Top>
-        <Width>735</Width>
-        <Height>240</Height>
-        <Text>[No]</Text>
-        <Calculated>true</Calculated>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
         </Font>
       </Field>
       <Field>
@@ -9219,26 +8902,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Section>GroupHeader1</Section>
         <Left>960</Left>
         <Top>30</Top>
-        <Width>1110</Width>
-        <Height>240</Height>
-        <Text>[Name]</Text>
-        <Calculated>true</Calculated>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>MidNightWork1</Name>
-        <Section>GroupHeader1</Section>
-        <Left>4825</Left>
-        <Top>30</Top>
         <Width>700</Width>
         <Height>240</Height>
-        <Text>[MidNightWork]</Text>
+        <Text>[Code]</Text>
         <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
+        <Align>LeftMiddle</Align>
         <Font>
           <Name>ＭＳ 明朝</Name>
           <Size>9</Size>
@@ -9302,7 +8970,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>13420</Left>
+        <Left>14185</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9313,148 +8981,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>OverTimeW1</Name>
         <Section>GroupHeader1</Section>
-        <Left>2240</Left>
+        <Left>1805</Left>
         <Top>30</Top>
-        <Width>700</Width>
+        <Width>1110</Width>
         <Height>240</Height>
         <Text>[OverTimeW]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field11</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
-        <Left>3015</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>OverTimeO</Name>
-        <Section>GroupHeader1</Section>
-        <Left>3975</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[OverTimeO]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>OverTimeL</Name>
-        <Section>GroupHeader1</Section>
-        <Left>3095</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[OverTimeL]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>直線10</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
-        <Left>4750</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>CompensationA</Name>
-        <Section>GroupHeader1</Section>
-        <Left>10890</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[CompensationA]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>TransferDayA</Name>
-        <Section>GroupHeader1</Section>
-        <Left>8255</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayA]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>HolidayA</Name>
-        <Section>GroupHeader1</Section>
-        <Left>5665</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[HolidayA]</Text>
         <Calculated>true</Calculated>
         <Align>CenterMiddle</Align>
         <Font>
@@ -9483,28 +9014,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>9045</Left>
+        <Left>8505</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
-      </Field>
-      <Field>
-        <Name>CompensationB</Name>
-        <Section>GroupHeader1</Section>
-        <Left>11770</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[CompensationB]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
       </Field>
       <Field>
         <Name>Field15</Name>
@@ -9527,7 +9043,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>11655</Left>
+        <Left>11910</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9538,123 +9054,17 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>TransferDayB</Name>
         <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
+        <Left>8685</Left>
+        <Top>45</Top>
         <Width>700</Width>
         <Height>240</Height>
-        <Text>[TransferDayB]</Text>
+        <Text>[TotalAmount]</Text>
         <Calculated>true</Calculated>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ 明朝</Name>
           <Size>9</Size>
         </Font>
-      </Field>
-      <Field>
-        <Name>HolidayB</Name>
-        <Section>GroupHeader1</Section>
-        <Left>6545</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[HolidayB]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>AbsenceDays1</Name>
-        <Border>
-          <Left>
-            <Color>FFFFFFFF</Color>
-          </Left>
-          <Top>
-            <Color>FFFFFFFF</Color>
-          </Top>
-          <Right>
-            <Color>FFFFFFFF</Color>
-          </Right>
-          <Bottom>
-            <Color>FFFFFFFF</Color>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
-        <Left>13518</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[AbsenceDays]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>直線14</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>2180</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>Field1</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>3015</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
       </Field>
       <Field>
         <Name>直線16</Name>
@@ -9714,7 +9124,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>8175</Left>
+        <Left>8505</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9743,7 +9153,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>9915</Left>
+        <Left>9630</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9809,10 +9219,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>14310</Left>
-        <Top>1125</Top>
-        <Width>0</Width>
-        <Height>570</Height>
+        <Left>14188</Left>
+        <Top>1140</Top>
+        <Width>2</Width>
+        <Height>585</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
         </Shape>
@@ -9842,40 +9252,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>14310</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>直線22</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>13420</Left>
+        <Left>15315</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9904,9 +9281,9 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>14310</Left>
-        <Top>1410</Top>
-        <Width>2085</Width>
+        <Left>14218</Left>
+        <Top>1425</Top>
+        <Width>2297</Width>
         <Height>0</Height>
         <Shape type="LineShape">
           <LineSlant>Up</LineSlant>
@@ -9915,11 +9292,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル19</Name>
         <Section>PageHeader</Section>
-        <Left>14385</Left>
-        <Top>1170</Top>
+        <Left>14460</Left>
+        <Top>1185</Top>
         <Width>1875</Width>
         <Height>195</Height>
-        <Text>有休</Text>
+        <Text>当月出来高</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -9930,61 +9307,31 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル20</Name>
         <Section>PageHeader</Section>
-        <Left>14370</Left>
-        <Top>1455</Top>
+        <Left>14310</Left>
+        <Top>1485</Top>
         <Width>930</Width>
         <Height>195</Height>
-        <Text>取得年月日</Text>
+        <Text>数量</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
           <Size>8.25</Size>
           <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>PVSum</Name>
-        <Section>GroupHeader1</Section>
-        <Left>14430</Left>
-        <Top>45</Top>
-        <Width>945</Width>
-        <Height>240</Height>
-        <Text>[PVSum]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>8</Size>
         </Font>
       </Field>
       <Field>
         <Name>ラベル17</Name>
         <Section>PageHeader</Section>
-        <Left>15360</Left>
-        <Top>1455</Top>
-        <Width>930</Width>
+        <Left>15375</Left>
+        <Top>1485</Top>
+        <Width>1110</Width>
         <Height>195</Height>
-        <Text>取得単位</Text>
+        <Text>金額</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
           <Size>8.25</Size>
           <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Unit</Name>
-        <Section>Detail</Section>
-        <Left>15450</Left>
-        <Top>75</Top>
-        <Width>945</Width>
-        <Height>240</Height>
-        <Text>[Unit]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -10008,10 +9355,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>7324</Left>
-        <Top>1434</Top>
+        <Left>8510</Left>
+        <Top>1410</Top>
         <Width>0</Width>
-        <Height>255</Height>
+        <Height>315</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
@@ -10019,11 +9366,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル21</Name>
         <Section>PageHeader</Section>
-        <Left>7409</Left>
-        <Top>1479</Top>
+        <Left>8720</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日C</Text>
+        <Text>金額</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -10052,10 +9399,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>9915</Left>
-        <Top>1434</Top>
+        <Left>10795</Left>
+        <Top>1425</Top>
         <Width>0</Width>
-        <Height>255</Height>
+        <Height>300</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
@@ -10063,11 +9410,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル22</Name>
         <Section>PageHeader</Section>
-        <Left>10015</Left>
-        <Top>1460</Top>
+        <Left>11000</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日C</Text>
+        <Text>金額</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -10078,11 +9425,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル23</Name>
         <Section>PageHeader</Section>
-        <Left>11744</Left>
-        <Top>1479</Top>
+        <Left>12130</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日B</Text>
+        <Text>数量</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
@@ -10111,10 +9458,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>12549</Left>
-        <Top>1434</Top>
+        <Left>13053</Left>
+        <Top>1410</Top>
         <Width>0</Width>
-        <Height>255</Height>
+        <Height>315</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
@@ -10122,31 +9469,16 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
       <Field>
         <Name>ラベル15</Name>
         <Section>PageHeader</Section>
-        <Left>12638</Left>
-        <Top>1458</Top>
+        <Left>13278</Left>
+        <Top>1485</Top>
         <Width>700</Width>
         <Height>195</Height>
-        <Text>休日C</Text>
+        <Text>金額</Text>
         <Align>CenterMiddle</Align>
         <Font>
           <Name>ＭＳ Ｐゴシック</Name>
           <Size>8.25</Size>
           <Bold>true</Bold>
-        </Font>
-      </Field>
-      <Field>
-        <Name>HolidayC</Name>
-        <Section>GroupHeader1</Section>
-        <Left>7409</Left>
-        <Top>45</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[HolidayC]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
         </Font>
       </Field>
       <Field>
@@ -10170,28 +9502,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>9915</Left>
+        <Left>9630</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
-      </Field>
-      <Field>
-        <Name>TransferDayC</Name>
-        <Section>GroupHeader1</Section>
-        <Left>10015</Left>
-        <Top>45</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayC]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
       </Field>
       <Field>
         <Name>Field27</Name>
@@ -10214,84 +9531,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>12549</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>CompensationC</Name>
-        <Section>GroupHeader1</Section>
-        <Left>12638</Left>
-        <Top>45</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[CompensationC]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field28</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>3880</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>直線15</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>4750</Left>
+        <Left>13044</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10320,36 +9560,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>6460</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>Field31</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>9045</Left>
+        <Left>6220</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10378,7 +9589,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>11655</Left>
+        <Left>11910</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10407,7 +9618,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>12549</Left>
+        <Left>13044</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10440,7 +9651,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>14310</Left>
+        <Left>14190</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10469,28 +9680,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>7324</Left>
+        <Left>7369</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
-      </Field>
-      <Field>
-        <Name>TransferDayB1</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
       </Field>
       <Field>
         <Name>直線12</Name>
@@ -10517,36 +9713,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>2180</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>Field34</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
-        <Left>3880</Left>
+        <Left>890</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -10579,43 +9746,10 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>4750</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>320</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>直線20</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
         <Left>5595</Left>
         <Top>0</Top>
         <Width>0</Width>
-        <Height>330</Height>
+        <Height>320</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
@@ -10641,76 +9775,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>7324</Left>
+        <Left>6214</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
-      </Field>
-      <Field>
-        <Name>直線24</Name>
-        <Border>
-          <Left>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Left>
-          <Top>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Top>
-          <Right>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Right>
-          <Bottom>
-            <Style>Solid</Style>
-            <Width>15</Width>
-            <Color>FF808080</Color>
-          </Bottom>
-        </Border>
-        <Section>GroupHeader1</Section>
-        <Left>8175</Left>
-        <Top>0</Top>
-        <Width>0</Width>
-        <Height>330</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </Field>
-      <Field>
-        <Name>TransferDayB2</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>TransferDayB3</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
-        <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
-        </Font>
       </Field>
       <Field>
         <Name>直線28</Name>
@@ -10737,7 +9808,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>GroupHeader1</Section>
-        <Left>8175</Left>
+        <Left>7365</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>320</Height>
@@ -10746,52 +9817,67 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Shape>
       </Field>
       <Field>
-        <Name>TransferDayB4</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
-        <Calculated>true</Calculated>
+        <Name>ラベル24</Name>
+        <Section>PageHeader</Section>
+        <Left>75</Left>
+        <Top>795</Top>
+        <Width>735</Width>
+        <Height>255</Height>
+        <Text>業者名</Text>
         <Align>CenterMiddle</Align>
         <Font>
-          <Name>ＭＳ 明朝</Name>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ManagedDate2</Name>
+        <Section>PageHeader</Section>
+        <Left>960</Left>
+        <Top>795</Top>
+        <Width>1530</Width>
+        <Height>270</Height>
+        <Text>[OutsourcersCode]</Text>
+        <Calculated>true</Calculated>
+        <Align>RightMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
           <Size>9</Size>
         </Font>
       </Field>
       <Field>
-        <Name>TransferDayB5</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
+        <Name>ManagedDate3</Name>
+        <Section>PageHeader</Section>
+        <Left>2670</Left>
+        <Top>795</Top>
+        <Width>1530</Width>
+        <Height>270</Height>
+        <Text>[OutsourcersName]</Text>
         <Calculated>true</Calculated>
-        <Align>CenterMiddle</Align>
+        <Align>RightMiddle</Align>
         <Font>
-          <Name>ＭＳ 明朝</Name>
+          <Name>ＭＳ Ｐゴシック</Name>
           <Size>9</Size>
         </Font>
       </Field>
       <Field>
-        <Name>TransferDayB6</Name>
-        <Section>GroupHeader1</Section>
-        <Left>9135</Left>
-        <Top>30</Top>
-        <Width>700</Width>
-        <Height>240</Height>
-        <Text>[TransferDayB]</Text>
-        <Calculated>true</Calculated>
+        <Name>ラベル3</Name>
+        <Section>PageHeader</Section>
+        <Left>1805</Left>
+        <Top>1485</Top>
+        <Width>1990</Width>
+        <Height>210</Height>
+        <Text>名称　/規格・仕様</Text>
         <Align>CenterMiddle</Align>
         <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>9</Size>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
         </Font>
       </Field>
       <Field>
-        <Name>Field43</Name>
+        <Name>Field2</Name>
         <Border>
           <Left>
             <Style>Solid</Style>
@@ -10810,8 +9896,253 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
             <Width>15</Width>
           </Bottom>
         </Border>
-        <Section>GroupHeader1</Section>
-        <Left>6460</Left>
+        <Section>PageHeader</Section>
+        <Left>15315</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>300</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線10</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>5605</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>255</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル5</Name>
+        <Section>PageHeader</Section>
+        <Left>5665</Left>
+        <Top>1460</Top>
+        <Width>534</Width>
+        <Height>195</Height>
+        <Text>単位</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>No</Name>
+        <Section>PageHeader</Section>
+        <Left>75</Left>
+        <Top>1485</Top>
+        <Width>735</Width>
+        <Height>240</Height>
+        <Text>[OrderNo]</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>HolidayC</Name>
+        <Section>Detail</Section>
+        <Left>6455</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[ConQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>TransferDayA</Name>
+        <Section>Detail</Section>
+        <Left>7549</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[ConCost]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>TransferDayC</Name>
+        <Section>Detail</Section>
+        <Left>9870</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>LaQuanity</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>CompensationA</Name>
+        <Section>Detail</Section>
+        <Left>11000</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>LaAmount</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>CompensationB</Name>
+        <Section>Detail</Section>
+        <Left>12164</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[ToQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>CompensationC</Name>
+        <Section>Detail</Section>
+        <Left>13278</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[ToAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>AbsenceDays1</Name>
+        <Border>
+          <Left>
+            <Color>FFFFFFFF</Color>
+          </Left>
+          <Top>
+            <Color>FFFFFFFF</Color>
+          </Top>
+          <Right>
+            <Color>FFFFFFFF</Color>
+          </Right>
+          <Bottom>
+            <Color>FFFFFFFF</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>14310</Left>
+        <Top>60</Top>
+        <Width>825</Width>
+        <Height>240</Height>
+        <Text>[CuQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>PVSum</Name>
+        <Section>Detail</Section>
+        <Left>15450</Left>
+        <Top>60</Top>
+        <Width>945</Width>
+        <Height>240</Height>
+        <Text>[CuAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐ明朝</Name>
+          <Size>8</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>TransferDayB1</Name>
+        <Section>Detail</Section>
+        <Left>8685</Left>
+        <Top>60</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[ConAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線5</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>15315</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
