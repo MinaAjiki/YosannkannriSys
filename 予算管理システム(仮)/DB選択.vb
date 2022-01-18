@@ -12,7 +12,8 @@ Public Class DB選択
             FileList.Rows(0).Height = 20
 
             Dim DataCount As Integer = 1
-
+            ホーム.SystemMdf.Parameters.Clear()
+            ホーム.SystemMdf.CommandText = ""
             ホーム.SystemMdf.CommandText = "SELECT TOP 5 * FROM userfiles ORDER BY filedate DESC"
             Dim FileReader As SqlDataReader = ホーム.SystemMdf.ExecuteReader
             While FileReader.Read
