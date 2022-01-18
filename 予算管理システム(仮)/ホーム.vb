@@ -83,18 +83,12 @@ Public Class ホーム
 
                     End If
 
-
-                    Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=11"
-                    Dim Company As String = Sql.ExecuteScalar
-
-                    If Company <> "" Then
-                        SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
+                    SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
                         Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
                         While M_TANTReader.Read
                             AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
                         End While
                         M_TANTReader.Close()
-                    End If
 
                 Else
 
@@ -311,6 +305,13 @@ Public Class ホーム
             Connection.Open()
             Sql.Connection = Connection
 
+            Transaction = Connection.BeginTransaction
+
+            Sql.Transaction = Transaction
+
+            Sql.Parameters.Clear()
+            Sql.CommandText = ""
+
             Sql.CommandText = "SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq INTO cost_masters FROM [SVACD001].[PMS].[dbo].[cost_masters]"
             Sql.ExecuteNonQuery()
 
@@ -326,6 +327,32 @@ Public Class ホーム
             Sql.CommandText = "ALTER TABLE cost_classes ADD CONSTRAINT PK_cost_classes PRIMARY KEY (cstclss_code)"
             Sql.ExecuteNonQuery()
 
+            Sql.CommandText = "SELECT stexpns_code,stexpns_name INTO #site_expenses FROM [SVACD001].[PMS].[dbo].[site_expenses]"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "ALTER TABLE #site_expenses ADD budget_no smallint,stexpns_amount money"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "UPDATE #site_expenses SET budget_no=0,stexpns_amount=0"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "INSERT INTO site_expenses SELECT budget_no,stexpns_code,stexpns_name,stexpns_amount FROM #site_expenses"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea INTO #expense_bd FROM [SVACD001].[PMS].[dbo].[expense_breakdowns]"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "ALTER TABLE #expense_bd ADD expns_bd_quanity decimal(15,2)"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "UPDATE #expense_bd SET expns_bd_quanity=0"
+            Sql.ExecuteNonQuery()
+
+            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
+            Sql.ExecuteNonQuery()
+
+            Transaction.Commit()
+
             SystemMdf.Connection = SystmMdfCnnctn
             SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
             SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
@@ -335,7 +362,6 @@ Public Class ホーム
             SystemMdf.Parameters("@filepath").Value = FilePath
             SystemMdf.Parameters("@filedate").Value = Today
             SystemMdf.ExecuteNonQuery()
-
 
             Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"
 
