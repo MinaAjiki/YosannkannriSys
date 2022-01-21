@@ -26,17 +26,22 @@ Partial Class 現場経費内訳
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(現場経費内訳))
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.TotalLabel = New System.Windows.Forms.Label()
+        Me.TotalExpense = New C1.Win.C1Input.C1TextBox()
         Me.ExpenceLabel = New C1.Win.C1Input.C1TextBox()
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.CodeLabel = New C1.Win.C1Input.C1TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Cancel = New System.Windows.Forms.Button()
+        Me.Reference = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
+        Me.Entry = New System.Windows.Forms.Button()
+        Me.Cancel = New System.Windows.Forms.Button()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
+        CType(Me.TotalExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ExpenceLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CodeLabel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +72,8 @@ Partial Class 現場経費内訳
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.TotalLabel)
+        Me.FormPanel.Controls.Add(Me.TotalExpense)
         Me.FormPanel.Controls.Add(Me.ExpenceLabel)
         Me.FormPanel.Controls.Add(Me.DetailsList)
         Me.FormPanel.Controls.Add(Me.CodeLabel)
@@ -79,6 +86,37 @@ Partial Class 現場経費内訳
         Me.FormPanel.SizeRatio = 93.949R
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
+        '
+        'TotalLabel
+        '
+        Me.TotalLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.TotalLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TotalLabel.Location = New System.Drawing.Point(808, 50)
+        Me.TotalLabel.Name = "TotalLabel"
+        Me.TotalLabel.Size = New System.Drawing.Size(38, 23)
+        Me.TotalLabel.TabIndex = 6
+        Me.TotalLabel.Text = "合計"
+        Me.TotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'TotalExpense
+        '
+        Me.TotalExpense.AutoSize = False
+        Me.TotalExpense.BackColor = System.Drawing.Color.White
+        Me.TotalExpense.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TotalExpense.CustomFormat = "N0"
+        Me.TotalExpense.DataType = GetType(Long)
+        Me.TotalExpense.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.TotalExpense.Enabled = False
+        Me.TotalExpense.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.TotalExpense.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.TotalExpense.Location = New System.Drawing.Point(846, 50)
+        Me.TotalExpense.Name = "TotalExpense"
+        Me.TotalExpense.Size = New System.Drawing.Size(113, 23)
+        Me.TotalExpense.TabIndex = 5
+        Me.TotalExpense.Tag = Nothing
+        Me.TotalExpense.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.TotalExpense, "予算管理テーマ")
+        Me.TotalExpense.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'ExpenceLabel
         '
@@ -98,8 +136,8 @@ Partial Class 現場経費内訳
         '
         'DetailsList
         '
+        Me.DetailsList.AllowAddNew = True
         Me.DetailsList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.DetailsList.AllowEditing = False
         Me.DetailsList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.DetailsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.DetailsList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -115,8 +153,9 @@ Partial Class 現場経費内訳
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
+        Me.DetailsList.ShowCellLabels = True
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.DetailsList.Size = New System.Drawing.Size(911, 540)
+        Me.DetailsList.Size = New System.Drawing.Size(941, 540)
         Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 3
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")
@@ -151,6 +190,8 @@ Partial Class 現場経費内訳
         'FooterPanel
         '
         Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.FooterPanel.Controls.Add(Me.Reference)
+        Me.FooterPanel.Controls.Add(Me.Entry)
         Me.FooterPanel.Controls.Add(Me.Cancel)
         Me.FooterPanel.Height = 40
         Me.FooterPanel.Location = New System.Drawing.Point(0, 622)
@@ -159,23 +200,24 @@ Partial Class 現場経費内訳
         Me.FooterPanel.TabIndex = 1
         Me.FooterPanel.Text = "パネル2"
         '
-        'Cancel
+        'Reference
         '
-        Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Cancel.FlatAppearance.BorderSize = 0
-        Me.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Cancel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Cancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Cancel.ImageIndex = 6
-        Me.Cancel.ImageList = Me.ButtonImageList
-        Me.Cancel.Location = New System.Drawing.Point(881, 5)
-        Me.Cancel.Margin = New System.Windows.Forms.Padding(0)
-        Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(100, 30)
-        Me.Cancel.TabIndex = 61
-        Me.Cancel.Text = "キャンセル"
-        Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Cancel.UseVisualStyleBackColor = True
+        Me.Reference.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Reference.FlatAppearance.BorderSize = 0
+        Me.Reference.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Reference.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Reference.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Reference.ImageIndex = 0
+        Me.Reference.ImageList = Me.ButtonImageList
+        Me.Reference.Location = New System.Drawing.Point(661, 5)
+        Me.Reference.Margin = New System.Windows.Forms.Padding(0)
+        Me.Reference.Name = "Reference"
+        Me.Reference.Size = New System.Drawing.Size(100, 30)
+        Me.Reference.TabIndex = 63
+        Me.Reference.Text = "マスタ参照"
+        Me.Reference.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Reference.UseVisualStyleBackColor = True
+        Me.Reference.Visible = False
         '
         'ButtonImageList
         '
@@ -203,6 +245,42 @@ Partial Class 現場経費内訳
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
+        'Entry
+        '
+        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Entry.FlatAppearance.BorderSize = 0
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Entry.ImageIndex = 3
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(771, 5)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(0)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 62
+        Me.Entry.Text = "　登　録"
+        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Entry.UseVisualStyleBackColor = True
+        '
+        'Cancel
+        '
+        Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Cancel.FlatAppearance.BorderSize = 0
+        Me.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Cancel.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Cancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.Cancel.ImageIndex = 6
+        Me.Cancel.ImageList = Me.ButtonImageList
+        Me.Cancel.Location = New System.Drawing.Point(881, 5)
+        Me.Cancel.Margin = New System.Windows.Forms.Padding(0)
+        Me.Cancel.Name = "Cancel"
+        Me.Cancel.Size = New System.Drawing.Size(100, 30)
+        Me.Cancel.TabIndex = 61
+        Me.Cancel.Text = "キャンセル"
+        Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Cancel.UseVisualStyleBackColor = True
+        '
         '現場経費内訳
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -220,6 +298,7 @@ Partial Class 現場経費内訳
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
+        CType(Me.TotalExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ExpenceLabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CodeLabel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -239,4 +318,8 @@ Partial Class 現場経費内訳
     Friend WithEvents Cancel As Button
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents ExpenceLabel As C1.Win.C1Input.C1TextBox
+    Friend WithEvents Entry As Button
+    Friend WithEvents Reference As Button
+    Friend WithEvents TotalExpense As C1.Win.C1Input.C1TextBox
+    Friend WithEvents TotalLabel As Label
 End Class

@@ -27,6 +27,8 @@ Partial Class 業者一覧
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.VendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.MTORICHKAKWABindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.M_TOR_ICHIKAWA = New 予算管理システム_仮_.M_TOR_ICHIKAWA()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.C1FlexGridSearchPanel1 = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
@@ -36,8 +38,6 @@ Partial Class 業者一覧
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.M_TOR_ICHIKAWA = New 予算管理システム_仮_.M_TOR_ICHIKAWA()
-        Me.MTORICHKAKWABindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.M_TOR_ICHKAKWATableAdapter = New 予算管理システム_仮_.M_TOR_ICHIKAWATableAdapters.M_TOR_ICHKAKWATableAdapter()
         Me.M_TOR_TOMOE = New 予算管理システム_仮_.M_TOR_TOMOE()
         Me.MTORTOMOEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -52,6 +52,8 @@ Partial Class 業者一覧
         Me.MTORHIROKOJIBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.M_TOR_HIROKOJITableAdapter = New 予算管理システム_仮_.M_TOR_HIROKOJITableAdapters.M_TOR_HIROKOJITableAdapter()
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MTORICHKAKWABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.M_TOR_ICHIKAWA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,8 +61,6 @@ Partial Class 業者一覧
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
-        CType(Me.M_TOR_ICHIKAWA, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MTORICHKAKWABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.M_TOR_TOMOE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MTORTOMOEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.M_TOR_GIFUIC, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,8 +115,7 @@ Partial Class 業者一覧
         Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.VendorList.ColumnInfo = resources.GetString("VendorList.ColumnInfo")
-        Me.VendorList.DataSource = Me.MTORICHKAKWABindingSource
+        Me.VendorList.ColumnInfo = "7,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9)
         Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.VendorList.Location = New System.Drawing.Point(18, 115)
         Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -132,6 +131,16 @@ Partial Class 業者一覧
         Me.VendorList.TabIndex = 51
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
         '
+        'MTORICHKAKWABindingSource
+        '
+        Me.MTORICHKAKWABindingSource.DataMember = "M_TOR_ICHKAKWA"
+        Me.MTORICHKAKWABindingSource.DataSource = Me.M_TOR_ICHIKAWA
+        '
+        'M_TOR_ICHIKAWA
+        '
+        Me.M_TOR_ICHIKAWA.DataSetName = "M_TOR_ICHIKAWA"
+        Me.M_TOR_ICHIKAWA.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'C1FlexGridSearchPanel1
         '
         Me.C1FlexGridSearchPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
@@ -140,7 +149,6 @@ Partial Class 業者一覧
         Me.C1FlexGridSearchPanel1.Location = New System.Drawing.Point(15, 82)
         Me.C1FlexGridSearchPanel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.C1FlexGridSearchPanel1.Name = "C1FlexGridSearchPanel1"
-        Me.C1FlexGridSearchPanel1.ShowClearButton = False
         Me.C1FlexGridSearchPanel1.Size = New System.Drawing.Size(274, 31)
         Me.C1FlexGridSearchPanel1.TabIndex = 68
         Me.SystemTheme.SetTheme(Me.C1FlexGridSearchPanel1, "予算管理テーマ")
@@ -231,16 +239,6 @@ Partial Class 業者一覧
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
-        'M_TOR_ICHIKAWA
-        '
-        Me.M_TOR_ICHIKAWA.DataSetName = "M_TOR_ICHIKAWA"
-        Me.M_TOR_ICHIKAWA.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'MTORICHKAKWABindingSource
-        '
-        Me.MTORICHKAKWABindingSource.DataMember = "M_TOR_ICHKAKWA"
-        Me.MTORICHKAKWABindingSource.DataSource = Me.M_TOR_ICHIKAWA
-        '
         'M_TOR_ICHKAKWATableAdapter
         '
         Me.M_TOR_ICHKAKWATableAdapter.ClearBeforeFill = True
@@ -317,6 +315,8 @@ Partial Class 業者一覧
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "業者一覧"
         CType(Me.VendorList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MTORICHKAKWABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.M_TOR_ICHIKAWA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1ComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -324,8 +324,6 @@ Partial Class 業者一覧
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
-        CType(Me.M_TOR_ICHIKAWA, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MTORICHKAKWABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.M_TOR_TOMOE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MTORTOMOEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.M_TOR_GIFUIC, System.ComponentModel.ISupportInitialize).EndInit()
