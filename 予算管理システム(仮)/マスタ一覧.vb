@@ -2,8 +2,9 @@
 Imports System.Data.SqlClient
 
 Public Class マスタ一覧
+    Public ClickButton As String 'どのボタンをクリックしたか
     Private Sub マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If マスタメンテナンス.ClickButton = "Salaries" Then
+        If ClickButton = "Salaries" Then
             TableName.Text = "給与マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "等級"
@@ -38,7 +39,7 @@ Public Class マスタ一覧
             SelectYear.HtmlPattern = "<table><tr><td width=30>{year}</td></tr></table>"
             SelectYear.SelectedIndex = 0
 
-        ElseIf マスタメンテナンス.ClickButton = "BranchCosts" Then
+        ElseIf ClickButton = "BranchCosts" Then
             TableName.Text = "部門費マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "部署"
@@ -71,7 +72,7 @@ Public Class マスタ一覧
             SelectYear.HtmlPattern = "<table><tr><td width=30>{year}</td></tr></table>"
             SelectYear.SelectedIndex = 0
 
-        ElseIf マスタメンテナンス.ClickButton = "LevyCosts" Then
+        ElseIf ClickButton = "LevyCosts" Then
             TableName.Text = "賦課金マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "地区"
@@ -104,7 +105,7 @@ Public Class マスタ一覧
             SelectYear.HtmlPattern = "<table><tr><td width=30>{year}</td></tr></table>"
             SelectYear.SelectedIndex = 0
 
-        ElseIf マスタメンテナンス.ClickButton = "Insurances" Then
+        ElseIf ClickButton = "Insurances" Then
             YearLabel.Visible = False
             SelectYear.Visible = False
             TableName.Text = "労災保険マスタ"
@@ -135,7 +136,7 @@ Public Class マスタ一覧
             MasterContentsList.Cols(2).DataType = GetType(Decimal)
             MasterContentsList.Cols(3).DataType = GetType(Decimal)
 
-        ElseIf マスタメンテナンス.ClickButton = "StampTaxes" Then
+        ElseIf ClickButton = "StampTaxes" Then
             YearLabel.Visible = False
             SelectYear.Visible = False
             TableName.Text = "印紙税マスタ"
@@ -205,7 +206,7 @@ Public Class マスタ一覧
     End Sub
 
     Private Sub SelectYear_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelectYear.SelectedIndexChanged
-        If マスタメンテナンス.ClickButton = "Salaries" Then
+        If ClickButton = "Salaries" Then
             TableName.Text = "給与マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "等級"
@@ -235,7 +236,7 @@ Public Class マスタ一覧
             End While
             Salaryreader.Close()
 
-        ElseIf マスタメンテナンス.ClickButton = "BranchCosts" Then
+        ElseIf ClickButton = "BranchCosts" Then
             TableName.Text = "部門費マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "部署"
@@ -254,7 +255,7 @@ Public Class マスタ一覧
             End While
             Branchreader.Close()
 
-        ElseIf マスタメンテナンス.ClickButton = "LevyCosts" Then
+        ElseIf ClickButton = "LevyCosts" Then
             TableName.Text = "賦課金マスタ"
             MasterContentsList.Clear(ClearFlags.Content)
             MasterContentsList(0, 1) = "地区"
@@ -281,7 +282,7 @@ Public Class マスタ一覧
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Dim RowIndex As Integer = MasterContentsList.Rows.Count - 1
-        If マスタメンテナンス.ClickButton = "Salaries" Then
+        If ClickButton = "Salaries" Then
             Dim year As Integer = SelectYear.Value
             For MasterLoop As Integer = 1 To RowIndex - 1
                 Dim rank As CellRange = MasterContentsList.GetCellRange(MasterLoop, 1)
@@ -353,7 +354,7 @@ Public Class マスタ一覧
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
 
-        ElseIf マスタメンテナンス.ClickButton = "BranchCosts" Then
+        ElseIf ClickButton = "BranchCosts" Then
             Dim year As Integer = SelectYear.Value
             For MasterLoop As Integer = 1 To RowIndex - 1
                 Dim name As CellRange = MasterContentsList.GetCellRange(MasterLoop, 1)
@@ -418,7 +419,7 @@ Public Class マスタ一覧
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
 
-        ElseIf マスタメンテナンス.ClickButton = "LevyCosts" Then
+        ElseIf ClickButton = "LevyCosts" Then
             Dim year As Integer = SelectYear.Value
             For MasterLoop As Integer = 1 To RowIndex - 1
                 Dim area As CellRange = MasterContentsList.GetCellRange(MasterLoop, 1)
@@ -482,7 +483,7 @@ Public Class マスタ一覧
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
 
-        ElseIf マスタメンテナンス.ClickButton = "Insurances" Then
+        ElseIf ClickButton = "Insurances" Then
             For MasterLoop As Integer = 1 To RowIndex - 1
                 Dim type As CellRange = MasterContentsList.GetCellRange(MasterLoop, 1)
                 Dim Lrate As CellRange = MasterContentsList.GetCellRange(MasterLoop, 2)
@@ -549,7 +550,7 @@ Public Class マスタ一覧
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
 
-        ElseIf マスタメンテナンス.ClickButton = "StampTaxes" Then
+        ElseIf ClickButton = "StampTaxes" Then
             For MasterLoop As Integer = 1 To RowIndex - 1
                 Dim cntrct As CellRange = MasterContentsList.GetCellRange(MasterLoop, 1)
                 Dim amount As CellRange = MasterContentsList.GetCellRange(MasterLoop, 2)
@@ -609,6 +610,64 @@ Public Class マスタ一覧
             Next
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
+        End If
+    End Sub
+
+    Private Sub MasterContentsList_DoubleClick(sender As Object, e As EventArgs) Handles MasterContentsList.DoubleClick
+        Dim Rowindex As Integer = MasterContentsList.Selection.TopRow
+        Dim Colindex As Integer = MasterContentsList.Selection.LeftCol
+        Dim Spec As String
+        Dim Costea As Int64
+
+        If MasterContentsList.AllowEditing = False Then
+            If ClickButton = "StampTaxes" Then
+                Spec = MasterContentsList(Rowindex, 1)
+                Costea = MasterContentsList(Rowindex, 2)
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = Costea
+                現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                Me.Close()
+            ElseIf ClickButton = "Insurances" Then
+                Spec = MasterContentsList(Rowindex, 1)
+                Costea = MasterContentsList(Rowindex, 4)
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = Costea
+                現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                Me.Close()
+            ElseIf ClickButton = "LevyCosts" Then
+                Spec = MasterContentsList(Rowindex, 1)
+                Costea = MasterContentsList(Rowindex, 2)
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 7) = Costea
+                現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 8)
+                Me.Close()
+            ElseIf ClickButton = "Salaries" Then
+                If Colindex = 2 Then
+                    Spec = MasterContentsList(Rowindex, 1)
+                    Costea = MasterContentsList(Rowindex, 2)
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 6) = "ヶ月"
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = Costea
+                    現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                    Me.Close()
+                ElseIf Colindex = 3 Then
+                    Spec = MasterContentsList(Rowindex, 1)
+                    Costea = MasterContentsList(Rowindex, 3)
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 6) = "日"
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = Costea
+                    現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                    Me.Close()
+                ElseIf Colindex = 4 Then
+                    Spec = MasterContentsList(Rowindex, 1)
+                    Costea = MasterContentsList(Rowindex, 4)
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = Spec
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 6) = "時間"
+                    現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = Costea
+                    現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                    Me.Close()
+                End If
+            End If
         End If
     End Sub
 End Class

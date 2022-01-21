@@ -346,6 +346,23 @@ Public Class 費用マスタ一覧
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)
 
+            ElseIf ParentFormName = "現場経費" Then
+                Dim name As String
+                Dim spec As String
+                Dim unit As String
+                Dim costea As Int64
+                name = MasterContentsList(Row, 5)
+                spec = MasterContentsList(Row, 6)
+                unit = MasterContentsList(Row, 7)
+                costea = MasterContentsList(Row, 8)
+
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 4) = name
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 5) = spec
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 6) = unit
+                現場経費内訳.DetailsList(現場経費内訳.SelectRow, 8) = costea
+
+                現場経費内訳.DetailsList.StartEditing(現場経費内訳.SelectRow, 7)
+                Me.Close()
             End If
 
             Me.Close()
