@@ -8898,7 +8898,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>Name</Name>
+        <Name>Code</Name>
         <Section>GroupHeader1</Section>
         <Left>960</Left>
         <Top>30</Top>
@@ -8979,13 +8979,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Shape>
       </Field>
       <Field>
-        <Name>OverTimeW1</Name>
+        <Name>Worktype</Name>
         <Section>GroupHeader1</Section>
         <Left>1805</Left>
         <Top>30</Top>
         <Width>1110</Width>
         <Height>240</Height>
-        <Text>[OverTimeW]</Text>
+        <Text>[Worktype]</Text>
         <Calculated>true</Calculated>
         <Align>CenterMiddle</Align>
         <Font>
@@ -9052,11 +9052,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Shape>
       </Field>
       <Field>
-        <Name>TransferDayB</Name>
+        <Name>TotalAmount</Name>
         <Section>GroupHeader1</Section>
-        <Left>8685</Left>
+        <Left>8595</Left>
         <Top>45</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[TotalAmount]</Text>
         <Calculated>true</Calculated>
@@ -9560,7 +9560,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>6220</Left>
+        <Left>6205</Left>
         <Top>0</Top>
         <Width>0</Width>
         <Height>330</Height>
@@ -9832,7 +9832,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>ManagedDate2</Name>
+        <Name>OutsourcersCode</Name>
         <Section>PageHeader</Section>
         <Left>960</Left>
         <Top>795</Top>
@@ -9847,7 +9847,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>ManagedDate3</Name>
+        <Name>OutsourcersName</Name>
         <Section>PageHeader</Section>
         <Left>2670</Left>
         <Top>795</Top>
@@ -9954,7 +9954,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>No</Name>
+        <Name>OrderNo</Name>
         <Section>PageHeader</Section>
         <Left>75</Left>
         <Top>1485</Top>
@@ -9969,11 +9969,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>HolidayC</Name>
+        <Name>ConQuanity</Name>
         <Section>Detail</Section>
-        <Left>6455</Left>
+        <Left>6325</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[ConQuanity]</Text>
         <Calculated>true</Calculated>
@@ -9984,11 +9984,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>TransferDayA</Name>
+        <Name>ConCost</Name>
         <Section>Detail</Section>
-        <Left>7549</Left>
+        <Left>7474</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[ConCost]</Text>
         <Calculated>true</Calculated>
@@ -9999,13 +9999,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>TransferDayC</Name>
+        <Name>LaQuanity</Name>
         <Section>Detail</Section>
-        <Left>9870</Left>
+        <Left>9735</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
-        <Text>LaQuanity</Text>
+        <Text>[LaQuanity]</Text>
         <Calculated>true</Calculated>
         <Align>CenterMiddle</Align>
         <Font>
@@ -10014,13 +10014,13 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>CompensationA</Name>
+        <Name>LaAmount</Name>
         <Section>Detail</Section>
-        <Left>11000</Left>
+        <Left>10880</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
-        <Text>LaAmount</Text>
+        <Text>[LaAmount]</Text>
         <Calculated>true</Calculated>
         <Align>CenterMiddle</Align>
         <Font>
@@ -10029,11 +10029,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>CompensationB</Name>
+        <Name>ToQuanity</Name>
         <Section>Detail</Section>
-        <Left>12164</Left>
+        <Left>11999</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[ToQuanity]</Text>
         <Calculated>true</Calculated>
@@ -10044,11 +10044,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>CompensationC</Name>
+        <Name>ToAmount</Name>
         <Section>Detail</Section>
-        <Left>13278</Left>
+        <Left>13158</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[ToAmount]</Text>
         <Calculated>true</Calculated>
@@ -10059,7 +10059,7 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>AbsenceDays1</Name>
+        <Name>CuQuanity</Name>
         <Border>
           <Left>
             <Color>FFFFFFFF</Color>
@@ -10075,9 +10075,9 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>14310</Left>
+        <Left>14295</Left>
         <Top>60</Top>
-        <Width>825</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[CuQuanity]</Text>
         <Calculated>true</Calculated>
@@ -10088,11 +10088,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>PVSum</Name>
+        <Name>CuAmount</Name>
         <Section>Detail</Section>
         <Left>15450</Left>
         <Top>60</Top>
-        <Width>945</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[CuAmount]</Text>
         <Calculated>true</Calculated>
@@ -10103,11 +10103,11 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         </Font>
       </Field>
       <Field>
-        <Name>TransferDayB1</Name>
+        <Name>ConAmount</Name>
         <Section>Detail</Section>
-        <Left>8685</Left>
+        <Left>8595</Left>
         <Top>60</Top>
-        <Width>700</Width>
+        <Width>935</Width>
         <Height>240</Height>
         <Text>[ConAmount]</Text>
         <Calculated>true</Calculated>
@@ -10149,6 +10149,21 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
+      </Field>
+      <Field>
+        <Name>Unit</Name>
+        <Section>Detail</Section>
+        <Left>5665</Left>
+        <Top>60</Top>
+        <Width>480</Width>
+        <Height>240</Height>
+        <Text>[Unit]</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
       </Field>
     </Fields>
   </Report>
@@ -24757,6 +24772,1884 @@ if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=fals
         <Font>
           <Name>ＭＳ ゴシック</Name>
           <Size>8</Size>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+  <Report ref="1">
+    <Name>注文内訳書</Name>
+    <DataSourceName />
+    <GrowShrinkMode>Access</GrowShrinkMode>
+    <Layout>
+      <Width>16659</Width>
+      <Margin>288</Margin>
+      <MarginTop>403.2</MarginTop>
+      <MarginRight>288</MarginRight>
+      <MarginBottom>388.8</MarginBottom>
+      <Orientation>Landscape</Orientation>
+      <PaperSize>A4</PaperSize>
+    </Layout>
+    <Font>
+      <Name>MS UI Gothic</Name>
+      <Size>9</Size>
+    </Font>
+    <DataSources>
+      <DataSource>
+        <Name>Main</Name>
+        <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;Jet OLEDB:System database=C:\PROGRA~1\MICROS~2\Office\SYSTEM.MDW</ConnectionString>
+      </DataSource>
+    </DataSources>
+    <Groups>
+      <Group>
+        <Name>No</Name>
+        <GroupBy>No</GroupBy>
+        <OutlineLabel>
+          <Expression>No</Expression>
+        </OutlineLabel>
+      </Group>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>詳細</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+            <Height>330</Height>
+            <AutoHeight>None</AutoHeight>
+          </SubSection>
+        </SubSections>
+        <Type>Detail</Type>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+            <Height>900</Height>
+          </SubSection>
+        </SubSections>
+        <Type>Header</Type>
+        <Visible>false</Visible>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+          </SubSection>
+        </SubSections>
+        <Type>Footer</Type>
+        <Visible>false</Visible>
+      </Section>
+      <Section>
+        <Name>ページヘッダー</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+            <Height>1725</Height>
+          </SubSection>
+        </SubSections>
+        <Type>PageHeader</Type>
+      </Section>
+      <Section>
+        <Name>ページフッター</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+            <Height>315</Height>
+          </SubSection>
+        </SubSections>
+        <Type>PageFooter</Type>
+      </Section>
+      <Section>
+        <Name>No_ヘッダ</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+            <Height>330</Height>
+            <AutoHeight>None</AutoHeight>
+          </SubSection>
+        </SubSections>
+        <Type>GroupHeader1</Type>
+      </Section>
+      <Section>
+        <Name>No_フッタ</Name>
+        <SubSections>
+          <SubSection>
+            <Name>SubSection1</Name>
+          </SubSection>
+        </SubSections>
+        <Type>GroupFooter1</Type>
+        <OnPrint>If No="" Then 直線2.visible=false elseif No&lt;&gt;"" then 直線2.visible=true
+if No="" Then field23.visible=true elseif No&lt;&gt;"" then field23.visible=false</OnPrint>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>ラベル34</Name>
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>PageHeader</Section>
+        <Left>0</Left>
+        <Top>210</Top>
+        <Width>16515</Width>
+        <Height>315</Height>
+        <Text>注文内訳書</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>14.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>テキスト1</Name>
+        <Section>PageFooter</Section>
+        <Left>14865</Left>
+        <Top>0</Top>
+        <Width>1470</Width>
+        <Height>240</Height>
+        <Text>=[Page] &amp; " / " &amp; [Pages] &amp; " ページ"</Text>
+        <Calculated>true</Calculated>
+        <Align>RightMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ManagedDate1</Name>
+        <Section>PageHeader</Section>
+        <Left>14865</Left>
+        <Top>795</Top>
+        <Width>1350</Width>
+        <Height>270</Height>
+        <Text>[ManagedDate]</Text>
+        <Calculated>true</Calculated>
+        <Align>RightMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field23</Name>
+        <Section>GroupFooter1</Section>
+        <Visible>false</Visible>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>11985</Width>
+        <Height>0</Height>
+        <ForcePageBreak>Before</ForcePageBreak>
+      </Field>
+      <Field>
+        <Name>直線1</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupFooter1</Section>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Width>11940</Width>
+        <Height>0</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線3</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>0</Left>
+        <Top>1125</Top>
+        <Width>16515</Width>
+        <Height>15</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル1</Name>
+        <Section>PageHeader</Section>
+        <Left>75</Left>
+        <Top>1170</Top>
+        <Width>735</Width>
+        <Height>255</Height>
+        <Text>注文番号</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル2</Name>
+        <Section>PageHeader</Section>
+        <Left>1805</Left>
+        <Top>1170</Top>
+        <Width>1110</Width>
+        <Height>210</Height>
+        <Text>工種名</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線4</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>0</Left>
+        <Top>1695</Top>
+        <Width>16515</Width>
+        <Height>0</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field3</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>885</Left>
+        <Top>1140</Top>
+        <Width>0</Width>
+        <Height>585</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線6</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>885</Left>
+        <Top>1425</Top>
+        <Width>4780</Width>
+        <Height>0</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル4</Name>
+        <Section>PageHeader</Section>
+        <Left>960</Left>
+        <Top>1175</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>コード</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field6</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>6205</Left>
+        <Top>1125</Top>
+        <Width>9</Width>
+        <Height>600</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル8</Name>
+        <Section>PageHeader</Section>
+        <Left>7464</Left>
+        <Top>1170</Top>
+        <Width>825</Width>
+        <Height>210</Height>
+        <Text>契約</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線7</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>5665</Left>
+        <Top>1425</Top>
+        <Width>8553</Width>
+        <Height>0</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル9</Name>
+        <Section>PageHeader</Section>
+        <Left>6455</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>数量</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field7</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>7379</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>300</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル10</Name>
+        <Section>PageHeader</Section>
+        <Left>7589</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>単価</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field8</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>9615</Left>
+        <Top>1140</Top>
+        <Width>15</Width>
+        <Height>585</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル12</Name>
+        <Section>PageHeader</Section>
+        <Left>9870</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>数量</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル13</Name>
+        <Section>PageHeader</Section>
+        <Left>10200</Left>
+        <Top>1170</Top>
+        <Width>1560</Width>
+        <Height>210</Height>
+        <Text>前月迄累計出来高</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field10</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>11910</Left>
+        <Top>1140</Top>
+        <Width>0</Width>
+        <Height>585</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル16</Name>
+        <Section>PageHeader</Section>
+        <Left>12523</Left>
+        <Top>1170</Top>
+        <Width>1515</Width>
+        <Height>210</Height>
+        <Text>当月迄累計出来高</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Code</Name>
+        <Section>GroupHeader1</Section>
+        <Left>960</Left>
+        <Top>30</Top>
+        <Width>700</Width>
+        <Height>240</Height>
+        <Text>[Code]</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線8</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>10795</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線9</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>14185</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Worktype</Name>
+        <Section>GroupHeader1</Section>
+        <Left>1805</Left>
+        <Top>30</Top>
+        <Width>1110</Width>
+        <Height>240</Height>
+        <Text>[Worktype]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field14</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>8505</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field15</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>11910</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>TotalAmount</Name>
+        <Section>GroupHeader1</Section>
+        <Left>8595</Left>
+        <Top>45</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[TotalAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線16</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>5595</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線17</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>8505</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field18</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>9630</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線18</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>10795</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field20</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>14188</Left>
+        <Top>1140</Top>
+        <Width>2</Width>
+        <Height>585</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線21</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>15315</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線23</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>14218</Left>
+        <Top>1425</Top>
+        <Width>2297</Width>
+        <Height>0</Height>
+        <Shape type="LineShape">
+          <LineSlant>Up</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル19</Name>
+        <Section>PageHeader</Section>
+        <Left>14460</Left>
+        <Top>1185</Top>
+        <Width>1875</Width>
+        <Height>195</Height>
+        <Text>当月出来高</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル20</Name>
+        <Section>PageHeader</Section>
+        <Left>14310</Left>
+        <Top>1485</Top>
+        <Width>930</Width>
+        <Height>195</Height>
+        <Text>数量</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル17</Name>
+        <Section>PageHeader</Section>
+        <Left>15375</Left>
+        <Top>1485</Top>
+        <Width>1110</Width>
+        <Height>195</Height>
+        <Text>金額</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field21</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>8510</Left>
+        <Top>1410</Top>
+        <Width>0</Width>
+        <Height>315</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル21</Name>
+        <Section>PageHeader</Section>
+        <Left>8720</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>金額</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field22</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>10795</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>300</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル22</Name>
+        <Section>PageHeader</Section>
+        <Left>11000</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>金額</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル23</Name>
+        <Section>PageHeader</Section>
+        <Left>12130</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>数量</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field24</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>13053</Left>
+        <Top>1410</Top>
+        <Width>0</Width>
+        <Height>315</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル15</Name>
+        <Section>PageHeader</Section>
+        <Left>13278</Left>
+        <Top>1485</Top>
+        <Width>700</Width>
+        <Height>195</Height>
+        <Text>金額</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field26</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>9630</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field27</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>13044</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field16</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>6205</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field19</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>11910</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field32</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>13044</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線2</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>14190</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field17</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>7369</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線12</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>890</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線19</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>5595</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>320</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Field36</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>6214</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線28</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>GroupHeader1</Section>
+        <Left>7365</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>320</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル24</Name>
+        <Section>PageHeader</Section>
+        <Left>75</Left>
+        <Top>795</Top>
+        <Width>735</Width>
+        <Height>255</Height>
+        <Text>業者名</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>OutsourcersCode</Name>
+        <Section>PageHeader</Section>
+        <Left>960</Left>
+        <Top>795</Top>
+        <Width>1530</Width>
+        <Height>270</Height>
+        <Text>[OutsourcersCode]</Text>
+        <Calculated>true</Calculated>
+        <Align>RightMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>OutsourcersName</Name>
+        <Section>PageHeader</Section>
+        <Left>2670</Left>
+        <Top>795</Top>
+        <Width>1530</Width>
+        <Height>270</Height>
+        <Text>[OutsourcersName]</Text>
+        <Calculated>true</Calculated>
+        <Align>RightMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ラベル3</Name>
+        <Section>PageHeader</Section>
+        <Left>1805</Left>
+        <Top>1485</Top>
+        <Width>1990</Width>
+        <Height>210</Height>
+        <Text>名称　/規格・仕様</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field2</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>15315</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>300</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>直線10</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <Left>5605</Left>
+        <Top>1425</Top>
+        <Width>0</Width>
+        <Height>255</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>ラベル5</Name>
+        <Section>PageHeader</Section>
+        <Left>5665</Left>
+        <Top>1460</Top>
+        <Width>534</Width>
+        <Height>195</Height>
+        <Text>単位</Text>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐゴシック</Name>
+          <Size>8.25</Size>
+          <Bold>true</Bold>
+        </Font>
+      </Field>
+      <Field>
+        <Name>OrderNo</Name>
+        <Section>PageHeader</Section>
+        <Left>75</Left>
+        <Top>1485</Top>
+        <Width>735</Width>
+        <Height>240</Height>
+        <Text>[OrderNo]</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ConQuanity</Name>
+        <Section>Detail</Section>
+        <Left>6325</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[ConQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ConCost</Name>
+        <Section>Detail</Section>
+        <Left>7474</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[ConCost]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>LaQuanity</Name>
+        <Section>Detail</Section>
+        <Left>9735</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[LaQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>LaAmount</Name>
+        <Section>Detail</Section>
+        <Left>10880</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[LaAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ToQuanity</Name>
+        <Section>Detail</Section>
+        <Left>11999</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[ToQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ToAmount</Name>
+        <Section>Detail</Section>
+        <Left>13158</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[ToAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>CuQuanity</Name>
+        <Border>
+          <Left>
+            <Color>FFFFFFFF</Color>
+          </Left>
+          <Top>
+            <Color>FFFFFFFF</Color>
+          </Top>
+          <Right>
+            <Color>FFFFFFFF</Color>
+          </Right>
+          <Bottom>
+            <Color>FFFFFFFF</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>14295</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[CuQuanity]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>CuAmount</Name>
+        <Section>Detail</Section>
+        <Left>15450</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[CuAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ Ｐ明朝</Name>
+          <Size>8</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>ConAmount</Name>
+        <Section>Detail</Section>
+        <Left>8595</Left>
+        <Top>60</Top>
+        <Width>935</Width>
+        <Height>240</Height>
+        <Text>[ConAmount]</Text>
+        <Calculated>true</Calculated>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>直線5</Name>
+        <Border>
+          <Left>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Left>
+          <Top>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Top>
+          <Right>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Right>
+          <Bottom>
+            <Style>Solid</Style>
+            <Width>15</Width>
+            <Color>FF808080</Color>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>15315</Left>
+        <Top>0</Top>
+        <Width>0</Width>
+        <Height>330</Height>
+        <Shape type="LineShape">
+          <LineSlant>Down</LineSlant>
+        </Shape>
+      </Field>
+      <Field>
+        <Name>Unit</Name>
+        <Section>Detail</Section>
+        <Left>5665</Left>
+        <Top>60</Top>
+        <Width>480</Width>
+        <Height>240</Height>
+        <Text>[Unit]</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>ＭＳ 明朝</Name>
+          <Size>9</Size>
         </Font>
       </Field>
     </Fields>
