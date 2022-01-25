@@ -165,7 +165,7 @@ Partial Class 出来高査定チェックフォーム
         Me.DetailsList.Location = New System.Drawing.Point(17, 83)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 2
+        Me.DetailsList.Rows.Count = 20
         Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
@@ -202,6 +202,7 @@ Partial Class 出来高査定チェックフォーム
         Me.VendorNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.VendorNo.DataType = GetType(Integer)
         Me.VendorNo.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.VendorNo.Enabled = False
         Me.VendorNo.Location = New System.Drawing.Point(17, 54)
         Me.VendorNo.Name = "VendorNo"
         Me.VendorNo.Size = New System.Drawing.Size(89, 23)

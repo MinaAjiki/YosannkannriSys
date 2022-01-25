@@ -49,6 +49,8 @@ Public Class 協力業者入力
             End While
             Coopreader.Close()
 
+            ホーム.Modified = "false"
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -91,8 +93,17 @@ Public Class 協力業者入力
     End Sub
 
     Private Sub CoopVendorList_CellChanged(sender As Object, e As RowColEventArgs) Handles CoopVendorList.AfterEdit
-        Dim SetImageRow As Integer = e.Row
-        CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+        Try
+            Dim SetImageRow As Integer = e.Row
+            CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            ホーム.Modified = "True"
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
@@ -193,7 +204,7 @@ Public Class 協力業者入力
                     ホーム.Sql.ExecuteNonQuery()
                 End If
             Next
-
+            ホーム.Modified = "false"
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
 
         Catch ex As Exception
