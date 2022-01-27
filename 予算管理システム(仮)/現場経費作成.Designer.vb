@@ -116,7 +116,7 @@ Partial Class 現場経費作成
         Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
         Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.DetailsList.Size = New System.Drawing.Size(839, 528)
+        Me.DetailsList.Size = New System.Drawing.Size(839, 535)
         Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
         Me.DetailsList.TabIndex = 3
         Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ2")

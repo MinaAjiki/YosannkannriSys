@@ -123,7 +123,6 @@ Public Class 出来高入力
             TotalLabel.Visible = True
 
             Me.DetailsList.Rows.Count = 3
-            Me.DetailsList.Rows.Count = 21
             DetailsList(0, 2) = "工種ｺｰﾄﾞ"
             DetailsList(0, 3) = "工種"
             DetailsList(0, 4) = "単位"
@@ -211,7 +210,7 @@ Public Class 出来高入力
 
             For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
+                ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND outsrcr_id = " & Coopid
                 Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
                 While outsrcng.Read
                     Me.DetailsList.Rows.Add()
@@ -234,8 +233,8 @@ Public Class 出来高入力
                     'Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
                     'Outquanity.StyleNew.Format = "N1"
 
-                    quanity = DetailsList(Conrow1, 5)
-                    costea = DetailsList(Conrow2, 5)
+                    quanity = DetailsList(Conrow2, 5)
+                    costea = DetailsList(Conrow1, 5)
                     total = quanity * costea
                     DetailsList(Conrow3, 5) = total
                     DetailsList.Rows(Conrow3).StyleNew.Format = "N0"
@@ -358,6 +357,9 @@ Public Class 出来高入力
                 lastrow3 += 3
 
             Next
+            While DetailsList.Rows.Count < 21
+                DetailsList.Rows.Add()
+            End While
             DetailsList.Rows(totalrow2 - 2).AllowEditing = False
 
         Catch ex As Exception

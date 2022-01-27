@@ -540,7 +540,7 @@ Public Class 外注内訳入力
                 Dim outsrcrid As Integer = Breakdown(2, Vendorloop)
                 For Detailloop As Integer = 1 To Detailscount
                     Dim dtlid As Integer = DetailList(Detailloop * 3, 0)
-                    Dim Oquanity As Integer = Breakdown(Detailloop * 3, Vendorloop)
+                    Dim Oquanity As Decimal = Breakdown(Detailloop * 3, Vendorloop)
                     Dim Ocostea As Integer = Breakdown(Detailloop * 3 + 1, Vendorloop)
                     ホーム.Sql.Parameters.Clear()
                     ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM outsourcing_plans WHERE outsrc_no =" & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid

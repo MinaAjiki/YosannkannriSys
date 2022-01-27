@@ -43,6 +43,7 @@ Public Class 出来高査定チェックフォーム
         VendorList.ItemsDataSource = dt.DefaultView
         VendorList.ItemsDisplayMember = "Name"
         VendorList.ItemsValueMember = "Code"
+        VendorList.ItemsImageMember = "ID"
         VendorList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
         VendorList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
         VendorList.SelectedIndex = -1
@@ -51,6 +52,7 @@ Public Class 出来高査定チェックフォーム
     End Sub
 
     Private Sub VendorList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles VendorList.SelectedIndexChanged
+        DetailsList.Rows.Count = 1
         DetailsList.Clear(ClearFlags.Content)
         DetailsList.Visible = True
         DetailsList(0, 1) = "工種ｺｰﾄﾞ"
@@ -58,8 +60,29 @@ Public Class 出来高査定チェックフォーム
         DetailsList(0, 3) = "発注金額"
         DetailsList(0, 4) = "出来高"
         DetailsList(0, 5) = "残高"
+
         If VendorList.SelectedIndex >= 0 Then
             VendorNo.Text = VendorList.SelectedItem
         End If
+
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorNo.Text
+        Dim VendorID As Integer = ホーム.Sql.ExecuteScalar
+        Dim Datacount As Integer = 1
+        ホーム.Sql.CommandText = "SELECT * FROM Production_Check WHERE outsrcr_id = " & VendorID & "ORDER BY s_worktype_code ASC"
+        Dim PCReader As SqlDataReader = ホーム.Sql.ExecuteReader
+        While PCReader.Read
+            DetailsList.Rows.Add()
+            DetailsList(Datacount, 1) = PCReader.Item("s_worktype_code")
+            DetailsList(Datacount, 2) = PCReader.Item("s_wrktyp_name")
+            DetailsList(Datacount, 3) = PCReader.Item("outsrcng_amount")
+            DetailsList(Datacount, 4) = PCReader.Item("total_amount")
+            DetailsList(Datacount, 5) = (DetailsList(Datacount, 3)) - (DetailsList(Datacount, 4))
+            Datacount += 1
+        End While
+        PCReader.Close()
+        While DetailsList.Rows.Count < 19
+            DetailsList.Rows.Add()
+        End While
+
     End Sub
 End Class

@@ -310,6 +310,7 @@ Partial Class 出来高入力
         Me.VendorNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.VendorNo.DataType = GetType(Integer)
         Me.VendorNo.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.VendorNo.Enabled = False
         Me.VendorNo.Location = New System.Drawing.Point(17, 54)
         Me.VendorNo.Name = "VendorNo"
         Me.VendorNo.Size = New System.Drawing.Size(89, 23)
