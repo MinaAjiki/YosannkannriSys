@@ -87,8 +87,12 @@
     <Reference Include="C1.C1Excel.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.C1Zip.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.BarCode.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.Bitmap.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1Chart.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=a22e16972c085838" />
+    <Reference Include="C1.Win.C1Chart3D.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=a22e16972c085838" />
     <Reference Include="C1.Win.C1Command.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Document.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1DX.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1FlexGrid.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1FlexGrid.Classic.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
@@ -104,7 +108,12 @@
     <Reference Include="C1.Win.C1Themes.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1Themes.Extended.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.DashboardLayout.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.FlexChart.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=3aa2920c09e0aefd" />
+    <Reference Include="C1.Win.FlexReport.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.FlexViewer.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.ImportServices.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.Input.MultiSelect.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.Ribbon.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.Win.TreeView.4.5.2, Version=4.5.20212.513, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
@@ -176,6 +185,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Class\出来高査定書.vb" />
+    <Compile Include="レポート.Designer.vb">
+      <DependentUpon>レポート.vb</DependentUpon>
+    </Compile>
+    <Compile Include="レポート.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
@@ -381,6 +397,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="レポート.resx">
+      <DependentUpon>レポート.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </EmbeddedResource>
