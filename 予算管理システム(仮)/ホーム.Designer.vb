@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,8 +56,6 @@ Partial Class ホーム
         Me.予算総括登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink20 = New C1.Win.C1Command.C1CommandLink()
         Me.予算内訳登録 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink21 = New C1.Win.C1Command.C1CommandLink()
-        Me.代価表作成 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink22 = New C1.Win.C1Command.C1CommandLink()
         Me.入力表作成 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink23 = New C1.Win.C1Command.C1CommandLink()
@@ -209,6 +207,7 @@ Partial Class ホーム
         Me.アップデート = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink12 = New C1.Win.C1Command.C1CommandLink()
         Me.バージョン情報 = New C1.Win.C1Command.C1Command()
+        Me.代価表作成 = New C1.Win.C1Command.C1Command()
         Me.変更内容登録 = New C1.Win.C1Command.C1Command()
         Me.MainMenu = New C1.Win.C1Command.C1MainMenu()
         Me.C1CommandLink2 = New C1.Win.C1Command.C1CommandLink()
@@ -222,6 +221,7 @@ Partial Class ホーム
         Me.Label2 = New System.Windows.Forms.Label()
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -340,10 +340,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn2.DisplayFieldName = Nothing
-        C1TreeColumn2.HeaderText = Nothing
-        C1TreeColumn2.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
+        C1TreeColumn1.DisplayFieldName = Nothing
+        C1TreeColumn1.HeaderText = Nothing
+        C1TreeColumn1.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -571,7 +571,7 @@ Partial Class ホーム
         '
         '予算
         '
-        Me.予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink4, Me.C1CommandLink20, Me.C1CommandLink21, Me.C1CommandLink22, Me.C1CommandLink23})
+        Me.予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink4, Me.C1CommandLink20, Me.C1CommandLink22, Me.C1CommandLink23})
         Me.予算.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.予算.HideNonRecentLinks = False
         Me.予算.Name = "予算"
@@ -602,22 +602,11 @@ Partial Class ホーム
         Me.予算内訳登録.ShortcutText = ""
         Me.予算内訳登録.Text = "予算内訳登録"
         '
-        'C1CommandLink21
-        '
-        Me.C1CommandLink21.Command = Me.代価表作成
-        Me.C1CommandLink21.SortOrder = 2
-        '
-        '代価表作成
-        '
-        Me.代価表作成.Name = "代価表作成"
-        Me.代価表作成.ShortcutText = ""
-        Me.代価表作成.Text = "代価表作成"
-        '
         'C1CommandLink22
         '
         Me.C1CommandLink22.Command = Me.入力表作成
         Me.C1CommandLink22.Delimiter = True
-        Me.C1CommandLink22.SortOrder = 3
+        Me.C1CommandLink22.SortOrder = 2
         '
         '入力表作成
         '
@@ -629,7 +618,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink23.Command = Me.予算費目集計
         Me.C1CommandLink23.Delimiter = True
-        Me.C1CommandLink23.SortOrder = 4
+        Me.C1CommandLink23.SortOrder = 3
         '
         '予算費目集計
         '
@@ -1303,6 +1292,7 @@ Partial Class ホーム
         '出力_外注計画
         '
         Me.出力_外注計画.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink34, Me.C1CommandLink77, Me.C1CommandLink78, Me.C1CommandLink79, Me.C1CommandLink80, Me.C1CommandLink81, Me.C1CommandLink82, Me.C1CommandLink85, Me.C1CommandLink86, Me.C1CommandLink89, Me.C1CommandLink90})
+        Me.出力_外注計画.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_外注計画.HideNonRecentLinks = False
         Me.出力_外注計画.Name = "出力_外注計画"
         Me.出力_外注計画.ShortcutText = ""
@@ -1527,6 +1517,12 @@ Partial Class ホーム
         Me.バージョン情報.ShortcutText = ""
         Me.バージョン情報.Text = "バージョン情報"
         '
+        '代価表作成
+        '
+        Me.代価表作成.Name = "代価表作成"
+        Me.代価表作成.ShortcutText = ""
+        Me.代価表作成.Text = "代価表作成"
+        '
         '変更内容登録
         '
         Me.変更内容登録.Name = "変更内容登録"
@@ -1620,6 +1616,10 @@ Partial Class ホーム
         Me.CreateFileDialog.InitialDirectory = "D:\"
         Me.CreateFileDialog.OverwritePrompt = False
         '
+        'ImportFileDialog
+        '
+        Me.ImportFileDialog.Filter = "XLSXファイル|*.xlsx|XLSファイル|*.xls|すべて|*.*"
+        '
         'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1692,7 +1692,6 @@ Partial Class ホーム
     Friend WithEvents 予算総括登録 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink20 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 予算内訳登録 As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink21 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 代価表作成 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink22 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 入力表作成 As C1.Win.C1Command.C1Command
@@ -1843,4 +1842,5 @@ Partial Class ホーム
     Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
     Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents 出来高査定 As C1.Win.C1Command.C1Command
+    Friend WithEvents ImportFileDialog As OpenFileDialog
 End Class
