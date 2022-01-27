@@ -230,7 +230,9 @@ Public Class ホーム
     End Sub
 
     Private Sub 材料表インポート_Click(sender As Object, e As ClickEventArgs) Handles 材料表インポート.Click
-        進行状況.Show()
+
+        ImportFileDialog.ShowDialog()
+
     End Sub
 
     Private Sub 予算内訳登録_Click(sender As Object, e As ClickEventArgs) Handles 予算内訳登録.Click
@@ -447,5 +449,80 @@ Public Class ホーム
         現場経費作成.TopLevel = False
         FormPanel.Controls.Add(現場経費作成)
         現場経費作成.Show()
+    End Sub
+
+    Private Sub 入力表作成_Click(sender As Object, e As ClickEventArgs) Handles 入力表作成.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            Sql.Parameters.Clear()
+            Sql.CommandText = ""
+            Sql.CommandText = "SELECT Count(*) FROM Details WHERE budget_no=" & BudgetNo
+            Dim DetailsCount As Integer = Sql.ExecuteScalar
+
+            If DetailsCount > 0 Then
+                詳細入力表.Show()
+                詳細入力表.Visible = True
+            Else
+                MsgBox("予算内訳を登録して下さい。", MsgBoxStyle.Exclamation, "ホーム")
+            End If
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 代価表作成_Click(sender As Object, e As ClickEventArgs) Handles 代価表作成.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+            作成代価選択.Show()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+        StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+    End Sub
+
+    Private Sub ImportFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles ImportFileDialog.FileOk
+        Try
+
+            Sql.CommandText = ""
+            Sql.Parameters.Clear()
+            Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=2"
+            Dim DataCount As Integer = Sql.ExecuteScalar
+
+            Dim Import As String = ""
+            Dim ImportMaterialLoad As New ImportMaterial(ImportFileDialog.FileName)
+
+
+            If DataCount > 0 Then
+                If MsgBox("材料表はインポート済みです。" & vbCrLf & "新しい材料表をインポートしますか?" & vbCrLf & "※新しいデータは追加登録されます。(上書き登録ではありません。)",
+                           MsgBoxStyle.OkCancel, "材料表インポート") = MsgBoxResult.Ok Then
+                    Import = ImportMaterialLoad.ImportMaterial
+                End If
+            Else
+                Import = ImportMaterialLoad.ImportMaterial
+            End If
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class

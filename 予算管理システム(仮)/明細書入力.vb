@@ -72,9 +72,6 @@ Public Class 明細書入力
             Dim RowCount As Integer = 0
             Dim RowNo As Integer = 0
 
-            Dim OutsrcngSql As New SqlCommand
-            OutsrcngSql.Connection = ホーム.Connection
-
             If DetailsCount > 0 Then
 
                 ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
@@ -808,6 +805,8 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+
+                ホーム.Modified = "True"
 
                 DetailsList.Rows.Insert(SelectRow)
                 DetailsList.Rows.Insert(SelectRow + 1)

@@ -1,7 +1,13 @@
-﻿Public Class 進行状況
-    Private Sub Message2_Click(sender As Object, e As EventArgs) Handles WaitProcessText.Click
+﻿Imports C1.Win.C1FlexGrid
+Imports C1.Win.C1Input
+Imports System.Data.SqlClient
+Public Class 進行状況
+    Private Sub 進行状況_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+    'Private Sub Message2_Click(sender As Object, e As EventArgs) Handles WaitProcessText.Click
+
+    'End Sub
     'Dim Bar As ProgressBar
     'Dim button As Button
     'Dim label As Label

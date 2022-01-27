@@ -6,19 +6,20 @@ Public Class 費用マスタ一覧
     Public ParentFormName As String
     Public CostClassCode As Integer
     Public CostClassName As String
+    Public CopyList(7) As String
     Private Sub 費用マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             MasterContentsList.SetCellImage(1, 9, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
 
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
             Dim CostMasterCount As Integer = ホーム.Sql.ExecuteScalar
 
             TableName.Text = CostClassName
 
-            MasterContentsList.Rows.Count = CostMasterCount + 1
+            MasterContentsList.Rows.Count = CostMasterCount + 2
 
             Dim RowCount As Integer = 0
-            ホーム.Sql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " ORDER BY cstmstr_seq ASC"
+            ホーム.Sql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 ORDER BY cstmstr_seq ASC"
             Dim CostMasterReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While CostMasterReader.Read
                 RowCount += 1
@@ -224,6 +225,7 @@ Public Class 費用マスタ一覧
                     明細書入力.DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
+                Me.Close()
 
             ElseIf ParentFormName = "代価表" Then
                 ホーム.Modified = "True"
@@ -345,10 +347,10 @@ Public Class 費用マスタ一覧
 
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)
+                Me.Close()
 
             End If
 
-            Me.Close()
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -357,5 +359,242 @@ Public Class 費用マスタ一覧
             Exit Sub
         End Try
 
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+        Try
+
+
+            Dim ErrorRow As String = ""
+            Dim ErrorCount As Integer = 0
+            For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                Dim Name As String = MasterContentsList(RowCount, 5)
+                If Not RowCount = MasterContentsList.Rows.Count - 1 Then
+                    If IsNothing(Name) = True AndAlso IsNothing(MasterContentsList(RowCount, 9)) = False Then
+                        If Name.Length = 0 Then
+                            ErrorCount += 1
+                            MasterContentsList.Rows(RowCount).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                        End If
+                    End If
+                Else
+                    If IsNothing(Name) = True AndAlso IsNothing(MasterContentsList(RowCount, 3)) = False Then
+                        ErrorCount += 1
+                        MasterContentsList.Rows(RowCount).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                    End If
+                End If
+            Next
+
+            If ErrorCount >= 1 Then
+                MsgBox("名称が入力されていない行があります。", MsgBoxStyle.Exclamation, "費用マスタ一覧")
+                Exit Sub
+            End If
+
+            For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                If IsNothing(MasterContentsList(RowCount, 1)) = False Then
+
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 5)
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 2)
+                    If IsNothing(MasterContentsList(RowCount, 3)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = ""
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 3)
+                    End If
+                    If IsNothing(MasterContentsList(RowCount, 4)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 4)
+                    End If
+                    If MasterContentsList(RowCount, 1) = 0 Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 11
+                    ElseIf IsNothing(MasterContentsList(RowCount, 10)) = False Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 12
+
+                    ElseIf MasterContentsList(RowCount, 9) = "True" Or IsNothing(MasterContentsList(RowCount, 9)) = False Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 13
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 0
+                    End If
+
+                    If IsNothing(MasterContentsList(RowCount, 6)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 6)
+                    End If
+                    If IsNothing(MasterContentsList(RowCount, 7)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 7)
+                    End If
+
+                    If IsNothing(MasterContentsList(RowCount, 8)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = MasterContentsList(RowCount, 8)
+                    End If
+
+
+                    If MasterContentsList(RowCount, 1) = 0 Then
+                        ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
+                                                                   ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
+                                                  VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
+                    Else
+                        ホーム.Sql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
+                                                cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
+                    End If
+                    ホーム.Sql.ExecuteNonQuery()
+                End If
+            Next
+
+            ホーム.Modified = "False"
+
+
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "費用マスタ一覧")
+            Me.Close()
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Insert_Click(sender As Object, e As EventArgs) Handles InsertMenu.Click
+        Try
+            ホーム.Modified = "True"
+
+            Dim SelectRow As Integer = MasterContentsList.Selection.TopRow
+
+            MasterContentsList.Rows.Insert(SelectRow)
+            MasterContentsList(SelectRow, 1) = 0
+
+            For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                MasterContentsList(RowCount, 2) = RowCount
+
+            Next
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Copy_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
+        Try
+            Dim SelectRow As Integer = MasterContentsList.Selection.TopRow
+            Dim SelectRange As CellRange = MasterContentsList.GetCellRange(MasterContentsList.Selection.TopRow, 2)
+            SelectRange.StyleNew.BackColor = Color.FromArgb(105, 189, 131)
+            CopyList(0) = MasterContentsList(SelectRow, 1)
+            CopyList(1) = MasterContentsList(SelectRow, 2)
+            CopyList(2) = MasterContentsList(SelectRow, 3)
+            CopyList(3) = MasterContentsList(SelectRow, 4)
+            CopyList(4) = MasterContentsList(SelectRow, 5)
+            CopyList(5) = MasterContentsList(SelectRow, 6)
+            CopyList(6) = MasterContentsList(SelectRow, 7)
+            CopyList(7) = MasterContentsList(SelectRow, 8)
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub Pasting_Click(sender As Object, e As EventArgs) Handles PastingMenu.Click
+        Try
+            Dim SelectRow As Integer = MasterContentsList.Selection.TopRow
+            ホーム.Modified = "True"
+
+
+            If IsNothing(CopyList(1)) = True Then
+                MsgBox("行がコピーされていません。", MsgBoxStyle.Exclamation, "費用マスタ一覧")
+                Exit Sub
+            End If
+            MasterContentsList.Rows.Insert(SelectRow)
+
+            MasterContentsList(SelectRow, 1) = 0
+            MasterContentsList(SelectRow, 2) = CopyList(1)
+            MasterContentsList(SelectRow, 3) = CopyList(2)
+            MasterContentsList(SelectRow, 4) = CopyList(3)
+            MasterContentsList(SelectRow, 5) = CopyList(4)
+            MasterContentsList(SelectRow, 6) = CopyList(5)
+            MasterContentsList(SelectRow, 7) = CopyList(6)
+            MasterContentsList(SelectRow, 8) = CopyList(7)
+
+        For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+            MasterContentsList(RowCount, 2) = RowCount
+            MasterContentsList.Rows(RowCount).StyleNew.BackColor = Color.White
+        Next
+
+        Catch ex As Exception
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Cut_Click(sender As Object, e As EventArgs) Handles CutMenu.Click
+        Try
+            ホーム.Modified = "True"
+
+            Dim SelectRow As Integer = MasterContentsList.Selection.TopRow
+
+            CopyList(0) = MasterContentsList(SelectRow, 1)
+            CopyList(1) = MasterContentsList(SelectRow, 2)
+            CopyList(2) = MasterContentsList(SelectRow, 3)
+            CopyList(3) = MasterContentsList(SelectRow, 4)
+            CopyList(4) = MasterContentsList(SelectRow, 5)
+            CopyList(5) = MasterContentsList(SelectRow, 6)
+            CopyList(6) = MasterContentsList(SelectRow, 7)
+            CopyList(7) = MasterContentsList(SelectRow, 8)
+
+            MasterContentsList.Rows.RemoveRange(SelectRow, 1)
+
+
+            For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                MasterContentsList(RowCount, 2) = RowCount
+
+            Next
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+    Private Sub MasterContentsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles MasterContentsList.AfterEdit
+        Try
+            Dim SetImageRow As Integer = e.Row
+            MasterContentsList.SetCellImage(SetImageRow, 10, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            If IsNothing(MasterContentsList(SetImageRow, 2)) = True Then
+                MasterContentsList(SetImageRow, 1) = 0
+                MasterContentsList(SetImageRow, 2) = MasterContentsList(SetImageRow - 1, 2) + 1
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        Dim CancelClick As String = ""
+
+        Dim CancelClickLoad As New CancelClick(Me)
+        CancelClick = CancelClickLoad.ModifyCheck
     End Sub
 End Class

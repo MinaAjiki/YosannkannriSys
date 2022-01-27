@@ -30,10 +30,12 @@ Partial Class 進行状況
         'WaitProcessPic
         '
         Me.WaitProcessPic.Image = Global.予算管理システム_仮_.My.Resources.Resources.loader
-        Me.WaitProcessPic.Location = New System.Drawing.Point(150, 33)
+        Me.WaitProcessPic.InitialImage = Global.予算管理システム_仮_.My.Resources.Resources.loader
+        Me.WaitProcessPic.Location = New System.Drawing.Point(150, 29)
         Me.WaitProcessPic.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.WaitProcessPic.Name = "WaitProcessPic"
-        Me.WaitProcessPic.Size = New System.Drawing.Size(54, 44)
+        Me.WaitProcessPic.Size = New System.Drawing.Size(32, 32)
+        Me.WaitProcessPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.WaitProcessPic.TabIndex = 0
         Me.WaitProcessPic.TabStop = False
         '

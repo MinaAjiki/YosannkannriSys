@@ -2055,4 +2055,7 @@ Public Class 代価表入力
         End Try
     End Sub
 
+    Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
+
+    End Sub
 End Class

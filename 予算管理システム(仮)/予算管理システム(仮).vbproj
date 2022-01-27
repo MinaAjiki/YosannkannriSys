@@ -151,6 +151,7 @@
   <ItemGroup>
     <Compile Include="Class\CancelClick.vb" />
     <Compile Include="Class\FormClose.vb" />
+    <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
     <Compile Include="M_TOR_GIFUIC.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -193,6 +194,12 @@
       <DependentUpon>代価一覧.vb</DependentUpon>
     </Compile>
     <Compile Include="代価一覧.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="詳細入力表.Designer.vb">
+      <DependentUpon>詳細入力表.vb</DependentUpon>
+    </Compile>
+    <Compile Include="詳細入力表.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="現場経費内訳.Designer.vb">
@@ -383,6 +390,9 @@
   <ItemGroup>
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="詳細入力表.resx">
+      <DependentUpon>詳細入力表.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="現場経費内訳.resx">
       <DependentUpon>現場経費内訳.vb</DependentUpon>

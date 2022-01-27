@@ -33,6 +33,11 @@ Partial Class 費用マスタ一覧
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.MasterContentsList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.InsertMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CutMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PastingMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.FooterPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
@@ -42,6 +47,7 @@ Partial Class 費用マスタ一覧
         Me.MainPanel.SuspendLayout()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.右クリックメニュー.SuspendLayout()
         Me.FooterPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -183,20 +189,60 @@ Partial Class 費用マスタ一覧
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
+        Me.MasterContentsList.ContextMenuStrip = Me.右クリックメニュー
         Me.MasterContentsList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MasterContentsList.Location = New System.Drawing.Point(29, 78)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.MasterContentsList.Name = "MasterContentsList"
+        Me.MasterContentsList.Rows.Count = 22
         Me.MasterContentsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.MasterContentsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
+        Me.MasterContentsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
         Me.MasterContentsList.ShowFilterIcon = C1.Win.C1FlexGrid.FilterIconVisibility.Always
         Me.MasterContentsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.MasterContentsList.Size = New System.Drawing.Size(1152, 532)
         Me.MasterContentsList.StyleInfo = resources.GetString("MasterContentsList.StyleInfo")
         Me.MasterContentsList.TabIndex = 60
         Me.SystemTheme.SetTheme(Me.MasterContentsList, "予算管理テーマ")
+        '
+        '右クリックメニュー
+        '
+        Me.右クリックメニュー.BackColor = System.Drawing.Color.White
+        Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu})
+        Me.右クリックメニュー.Name = "ContextMenuStrip1"
+        Me.右クリックメニュー.ShowImageMargin = False
+        Me.右クリックメニュー.Size = New System.Drawing.Size(171, 92)
+        Me.右クリックメニュー.Text = "項目選択"
+        Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
+        '
+        'InsertMenu
+        '
+        Me.InsertMenu.Name = "InsertMenu"
+        Me.InsertMenu.Size = New System.Drawing.Size(170, 22)
+        Me.InsertMenu.Text = "行の挿入"
+        '
+        'CutMenu
+        '
+        Me.CutMenu.Name = "CutMenu"
+        Me.CutMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
+        Me.CutMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CutMenu.Text = "行の切り取り"
+        '
+        'CopyMenu
+        '
+        Me.CopyMenu.Name = "CopyMenu"
+        Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.CopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CopyMenu.Text = "行のコピー"
+        '
+        'PastingMenu
+        '
+        Me.PastingMenu.Name = "PastingMenu"
+        Me.PastingMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
+        Me.PastingMenu.Size = New System.Drawing.Size(170, 22)
+        Me.PastingMenu.Text = "行の貼り付け"
         '
         'FooterPanel
         '
@@ -265,6 +311,7 @@ Partial Class 費用マスタ一覧
         Me.MainPanel.PerformLayout()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.右クリックメニュー.ResumeLayout(False)
         Me.FooterPanel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -282,4 +329,9 @@ Partial Class 費用マスタ一覧
     Friend WithEvents Entry As Button
     Friend WithEvents NameLabel As C1.Win.C1Input.C1TextBox
     Friend WithEvents SearchName As C1.Win.C1FlexGrid.C1FlexGridSearchPanel
+    Friend WithEvents 右クリックメニュー As ContextMenuStrip
+    Friend WithEvents InsertMenu As ToolStripMenuItem
+    Friend WithEvents CutMenu As ToolStripMenuItem
+    Friend WithEvents CopyMenu As ToolStripMenuItem
+    Friend WithEvents PastingMenu As ToolStripMenuItem
 End Class
