@@ -166,6 +166,7 @@
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
+    <Compile Include="Class\出来高査定書.vb" />
     <Compile Include="Report\ItemAggregation .vb" />
     <Compile Include="M_TOR_GIFUIC.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -191,6 +192,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="レポート.Designer.vb">
+      <DependentUpon>レポート.vb</DependentUpon>
+    </Compile>
+    <Compile Include="レポート.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
@@ -402,6 +409,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="レポート.resx">
+      <DependentUpon>レポート.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </EmbeddedResource>
