@@ -45,8 +45,8 @@ Public Class 外注内訳入力
 
     Private Sub 外注内訳入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            '進行状況.Show()
-            '進行状況.Refresh()
+            進行状況.Show()
+            進行状況.Refresh()
             DetailList(0, 2) = "工種"
             DetailList(1, 2) = "工種"
             DetailList(2, 2) = "工種"
@@ -89,25 +89,12 @@ Public Class 外注内訳入力
             ホーム.Sql.CommandText = "SELECT count(outsrcr_id) from Outsourcers"
             Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
-            ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
-
-            Dim Coopcount As Integer = 1
-            Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While Coopreader.Read
-                Breakdown(2, Coopcount) = Coopreader.Item("outsrcr_id")
-                Breakdown(0, Coopcount) = Coopreader.Item("outsrcr_code")
-                Breakdown(1, Coopcount) = Coopreader.Item("outsrcr_name")
-                Coopcount += 1
-            End While
-            Coopreader.Close()
-
             Dim Drow1 As Integer = 3
             Dim Drow2 As Integer = 4
             Dim Drow3 As Integer = 5
 
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
+            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_worktype_code,dtl_unit,dtl_name,dtl_quanity,dtl_costea,dtl_spec FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
             Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Detailreader.Read
                 Me.DetailList.Rows.Add()
@@ -153,6 +140,7 @@ Public Class 外注内訳入力
                 Drow1 += 3
                 Drow2 += 3
                 Drow3 += 3
+                進行状況.Refresh()
 
             End While
             Detailreader.Close()
@@ -194,20 +182,11 @@ Public Class 外注内訳入力
 
     Private Sub Breakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles Breakdown.AfterScroll
         DetailList.ScrollPosition = Breakdown.ScrollPosition
+        TotalBreakdown.ScrollPosition = Breakdown.ScrollPosition
 
-        If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
-            outsrcr_y = Breakdown.ScrollPosition.Y
-        End If
-        Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
     Private Sub TotalBreakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles TotalBreakdown.AfterScroll
-        If Not outsrcr_x = TotalBreakdown.ScrollPosition.X Then
-            outsrcr_x = TotalBreakdown.ScrollPosition.X
-        End If
-        If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
-            outsrcr_y = Breakdown.ScrollPosition.Y
-        End If
-        Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
+
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
@@ -247,7 +226,7 @@ Public Class 外注内訳入力
             Dim Vendorcount As Integer = ホーム.Sql.ExecuteScalar
 
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+            ホーム.Sql.CommandText = "SELECT outsrcr_id,outsrcr_code,outsrcr_name FROM outsourcers"
 
             Dim Coopcount As Integer = 1
             Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -292,15 +271,14 @@ Public Class 外注内訳入力
                         Breakdown.Rows(BDloop * 3 + 1).StyleNew.Format = "N0"
                     End If
 
-                    Dim Amount As Integer = 0
-                    Amount = Oquanity * Ocostea
+                    Dim Amount As Integer = Oquanity * Ocostea
                     Breakdown(BDloop * 3 + 2, vendorloop) = Amount
                     Breakdown.Rows(BDloop * 3 + 2).AllowEditing = False
                     Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"
                     total += Amount
                     TotalBreakdown(0, vendorloop) = total
                     TotalBreakdown.Rows(0).StyleNew.Format = "N0"
-
+                    進行状況.Refresh()
                 Next
             Next
 
@@ -464,7 +442,7 @@ Public Class 外注内訳入力
                     For BDloop As Integer = 1 To Detailscount
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) from Outsourcing_plans WHERE dtl_id = " & DetailList(BDloop * 3, 0) & "AND outsrcr_id=" & Breakdown(2, vendorloop) & "AND outsrc_no=" & ContractNo.Value - 1
-                        Dim Oquanity As Integer = ホーム.Sql.ExecuteScalar
+                        Dim Oquanity As Decimal = ホーム.Sql.ExecuteScalar
                         If Oquanity = 0 Then
                             Breakdown(BDloop * 3, vendorloop) = 0
                             Breakdown.Rows(BDloop * 3).StyleNew.Format = "N1"

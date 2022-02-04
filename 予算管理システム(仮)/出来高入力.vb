@@ -333,9 +333,9 @@ Public Class 出来高入力
                 quanity = DetailsList(totalrow1, 7)
                 total = DetailsList(totalrow2, 7)
 
-                Dim Lquanity As Integer = DetailsList(totalrow1, 6)
+                Dim Lquanity As Decimal = DetailsList(totalrow1, 6)
                 Dim Ltotal As Integer = DetailsList(totalrow2, 6)
-                Dim Cuquanity As Integer
+                Dim Cuquanity As Decimal
                 Dim Cuamount As Decimal
                 Dim Cutotal As Integer
 
