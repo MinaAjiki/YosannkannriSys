@@ -36,7 +36,7 @@ Public Class 締切日入力
     Private Sub Deadline_AfterEdit(sender As Object, e As RowColEventArgs) Handles Deadline.AfterEdit
         Dim SetImageRow As Integer = e.Row
         If 注文書番号入力.ChangeHistory <> Deadline(1, 1) Then
-            Deadline.SetCellImage(SetImageRow, 2, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            Deadline.SetCellImage(SetImageRow, 2, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
         End If
     End Sub
 

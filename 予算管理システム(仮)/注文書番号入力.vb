@@ -83,7 +83,7 @@ Public Class 注文書番号入力
     Private Sub OrderNoList_AfterEdit(sender As Object, e As RowColEventArgs) Handles OrderNoList.AfterEdit
         If ChangeHistory <> OrderNoList(e.Row, e.Col) Then
             Dim SetImageRow As Integer = e.Row
-            OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
         End If
     End Sub
 

@@ -212,7 +212,7 @@ Public Class マスタ一覧
     Private Sub MasterContentsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles MasterContentsList.AfterEdit
         Try
             Dim SetImageRow As Integer = e.Row
-            MasterContentsList.SetCellImage(SetImageRow, 6, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            MasterContentsList.SetCellImage(SetImageRow, 6, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
 
             ホーム.Modified = "True"
 

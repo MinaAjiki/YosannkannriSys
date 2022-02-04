@@ -9,8 +9,6 @@ Public Class 費用マスタ一覧
     Public CopyList(7) As String
     Private Sub 費用マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            MasterContentsList.SetCellImage(1, 9, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
-
             ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
             Dim CostMasterCount As Integer = ホーム.Sql.ExecuteScalar
 
@@ -39,6 +37,7 @@ Public Class 費用マスタ一覧
                 MasterContentsList.Cols(10).Visible = False
                 MasterContentsList.AllowEditing = False
                 Entry.Visible = False
+                MasterContentsList.SelectionMode = SelectionModeEnum.Row
             End If
 
         Catch ex As Exception
@@ -594,7 +593,7 @@ Public Class 費用マスタ一覧
     Private Sub MasterContentsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles MasterContentsList.AfterEdit
         Try
             Dim SetImageRow As Integer = e.Row
-            MasterContentsList.SetCellImage(SetImageRow, 10, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            MasterContentsList.SetCellImage(SetImageRow, 10, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
             If IsNothing(MasterContentsList(SetImageRow, 2)) = True Then
                 MasterContentsList(SetImageRow, 1) = 0
                 MasterContentsList(SetImageRow, 2) = MasterContentsList(SetImageRow - 1, 2) + 1

@@ -22,15 +22,30 @@ Public Class 大工種選択
                 L_WorkTypesList(RowCount, 1) = LWorkTypeReader.Item("l_wrktyp_code")
                 L_WorkTypesList(RowCount, 2) = LWorkTypeReader.Item("l_wrktyp_name")
 
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
-                Dim DetailsCount As Integer = ホーム.Sql.ExecuteScalar
+                If Not LWorkTypeReader.Item("l_wrktyp_code") = 840 Then
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM details WHERE budget_no=" & ホーム.BudgetNo
+                    Dim DetailsCount As Integer = ホーム.Sql.ExecuteScalar
 
-                If DetailsCount > 0 Then
-                    ホーム.Sql.CommandText = "SELECT SUM(amout_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_wrktyp_code=" _
+                    If DetailsCount > 0 Then
+                        ホーム.Sql.CommandText = "SELECT SUM(amout_total) FROM L_worktype_total WHERE budget_no=" & ホーム.BudgetNo & " AND l_wrktyp_code=" _
                                                     & LWorkTypeReader.Item("l_wrktyp_code")
-                    L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+                        L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
 
-                    Total += L_WorkTypesList(RowCount, 3)
+                        Total += L_WorkTypesList(RowCount, 3)
+
+                    End If
+                Else
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+                    Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar
+                    If SiteExpenseCount > 0 Then
+                        ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+                        If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+
+                            L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+
+                            Total += L_WorkTypesList(RowCount, 3)
+                        End If
+                    End If
 
                 End If
                 RowCount += 1

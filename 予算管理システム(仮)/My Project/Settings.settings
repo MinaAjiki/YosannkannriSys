@@ -58,5 +58,9 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=CAP21;User ID=CAP21_ICK_01;Password=CAP21_ICK_01;Unicode=True</Value>
     </Setting>
+    <Setting Name="設定" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)" />
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

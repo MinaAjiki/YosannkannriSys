@@ -26,35 +26,56 @@ Public Class 小工種選択
 
             Dim RowCount As Integer = 0
 
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & " OR l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no IS NULL"
             Dim sworktypeCount As Integer = ホーム.Sql.ExecuteScalar
 
+            Dim SiteCost As Int64 = 0
+            If ホーム.lworktypecode = 840 Then
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+                Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar
+                If SiteExpenseCount > 0 Then
+                    ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
+                    If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
+                        SiteCost = ホーム.Sql.ExecuteScalar
+                    End If
+                End If
+            End If
+
             If sworktypecount > 0 Then
-                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & " ORDER BY s_wrktyp_code ASC"
+                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & "OR l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no IS NULL"
                 Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While SWorkTypeTotalReader.Read
 
                     If Not RowCount = Count Then
                         RowCount += 1
 
-                        ホーム.SystemSql.CommandText = "SELECT s_wrktyp_name FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND s_wrktyp_code=" & SWorkTypeTotalReader.Item("s_wrktyp_code")
-                        S_WorkTypesList(RowCount, 2) = ホーム.SystemSql.ExecuteScalar
+                        If Not SWorkTypeTotalReader.Item("s_wrktyp_code") = 841 Then
+                            ホーム.SystemSql.CommandText = "SELECT s_wrktyp_name FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND s_wrktyp_code=" & SWorkTypeTotalReader.Item("s_wrktyp_code")
+                            S_WorkTypesList(RowCount, 2) = ホーム.SystemSql.ExecuteScalar
 
-                        S_WorkTypesList(RowCount, 1) = SWorkTypeTotalReader.Item("s_wrktyp_code")
-                        S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amout_total")
-                        S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
-                        S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
-                        S_WorkTypesList(RowCount, 6) = SWorkTypeTotalReader.Item("machine")
-                        S_WorkTypesList(RowCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
-                        S_WorkTypesList(RowCount, 8) = SWorkTypeTotalReader.Item("expens")
+                            S_WorkTypesList(RowCount, 1) = SWorkTypeTotalReader.Item("s_wrktyp_code")
+                            S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amout_total")
+                            S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
+                            S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
+                            S_WorkTypesList(RowCount, 6) = SWorkTypeTotalReader.Item("machine")
+                            S_WorkTypesList(RowCount, 7) = SWorkTypeTotalReader.Item("subcntrct")
+                            S_WorkTypesList(RowCount, 8) = SWorkTypeTotalReader.Item("expens")
 
 
-                        Total += S_WorkTypesList(RowCount, 3)
-                        LaborTotal += S_WorkTypesList(RowCount, 4)
-                        MaterialTotal += S_WorkTypesList(RowCount, 5)
-                        MachineTotal += S_WorkTypesList(RowCount, 6)
-                        SubcntrctTotal += S_WorkTypesList(RowCount, 7)
-                        ExpensTotal += S_WorkTypesList(RowCount, 8)
+                            Total += S_WorkTypesList(RowCount, 3)
+                            LaborTotal += S_WorkTypesList(RowCount, 4)
+                            MaterialTotal += S_WorkTypesList(RowCount, 5)
+                            MachineTotal += S_WorkTypesList(RowCount, 6)
+                            SubcntrctTotal += S_WorkTypesList(RowCount, 7)
+                            ExpensTotal += S_WorkTypesList(RowCount, 8)
+                        Else
+
+                            S_WorkTypesList(RowCount, 1) = 841
+                            S_WorkTypesList(RowCount, 2) = "現場経費"
+                            S_WorkTypesList(RowCount, 3) = SiteCost
+
+                            Total += S_WorkTypesList(RowCount, 3)
+                        End If
                     End If
                 End While
                 SWorkTypeTotalReader.Close()

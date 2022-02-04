@@ -38,6 +38,7 @@ Public Class ホーム
     Public ExpnsbdID As Integer
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
+    Public ReportPath As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -91,7 +92,10 @@ Public Class ホーム
                         While M_TANTReader.Read
                             AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
                         End While
-                        M_TANTReader.Close()
+                    M_TANTReader.Close()
+
+                    'レポートのデザインが格納されているファイルのパスを変数に代入する
+                    ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
 
                 Else
 
@@ -524,5 +528,9 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub 予算総括表_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表.Click
+        レポート.Show()
     End Sub
 End Class

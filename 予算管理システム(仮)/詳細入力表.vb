@@ -91,22 +91,17 @@ Public Class 詳細入力表
             Dim RowNo As Integer = 0
             Dim DtlTotal As Int64 = 0
             Dim DtlIDList As New List(Of Integer)
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & ホーム.BudgetNo & " ORDER BY s_worktype_code,dtl_no ASC"
-            Dim IDReader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While IDReader.Read
-                DtlIDList.Add(IDReader.Item("dtl_id"))
-            End While
-            IDReader.Close()
 
-            For DtlLoop As Integer = 0 To DtlIDList.Count - 1
-                ホーム.Sql.CommandText = "SELECT * FROM subject_details WHERE budget_no=" & ホーム.BudgetNo & " AND dtl_id=" & DtlIDList.Item(DtlLoop)
-                Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
+
+            ホーム.Sql.CommandText = "SELECT * FROM subject_details WHERE budget_no=" & ホーム.BudgetNo & " ORDER BY s_wrktyp_code,dtl_no ASC"
+            Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While DetailsReader.Read
                     RowCount += 1
                     RowNo += 1
 
-                    DetailList(RowCount * 3, 1) = DetailsReader.Item("dtl_id")
-                    DetailList(RowCount * 3, 2) = DetailsReader.Item("s_wrktyp_code")
+                DetailList(RowCount * 3, 1) = DetailsReader.Item("dtl_id")
+                DtlIDList.Add(DetailsReader.Item("dtl_id"))
+                DetailList(RowCount * 3, 2) = DetailsReader.Item("s_wrktyp_code")
                     DetailList(RowCount * 3 + 1, 2) = DetailList(RowCount * 3, 2)
                     DetailList(RowCount * 3 + 2, 2) = DetailList(RowCount * 3, 2)
                     DetailList.MergedRanges.Add((RowCount * 3), 2, (RowCount * 3) + 2, 2)
@@ -145,7 +140,6 @@ Public Class 詳細入力表
                     End If
                 End While
                 DetailsReader.Close()
-            Next
             DetailTotal.Value = DtlTotal
 
 

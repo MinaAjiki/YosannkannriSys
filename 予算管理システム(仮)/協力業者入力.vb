@@ -95,7 +95,7 @@ Public Class 協力業者入力
     Private Sub CoopVendorList_CellChanged(sender As Object, e As RowColEventArgs) Handles CoopVendorList.AfterEdit
         Try
             Dim SetImageRow As Integer = e.Row
-            CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Edit_source.png"))
+            CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
             ホーム.Modified = "True"
 
         Catch ex As Exception
