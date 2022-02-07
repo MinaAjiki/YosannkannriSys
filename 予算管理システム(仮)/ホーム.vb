@@ -23,8 +23,6 @@ Public Class ホーム
     Public Transaction As SqlTransaction
     Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    'Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
-    'Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
     Public Modified As String = "False"                                    'データ修正判断
     Public lworktypecode As Integer
     Public lworktypename As String
@@ -38,7 +36,8 @@ Public Class ホーム
     Public ExpnsbdID As Integer
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
-    Public ReportPath As String
+    Public Reportpath As String
+    Public ReportName As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -531,6 +530,7 @@ Public Class ホーム
     End Sub
 
     Private Sub 予算総括表_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表.Click
+        ReportName = "予算総括表"
         レポート.Show()
     End Sub
 End Class

@@ -172,65 +172,62 @@ Partial Class 代価表入力
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(171, 202)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 224)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(155, 22)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(170, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(155, 22)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.CutMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(155, 22)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(155, 22)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PastingMenu.Size = New System.Drawing.Size(170, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(155, 22)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'CostCreateMenu
         '
         Me.CostCreateMenu.Name = "CostCreateMenu"
-        Me.CostCreateMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCreateMenu.Size = New System.Drawing.Size(155, 22)
         Me.CostCreateMenu.Text = "代価表作成"
         '
         'CostModifyMenu
         '
         Me.CostModifyMenu.Name = "CostModifyMenu"
-        Me.CostModifyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostModifyMenu.Size = New System.Drawing.Size(155, 22)
         Me.CostModifyMenu.Text = "代価表修正"
         '
         'CostCopyMenu
         '
         Me.CostCopyMenu.Name = "CostCopyMenu"
-        Me.CostCopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCopyMenu.Size = New System.Drawing.Size(155, 22)
         Me.CostCopyMenu.Text = "代価表コピー"
         '
         'ReferenceMenu
         '
         Me.ReferenceMenu.Name = "ReferenceMenu"
-        Me.ReferenceMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ReferenceMenu.Size = New System.Drawing.Size(155, 22)
         Me.ReferenceMenu.Text = "代価表参照"
         '
         'CostNo
@@ -281,6 +278,7 @@ Partial Class 代価表入力
         Me.CostName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CostName.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CostName.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostName.ImeMode = System.Windows.Forms.ImeMode.[On]
         Me.CostName.Location = New System.Drawing.Point(99, 63)
         Me.CostName.Name = "CostName"
         Me.CostName.Size = New System.Drawing.Size(228, 20)
@@ -296,6 +294,7 @@ Partial Class 代価表入力
         Me.CostSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CostSpec.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CostSpec.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostSpec.ImeMode = System.Windows.Forms.ImeMode.[On]
         Me.CostSpec.Location = New System.Drawing.Point(402, 63)
         Me.CostSpec.Name = "CostSpec"
         Me.CostSpec.Size = New System.Drawing.Size(543, 20)
@@ -319,6 +318,7 @@ Partial Class 代価表入力
         Me.CostQuanity.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostQuanity.GapHeight = 0
         Me.CostQuanity.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostQuanity.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.CostQuanity.Location = New System.Drawing.Point(66, 84)
         Me.CostQuanity.Name = "CostQuanity"
         Me.CostQuanity.Size = New System.Drawing.Size(110, 20)
@@ -384,6 +384,7 @@ Partial Class 代価表入力
         Me.CostCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostCostea.GapHeight = 0
         Me.CostCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostCostea.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.CostCostea.Location = New System.Drawing.Point(522, 84)
         Me.CostCostea.Name = "CostCostea"
         Me.CostCostea.Size = New System.Drawing.Size(110, 20)
@@ -769,6 +770,7 @@ Partial Class 代価表入力
         Me.CostUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CostUnit.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CostUnit.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostUnit.ImeMode = System.Windows.Forms.ImeMode.[On]
         Me.CostUnit.Location = New System.Drawing.Point(218, 84)
         Me.CostUnit.Name = "CostUnit"
         Me.CostUnit.Size = New System.Drawing.Size(109, 20)
