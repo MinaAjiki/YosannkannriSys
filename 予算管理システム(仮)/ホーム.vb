@@ -320,19 +320,10 @@ Public Class ホーム
             Sql.Parameters.Clear()
             Sql.CommandText = ""
 
-            Sql.CommandText = "SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq INTO cost_masters FROM [SVACD001].[PMS].[dbo].[cost_masters]"
+            Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters]"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "ALTER TABLE cost_masters ADD cstmstr_id smallint IDENTITY(1,1)"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "ALTER TABLE cost_masters ADD CONSTRAINT PK_cost_masters PRIMARY KEY (cstmstr_id)"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "SELECT * INTO cost_classes FROM [SVACD001].[PMS].[dbo].[cost_classes]"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "ALTER TABLE cost_classes ADD CONSTRAINT PK_cost_classes PRIMARY KEY (cstclss_code)"
+            Sql.CommandText = "INSERT INTO cost_classes SELECT * FROM [SVACD001].[PMS].[dbo].[cost_classes]"
             Sql.ExecuteNonQuery()
 
             Sql.CommandText = "SELECT stexpns_code,stexpns_name INTO #site_expenses FROM [SVACD001].[PMS].[dbo].[site_expenses]"
