@@ -8,5 +8,11 @@ Public Class レポート
             Dim ReportLoadRead As New 出来高査定書(出来高査定チェックフォーム.VendorNo.Text)
             ReportLoad = ReportLoadRead.ReportLoad
         End If
+
+        If ホーム.ReportName = "予算総括表" Then
+            Dim ReportLoadRead As New 予算総括表
+            ReportLoad = ReportLoadRead.ReportLoad
+
+        End If
     End Sub
 End Class

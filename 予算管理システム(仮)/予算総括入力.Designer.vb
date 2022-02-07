@@ -291,7 +291,7 @@ Partial Class 予算総括入力
         Me.ProjectCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProjectCode.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.ProjectCode.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ProjectCode.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.ProjectCode.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.ProjectCode.Location = New System.Drawing.Point(101, 61)
         Me.ProjectCode.MaxLength = 6
         Me.ProjectCode.Name = "ProjectCode"
@@ -392,7 +392,7 @@ Partial Class 予算総括入力
         Me.TermS.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.TermS.GapHeight = 0
         Me.TermS.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.TermS.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.TermS.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.TermS.Location = New System.Drawing.Point(101, 145)
         Me.TermS.Name = "TermS"
         Me.TermS.Size = New System.Drawing.Size(150, 20)
@@ -457,7 +457,7 @@ Partial Class 予算総括入力
         Me.TermE.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.TermE.GapHeight = 0
         Me.TermE.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.TermE.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.TermE.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.TermE.Location = New System.Drawing.Point(101, 187)
         Me.TermE.Name = "TermE"
         Me.TermE.Size = New System.Drawing.Size(150, 20)
@@ -510,7 +510,7 @@ Partial Class 予算総括入力
         Me.Amount.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.Amount.GapHeight = 0
         Me.Amount.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.Amount.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.Amount.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.Amount.Location = New System.Drawing.Point(101, 124)
         Me.Amount.Name = "Amount"
         Me.Amount.Size = New System.Drawing.Size(150, 20)
@@ -841,11 +841,13 @@ Partial Class 予算総括入力
         Me.ExpenseRate.AutoSize = False
         Me.ExpenseRate.BackColor = System.Drawing.Color.White
         Me.ExpenseRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ExpenseRate.CustomFormat = "##.##"
         Me.ExpenseRate.DataType = GetType(Object)
         Me.ExpenseRate.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpenseRate.EditFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.ExpenseRate.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.ExpenseRate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.ExpenseRate.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.ExpenseRate.Location = New System.Drawing.Point(798, 40)
         Me.ExpenseRate.Name = "ExpenseRate"
         Me.ExpenseRate.NullText = "0.00"
@@ -1724,7 +1726,7 @@ Partial Class 予算総括入力
         Me.AuthorizerPanel.Location = New System.Drawing.Point(9, 18)
         Me.AuthorizerPanel.Name = "AuthorizerPanel"
         Me.AuthorizerPanel.Size = New System.Drawing.Size(248, 115)
-        Me.AuthorizerPanel.TabIndex = 109
+        Me.AuthorizerPanel.TabIndex = 28
         '
         'Authorizer5
         '
@@ -1735,7 +1737,7 @@ Partial Class 予算総括入力
         Me.Authorizer5.Location = New System.Drawing.Point(121, 88)
         Me.Authorizer5.Name = "Authorizer5"
         Me.Authorizer5.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer5.TabIndex = 97
+        Me.Authorizer5.TabIndex = 32
         Me.Authorizer5.Tag = Nothing
         Me.Authorizer5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1748,7 +1750,7 @@ Partial Class 予算総括入力
         Me.Authorizer4.Location = New System.Drawing.Point(121, 67)
         Me.Authorizer4.Name = "Authorizer4"
         Me.Authorizer4.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer4.TabIndex = 96
+        Me.Authorizer4.TabIndex = 31
         Me.Authorizer4.Tag = Nothing
         Me.Authorizer4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1761,7 +1763,7 @@ Partial Class 予算総括入力
         Me.Authorizer3.Location = New System.Drawing.Point(121, 46)
         Me.Authorizer3.Name = "Authorizer3"
         Me.Authorizer3.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer3.TabIndex = 95
+        Me.Authorizer3.TabIndex = 30
         Me.Authorizer3.Tag = Nothing
         Me.Authorizer3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1774,7 +1776,7 @@ Partial Class 予算総括入力
         Me.Authorizer2.Location = New System.Drawing.Point(121, 25)
         Me.Authorizer2.Name = "Authorizer2"
         Me.Authorizer2.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer2.TabIndex = 94
+        Me.Authorizer2.TabIndex = 29
         Me.Authorizer2.Tag = Nothing
         Me.Authorizer2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1787,7 +1789,7 @@ Partial Class 予算総括入力
         Me.Authorizer1.Location = New System.Drawing.Point(121, 4)
         Me.Authorizer1.Name = "Authorizer1"
         Me.Authorizer1.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer1.TabIndex = 93
+        Me.Authorizer1.TabIndex = 28
         Me.Authorizer1.Tag = Nothing
         Me.Authorizer1.Value = ""
         Me.Authorizer1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -1868,7 +1870,7 @@ Partial Class 予算総括入力
         Me.CirculatorPanel.Location = New System.Drawing.Point(9, 137)
         Me.CirculatorPanel.Name = "CirculatorPanel"
         Me.CirculatorPanel.Size = New System.Drawing.Size(248, 117)
-        Me.CirculatorPanel.TabIndex = 108
+        Me.CirculatorPanel.TabIndex = 33
         '
         'Circulator3
         '
@@ -1879,7 +1881,7 @@ Partial Class 予算総括入力
         Me.Circulator3.Location = New System.Drawing.Point(121, 49)
         Me.Circulator3.Name = "Circulator3"
         Me.Circulator3.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator3.TabIndex = 105
+        Me.Circulator3.TabIndex = 35
         Me.Circulator3.Tag = Nothing
         Me.Circulator3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1892,7 +1894,7 @@ Partial Class 予算総括入力
         Me.Circulator5.Location = New System.Drawing.Point(121, 91)
         Me.Circulator5.Name = "Circulator5"
         Me.Circulator5.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator5.TabIndex = 107
+        Me.Circulator5.TabIndex = 37
         Me.Circulator5.Tag = Nothing
         Me.Circulator5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1917,7 +1919,7 @@ Partial Class 予算総括入力
         Me.Circulator4.Location = New System.Drawing.Point(121, 70)
         Me.Circulator4.Name = "Circulator4"
         Me.Circulator4.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator4.TabIndex = 106
+        Me.Circulator4.TabIndex = 36
         Me.Circulator4.Tag = Nothing
         Me.Circulator4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1954,7 +1956,7 @@ Partial Class 予算総括入力
         Me.Circulator2.Location = New System.Drawing.Point(121, 28)
         Me.Circulator2.Name = "Circulator2"
         Me.Circulator2.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator2.TabIndex = 104
+        Me.Circulator2.TabIndex = 34
         Me.Circulator2.Tag = Nothing
         Me.Circulator2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1979,7 +1981,7 @@ Partial Class 予算総括入力
         Me.Circulator1.Location = New System.Drawing.Point(121, 7)
         Me.Circulator1.Name = "Circulator1"
         Me.Circulator1.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator1.TabIndex = 103
+        Me.Circulator1.TabIndex = 33
         Me.Circulator1.Tag = Nothing
         Me.Circulator1.Value = ""
         Me.Circulator1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -2072,7 +2074,7 @@ Partial Class 予算総括入力
         Me.CnsdrtnDate.Location = New System.Drawing.Point(323, 145)
         Me.CnsdrtnDate.Name = "CnsdrtnDate"
         Me.CnsdrtnDate.Size = New System.Drawing.Size(150, 20)
-        Me.CnsdrtnDate.TabIndex = 89
+        Me.CnsdrtnDate.TabIndex = 11
         Me.CnsdrtnDate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CnsdrtnDate, "予算管理テーマ")
         Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
@@ -2521,7 +2523,7 @@ Partial Class 予算総括入力
         Me.Cancel.Margin = New System.Windows.Forms.Padding(0)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(100, 30)
-        Me.Cancel.TabIndex = 63
+        Me.Cancel.TabIndex = 42
         Me.Cancel.Text = "キャンセル"
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True

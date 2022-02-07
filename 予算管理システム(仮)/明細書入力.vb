@@ -639,10 +639,12 @@ Public Class 明細書入力
             CategoryList.Rows(e.Row).AllowEditing = False
         End If
 
+
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
+
             Dim CancelClick As String = ""
 
             Dim CancelClickLoad As New CancelClick(Me)
@@ -1479,48 +1481,48 @@ Public Class 明細書入力
                     End If
 
                     Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
-                        Dim DataCount As Integer = 0
-                        For OutsrcrCount As Integer = 1 To ColCount
-                            ホーム.Sql.CommandText = ""
-                            ホーム.Sql.Parameters.Clear()
-                            If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
-                                ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
-                                Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+                    Dim DataCount As Integer = 0
+                    For OutsrcrCount As Integer = 1 To ColCount
+                        ホーム.Sql.CommandText = ""
+                        ホーム.Sql.Parameters.Clear()
+                        If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                            Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
-                                ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
-                                Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+                            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                            Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
 
-                                If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
-                                Else
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
-                                End If
-                                If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
-                                Else
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
-                                End If
-                                If PlanCount = 0 Then
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
+                            If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
+                            End If
+                            If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
+                            End If
+                            If PlanCount = 0 Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
 
-                                    ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
+                                ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
                                                                    ,outsrcng_costea,created_date) 
                                                   VALUES (@budgetno,@outsrcno,@cstclsscode,@outsrcrid,@dtlid,@quanity,@costea,@createddate)"
-                                Else
-                                    ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
+                            Else
+                                ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
                                                      WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
-                                End If
-                                ホーム.Sql.ExecuteNonQuery()
-
                             End If
-                        Next
-                    End If
+                            ホーム.Sql.ExecuteNonQuery()
+
+                        End If
+                    Next
+                End If
             Next
 
             ホーム.Transaction.Commit()
@@ -1754,6 +1756,12 @@ Public Class 明細書入力
             DetailsList.Rows(e.Row + 1).AllowEditing = False
         Else
             DetailsList.Rows(e.Row).AllowEditing = False
+        End If
+
+        If e.Col = 6 Then
+            DetailsList.ImeMode = ImeMode.Disable
+        Else
+            DetailsList.ImeMode = ImeMode.On
         End If
     End Sub
 

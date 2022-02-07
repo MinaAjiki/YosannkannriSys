@@ -167,7 +167,7 @@
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Class\出来高査定書.vb" />
-    <Compile Include="Report\ItemAggregation .vb" />
+    <Compile Include="Report\予算総括表.vb" />
     <Compile Include="M_TOR_GIFUIC.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -521,6 +521,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\予算管理システムレポート.flxr" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -598,6 +599,13 @@
     </Content>
     <Content Include="system_log.ldf">
       <DependentUpon>system.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="user_log.ldf">
+      <DependentUpon>user.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\loader.gif" />

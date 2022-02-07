@@ -1,13 +1,13 @@
 ﻿Imports System.Data.SqlClient
 Imports C1.Win.FlexReport
 
-Public Class ItemAggregation
+Public Class 予算総括表
     Public Function ReportLoad() As String
 
         ReportLoad = ""
 
         'レポートを読み込む
-        レポート.C1FlexReport1.Load(ホーム.ReportPath, "予算総括新レポート")
+        レポート.C1FlexReport1.Load(ホーム.Reportpath, "予算総括新レポート")
         'レポート.C1FlexReport1.Load("C:\Users\206029\Documents\Visual Studio 2008\Projects\勤怠入力支援システム\勤怠入力支援システム\勤怠入力支援システムレポート.flxr", "チェックリスト")
 
 
@@ -73,6 +73,22 @@ Public Class ItemAggregation
             ExpectedTotalField.Text = 0
         End If
 
+        Dim DataCount As Integer = 0
+        ホーム.Sql.CommandText = "SELECT TOP 10 * FROM outsourcers"
+        Dim OutsrcrReader As SqlDataReader = ホーム.Sql.ExecuteReader
+        While OutsrcrReader.Read
+            DataCount += 1
+
+            Dim WorkTypeField As C1.Win.FlexReport.Field
+            WorkTypeField = CType(レポート.C1FlexReport1.Fields("Worktype" & DataCount), C1.Win.FlexReport.Field)
+            WorkTypeField.Text = OutsrcrReader.Item("worktype")
+
+            Dim OutsrcrNameField As C1.Win.FlexReport.Field
+            OutsrcrNameField = CType(レポート.C1FlexReport1.Fields("OutsrcrName" & DataCount), C1.Win.FlexReport.Field)
+            OutsrcrNameField.Text = OutsrcrReader.Item("outsrcr_name")
+
+        End While
+        OutsrcrReader.Close()
 
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
 
