@@ -524,4 +524,14 @@ Public Class ホーム
         ReportName = "予算総括表"
         レポート.Show()
     End Sub
+
+    Private Sub 材料表_Click(sender As Object, e As ClickEventArgs) Handles 材料表.Click
+        ReportName = "材料表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 現場経費_Click(sender As Object, e As ClickEventArgs) Handles 現場経費.Click
+        ReportName = "現場経費"
+        レポート.Show()
+    End Sub
 End Class

@@ -12,9 +12,49 @@ Public Class 予算総括表
 
 
         Dim ReportData As DataSource = New DataSource
-        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=D:\DD0000テスト工事.mdf;Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token="""
-        ReportData.RecordSource = "SELECT * FROM  bdgt_smmry_report WHERE ((bdgt_smmry_report.budget_no) = " & ホーム.BudgetNo & ");"
+        ReportData.Name = "ReportDataSource"
+        ReportData.DataProvider = DataProvider.OLEDB
+        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=" & ホーム.UserDataPath & ホーム.UserDataName & ";Data Source=(localdb)\MSSQLLocalDB;"
+        ReportData.RecordSource = "SELECT DISTINCT bdgt_smmry_report.project_code,
+	                                               bdgt_smmry_report.project_name,
+	                                               bdgt_smmry_report.budget_no,
+	                                               bdgt_smmry_report.contractee,
+	                                               bdgt_smmry_report.prjct_address,
+	                                               bdgt_smmry_report.prjct_term_s,
+	                                               bdgt_smmry_report.prjct_term_e,
+	                                               bdgt_smmry_report.cntrct_amount,
+	                                               bdgt_smmry_report.prjct_category,
+	                                               bdgt_smmry_report.cnsdrtn_date,
+	                                               bdgt_smmry_report.prjct_summary,
+	                                               bdgt_smmry_report.subcontract_rate,
+	                                               bdgt_smmry_report.remarks,
+	                                               bdgt_smmry_report.department,
+                                                   bdgt_smmry_report.director,
+	                                               bdgt_smmry_report.manager,
+	                                               bdgt_smmry_report.chief,
+	                                               bdgt_smmry_report.expert_1,
+	                                               bdgt_smmry_report.expert_2,
+	                                               bdgt_smmry_report.expert_3,
+	                                               bdgt_smmry_report.staff_1,
+	                                               bdgt_smmry_report.staff_2,
+	                                               bdgt_smmry_report.staff_3,
+	                                               bdgt_smmry_report.staff_4,
+	                                               bdgt_smmry_report.bdgt_dprtmnt,
+	                                               bdgt_smmry_report.expense_rate,
+	                                               bdgt_smmry_report.authorizer1,
+	                                               bdgt_smmry_report.authorizer2,
+	                                               bdgt_smmry_report.authorizer3,
+	                                               bdgt_smmry_report.authorizer4,
+	                                               bdgt_smmry_report.authorizer5,
+	                                               bdgt_smmry_report.circulator1,
+	                                               bdgt_smmry_report.circulator2,
+	                                               bdgt_smmry_report.circulator3,
+	                                               bdgt_smmry_report.circulator4,
+	                                               bdgt_smmry_report.circulator5
+                                    FROM  bdgt_smmry_report
+                                    WHERE ((bdgt_smmry_report.budget_no) =" & ホーム.BudgetNo & ");"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
+        レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
         Dim BudgetField As C1.Win.FlexReport.Field
         BudgetField = CType(レポート.C1FlexReport1.Fields("budget_no"), C1.Win.FlexReport.Field)
@@ -24,8 +64,8 @@ Public Class 予算総括表
         Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar
         If SiteExpenseCount > 0 Then
             ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
-            Dim SiteCostsField As C1.Win.FlexReport.TextField
-            SiteCostsField = CType(レポート.C1FlexReport1.Fields("SiteCosts"), C1.Win.FlexReport.TextField)
+            Dim SiteCostsField As C1.Win.FlexReport.Field
+            SiteCostsField = CType(レポート.C1FlexReport1.Fields("SiteCosts"), C1.Win.FlexReport.Field)
             If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
                 SiteCostsField.Text = ホーム.Sql.ExecuteScalar
             Else
