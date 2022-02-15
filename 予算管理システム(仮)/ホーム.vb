@@ -23,8 +23,6 @@ Public Class ホーム
     Public Transaction As SqlTransaction
     Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    'Public CAP21Connection As New OdbcConnection(My.Settings.CAP21_ODBC) 'CAP21ODBC接続
-    'Public CAP21CommandText As New OdbcCommand                           'CAP21ODBC接続
     Public Modified As String = "False"                                    'データ修正判断
     Public lworktypecode As Integer
     Public lworktypename As String
@@ -38,8 +36,8 @@ Public Class ホーム
     Public ExpnsbdID As Integer
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
-    Public ReportPath As String
-    Public Report As String
+    Public Reportpath As String
+    Public ReportName As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -322,19 +320,10 @@ Public Class ホーム
             Sql.Parameters.Clear()
             Sql.CommandText = ""
 
-            Sql.CommandText = "SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq INTO cost_masters FROM [SVACD001].[PMS].[dbo].[cost_masters]"
+            Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters]"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "ALTER TABLE cost_masters ADD cstmstr_id smallint IDENTITY(1,1)"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "ALTER TABLE cost_masters ADD CONSTRAINT PK_cost_masters PRIMARY KEY (cstmstr_id)"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "SELECT * INTO cost_classes FROM [SVACD001].[PMS].[dbo].[cost_classes]"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "ALTER TABLE cost_classes ADD CONSTRAINT PK_cost_classes PRIMARY KEY (cstclss_code)"
+            Sql.CommandText = "INSERT INTO cost_classes SELECT * FROM [SVACD001].[PMS].[dbo].[cost_classes]"
             Sql.ExecuteNonQuery()
 
             Sql.CommandText = "SELECT stexpns_code,stexpns_name INTO #site_expenses FROM [SVACD001].[PMS].[dbo].[site_expenses]"
@@ -532,6 +521,17 @@ Public Class ホーム
     End Sub
 
     Private Sub 予算総括表_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表.Click
+        ReportName = "予算総括表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 材料表_Click(sender As Object, e As ClickEventArgs) Handles 材料表.Click
+        ReportName = "材料表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 現場経費_Click(sender As Object, e As ClickEventArgs) Handles 現場経費.Click
+        ReportName = "現場経費"
         レポート.Show()
     End Sub
 

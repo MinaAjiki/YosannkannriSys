@@ -125,7 +125,6 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.右クリックメニュー
-        Me.DetailsList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.DetailsList.Location = New System.Drawing.Point(10, 65)
@@ -149,64 +148,61 @@ Partial Class 明細書入力
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(171, 202)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 202)
         Me.右クリックメニュー.Text = "項目選択"
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(170, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.CutMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PastingMenu.Size = New System.Drawing.Size(170, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'CostCreateMenu
         '
         Me.CostCreateMenu.Name = "CostCreateMenu"
-        Me.CostCreateMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCreateMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostCreateMenu.Text = "代価表作成"
         '
         'CostModifyMenu
         '
         Me.CostModifyMenu.Name = "CostModifyMenu"
-        Me.CostModifyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostModifyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostModifyMenu.Text = "代価表修正"
         '
         'CostCopyMenu
         '
         Me.CostCopyMenu.Name = "CostCopyMenu"
-        Me.CostCopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CostCopyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostCopyMenu.Text = "代価表コピー"
         '
         'ReferenceMenu
         '
         Me.ReferenceMenu.Name = "ReferenceMenu"
-        Me.ReferenceMenu.Size = New System.Drawing.Size(170, 22)
+        Me.ReferenceMenu.Size = New System.Drawing.Size(123, 22)
         Me.ReferenceMenu.Text = "代価表参照"
         '
         'SWorkType
@@ -265,6 +261,7 @@ Partial Class 明細書入力
         Me.CategoryList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.CategoryList.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
@@ -331,6 +328,7 @@ Partial Class 明細書入力
         Me.OutsoucerList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.OutsoucerList.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.OutsoucerList.Location = New System.Drawing.Point(0, 0)
         Me.OutsoucerList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerList.Name = "OutsoucerList"

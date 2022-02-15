@@ -310,59 +310,59 @@ Public Class 代価表入力
                 End If
 
                 Dim No As String = MaxNo + 1
-                    If No.Length = 1 Then
-                        No = "0000" & No
-                    ElseIf No.Length = 2 Then
-                        No = "000" & No
-                    ElseIf No.Length = 3 Then
-                        No = "00" & No
-                    ElseIf No.Length = 4 Then
-                        No = "0" & No
-                    End If
-                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
-
-                    Dim RowNo As Integer = 0
-                    For RowCount = 1 To 6
-                        RowNo += 1
-
-                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                        Quanity.StyleNew.Format = "N1"
-                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                        Costea.StyleNew.Format = "N0"
-                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                        Amount.StyleNew.Format = "N0"
-
-                        If RowCount Mod 2 = 0 Then
-                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        End If
-
-                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                        If (RowNo * RowNo) + 2 = 6 Then
-                            RowNo = 0
-                        End If
-
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                    Next
-
+                If No.Length = 1 Then
+                    No = "0000" & No
+                ElseIf No.Length = 2 Then
+                    No = "000" & No
+                ElseIf No.Length = 3 Then
+                    No = "00" & No
+                ElseIf No.Length = 4 Then
+                    No = "0" & No
                 End If
+                CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+
+                Dim RowNo As Integer = 0
+                For RowCount = 1 To 6
+                    RowNo += 1
+
+                    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                    Quanity.StyleNew.Format = "N1"
+                    Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                    Costea.StyleNew.Format = "N0"
+                    Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                    Amount.StyleNew.Format = "N0"
+
+                    If RowCount Mod 2 = 0 Then
+                        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    End If
+
+                    BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                    BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                    BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                    If (RowNo * RowNo) + 2 = 6 Then
+                        RowNo = 0
+                    End If
+
+                    BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                    BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                    BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                    BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                    BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                Next
+
+            End If
 
 
-                ホーム.Modified = "False"
+            ホーム.Modified = "False"
 
 
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
 
 
@@ -741,9 +741,58 @@ Public Class 代価表入力
             Next
 
             If SelectRow = 0 Then
-            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
 
-        Else
+            Else
+                If BreakDownList(SelectRow, 8) >= 12 Then
+                    Dim DaikaForm As New 代価表入力
+                    DaikaForm.SelectRow = SelectRow
+                    DaikaForm.CostID = BreakDownList(SelectRow, 9)
+                    DaikaForm.ClassCode = BreakDownList(SelectRow, 8)
+                    DaikaForm.TopLevel = True
+                    DaikaForm.TopMost = True
+                    DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
+                    DaikaForm.CostNo.Enabled = False
+                    DaikaForm.CostName.Enabled = False
+                    DaikaForm.CostSpec.Enabled = False
+                    DaikaForm.CostQuanity.Enabled = False
+                    DaikaForm.CostUnit.Enabled = False
+                    DaikaForm.CostUnitPrice.Enabled = False
+                    DaikaForm.CostCostea.Enabled = False
+                    DaikaForm.BreakDownList.AllowEditing = False
+                    DaikaForm.ItemSelect.Visible = False
+                    DaikaForm.CostCreation.Visible = False
+                    DaikaForm.CostModify.Visible = False
+                    DaikaForm.CostCopy.Visible = False
+                    DaikaForm.Reference.Visible = False
+                    DaikaForm.Entry.Visible = False
+                    DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+                    DaikaForm.Show()
+                    DaikaForm.TopMost = False
+
+
+
+                Else
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+                End If
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub ReferenceMenu_Click(sender As Object, e As EventArgs) Handles ReferenceMenu.Click
+        Try
+            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
+                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
             If BreakDownList(SelectRow, 8) >= 12 Then
                 Dim DaikaForm As New 代価表入力
                 DaikaForm.SelectRow = SelectRow
@@ -769,63 +818,14 @@ Public Class 代価表入力
                 DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
                 DaikaForm.Show()
                 DaikaForm.TopMost = False
-
-
-
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             End If
-        End If
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
-        End Try
-    End Sub
-
-    Private Sub ReferenceMenu_Click(sender As Object, e As EventArgs) Handles ReferenceMenu.Click
-        Try
-            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
-                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                    SelectRow = DetailsRowCount + 2
-                    Exit For
-                End If
-            Next
-
-            If BreakDownList(SelectRow, 8) >= 12 Then
-            Dim DaikaForm As New 代価表入力
-            DaikaForm.SelectRow = SelectRow
-            DaikaForm.CostID = BreakDownList(SelectRow, 9)
-            DaikaForm.ClassCode = BreakDownList(SelectRow, 8)
-            DaikaForm.TopLevel = True
-            DaikaForm.TopMost = True
-            DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
-            DaikaForm.CostNo.Enabled = False
-            DaikaForm.CostName.Enabled = False
-            DaikaForm.CostSpec.Enabled = False
-            DaikaForm.CostQuanity.Enabled = False
-            DaikaForm.CostUnit.Enabled = False
-            DaikaForm.CostUnitPrice.Enabled = False
-            DaikaForm.CostCostea.Enabled = False
-            DaikaForm.BreakDownList.AllowEditing = False
-            DaikaForm.ItemSelect.Visible = False
-            DaikaForm.CostCreation.Visible = False
-            DaikaForm.CostModify.Visible = False
-            DaikaForm.CostCopy.Visible = False
-            DaikaForm.Reference.Visible = False
-            DaikaForm.Entry.Visible = False
-            DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
-            DaikaForm.Show()
-            DaikaForm.TopMost = False
-        Else
-            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-        End If
-        Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 
@@ -893,6 +893,11 @@ Public Class 代価表入力
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
+
+            If Me.FormBorderStyle = FormBorderStyle.Sizable Then
+                Me.Close()
+                Exit Sub
+            End If
 
             Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
@@ -1491,6 +1496,12 @@ Public Class 代価表入力
                     End If
                 End If
             End If
+
+            If e.Col = 6 Then
+                BreakDownList.ImeMode = ImeMode.Disable
+            Else
+                BreakDownList.ImeMode = ImeMode.On
+            End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -1702,7 +1713,7 @@ Public Class 代価表入力
                             ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET cstclss_code=@cstclsscode,cstmstr_id=@cstmstrid,prjctcst_bd_no=@bdno,
                                                       prjctcst_bd_name=@bdname,prjctcst_bd_spec=@bdspec,prjctcst_bd_unit=@bdunit,prjctcst_bd_quanity=@bdquanity,prjctcst_bd_costea=@bdcostea,
                                                       prjctcst_bd_labor=@bdlabor,prjctcst_bd_material=@bdmaterial,prjctcst_bd_machine=@bdmachine,prjctcst_bd_subcntrct=@bdsubcntrct,
-                                                      prjctcst_bd_expense=@bdexpens,prjctcst_bd_remarks=@bdremarks WHERE prjctcst_bd_id=" & BreakDownList(RowCount * 3, 1)
+                                                      prjctcst_bd_expense=@bdexpense,prjctcst_bd_remarks=@bdremarks WHERE prjctcst_bd_id=" & BreakDownList(RowCount * 3, 1)
                         End If
                         ホーム.Sql.ExecuteNonQuery()
                     Else
@@ -2053,9 +2064,5 @@ Public Class 代価表入力
             エラー.Show()
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
-
     End Sub
 End Class

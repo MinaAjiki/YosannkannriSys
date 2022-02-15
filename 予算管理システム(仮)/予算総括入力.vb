@@ -267,6 +267,7 @@ Public Class 予算総括入力
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
 
+        Me.ImeMode = ImeMode.On
 
         Dim ErrorText As String = ""
 
@@ -284,7 +285,9 @@ Public Class 予算総括入力
 
                 End If
             Else
-                FormPanel.Controls.Item(CntrlCnt).BackColor = Color.White
+                If FormPanel.Controls.Item(CntrlCnt).Name.Contains("Label") = False Then
+                    FormPanel.Controls.Item(CntrlCnt).BackColor = Color.White
+                End If
             End If
         Next
 
@@ -486,6 +489,7 @@ Public Class 予算総括入力
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
+            Me.ImeMode = ImeMode.On
             Dim CancelClick As String = ""
 
             Dim CancelClickLoad As New CancelClick(Me)
