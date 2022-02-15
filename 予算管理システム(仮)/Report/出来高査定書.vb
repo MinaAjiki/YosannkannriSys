@@ -1,9 +1,9 @@
 ﻿Imports C1.Win.FlexReport
 Imports System.Data.SqlClient
 Public Class 出来高査定書
-    Private VN As Integer
+
     Public Sub New(ByVal VendorN As Integer)
-        VN = VendorN '処理年月
+        出来高査定チェックフォーム.VN = VendorN '
     End Sub
     Public Function ReportLoad() As String
         Dim ds As New C1.Win.FlexReport.DataSource()
@@ -13,7 +13,7 @@ Public Class 出来高査定書
 
         'レポートを読み込む
         Dim report As New C1FlexReport
-        レポート.C1FlexReport1.Load(出来高査定チェックフォーム.ReportPath, "出来高査定書")
+        レポート.C1FlexReport1.Load(ホーム.ReportPath, "出来高査定書")
 
         'Dim DT As New DataTable
         'DT.Columns.Add("OutsourcersCode")
@@ -43,10 +43,10 @@ Public Class 出来高査定書
         'DT.Rows.Add(DTRow)
 
         'ds.Recordset = DT
-        Dim vendorcode As Integer = VN
-        ホーム.Sql.CommandText = "SELECT outsrcr_name FROM outsourcers WHERE outsrcr_code = " & VN
+        Dim vendorcode As Integer = 出来高査定チェックフォーム.VN
+        ホーム.Sql.CommandText = "SELECT outsrcr_name FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
         Dim vendorname As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VN
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
         Dim vendorid As String = ホーム.Sql.ExecuteScalar
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
         Dim Pcode As String = ホーム.Sql.ExecuteScalar
@@ -57,7 +57,7 @@ Public Class 出来高査定書
 
         Dim field As TextField
         field = CType(レポート.C1FlexReport1.Fields("業者コード"), TextField)
-        field.Text = VN
+        field.Text = 出来高査定チェックフォーム.VN
 
         Dim field1 As TextField
         field1 = CType(レポート.C1FlexReport1.Fields("会社名"), TextField)

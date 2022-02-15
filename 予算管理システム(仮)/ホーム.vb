@@ -39,6 +39,7 @@ Public Class ホーム
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
     Public ReportPath As String
+    Public Report As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -531,6 +532,24 @@ Public Class ホーム
     End Sub
 
     Private Sub 予算総括表_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表.Click
+        レポート.Show()
+    End Sub
+
+    Private Sub 外注計画_Click(sender As Object, e As ClickEventArgs) Handles 外注計画.Click
+        '値がTrueの場合、変数に帳票名を代入する
+        Report = "外注計画"
+        'レポートのデザインが格納されているファイルのパスを変数に代入する
+        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+        ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+        レポート.Show()
+    End Sub
+
+    Private Sub 外注計画報告書_Click(sender As Object, e As ClickEventArgs) Handles 外注計画報告書.Click
+        '値がTrueの場合、変数に帳票名を代入する
+        Report = "外注計画報告書"
+        'レポートのデザインが格納されているファイルのパスを変数に代入する
+        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+        ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
         レポート.Show()
     End Sub
 End Class

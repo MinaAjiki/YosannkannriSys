@@ -94,7 +94,7 @@ Public Class 外注内訳入力
             Dim Drow3 As Integer = 5
 
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_worktype_code,dtl_unit,dtl_name,dtl_quanity,dtl_costea,dtl_spec FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_id ASC"
+            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_worktype_code,dtl_unit,dtl_name,dtl_quanity,dtl_costea,dtl_spec FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_no ASC"
             Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Detailreader.Read
                 Me.DetailList.Rows.Add()
@@ -532,6 +532,12 @@ Public Class 外注内訳入力
                             ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,outsrcr_id,dtl_id,outsrcng_quanity,outsrcng_costea,created_date)VALUES(@budget_no,@outsrc_no,@outsrcr_id,@dtl_id,@outsrcng_quanity,@outsrcng_costea,@created_date)"
                         End If
                     Else
+                        If Oquanity = 0 Or Ocostea = 0 Then
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "DELETE FROM outsourcing_plans WHERE outsrc_no =" & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid
+                            ホーム.Sql.ExecuteNonQuery()
+                            Continue For
+                        End If
                         ホーム.Sql.CommandText = ""
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET budget_no=@budget_no,outsrc_no=@outsrc_no,outsrcr_id=@outsrcr_id,dtl_id=@dtl_id,outsrcng_quanity=@outsrcng_quanity,outsrcng_costea=@outsrcng_costea,created_date=@created_date WHERE outsrc_no = " & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid

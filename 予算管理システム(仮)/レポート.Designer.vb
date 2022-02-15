@@ -31,7 +31,7 @@ Partial Class レポート
         'C1FlexReport1
         '
         Me.C1FlexReport1.ReportDefinition = resources.GetString("C1FlexReport1.ReportDefinition")
-        Me.C1FlexReport1.ReportName = "出来高査定書"
+        Me.C1FlexReport1.ReportName = "出来形数量査定書(中間)"
         '
         'C1FlexViewer1
         '

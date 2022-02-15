@@ -1,8 +1,7 @@
 ﻿Imports C1.Win.C1FlexGrid
 Imports System.Data.SqlClient
 Public Class 出来高査定チェックフォーム
-    Public Report As String '帳票名
-    Public ReportPath As String 'レポートデザインのパス
+    Public VN As Integer
     Private Sub Cancel_MouseLeave(sender As Object, e As EventArgs) Handles Cancel.MouseLeave
         Cancel.ImageIndex = 6
     End Sub
@@ -88,14 +87,14 @@ Public Class 出来高査定チェックフォーム
 
     End Sub
 
-    Private Sub Labor_Click(sender As Object, e As EventArgs) Handles Labor.Click
+    Private Sub Asses_Click(sender As Object, e As EventArgs) Handles Asses.Click
         Try
 
             '値がTrueの場合、変数に帳票名を代入する
-            Report = "出来高査定書"
+            ホーム.Report = "出来高査定書"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -104,5 +103,31 @@ Public Class 出来高査定チェックフォーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub AssesComp_Click(sender As Object, e As EventArgs) Handles AssesComp.Click
+
+    End Sub
+
+    Private Sub QAsses_Click(sender As Object, e As EventArgs) Handles QAsses.Click
+        Try
+
+            '値がTrueの場合、変数に帳票名を代入する
+            ホーム.Report = "出来形数量査定書(中間)"
+            'レポートのデザインが格納されているファイルのパスを変数に代入する
+            'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+            ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            レポート.Show()
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub QAssesComp_Click(sender As Object, e As EventArgs) Handles QAssesComp.Click
+
     End Sub
 End Class

@@ -26,11 +26,11 @@ Partial Class 出来高査定チェックフォーム
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(出来高査定チェックフォーム))
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Labor = New System.Windows.Forms.Button()
+        Me.QAssesEx = New System.Windows.Forms.Button()
+        Me.QAssesComp = New System.Windows.Forms.Button()
+        Me.QAsses = New System.Windows.Forms.Button()
+        Me.AssesComp = New System.Windows.Forms.Button()
+        Me.Asses = New System.Windows.Forms.Button()
         Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.VendorList = New C1.Win.C1Input.C1ComboBox()
         Me.VendorNo = New C1.Win.C1Input.C1TextBox()
@@ -72,11 +72,11 @@ Partial Class 出来高査定チェックフォーム
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
-        Me.FormPanel.Controls.Add(Me.Button4)
-        Me.FormPanel.Controls.Add(Me.Button3)
-        Me.FormPanel.Controls.Add(Me.Button2)
-        Me.FormPanel.Controls.Add(Me.Button1)
-        Me.FormPanel.Controls.Add(Me.Labor)
+        Me.FormPanel.Controls.Add(Me.QAssesEx)
+        Me.FormPanel.Controls.Add(Me.QAssesComp)
+        Me.FormPanel.Controls.Add(Me.QAsses)
+        Me.FormPanel.Controls.Add(Me.AssesComp)
+        Me.FormPanel.Controls.Add(Me.Asses)
         Me.FormPanel.Controls.Add(Me.DetailsList)
         Me.FormPanel.Controls.Add(Me.VendorList)
         Me.FormPanel.Controls.Add(Me.VendorNo)
@@ -90,65 +90,65 @@ Partial Class 出来高査定チェックフォーム
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
         '
-        'Button4
+        'QAssesEx
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(521, 562)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(120, 55)
-        Me.Button4.TabIndex = 8
-        Me.Button4.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Excel出力)"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.QAssesEx.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.QAssesEx.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.QAssesEx.Location = New System.Drawing.Point(521, 562)
+        Me.QAssesEx.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.QAssesEx.Name = "QAssesEx"
+        Me.QAssesEx.Size = New System.Drawing.Size(120, 55)
+        Me.QAssesEx.TabIndex = 8
+        Me.QAssesEx.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Excel出力)"
+        Me.QAssesEx.UseVisualStyleBackColor = False
         '
-        'Button3
+        'QAssesComp
         '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(395, 562)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(120, 55)
-        Me.Button3.TabIndex = 7
-        Me.Button3.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(完成)"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.QAssesComp.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.QAssesComp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.QAssesComp.Location = New System.Drawing.Point(395, 562)
+        Me.QAssesComp.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.QAssesComp.Name = "QAssesComp"
+        Me.QAssesComp.Size = New System.Drawing.Size(120, 55)
+        Me.QAssesComp.TabIndex = 7
+        Me.QAssesComp.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(完成)"
+        Me.QAssesComp.UseVisualStyleBackColor = False
         '
-        'Button2
+        'QAsses
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(269, 562)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(120, 55)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(中間)"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.QAsses.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.QAsses.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.QAsses.Location = New System.Drawing.Point(269, 562)
+        Me.QAsses.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.QAsses.Name = "QAsses"
+        Me.QAsses.Size = New System.Drawing.Size(120, 55)
+        Me.QAsses.TabIndex = 6
+        Me.QAsses.Text = "出来高数量査定書" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(中間)"
+        Me.QAsses.UseVisualStyleBackColor = False
         '
-        'Button1
+        'AssesComp
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(143, 562)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 55)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "完成出来高印刷"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.AssesComp.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.AssesComp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AssesComp.Location = New System.Drawing.Point(143, 562)
+        Me.AssesComp.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.AssesComp.Name = "AssesComp"
+        Me.AssesComp.Size = New System.Drawing.Size(120, 55)
+        Me.AssesComp.TabIndex = 5
+        Me.AssesComp.Text = "完成出来高印刷"
+        Me.AssesComp.UseVisualStyleBackColor = False
         '
-        'Labor
+        'Asses
         '
-        Me.Labor.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
-        Me.Labor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Labor.Location = New System.Drawing.Point(17, 562)
-        Me.Labor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Labor.Name = "Labor"
-        Me.Labor.Size = New System.Drawing.Size(120, 55)
-        Me.Labor.TabIndex = 4
-        Me.Labor.Text = "出来高査定書印刷"
-        Me.Labor.UseVisualStyleBackColor = False
+        Me.Asses.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.Asses.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Asses.Location = New System.Drawing.Point(17, 562)
+        Me.Asses.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Asses.Name = "Asses"
+        Me.Asses.Size = New System.Drawing.Size(120, 55)
+        Me.Asses.TabIndex = 4
+        Me.Asses.Text = "出来高査定書印刷"
+        Me.Asses.UseVisualStyleBackColor = False
         '
         'DetailsList
         '
@@ -311,11 +311,11 @@ Partial Class 出来高査定チェックフォーム
     Friend WithEvents VendorNo As C1.Win.C1Input.C1TextBox
     Friend WithEvents VendorList As C1.Win.C1Input.C1ComboBox
     Friend WithEvents DetailsList As C1.Win.C1FlexGrid.C1FlexGrid
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Labor As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents QAsses As Button
+    Friend WithEvents AssesComp As Button
+    Friend WithEvents Asses As Button
+    Friend WithEvents QAssesEx As Button
+    Friend WithEvents QAssesComp As Button
     Friend WithEvents Cancel As Button
     Private WithEvents ButtonImageList As ImageList
 End Class

@@ -166,7 +166,8 @@
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
-    <Compile Include="Class\出来高査定書.vb" />
+    <Compile Include="Report\出来形数量査定書.vb" />
+    <Compile Include="Report\出来高査定書.vb" />
     <Compile Include="Report\ItemAggregation .vb" />
     <Compile Include="M_TOR_GIFUIC.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -193,6 +194,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Report\外注計画.vb" />
+    <Compile Include="Report\外注計画報告書.vb" />
     <Compile Include="レポート.Designer.vb">
       <DependentUpon>レポート.vb</DependentUpon>
     </Compile>
@@ -215,6 +218,12 @@
       <DependentUpon>代価一覧.vb</DependentUpon>
     </Compile>
     <Compile Include="代価一覧.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="協力業者選択.Designer.vb">
+      <DependentUpon>協力業者選択.vb</DependentUpon>
+    </Compile>
+    <Compile Include="協力業者選択.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="詳細入力表.Designer.vb">
@@ -414,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="協力業者選択.resx">
+      <DependentUpon>協力業者選択.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="詳細入力表.resx">
       <DependentUpon>詳細入力表.vb</DependentUpon>
