@@ -40,11 +40,11 @@ Public Class 代価一覧
                     ProjectCostList(RowCount, 7) = BasicCostsReader.Item("bsscst_quanity")
                     ProjectCostList(RowCount, 8) = BasicCostsReader.Item("bsscst_costea")
                     ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("bsscst_costea") * BasicCostsReader.Item("bsscst_quanity"))
-                    ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
-                    ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
-                    ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
-                    ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
-                    ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
+                    'ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
+                    'ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
+                    'ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
+                    'ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
+                    'ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
 
                 End While
                 BasicCostsReader.Close()
@@ -78,11 +78,11 @@ Public Class 代価一覧
                     ProjectCostList(RowCount, 7) = ProjectCostsReader.Item("prjctcst_quanity")
                     ProjectCostList(RowCount, 8) = ProjectCostsReader.Item("prjctcst_costea")
                     ProjectCostList(RowCount, 9) = Math.Floor(ProjectCostsReader.Item("prjctcst_costea") * ProjectCostsReader.Item("prjctcst_quanity"))
-                    ProjectCostList(RowCount, 10) = ProjectCostsReader.Item("prjctcst_laborea")
-                    ProjectCostList(RowCount, 11) = ProjectCostsReader.Item("prjctcst_materialea")
-                    ProjectCostList(RowCount, 12) = ProjectCostsReader.Item("prjctcst_machineea")
-                    ProjectCostList(RowCount, 13) = ProjectCostsReader.Item("prjctcst_subcntrctea")
-                    ProjectCostList(RowCount, 14) = ProjectCostsReader.Item("prjctcst_expenseea")
+                    'ProjectCostList(RowCount, 10) = ProjectCostsReader.Item("prjctcst_laborea")
+                    'ProjectCostList(RowCount, 11) = ProjectCostsReader.Item("prjctcst_materialea")
+                    'ProjectCostList(RowCount, 12) = ProjectCostsReader.Item("prjctcst_machineea")
+                    'ProjectCostList(RowCount, 13) = ProjectCostsReader.Item("prjctcst_subcntrctea")
+                    'ProjectCostList(RowCount, 14) = ProjectCostsReader.Item("prjctcst_expenseea")
 
                 End While
                 ProjectCostsReader.Close()

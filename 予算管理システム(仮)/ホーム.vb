@@ -76,11 +76,20 @@ Public Class ホーム
 
                         予算選択.Show()
 
+                        Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                        Dim Year As Integer = 0
+                        If IsError(Year = Sql.ExecuteScalar) = True Then
+                            予算内訳登録.Enabled = False
+                        Else
+                            予算内訳登録.Enabled = True
+                        End If
+
                     Else
                         Me.Enabled = True
                         Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
                         BudgetNo = 0
 
+                        予算内訳登録.Enabled = False
                         見積.Enabled = False
                         外注管理.Enabled = False
 
@@ -535,21 +544,13 @@ Public Class ホーム
         レポート.Show()
     End Sub
 
-    Private Sub 外注計画_Click(sender As Object, e As ClickEventArgs) Handles 外注計画.Click
-        '値がTrueの場合、変数に帳票名を代入する
-        Report = "外注計画"
-        'レポートのデザインが格納されているファイルのパスを変数に代入する
-        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-        ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+    Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click
+        ReportName = "実行予算大内訳書"
         レポート.Show()
     End Sub
 
-    Private Sub 外注計画報告書_Click(sender As Object, e As ClickEventArgs) Handles 外注計画報告書.Click
-        '値がTrueの場合、変数に帳票名を代入する
-        Report = "外注計画報告書"
-        'レポートのデザインが格納されているファイルのパスを変数に代入する
-        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-        ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+    Private Sub 予算内訳書_Click(sender As Object, e As ClickEventArgs) Handles 予算内訳書.Click
+        ReportName = "実行予算内訳書"
         レポート.Show()
     End Sub
 End Class

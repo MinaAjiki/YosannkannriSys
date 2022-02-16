@@ -7,7 +7,7 @@ Public Class 代価表入力
     Public SelectRow As Integer
     Public CopyList(10) As String
     Public CostID As Integer
-    Public ClassCode As Integer
+    Public ClassCode As Integer = 0
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -1647,8 +1647,13 @@ Public Class 代価表入力
                 ホーム.Sql.Parameters.Clear()
                 If IsNothing(BreakDownList(RowCount * 3, 4)) = False AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
                     If BreakDownList(RowCount * 3, 2) = "False" Or IsNothing(BreakDownList(RowCount * 3, 2)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 8)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 9)
+                        If IsNothing(BreakDownList(RowCount * 3, 8)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 8)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 9)
+                        End If
                         ホーム.Sql.Parameters.Add(New SqlParameter("@bdno", SqlDbType.SmallInt)).Value = BreakDownList(RowCount * 3, 3)
                         ホーム.Sql.Parameters.Add(New SqlParameter("@bdname", SqlDbType.NVarChar)).Value = BreakDownList(RowCount * 3, 4)
                         If IsNothing(BreakDownList(RowCount * 3 + 1, 4)) = True Then
@@ -1812,6 +1817,10 @@ Public Class 代価表入力
                     明細書入力.DetailsList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
                     明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
                     明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                    明細書入力.DetailsList(明細書入力.SelectRow, 8) = ProjectCostReader.Item("cstclss_code")
+                    明細書入力.DetailsList(明細書入力.SelectRow, 9) = ProjectCostID
+                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 4
+                                      ) = CostNo.Text
                     明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6))
                     明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = ProjectCostReader.Item("prjctcst_laborea")
                     明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 2))
@@ -1848,6 +1857,9 @@ Public Class 代価表入力
                     ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
                     ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
                     ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                    ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("cstclss_code")
+                    ProjectCostList(ProjectCostRow, 8) = ProjectCostID
+                    ProjectCostList(ProjectCostRow, 9) = CostNo.Text
                     ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
                     ProjectCostList(ProjectCostRow + 1, 10) = ProjectCostReader.Item("prjctcst_laborea")
                     ProjectCostList(ProjectCostRow + 2, 10) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 10))
