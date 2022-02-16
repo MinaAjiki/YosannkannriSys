@@ -455,6 +455,8 @@ Public Class 予算総括入力
             ホーム.見積.Enabled = True
             ホーム.外注管理.Enabled = True
             ホーム.Modified = "False"
+            ホーム.予算内訳登録.Enabled = True
+
 
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "予算総括登録")
 

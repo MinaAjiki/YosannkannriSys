@@ -91,7 +91,7 @@ Public Class 出来高査定チェックフォーム
         Try
 
             '値がTrueの場合、変数に帳票名を代入する
-            ホーム.Report = "出来高査定書"
+            ホーム.ReportName = "出来高査定書"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
             ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
@@ -113,7 +113,7 @@ Public Class 出来高査定チェックフォーム
         Try
 
             '値がTrueの場合、変数に帳票名を代入する
-            ホーム.Report = "出来形数量査定書(中間)"
+            ホーム.ReportName = "出来形数量査定書(中間)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
             ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
