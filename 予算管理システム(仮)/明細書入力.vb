@@ -1386,8 +1386,13 @@ Public Class 明細書入力
                 If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                     If DetailsList(RowCount * 3, 2) = "False" Or IsNothing(DetailsList(RowCount * 3, 2)) = True Then
                         ホーム.Sql.Parameters.Add(New SqlParameter("@dtlno", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 3)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                        If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                        End If
                         ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3, 4)
                         If IsNothing(DetailsList(RowCount * 3 + 1, 4)) = True Then
                             ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
@@ -1492,8 +1497,11 @@ Public Class 明細書入力
                             ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
                             Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-
+                            If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                            End If
                             If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
                                 ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
                             Else
@@ -1750,12 +1758,17 @@ Public Class 明細書入力
     End Sub
 
     Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
+
         If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
             DetailsList.Rows(e.Row + 2).AllowEditing = False
         ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
             DetailsList.Rows(e.Row + 1).AllowEditing = False
-        Else
-            DetailsList.Rows(e.Row).AllowEditing = False
+        ElseIf DetailsList(e.Row, 7) = 3 Or DetailsList(e.Row, 7) = 6 Then
+            If e.Col = 4 Or e.Col = 5 Then
+                DetailsList.Rows(e.Row).AllowEditing = True
+            Else
+                DetailsList.Rows(e.Row).AllowEditing = False
+            End If
         End If
 
         If e.Col = 6 Then

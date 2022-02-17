@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -340,10 +340,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = Nothing
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = Nothing
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -744,6 +744,7 @@ Partial Class ホーム
         '出力_予算
         '
         Me.出力_予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink32, Me.C1CommandLink36, Me.C1CommandLink38, Me.C1CommandLink39, Me.C1CommandLink40, Me.C1CommandLink41, Me.C1CommandLink42, Me.C1CommandLink43, Me.C1CommandLink44, Me.C1CommandLink45, Me.C1CommandLink46})
+        Me.出力_予算.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_予算.HideNonRecentLinks = False
         Me.出力_予算.Name = "出力_予算"
         Me.出力_予算.ShortcutText = ""
@@ -759,6 +760,7 @@ Partial Class ホーム
         '詳細予算内訳印刷
         '
         Me.詳細予算内訳印刷.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink35, Me.C1CommandLink47, Me.C1CommandLink48, Me.C1CommandLink49, Me.C1CommandLink50, Me.C1CommandLink51, Me.C1CommandLink52, Me.C1CommandLink53, Me.C1CommandLink54, Me.C1CommandLink55, Me.C1CommandLink56, Me.C1CommandLink57})
+        Me.詳細予算内訳印刷.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.詳細予算内訳印刷.HideNonRecentLinks = False
         Me.詳細予算内訳印刷.Name = "詳細予算内訳印刷"
         Me.詳細予算内訳印刷.ShortcutText = ""

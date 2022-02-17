@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>13</ApplicationRevision>
-    <ApplicationVersion>1.0.0.13</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>1.0.0.14</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -168,6 +168,7 @@
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Report\出来形数量査定書.vb" />
     <Compile Include="Report\出来高査定書.vb" />
+    <Compile Include="Report\実行予算内訳書_簡易.vb" />
     <Compile Include="Report\実行予算内訳書.vb" />
     <Compile Include="Report\実行予算大内訳書.vb" />
     <Compile Include="Report\現場経費内訳書.vb" />

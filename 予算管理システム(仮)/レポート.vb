@@ -18,7 +18,7 @@ Public Class レポート
             ReportLoad = ReportLoadRead.ReportLoad
         End If
 
-        If ホーム.ReportName = "予算総括表" Then
+        If ホーム.ReportName = "予算総括表" Or ホーム.ReportName = "予算総括表_簡易" Then
             Dim ReportLoadRead As New 予算総括表
             ReportLoad = ReportLoadRead.ReportLoad
         ElseIf ホーム.ReportName = "材料表" Then
@@ -32,6 +32,9 @@ Public Class レポート
             ReportLoad = ReportLoadRead.ReportLoad
         ElseIf ホーム.ReportName = "実行予算内訳書" Then
             Dim ReportLoadRead As New 実行予算内訳書
+            ReportLoad = ReportLoadRead.ReportLoad
+        ElseIf ホーム.ReportName = "実行予算内訳書_簡易" Then
+            Dim ReportLoadRead As New 実行予算内訳書_簡易
             ReportLoad = ReportLoadRead.ReportLoad
         End If
     End Sub
