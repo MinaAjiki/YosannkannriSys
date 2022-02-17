@@ -90,6 +90,7 @@ Public Class ホーム
                         BudgetNo = 0
 
                         予算内訳登録.Enabled = False
+                        出力.Enabled = False
                         見積.Enabled = False
                         外注管理.Enabled = False
 
@@ -551,6 +552,16 @@ Public Class ホーム
 
     Private Sub 予算内訳書_Click(sender As Object, e As ClickEventArgs) Handles 予算内訳書.Click
         ReportName = "実行予算内訳書"
+        レポート.Show()
+    End Sub
+
+    Private Sub 予算総括表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表_簡易.Click
+        ReportName = "予算総括表_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 予算書_Click(sender As Object, e As ClickEventArgs) Handles 予算書.Click
+        ReportName = "実行予算内訳書_簡易"
         レポート.Show()
     End Sub
 End Class

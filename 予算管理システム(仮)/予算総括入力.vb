@@ -453,6 +453,7 @@ Public Class 予算総括入力
             ホーム.Transaction.Commit()
 
             ホーム.見積.Enabled = True
+            ホーム.出力.Enabled = True
             ホーム.外注管理.Enabled = True
             ホーム.Modified = "False"
             ホーム.予算内訳登録.Enabled = True
