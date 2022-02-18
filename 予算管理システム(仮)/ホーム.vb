@@ -33,6 +33,7 @@ Public Class ホーム
     Public ProjectCostID As New List(Of Integer)
     Public PrjctCstClassCode As New List(Of Integer)
     Public PrjctCstList As New List(Of C1FlexGrid)
+    Public ProjectCommand As String
     Public ExpnsbdID As Integer
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
@@ -556,12 +557,27 @@ Public Class ホーム
     End Sub
 
     Private Sub 予算総括表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表_簡易.Click
-        ReportName = "予算総括表_簡易"
+        ReportName = "予算総括表"
         レポート.Show()
     End Sub
 
     Private Sub 予算書_Click(sender As Object, e As ClickEventArgs) Handles 予算書.Click
         ReportName = "実行予算内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 明細内訳書_Click(sender As Object, e As ClickEventArgs) Handles 明細内訳書.Click
+        ReportName = "明細内訳書"
+        レポート.Show()
+    End Sub
+
+    Private Sub 明細書_Click(sender As Object, e As ClickEventArgs) Handles 明細書.Click
+        ReportName = "明細内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 現場経費_簡易_Click(sender As Object, e As ClickEventArgs) Handles 現場経費_簡易.Click
+        ReportName = "現場経費"
         レポート.Show()
     End Sub
 End Class

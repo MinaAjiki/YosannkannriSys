@@ -76,6 +76,7 @@ Partial Class 代価表入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
+        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,10 +170,10 @@ Partial Class 代価表入力
         '
         Me.右クリックメニュー.BackColor = System.Drawing.Color.White
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu})
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 224)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 246)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
@@ -1138,6 +1139,13 @@ Partial Class 代価表入力
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
         '
+        'Delete
+        '
+        Me.Delete.Name = "Delete"
+        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.Delete.Size = New System.Drawing.Size(155, 22)
+        Me.Delete.Visible = False
+        '
         '代価表入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1232,4 +1240,5 @@ Partial Class 代価表入力
     Friend WithEvents CostCopyMenu As ToolStripMenuItem
     Friend WithEvents ReferenceMenu As ToolStripMenuItem
     Friend WithEvents CostUnit As C1.Win.C1Input.C1TextBox
+    Friend WithEvents Delete As ToolStripMenuItem
 End Class
