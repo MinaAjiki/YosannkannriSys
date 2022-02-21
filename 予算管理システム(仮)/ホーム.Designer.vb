@@ -1292,6 +1292,7 @@ Partial Class ホーム
         '出力_外注計画
         '
         Me.出力_外注計画.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink34, Me.C1CommandLink77, Me.C1CommandLink78, Me.C1CommandLink79, Me.C1CommandLink80, Me.C1CommandLink81, Me.C1CommandLink82, Me.C1CommandLink85, Me.C1CommandLink86, Me.C1CommandLink89, Me.C1CommandLink90})
+        Me.出力_外注計画.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_外注計画.HideNonRecentLinks = False
         Me.出力_外注計画.Name = "出力_外注計画"
         Me.出力_外注計画.ShortcutText = ""

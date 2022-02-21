@@ -278,6 +278,7 @@ Public Class ホーム
     End Sub
 
     Private Sub 代価表_Click(sender As Object, e As ClickEventArgs) Handles 代価表.Click
+        ReportName = "代価内訳書"
         印刷代価選択.Show()
     End Sub
 
@@ -524,9 +525,7 @@ Public Class ホーム
             End If
 
         Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
+            MsgBox("材料表の取込に失敗しました。" & vbCrLf & "材料表データが適切でない可能性があります。" & vbCrLf & "システム課までお問合せ下さい。", MsgBoxStyle.Exclamation, "材料表インポート")
             Exit Sub
         End Try
     End Sub
@@ -579,5 +578,15 @@ Public Class ホーム
     Private Sub 現場経費_簡易_Click(sender As Object, e As ClickEventArgs) Handles 現場経費_簡易.Click
         ReportName = "現場経費"
         レポート.Show()
+    End Sub
+
+    Private Sub 代価一覧表_Click(sender As Object, e As ClickEventArgs) Handles 代価一覧表.Click
+        ReportName = "代価一覧表"
+        印刷代価選択.Show()
+    End Sub
+
+    Private Sub 代価内訳_Click(sender As Object, e As ClickEventArgs) Handles 代価内訳.Click
+        ReportName = "代価内訳書_簡易"
+        印刷代価選択.Show()
     End Sub
 End Class
