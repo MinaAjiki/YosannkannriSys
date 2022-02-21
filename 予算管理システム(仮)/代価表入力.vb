@@ -1124,6 +1124,7 @@ Public Class 代価表入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
+                Command = "Pasting"
                 BreakDownList.Rows.Insert(SelectRow)
                 BreakDownList.Rows.Insert(SelectRow + 1)
                 BreakDownList.Rows.Insert(SelectRow + 2)
@@ -1139,6 +1140,7 @@ Public Class 代価表入力
                 BreakDownList(SelectRow, 8) = CopyList(9)
                 BreakDownList(SelectRow, 9) = CopyList(10)
 
+                Command = ""
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
@@ -2028,7 +2030,7 @@ Public Class 代価表入力
 
     Private Sub BreakDownList_CellChanged(sender As Object, e As RowColEventArgs) Handles BreakDownList.CellChanged
         Try
-            If Not Command = "Insert" AndAlso Not Command = "Cut" Then
+            If Not Command = "Insert" AndAlso Not Command = "Cut" AndAlso Not Command = "Pasting" Then
                 Dim RowNo As Integer = 0
                 Dim ColTotal As Int64 = 0
                 Dim LaborColTotal As Int64 = 0
