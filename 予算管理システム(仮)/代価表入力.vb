@@ -1497,7 +1497,13 @@ Public Class 代価表入力
                         BreakDownList(RowCount * 3, 3) = RowCount - DeleteRow
                     End If
                 Else
-                    DeleteRow += 1
+                    If BreakDownList(RowCount * 3, 2) = False Then
+                        If RowCount <= ((BreakDownList.Rows.Count - 3) / 3) Then
+                            BreakDownList(RowCount * 3, 3) = RowCount - DeleteRow
+                        End If
+                    Else
+                        DeleteRow += 1
+                    End If
                 End If
             Next
 

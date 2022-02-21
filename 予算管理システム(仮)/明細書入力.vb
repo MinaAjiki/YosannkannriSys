@@ -1759,7 +1759,13 @@ Public Class 明細書入力
                         DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
                     End If
                 Else
-                    DeleteRow += 1
+                    If DetailsList(RowCount * 3, 2) = False Then
+                        If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
+                            DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                        End If
+                    Else
+                        DeleteRow += 1
+                    End If
                 End If
             Next
 
