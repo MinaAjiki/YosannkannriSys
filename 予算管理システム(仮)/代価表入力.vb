@@ -1010,8 +1010,8 @@ Public Class 代価表入力
             If SelectRow = 0 Then
             MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
         Else
-            Command = "Insert"
-            ホーム.Modified = "True"
+                ホーム.Modified = "True"
+                Command = "Insert"
 
                 BreakDownList.Rows.Insert(SelectRow)
                 BreakDownList.Rows.Insert(SelectRow + 1)
@@ -1022,6 +1022,7 @@ Public Class 代価表入力
                 BreakDownList(SelectRow, 6) = 0
                 BreakDownList(SelectRow + 1, 6) = 0
                 BreakDownList(SelectRow + 2, 6) = 0
+                Command = ""
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
@@ -1062,7 +1063,6 @@ Public Class 代価表入力
 
             End If
 
-            Command = ""
 
         Catch ex As Exception
         ホーム.ErrorMessage = ex.Message
@@ -1221,6 +1221,7 @@ Public Class 代価表入力
                 CopyList(9) = BreakDownList(SelectRow, 8)
                 CopyList(10) = BreakDownList(SelectRow, 9)
                 BreakDownList.Rows.RemoveRange(SelectRow, 3)
+                Command = ""
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
@@ -1260,7 +1261,6 @@ Public Class 代価表入力
                 Next
             End If
 
-            Command = ""
 
 
         Catch ex As Exception
@@ -1487,9 +1487,19 @@ Public Class 代価表入力
                     BreakDownList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-                BreakDownList(Row, 3) = Row / 3
 
             End If
+
+            Dim DeleteRow As Integer = 0
+            For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                If IsNothing(BreakDownList(RowCount * 3, 2)) = True Then
+                    If RowCount <= ((BreakDownList.Rows.Count - 3) / 3) Then
+                        BreakDownList(RowCount * 3, 3) = RowCount - DeleteRow
+                    End If
+                Else
+                    DeleteRow += 1
+                End If
+            Next
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1580,18 +1590,22 @@ Public Class 代価表入力
             Dim ErrorRow As String = ""
             ErrorCount = 0
             For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
-                Dim Name As String = BreakDownList(RowCount * 3, 4)
-                If Not (RowCount * 3) = BreakDownList.Rows.Count - 3 Then
-                    If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
-                        If Name.Length = 0 Then
+
+                If IsNothing(BreakDownList(RowCount, 2)) = False Then
+
+                    Dim Name As String = BreakDownList(RowCount * 3, 4)
+                    If Not (RowCount * 3) = BreakDownList.Rows.Count - 3 Then
+                        If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
+                            If Name.Length = 0 Then
+                                ErrorCount += 1
+                                BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                            End If
+                        End If
+                    Else
+                        If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
                             ErrorCount += 1
                             BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                         End If
-                    End If
-                Else
-                    If IsNothing(Name) = True AndAlso IsNothing(BreakDownList(RowCount * 3, 3)) = False Then
-                        ErrorCount += 1
-                        BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                     End If
                 End If
             Next

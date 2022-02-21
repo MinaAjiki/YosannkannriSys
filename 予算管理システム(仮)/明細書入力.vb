@@ -1357,18 +1357,20 @@ Public Class 明細書入力
             Dim ErrorRow As String = ""
             Dim ErrorCount As Integer = 0
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                Dim Name As String = DetailsList(RowCount * 3, 4)
-                If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
-                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                        If Name.Length = 0 Then
+                If IsNothing(DetailsList(RowCount, 2)) = False Then
+                    Dim Name As String = DetailsList(RowCount * 3, 4)
+                    If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
+                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                            If Name.Length = 0 Then
+                                ErrorCount += 1
+                                DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                            End If
+                        End If
+                    Else
+                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                             ErrorCount += 1
                             DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                         End If
-                    End If
-                Else
-                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                        ErrorCount += 1
-                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                     End If
                 End If
             Next
@@ -1670,6 +1672,7 @@ Public Class 明細書入力
 
                     For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
 
+
                         ColTotal += DetailsList((RowCount * 3) + 2, 6)
                         LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
                         MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
@@ -1747,8 +1750,18 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-                DetailsList(Row, 3) = Row / 3
             End If
+
+            Dim DeleteRow As Integer = 0
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                If IsNothing(DetailsList(RowCount * 3, 2)) = True Then
+                    If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
+                        DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                    End If
+                Else
+                    DeleteRow += 1
+                End If
+            Next
 
         Catch ex As Exception
             ホーム.Transaction.Rollback()
