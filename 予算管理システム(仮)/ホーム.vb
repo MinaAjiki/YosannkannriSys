@@ -33,6 +33,7 @@ Public Class ホーム
     Public ProjectCostID As New List(Of Integer)
     Public PrjctCstClassCode As New List(Of Integer)
     Public PrjctCstList As New List(Of C1FlexGrid)
+    Public ProjectCommand As String
     Public ExpnsbdID As Integer
     Public ExpnsbdCode As Integer
     Public ExpnsbdName As String
@@ -76,11 +77,21 @@ Public Class ホーム
 
                         予算選択.Show()
 
+                        Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                        Dim Year As Integer = 0
+                        If IsError(Year = Sql.ExecuteScalar) = True Then
+                            予算内訳登録.Enabled = False
+                        Else
+                            予算内訳登録.Enabled = True
+                        End If
+
                     Else
                         Me.Enabled = True
                         Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
                         BudgetNo = 0
 
+                        予算内訳登録.Enabled = False
+                        出力.Enabled = False
                         見積.Enabled = False
                         外注管理.Enabled = False
 
@@ -267,6 +278,7 @@ Public Class ホーム
     End Sub
 
     Private Sub 代価表_Click(sender As Object, e As ClickEventArgs) Handles 代価表.Click
+        ReportName = "代価内訳書"
         印刷代価選択.Show()
     End Sub
 
@@ -513,9 +525,7 @@ Public Class ホーム
             End If
 
         Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
+            MsgBox("材料表の取込に失敗しました。" & vbCrLf & "材料表データが適切でない可能性があります。" & vbCrLf & "システム課までお問合せ下さい。", MsgBoxStyle.Exclamation, "材料表インポート")
             Exit Sub
         End Try
     End Sub
@@ -534,6 +544,7 @@ Public Class ホーム
         ReportName = "現場経費"
         レポート.Show()
     End Sub
+
 
     Private Sub 外注計画_Click(sender As Object, e As ClickEventArgs) Handles 外注計画.Click
         Try
@@ -566,6 +577,50 @@ Public Class ホーム
         'レポートのデザインが格納されているファイルのパスを変数に代入する
         'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
         Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+
+    Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click
+        ReportName = "実行予算大内訳書"
         レポート.Show()
+    End Sub
+
+    Private Sub 予算内訳書_Click(sender As Object, e As ClickEventArgs) Handles 予算内訳書.Click
+        ReportName = "実行予算内訳書"
+        レポート.Show()
+    End Sub
+
+    Private Sub 予算総括表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 予算総括表_簡易.Click
+        ReportName = "予算総括表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 予算書_Click(sender As Object, e As ClickEventArgs) Handles 予算書.Click
+        ReportName = "実行予算内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 明細内訳書_Click(sender As Object, e As ClickEventArgs) Handles 明細内訳書.Click
+        ReportName = "明細内訳書"
+
+        レポート.Show()
+    End Sub
+
+    Private Sub 明細書_Click(sender As Object, e As ClickEventArgs) Handles 明細書.Click
+        ReportName = "明細内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 現場経費_簡易_Click(sender As Object, e As ClickEventArgs) Handles 現場経費_簡易.Click
+        ReportName = "現場経費"
+        レポート.Show()
+    End Sub
+
+    Private Sub 代価一覧表_Click(sender As Object, e As ClickEventArgs) Handles 代価一覧表.Click
+        ReportName = "代価一覧表"
+        印刷代価選択.Show()
+    End Sub
+
+    Private Sub 代価内訳_Click(sender As Object, e As ClickEventArgs) Handles 代価内訳.Click
+        ReportName = "代価内訳書_簡易"
+        印刷代価選択.Show()
     End Sub
 End Class

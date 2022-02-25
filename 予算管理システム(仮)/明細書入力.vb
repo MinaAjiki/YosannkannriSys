@@ -7,6 +7,7 @@ Public Class 明細書入力
     Public CopyList(10) As String
     Dim outsrcr_x As Integer = 0
     Dim outsrcr_y As Integer = 0
+    Public Command As String
 
 
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1225,6 +1226,7 @@ Public Class 明細書入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
 
+                Command = "CostCopy"
                 If DetailsList(SelectRow, 8) >= 12 Then
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
@@ -1260,6 +1262,7 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+                Command = "CostCopy"
 
                 If DetailsList(SelectRow, 8) >= 12 Then
 
@@ -1354,18 +1357,20 @@ Public Class 明細書入力
             Dim ErrorRow As String = ""
             Dim ErrorCount As Integer = 0
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                Dim Name As String = DetailsList(RowCount * 3, 4)
-                If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
-                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                        If Name.Length = 0 Then
+                If IsNothing(DetailsList(RowCount, 2)) = False Then
+                    Dim Name As String = DetailsList(RowCount * 3, 4)
+                    If Not (RowCount * 3) = DetailsList.Rows.Count - 3 Then
+                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                            If Name.Length = 0 Then
+                                ErrorCount += 1
+                                DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
+                            End If
+                        End If
+                    Else
+                        If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                             ErrorCount += 1
                             DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                         End If
-                    End If
-                Else
-                    If IsNothing(Name) = True AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                        ErrorCount += 1
-                        DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(255, 192, 192)
                     End If
                 End If
             Next
@@ -1386,8 +1391,13 @@ Public Class 明細書入力
                 If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
                     If DetailsList(RowCount * 3, 2) = "False" Or IsNothing(DetailsList(RowCount * 3, 2)) = True Then
                         ホーム.Sql.Parameters.Add(New SqlParameter("@dtlno", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 3)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                        If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                        End If
                         ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3, 4)
                         If IsNothing(DetailsList(RowCount * 3 + 1, 4)) = True Then
                             ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
@@ -1492,8 +1502,11 @@ Public Class 明細書入力
                             ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
                             Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-
+                            If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                            End If
                             If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
                                 ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
                             Else
@@ -1659,6 +1672,7 @@ Public Class 明細書入力
 
                     For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
 
+
                         ColTotal += DetailsList((RowCount * 3) + 2, 6)
                         LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
                         MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
@@ -1736,8 +1750,24 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-                DetailsList(Row, 3) = Row / 3
             End If
+
+            Dim DeleteRow As Integer = 0
+            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                If IsNothing(DetailsList(RowCount * 3, 2)) = True Then
+                    If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
+                        DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                    End If
+                Else
+                    If DetailsList(RowCount * 3, 2) = False Then
+                        If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
+                            DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                        End If
+                    Else
+                        DeleteRow += 1
+                    End If
+                End If
+            Next
 
         Catch ex As Exception
             ホーム.Transaction.Rollback()
@@ -1749,21 +1779,35 @@ Public Class 明細書入力
 
     End Sub
 
-    Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
-        If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
-            DetailsList.Rows(e.Row + 2).AllowEditing = False
-        ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
-            DetailsList.Rows(e.Row + 1).AllowEditing = False
-        Else
-            DetailsList.Rows(e.Row).AllowEditing = False
-        End If
+    'Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
 
-        If e.Col = 6 Then
-            DetailsList.ImeMode = ImeMode.Disable
-        Else
-            DetailsList.ImeMode = ImeMode.On
-        End If
-    End Sub
+    '    If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
+
+    '        If e.Col = 4 Or e.Col = 5 Then
+    '            DetailsList.Rows(e.Row + 2).AllowEditing = True
+    '        Else
+    '            DetailsList.Rows(e.Row + 2).AllowEditing = False
+    '        End If
+    '    ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
+    '        If e.Col = 4 Or e.Col = 5 Then
+    '            DetailsList.Rows(e.Row + 1).AllowEditing = True
+    '        Else
+    '            DetailsList.Rows(e.Row + 1).AllowEditing = False
+    '        End If
+    '    ElseIf DetailsList(e.Row, 7) = 3 Or DetailsList(e.Row, 7) = 6 Then
+    '        If e.Col = 4 Or e.Col = 5 Then
+    '            DetailsList.Rows(e.Row).AllowEditing = True
+    '        Else
+    '            DetailsList.Rows(e.Row).AllowEditing = False
+    '        End If
+    '    End If
+
+    '    If e.Col = 6 Then
+    '        DetailsList.ImeMode = ImeMode.Disable
+    '    Else
+    '        DetailsList.ImeMode = ImeMode.On
+    '    End If
+    'End Sub
 
     Private Sub 明細書入力_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
         Try
@@ -1812,11 +1856,18 @@ Public Class 明細書入力
             Dim row As Integer = range.TopRow
             Dim col As Integer = range.LeftCol
 
-            If col = 4 Or col = 5 Then
-                DetailsList.Rows(row).AllowEditing = True
-            Else
-                DetailsList.Rows(row).AllowEditing = False
+            If DetailsList(row, 7) = 1 Or DetailsList(row, 7) = 4 Then
+                DetailsList.Rows(row + 2).AllowEditing = False
+            ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
+                DetailsList.Rows(row + 1).AllowEditing = False
+            ElseIf DetailsList(Row, 7) = 3 Or DetailsList(Row, 7) = 6 Then
+                If col = 4 Or col = 5 Then
+                    DetailsList.Rows(row).AllowEditing = True
+                Else
+                    DetailsList.Rows(row).AllowEditing = False
+                End If
             End If
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1866,43 +1917,45 @@ Public Class 明細書入力
 
     Private Sub DetailsList_CellChanged(sender As Object, e As RowColEventArgs) Handles DetailsList.CellChanged
         Try
-            Dim RowNo As Integer = 0
-            Dim ColTotal As Int64 = 0
-            Dim LaborColTotal As Int64 = 0
-            Dim MaterialColTotal As Int64 = 0
-            Dim MachineColTotal As Int64 = 0
-            Dim SubcntrctColTotal As Int64 = 0
-            Dim ExpenseColTotal As Int64 = 0
+
+            If DetailsList.Rows.Count = CategoryList.Rows.Count Then
+                Dim RowNo As Integer = 0
+                Dim ColTotal As Int64 = 0
+                Dim LaborColTotal As Int64 = 0
+                Dim MaterialColTotal As Int64 = 0
+                Dim MachineColTotal As Int64 = 0
+                Dim SubcntrctColTotal As Int64 = 0
+                Dim ExpenseColTotal As Int64 = 0
 
 
-            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                Dim Quanity As Decimal = 0
-                If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
-                    Quanity = DetailsList(RowCount * 3, 6)
-                    DetailsList((RowCount * 3) + 2, 6) = Math.Floor(DetailsList((RowCount * 3) + 1, 6) * Quanity)
-                    CategoryList((RowCount * 3) + 2, 2) = Math.Floor(CategoryList((RowCount * 3) + 1, 2) * Quanity)
-                    CategoryList((RowCount * 3) + 2, 3) = Math.Floor(CategoryList((RowCount * 3) + 1, 3) * Quanity)
-                    CategoryList((RowCount * 3) + 2, 4) = Math.Floor(CategoryList((RowCount * 3) + 1, 4) * Quanity)
-                    CategoryList((RowCount * 3) + 2, 5) = Math.Floor(CategoryList((RowCount * 3) + 1, 5) * Quanity)
-                    CategoryList((RowCount * 3) + 2, 6) = Math.Floor(CategoryList((RowCount * 3) + 1, 6) * Quanity)
-                End If
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    Dim Quanity As Decimal = 0
+                    If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
+                        Quanity = DetailsList(RowCount * 3, 6)
+                        DetailsList((RowCount * 3) + 2, 6) = Math.Ceiling(DetailsList((RowCount * 3) + 1, 6) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 2) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 2) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 3) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 3) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 4) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 4) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 5) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 5) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 6) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 6) * Quanity)
+                    End If
 
-                ColTotal += DetailsList((RowCount * 3) + 2, 6)
-                LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
-                MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
-                MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
-                SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
-                ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
+                    ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                    LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                    MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                    MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                    SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                    ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
 
-            Next
+                Next
 
-            DetailTotal.Value = ColTotal
-            CategoryTotalList(0, 2) = LaborColTotal
-            CategoryTotalList(0, 3) = MaterialColTotal
-            CategoryTotalList(0, 4) = MachineColTotal
-            CategoryTotalList(0, 5) = SubcntrctColTotal
-            CategoryTotalList(0, 6) = ExpenseColTotal
-
+                DetailTotal.Value = ColTotal
+                CategoryTotalList(0, 2) = LaborColTotal
+                CategoryTotalList(0, 3) = MaterialColTotal
+                CategoryTotalList(0, 4) = MachineColTotal
+                CategoryTotalList(0, 5) = SubcntrctColTotal
+                CategoryTotalList(0, 6) = ExpenseColTotal
+            End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -1952,5 +2005,61 @@ Public Class 明細書入力
             OutsoucerTotalList(0, Col) = ColTotal
 
         End If
+    End Sub
+
+    Private Sub DetailsList_Click(sender As Object, e As EventArgs) Handles DetailsList.Click
+        Try
+
+            Dim SelectionRow As Integer = DetailsList.Selection.TopRow
+            Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+
+            If DetailsList(SelectionRow, 7) = 1 Or DetailsList(SelectionRow, 7) = 4 Then
+
+                If SelectionCol = 4 Or SelectionCol = 5 Then
+                    DetailsList.Rows(SelectionRow + 2).AllowEditing = True
+                Else
+                    DetailsList.Rows(SelectionRow + 2).AllowEditing = False
+                End If
+            ElseIf DetailsList(SelectionRow, 7) = 2 Or DetailsList(SelectionRow, 7) = 5 Then
+                If SelectionCol = 4 Or SelectionCol = 5 Then
+                    DetailsList.Rows(SelectionRow + 1).AllowEditing = True
+                Else
+                    DetailsList.Rows(SelectionRow + 1).AllowEditing = False
+                End If
+            ElseIf DetailsList(SelectionRow, 7) = 3 Or DetailsList(SelectionRow, 7) = 6 Then
+                If SelectionCol = 4 Or SelectionCol = 5 Then
+                    DetailsList.Rows(SelectionRow).AllowEditing = True
+                Else
+                    DetailsList.Rows(SelectionRow).AllowEditing = False
+                End If
+            End If
+
+            If SelectionCol = 6 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Delete_Click(sender As Object, e As EventArgs) Handles Delete.Click
+        Try
+
+            Dim SelectionRow As Integer = DetailsList.Selection.TopRow
+            Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+
+            DetailsList(SelectionRow, SelectionCol) = ""
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class

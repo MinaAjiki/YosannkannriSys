@@ -61,6 +61,7 @@ Partial Class 明細書入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
+        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,64 +146,64 @@ Partial Class 明細書入力
         '右クリックメニュー
         '
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu})
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 202)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(198, 224)
         Me.右クリックメニュー.Text = "項目選択"
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(197, 22)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(197, 22)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(197, 22)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(197, 22)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(197, 22)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'CostCreateMenu
         '
         Me.CostCreateMenu.Name = "CostCreateMenu"
-        Me.CostCreateMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CostCreateMenu.Size = New System.Drawing.Size(197, 22)
         Me.CostCreateMenu.Text = "代価表作成"
         '
         'CostModifyMenu
         '
         Me.CostModifyMenu.Name = "CostModifyMenu"
-        Me.CostModifyMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CostModifyMenu.Size = New System.Drawing.Size(197, 22)
         Me.CostModifyMenu.Text = "代価表修正"
         '
         'CostCopyMenu
         '
         Me.CostCopyMenu.Name = "CostCopyMenu"
-        Me.CostCopyMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CostCopyMenu.Size = New System.Drawing.Size(197, 22)
         Me.CostCopyMenu.Text = "代価表コピー"
         '
         'ReferenceMenu
         '
         Me.ReferenceMenu.Name = "ReferenceMenu"
-        Me.ReferenceMenu.Size = New System.Drawing.Size(123, 22)
+        Me.ReferenceMenu.Size = New System.Drawing.Size(197, 22)
         Me.ReferenceMenu.Text = "代価表参照"
         '
         'SWorkType
@@ -642,6 +643,14 @@ Partial Class 明細書入力
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
         '
+        'Delete
+        '
+        Me.Delete.Name = "Delete"
+        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.Delete.Size = New System.Drawing.Size(197, 22)
+        Me.Delete.Text = "ToolStripMenuItem1"
+        Me.Delete.Visible = False
+        '
         '明細書入力
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -712,4 +721,5 @@ Partial Class 明細書入力
     Friend WithEvents Reference As Button
 
     Friend WithEvents OutsoucerTotalList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents Delete As ToolStripMenuItem
 End Class

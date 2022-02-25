@@ -1,8 +1,9 @@
 ﻿Imports C1.Win.FlexViewer
 Public Class レポート
     Private Sub レポート_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Cursor.Current = Cursors.WaitCursor
-        Dim ReportLoad As String = ""
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            Dim ReportLoad As String = ""
 
         If ホーム.ReportName = "出来高査定書" Then
             Dim ReportLoadRead As New 出来高査定書(出来高査定チェックフォーム.VendorNo.Text)
@@ -18,15 +19,48 @@ Public Class レポート
             ReportLoad = ReportLoadRead.ReportLoad
         End If
 
-        If ホーム.ReportName = "予算総括表" Then
-            Dim ReportLoadRead As New 予算総括表
-            ReportLoad = ReportLoadRead.ReportLoad
-        ElseIf ホーム.ReportName = "材料表" Then
-            Dim ReportLoadRead As New 基礎単価表(2)
-            ReportLoad = ReportLoadRead.ReportLoad
-        ElseIf ホーム.ReportName = "現場経費" Then
-            Dim ReportLoadRead As New 現場経費内訳書
-            ReportLoad = ReportLoadRead.ReportLoad
-        End If
+            If ホーム.ReportName = "予算総括表" Then
+                Dim ReportLoadRead As New 予算総括表
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "材料表" Then
+                Dim ReportLoadRead As New 基礎単価表(2)
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "現場経費" Then
+                Dim ReportLoadRead As New 現場経費内訳書
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "実行予算大内訳書" Then
+                Dim ReportLoadRead As New 実行予算大内訳書
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "実行予算内訳書" Then
+                Dim ReportLoadRead As New 実行予算内訳書
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "実行予算内訳書_簡易" Then
+                Dim ReportLoadRead As New 実行予算内訳書_簡易
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "明細内訳書" Then
+                Dim ReportLoadRead As New 明細内訳書
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "明細内訳書_簡易" Then
+                Dim ReportLoadRead As New 明細内訳書_簡易
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "代価内訳書" Then
+                Dim ReportLoadRead As New 代価内訳書(印刷代価選択.ClassCode, 印刷代価選択.ClassName)
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "代価一覧表" Then
+                Dim ReportLoadRead As New 代価一覧表(印刷代価選択.ClassCode, 印刷代価選択.ClassName)
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "代価内訳書_簡易" Then
+                Dim ReportLoadRead As New 代価内訳書_簡易(印刷代価選択.ClassCode, 印刷代価選択.ClassName)
+                ReportLoad = ReportLoadRead.ReportLoad
+            End If
+
+            Cursor.Current = Cursors.Default
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class

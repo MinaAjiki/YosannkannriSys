@@ -26,7 +26,8 @@ Public Class 小工種選択
 
             Dim RowCount As Integer = 0
 
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & " OR l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no IS NULL"
+            ホーム.Sql.CommandText = "SELECT Count(s_wrktyp_code) FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & " OR l_wrktyp_code=" _
+                                        & ホーム.lworktypecode & " AND budget_no IS NULL GROUP BY s_wrktyp_code"
             Dim sworktypeCount As Integer = ホーム.Sql.ExecuteScalar
 
             Dim SiteCost As Int64 = 0
@@ -42,7 +43,10 @@ Public Class 小工種選択
             End If
 
             If sworktypecount > 0 Then
-                ホーム.Sql.CommandText = "SELECT * FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no=" & ホーム.BudgetNo & "OR l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no IS NULL"
+                ホーム.Sql.CommandText = "SELECT s_wrktyp_code,s_wrktyp_name,SUM(amout_total) AS amout_total,SUM(labor) AS labor,SUM(material) AS material,SUM(machine) AS machine,
+                                        SUM(subcntrct) AS subcntrct,SUM(expens) AS expens FROM S_worktype_total WHERE l_wrktyp_code=" & ホーム.lworktypecode &
+                                        " AND budget_no=" & ホーム.BudgetNo & "OR l_wrktyp_code=" & ホーム.lworktypecode & " AND budget_no IS NULL GROUP BY s_wrktyp_code,s_wrktyp_name  
+                                        ORDER BY s_wrktyp_code ASC"
                 Dim SWorkTypeTotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While SWorkTypeTotalReader.Read
 
@@ -50,10 +54,8 @@ Public Class 小工種選択
                         RowCount += 1
 
                         If Not SWorkTypeTotalReader.Item("s_wrktyp_code") = 841 Then
-                            ホーム.SystemSql.CommandText = "SELECT s_wrktyp_name FROM s_worktypes WHERE l_wrktyp_code=" & ホーム.lworktypecode & " AND s_wrktyp_code=" & SWorkTypeTotalReader.Item("s_wrktyp_code")
-                            S_WorkTypesList(RowCount, 2) = ホーム.SystemSql.ExecuteScalar
-
                             S_WorkTypesList(RowCount, 1) = SWorkTypeTotalReader.Item("s_wrktyp_code")
+                            S_WorkTypesList(RowCount, 2) = SWorkTypeTotalReader.Item("s_wrktyp_name")
                             S_WorkTypesList(RowCount, 3) = SWorkTypeTotalReader.Item("amout_total")
                             S_WorkTypesList(RowCount, 4) = SWorkTypeTotalReader.Item("labor")
                             S_WorkTypesList(RowCount, 5) = SWorkTypeTotalReader.Item("material")
