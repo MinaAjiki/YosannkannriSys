@@ -90,16 +90,16 @@ Public Class 現場経費内訳
             End While
             expnsbd.Close()
 
-            Select Case ホーム.ExpnsbdID
-                Case 2
+            Select Case ホーム.ExpnsbdCode
+                Case 8147 '社内試験費
                     Reference.Visible = True
-                Case 5
+                Case 8151 '租税公課
                     Reference.Visible = True
-                Case 10
+                Case 8157 '法定福利
                     Reference.Visible = True
-                Case 18
+                Case 8177 '賦課金
                     Reference.Visible = True
-                Case 21
+                Case 8184 '人件費配賦
                     Reference.Visible = True
             End Select
 

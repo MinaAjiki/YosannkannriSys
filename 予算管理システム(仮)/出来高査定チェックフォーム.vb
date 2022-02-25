@@ -69,7 +69,7 @@ Public Class 出来高査定チェックフォーム
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorNo.Text
         Dim VendorID As Integer = ホーム.Sql.ExecuteScalar
         Dim Datacount As Integer = 1
-        ホーム.Sql.CommandText = "SELECT * FROM Production_Check WHERE outsrcr_id = " & VendorID & "ORDER BY s_worktype_code ASC"
+        ホーム.Sql.CommandText = "SELECT * FROM Production_Check WHERE outsrcr_id = " & VendorID & " AND outsrc_no = (SELECT MAX(outsrc_no) FROM Production_Check) ORDER BY s_worktype_code ASC"
         Dim PCReader As SqlDataReader = ホーム.Sql.ExecuteReader
         While PCReader.Read
             DetailsList.Rows.Add()
@@ -91,7 +91,7 @@ Public Class 出来高査定チェックフォーム
         Try
 
             '値がTrueの場合、変数に帳票名を代入する
-            ホーム.Report = "出来高査定書"
+            ホーム.ReportName = "出来高査定書"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
             ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
@@ -113,7 +113,7 @@ Public Class 出来高査定チェックフォーム
         Try
 
             '値がTrueの場合、変数に帳票名を代入する
-            ホーム.Report = "出来形数量査定書(中間)"
+            ホーム.ReportName = "出来形数量査定書(中間)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
             ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"

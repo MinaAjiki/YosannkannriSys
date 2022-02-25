@@ -6,14 +6,45 @@ Public Class 出来形数量査定書
         出来高査定チェックフォーム.VN = VendorN '
     End Sub
     Public Function ReportLoad() As String
-        Dim ds As New C1.Win.FlexReport.DataSource()
-        ds.Name = "MyDataName"
 
         ReportLoad = ""
 
         'レポートを読み込む
-        Dim report As New C1FlexReport
-        レポート.C1FlexReport1.Load(ホーム.ReportPath, "出来形数量査定書(中間)")
+        レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来形数量査定書(中間)")
+
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
+        Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+
+        Dim ReportData As DataSource = New DataSource
+        ReportData.Name = "ReportDataSource"
+        ReportData.DataProvider = DataProvider.OLEDB
+        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=" & ホーム.UserDataPath & ホーム.UserDataName & ";Data Source=(localdb)\MSSQLLocalDB;"
+        'ReportData.ConnectionString = "Provider=MSOLEDBSQL;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=D:\DD0000テスト工事.MDF;Data Source=(localdb)\MSSQLLocalDB;"
+        ReportData.RecordSource = "Select DISTINCT Production_View.budget_no,
+        	Production_View.outsrc_no,
+            Production_View.outsrcr_id,
+            Production_View.no,
+            Production_View.s_worktype_code,
+            Production_View.s_wrktyp_name,
+            Production_View.dtl_id,
+            Production_View.dtl_name,
+            Production_View.dtl_spec,
+            Production_View.dtl_unit,
+            Production_View.outsrcng_quanity,
+            Production_View.outsrcng_costea,
+            Production_View.outsrcng_amount,
+            Production_View.last_quanity,
+            Production_View.last_amount,
+            Production_View.total_quanity,
+            Production_View.total_amount,
+            Production_View.now_quanity,
+            Production_View.now_amount
+        From Production_View
+        Where 
+            ((Production_View.outsrc_no) = (SELECT MAX(outsrc_no) FROM Production_View)) And
+            ((Production_View.outsrcr_id) = " & outsrcrid & ");"
+        レポート.C1FlexReport1.DataSources.Add(ReportData)
+        レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
         'Dim DT As New DataTable
         'DT.Columns.Add("OutsourcersCode")
@@ -74,6 +105,7 @@ Public Class 出来形数量査定書
         'レポート.C1FlexReport1.DataSources.Add(ds)
         'レポート.C1FlexReport1.DataSourceName = ds.Name
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
+        Return ReportLoad
     End Function
 
 End Class

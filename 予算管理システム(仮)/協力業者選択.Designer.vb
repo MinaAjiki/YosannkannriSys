@@ -28,10 +28,10 @@ Partial Class 協力業者選択
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.CoopVendorList = New C1.Win.C1FlexGrid.C1FlexGrid()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.Entry = New System.Windows.Forms.Button()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
-        Me.Entry = New System.Windows.Forms.Button()
         Me.VendorSelect = New System.Windows.Forms.Button()
         CType(Me.CoopVendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,8 +79,6 @@ Partial Class 協力業者選択
         '
         'CoopVendorList
         '
-        Me.CoopVendorList.AllowAddNew = True
-        Me.CoopVendorList.AllowDelete = True
         Me.CoopVendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.CoopVendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.CoopVendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
@@ -99,6 +97,26 @@ Partial Class 協力業者選択
         Me.CoopVendorList.StyleInfo = resources.GetString("CoopVendorList.StyleInfo")
         Me.CoopVendorList.TabIndex = 43
         Me.SystemTheme.SetTheme(Me.CoopVendorList, "予算管理テーマ")
+        '
+        'Entry
+        '
+        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Entry.BackColor = System.Drawing.Color.Transparent
+        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Entry.ImageIndex = 6
+        Me.Entry.ImageList = Me.ButtonImageList
+        Me.Entry.Location = New System.Drawing.Point(878, 5)
+        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.Entry.Name = "Entry"
+        Me.Entry.Size = New System.Drawing.Size(100, 30)
+        Me.Entry.TabIndex = 41
+        Me.Entry.Text = "　キャンセル"
+        Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.SystemTheme.SetTheme(Me.Entry, "予算管理テーマ")
+        Me.Entry.UseVisualStyleBackColor = True
         '
         'FormSplitContainer
         '
@@ -146,24 +164,6 @@ Partial Class 協力業者選択
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
-        'Entry
-        '
-        Me.Entry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Entry.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Entry.FlatAppearance.BorderSize = 0
-        Me.Entry.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Entry.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Entry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.Entry.ImageIndex = 3
-        Me.Entry.ImageList = Me.ButtonImageList
-        Me.Entry.Location = New System.Drawing.Point(878, 5)
-        Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.Entry.Name = "Entry"
-        Me.Entry.Size = New System.Drawing.Size(100, 30)
-        Me.Entry.TabIndex = 41
-        Me.Entry.Text = "　登　録"
-        Me.Entry.UseVisualStyleBackColor = True
-        '
         'VendorSelect
         '
         Me.VendorSelect.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -208,11 +208,11 @@ Partial Class 協力業者選択
     End Sub
     Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
-    Friend WithEvents Entry As Button
     Friend WithEvents VendorSelect As Button
     Friend WithEvents CoopVendorList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents Entry As Button
 End Class
