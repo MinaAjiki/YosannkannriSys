@@ -623,13 +623,6 @@
       <DependentUpon>system.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="user.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="user_log.ldf">
-      <DependentUpon>user.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\loader.gif" />
     <Content Include="Resources\OpenFile.png" />
     <None Include="Resources\Default.png" />

@@ -40,18 +40,19 @@ Partial Class レポート
         Me.C1FlexViewer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.C1FlexViewer1.Location = New System.Drawing.Point(0, 0)
         Me.C1FlexViewer1.Name = "C1FlexViewer1"
-        Me.C1FlexViewer1.Size = New System.Drawing.Size(933, 675)
+        Me.C1FlexViewer1.Size = New System.Drawing.Size(1184, 661)
         Me.C1FlexViewer1.TabIndex = 0
         '
         'レポート
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(933, 675)
+        Me.ClientSize = New System.Drawing.Size(1184, 661)
         Me.Controls.Add(Me.C1FlexViewer1)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "レポート"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "レポート"
         CType(Me.C1FlexViewer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

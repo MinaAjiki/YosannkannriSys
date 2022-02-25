@@ -69,7 +69,7 @@ Public Class 出来高査定チェックフォーム
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorNo.Text
         Dim VendorID As Integer = ホーム.Sql.ExecuteScalar
         Dim Datacount As Integer = 1
-        ホーム.Sql.CommandText = "SELECT * FROM Production_Check WHERE outsrcr_id = " & VendorID & "ORDER BY s_worktype_code ASC"
+        ホーム.Sql.CommandText = "SELECT * FROM Production_Check WHERE outsrcr_id = " & VendorID & " AND outsrc_no = (SELECT MAX(outsrc_no) FROM Production_Check) ORDER BY s_worktype_code ASC"
         Dim PCReader As SqlDataReader = ホーム.Sql.ExecuteReader
         While PCReader.Read
             DetailsList.Rows.Add()

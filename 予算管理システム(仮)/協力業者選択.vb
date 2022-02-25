@@ -9,6 +9,9 @@ Imports C1.Win.C1Command
 
 
 Public Class 協力業者選択
+    Public SelectVendorName As New List(Of String)
+    Public SelectVendorCode As New List(Of Integer)
+    Public SelectVendorcount As Integer = 0
     Private Sub 協力業者選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ''namemasterからデータを取得
@@ -27,21 +30,21 @@ Public Class 協力業者選択
             While Coopreader.Read
                 Me.CoopVendorList.Rows.Add()
                 CoopVendorList(datacount, 0) = Coopreader.Item("outsrcr_id")
-                CoopVendorList(datacount, 1) = Coopreader.Item("outsrcr_code")
-                CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_name")
-                CoopVendorList(datacount, 3) = Coopreader.Item("outsrcr_term_s")
-                CoopVendorList(datacount, 4) = Coopreader.Item("outsrcr_term_e")
+                CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_code")
+                CoopVendorList(datacount, 3) = Coopreader.Item("outsrcr_name")
+                CoopVendorList(datacount, 4) = Coopreader.Item("outsrcr_term_s")
+                CoopVendorList(datacount, 5) = Coopreader.Item("outsrcr_term_e")
                 Dim ordr As String = Coopreader.Item("ordrfrm")
                 If ordr = 11 Then
-                    CoopVendorList(datacount, 5) = "工務課発注"
+                    CoopVendorList(datacount, 6) = "工務課発注"
                 ElseIf ordr = 12 Then
-                    CoopVendorList(datacount, 5) = "購買発注"
+                    CoopVendorList(datacount, 6) = "購買発注"
                 End If
                 Dim ecn As String = Coopreader.Item("e_cntrct")
                 If ecn = "true" Then
-                    CoopVendorList.SetCellCheck(datacount, 6, CheckEnum.Checked)
+                    CoopVendorList.SetCellCheck(datacount, 7, CheckEnum.Checked)
                 Else
-                    CoopVendorList.SetCellCheck(datacount, 6, CheckEnum.Unchecked)
+                    CoopVendorList.SetCellCheck(datacount, 7, CheckEnum.Unchecked)
                 End If
 
                 datacount += 1
@@ -76,136 +79,71 @@ Public Class 協力業者選択
     End Sub
 
     Private Sub Button4_MouseLeave(sender As Object, e As EventArgs) Handles Entry.MouseLeave
-        Entry.ImageIndex = 3
+        Entry.ImageIndex = 6
     End Sub
 
     Private Sub Button4_MouseEnter(sender As Object, e As EventArgs) Handles Entry.MouseEnter
         Entry.Cursor = Cursors.Hand
-        Entry.ImageIndex = 4
+        Entry.ImageIndex = 7
     End Sub
 
     Private Sub Button4_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
-        Entry.ImageIndex = 5
+        Entry.ImageIndex = 8
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles VendorSelect.Click
-        業者一覧.Show()
+        Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
+        Dim datacount As Integer = -1
+        SelectVendorName = New List(Of String) From {Nothing, Nothing, Nothing, Nothing, Nothing}
+        SelectVendorCode = New List(Of Integer) From {Nothing, Nothing, Nothing, Nothing, Nothing}
+        SelectVendorcount = 0
+        For Vendorloop As Integer = 1 To RowIndex
+            Dim VendorCheck As CellRange = CoopVendorList.GetCellRange(Vendorloop, 1)
+            Dim C As CellRange = CoopVendorList.GetCellRange(Vendorloop, 2)
+            Dim Code As Integer = C.Data
+            Dim N As CellRange = CoopVendorList.GetCellRange(Vendorloop, 3)
+            Dim Name As String = N.Data
+
+            If VendorCheck.Data = True Then
+                'SelectVendorCode(datacount) = Code
+                datacount += 1
+                If datacount >= 5 Then
+                    MsgBox("一度の出力で選択できるのは５社までです。", MsgBoxStyle.Exclamation, "協力業者選択")
+                    Exit Sub
+                End If
+                SelectVendorName(datacount) = Name
+                SelectVendorCode(datacount) = Code
+                SelectVendorcount += 1
+            End If
+
+        Next
+
+        'For nullcheck As Integer = 0 To 4
+        '    If SelectVendorName(datacount) = Nothing Then
+        '        SelectVendorName(datacount) = ""
+        '    End If
+        '    datacount += 1
+        'Next
+
+        '値がTrueの場合、変数に帳票名を代入する
+        ホーム.ReportName = "外注計画"
+        'レポートのデザインが格納されているファイルのパスを変数に代入する
+        'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+        ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+        レポート.Show()
     End Sub
 
     Private Sub CoopVendorList_CellChanged(sender As Object, e As RowColEventArgs) Handles CoopVendorList.AfterEdit
-        Try
-            Dim SetImageRow As Integer = e.Row
-            CoopVendorList.SetCellImage(SetImageRow, 8, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
-            ホーム.Modified = "True"
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Try
-            '行数ループ
-            Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
-            For Vendorloop As Integer = 1 To RowIndex - 1
-                Dim CoopID As CellRange = CoopVendorList.GetCellRange(Vendorloop, 0)
-                Dim CoopCode As CellRange = CoopVendorList.GetCellRange(Vendorloop, 1)
-                Dim CoopName As CellRange = CoopVendorList.GetCellRange(Vendorloop, 2)
-                Dim Coopterms As CellRange = CoopVendorList.GetCellRange(Vendorloop, 3)
-                Dim Coopterme As CellRange = CoopVendorList.GetCellRange(Vendorloop, 4)
-                Dim Coopordr As CellRange = CoopVendorList.GetCellRange(Vendorloop, 5)
-                Dim Coopcntrct As CellRange = CoopVendorList.GetCellRange(Vendorloop, 6)
-                Dim CoopDeleteF As CellRange = CoopVendorList.GetCellRange(Vendorloop, 7)
+            Me.ImeMode = ImeMode.On
+            Dim CancelClick As String = ""
 
-                '業者ｺｰﾄﾞ入力時、工期、発注形態入力チェック
-                If CoopCode.Data <> Nothing Then
-                    If Coopterme.Data = Nothing Then
-                        MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
-                    End If
-                    If Coopordr.Data = Nothing Then
-                        MsgBox("発注形態を選択してください。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
-                    End If
-                    If CoopVendorList(Vendorloop, 3) >= CoopVendorList(Vendorloop, 4) Then
-                        MsgBox("" & CoopVendorList(Vendorloop, 2) & "の実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
-                    End If
-                Else
-                    '業者ｺｰﾄﾞ未入力時、その行を削除し次のループへ
-                    CoopVendorList.Rows.Remove(Vendorloop)
-                    Vendorloop -= 1
-                    RowIndex -= 1
-                    '最後の行の場合、登録を終了する
-                    If RowIndex <= 0 Then
-                        MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
-                        Exit Sub
-                    End If
-                    Continue For
-                End If
-                '削除チェック
-                If CoopDeleteF.Data = True Then
-                    If MsgBox("" & CoopVendorList(Vendorloop, 2) & "が削除されます。", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
-                        Exit Sub
-                    End If
-                    '削除したい行が登録済みか新規か判定し削除
-                    If CoopID.Data <> Nothing Then
-                        ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "DELETE FROM Outsourcers WHERE outsrcr_code=" & CoopCode.Data & "AND outsrcr_id =" & CoopID.Data
-                        ホーム.Sql.ExecuteNonQuery()
-                        CoopVendorList.Rows.Remove(Vendorloop)
-                        Vendorloop -= 1
-                        RowIndex -= 1
-                        Continue For
-                    Else
-                        CoopVendorList.Rows.Remove(Vendorloop)
-                        Vendorloop -= 1
-                        RowIndex -= 1
-                        Continue For
-                    End If
-                End If
-                '登録
-                If CoopCode.Data <> Nothing Then
-                    If CoopID.Data = Nothing Then
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "INSERT INTO Outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,ordrfrm,e_cntrct) VALUES (@outsrcr_code,@outsrcr_name,@outsrcr_term_s,@outsrcr_term_e,@ordrfrm,@e_cntrct)"
-                    Else
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "UPDATE Outsourcers SET outsrcr_code=@outsrcr_code,outsrcr_name=@outsrcr_name,outsrcr_term_s=@outsrcr_term_s,outsrcr_term_e=@outsrcr_term_e,ordrfrm=@ordrfrm,e_cntrct=@e_cntrct where outsrcr_id=@outsrcr_id"
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
-                        ホーム.Sql.Parameters("@outsrcr_id").Value = CoopID.Data
-                    End If
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_code", SqlDbType.Int))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_name", SqlDbType.NVarChar))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_s", SqlDbType.DateTime))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_e", SqlDbType.DateTime))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@e_cntrct", SqlDbType.NVarChar))
-                    ホーム.Sql.Parameters("@outsrcr_code").Value = CoopCode.Data
-                    ホーム.Sql.Parameters("@outsrcr_name").Value = CoopName.Data
-                    ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
-                    ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
-                    If Coopordr.Data = "工務課発注" Then
-                        ホーム.Sql.Parameters("@ordrfrm").Value = 11
-                    ElseIf Coopordr.Data = "購買発注" Then
-                        ホーム.Sql.Parameters("@ordrfrm").Value = 12
-                    End If
-                    If Coopcntrct.Data = True Then
-                        ホーム.Sql.Parameters("@e_cntrct").Value = "true"
-                    Else
-                        ホーム.Sql.Parameters("@e_cntrct").Value = "false"
-                    End If
-
-                    ホーム.Sql.ExecuteNonQuery()
-                End If
-            Next
-            ホーム.Modified = "false"
-            MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
+            Dim CancelClickLoad As New CancelClick(Me)
+            CancelClick = CancelClickLoad.ModifyCheck
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

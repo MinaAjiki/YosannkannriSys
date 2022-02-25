@@ -94,7 +94,7 @@ Public Class 外注内訳入力
             Dim Drow3 As Integer = 5
 
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_worktype_code,dtl_unit,dtl_name,dtl_quanity,dtl_costea,dtl_spec FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY dtl_no ASC"
+            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_worktype_code,dtl_unit,dtl_name,dtl_quanity,dtl_costea,dtl_spec FROM details WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY s_worktype_code,dtl_no ASC"
             Dim Detailreader As SqlDataReader = ホーム.Sql.ExecuteReader
             While Detailreader.Read
                 Me.DetailList.Rows.Add()
@@ -140,7 +140,7 @@ Public Class 外注内訳入力
                 Drow1 += 3
                 Drow2 += 3
                 Drow3 += 3
-                進行状況.Refresh()
+
 
             End While
             Detailreader.Close()
@@ -217,7 +217,7 @@ Public Class 外注内訳入力
             End If
 
             進行状況.Show()
-            進行状況.Refresh()
+
             Breakdown.Clear(ClearFlags.Content)
 
             '協力業者テーブルから業者数を取得
@@ -278,7 +278,7 @@ Public Class 外注内訳入力
                     total += Amount
                     TotalBreakdown(0, vendorloop) = total
                     TotalBreakdown.Rows(0).StyleNew.Format = "N0"
-                    進行状況.Refresh()
+
                 Next
             Next
 

@@ -545,6 +545,39 @@ Public Class ホーム
         レポート.Show()
     End Sub
 
+
+    Private Sub 外注計画_Click(sender As Object, e As ClickEventArgs) Handles 外注計画.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.Show()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 外注計画報告書_Click(sender As Object, e As ClickEventArgs) Handles 外注計画報告書.Click
+        '値がTrueの場合、変数に帳票名を代入する
+        ReportName = "外注計画報告書"
+        'レポートのデザインが格納されているファイルのパスを変数に代入する
+        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+        Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+
     Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click
         ReportName = "実行予算大内訳書"
         レポート.Show()
@@ -567,6 +600,7 @@ Public Class ホーム
 
     Private Sub 明細内訳書_Click(sender As Object, e As ClickEventArgs) Handles 明細内訳書.Click
         ReportName = "明細内訳書"
+
         レポート.Show()
     End Sub
 

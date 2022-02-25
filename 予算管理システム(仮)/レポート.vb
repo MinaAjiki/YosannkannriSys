@@ -5,19 +5,19 @@ Public Class レポート
             Cursor.Current = Cursors.WaitCursor
             Dim ReportLoad As String = ""
 
-            If ホーム.ReportName = "出来高査定書" Then
-                Dim ReportLoadRead As New 出来高査定書(出来高査定チェックフォーム.VendorNo.Text)
-                ReportLoad = ReportLoadRead.ReportLoad
-            ElseIf ホーム.ReportName = "出来形数量査定書(中間)" Then
-                Dim ReportLoadRead As New 出来形数量査定書(出来高査定チェックフォーム.VendorNo.Text)
-                ReportLoad = ReportLoadRead.ReportLoad
-            ElseIf ホーム.ReportName = "外注計画" Then
-                Dim ReportLoadRead As New 外注計画
-                ReportLoad = ReportLoadRead.ReportLoad
-            ElseIf ホーム.ReportName = "外注計画報告書" Then
-                Dim ReportLoadRead As New 外注計画報告書
-                ReportLoad = ReportLoadRead.ReportLoad
-            End If
+        If ホーム.ReportName = "出来高査定書" Then
+            Dim ReportLoadRead As New 出来高査定書(出来高査定チェックフォーム.VendorNo.Text)
+            ReportLoad = ReportLoadRead.ReportLoad
+        ElseIf ホーム.ReportName = "出来形数量査定書(中間)" Then
+            Dim ReportLoadRead As New 出来形数量査定書(出来高査定チェックフォーム.VendorNo.Text)
+            ReportLoad = ReportLoadRead.ReportLoad
+        ElseIf ホーム.ReportName = "外注計画" Then
+            Dim ReportLoadRead As New 外注計画
+            ReportLoad = ReportLoadRead.ReportLoad
+        ElseIf ホーム.ReportName = "外注計画報告書" Then
+            Dim ReportLoadRead As New 外注計画報告書
+            ReportLoad = ReportLoadRead.ReportLoad
+        End If
 
             If ホーム.ReportName = "予算総括表" Then
                 Dim ReportLoadRead As New 予算総括表
