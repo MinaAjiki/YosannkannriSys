@@ -577,7 +577,7 @@ Public Class ホーム
         'レポートのデザインが格納されているファイルのパスを変数に代入する
         'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
         Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
-
+    End Sub
     Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click
         ReportName = "実行予算大内訳書"
         レポート.Show()
