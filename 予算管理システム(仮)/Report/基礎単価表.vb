@@ -9,9 +9,7 @@ Public Class 基礎単価表
 
         ReportLoad = ""
 
-        'レポートを読み込む
         レポート.C1FlexReport1.Load(ホーム.Reportpath, "基礎単価表")
-
 
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"

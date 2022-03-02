@@ -37,6 +37,7 @@ Partial Class 代価表入力
         Me.CostModifyMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostCopyMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReferenceMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.CostNo = New C1.Win.C1Input.C1TextBox()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
@@ -76,7 +77,6 @@ Partial Class 代価表入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
-        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,63 +173,70 @@ Partial Class 代価表入力
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 246)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 224)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(155, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(155, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.Size = New System.Drawing.Size(155, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'CostCreateMenu
         '
         Me.CostCreateMenu.Name = "CostCreateMenu"
-        Me.CostCreateMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CostCreateMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostCreateMenu.Text = "代価表作成"
         '
         'CostModifyMenu
         '
         Me.CostModifyMenu.Name = "CostModifyMenu"
-        Me.CostModifyMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CostModifyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostModifyMenu.Text = "代価表修正"
         '
         'CostCopyMenu
         '
         Me.CostCopyMenu.Name = "CostCopyMenu"
-        Me.CostCopyMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CostCopyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CostCopyMenu.Text = "代価表コピー"
         '
         'ReferenceMenu
         '
         Me.ReferenceMenu.Name = "ReferenceMenu"
-        Me.ReferenceMenu.Size = New System.Drawing.Size(155, 22)
+        Me.ReferenceMenu.Size = New System.Drawing.Size(123, 22)
         Me.ReferenceMenu.Text = "代価表参照"
+        '
+        'Delete
+        '
+        Me.Delete.Name = "Delete"
+        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.Delete.Size = New System.Drawing.Size(123, 22)
+        Me.Delete.Visible = False
         '
         'CostNo
         '
@@ -426,11 +433,13 @@ Partial Class 代価表入力
         Me.LaborCostea.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.LaborCostea.Location = New System.Drawing.Point(484, 137)
         Me.LaborCostea.Name = "LaborCostea"
+        Me.LaborCostea.NullText = "0"
         Me.LaborCostea.Size = New System.Drawing.Size(95, 20)
         Me.LaborCostea.TabIndex = 75
         Me.LaborCostea.Tag = Nothing
         Me.LaborCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.LaborCostea, "予算管理テーマ")
+        Me.LaborCostea.Value = CType(0, Long)
         Me.LaborCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.LaborCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -465,11 +474,13 @@ Partial Class 代価表入力
         Me.MaterialCostea.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.MaterialCostea.Location = New System.Drawing.Point(579, 137)
         Me.MaterialCostea.Name = "MaterialCostea"
+        Me.MaterialCostea.NullText = "0"
         Me.MaterialCostea.Size = New System.Drawing.Size(95, 20)
         Me.MaterialCostea.TabIndex = 76
         Me.MaterialCostea.Tag = Nothing
         Me.MaterialCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MaterialCostea, "予算管理テーマ")
+        Me.MaterialCostea.Value = CType(0, Long)
         Me.MaterialCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MaterialCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -503,11 +514,13 @@ Partial Class 代価表入力
         Me.MachineCostea.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.MachineCostea.Location = New System.Drawing.Point(674, 137)
         Me.MachineCostea.Name = "MachineCostea"
+        Me.MachineCostea.NullText = "0"
         Me.MachineCostea.Size = New System.Drawing.Size(95, 20)
         Me.MachineCostea.TabIndex = 77
         Me.MachineCostea.Tag = Nothing
         Me.MachineCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MachineCostea, "予算管理テーマ")
+        Me.MachineCostea.Value = CType(0, Long)
         Me.MachineCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MachineCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -542,11 +555,13 @@ Partial Class 代価表入力
         Me.SubcntrctCostea.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.SubcntrctCostea.Location = New System.Drawing.Point(769, 137)
         Me.SubcntrctCostea.Name = "SubcntrctCostea"
+        Me.SubcntrctCostea.NullText = "0"
         Me.SubcntrctCostea.Size = New System.Drawing.Size(95, 20)
         Me.SubcntrctCostea.TabIndex = 78
         Me.SubcntrctCostea.Tag = Nothing
         Me.SubcntrctCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.SubcntrctCostea, "予算管理テーマ")
+        Me.SubcntrctCostea.Value = CType(0, Long)
         Me.SubcntrctCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.SubcntrctCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -581,11 +596,13 @@ Partial Class 代価表入力
         Me.ExpensCostea.ImagePadding = New System.Windows.Forms.Padding(0)
         Me.ExpensCostea.Location = New System.Drawing.Point(864, 137)
         Me.ExpensCostea.Name = "ExpensCostea"
+        Me.ExpensCostea.NullText = "0"
         Me.ExpensCostea.Size = New System.Drawing.Size(95, 20)
         Me.ExpensCostea.TabIndex = 79
         Me.ExpensCostea.Tag = Nothing
         Me.ExpensCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.ExpensCostea, "予算管理テーマ")
+        Me.ExpensCostea.Value = CType(0, Long)
         Me.ExpensCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.ExpensCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -621,6 +638,7 @@ Partial Class 代価表入力
         Me.LaborTotal.Tag = Nothing
         Me.LaborTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.LaborTotal, "予算管理テーマ")
+        Me.LaborTotal.Value = CType(0, Long)
         Me.LaborTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.LaborTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -656,6 +674,7 @@ Partial Class 代価表入力
         Me.ExpenseTotal.Tag = Nothing
         Me.ExpenseTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.ExpenseTotal, "予算管理テーマ")
+        Me.ExpenseTotal.Value = CType(0, Long)
         Me.ExpenseTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.ExpenseTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -691,6 +710,7 @@ Partial Class 代価表入力
         Me.MaterialTotal.Tag = Nothing
         Me.MaterialTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MaterialTotal, "予算管理テーマ")
+        Me.MaterialTotal.Value = CType(0, Long)
         Me.MaterialTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MaterialTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -726,6 +746,7 @@ Partial Class 代価表入力
         Me.MachineTotal.Tag = Nothing
         Me.MachineTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MachineTotal, "予算管理テーマ")
+        Me.MachineTotal.Value = CType(0, Long)
         Me.MachineTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MachineTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -761,6 +782,7 @@ Partial Class 代価表入力
         Me.SubcntrctTotal.Tag = Nothing
         Me.SubcntrctTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.SubcntrctTotal, "予算管理テーマ")
+        Me.SubcntrctTotal.Value = CType(0, Long)
         Me.SubcntrctTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.SubcntrctTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1138,13 +1160,6 @@ Partial Class 代価表入力
         Me.CostModify.Text = "　代価修正"
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
-        '
-        'Delete
-        '
-        Me.Delete.Name = "Delete"
-        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.Delete.Size = New System.Drawing.Size(155, 22)
-        Me.Delete.Visible = False
         '
         '代価表入力
         '

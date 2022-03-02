@@ -1,6 +1,8 @@
 ﻿Public Class エラー
     Private Sub エラー_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Me.TopMost = True
+
         If ホーム.ErrorMessage.Contains("タイムアウト") = True Then
             'エラーメッセージに｢タイムアウト｣が含まれている場合
             'メッセージを表示し、この画面を閉じ、システムを再起動する
