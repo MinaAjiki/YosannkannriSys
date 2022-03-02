@@ -623,4 +623,40 @@ Public Class ホーム
         ReportName = "代価内訳書_簡易"
         印刷代価選択.Show()
     End Sub
+
+    Private Sub 基礎代価一覧表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価一覧表_簡易.Click
+        ReportName = "基礎代価一覧表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 基礎代価内訳_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価内訳.Click
+        ReportName = "基礎代価内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 基礎代価一覧表_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価一覧表.Click
+        ReportName = "基礎代価一覧表"
+        レポート.Show()
+    End Sub
+
+    Private Sub 基礎代価簡易内訳書_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価簡易内訳書.Click
+        ReportName = "基礎代価内訳書_簡易"
+        レポート.Show()
+    End Sub
+
+    Private Sub 基礎代価詳細内訳書_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価詳細内訳書.Click
+        ReportName = "基礎代価内訳書"
+        レポート.Show()
+    End Sub
+
+    Private Sub 全て印刷_Click(sender As Object, e As ClickEventArgs) Handles 全て印刷.Click
+        Cursor.Current = Cursors.WaitCursor
+
+        Dim ReportLoad As String = ""
+        Dim ReportLoadRead As New 全_詳細
+        ReportLoad = ReportLoadRead.ReportLoad
+
+        Cursor.Current = Cursors.Default
+
+    End Sub
 End Class

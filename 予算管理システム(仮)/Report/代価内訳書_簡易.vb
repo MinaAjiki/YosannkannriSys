@@ -43,11 +43,7 @@ Public Class 代価内訳書_簡易
 
         Dim TitleField As C1.Win.FlexReport.Field
         TitleField = CType(レポート.C1FlexReport1.Fields("ReportTitle"), C1.Win.FlexReport.Field)
-        If CstClssCode = 11 Then
-            TitleField.Text = "基礎代価表"
-        Else
-            TitleField.Text = "工事代価表"
-        End If
+        TitleField.Text = "工事代価表"
 
         Dim CostNoField As C1.Win.FlexReport.TextField
         CostNoField = CType(レポート.C1FlexReport1.Fields("cstclssname"), C1.Win.FlexReport.TextField)

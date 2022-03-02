@@ -16,6 +16,11 @@ Public Class 代価一覧表
 		Dim ReportData As DataSource = New DataSource
 		ReportData.Name = "ReportDataSource"
 		ReportData.DataProvider = DataProvider.OLEDB
+
+		Dim TitleField As C1.Win.FlexReport.Field
+		TitleField = CType(レポート.C1FlexReport1.Fields("ReportTitle"), C1.Win.FlexReport.Field)
+		TitleField.Text = "工事代価表　" & CstClssName.Last
+
 		ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=" & ホーム.UserDataPath & ホーム.UserDataName & ";Data Source=(localdb)\MSSQLLocalDB;"
 		ReportData.RecordSource = "SELECT DISTINCT projectcst_bd.budget_no,
                                                    projectcst_bd.cstclss_code,
@@ -46,13 +51,6 @@ Public Class 代価一覧表
                                     ORDER BY projectcst_bd.prjctcst_no;"
 		レポート.C1FlexReport1.DataSources.Add(ReportData)
 
-		Dim TitleField As C1.Win.FlexReport.Field
-		TitleField = CType(レポート.C1FlexReport1.Fields("ReportTitle"), C1.Win.FlexReport.Field)
-		If CstClssCode = 11 Then
-			TitleField.Text = "基礎代価表"
-		Else
-			TitleField.Text = "工事代価表　" & CstClssName.Last
-		End If
 
 		レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
