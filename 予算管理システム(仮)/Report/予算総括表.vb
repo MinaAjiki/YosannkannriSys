@@ -8,7 +8,6 @@ Public Class 予算総括表
 
         'レポートを読み込む
         レポート.C1FlexReport1.Load(ホーム.Reportpath, "予算総括新レポート")
-        'レポート.C1FlexReport1.Load("C:\Users\206029\Documents\Visual Studio 2008\Projects\勤怠入力支援システム\勤怠入力支援システム\勤怠入力支援システムレポート.flxr", "チェックリスト")
 
 
         Dim ReportData As DataSource = New DataSource

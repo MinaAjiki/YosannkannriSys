@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>17</ApplicationRevision>
-    <ApplicationVersion>1.0.0.17</ApplicationVersion>
+    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationVersion>1.0.0.18</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -166,6 +166,10 @@
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
+    <Compile Include="Report\全_詳細.vb" />
+    <Compile Include="Report\基礎代価内訳書.vb" />
+    <Compile Include="Report\基礎代価内訳書_簡易.vb" />
+    <Compile Include="Report\基礎代価一覧表.vb" />
     <Compile Include="Report\代価内訳書_簡易.vb" />
     <Compile Include="Report\出来形数量査定書.vb" />
     <Compile Include="Report\注文書.vb" />

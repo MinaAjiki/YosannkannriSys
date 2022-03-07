@@ -282,6 +282,9 @@ Public Class 明細書入力
                 OutsourcersReader.Close()
             End If
 
+            DetailsList.Select(3, 4)
+
+
             ホーム.Modified = "False"
 
 
@@ -504,6 +507,12 @@ Public Class 明細書入力
                 DetailsList.Rows(Row - 1).Caption = "▶"
             Else
                 DetailsList.Rows(Row - 2).Caption = "▶"
+            End If
+
+            If Col = 6 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
             End If
 
         Catch ex As Exception
@@ -1016,6 +1025,10 @@ Public Class 明細書入力
                         MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
                     Else
 
+                        If SelectRow = DetailsList.Rows.Count - 3 Then
+                            Call Insert_Click(sender, e)
+                        End If
+
 
                         作成代価選択.SelectRow = SelectRow
 
@@ -1065,7 +1078,14 @@ Public Class 明細書入力
                     If SelectRow = 0 Then
                         MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
                     Else
+
+
+                        If SelectRow = DetailsList.Rows.Count - 3 Then
+                            Call Insert_Click(sender, e)
+                        End If
+
                         作成代価選択.SelectRow = SelectRow
+
                         DetailsList(SelectRow, 3) = SelectRow / 3
 
                         作成代価選択.ShowDialog()
@@ -1756,12 +1776,16 @@ Public Class 明細書入力
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
                 If IsNothing(DetailsList(RowCount * 3, 2)) = True Then
                     If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
-                        DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                        If IsNothing(DetailsList(RowCount * 3, 4)) = False Then
+                            DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                        End If
                     End If
-                Else
+                    Else
                     If DetailsList(RowCount * 3, 2) = False Then
                         If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
-                            DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                            If IsNothing(DetailsList(RowCount * 3, 4)) = False Then
+                                DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
+                            End If
                         End If
                     Else
                         DeleteRow += 1
@@ -2055,6 +2079,24 @@ Public Class 明細書入力
 
             DetailsList(SelectionRow, SelectionCol) = ""
 
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub DetailsList_StartEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.StartEdit
+        Try
+
+            Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+
+            If SelectionCol = 6 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
+            End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

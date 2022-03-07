@@ -593,7 +593,7 @@ Public Class 費用マスタ一覧
     Private Sub MasterContentsList_AfterEdit(sender As Object, e As RowColEventArgs) Handles MasterContentsList.AfterEdit
         Try
             Dim SetImageRow As Integer = e.Row
-            MasterContentsList.SetCellImage(SetImageRow, 10, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
+            'MasterContentsList.SetCellImage(SetImageRow, 10, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
             If IsNothing(MasterContentsList(SetImageRow, 2)) = True Then
                 MasterContentsList(SetImageRow, 1) = 0
                 MasterContentsList(SetImageRow, 2) = MasterContentsList(SetImageRow - 1, 2) + 1
