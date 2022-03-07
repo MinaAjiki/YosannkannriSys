@@ -12,14 +12,9 @@ Public Class 協力業者選択
     Public SelectVendorName As New List(Of String)
     Public SelectVendorCode As New List(Of Integer)
     Public SelectVendorcount As Integer = 0
+    Public ParentFormName As String
     Private Sub 協力業者選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ''namemasterからデータを取得
-            'ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters"
-            'Dim Namemaster As SqlDataReader = ホーム.Sql.ExecuteReader
-            'While Namemaster.Read
-            '    CoopVendorList.Cols(5).ComboList = Namemaster.Item("item_name")
-            'End While
 
             ホーム.Sql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
             Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
@@ -51,6 +46,11 @@ Public Class 協力業者選択
 
             End While
             Coopreader.Close()
+
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" Then
+                CoopVendorList.Cols(1).Width = 0
+                VendorSelect.Visible = False
+            End If
 
             ホーム.Modified = "false"
 
@@ -92,45 +92,49 @@ Public Class 協力業者選択
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles VendorSelect.Click
-        Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
-        Dim datacount As Integer = -1
-        SelectVendorName = New List(Of String) From {Nothing, Nothing, Nothing, Nothing, Nothing}
-        SelectVendorCode = New List(Of Integer) From {Nothing, Nothing, Nothing, Nothing, Nothing}
-        SelectVendorcount = 0
-        For Vendorloop As Integer = 1 To RowIndex
-            Dim VendorCheck As CellRange = CoopVendorList.GetCellRange(Vendorloop, 1)
-            Dim C As CellRange = CoopVendorList.GetCellRange(Vendorloop, 2)
-            Dim Code As Integer = C.Data
-            Dim N As CellRange = CoopVendorList.GetCellRange(Vendorloop, 3)
-            Dim Name As String = N.Data
+        Try
+            If ParentFormName = "外注計画" Then
+                Dim RowIndex As Integer = CoopVendorList.Rows.Count - 1
+                Dim datacount As Integer = -1
+                SelectVendorName = New List(Of String) From {Nothing, Nothing, Nothing, Nothing, Nothing}
+                SelectVendorCode = New List(Of Integer) From {Nothing, Nothing, Nothing, Nothing, Nothing}
+                SelectVendorcount = 0
+                For Vendorloop As Integer = 1 To RowIndex
+                    Dim VendorCheck As CellRange = CoopVendorList.GetCellRange(Vendorloop, 1)
+                    Dim C As CellRange = CoopVendorList.GetCellRange(Vendorloop, 2)
+                    Dim Code As Integer = C.Data
+                    Dim N As CellRange = CoopVendorList.GetCellRange(Vendorloop, 3)
+                    Dim Name As String = N.Data
 
-            If VendorCheck.Data = True Then
-                'SelectVendorCode(datacount) = Code
-                datacount += 1
-                If datacount >= 5 Then
-                    MsgBox("一度の出力で選択できるのは５社までです。", MsgBoxStyle.Exclamation, "協力業者選択")
-                    Exit Sub
-                End If
-                SelectVendorName(datacount) = Name
-                SelectVendorCode(datacount) = Code
-                SelectVendorcount += 1
+                    If VendorCheck.Data = True Then
+                        'SelectVendorCode(datacount) = Code
+                        datacount += 1
+                        If datacount >= 5 Then
+                            MsgBox("一度の出力で選択できるのは５社までです。", MsgBoxStyle.Exclamation, "協力業者選択")
+                            Exit Sub
+                        End If
+                        SelectVendorName(datacount) = Name
+                        SelectVendorCode(datacount) = Code
+                        SelectVendorcount += 1
+                    End If
+
+                Next
+                '値がTrueの場合、変数に帳票名を代入する
+                ホーム.ReportName = "外注計画"
+                'レポートのデザインが格納されているファイルのパスを変数に代入する
+                'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+                ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+                レポート.Show()
+
             End If
 
-        Next
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
 
-        'For nullcheck As Integer = 0 To 4
-        '    If SelectVendorName(datacount) = Nothing Then
-        '        SelectVendorName(datacount) = ""
-        '    End If
-        '    datacount += 1
-        'Next
-
-        '値がTrueの場合、変数に帳票名を代入する
-        ホーム.ReportName = "外注計画"
-        'レポートのデザインが格納されているファイルのパスを変数に代入する
-        'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-        ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
-        レポート.Show()
     End Sub
 
     Private Sub CoopVendorList_CellChanged(sender As Object, e As RowColEventArgs) Handles CoopVendorList.AfterEdit
@@ -151,5 +155,37 @@ Public Class 協力業者選択
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub CoopVendorList_DoubleClick(sender As Object, e As EventArgs) Handles CoopVendorList.DoubleClick
+        Try
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" Then
+                Dim RowIndex As Integer = CoopVendorList.Selection.TopRow
+                SelectVendorName = New List(Of String) From {Nothing}
+                SelectVendorCode = New List(Of Integer) From {Nothing}
+                Dim n As CellRange = CoopVendorList.GetCellRange(RowIndex, 3)
+                Dim c As CellRange = CoopVendorList.GetCellRange(RowIndex, 2)
+                SelectVendorName(0) = n.Data
+                SelectVendorCode(0) = c.Data
+                If ParentFormName = "注文書" Then
+                    ホーム.ReportName = "注文書"
+                ElseIf ParentFormName = "注文書金抜" Then
+                    ホーム.ReportName = "注文書金抜"
+                ElseIf ParentFormName = "注文書折衝" Then
+                    ホーム.ReportName = "注文書折衝"
+                End If
+                'レポートのデザインが格納されているファイルのパスを変数に代入する
+                'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
+                ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+                レポート.Show()
+
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
     End Sub
 End Class

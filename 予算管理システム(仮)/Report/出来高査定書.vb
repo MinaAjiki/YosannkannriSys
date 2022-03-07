@@ -10,7 +10,11 @@ Public Class 出来高査定書
         ReportLoad = ""
 
         'レポートを読み込む
-        レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来高査定書")
+        If 出来高査定チェックフォーム.ParentFormName = "出来高査定書" Then
+            レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来高査定書")
+        ElseIf 出来高査定チェックフォーム.ParentFormName = "出来高査定書(完成)" Then
+            レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来高査定書(完成)")
+        End If
 
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
         Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
