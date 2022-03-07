@@ -1,22 +1,24 @@
 ﻿Imports C1.Win.FlexReport
 Imports System.Data.SqlClient
-Public Class 出来形数量査定書
+Public Class 注文書
 
     Public Sub New(ByVal VendorN As Integer)
-        出来高査定チェックフォーム.VN = VendorN '
+        協力業者選択.SelectVendorCode(0) = VendorN '
     End Sub
     Public Function ReportLoad() As String
 
         ReportLoad = ""
 
         'レポートを読み込む
-        If 出来高査定チェックフォーム.ParentFormName = "出来形数量査定書(中間)" Then
-            レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来形数量査定書(中間)")
-        ElseIf 出来高査定チェックフォーム.ParentFormName = "出来形数量査定書(完成)" Then
-            レポート.C1FlexReport1.Load(ホーム.Reportpath, "出来形数量査定書(完成)")
+        If 協力業者選択.ParentFormName = "注文書" Then
+            レポート.C1FlexReport1.Load(ホーム.Reportpath, "注文書")
+        ElseIf 協力業者選択.ParentFormName = "注文書金抜" Then
+            レポート.C1FlexReport1.Load(ホーム.Reportpath, "注文書金抜")
+        ElseIf 協力業者選択.ParentFormName = "注文書折衝" Then
+            レポート.C1FlexReport1.Load(ホーム.Reportpath, "注文書折衝")
         End If
 
-        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 協力業者選択.SelectVendorCode(0)
         Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
         Dim ReportData As DataSource = New DataSource
@@ -50,52 +52,22 @@ Public Class 出来形数量査定書
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
-        'Dim DT As New DataTable
-        'DT.Columns.Add("OutsourcersCode")
-        'DT.Columns.Add("OutsourcersName")
-        'DT.Columns.Add("ManagedDate")
-        'DT.Columns.Add("OrderNo")
-        'DT.Columns.Add("Code")
-        'DT.Columns.Add("Worktype")
-        'DT.Columns.Add("TotalAmount")
-        'DT.Columns.Add("Name")
-        'DT.Columns.Add("Spec")
-        'DT.Columns.Add("Unit")
-        'DT.Columns.Add("ConQuanity")
-        'DT.Columns.Add("ConCostea")
-        'DT.Columns.Add("ConAmount")
-        'DT.Columns.Add("LaQuanity")
-        'DT.Columns.Add("LaAmount")
-        'DT.Columns.Add("ToQuanity")
-        'DT.Columns.Add("ToAmount")
-        'DT.Columns.Add("CuQuanity")
-        'DT.Columns.Add("CuAmount")
-
-        'ホーム.Sql.Parameters.Clear()
-        'Dim DTRow As DataRow = DT.NewRow
-        'DTRow("OutsourcersCode") = vendorid
-        'DTRow("OrderNo") = orderno
-        'DT.Rows.Add(DTRow)
-
-        'ds.Recordset = DT
-        Dim vendorcode As Integer = 出来高査定チェックフォーム.VN
-        ホーム.Sql.CommandText = "SELECT outsrcr_name FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
+        Dim vendorcode As Integer = 協力業者選択.SelectVendorCode(0)
+        ホーム.Sql.CommandText = "SELECT outsrcr_name FROM outsourcers WHERE outsrcr_code = " & 協力業者選択.SelectVendorCode(0)
         Dim vendorname As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
+        ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 協力業者選択.SelectVendorCode(0)
         Dim vendorid As String = ホーム.Sql.ExecuteScalar
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
         Dim Pcode As String = ホーム.Sql.ExecuteScalar
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=21"
         Dim Pname As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
-        Dim Dline As String = ホーム.Sql.ExecuteScalar
 
-        Dim field As TextField
-        field = CType(レポート.C1FlexReport1.Fields("業者コード"), TextField)
-        field.Text = 出来高査定チェックフォーム.VN
+        Dim field As Field
+        field = CType(レポート.C1FlexReport1.Fields("業者コード"), Field)
+        field.Text = "[" & 協力業者選択.SelectVendorCode(0) & "]"
 
-        Dim field1 As TextField
-        field1 = CType(レポート.C1FlexReport1.Fields("会社名"), TextField)
+        Dim field1 As Field
+        field1 = CType(レポート.C1FlexReport1.Fields("会社名"), Field)
         field1.Text = vendorname
 
         Dim field2 As TextField
@@ -106,8 +78,6 @@ Public Class 出来形数量査定書
         field3 = CType(レポート.C1FlexReport1.Fields("工事名"), TextField)
         field3.Text = Pname
 
-        'レポート.C1FlexReport1.DataSources.Add(ds)
-        'レポート.C1FlexReport1.DataSourceName = ds.Name
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
         Return ReportLoad
     End Function

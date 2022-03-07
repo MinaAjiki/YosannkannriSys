@@ -160,6 +160,7 @@ Partial Class 外注内訳入力
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label4.Location = New System.Drawing.Point(339, 595)
@@ -173,6 +174,7 @@ Partial Class 外注内訳入力
         '
         Me.TotalBreakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.TotalBreakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.TotalBreakdown.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TotalBreakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.TotalBreakdown.ColumnInfo = "8,0,0,0,0,110,Columns:0{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Wi" &
     "dth:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9)

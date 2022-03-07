@@ -179,16 +179,6 @@ Partial Class ホーム
         Me.外注計画報告書 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink79 = New C1.Win.C1Command.C1CommandLink()
         Me.出来高査定 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink80 = New C1.Win.C1Command.C1CommandLink()
-        Me.出来高査定書_完成 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink81 = New C1.Win.C1Command.C1CommandLink()
-        Me.出来形数量査定書 = New C1.Win.C1Command.C1CommandMenu()
-        Me.C1CommandLink83 = New C1.Win.C1Command.C1CommandLink()
-        Me.中間 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink84 = New C1.Win.C1Command.C1CommandLink()
-        Me.完成 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink82 = New C1.Win.C1Command.C1CommandLink()
-        Me.出来形数量査定書_Excel = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink85 = New C1.Win.C1Command.C1CommandLink()
         Me.折衝用業者別内訳 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink86 = New C1.Win.C1Command.C1CommandLink()
@@ -209,6 +199,13 @@ Partial Class ホーム
         Me.バージョン情報 = New C1.Win.C1Command.C1Command()
         Me.代価表作成 = New C1.Win.C1Command.C1Command()
         Me.変更内容登録 = New C1.Win.C1Command.C1Command()
+        Me.出来高査定書_完成 = New C1.Win.C1Command.C1Command()
+        Me.出来形数量査定書_Excel = New C1.Win.C1Command.C1Command()
+        Me.出来形数量査定書 = New C1.Win.C1Command.C1CommandMenu()
+        Me.C1CommandLink83 = New C1.Win.C1Command.C1CommandLink()
+        Me.中間 = New C1.Win.C1Command.C1Command()
+        Me.C1CommandLink84 = New C1.Win.C1Command.C1CommandLink()
+        Me.完成 = New C1.Win.C1Command.C1Command()
         Me.MainMenu = New C1.Win.C1Command.C1MainMenu()
         Me.C1CommandLink2 = New C1.Win.C1Command.C1CommandLink()
         Me.BudgetMenu = New C1.Win.C1Command.C1CommandLink()
@@ -1291,7 +1288,7 @@ Partial Class ホーム
         '
         '出力_外注計画
         '
-        Me.出力_外注計画.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink34, Me.C1CommandLink77, Me.C1CommandLink78, Me.C1CommandLink79, Me.C1CommandLink80, Me.C1CommandLink81, Me.C1CommandLink82, Me.C1CommandLink85, Me.C1CommandLink86, Me.C1CommandLink89, Me.C1CommandLink90})
+        Me.出力_外注計画.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink34, Me.C1CommandLink77, Me.C1CommandLink78, Me.C1CommandLink79, Me.C1CommandLink85, Me.C1CommandLink86, Me.C1CommandLink89, Me.C1CommandLink90})
         Me.出力_外注計画.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_外注計画.HideNonRecentLinks = False
         Me.出力_外注計画.Name = "出力_外注計画"
@@ -1344,70 +1341,10 @@ Partial Class ホーム
         Me.出来高査定.ShortcutText = ""
         Me.出来高査定.Text = "出来高査定"
         '
-        'C1CommandLink80
-        '
-        Me.C1CommandLink80.Command = Me.出来高査定書_完成
-        Me.C1CommandLink80.SortOrder = 4
-        '
-        '出来高査定書_完成
-        '
-        Me.出来高査定書_完成.Name = "出来高査定書_完成"
-        Me.出来高査定書_完成.ShortcutText = ""
-        Me.出来高査定書_完成.Text = "出来高査定書(完成)"
-        '
-        'C1CommandLink81
-        '
-        Me.C1CommandLink81.Command = Me.出来形数量査定書
-        Me.C1CommandLink81.SortOrder = 5
-        '
-        '出来形数量査定書
-        '
-        Me.出来形数量査定書.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink83, Me.C1CommandLink84})
-        Me.出来形数量査定書.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.出来形数量査定書.HideNonRecentLinks = False
-        Me.出来形数量査定書.Name = "出来形数量査定書"
-        Me.出来形数量査定書.ShortcutText = ""
-        Me.出来形数量査定書.Text = "出来形数量査定書"
-        Me.SystemTheme.SetTheme(Me.出来形数量査定書, "予算管理テーマ")
-        Me.出来形数量査定書.VisualStyle = C1.Win.C1Command.VisualStyle.Custom
-        Me.出来形数量査定書.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2007Blue
-        '
-        'C1CommandLink83
-        '
-        Me.C1CommandLink83.Command = Me.中間
-        '
-        '中間
-        '
-        Me.中間.Name = "中間"
-        Me.中間.ShortcutText = ""
-        Me.中間.Text = "中間"
-        '
-        'C1CommandLink84
-        '
-        Me.C1CommandLink84.Command = Me.完成
-        Me.C1CommandLink84.SortOrder = 1
-        '
-        '完成
-        '
-        Me.完成.Name = "完成"
-        Me.完成.ShortcutText = ""
-        Me.完成.Text = "完成"
-        '
-        'C1CommandLink82
-        '
-        Me.C1CommandLink82.Command = Me.出来形数量査定書_Excel
-        Me.C1CommandLink82.SortOrder = 6
-        '
-        '出来形数量査定書_Excel
-        '
-        Me.出来形数量査定書_Excel.Name = "出来形数量査定書_Excel"
-        Me.出来形数量査定書_Excel.ShortcutText = ""
-        Me.出来形数量査定書_Excel.Text = "出来形数量査定書(Excel)"
-        '
         'C1CommandLink85
         '
         Me.C1CommandLink85.Command = Me.折衝用業者別内訳
-        Me.C1CommandLink85.SortOrder = 7
+        Me.C1CommandLink85.SortOrder = 4
         '
         '折衝用業者別内訳
         '
@@ -1418,7 +1355,7 @@ Partial Class ホーム
         'C1CommandLink86
         '
         Me.C1CommandLink86.Command = Me.注文書
-        Me.C1CommandLink86.SortOrder = 8
+        Me.C1CommandLink86.SortOrder = 5
         '
         '注文書
         '
@@ -1456,7 +1393,7 @@ Partial Class ホーム
         'C1CommandLink89
         '
         Me.C1CommandLink89.Command = Me.注文内訳書_Excel
-        Me.C1CommandLink89.SortOrder = 9
+        Me.C1CommandLink89.SortOrder = 6
         '
         '注文内訳書_Excel
         '
@@ -1467,7 +1404,7 @@ Partial Class ホーム
         'C1CommandLink90
         '
         Me.C1CommandLink90.Command = Me.注文書明細_CSV
-        Me.C1CommandLink90.SortOrder = 10
+        Me.C1CommandLink90.SortOrder = 7
         '
         '注文書明細_CSV
         '
@@ -1528,6 +1465,51 @@ Partial Class ホーム
         Me.変更内容登録.Name = "変更内容登録"
         Me.変更内容登録.ShortcutText = ""
         Me.変更内容登録.Text = "変更内容登録"
+        '
+        '出来高査定書_完成
+        '
+        Me.出来高査定書_完成.Name = "出来高査定書_完成"
+        Me.出来高査定書_完成.ShortcutText = ""
+        Me.出来高査定書_完成.Text = "出来高査定書(完成)"
+        '
+        '出来形数量査定書_Excel
+        '
+        Me.出来形数量査定書_Excel.Name = "出来形数量査定書_Excel"
+        Me.出来形数量査定書_Excel.ShortcutText = ""
+        Me.出来形数量査定書_Excel.Text = "出来形数量査定書(Excel)"
+        '
+        '出来形数量査定書
+        '
+        Me.出来形数量査定書.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink83, Me.C1CommandLink84})
+        Me.出来形数量査定書.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.出来形数量査定書.HideNonRecentLinks = False
+        Me.出来形数量査定書.Name = "出来形数量査定書"
+        Me.出来形数量査定書.ShortcutText = ""
+        Me.出来形数量査定書.Text = "出来形数量査定書"
+        Me.SystemTheme.SetTheme(Me.出来形数量査定書, "予算管理テーマ")
+        Me.出来形数量査定書.VisualStyle = C1.Win.C1Command.VisualStyle.Custom
+        Me.出来形数量査定書.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2007Blue
+        '
+        'C1CommandLink83
+        '
+        Me.C1CommandLink83.Command = Me.中間
+        '
+        '中間
+        '
+        Me.中間.Name = "中間"
+        Me.中間.ShortcutText = ""
+        Me.中間.Text = "中間"
+        '
+        'C1CommandLink84
+        '
+        Me.C1CommandLink84.Command = Me.完成
+        Me.C1CommandLink84.SortOrder = 1
+        '
+        '完成
+        '
+        Me.完成.Name = "完成"
+        Me.完成.ShortcutText = ""
+        Me.完成.Text = "完成"
         '
         'MainMenu
         '
@@ -1814,15 +1796,12 @@ Partial Class ホーム
     Friend WithEvents 外注計画報告書 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink79 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出来高査定チェック As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink80 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出来高査定書_完成 As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink81 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出来形数量査定書 As C1.Win.C1Command.C1CommandMenu
     Friend WithEvents C1CommandLink83 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 中間 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink84 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 完成 As C1.Win.C1Command.C1Command
-    Friend WithEvents C1CommandLink82 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 出来形数量査定書_Excel As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink85 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 折衝用業者別内訳 As C1.Win.C1Command.C1Command

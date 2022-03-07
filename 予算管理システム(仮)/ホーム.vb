@@ -430,6 +430,7 @@ Public Class ホーム
 
             出来高査定チェックフォーム.TopLevel = False
             FormPanel.Controls.Add(出来高査定チェックフォーム)
+            協力業者選択.ParentFormName = "出来高査定"
             出来高査定チェックフォーム.Show()
         Catch ex As Exception
             ErrorMessage = ex.Message
@@ -554,7 +555,7 @@ Public Class ホーム
                 Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
                 FormClose = FormCloseLoad.FormCheck
             End If
-
+            協力業者選択.ParentFormName = "外注計画"
             協力業者選択.Anchor = AnchorStyles.Top
             '協力業者入力.Anchor = AnchorStyles.Bottom
             協力業者選択.Anchor = AnchorStyles.Left
@@ -577,6 +578,7 @@ Public Class ホーム
         'レポートのデザインが格納されているファイルのパスを変数に代入する
         'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
         Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+        レポート.Show()
     End Sub
     Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click
         ReportName = "実行予算大内訳書"
@@ -623,6 +625,90 @@ Public Class ホーム
         ReportName = "代価内訳書_簡易"
         印刷代価選択.Show()
     End Sub
+
+    Private Sub 注文書_Click(sender As Object, e As ClickEventArgs) Handles 注文書.Click
+
+    End Sub
+
+    Private Sub 注文書_金込_Click(sender As Object, e As ClickEventArgs) Handles 注文書_金込.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.ParentFormName = "注文書"
+            協力業者選択.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 注文書_金抜_Click(sender As Object, e As ClickEventArgs) Handles 注文書_金抜.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.ParentFormName = "注文書金抜"
+            協力業者選択.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 折衝用業者別内訳_Click(sender As Object, e As ClickEventArgs) Handles 折衝用業者別内訳.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.ParentFormName = "注文書折衝"
+            協力業者選択.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
 
     Private Sub 基礎代価一覧表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価一覧表_簡易.Click
         ReportName = "基礎代価一覧表"
