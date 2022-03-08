@@ -1822,6 +1822,7 @@ Public Class 代価表入力
                 If RowCount * 3 <= (BreakDownList.Rows.Count - 3) Then
                     If BreakDownList(RowCount * 3, 2) = "True" Then
                         BreakDownList.Rows.RemoveRange(RowCount * 3, 3)
+                        RowCount = RowCount - 1
                     End If
                     If RowCount * 3 = (BreakDownList.Rows.Count - 3) Then
                         Dim Name As String = BreakDownList(RowCount * 3, 4)
