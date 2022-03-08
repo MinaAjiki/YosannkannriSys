@@ -1566,6 +1566,7 @@ Public Class 明細書入力
                         DetailsList.Rows.RemoveRange(RowCount * 3, 3)
                         CategoryList.Rows.RemoveRange(RowCount * 3, 3)
                         OutsoucerList.Rows.RemoveRange(RowCount * 3, 3)
+                        RowCount = RowCount - 1
                     End If
                     If RowCount * 3 = (DetailsList.Rows.Count - 3) Then
                         Dim Name As String = DetailsList(RowCount * 3, 4)
