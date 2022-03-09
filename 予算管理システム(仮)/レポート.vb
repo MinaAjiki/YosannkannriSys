@@ -79,6 +79,9 @@ Public Class レポート
             ElseIf ホーム.ReportName = "入力表_工務課用" Then
                 Dim ReportLoadRead As New 入力表_工務課用
                 ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "入力表" Then
+                Dim ReportLoadRead As New 入力表
+                ReportLoad = ReportLoadRead.ReportLoad
             End If
 
             Cursor.Current = Cursors.Default
