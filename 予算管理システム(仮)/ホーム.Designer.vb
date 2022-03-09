@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -125,6 +125,10 @@ Partial Class ホーム
         Me.基礎代価一覧表_簡易 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink65 = New C1.Win.C1Command.C1CommandLink()
         Me.基礎代価内訳 = New C1.Win.C1Command.C1Command()
+        Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
+        Me.入力表 = New C1.Win.C1Command.C1Command()
+        Me.C1CommandLink1 = New C1.Win.C1Command.C1CommandLink()
+        Me.入力表_工務課用 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink38 = New C1.Win.C1Command.C1CommandLink()
         Me.明細書一覧_Excel = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink39 = New C1.Win.C1Command.C1CommandLink()
@@ -219,10 +223,6 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.C1CommandLink1 = New C1.Win.C1Command.C1CommandLink()
-        Me.入力表_工務課用 = New C1.Win.C1Command.C1Command()
-        Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
-        Me.入力表 = New C1.Win.C1Command.C1Command()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -341,10 +341,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn2.DisplayFieldName = Nothing
-        C1TreeColumn2.HeaderText = Nothing
-        C1TreeColumn2.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
+        C1TreeColumn1.DisplayFieldName = Nothing
+        C1TreeColumn1.HeaderText = Nothing
+        C1TreeColumn1.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -1022,6 +1022,28 @@ Partial Class ホーム
         Me.基礎代価内訳.ShortcutText = ""
         Me.基礎代価内訳.Text = "基礎代価内訳"
         '
+        'C1CommandLink5
+        '
+        Me.C1CommandLink5.Command = Me.入力表
+        Me.C1CommandLink5.SortOrder = 2
+        '
+        '入力表
+        '
+        Me.入力表.Name = "入力表"
+        Me.入力表.ShortcutText = ""
+        Me.入力表.Text = "入力表"
+        '
+        'C1CommandLink1
+        '
+        Me.C1CommandLink1.Command = Me.入力表_工務課用
+        Me.C1CommandLink1.SortOrder = 3
+        '
+        '入力表_工務課用
+        '
+        Me.入力表_工務課用.Name = "入力表_工務課用"
+        Me.入力表_工務課用.ShortcutText = ""
+        Me.入力表_工務課用.Text = "入力表(工務課用)"
+        '
         'C1CommandLink38
         '
         Me.C1CommandLink38.Command = Me.明細書一覧_Excel
@@ -1607,28 +1629,6 @@ Partial Class ホーム
         'ImportFileDialog
         '
         Me.ImportFileDialog.Filter = "XLSXファイル|*.xlsx|XLSファイル|*.xls|すべて|*.*"
-        '
-        'C1CommandLink1
-        '
-        Me.C1CommandLink1.Command = Me.入力表_工務課用
-        Me.C1CommandLink1.SortOrder = 3
-        '
-        '入力表_工務課用
-        '
-        Me.入力表_工務課用.Name = "入力表_工務課用"
-        Me.入力表_工務課用.ShortcutText = ""
-        Me.入力表_工務課用.Text = "入力表(工務課用)"
-        '
-        'C1CommandLink5
-        '
-        Me.C1CommandLink5.Command = Me.入力表
-        Me.C1CommandLink5.SortOrder = 2
-        '
-        '入力表
-        '
-        Me.入力表.Name = "入力表"
-        Me.入力表.ShortcutText = ""
-        Me.入力表.Text = "入力表"
         '
         'ホーム
         '
