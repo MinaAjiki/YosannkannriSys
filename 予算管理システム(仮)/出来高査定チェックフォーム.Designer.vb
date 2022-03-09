@@ -39,6 +39,8 @@ Partial Class 出来高査定チェックフォーム
         Me.Cancel = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.C1XLBook1 = New C1.C1Excel.C1XLBook()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -277,6 +279,10 @@ Partial Class 出来高査定チェックフォーム
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.Filter = "EXCELファイル|*.xlsx|すべて|*.*"
+        '
         '出来高査定チェックフォーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -318,4 +324,6 @@ Partial Class 出来高査定チェックフォーム
     Friend WithEvents QAssesComp As Button
     Friend WithEvents Cancel As Button
     Private WithEvents ButtonImageList As ImageList
+    Friend WithEvents C1XLBook1 As C1.C1Excel.C1XLBook
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

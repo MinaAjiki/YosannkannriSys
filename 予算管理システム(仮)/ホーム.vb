@@ -647,6 +647,7 @@ Public Class ホーム
             協力業者選択.TopLevel = False
             FormPanel.Controls.Add(協力業者選択)
             協力業者選択.ParentFormName = "注文書"
+            協力業者選択.HeadLine.Text = "<< 協力業者選択(注文書)"
             協力業者選択.Show()
 
         Catch ex As Exception
@@ -674,6 +675,7 @@ Public Class ホーム
             協力業者選択.TopLevel = False
             FormPanel.Controls.Add(協力業者選択)
             協力業者選択.ParentFormName = "注文書金抜"
+            協力業者選択.HeadLine.Text = "<< 協力業者選択(金抜注文書)"
             協力業者選択.Show()
 
         Catch ex As Exception
@@ -701,6 +703,7 @@ Public Class ホーム
             協力業者選択.TopLevel = False
             FormPanel.Controls.Add(協力業者選択)
             協力業者選択.ParentFormName = "注文書折衝"
+            協力業者選択.HeadLine.Text = "<< 協力業者選択(折衝用内訳書)"
             協力業者選択.Show()
 
         Catch ex As Exception
@@ -747,8 +750,42 @@ Public Class ホーム
 
     End Sub
 
+    Private Sub 注文内訳書_Excel_Click(sender As Object, e As ClickEventArgs) Handles 注文内訳書_Excel.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.ParentFormName = "注文書Excel"
+            協力業者選択.HeadLine.Text = "<< 協力業者選択(注文内訳書Excel出力)"
+            協力業者選択.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 外注計画_Excel_Click(sender As Object, e As ClickEventArgs) Handles 外注計画_Excel.Click
+        ReportName = "外注計画"
+        レポート.Show()
+    End Sub
+                                  
     Private Sub 入力表_工務課用_Click(sender As Object, e As ClickEventArgs) Handles 入力表_工務課用.Click
         ReportName = "入力表_工務課用"
+
         レポート.Show()
     End Sub
 
