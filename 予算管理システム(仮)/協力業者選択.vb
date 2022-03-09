@@ -47,8 +47,9 @@ Public Class 協力業者選択
             End While
             Coopreader.Close()
 
-            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" Then
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" Then
                 CoopVendorList.Cols(1).Width = 0
+                CoopVendorList.Cols(3).Width = 390
                 VendorSelect.Visible = False
             End If
 
@@ -159,7 +160,7 @@ Public Class 協力業者選択
 
     Private Sub CoopVendorList_DoubleClick(sender As Object, e As EventArgs) Handles CoopVendorList.DoubleClick
         Try
-            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" Then
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" Then
                 Dim RowIndex As Integer = CoopVendorList.Selection.TopRow
                 SelectVendorName = New List(Of String) From {Nothing}
                 SelectVendorCode = New List(Of Integer) From {Nothing}
@@ -173,6 +174,9 @@ Public Class 協力業者選択
                     ホーム.ReportName = "注文書金抜"
                 ElseIf ParentFormName = "注文書折衝" Then
                     ホーム.ReportName = "注文書折衝"
+                ElseIf ParentFormName = "注文書Excel" Then
+                    ホーム.ReportName = "注文書Excel"
+                    SaveFileDialog1.ShowDialog()
                 End If
                 'レポートのデザインが格納されているファイルのパスを変数に代入する
                 'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
@@ -187,5 +191,14 @@ Public Class 協力業者選択
             Exit Sub
         End Try
 
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
+        Dim SavePath As String = SaveFileDialog1.FileName
+        Dim ReportLoad As String = ""
+        Dim ExportXLoadRead As New Export注文書内訳(SavePath, SelectVendorCode(0))
+        ReportLoad = ExportXLoadRead.ExportLoad
+        'メッセージを表示する
+        MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
     End Sub
 End Class

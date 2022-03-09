@@ -10,8 +10,8 @@ Public Class レポート
                 ReportLoad = ReportLoadRead.ReportLoad
             ElseIf ホーム.ReportName = "出来高査定書(完成)" Then
                 Dim ReportLoadRead As New 出来高査定書(出来高査定チェックフォーム.VendorNo.Text)
-                    ReportLoad = ReportLoadRead.ReportLoad
-                ElseIf ホーム.ReportName = "出来形数量査定書(完成)" Then
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "出来形数量査定書(完成)" Then
                 Dim ReportLoadRead As New 出来形数量査定書(出来高査定チェックフォーム.VendorNo.Text)
                 ReportLoad = ReportLoadRead.ReportLoad
             ElseIf ホーム.ReportName = "出来形数量査定書(中間)" Then
