@@ -1,4 +1,5 @@
 ﻿Imports C1.Win.C1FlexGrid
+Imports System.ComponentModel
 Imports System.Data.SqlClient
 Public Class 出来高査定チェックフォーム
     Public VN As Integer
@@ -96,7 +97,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来高査定書"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -134,7 +135,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来形数量査定書(中間)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.ReportPath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -162,5 +163,30 @@ Public Class 出来高査定チェックフォーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub QAssesEx_Click(sender As Object, e As EventArgs) Handles QAssesEx.Click
+        Try
+            If VendorNo.Text = Nothing Then
+                MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
+            VN = VendorNo.Text
+            SaveFileDialog1.ShowDialog()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+        End Try
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
+        '保存するファイル名を変数に代入する
+        Dim SavePath As String = SaveFileDialog1.FileName
+        Dim ReportLoad As String = ""
+        Dim ExportXLoadRead As New Export出来高(SavePath, VN)
+        ReportLoad = ExportXLoadRead.ExportLoad
+        'メッセージを表示する
+        MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
     End Sub
 End Class
