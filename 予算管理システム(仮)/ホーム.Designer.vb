@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -219,6 +219,10 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.C1CommandLink1 = New C1.Win.C1Command.C1CommandLink()
+        Me.入力表_工務課用 = New C1.Win.C1Command.C1Command()
+        Me.C1CommandLink5 = New C1.Win.C1Command.C1CommandLink()
+        Me.入力表 = New C1.Win.C1Command.C1Command()
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -337,10 +341,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = Nothing
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = Nothing
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -484,6 +488,8 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.注文書_金抜)
         Me.MenuComｍand.Commands.Add(Me.注文内訳書_Excel)
         Me.MenuComｍand.Commands.Add(Me.注文書明細_CSV)
+        Me.MenuComｍand.Commands.Add(Me.入力表_工務課用)
+        Me.MenuComｍand.Commands.Add(Me.入力表)
         Me.MenuComｍand.Owner = Me
         '
         'ファイル
@@ -740,7 +746,7 @@ Partial Class ホーム
         '
         '出力_予算
         '
-        Me.出力_予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink32, Me.C1CommandLink36, Me.C1CommandLink38, Me.C1CommandLink39, Me.C1CommandLink40, Me.C1CommandLink41, Me.C1CommandLink42, Me.C1CommandLink43, Me.C1CommandLink44, Me.C1CommandLink45, Me.C1CommandLink46})
+        Me.出力_予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink32, Me.C1CommandLink36, Me.C1CommandLink5, Me.C1CommandLink1, Me.C1CommandLink38, Me.C1CommandLink39, Me.C1CommandLink40, Me.C1CommandLink41, Me.C1CommandLink42, Me.C1CommandLink43, Me.C1CommandLink44, Me.C1CommandLink45, Me.C1CommandLink46})
         Me.出力_予算.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_予算.HideNonRecentLinks = False
         Me.出力_予算.Name = "出力_予算"
@@ -1020,7 +1026,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink38.Command = Me.明細書一覧_Excel
         Me.C1CommandLink38.Delimiter = True
-        Me.C1CommandLink38.SortOrder = 2
+        Me.C1CommandLink38.SortOrder = 4
         '
         '明細書一覧_Excel
         '
@@ -1031,7 +1037,7 @@ Partial Class ホーム
         'C1CommandLink39
         '
         Me.C1CommandLink39.Command = Me.実行予算_csv_cap21
-        Me.C1CommandLink39.SortOrder = 3
+        Me.C1CommandLink39.SortOrder = 5
         '
         '実行予算_csv_cap21
         '
@@ -1043,7 +1049,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink40.Command = Me.労働者集計
         Me.C1CommandLink40.Delimiter = True
-        Me.C1CommandLink40.SortOrder = 4
+        Me.C1CommandLink40.SortOrder = 6
         '
         '労働者集計
         '
@@ -1054,7 +1060,7 @@ Partial Class ホーム
         'C1CommandLink41
         '
         Me.C1CommandLink41.Command = Me.使用材料集計
-        Me.C1CommandLink41.SortOrder = 5
+        Me.C1CommandLink41.SortOrder = 7
         '
         '使用材料集計
         '
@@ -1065,7 +1071,7 @@ Partial Class ホーム
         'C1CommandLink42
         '
         Me.C1CommandLink42.Command = Me.使用機械集計
-        Me.C1CommandLink42.SortOrder = 6
+        Me.C1CommandLink42.SortOrder = 8
         '
         '使用機械集計
         '
@@ -1076,7 +1082,7 @@ Partial Class ホーム
         'C1CommandLink43
         '
         Me.C1CommandLink43.Command = Me.外注項目集計
-        Me.C1CommandLink43.SortOrder = 7
+        Me.C1CommandLink43.SortOrder = 9
         '
         '外注項目集計
         '
@@ -1087,7 +1093,7 @@ Partial Class ホーム
         'C1CommandLink44
         '
         Me.C1CommandLink44.Command = Me.社内機材集計
-        Me.C1CommandLink44.SortOrder = 8
+        Me.C1CommandLink44.SortOrder = 10
         '
         '社内機材集計
         '
@@ -1098,7 +1104,7 @@ Partial Class ホーム
         'C1CommandLink45
         '
         Me.C1CommandLink45.Command = Me.社外機材集計
-        Me.C1CommandLink45.SortOrder = 9
+        Me.C1CommandLink45.SortOrder = 11
         '
         '社外機材集計
         '
@@ -1110,7 +1116,7 @@ Partial Class ホーム
         '
         Me.C1CommandLink46.Command = Me.材料集計_Excel
         Me.C1CommandLink46.Delimiter = True
-        Me.C1CommandLink46.SortOrder = 10
+        Me.C1CommandLink46.SortOrder = 12
         '
         '材料集計_Excel
         '
@@ -1602,6 +1608,28 @@ Partial Class ホーム
         '
         Me.ImportFileDialog.Filter = "XLSXファイル|*.xlsx|XLSファイル|*.xls|すべて|*.*"
         '
+        'C1CommandLink1
+        '
+        Me.C1CommandLink1.Command = Me.入力表_工務課用
+        Me.C1CommandLink1.SortOrder = 3
+        '
+        '入力表_工務課用
+        '
+        Me.入力表_工務課用.Name = "入力表_工務課用"
+        Me.入力表_工務課用.ShortcutText = ""
+        Me.入力表_工務課用.Text = "入力表(工務課用)"
+        '
+        'C1CommandLink5
+        '
+        Me.C1CommandLink5.Command = Me.入力表
+        Me.C1CommandLink5.SortOrder = 2
+        '
+        '入力表
+        '
+        Me.入力表.Name = "入力表"
+        Me.入力表.ShortcutText = ""
+        Me.入力表.Text = "入力表"
+        '
         'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1822,4 +1850,8 @@ Partial Class ホーム
     Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents 出来高査定 As C1.Win.C1Command.C1Command
     Friend WithEvents ImportFileDialog As OpenFileDialog
+    Friend WithEvents C1CommandLink5 As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents 入力表 As C1.Win.C1Command.C1Command
+    Friend WithEvents C1CommandLink1 As C1.Win.C1Command.C1CommandLink
+    Friend WithEvents 入力表_工務課用 As C1.Win.C1Command.C1Command
 End Class

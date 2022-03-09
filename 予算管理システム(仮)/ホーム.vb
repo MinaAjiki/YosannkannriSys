@@ -781,4 +781,10 @@ Public Class ホーム
         ReportName = "外注計画"
         レポート.Show()
     End Sub
+                                  
+    Private Sub 入力表_工務課用_Click(sender As Object, e As ClickEventArgs) Handles 入力表_工務課用.Click
+        ReportName = "入力表_工務課用"
+
+        レポート.Show()
+    End Sub
 End Class
