@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -225,6 +225,7 @@ Partial Class ホーム
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.C1XLBook1 = New C1.C1Excel.C1XLBook()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -343,10 +344,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn2.DisplayFieldName = Nothing
-        C1TreeColumn2.HeaderText = Nothing
-        C1TreeColumn2.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
+        C1TreeColumn1.DisplayFieldName = Nothing
+        C1TreeColumn1.HeaderText = Nothing
+        C1TreeColumn1.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -1637,6 +1638,7 @@ Partial Class ホーム
         Me.SaveFileDialog1.Filter = "EXCELファイル|*.xlsx|すべて|*.*"
         Me.SaveFileDialog1.InitialDirectory = "D:\"
         '
+
         'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None

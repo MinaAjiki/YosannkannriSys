@@ -713,6 +713,7 @@ Public Class ホーム
             Exit Sub
         End Try
     End Sub
+
     Private Sub 基礎代価一覧表_簡易_Click(sender As Object, e As ClickEventArgs) Handles 基礎代価一覧表_簡易.Click
         ReportName = "基礎代価一覧表"
         レポート.Show()
@@ -788,6 +789,7 @@ Public Class ホーム
         レポート.Show()
     End Sub
 
+
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
         Dim SavePath As String = SaveFileDialog1.FileName
         Dim ReportLoad As String = ""
@@ -825,5 +827,11 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+                                    
+    Private Sub 入力表_Click(sender As Object, e As ClickEventArgs) Handles 入力表.Click
+        ReportName = "入力表"
+        レポート.Show()
+
     End Sub
 End Class
