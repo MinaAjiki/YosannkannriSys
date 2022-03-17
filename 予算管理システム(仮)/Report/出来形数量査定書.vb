@@ -6,7 +6,8 @@ Public Class 出来形数量査定書
         出来高査定チェックフォーム.VN = VendorN '
     End Sub
     Public Function ReportLoad() As String
-
+        進行状況.Show()
+        進行状況.Refresh()
         ReportLoad = ""
 
         'レポートを読み込む
@@ -105,6 +106,8 @@ Public Class 出来形数量査定書
         Dim field3 As TextField
         field3 = CType(レポート.C1FlexReport1.Fields("工事名"), TextField)
         field3.Text = Pname
+
+        進行状況.Close()
 
         'レポート.C1FlexReport1.DataSources.Add(ds)
         'レポート.C1FlexReport1.DataSourceName = ds.Name
