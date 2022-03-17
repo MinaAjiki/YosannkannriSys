@@ -13,6 +13,8 @@ Public Class Export注文書内訳
     Public Function ExportLoad() As String
         'カーソル変更
         Cursor.Current = Cursors.WaitCursor
+        進行状況.Show()
+        進行状況.Refresh()
 
         ExportLoad = ""
         ホーム.Sql.Parameters.Clear()
@@ -60,6 +62,8 @@ Public Class Export注文書内訳
             RowCount += 1
         End While
         ProductionReader.Close()
+
+        進行状況.Close()
 
         'Excel保存
         xlbook.Save(Path)

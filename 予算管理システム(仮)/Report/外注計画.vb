@@ -6,6 +6,9 @@ Public Class 外注計画
     End Sub
 
     Public Function ReportLoad() As String
+        進行状況.Show()
+        進行状況.Refresh()
+
         Dim ds As New C1.Win.FlexReport.DataSource()
         ds.Name = "MyDataName"
         ReportLoad = ""
@@ -225,6 +228,9 @@ WHERE ((outsourcing_plans.outsrc_no) =(SELECT MAX(outsrc_no) FROM OutsrcrPlan_Vi
             End While
             DtlReader.Close()
         Next
+
+        進行状況.Close()
+
 
         ds.Recordset = DT
         レポート.C1FlexReport1.DataSources.Add(ds)

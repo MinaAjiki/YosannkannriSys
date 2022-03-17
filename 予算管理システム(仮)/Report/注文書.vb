@@ -7,6 +7,9 @@ Public Class 注文書
     End Sub
     Public Function ReportLoad() As String
 
+        進行状況.Show()
+        進行状況.Refresh()
+
         ReportLoad = ""
 
         'レポートを読み込む
@@ -77,6 +80,8 @@ Public Class 注文書
         Dim field3 As TextField
         field3 = CType(レポート.C1FlexReport1.Fields("工事名"), TextField)
         field3.Text = Pname
+
+        進行状況.Close()
 
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
         Return ReportLoad
