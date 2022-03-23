@@ -35,10 +35,25 @@ FROM  subject_details
 WHERE ((subject_details.budget_no) =" & ホーム.BudgetNo & ") 
 ORDER BY subject_details.s_wrktyp_code;"
 		レポート.C1FlexReport1.DataSources.Add(ReportData)
-        レポート.C1FlexReport1.DataSourceName = ReportData.Name
+		レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
 
-        レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
+		ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
+		Dim ProjectCode As String = ホーム.Sql.ExecuteScalar
+
+		ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=21"
+		Dim ProjectName As String = ホーム.Sql.ExecuteScalar
+
+		Dim ProjectCodeField As C1.Win.FlexReport.Field
+		ProjectCodeField = CType(レポート.C1FlexReport1.Fields("ProjectCode"), C1.Win.FlexReport.Field)
+		ProjectCodeField.Text = ProjectCode
+
+		Dim ProjectNameField As C1.Win.FlexReport.Field
+		ProjectNameField = CType(レポート.C1FlexReport1.Fields("ProjectName"), C1.Win.FlexReport.Field)
+		ProjectNameField.Text = ProjectName
+
+
+		レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
 
         Return ReportLoad
     End Function

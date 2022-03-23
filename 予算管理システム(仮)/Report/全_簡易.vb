@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports C1.Win.FlexReport
 
-Public Class 全_詳細
+Public Class 全_簡易
     Public Function ReportLoad() As String
 
         ReportLoad = ""
@@ -243,7 +243,7 @@ Public Class 全_詳細
 
             '予算内訳
             Dim report5 As New C1.Win.FlexReport.C1FlexReport
-            report5.Load(ホーム.Reportpath, "実行予算内訳書")
+            report5.Load(ホーム.Reportpath, "実行予算内訳書(簡易)")
 
             Dim ReportData4 As DataSource = New DataSource
             ReportData4.Name = "ReportDataSource"
@@ -253,22 +253,12 @@ Public Class 全_詳細
 	                                                S_worktype_total_alt.l_wrktyp_name,
 	                                                S_worktype_total_alt.s_wrktyp_code,
 	                                                S_worktype_total_alt.s_wrktyp_name,
-	                                                SUM(S_worktype_total_alt.amout_total1) AS amout_total,
-	                                                SUM(S_worktype_total_alt.labor1) AS labor,
-	                                                SUM(S_worktype_total_alt.material1) AS material,
-	                                                SUM(S_worktype_total_alt.machine1) AS machine,
-	                                                SUM(S_worktype_total_alt.subcntrct1) AS subcntrct,
-	                                                SUM(S_worktype_total_alt.expens1) AS expens
+	                                                SUM(S_worktype_total_alt.amout_total1) AS amout_total
                                  FROM  (SELECT  S_worktype_total.budget_no,
 	                                                S_worktype_total.l_wrktyp_code,
 	                                                S_worktype_total.l_wrktyp_name,
 	                                                S_worktype_total.s_wrktyp_code,
 	                                                S_worktype_total.s_wrktyp_name,
-	                                                S_worktype_total.labor AS labor1,
-	                                                S_worktype_total.material AS material1,
-	                                                S_worktype_total.machine AS machine1,
-	                                                S_worktype_total.subcntrct AS subcntrct1,
-	                                                S_worktype_total.expens AS expens1,
 	                             (CASE WHEN S_worktype_total.l_wrktyp_code= 840 THEN " & SiteExpense & " ELSE S_worktype_total.amout_total END) AS amout_total1 
                                  FROM S_worktype_total) AS S_worktype_total_alt 
                                  WHERE ((S_worktype_total_alt.budget_no) =" & ホーム.BudgetNo & ") OR ((S_worktype_total_alt.budget_no) IS NULL) 
@@ -285,38 +275,13 @@ Public Class 全_詳細
             GrandTotalField = CType(report5.Fields("gland_total"), C1.Win.FlexReport.Field)
             GrandTotalField.Text = "SUM(amout_total)"
 
-
-            Dim LaborTotalField As C1.Win.FlexReport.Field
-            LaborTotalField = CType(report5.Fields("labor_total"), C1.Win.FlexReport.Field)
-            LaborTotalField.Text = "SUM(labor)"
-
-
-            Dim MaterialTotalField As C1.Win.FlexReport.Field
-            MaterialTotalField = CType(report5.Fields("material_total"), C1.Win.FlexReport.Field)
-            MaterialTotalField.Text = "SUM(material)"
-
-
-            Dim MachineTotalField As C1.Win.FlexReport.Field
-            MachineTotalField = CType(report5.Fields("machine_total"), C1.Win.FlexReport.Field)
-            MachineTotalField.Text = "SUM(machine)"
-
-
-            Dim SubcntrctTotalField As C1.Win.FlexReport.Field
-            SubcntrctTotalField = CType(report5.Fields("subcntrct_total"), C1.Win.FlexReport.Field)
-            SubcntrctTotalField.Text = "SUM(subcntrct)"
-
-
-            Dim ExpensTotalField As C1.Win.FlexReport.Field
-            ExpensTotalField = CType(report5.Fields("expens_total"), C1.Win.FlexReport.Field)
-            ExpensTotalField.Text = "SUM(expens)"
-
             report5.Render()
 
 
 
             '明細内訳
             Dim report6 As New C1.Win.FlexReport.C1FlexReport
-            report6.Load(ホーム.Reportpath, "明細内訳書")
+            report6.Load(ホーム.Reportpath, "明細内訳書(簡易)")
 
             Dim ReportData5 As DataSource = New DataSource
             ReportData5.Name = "ReportDataSource"
@@ -332,12 +297,7 @@ Public Class 全_詳細
 	                                                details_bd.dtl_quanity,
                                                 	details_bd.dtl_costea,
                                                 	details_bd.dtl_remarks,
-	                                                details_bd.dtl_amount,
-                                                   	details_bd.dtl_labor,
-                                                	details_bd.dtl_material,
-                                                	details_bd.dtl_machine,
-	                                                details_bd.dtl_subcntrct,
-	                                                details_bd.dtl_expens
+	                                                details_bd.dtl_amount
                                     FROM  details_bd
                                     WHERE ((details_bd.budget_no) =" & ホーム.BudgetNo & ") 
                                     ORDER BY details_bd.dtl_no;"
@@ -347,31 +307,6 @@ Public Class 全_詳細
             Dim GrandTotalField1 As C1.Win.FlexReport.Field
             GrandTotalField1 = CType(report6.Fields("amount_total"), C1.Win.FlexReport.Field)
             GrandTotalField1.Text = "SUM(dtl_amount)"
-
-
-            Dim LaborTotalField1 As C1.Win.FlexReport.Field
-            LaborTotalField1 = CType(report6.Fields("labor_total"), C1.Win.FlexReport.Field)
-            LaborTotalField1.Text = "SUM(dtl_labor)"
-
-
-            Dim MaterialTotalField1 As C1.Win.FlexReport.Field
-            MaterialTotalField1 = CType(report6.Fields("material_total"), C1.Win.FlexReport.Field)
-            MaterialTotalField1.Text = "SUM(dtl_material)"
-
-
-            Dim MachineTotalField1 As C1.Win.FlexReport.Field
-            MachineTotalField1 = CType(report6.Fields("machine_total"), C1.Win.FlexReport.Field)
-            MachineTotalField1.Text = "SUM(dtl_machine)"
-
-
-            Dim SubcntrctTotalField1 As C1.Win.FlexReport.Field
-            SubcntrctTotalField1 = CType(report6.Fields("subcntrct_total"), C1.Win.FlexReport.Field)
-            SubcntrctTotalField1.Text = "SUM(dtl_subcntrct)"
-
-
-            Dim ExpensTotalField1 As C1.Win.FlexReport.Field
-            ExpensTotalField1 = CType(report6.Fields("expens_total"), C1.Win.FlexReport.Field)
-            ExpensTotalField1.Text = "SUM(dtl_expens)"
 
             report6.Render()
 
@@ -446,7 +381,7 @@ Public Class 全_詳細
 
                 If bdCount > 0 Then
                     prjctcst_report(ClassLoop) = New C1.Win.FlexReport.C1FlexReport
-                    prjctcst_report(ClassLoop).Load(ホーム.Reportpath, "代価内訳書")
+                    prjctcst_report(ClassLoop).Load(ホーム.Reportpath, "代価内訳書(簡易)")
 
 
                     prjctcst_reportdata(ClassLoop) = New DataSource
@@ -461,12 +396,7 @@ Public Class 全_詳細
 	                                               projectcst_bd.prjctcst_unit,
 	                                               projectcst_bd.prjctcst_quanity,
 	                                               projectcst_bd.prjctcst_costea,
-	                                               projectcst_bd.prjctcst_laborea,
-	                                               projectcst_bd.prjctcst_materialea,
-	                                               projectcst_bd.prjctcst_machineea,
-	                                               projectcst_bd.prjctcst_subcntrctea,
-	                                               projectcst_bd.prjctcst_expenseea,
-	                                               projectcst_bd.prjctcst_amount,
+	                                         	   projectcst_bd.prjctcst_amount,
 	                                               projectcst_bd.prjctcst_bd_no,
 	                                               projectcst_bd.prjctcst_bd_name,
 	                                               projectcst_bd.prjctcst_bd_spec,
@@ -474,13 +404,8 @@ Public Class 全_詳細
 	                                               projectcst_bd.prjctcst_bd_remarks,
 	                                               projectcst_bd.prjctcst_bd_costea,
 	                                               projectcst_bd.prjctcst_bd_quanity,
-	                                               projectcst_bd.prjctcst_bd_amount,
-	                                               projectcst_bd.prjctcst_bd_labor,
-	                                               projectcst_bd.prjctcst_bd_material,
-	                                               projectcst_bd.prjctcst_bd_machine,
-	                                               projectcst_bd.prjctcst_bd_subcntrct,
-	                                               projectcst_bd.prjctcst_bd_expense
-                                    FROM  projectcst_bd
+	                                               projectcst_bd.prjctcst_bd_amount
+	                                FROM  projectcst_bd
                                     WHERE ((projectcst_bd.budget_no) =" & ホーム.BudgetNo & ") AND ((projectcst_bd.cstclss_code) =" & ClassCode.Item(ClassLoop) & ") 
                                     ORDER BY projectcst_bd.prjctcst_no,projectcst_bd.prjctcst_bd_no;"
                     prjctcst_report(ClassLoop).DataSources.Add(prjctcst_reportdata(ClassLoop))
@@ -494,35 +419,6 @@ Public Class 全_詳細
                     Dim CostNoField1 As C1.Win.FlexReport.TextField
                     CostNoField1 = CType(prjctcst_report(ClassLoop).Fields("cstclssname"), C1.Win.FlexReport.TextField)
                     CostNoField1.Text = ClassName.Item(ClassLoop).Last
-
-                    Dim GrandTotalField2 As C1.Win.FlexReport.Field
-                    GrandTotalField2 = CType(prjctcst_report(ClassLoop).Fields("amount_total"), C1.Win.FlexReport.Field)
-                    GrandTotalField2.Text = "SUM(prjctcst_bd_amount)"
-
-
-                    Dim LaborTotalField2 As C1.Win.FlexReport.Field
-                    LaborTotalField2 = CType(prjctcst_report(ClassLoop).Fields("labor_total"), C1.Win.FlexReport.Field)
-                    LaborTotalField2.Text = "SUM(prjctcst_bd_labor)"
-
-
-                    Dim MaterialTotalField2 As C1.Win.FlexReport.Field
-                    MaterialTotalField2 = CType(prjctcst_report(ClassLoop).Fields("material_total"), C1.Win.FlexReport.Field)
-                    MaterialTotalField2.Text = "SUM(prjctcst_bd_material)"
-
-
-                    Dim MachineTotalField2 As C1.Win.FlexReport.Field
-                    MachineTotalField2 = CType(prjctcst_report(ClassLoop).Fields("machine_total"), C1.Win.FlexReport.Field)
-                    MachineTotalField2.Text = "SUM(prjctcst_bd_machine)"
-
-
-                    Dim SubcntrctTotalField2 As C1.Win.FlexReport.Field
-                    SubcntrctTotalField2 = CType(prjctcst_report(ClassLoop).Fields("subcntrct_total"), C1.Win.FlexReport.Field)
-                    SubcntrctTotalField2.Text = "SUM(prjctcst_bd_subcntrct)"
-
-
-                    Dim ExpensTotalField2 As C1.Win.FlexReport.Field
-                    ExpensTotalField2 = CType(prjctcst_report(ClassLoop).Fields("expens_total"), C1.Win.FlexReport.Field)
-                    ExpensTotalField2.Text = "SUM(prjctcst_bd_expense)"
 
                     prjctcst_report(ClassLoop).Render()
 
@@ -547,7 +443,7 @@ Public Class 全_詳細
             Next
 
             進行状況.Close()
-            MsgBox("印刷が完了しました。", MsgBoxStyle.OkOnly, "予算　全印刷")
+            MsgBox("印刷が完了しました。", MsgBoxStyle.OkOnly, "予算(簡易)　全印刷")
 
         End If
 

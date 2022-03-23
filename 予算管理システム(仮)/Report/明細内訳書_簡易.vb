@@ -5,7 +5,7 @@ Public Class 明細内訳書_簡易
 
         ReportLoad = ""
 
-        レポート.C1FlexReport1.Load(ホーム.Reportpath, "明細内訳(簡易)")
+        レポート.C1FlexReport1.Load(ホーム.Reportpath, "明細内訳書(簡易)")
 
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"

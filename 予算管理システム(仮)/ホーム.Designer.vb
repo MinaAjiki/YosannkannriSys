@@ -223,6 +223,10 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
+
+        Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.DataBook = New C1.C1Excel.C1XLBook()
+
         Me.C1XLBook1 = New C1.C1Excel.C1XLBook()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
 
@@ -1632,12 +1636,21 @@ Partial Class ホーム
         'ImportFileDialog
         '
         Me.ImportFileDialog.Filter = "XLSXファイル|*.xlsx|XLSファイル|*.xls|すべて|*.*"
+        ' 
+        'SaveFileDialog
         '
+        '
+        'DataBook
+        '
+        Me.DataBook.CompatibilityMode = C1.C1Excel.CompatibilityMode.NoLimits
+        '
+
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.Filter = "EXCELファイル|*.xlsx|すべて|*.*"
         Me.SaveFileDialog1.InitialDirectory = "D:\"
         '
+
 
         'ホーム
         '
@@ -1863,6 +1876,11 @@ Partial Class ホーム
     Friend WithEvents 入力表 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink1 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 入力表_工務課用 As C1.Win.C1Command.C1Command
+
+    Friend WithEvents SaveFileDialog As SaveFileDialog
+    Friend WithEvents DataBook As C1.C1Excel.C1XLBook
+
     Friend WithEvents C1XLBook1 As C1.C1Excel.C1XLBook
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+
 End Class

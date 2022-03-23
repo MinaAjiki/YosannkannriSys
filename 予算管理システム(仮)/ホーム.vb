@@ -834,4 +834,102 @@ Public Class ホーム
         レポート.Show()
 
     End Sub
+
+    Private Sub SaveFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog.FileOk
+        Try
+            Dim ReportLoad As String = ""
+
+            If ReportName = "実行予算CSV" Then
+                Dim ReportLoadRead As New Export実行予算(SaveFileDialog.FileName)
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ReportName = "明細書" Then
+                Dim ReportLoadRead As New Export明細書(SaveFileDialog.FileName)
+                ReportLoad = ReportLoadRead.ReportLoad
+            End If
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 実行予算_csv_cap21_Click(sender As Object, e As ClickEventArgs) Handles 実行予算_csv_cap21.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            ReportName = "実行予算CSV"
+            SaveFileDialog.Filter = "CSVファイル|*.csv"
+            SaveFileDialog.FileName = "実行予算CSV(cap21).csv"
+            SaveFileDialog.ShowDialog()
+
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 明細書一覧_Excel_Click(sender As Object, e As ClickEventArgs) Handles 明細書一覧_Excel.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            ReportName = "明細書"
+            SaveFileDialog.Filter = "XLSXファイル|*.xlsx"
+            SaveFileDialog.FileName = "明細書.xlsx"
+            SaveFileDialog.ShowDialog()
+
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub 全て印刷_簡易_Click(sender As Object, e As ClickEventArgs) Handles 全て印刷_簡易.Click
+        Cursor.Current = Cursors.WaitCursor
+
+        Dim ReportLoad As String = ""
+        Dim ReportLoadRead As New 全_簡易
+        ReportLoad = ReportLoadRead.ReportLoad
+
+        Cursor.Current = Cursors.Default
+    End Sub
+
+    Private Sub 見積書作成_Click(sender As Object, e As ClickEventArgs) Handles 見積書作成.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            見積書表紙.TopLevel = False
+            FormPanel.Controls.Add(見積書表紙)
+            見積書表紙.Show()
+
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class
