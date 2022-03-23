@@ -166,10 +166,13 @@
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Reference.vb" />
+    <Compile Include="Report\Export明細書.vb" />
+    <Compile Include="Report\Export実行予算.vb" />
     <Compile Include="Report\入力表.vb" />
     <Compile Include="Report\Export外注計画.vb" />
     <Compile Include="Report\Export注文書内訳.vb" />
     <Compile Include="Report\Export出来高.vb" />
+    <Compile Include="Report\全_簡易.vb" />
     <Compile Include="Report\全_詳細.vb" />
     <Compile Include="Report\基礎代価内訳書.vb" />
     <Compile Include="Report\基礎代価内訳書_簡易.vb" />
@@ -244,6 +247,12 @@
       <DependentUpon>協力業者選択.vb</DependentUpon>
     </Compile>
     <Compile Include="協力業者選択.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="見積書表紙.Designer.vb">
+      <DependentUpon>見積書表紙.vb</DependentUpon>
+    </Compile>
+    <Compile Include="見積書表紙.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="詳細入力表.Designer.vb">
@@ -446,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="協力業者選択.resx">
       <DependentUpon>協力業者選択.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="見積書表紙.resx">
+      <DependentUpon>見積書表紙.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="詳細入力表.resx">
       <DependentUpon>詳細入力表.vb</DependentUpon>

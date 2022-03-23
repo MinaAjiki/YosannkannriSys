@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports C1.C1Excel
 
-Public Class Export出来高
+Public Class Export外注計画
     Private Path As String
     Private VendorCode As String
 
