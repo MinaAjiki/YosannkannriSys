@@ -7,6 +7,9 @@ Public Class 出来高査定書
     End Sub
     Public Function ReportLoad() As String
 
+        進行状況.Show()
+        進行状況.Refresh()
+
         ReportLoad = ""
 
         'レポートを読み込む
@@ -109,6 +112,8 @@ Public Class 出来高査定書
         Dim field4 As TextField
         field4 = CType(レポート.C1FlexReport1.Fields("締切日"), TextField)
         field4.Text = Dline.Replace("-", "/")
+
+        進行状況.Close()
 
         'レポート.C1FlexReport1.DataSources.Add(ds)
         'レポート.C1FlexReport1.DataSourceName = ds.Name

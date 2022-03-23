@@ -170,6 +170,7 @@
     <Compile Include="Report\Export実行予算.vb" />
     <Compile Include="Report\入力表.vb" />
     <Compile Include="Report\Export外注計画.vb" />
+    <Compile Include="Report\Export注文書CSV.vb" />
     <Compile Include="Report\Export注文書内訳.vb" />
     <Compile Include="Report\Export出来高.vb" />
     <Compile Include="Report\全_簡易.vb" />

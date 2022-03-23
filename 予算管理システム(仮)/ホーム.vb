@@ -780,7 +780,7 @@ Public Class ホーム
 
     Private Sub 外注計画_Excel_Click(sender As Object, e As ClickEventArgs) Handles 外注計画_Excel.Click
         ReportName = "外注計画"
-        レポート.Show()
+        SaveFileDialog1.ShowDialog()
     End Sub
                                   
     Private Sub 入力表_工務課用_Click(sender As Object, e As ClickEventArgs) Handles 入力表_工務課用.Click
@@ -789,9 +789,50 @@ Public Class ホーム
         レポート.Show()
     End Sub
 
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
+        Dim SavePath As String = SaveFileDialog1.FileName
+        Dim ReportLoad As String = ""
+        SaveFileDialog1.FileName = "外注計画"
+        Dim ExportXLoadRead As New Export外注計画(SavePath)
+            ReportLoad = ExportXLoadRead.ExportLoad
+
+            'メッセージを表示する
+            MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
+    End Sub
+
+    Private Sub 注文書明細_CSV_Click(sender As Object, e As ClickEventArgs) Handles 注文書明細_CSV.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            協力業者選択.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            協力業者選択.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            協力業者選択.TopLevel = False
+            FormPanel.Controls.Add(協力業者選択)
+            協力業者選択.ParentFormName = "注文書CSV"
+            協力業者選択.HeadLine.Text = "<< 協力業者選択(注文内訳書CSV出力)"
+            協力業者選択.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+                                    
     Private Sub 入力表_Click(sender As Object, e As ClickEventArgs) Handles 入力表.Click
         ReportName = "入力表"
         レポート.Show()
+
     End Sub
 
     Private Sub SaveFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog.FileOk

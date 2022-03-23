@@ -47,7 +47,7 @@ Public Class 協力業者選択
             End While
             Coopreader.Close()
 
-            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" Then
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" OrElse ParentFormName = "注文書CSV" Then
                 CoopVendorList.Cols(1).Width = 0
                 CoopVendorList.Cols(3).Width = 390
                 VendorSelect.Visible = False
@@ -160,7 +160,7 @@ Public Class 協力業者選択
 
     Private Sub CoopVendorList_DoubleClick(sender As Object, e As EventArgs) Handles CoopVendorList.DoubleClick
         Try
-            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" Then
+            If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" OrElse ParentFormName = "注文書Excel" OrElse ParentFormName = "注文書CSV" Then
                 Dim RowIndex As Integer = CoopVendorList.Selection.TopRow
                 SelectVendorName = New List(Of String) From {Nothing}
                 SelectVendorCode = New List(Of Integer) From {Nothing}
@@ -168,6 +168,8 @@ Public Class 協力業者選択
                 Dim c As CellRange = CoopVendorList.GetCellRange(RowIndex, 2)
                 SelectVendorName(0) = n.Data
                 SelectVendorCode(0) = c.Data
+                ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & SelectVendorCode(0)
+                Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
                 If ParentFormName = "注文書" Then
                     ホーム.ReportName = "注文書"
                 ElseIf ParentFormName = "注文書金抜" Then
@@ -176,6 +178,13 @@ Public Class 協力業者選択
                     ホーム.ReportName = "注文書折衝"
                 ElseIf ParentFormName = "注文書Excel" Then
                     ホーム.ReportName = "注文書Excel"
+                    SaveFileDialog1.ShowDialog()
+                ElseIf ParentFormName = "注文書CSV" Then
+                    ホーム.ReportName = "注文書CSV"
+                    ホーム.Sql.CommandText = "SELECT DISTINCT ISNULL(no,'000000') FROM Production_View WHERE outsrcr_id = " & outsrcrid
+                    Dim no As String = ホーム.Sql.ExecuteScalar
+                    SaveFileDialog1.FileName = "注文書内訳" & no
+                    SaveFileDialog1.Filter = "EXCELファイル|*.csv|すべて|*.*"
                     SaveFileDialog1.ShowDialog()
                 End If
                 'レポートのデザインが格納されているファイルのパスを変数に代入する
@@ -194,11 +203,18 @@ Public Class 協力業者選択
     End Sub
 
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
+
         Dim SavePath As String = SaveFileDialog1.FileName
         Dim ReportLoad As String = ""
-        Dim ExportXLoadRead As New Export注文書内訳(SavePath, SelectVendorCode(0))
-        ReportLoad = ExportXLoadRead.ExportLoad
+        If ホーム.ReportName = "注文書Excel" Then
+            Dim ExportXLoadRead As New Export注文書内訳(SavePath, SelectVendorCode(0))
+            ReportLoad = ExportXLoadRead.ExportLoad
+        ElseIf ホーム.ReportName = "注文書CSV" Then
+            Dim ExportXLoadRead As New Export注文書CSV(SavePath, SelectVendorCode(0))
+            ReportLoad = ExportXLoadRead.ExportLoad
+        End If
         'メッセージを表示する
         MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
+
     End Sub
 End Class
