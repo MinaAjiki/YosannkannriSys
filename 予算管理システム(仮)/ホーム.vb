@@ -576,8 +576,8 @@ Public Class ホーム
         '値がTrueの場合、変数に帳票名を代入する
         ReportName = "外注計画報告書"
         'レポートのデザインが格納されているファイルのパスを変数に代入する
-        'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-        Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+
+        'Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
         レポート.Show()
     End Sub
     Private Sub 予算大内訳_Click(sender As Object, e As ClickEventArgs) Handles 予算大内訳.Click

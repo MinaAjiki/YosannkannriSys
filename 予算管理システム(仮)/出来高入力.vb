@@ -19,7 +19,7 @@ Public Class 出来高入力
 
     Private Sub 出来高入力_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
-            VendorList.Focus()
+
             DetailsList.Visible = False
             Unit1.Visible = False
             Unit2.Visible = False
@@ -46,6 +46,7 @@ Public Class 出来高入力
             Dim deadlineDate As String = ホーム.Sql.ExecuteScalar
             If deadlineDate = "" Then
                 MsgBox("先に締切日を登録してください。", MsgBoxStyle.OkOnly, "エラー")
+                Me.Close()
                 Exit Sub
             End If
             Deadline.Text = deadlineDate.Replace("-", "/")
@@ -235,7 +236,7 @@ Public Class 出来高入力
 
                     quanity = DetailsList(Conrow2, 5)
                     costea = DetailsList(Conrow1, 5)
-                    total = quanity * costea
+                    total = Math.Floor(quanity * costea)
                     DetailsList(Conrow3, 5) = total
                     DetailsList.Rows(Conrow3).StyleNew.Format = "N0"
                     Dim Outtotal As CellRange = DetailsList.GetCellRange(Conrow3, 5)
@@ -395,7 +396,7 @@ Public Class 出来高入力
                     Cuquanity = quanity - Lquanity
                     DetailsList(e.Row, 8) = Cuquanity
 
-                    amount = quanity * Concostea
+                    amount = Math.Floor(quanity * Concostea)
                     DetailsList(e.Row + 1, e.Col) = amount
 
                     Cuamount = amount - Lamount
