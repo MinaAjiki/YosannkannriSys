@@ -63,24 +63,24 @@ Public Class 見積書表紙
         End Try
     End Sub
 
-    Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown
+    Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs)
         Cancel.ImageIndex = 8
     End Sub
 
-    Private Sub Cancel_MouseEnter(sender As Object, e As EventArgs) Handles Cancel.MouseEnter
+    Private Sub Cancel_MouseEnter(sender As Object, e As EventArgs)
         Cancel.Cursor = Cursors.Hand
         Cancel.ImageIndex = 7
     End Sub
 
-    Private Sub Cancel_MouseLeave(sender As Object, e As EventArgs) Handles Cancel.MouseLeave
+    Private Sub Cancel_MouseLeave(sender As Object, e As EventArgs)
         Cancel.ImageIndex = 6
     End Sub
 
-    Private Sub Cancel_MouseUp(sender As Object, e As MouseEventArgs) Handles Cancel.MouseUp
+    Private Sub Cancel_MouseUp(sender As Object, e As MouseEventArgs)
         Cancel.ImageIndex = 6
     End Sub
 
-    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+    Private Sub Cancel_Click(sender As Object, e As EventArgs)
         Try
             Dim CancelClick As String = ""
 
@@ -94,4 +94,11 @@ Public Class 見積書表紙
         End Try
     End Sub
 
+    Private Sub C1SplitterPanel1_Click(sender As Object, e As EventArgs) Handles C1SplitterPanel1.Click
+
+    End Sub
+
+    Private Sub C1DockingTabPage2_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

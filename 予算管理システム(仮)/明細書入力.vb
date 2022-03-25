@@ -1957,12 +1957,12 @@ Public Class 明細書入力
                     Dim Quanity As Decimal = 0
                     If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
                         Quanity = DetailsList(RowCount * 3, 6)
-                        DetailsList((RowCount * 3) + 2, 6) = Math.Ceiling(DetailsList((RowCount * 3) + 1, 6) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 2) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 2) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 3) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 3) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 4) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 4) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 5) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 5) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 6) = Math.Ceiling(CategoryList((RowCount * 3) + 1, 6) * Quanity)
+                        DetailsList((RowCount * 3) + 2, 6) = Math.Floor(DetailsList((RowCount * 3) + 1, 6) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 2) = Math.Floor(CategoryList((RowCount * 3) + 1, 2) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 3) = Math.Floor(CategoryList((RowCount * 3) + 1, 3) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 4) = Math.Floor(CategoryList((RowCount * 3) + 1, 4) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 5) = Math.Floor(CategoryList((RowCount * 3) + 1, 5) * Quanity)
+                        CategoryList((RowCount * 3) + 2, 6) = Math.Floor(CategoryList((RowCount * 3) + 1, 6) * Quanity)
                     End If
 
                     ColTotal += DetailsList((RowCount * 3) + 2, 6)

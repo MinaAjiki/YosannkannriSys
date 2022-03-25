@@ -932,4 +932,23 @@ Public Class ホーム
             Exit Sub
         End Try
     End Sub
+
+    Private Sub 見積内訳登録_Click(sender As Object, e As ClickEventArgs) Handles 見積内訳登録.Click
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
+
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            見積掛率入力.ShowDialog()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class
