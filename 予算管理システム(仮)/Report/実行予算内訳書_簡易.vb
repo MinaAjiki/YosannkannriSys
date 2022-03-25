@@ -8,7 +8,7 @@ Public Class 実行予算内訳書_簡易
         レポート.C1FlexReport1.Load(ホーム.Reportpath, "実行予算内訳書(簡易)")
 
         ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE Budget_no=" & ホーム.BudgetNo
-        Dim SiteExpense As Int64 = Math.Ceiling(ホーム.Sql.ExecuteScalar)
+        Dim SiteExpense As Int64 = Math.Floor(ホーム.Sql.ExecuteScalar)
 
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"

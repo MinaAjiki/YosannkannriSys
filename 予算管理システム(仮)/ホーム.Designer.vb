@@ -223,13 +223,10 @@ Partial Class ホーム
         Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
         Me.CreateFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ImportFileDialog = New System.Windows.Forms.OpenFileDialog()
-
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.DataBook = New C1.C1Excel.C1XLBook()
-
         Me.C1XLBook1 = New C1.C1Excel.C1XLBook()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
@@ -1636,7 +1633,7 @@ Partial Class ホーム
         'ImportFileDialog
         '
         Me.ImportFileDialog.Filter = "XLSXファイル|*.xlsx|XLSファイル|*.xls|すべて|*.*"
-        ' 
+        '
         'SaveFileDialog
         '
         '
@@ -1644,14 +1641,11 @@ Partial Class ホーム
         '
         Me.DataBook.CompatibilityMode = C1.C1Excel.CompatibilityMode.NoLimits
         '
-
         'SaveFileDialog1
         '
         Me.SaveFileDialog1.Filter = "EXCELファイル|*.xlsx|すべて|*.*"
         Me.SaveFileDialog1.InitialDirectory = "D:\"
         '
-
-
         'ホーム
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None

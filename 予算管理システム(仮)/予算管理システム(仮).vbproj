@@ -226,6 +226,12 @@
     <Compile Include="レポート.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="見積掛率入力.Designer.vb">
+      <DependentUpon>見積掛率入力.vb</DependentUpon>
+    </Compile>
+    <Compile Include="見積掛率入力.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="代価内訳.Designer.vb">
       <DependentUpon>代価内訳.vb</DependentUpon>
     </Compile>
@@ -450,6 +456,9 @@
   <ItemGroup>
     <EmbeddedResource Include="レポート.resx">
       <DependentUpon>レポート.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="見積掛率入力.resx">
+      <DependentUpon>見積掛率入力.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="代価内訳.resx">
       <DependentUpon>代価内訳.vb</DependentUpon>

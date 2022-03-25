@@ -211,7 +211,7 @@ Public Class 全_詳細
             report4.Load(ホーム.Reportpath, "実行予算大内訳書")
 
             ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE Budget_no=" & ホーム.BudgetNo
-            Dim SiteExpense As Int64 = Math.Ceiling(ホーム.Sql.ExecuteScalar)
+            Dim SiteExpense As Int64 = Math.Floor(ホーム.Sql.ExecuteScalar)
 
             Dim ReportData3 As DataSource = New DataSource
             ReportData3.Name = "ReportDataSource"
