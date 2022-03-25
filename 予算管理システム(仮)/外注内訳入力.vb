@@ -338,12 +338,12 @@ Public Class 外注内訳入力
             If e.Row Mod 3 = 0 Then
                 quanity = Breakdown(e.Row, e.Col)
                 costea = Breakdown(e.Row + 1, e.Col)
-                amount = quanity * costea
+                amount = Math.Floor(quanity * costea)
                 Breakdown(e.Row + 2, e.Col) = amount
             Else
                 quanity = Breakdown(e.Row - 1, e.Col)
                 costea = Breakdown(e.Row, e.Col)
-                amount = quanity * costea
+                amount = Math.Floor(quanity * costea)
                 Breakdown(e.Row + 1, e.Col) = amount
             End If
 
@@ -463,7 +463,7 @@ Public Class 外注内訳入力
                         End If
 
                         Dim Amount As Integer = 0
-                        Amount = Oquanity * Ocostea
+                        Amount = Math.Floor(Oquanity * Ocostea)
                         Breakdown(BDloop * 3 + 2, vendorloop) = Amount
                         Breakdown.Rows(BDloop * 3 + 2).AllowEditing = False
                         Breakdown.Rows(BDloop * 3 + 2).StyleNew.Format = "N0"

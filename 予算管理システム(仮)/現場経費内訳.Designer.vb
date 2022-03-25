@@ -146,6 +146,7 @@ Partial Class 現場経費内訳
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.DetailsList.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.DetailsList.Location = New System.Drawing.Point(37, 75)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"

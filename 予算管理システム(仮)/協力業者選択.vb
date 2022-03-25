@@ -124,7 +124,7 @@ Public Class 協力業者選択
                 ホーム.ReportName = "外注計画"
                 'レポートのデザインが格納されているファイルのパスを変数に代入する
                 'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-                ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+                'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
                 レポート.Show()
 
             End If
@@ -189,7 +189,7 @@ Public Class 協力業者選択
                 End If
                 'レポートのデザインが格納されているファイルのパスを変数に代入する
                 'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-                ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+                'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
                 レポート.Show()
 
             End If

@@ -36,20 +36,21 @@ Public Class Export注文書CSV
         Dim ProductionReader As SqlDataReader = ホーム.Sql.ExecuteReader
         Dim RowCount As Integer = 0
         While ProductionReader.Read
-            EXSheet(RowCount, 0).Value = 1
+            EXSheet(RowCount, 0).Value = "1"
             EXSheet(RowCount, 1).Value = Pcode
             EXSheet(RowCount, 2).Value = "001"
             EXSheet(RowCount, 3).Value = No
             EXSheet(RowCount, 4).Value = VendorCode
             EXSheet(RowCount, 5).Value = "0"
-            EXSheet(RowCount, 6).Value = 8130
+            EXSheet(RowCount, 6).Value = "8130"
+            EXSheet(RowCount, 7).Value = ProductionReader.Item("s_worktype_code")
             EXSheet(RowCount, 8).Value = ProductionReader.Item("total_amount")
-            EXSheet(RowCount, 9).Value = Math.Round(ProductionReader.Item("total_amount")) * 0.1
-            EXSheet(RowCount, 10).Value = 50
-            EXSheet(RowCount, 11).Value = 1
-            EXSheet(RowCount, 12).Value = 10
+            EXSheet(RowCount, 9).Value = Math.Floor(ProductionReader.Item("total_amount")) * 0.1
+            EXSheet(RowCount, 10).Value = "50"
+            EXSheet(RowCount, 11).Value = "1"
+            EXSheet(RowCount, 12).Value = "10"
             EXSheet(RowCount, 15).Value = Today.ToString("yyyy/mm/dd")
-            EXSheet(RowCount, 16).Value = 999999
+            EXSheet(RowCount, 16).Value = "999999"
 
             RowCount += 1
         End While

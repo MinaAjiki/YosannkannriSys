@@ -85,7 +85,7 @@ Public Class 現場経費内訳
                 quanity = DetailsList(datacount, 7)
                 DetailsList(datacount, 8) = expnsbd.Item("expns_bd_costea")
                 costea = DetailsList(datacount, 8)
-                DetailsList(datacount, 9) = quanity * costea
+                DetailsList(datacount, 9) = Math.Floor(quanity * costea)
                 datacount += 1
             End While
             expnsbd.Close()
@@ -168,11 +168,11 @@ Public Class 現場経費内訳
                     ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_costea", SqlDbType.Money))
                     ホーム.Sql.Parameters("@stexpns_id").Value = ホーム.ExpnsbdID
                     If ExpnsName.Data = Nothing Then
-                        ExpnsName.Data = ""
+                        ExpnsName.Data = " "
                     End If
                     ホーム.Sql.Parameters("@expns_bd_name").Value = ExpnsName.Data
                     If ExpnsSpec.Data = Nothing Then
-                        ExpnsSpec.Data = ""
+                        ExpnsSpec.Data = " "
                     End If
                     ホーム.Sql.Parameters("@expns_bd_spec").Value = ExpnsSpec.Data
                     If ExpnsUnit.Data = Nothing Then
@@ -236,22 +236,22 @@ Public Class 現場経費内訳
                 End If
             Next
             'If SelectRow = Nothing Then
-            Select Case ホーム.ExpnsbdID
-                Case 2
+            Select Case ホーム.ExpnsbdCode
+                Case 8147
                     費用マスタ一覧.ParentFormName = "現場経費"
                     費用マスタ一覧.CostClassCode = 8
                     費用マスタ一覧.CostClassName = "試験費"
                     費用マスタ一覧.Show()
-                Case 5
+                Case 8151
                     マスタ一覧.ClickButton = "StampTaxes"
                     マスタ一覧.Show()
-                Case 10
+                Case 8157
                     マスタ一覧.ClickButton = "Insurances"
                     マスタ一覧.Show()
-                Case 18
+                Case 8177
                     マスタ一覧.ClickButton = "LevyCosts"
                     マスタ一覧.Show()
-                Case 21
+                Case 8184
                     マスタ一覧.ClickButton = "Salaries"
                     マスタ一覧.Show()
             End Select
@@ -310,6 +310,12 @@ Public Class 現場経費内訳
             Next
             DetailsList.Rows(Row).Caption = "▶"
 
+            'If Col = 7 Or 8 Then
+            '    DetailsList.ImeMode = ImeMode.Disable
+            'Else
+            '    DetailsList.ImeMode = ImeMode.On
+            'End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -317,5 +323,46 @@ Public Class 現場経費内訳
             Exit Sub
         End Try
 
+    End Sub
+
+    Private Sub DetailsList_BeforeRowColChange(sender As Object, e As RangeEventArgs) Handles DetailsList.BeforeRowColChange
+        'Dim Col As Integer = DetailsList.Selection.LeftCol
+        'If Col = 7 Or 8 Then
+        '    DetailsList.ImeMode = ImeMode.Disable
+        'Else
+        '    DetailsList.ImeMode = ImeMode.On
+        'End If
+    End Sub
+
+    Private Sub DetailsList_Click(sender As Object, e As EventArgs) Handles DetailsList.Click
+        'Try
+        '    Dim Col As Integer = DetailsList.Selection.LeftCol
+        '    If Col = 7 Or 8 Then
+        '        DetailsList.ImeMode = ImeMode.Disable
+        '    Else
+        '        DetailsList.ImeMode = ImeMode.On
+        '    End If
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        'ホーム.StackTrace = ex.StackTrace
+        'エラー.Show()
+        'Exit Sub
+        'End Try
+    End Sub
+
+    Private Sub DetailsList_StartEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.StartEdit
+        Try
+            Dim Col As Integer = DetailsList.Selection.LeftCol
+            If Col = 7 Or 8 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class
