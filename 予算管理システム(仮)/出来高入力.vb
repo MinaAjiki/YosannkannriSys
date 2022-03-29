@@ -351,6 +351,8 @@ Public Class 出来高入力
                 Cutotal += Cuamount
                 TotalList(0, 4) = Cutotal
 
+                DetailsList.Rows(totalrow2 - 2).AllowEditing = False
+
                 totalrow1 += 3
                 totalrow2 += 3
                 lastrow1 += 3
@@ -361,7 +363,6 @@ Public Class 出来高入力
             While DetailsList.Rows.Count < 21
                 DetailsList.Rows.Add()
             End While
-            DetailsList.Rows(totalrow2 - 2).AllowEditing = False
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -543,4 +544,5 @@ Public Class 出来高入力
             Exit Sub
         End Try
     End Sub
+
 End Class

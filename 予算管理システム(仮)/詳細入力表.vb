@@ -91,7 +91,9 @@ Public Class 詳細入力表
             Dim RowNo As Integer = 0
             Dim DtlTotal As Int64 = 0
             Dim DtlIDList As New List(Of Integer)
-
+            Dim MngmntTotal As Int64 = 0
+            Dim BlncTotal As Int64 = 0
+            Dim SubjectTotal(9) As Int64
 
             ホーム.Sql.CommandText = "SELECT * FROM subject_details WHERE budget_no=" & ホーム.BudgetNo & " ORDER BY s_wrktyp_code,dtl_no ASC"
             Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -102,102 +104,71 @@ Public Class 詳細入力表
                 DetailList(RowCount * 3, 1) = DetailsReader.Item("dtl_id")
                 DtlIDList.Add(DetailsReader.Item("dtl_id"))
                 DetailList(RowCount * 3, 2) = DetailsReader.Item("s_wrktyp_code")
-                    DetailList(RowCount * 3 + 1, 2) = DetailList(RowCount * 3, 2)
-                    DetailList(RowCount * 3 + 2, 2) = DetailList(RowCount * 3, 2)
-                    DetailList.MergedRanges.Add((RowCount * 3), 2, (RowCount * 3) + 2, 2)
-                    DetailList(RowCount * 3, 3) = DetailsReader.Item("s_wrktyp_name")
+                DetailList(RowCount * 3 + 1, 2) = DetailList(RowCount * 3, 2)
+                DetailList(RowCount * 3 + 2, 2) = DetailList(RowCount * 3, 2)
+                DetailList.MergedRanges.Add((RowCount * 3), 2, (RowCount * 3) + 2, 2)
+                DetailList(RowCount * 3, 3) = DetailsReader.Item("s_wrktyp_name")
 
-                    For subjectLoop As Integer = 1 To 9
-                        DetailList(RowCount * 3, 5 + subjectLoop) = " "
-                        DetailList((RowCount * 3) + 1, 5 + subjectLoop) = " "
-                        If Not subjectLoop = 3 Then
-                            If IsDBNull(DetailsReader.Item("amount" & subjectLoop)) = False Then
-                                DetailList((RowCount * 3) + 2, 5 + subjectLoop) = DetailsReader.Item("amount" & subjectLoop)
-                            Else
-                                DetailList((RowCount * 3) + 2, 5 + subjectLoop) = 0
-                            End If
-                        End If
-                        DetailList.MergedRanges.Add((RowCount * 3), 5 + subjectLoop, (RowCount * 3) + 1, 5 + subjectLoop)
-                    Next
+                Dim OutsrcngAmount As Int64 = 0
 
-                    DetailList((RowCount * 3) + 1, 3) = DetailsReader.Item("dtl_name")
-                    DetailList((RowCount * 3) + 1, 4) = DetailList((RowCount * 3) + 1, 3)
-                    DetailList((RowCount * 3) + 2, 3) = DetailsReader.Item("dtl_spec")
-                    DetailList((RowCount * 3) + 2, 4) = DetailList((RowCount * 3) + 2, 3)
-                    DetailList.MergedRanges.Add((RowCount * 3) + 1, 3, (RowCount * 3) + 1, 4)
-                    DetailList.MergedRanges.Add((RowCount * 3) + 2, 3, (RowCount * 3) + 2, 4)
-                    DetailList(RowCount * 3, 4) = DetailsReader.Item("dtl_unit")
-                    DetailList((RowCount * 3), 5) = DetailsReader.Item("dtl_amount")
-                    DtlTotal += DetailList((RowCount * 3), 5)
-
-                    Dim DrctlyMngmntTotalRange As CellRange = DetailList.GetCellRange((RowCount * 3) + 2, 5)
-                    DrctlyMngmntTotalRange.StyleNew.ForeColor = Color.Red
-
-                    If RowCount Mod 2 = 0 Then
-                        DetailList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                For subjectLoop As Integer = 1 To 9
+                    DetailList(RowCount * 3, 5 + subjectLoop) = " "
+                    DetailList((RowCount * 3) + 1, 5 + subjectLoop) = " "
+                    If IsDBNull(DetailsReader.Item("amount" & subjectLoop)) = False Then
+                        DetailList((RowCount * 3) + 2, 5 + subjectLoop) = DetailsReader.Item("amount" & subjectLoop)
+                    Else
+                        DetailList((RowCount * 3) + 2, 5 + subjectLoop) = 0
                     End If
-                End While
-                DetailsReader.Close()
+                    DetailList.MergedRanges.Add((RowCount * 3), 5 + subjectLoop, (RowCount * 3) + 1, 5 + subjectLoop)
+
+                    SubjectTotal(subjectLoop) += DetailList((RowCount * 3) + 2, 5 + subjectLoop)
+
+                    If Not subjectLoop = 3 Then
+                        OutsrcngAmount += DetailList((RowCount * 3) + 2, 5 + subjectLoop)
+                    End If
+                Next
+
+                DetailList((RowCount * 3) + 1, 3) = DetailsReader.Item("dtl_name")
+                DetailList((RowCount * 3) + 1, 4) = DetailList((RowCount * 3) + 1, 3)
+                DetailList((RowCount * 3) + 2, 3) = DetailsReader.Item("dtl_spec")
+                DetailList((RowCount * 3) + 2, 4) = DetailList((RowCount * 3) + 2, 3)
+                DetailList.MergedRanges.Add((RowCount * 3) + 1, 3, (RowCount * 3) + 1, 4)
+                DetailList.MergedRanges.Add((RowCount * 3) + 2, 3, (RowCount * 3) + 2, 4)
+                DetailList(RowCount * 3, 4) = DetailsReader.Item("dtl_unit")
+                DetailList((RowCount * 3), 5) = DetailsReader.Item("dtl_amount")
+                DetailList((RowCount * 3) + 1, 5) = OutsrcngAmount - DetailList((RowCount * 3) + 2, 8)
+                DetailList((RowCount * 3) + 2, 5) = DetailList((RowCount * 3), 5) - DetailList((RowCount * 3) + 1, 5)
+                DtlTotal += DetailList((RowCount * 3), 5)
+
+                Dim DrctlyMngmntTotalRange As CellRange = DetailList.GetCellRange((RowCount * 3) + 2, 5)
+                DrctlyMngmntTotalRange.StyleNew.ForeColor = Color.Red
+
+                If RowCount Mod 2 = 0 Then
+                    DetailList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    DetailList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                End If
+
+                MngmntTotal += OutsrcngAmount
+                BlncTotal += DetailList((RowCount * 3) + 2, 5)
+            End While
+            DetailsReader.Close()
+
             DetailTotal.Value = DtlTotal
 
-
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-            Dim OtsrcCount As Integer = ホーム.Sql.ExecuteScalar
-
-            Dim OutsrcngTotal As Int64 = 0
-            Dim MngmntTotal As Int64 = 0
-            Dim BlncTotal As Int64 = 0
-            Dim SubjectTotal(14) As Int64
-            If OtsrcCount > 0 Then
-
-                ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-                Dim MaxNo As Integer = ホーム.Sql.ExecuteScalar
-
-                Dim Row As Integer = 0
-                For OtsrcngLoop As Integer = 0 To DtlIDList.Count - 1
-
-                    Row += 1
-                    Dim OutsrcngAmount As Int64 = 0
-                    ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND dtl_id=" & DtlIDList.Item(OtsrcngLoop)
-                    Dim OtsrcReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                    While OtsrcReader.Read
-                        OutsrcngAmount += Math.Floor((OtsrcReader.Item("outsrcng_quanity") * OtsrcReader.Item("outsrcng_costea")))
-                    End While
-                    OtsrcReader.Close()
-
-                    Dim subjectsum As Int64 = 0
-                    For subjectsLoop As Integer = 6 To 14
-                        If Not subjectsLoop = 8 Then
-                            subjectsum += DetailList((Row * 3) + 2, subjectsLoop)
-                            SubjectTotal(subjectsLoop) += DetailList((Row * 3) + 2, subjectsLoop)
-                        End If
-                    Next
-
-                    DetailList((Row * 3) + 2, 8) = OutsrcngAmount
-                    DetailList((Row * 3) + 1, 5) = DetailList((Row * 3), 5) - OutsrcngAmount
-                    DetailList((Row * 3) + 2, 5) = DetailList((Row * 3) + 1, 5) - subjectsum
-                    OutsrcngTotal += OutsrcngAmount
-                    MngmntTotal += DetailList((Row * 3), 5) - OutsrcngAmount
-                    BlncTotal += DetailList((Row * 3) + 1, 5) - subjectsum
-
-                Next
-            End If
-
-            SubjectTotal3.Value = OutsrcngTotal
             ManagementTotal.Value = MngmntTotal
             BalanceTotal.Value = BlncTotal
-            SubjectTotal1.Value = SubjectTotal(6)
-            SubjectTotal2.Value = SubjectTotal(7)
-            SubjectTotal4.Value = SubjectTotal(9)
-            SubjectTotal5.Value = SubjectTotal(10)
-            SubjectTotal6.Value = SubjectTotal(11)
-            SubjectTotal7.Value = SubjectTotal(12)
-            SubjectTotal8.Value = SubjectTotal(13)
-            SubjectTotal9.Value = SubjectTotal(14)
+            SubjectTotal1.Value = SubjectTotal(1)
+            SubjectTotal2.Value = SubjectTotal(2)
+            SubjectTotal3.Value = SubjectTotal(3)
+            SubjectTotal4.Value = SubjectTotal(4)
+            SubjectTotal5.Value = SubjectTotal(5)
+            SubjectTotal6.Value = SubjectTotal(6)
+            SubjectTotal7.Value = SubjectTotal(7)
+            SubjectTotal8.Value = SubjectTotal(8)
+            SubjectTotal9.Value = SubjectTotal(9)
 
-            'Panel1.Visible = False
+
 
             Cursor.Current = Cursors.Default
             進行状況.Close()
