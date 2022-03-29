@@ -257,6 +257,9 @@ Public Class 現場経費内訳
             End Select
             マスタ一覧.Entry.Visible = False
             マスタ一覧.MasterContentsList.AllowEditing = False
+            マスタ一覧.MasterContentsList.Cols(5).Width = 0
+            マスタ一覧.MasterContentsList.Cols(6).Width = 0
+            マスタ一覧.MasterContentsList.Width = 421
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -310,11 +313,11 @@ Public Class 現場経費内訳
             Next
             DetailsList.Rows(Row).Caption = "▶"
 
-            'If Col = 7 Or 8 Then
-            '    DetailsList.ImeMode = ImeMode.Disable
-            'Else
-            '    DetailsList.ImeMode = ImeMode.On
-            'End If
+            If Col = 7 Or Col = 8 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
+            End If
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -327,7 +330,7 @@ Public Class 現場経費内訳
 
     Private Sub DetailsList_BeforeRowColChange(sender As Object, e As RangeEventArgs) Handles DetailsList.BeforeRowColChange
         'Dim Col As Integer = DetailsList.Selection.LeftCol
-        'If Col = 7 Or 8 Then
+        'If Col = 7 Or Col = 8 Then
         '    DetailsList.ImeMode = ImeMode.Disable
         'Else
         '    DetailsList.ImeMode = ImeMode.On
@@ -335,25 +338,25 @@ Public Class 現場経費内訳
     End Sub
 
     Private Sub DetailsList_Click(sender As Object, e As EventArgs) Handles DetailsList.Click
-        'Try
-        '    Dim Col As Integer = DetailsList.Selection.LeftCol
-        '    If Col = 7 Or 8 Then
-        '        DetailsList.ImeMode = ImeMode.Disable
-        '    Else
-        '        DetailsList.ImeMode = ImeMode.On
-        '    End If
-        'Catch ex As Exception
-        '    ホーム.ErrorMessage = ex.Message
-        'ホーム.StackTrace = ex.StackTrace
-        'エラー.Show()
-        'Exit Sub
-        'End Try
+        Try
+            Dim Col As Integer = DetailsList.Selection.LeftCol
+            If Col = 7 Or Col = 8 Then
+                DetailsList.ImeMode = ImeMode.Disable
+            Else
+                DetailsList.ImeMode = ImeMode.On
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub DetailsList_StartEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.StartEdit
         Try
             Dim Col As Integer = DetailsList.Selection.LeftCol
-            If Col = 7 Or 8 Then
+            If Col = 7 Or Col = 8 Then
                 DetailsList.ImeMode = ImeMode.Disable
             Else
                 DetailsList.ImeMode = ImeMode.On
