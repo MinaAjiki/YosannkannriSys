@@ -298,6 +298,8 @@ Public Class ホーム
 
     Private Sub CreateFileDialog_FileOk(sender As Object, e As CancelEventArgs) Handles CreateFileDialog.FileOk
         Try
+            Cursor.Current = Cursors.WaitCursor
+
             If System.IO.File.Exists("C:\PMS\system.mdf") = False Then
                 SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
                 SystmMdfCnnctn.Open()
@@ -359,7 +361,7 @@ Public Class ホーム
             Sql.CommandText = "UPDATE #expense_bd SET expns_bd_quanity=0"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
+            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea,expns_bd_quanity FROM #expense_bd"
             Sql.ExecuteNonQuery()
 
             Transaction.Commit()
@@ -387,7 +389,7 @@ Public Class ホーム
 
             SystemMdf.Parameters.Clear()
 
-
+            Cursor.Current = Cursors.Default
         Catch ex As Exception
             ErrorMessage = ex.Message
             StackTrace = ex.StackTrace

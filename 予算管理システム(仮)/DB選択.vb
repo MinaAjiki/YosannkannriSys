@@ -73,8 +73,11 @@ Public Class DB選択
             Dim OpenFileName As String = IO.Path.GetFileName(OtherFileOpenDialog.FileName)
             Dim OpenFilePath As String = IO.Path.GetDirectoryName(OtherFileOpenDialog.FileName)
 
+            Cursor.Current = Cursors.WaitCursor
+
             If OpenFileName.Contains(".mdf") = False Then
                 MsgBox("mdfファイルを選択してください。", MsgBoxStyle.Exclamation, "エラー")
+                Cursor.Current = Cursors.Default
                 Exit Sub
 
             Else
@@ -124,13 +127,19 @@ Public Class DB選択
 
                 予算選択.TopMost = True
                 予算選択.TopMost = False
+                ホーム.見積.Enabled = True
+                ホーム.外注管理.Enabled = True
+                ホーム.出力.Enabled = True
 
             Else
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
+                ホーム.出力.Enabled = False
             End If
+
+            Cursor.Current = Cursors.Default
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -143,6 +152,8 @@ Public Class DB選択
 
     Private Sub Open_Click(sender As Object, e As EventArgs) Handles Open.Click
         Try
+            Cursor.Current = Cursors.WaitCursor
+
             Dim SelectRow As Integer = FileList.Row
             Dim OpenFileName As CellRange = FileList.GetCellRange(SelectRow, 1)
             Dim OpenFilePath As CellRange = FileList.GetCellRange(SelectRow, 2)
@@ -179,13 +190,20 @@ Public Class DB選択
 
                 予算選択.TopMost = True
                 予算選択.TopMost = False
+                ホーム.見積.Enabled = True
+                ホーム.外注管理.Enabled = True
+                ホーム.出力.Enabled = True
+
 
             Else
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
+                ホーム.出力.Enabled = False
             End If
+
+            Cursor.Current = Cursors.Default
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
