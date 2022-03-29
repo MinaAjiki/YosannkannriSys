@@ -97,7 +97,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来高査定書"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -116,7 +116,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来高査定書(完成)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -135,7 +135,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来形数量査定書(中間)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception
@@ -154,7 +154,7 @@ Public Class 出来高査定チェックフォーム
             ParentFormName = "出来形数量査定書(完成)"
             'レポートのデザインが格納されているファイルのパスを変数に代入する
             'ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
-            ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
+            'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
             レポート.Show()
 
         Catch ex As Exception

@@ -210,7 +210,10 @@ Public Class 出来高入力
             Dim OutsourcTotal As Int64
 
             For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
-                ホーム.Sql.Parameters.Clear()
+                If DtlIDlist.Item(DtlIDloop) = 0 Then
+                    Continue For
+                Else
+                    ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND outsrcr_id = " & Coopid
                 Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
                 While outsrcng.Read
@@ -282,6 +285,7 @@ Public Class 出来高入力
                 Detarow2 += 3
                 Detarow3 += 3
                 details.Close()
+                End If
             Next
 
             '前月出来高を取得し、当月出来高を計算する
@@ -291,74 +295,77 @@ Public Class 出来高入力
             Dim lastrow2 As Integer = 4
             Dim lastrow3 As Integer = 5
             For DtlIDloop As Integer = 0 To DtlIDlist.Count - 1
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE"
-                ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
-                ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
-                Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
-                Dim LastTotal As Integer
-                Dim TotalTotal As Integer
-                While production.Read
-                    Dim LastAmount As Integer
-                    Dim TotalAmount As Integer
-                    Dim TotalQuanity As Decimal
+                If DtlIDlist.Item(DtlIDloop) = 0 Then
+                    Continue For
+                Else
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE"
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
+                    ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
+                    Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
+                    Dim LastTotal As Integer
+                    Dim TotalTotal As Integer
+                    While production.Read
+                        Dim LastAmount As Integer
+                        Dim TotalAmount As Integer
+                        Dim TotalQuanity As Decimal
 
-                    TotalQuanity = production.Item("total_quanity")
-                    DetailsList(totalrow1, 7) = TotalQuanity
-                    DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
+                        TotalQuanity = production.Item("total_quanity")
+                        DetailsList(totalrow1, 7) = TotalQuanity
+                        DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
 
-                    TotalAmount = production.Item("total_amount")
-                    DetailsList(totalrow2, 7) = TotalAmount
-                    Dim Totalamountstyle As CellRange = DetailsList.GetCellRange(totalrow2, 7)
-                    DetailsList.GetCellRange(totalrow2, 7).StyleNew.Format = "N0"
+                        TotalAmount = production.Item("total_amount")
+                        DetailsList(totalrow2, 7) = TotalAmount
+                        Dim Totalamountstyle As CellRange = DetailsList.GetCellRange(totalrow2, 7)
+                        DetailsList.GetCellRange(totalrow2, 7).StyleNew.Format = "N0"
 
-                    DetailsList(lastrow1, 6) = production.Item("last_costea")
-                    Dim lastcostea As CellRange = DetailsList.GetCellRange(lastrow1, 6)
-                    lastcostea.StyleNew.Format = "N0"
+                        DetailsList(lastrow1, 6) = production.Item("last_costea")
+                        Dim lastcostea As CellRange = DetailsList.GetCellRange(lastrow1, 6)
+                        lastcostea.StyleNew.Format = "N0"
 
-                    DetailsList(lastrow2, 6) = production.Item("last_quanity")
-                    DetailsList.GetCellRange(lastrow2, 6).StyleNew.Format = "N1"
-                    'Dim LastQuanityStyle As CellRange = DetailsList.GetCellRange(lastrow2, 6)
-                    'LastQuanityStyle.StyleNew.Format = "N1"
+                        DetailsList(lastrow2, 6) = production.Item("last_quanity")
+                        DetailsList.GetCellRange(lastrow2, 6).StyleNew.Format = "N1"
+                        'Dim LastQuanityStyle As CellRange = DetailsList.GetCellRange(lastrow2, 6)
+                        'LastQuanityStyle.StyleNew.Format = "N1"
 
-                    LastAmount = production.Item("last_amount")
-                    DetailsList(lastrow3, 6) = LastAmount
+                        LastAmount = production.Item("last_amount")
+                        DetailsList(lastrow3, 6) = LastAmount
 
-                    LastTotal += LastAmount
-                    TotalTotal += TotalAmount
-                End While
-                production.Close()
-                TotalList(0, 2) = LastTotal
-                TotalList(0, 3) = TotalTotal
+                        LastTotal += LastAmount
+                        TotalTotal += TotalAmount
+                    End While
+                    production.Close()
+                    TotalList(0, 2) = LastTotal
+                    TotalList(0, 3) = TotalTotal
 
-                quanity = DetailsList(totalrow1, 7)
-                total = DetailsList(totalrow2, 7)
+                    quanity = DetailsList(totalrow1, 7)
+                    total = DetailsList(totalrow2, 7)
 
-                Dim Lquanity As Decimal = DetailsList(totalrow1, 6)
-                Dim Ltotal As Integer = DetailsList(totalrow2, 6)
-                Dim Cuquanity As Decimal
-                Dim Cuamount As Decimal
-                Dim Cutotal As Integer
+                    Dim Lquanity As Decimal = DetailsList(totalrow1, 6)
+                    Dim Ltotal As Integer = DetailsList(totalrow2, 6)
+                    Dim Cuquanity As Decimal
+                    Dim Cuamount As Decimal
+                    Dim Cutotal As Integer
 
-                Cuquanity = quanity - Lquanity
-                DetailsList(totalrow1, 8) = Cuquanity
-                DetailsList.GetCellRange(totalrow1, 8).StyleNew.Format = "N1"
+                    Cuquanity = quanity - Lquanity
+                    DetailsList(totalrow1, 8) = Cuquanity
+                    DetailsList.GetCellRange(totalrow1, 8).StyleNew.Format = "N1"
 
-                Cuamount = total - Ltotal
-                DetailsList(totalrow2, 8) = Cuamount
-                DetailsList.GetCellRange(totalrow2, 8).StyleNew.Format = "N0"
+                    Cuamount = total - Ltotal
+                    DetailsList(totalrow2, 8) = Cuamount
+                    DetailsList.GetCellRange(totalrow2, 8).StyleNew.Format = "N0"
 
-                Cutotal += Cuamount
-                TotalList(0, 4) = Cutotal
+                    Cutotal += Cuamount
+                    TotalList(0, 4) = Cutotal
 
-                DetailsList.Rows(totalrow2 - 2).AllowEditing = False
+                    DetailsList.Rows(totalrow2 - 2).AllowEditing = False
 
-                totalrow1 += 3
-                totalrow2 += 3
-                lastrow1 += 3
-                lastrow2 += 3
-                lastrow3 += 3
-
+                    totalrow1 += 3
+                    totalrow2 += 3
+                    lastrow1 += 3
+                    lastrow2 += 3
+                    lastrow3 += 3
+                End If
             Next
             While DetailsList.Rows.Count < 21
                 DetailsList.Rows.Add()
