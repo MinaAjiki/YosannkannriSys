@@ -511,7 +511,7 @@ Public Class 出来高入力
                 Dim Tquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 7)
                 Dim Tamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 7)
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
+                ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & " AND closing_date = @DLDATE"
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 Dim DtlIDcount As Integer = ホーム.Sql.ExecuteScalar
@@ -533,9 +533,22 @@ Public Class 出来高入力
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
                 ホーム.Sql.Parameters("@closing_date").Value = Dline.Date
                 ホーム.Sql.Parameters("@dtl_id").Value = DetailsID.Data
-                ホーム.Sql.Parameters("@total_costea").Value = TCostea.Data
-                ホーム.Sql.Parameters("@total_quanity").Value = Tquanity.Data
-                ホーム.Sql.Parameters("@total_amount").Value = Tamount.Data
+                If TCostea.Data = Nothing Then
+                    ホーム.Sql.Parameters("@total_costea").Value = 0
+                Else
+                    ホーム.Sql.Parameters("@total_costea").Value = TCostea.Data
+                End If
+                If Tquanity.Data = Nothing Then
+                    ホーム.Sql.Parameters("@total_quanity").Value = 0
+                Else
+                    ホーム.Sql.Parameters("@total_quanity").Value = Tquanity.Data
+                End If
+                If Tamount.Data = Nothing Then
+                    ホーム.Sql.Parameters("@total_amount").Value = 0
+                Else
+                    ホーム.Sql.Parameters("@total_amount").Value = Tamount.Data
+                End If
+
                 ホーム.Sql.ExecuteNonQuery()
 
                 Rowcount += 3
