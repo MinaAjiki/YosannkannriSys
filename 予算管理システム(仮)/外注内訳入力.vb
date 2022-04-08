@@ -587,11 +587,11 @@ Public Class 外注内訳入力
             ホーム.Sql.Parameters.Add(New SqlParameter("@prjct_code", SqlDbType.NVarChar))
             ホーム.Sql.Parameters.Add(New SqlParameter("@outsrc_no", SqlDbType.Int))
             ホーム.Sql.Parameters.Add(New SqlParameter("@created_date", SqlDbType.Date))
-            ホーム.Sql.Parameters.Add(New SqlParameter("@changes", SqlDbType.NVarChar))
+            ホーム.Sql.Parameters.Add(New SqlParameter("@changes", SqlDbType.NVarChar)).Value = ChangeDetail.Text
             ホーム.Sql.Parameters("@prjct_code").Value = "DD0000"
             ホーム.Sql.Parameters("@outsrc_no").Value = outsrcno
             ホーム.Sql.Parameters("@created_date").Value = createddate
-            ホーム.Sql.Parameters("@changes").Value = ChangeDetail.Text
+            'ホーム.Sql.Parameters("@changes").Value = ChangeDetail.Text
             ホーム.Sql.ExecuteNonQuery()
 
             '一番大きい変更回数を取得し、変更回数の上限下限をセット

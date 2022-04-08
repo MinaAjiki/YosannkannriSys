@@ -77,8 +77,8 @@ Public Class 出来高査定チェックフォーム
             DetailsList.Rows.Add()
             DetailsList(Datacount, 1) = PCReader.Item("s_worktype_code")
             DetailsList(Datacount, 2) = PCReader.Item("s_wrktyp_name")
-            DetailsList(Datacount, 3) = PCReader.Item("outsrcng_amount")
-            DetailsList(Datacount, 4) = PCReader.Item("total_amount")
+            DetailsList(Datacount, 3) = PCReader.Item("outsrcng_sum")
+            DetailsList(Datacount, 4) = PCReader.Item("production_sum")
             DetailsList(Datacount, 5) = (DetailsList(Datacount, 3)) - (DetailsList(Datacount, 4))
             Datacount += 1
         End While

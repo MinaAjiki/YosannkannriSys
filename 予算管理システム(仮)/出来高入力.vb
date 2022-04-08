@@ -299,7 +299,7 @@ Public Class 出来高入力
                     Continue For
                 Else
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE"
+                    ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE  AND outsrcr_id = " & Coopid
                     ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                     ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                     Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -489,50 +489,56 @@ Public Class 出来高入力
             End If
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorList.Value
-            Dim CoopIDcount As Integer = ホーム.Sql.ExecuteScalar
+            Dim outsrcrID As Integer = ホーム.Sql.ExecuteScalar
 
             Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
 
             '外注計画テーブルから外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & CoopIDcount & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
+            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
             Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
             While DtlID.Read
+                'dtl_id=0 はあたまなので表示されない
+                If DtlID.Item("dtl_id") = 0 Then
+                    Continue While
+                End If
                 DtlIDlist.Add(DtlID.Item("dtl_id"))
             End While
             DtlID.Close()
 
             Dim Rowcount As Integer = 3
             For Detailsloop As Integer = 1 To DtlIDlist.Count
-                Dim CoopID As Integer = VendorNo.Text
+                'Dim CoopID As Integer = VendorNo.Text
                 Dim Dline As Date = Deadline.Text
                 Dim DetailsID As CellRange = DetailsList.GetCellRange(Rowcount, 1)
                 Dim TCostea As CellRange = DetailsList.GetCellRange(Rowcount, 5)
                 Dim Tquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 7)
                 Dim Tamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 7)
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & " AND closing_date = @DLDATE"
+                ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & " AND closing_date = @DLDATE  AND outsrcr_id = " & outsrcrID
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 Dim DtlIDcount As Integer = ホーム.Sql.ExecuteScalar
                 If DtlIDcount = 0 Then
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,total_costea,total_quanity,total_amount) VALUES (@closing_date,@dtl_id,@total_costea,@total_quanity,@total_amount)"
+                    ホーム.Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,outsrcr_id,total_costea,total_quanity,total_amount) VALUES (@closing_date,@dtl_id,@outsrcr_id,@total_costea,@total_quanity,@total_amount)"
                 Else
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
+                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,outsrcr_id=@outsrcr_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where outsrcr_id = " & outsrcrID & " AND dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
                 End If
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
                 ホーム.Sql.Parameters("@closing_date").Value = Dline.Date
                 ホーム.Sql.Parameters("@dtl_id").Value = DetailsID.Data
+                ホーム.Sql.Parameters("@outsrcr_id").Value = outsrcrID
                 If TCostea.Data = Nothing Then
                     ホーム.Sql.Parameters("@total_costea").Value = 0
                 Else
