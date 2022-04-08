@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>25</ApplicationRevision>
-    <ApplicationVersion>1.0.0.25</ApplicationVersion>
+    <ApplicationRevision>27</ApplicationRevision>
+    <ApplicationVersion>1.0.0.27</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
