@@ -52,7 +52,13 @@ Public Class 明細書入力
 
             Category.Checked = True
 
-
+            If ホーム.BeforeForm = "見積" Then
+                ItemSelect.Visible = False
+                CostCreation.Visible = False
+                CostModify.Visible = False
+                CostCopy.Visible = False
+                Reference.Visible = False
+            End If
 
             Me.Anchor = AnchorStyles.Top
             Me.Anchor = AnchorStyles.Left
@@ -271,6 +277,7 @@ Public Class 明細書入力
                     OutsoucerList(1, DataCount) = OutsourcersReader.Item("outsrcr_name")
                     OutsoucerList.Cols(DataCount).StyleFixedNew.WordWrap = True
                     OutsoucerList.Cols(DataCount).Width = 95
+                    OutsoucerTotalList.Cols(DataCount).Width = 95
                     OutsoucerList.Cols(DataCount).StyleFixedNew.Font = New Font("メイリオ", 8, FontStyle.Regular)
                     OutsoucerList.Cols(DataCount).StyleFixedNew.TextAlign = TextAlignEnum.LeftCenter
                     OutsoucerList.Cols(DataCount).StyleNew.Font = New Font("Arial", 9, FontStyle.Regular)

@@ -2273,4 +2273,6 @@ Public Class 代価表入力
             Exit Sub
         End Try
     End Sub
+
+
 End Class
