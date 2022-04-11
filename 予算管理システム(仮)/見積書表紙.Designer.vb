@@ -29,7 +29,7 @@ Partial Class 見積書表紙
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.EstmtCode = New C1.Win.C1Input.C1NumericEdit()
         Me.EstmtDate = New C1.Win.C1Input.C1DateEdit()
-        Me.C1NumericEdit1 = New C1.Win.C1Input.C1NumericEdit()
+        Me.EstmtTaxIn = New C1.Win.C1Input.C1NumericEdit()
         Me.EstmtTax = New C1.Win.C1Input.C1NumericEdit()
         Me.Discount = New C1.Win.C1Input.C1NumericEdit()
         Me.EstmtAmount = New C1.Win.C1Input.C1NumericEdit()
@@ -37,20 +37,20 @@ Partial Class 見積書表紙
         Me.PrjctName = New C1.Win.C1Input.C1TextBox()
         Me.PrjctAddress = New C1.Win.C1Input.C1TextBox()
         Me.PymntTerms = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
+        Me.expirationdate = New C1.Win.C1Input.C1TextBox()
+        Me.conditions = New C1.Win.C1Input.C1TextBox()
         Me.Cancel = New System.Windows.Forms.Button()
-        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox4 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox5 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox6 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox7 = New C1.Win.C1Input.C1TextBox()
+        Me.cndtns_dtls1 = New C1.Win.C1Input.C1TextBox()
+        Me.cndtns_dtls2 = New C1.Win.C1Input.C1TextBox()
+        Me.cndtns_dtls3 = New C1.Win.C1Input.C1TextBox()
+        Me.cndtns_dtls4 = New C1.Win.C1Input.C1TextBox()
+        Me.cndtns_dtls5 = New C1.Win.C1Input.C1TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.EstmtCodeLabel = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
-        Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -67,15 +67,15 @@ Partial Class 見積書表紙
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.C1TextBox12 = New C1.Win.C1Input.C1TextBox()
+        Me.pblshr_fax = New C1.Win.C1Input.C1TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.C1TextBox10 = New C1.Win.C1Input.C1TextBox()
+        Me.pblshr_tel = New C1.Win.C1Input.C1TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.C1TextBox8 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox9 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox11 = New C1.Win.C1Input.C1TextBox()
+        Me.pblshr_address = New C1.Win.C1Input.C1TextBox()
+        Me.pblshr_cmpnyname = New C1.Win.C1Input.C1TextBox()
+        Me.pblshr_prsdnt = New C1.Win.C1Input.C1TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.EstmtTaxLabel = New System.Windows.Forms.Label()
         Me.DiscountLabel = New System.Windows.Forms.Label()
@@ -86,7 +86,7 @@ Partial Class 見積書表紙
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstmtCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstmtDate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EstmtTaxIn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstmtTax, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Discount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstmtAmount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,23 +94,23 @@ Partial Class 見積書表紙
         CType(Me.PrjctName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PrjctAddress, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PymntTerms, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.expirationdate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.conditions, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cndtns_dtls1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cndtns_dtls2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cndtns_dtls3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cndtns_dtls4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cndtns_dtls5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
-        Me.C1SplitterPanel1.SuspendLayout()
+        Me.FormPanel.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.C1TextBox12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pblshr_fax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pblshr_tel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pblshr_address, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pblshr_cmpnyname, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pblshr_prsdnt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -181,12 +181,12 @@ Partial Class 見積書表紙
         Me.EstmtCode.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.EstmtCode.GapHeight = 0
         Me.EstmtCode.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.EstmtCode.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.EstmtCode.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.EstmtCode.Location = New System.Drawing.Point(129, 44)
         Me.EstmtCode.MaxLength = 100
         Me.EstmtCode.Name = "EstmtCode"
         Me.EstmtCode.Size = New System.Drawing.Size(41, 20)
-        Me.EstmtCode.TabIndex = 48
+        Me.EstmtCode.TabIndex = 1
         Me.EstmtCode.Tag = Nothing
         Me.EstmtCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.EstmtCode, "予算管理テーマ")
@@ -235,45 +235,47 @@ Partial Class 見積書表紙
         Me.EstmtDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.EstmtDate.GapHeight = 0
         Me.EstmtDate.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.EstmtDate.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.EstmtDate.Location = New System.Drawing.Point(129, 65)
         Me.EstmtDate.Name = "EstmtDate"
         Me.EstmtDate.Size = New System.Drawing.Size(132, 20)
-        Me.EstmtDate.TabIndex = 51
+        Me.EstmtDate.TabIndex = 2
         Me.EstmtDate.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.EstmtDate, "予算管理テーマ")
         Me.EstmtDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
         Me.EstmtDate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1NumericEdit1
+        'EstmtTaxIn
         '
-        Me.C1NumericEdit1.AutoSize = False
-        Me.C1NumericEdit1.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.EstmtTaxIn.AutoSize = False
+        Me.EstmtTaxIn.BackColor = System.Drawing.Color.White
+        Me.EstmtTaxIn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         '
         '
         '
-        Me.C1NumericEdit1.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit1.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit1.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit1.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
+        Me.EstmtTaxIn.Calculator.BackColor = System.Drawing.Color.White
+        Me.EstmtTaxIn.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.EstmtTaxIn.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.EstmtTaxIn.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.EstmtTaxIn.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
+        Me.EstmtTaxIn.DisplayFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
-        Me.C1NumericEdit1.Enabled = False
-        Me.C1NumericEdit1.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit1.GapHeight = 0
-        Me.C1NumericEdit1.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit1.Location = New System.Drawing.Point(129, 155)
-        Me.C1NumericEdit1.Name = "C1NumericEdit1"
-        Me.C1NumericEdit1.Size = New System.Drawing.Size(150, 20)
-        Me.C1NumericEdit1.TabIndex = 74
-        Me.C1NumericEdit1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit1, "予算管理テーマ")
-        Me.C1NumericEdit1.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.EstmtTaxIn.Enabled = False
+        Me.EstmtTaxIn.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.EstmtTaxIn.GapHeight = 0
+        Me.EstmtTaxIn.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.EstmtTaxIn.Location = New System.Drawing.Point(129, 155)
+        Me.EstmtTaxIn.Name = "EstmtTaxIn"
+        Me.EstmtTaxIn.Size = New System.Drawing.Size(150, 20)
+        Me.EstmtTaxIn.TabIndex = 74
+        Me.EstmtTaxIn.Tag = Nothing
+        Me.EstmtTaxIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.EstmtTaxIn, "予算管理テーマ")
+        Me.EstmtTaxIn.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.EstmtTaxIn.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'EstmtTax
         '
@@ -293,6 +295,7 @@ Partial Class 見積書表紙
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.EstmtTax.Enabled = False
         Me.EstmtTax.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.EstmtTax.GapHeight = 0
         Me.EstmtTax.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -301,6 +304,7 @@ Partial Class 見積書表紙
         Me.EstmtTax.Size = New System.Drawing.Size(150, 20)
         Me.EstmtTax.TabIndex = 72
         Me.EstmtTax.Tag = Nothing
+        Me.EstmtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.EstmtTax, "予算管理テーマ")
         Me.EstmtTax.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.EstmtTax.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -326,11 +330,11 @@ Partial Class 見積書表紙
         Me.Discount.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.Discount.GapHeight = 0
         Me.Discount.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.Discount.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.Discount.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.Discount.Location = New System.Drawing.Point(129, 113)
         Me.Discount.Name = "Discount"
         Me.Discount.Size = New System.Drawing.Size(150, 20)
-        Me.Discount.TabIndex = 70
+        Me.Discount.TabIndex = 4
         Me.Discount.Tag = Nothing
         Me.Discount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.Discount, "予算管理テーマ")
@@ -364,11 +368,11 @@ Partial Class 見積書表紙
         Me.EstmtAmount.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.EstmtAmount.GapHeight = 0
         Me.EstmtAmount.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.EstmtAmount.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.EstmtAmount.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.EstmtAmount.Location = New System.Drawing.Point(129, 92)
         Me.EstmtAmount.Name = "EstmtAmount"
         Me.EstmtAmount.Size = New System.Drawing.Size(150, 20)
-        Me.EstmtAmount.TabIndex = 68
+        Me.EstmtAmount.TabIndex = 3
         Me.EstmtAmount.Tag = Nothing
         Me.EstmtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.EstmtAmount, "予算管理テーマ")
@@ -388,7 +392,7 @@ Partial Class 見積書表紙
         Me.Destination.Name = "Destination"
         Me.Destination.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Destination.Size = New System.Drawing.Size(250, 60)
-        Me.Destination.TabIndex = 53
+        Me.Destination.TabIndex = 10
         Me.Destination.Tag = Nothing
         Me.Destination.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -404,7 +408,7 @@ Partial Class 見積書表紙
         Me.PrjctName.Multiline = True
         Me.PrjctName.Name = "PrjctName"
         Me.PrjctName.Size = New System.Drawing.Size(250, 40)
-        Me.PrjctName.TabIndex = 55
+        Me.PrjctName.TabIndex = 11
         Me.PrjctName.Tag = Nothing
         Me.PrjctName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -420,7 +424,7 @@ Partial Class 見積書表紙
         Me.PrjctAddress.Multiline = True
         Me.PrjctAddress.Name = "PrjctAddress"
         Me.PrjctAddress.Size = New System.Drawing.Size(250, 40)
-        Me.PrjctAddress.TabIndex = 58
+        Me.PrjctAddress.TabIndex = 12
         Me.PrjctAddress.Tag = Nothing
         Me.PrjctAddress.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -436,41 +440,41 @@ Partial Class 見積書表紙
         Me.PymntTerms.Multiline = True
         Me.PymntTerms.Name = "PymntTerms"
         Me.PymntTerms.Size = New System.Drawing.Size(250, 40)
-        Me.PymntTerms.TabIndex = 60
+        Me.PymntTerms.TabIndex = 13
         Me.PymntTerms.Tag = Nothing
         Me.PymntTerms.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox1
+        'expirationdate
         '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.White
-        Me.C1TextBox1.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox1.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.C1TextBox1.Location = New System.Drawing.Point(97, 248)
-        Me.C1TextBox1.Multiline = True
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(250, 40)
-        Me.C1TextBox1.TabIndex = 62
-        Me.C1TextBox1.Tag = Nothing
-        Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.expirationdate.AutoSize = False
+        Me.expirationdate.BackColor = System.Drawing.Color.White
+        Me.expirationdate.BorderColor = System.Drawing.Color.Black
+        Me.expirationdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.expirationdate.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.expirationdate.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.expirationdate.Location = New System.Drawing.Point(97, 248)
+        Me.expirationdate.Multiline = True
+        Me.expirationdate.Name = "expirationdate"
+        Me.expirationdate.Size = New System.Drawing.Size(250, 40)
+        Me.expirationdate.TabIndex = 15
+        Me.expirationdate.Tag = Nothing
+        Me.expirationdate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox2
+        'conditions
         '
-        Me.C1TextBox2.AutoSize = False
-        Me.C1TextBox2.BackColor = System.Drawing.Color.White
-        Me.C1TextBox2.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox2.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox2.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.C1TextBox2.Location = New System.Drawing.Point(97, 207)
-        Me.C1TextBox2.Multiline = True
-        Me.C1TextBox2.Name = "C1TextBox2"
-        Me.C1TextBox2.Size = New System.Drawing.Size(250, 40)
-        Me.C1TextBox2.TabIndex = 64
-        Me.C1TextBox2.Tag = Nothing
-        Me.C1TextBox2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.conditions.AutoSize = False
+        Me.conditions.BackColor = System.Drawing.Color.White
+        Me.conditions.BorderColor = System.Drawing.Color.Black
+        Me.conditions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.conditions.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.conditions.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.conditions.Location = New System.Drawing.Point(97, 207)
+        Me.conditions.Multiline = True
+        Me.conditions.Name = "conditions"
+        Me.conditions.Size = New System.Drawing.Size(250, 40)
+        Me.conditions.TabIndex = 14
+        Me.conditions.Tag = Nothing
+        Me.conditions.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Cancel
         '
@@ -490,81 +494,86 @@ Partial Class 見積書表紙
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True
         '
-        'C1TextBox3
+        'cndtns_dtls1
         '
-        Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
-        Me.C1TextBox3.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox3.Location = New System.Drawing.Point(435, 84)
-        Me.C1TextBox3.Multiline = True
-        Me.C1TextBox3.Name = "C1TextBox3"
-        Me.C1TextBox3.Size = New System.Drawing.Size(500, 40)
-        Me.C1TextBox3.TabIndex = 1
-        Me.C1TextBox3.Tag = Nothing
-        Me.C1TextBox3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.cndtns_dtls1.AutoSize = False
+        Me.cndtns_dtls1.BackColor = System.Drawing.Color.White
+        Me.cndtns_dtls1.BorderColor = System.Drawing.Color.Black
+        Me.cndtns_dtls1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cndtns_dtls1.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.cndtns_dtls1.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.cndtns_dtls1.Location = New System.Drawing.Point(435, 84)
+        Me.cndtns_dtls1.Multiline = True
+        Me.cndtns_dtls1.Name = "cndtns_dtls1"
+        Me.cndtns_dtls1.Size = New System.Drawing.Size(500, 40)
+        Me.cndtns_dtls1.TabIndex = 16
+        Me.cndtns_dtls1.Tag = Nothing
+        Me.cndtns_dtls1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox4
+        'cndtns_dtls2
         '
-        Me.C1TextBox4.AutoSize = False
-        Me.C1TextBox4.BackColor = System.Drawing.Color.White
-        Me.C1TextBox4.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox4.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox4.Location = New System.Drawing.Point(435, 125)
-        Me.C1TextBox4.Multiline = True
-        Me.C1TextBox4.Name = "C1TextBox4"
-        Me.C1TextBox4.Size = New System.Drawing.Size(500, 40)
-        Me.C1TextBox4.TabIndex = 3
-        Me.C1TextBox4.Tag = Nothing
-        Me.C1TextBox4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.cndtns_dtls2.AutoSize = False
+        Me.cndtns_dtls2.BackColor = System.Drawing.Color.White
+        Me.cndtns_dtls2.BorderColor = System.Drawing.Color.Black
+        Me.cndtns_dtls2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cndtns_dtls2.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.cndtns_dtls2.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.cndtns_dtls2.Location = New System.Drawing.Point(435, 125)
+        Me.cndtns_dtls2.Multiline = True
+        Me.cndtns_dtls2.Name = "cndtns_dtls2"
+        Me.cndtns_dtls2.Size = New System.Drawing.Size(500, 40)
+        Me.cndtns_dtls2.TabIndex = 17
+        Me.cndtns_dtls2.Tag = Nothing
+        Me.cndtns_dtls2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox5
+        'cndtns_dtls3
         '
-        Me.C1TextBox5.AutoSize = False
-        Me.C1TextBox5.BackColor = System.Drawing.Color.White
-        Me.C1TextBox5.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox5.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox5.Location = New System.Drawing.Point(435, 166)
-        Me.C1TextBox5.Multiline = True
-        Me.C1TextBox5.Name = "C1TextBox5"
-        Me.C1TextBox5.Size = New System.Drawing.Size(500, 40)
-        Me.C1TextBox5.TabIndex = 5
-        Me.C1TextBox5.Tag = Nothing
-        Me.C1TextBox5.Value = ""
-        Me.C1TextBox5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.cndtns_dtls3.AutoSize = False
+        Me.cndtns_dtls3.BackColor = System.Drawing.Color.White
+        Me.cndtns_dtls3.BorderColor = System.Drawing.Color.Black
+        Me.cndtns_dtls3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cndtns_dtls3.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.cndtns_dtls3.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.cndtns_dtls3.Location = New System.Drawing.Point(435, 166)
+        Me.cndtns_dtls3.Multiline = True
+        Me.cndtns_dtls3.Name = "cndtns_dtls3"
+        Me.cndtns_dtls3.Size = New System.Drawing.Size(500, 40)
+        Me.cndtns_dtls3.TabIndex = 18
+        Me.cndtns_dtls3.Tag = Nothing
+        Me.cndtns_dtls3.Value = ""
+        Me.cndtns_dtls3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox6
+        'cndtns_dtls4
         '
-        Me.C1TextBox6.AutoSize = False
-        Me.C1TextBox6.BackColor = System.Drawing.Color.White
-        Me.C1TextBox6.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox6.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox6.Location = New System.Drawing.Point(435, 207)
-        Me.C1TextBox6.Multiline = True
-        Me.C1TextBox6.Name = "C1TextBox6"
-        Me.C1TextBox6.Size = New System.Drawing.Size(500, 40)
-        Me.C1TextBox6.TabIndex = 7
-        Me.C1TextBox6.Tag = Nothing
-        Me.C1TextBox6.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.cndtns_dtls4.AutoSize = False
+        Me.cndtns_dtls4.BackColor = System.Drawing.Color.White
+        Me.cndtns_dtls4.BorderColor = System.Drawing.Color.Black
+        Me.cndtns_dtls4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cndtns_dtls4.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.cndtns_dtls4.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.cndtns_dtls4.Location = New System.Drawing.Point(435, 207)
+        Me.cndtns_dtls4.Multiline = True
+        Me.cndtns_dtls4.Name = "cndtns_dtls4"
+        Me.cndtns_dtls4.Size = New System.Drawing.Size(500, 40)
+        Me.cndtns_dtls4.TabIndex = 19
+        Me.cndtns_dtls4.Tag = Nothing
+        Me.cndtns_dtls4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox7
+        'cndtns_dtls5
         '
-        Me.C1TextBox7.AutoSize = False
-        Me.C1TextBox7.BackColor = System.Drawing.Color.White
-        Me.C1TextBox7.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox7.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox7.Location = New System.Drawing.Point(435, 248)
-        Me.C1TextBox7.Multiline = True
-        Me.C1TextBox7.Name = "C1TextBox7"
-        Me.C1TextBox7.Size = New System.Drawing.Size(500, 40)
-        Me.C1TextBox7.TabIndex = 76
-        Me.C1TextBox7.Tag = Nothing
-        Me.C1TextBox7.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.cndtns_dtls5.AutoSize = False
+        Me.cndtns_dtls5.BackColor = System.Drawing.Color.White
+        Me.cndtns_dtls5.BorderColor = System.Drawing.Color.Black
+        Me.cndtns_dtls5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cndtns_dtls5.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.cndtns_dtls5.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.cndtns_dtls5.Location = New System.Drawing.Point(435, 248)
+        Me.cndtns_dtls5.Multiline = True
+        Me.cndtns_dtls5.Name = "cndtns_dtls5"
+        Me.cndtns_dtls5.Size = New System.Drawing.Size(500, 40)
+        Me.cndtns_dtls5.TabIndex = 20
+        Me.cndtns_dtls5.Tag = Nothing
+        Me.cndtns_dtls5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label2
         '
@@ -631,7 +640,7 @@ Partial Class 見積書表紙
         Me.FormSplitContainer.Location = New System.Drawing.Point(0, 0)
         Me.FormSplitContainer.Margin = New System.Windows.Forms.Padding(0)
         Me.FormSplitContainer.Name = "FormSplitContainer"
-        Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
+        Me.FormSplitContainer.Panels.Add(Me.FormPanel)
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
         Me.FormSplitContainer.Size = New System.Drawing.Size(990, 662)
         Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
@@ -640,60 +649,60 @@ Partial Class 見積書表紙
         Me.FormSplitContainer.ToolTipGradient = C1.Win.C1SplitContainer.ToolTipGradient.Blue
         Me.FormSplitContainer.UseParentVisualStyle = False
         '
-        'C1SplitterPanel1
+        'FormPanel
         '
-        Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.Panel2)
-        Me.C1SplitterPanel1.Controls.Add(Me.Panel1)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit1)
-        Me.C1SplitterPanel1.Controls.Add(Me.Label6)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtTax)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtTaxLabel)
-        Me.C1SplitterPanel1.Controls.Add(Me.Discount)
-        Me.C1SplitterPanel1.Controls.Add(Me.DiscountLabel)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtAmount)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtAmountLabel)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtCodeLabel)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtCode)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtDateLabel)
-        Me.C1SplitterPanel1.Controls.Add(Me.EstmtDate)
-        Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
-        Me.C1SplitterPanel1.Height = 621
-        Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
-        Me.C1SplitterPanel1.ResizeWhileDragging = True
-        Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
-        Me.C1SplitterPanel1.SizeRatio = 94.1R
-        Me.C1SplitterPanel1.TabIndex = 0
-        Me.C1SplitterPanel1.Text = "パネル1"
-        Me.C1SplitterPanel1.Width = 990
+        Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.Panel2)
+        Me.FormPanel.Controls.Add(Me.Panel1)
+        Me.FormPanel.Controls.Add(Me.EstmtTaxIn)
+        Me.FormPanel.Controls.Add(Me.Label6)
+        Me.FormPanel.Controls.Add(Me.EstmtTax)
+        Me.FormPanel.Controls.Add(Me.EstmtTaxLabel)
+        Me.FormPanel.Controls.Add(Me.Discount)
+        Me.FormPanel.Controls.Add(Me.DiscountLabel)
+        Me.FormPanel.Controls.Add(Me.EstmtAmount)
+        Me.FormPanel.Controls.Add(Me.EstmtAmountLabel)
+        Me.FormPanel.Controls.Add(Me.EstmtCodeLabel)
+        Me.FormPanel.Controls.Add(Me.EstmtCode)
+        Me.FormPanel.Controls.Add(Me.EstmtDateLabel)
+        Me.FormPanel.Controls.Add(Me.EstmtDate)
+        Me.FormPanel.Font = New System.Drawing.Font("メイリオ", 10.0!)
+        Me.FormPanel.Height = 621
+        Me.FormPanel.Location = New System.Drawing.Point(0, 0)
+        Me.FormPanel.Name = "FormPanel"
+        Me.FormPanel.ResizeWhileDragging = True
+        Me.FormPanel.Size = New System.Drawing.Size(990, 621)
+        Me.FormPanel.SizeRatio = 94.1R
+        Me.FormPanel.TabIndex = 0
+        Me.FormPanel.Text = "パネル1"
+        Me.FormPanel.Width = 990
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label18)
         Me.Panel2.Controls.Add(Me.Label17)
-        Me.Panel2.Controls.Add(Me.C1TextBox7)
+        Me.Panel2.Controls.Add(Me.cndtns_dtls5)
         Me.Panel2.Controls.Add(Me.Label11)
         Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.C1TextBox6)
+        Me.Panel2.Controls.Add(Me.cndtns_dtls4)
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Controls.Add(Me.Label10)
         Me.Panel2.Controls.Add(Me.Destination)
-        Me.Panel2.Controls.Add(Me.C1TextBox2)
+        Me.Panel2.Controls.Add(Me.conditions)
         Me.Panel2.Controls.Add(Me.PrjctNameLabel)
-        Me.Panel2.Controls.Add(Me.C1TextBox3)
+        Me.Panel2.Controls.Add(Me.cndtns_dtls1)
         Me.Panel2.Controls.Add(Me.PrjctName)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.C1TextBox5)
+        Me.Panel2.Controls.Add(Me.cndtns_dtls3)
         Me.Panel2.Controls.Add(Me.PrjctAddressLabel)
-        Me.Panel2.Controls.Add(Me.C1TextBox1)
+        Me.Panel2.Controls.Add(Me.expirationdate)
         Me.Panel2.Controls.Add(Me.PrjctAddress)
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.PymntTermsLabel)
         Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.C1TextBox4)
+        Me.Panel2.Controls.Add(Me.cndtns_dtls2)
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.PymntTerms)
         Me.Panel2.Controls.Add(Me.DestinationLabel)
@@ -857,15 +866,15 @@ Partial Class 見積書表紙
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Panel1.Controls.Add(Me.Label16)
         Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Controls.Add(Me.C1TextBox12)
+        Me.Panel1.Controls.Add(Me.pblshr_fax)
         Me.Panel1.Controls.Add(Me.Label15)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.C1TextBox10)
+        Me.Panel1.Controls.Add(Me.pblshr_tel)
         Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Controls.Add(Me.C1TextBox8)
-        Me.Panel1.Controls.Add(Me.C1TextBox9)
-        Me.Panel1.Controls.Add(Me.C1TextBox11)
+        Me.Panel1.Controls.Add(Me.pblshr_address)
+        Me.Panel1.Controls.Add(Me.pblshr_cmpnyname)
+        Me.Panel1.Controls.Add(Me.pblshr_prsdnt)
         Me.Panel1.Location = New System.Drawing.Point(28, 183)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(949, 119)
@@ -894,19 +903,20 @@ Partial Class 見積書表紙
         Me.Label12.TabIndex = 79
         Me.Label12.Text = "会社名"
         '
-        'C1TextBox12
+        'pblshr_fax
         '
-        Me.C1TextBox12.AutoSize = False
-        Me.C1TextBox12.BackColor = System.Drawing.Color.White
-        Me.C1TextBox12.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox12.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox12.Location = New System.Drawing.Point(433, 47)
-        Me.C1TextBox12.Name = "C1TextBox12"
-        Me.C1TextBox12.Size = New System.Drawing.Size(150, 20)
-        Me.C1TextBox12.TabIndex = 86
-        Me.C1TextBox12.Tag = Nothing
-        Me.C1TextBox12.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.pblshr_fax.AutoSize = False
+        Me.pblshr_fax.BackColor = System.Drawing.Color.White
+        Me.pblshr_fax.BorderColor = System.Drawing.Color.Black
+        Me.pblshr_fax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pblshr_fax.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.pblshr_fax.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.pblshr_fax.Location = New System.Drawing.Point(433, 47)
+        Me.pblshr_fax.Name = "pblshr_fax"
+        Me.pblshr_fax.Size = New System.Drawing.Size(150, 20)
+        Me.pblshr_fax.TabIndex = 9
+        Me.pblshr_fax.Tag = Nothing
+        Me.pblshr_fax.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label15
         '
@@ -945,19 +955,20 @@ Partial Class 見積書表紙
         Me.Label4.Text = "住所"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'C1TextBox10
+        'pblshr_tel
         '
-        Me.C1TextBox10.AutoSize = False
-        Me.C1TextBox10.BackColor = System.Drawing.Color.White
-        Me.C1TextBox10.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox10.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox10.Location = New System.Drawing.Point(433, 26)
-        Me.C1TextBox10.Name = "C1TextBox10"
-        Me.C1TextBox10.Size = New System.Drawing.Size(150, 20)
-        Me.C1TextBox10.TabIndex = 84
-        Me.C1TextBox10.Tag = Nothing
-        Me.C1TextBox10.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.pblshr_tel.AutoSize = False
+        Me.pblshr_tel.BackColor = System.Drawing.Color.White
+        Me.pblshr_tel.BorderColor = System.Drawing.Color.Black
+        Me.pblshr_tel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pblshr_tel.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.pblshr_tel.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.pblshr_tel.Location = New System.Drawing.Point(433, 26)
+        Me.pblshr_tel.Name = "pblshr_tel"
+        Me.pblshr_tel.Size = New System.Drawing.Size(150, 20)
+        Me.pblshr_tel.TabIndex = 8
+        Me.pblshr_tel.Tag = Nothing
+        Me.pblshr_tel.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label13
         '
@@ -972,48 +983,51 @@ Partial Class 見積書表紙
         Me.Label13.Text = "代表者名"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'C1TextBox8
+        'pblshr_address
         '
-        Me.C1TextBox8.AutoSize = False
-        Me.C1TextBox8.BackColor = System.Drawing.Color.White
-        Me.C1TextBox8.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox8.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox8.Location = New System.Drawing.Point(96, 68)
-        Me.C1TextBox8.Multiline = True
-        Me.C1TextBox8.Name = "C1TextBox8"
-        Me.C1TextBox8.Size = New System.Drawing.Size(250, 40)
-        Me.C1TextBox8.TabIndex = 78
-        Me.C1TextBox8.Tag = Nothing
-        Me.C1TextBox8.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.pblshr_address.AutoSize = False
+        Me.pblshr_address.BackColor = System.Drawing.Color.White
+        Me.pblshr_address.BorderColor = System.Drawing.Color.Black
+        Me.pblshr_address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pblshr_address.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.pblshr_address.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.pblshr_address.Location = New System.Drawing.Point(96, 68)
+        Me.pblshr_address.Multiline = True
+        Me.pblshr_address.Name = "pblshr_address"
+        Me.pblshr_address.Size = New System.Drawing.Size(250, 40)
+        Me.pblshr_address.TabIndex = 7
+        Me.pblshr_address.Tag = Nothing
+        Me.pblshr_address.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox9
+        'pblshr_cmpnyname
         '
-        Me.C1TextBox9.AutoSize = False
-        Me.C1TextBox9.BackColor = System.Drawing.Color.White
-        Me.C1TextBox9.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox9.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox9.Location = New System.Drawing.Point(96, 26)
-        Me.C1TextBox9.Name = "C1TextBox9"
-        Me.C1TextBox9.Size = New System.Drawing.Size(250, 20)
-        Me.C1TextBox9.TabIndex = 80
-        Me.C1TextBox9.Tag = Nothing
-        Me.C1TextBox9.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.pblshr_cmpnyname.AutoSize = False
+        Me.pblshr_cmpnyname.BackColor = System.Drawing.Color.White
+        Me.pblshr_cmpnyname.BorderColor = System.Drawing.Color.Black
+        Me.pblshr_cmpnyname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pblshr_cmpnyname.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.pblshr_cmpnyname.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.pblshr_cmpnyname.Location = New System.Drawing.Point(96, 26)
+        Me.pblshr_cmpnyname.Name = "pblshr_cmpnyname"
+        Me.pblshr_cmpnyname.Size = New System.Drawing.Size(250, 20)
+        Me.pblshr_cmpnyname.TabIndex = 5
+        Me.pblshr_cmpnyname.Tag = Nothing
+        Me.pblshr_cmpnyname.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox11
+        'pblshr_prsdnt
         '
-        Me.C1TextBox11.AutoSize = False
-        Me.C1TextBox11.BackColor = System.Drawing.Color.White
-        Me.C1TextBox11.BorderColor = System.Drawing.Color.Black
-        Me.C1TextBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox11.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
-        Me.C1TextBox11.Location = New System.Drawing.Point(96, 47)
-        Me.C1TextBox11.Name = "C1TextBox11"
-        Me.C1TextBox11.Size = New System.Drawing.Size(250, 20)
-        Me.C1TextBox11.TabIndex = 85
-        Me.C1TextBox11.Tag = Nothing
-        Me.C1TextBox11.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.pblshr_prsdnt.AutoSize = False
+        Me.pblshr_prsdnt.BackColor = System.Drawing.Color.White
+        Me.pblshr_prsdnt.BorderColor = System.Drawing.Color.Black
+        Me.pblshr_prsdnt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pblshr_prsdnt.DisabledForeColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(183, Byte), Integer))
+        Me.pblshr_prsdnt.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.pblshr_prsdnt.Location = New System.Drawing.Point(96, 47)
+        Me.pblshr_prsdnt.Name = "pblshr_prsdnt"
+        Me.pblshr_prsdnt.Size = New System.Drawing.Size(250, 20)
+        Me.pblshr_prsdnt.TabIndex = 6
+        Me.pblshr_prsdnt.Tag = Nothing
+        Me.pblshr_prsdnt.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'Label6
         '
@@ -1123,7 +1137,7 @@ Partial Class 見積書表紙
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstmtCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstmtDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EstmtTaxIn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstmtTax, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Discount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstmtAmount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1131,25 +1145,25 @@ Partial Class 見積書表紙
         CType(Me.PrjctName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PrjctAddress, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PymntTerms, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.expirationdate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.conditions, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cndtns_dtls1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cndtns_dtls2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cndtns_dtls3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cndtns_dtls4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cndtns_dtls5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
-        Me.C1SplitterPanel1.ResumeLayout(False)
+        Me.FormPanel.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.C1TextBox12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pblshr_fax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pblshr_tel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pblshr_address, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pblshr_cmpnyname, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pblshr_prsdnt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1159,7 +1173,7 @@ Partial Class 見積書表紙
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
-    Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents FormPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents EstmtCodeLabel As Label
     Friend WithEvents EstmtCode As C1.Win.C1Input.C1NumericEdit
@@ -1173,9 +1187,9 @@ Partial Class 見積書表紙
     Friend WithEvents PrjctAddressLabel As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents C1TextBox2 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents conditions As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents expirationdate As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents PymntTerms As C1.Win.C1Input.C1TextBox
     Friend WithEvents PymntTermsLabel As Label
@@ -1183,7 +1197,7 @@ Partial Class 見積書表紙
     Friend WithEvents DiscountLabel As Label
     Friend WithEvents EstmtAmount As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents EstmtAmountLabel As Label
-    Friend WithEvents C1NumericEdit1 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents EstmtTaxIn As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents Label6 As Label
     Friend WithEvents EstmtTax As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents EstmtTaxLabel As Label
@@ -1191,23 +1205,23 @@ Partial Class 見積書表紙
     Friend WithEvents Entry As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents cndtns_dtls1 As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents C1TextBox6 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents cndtns_dtls4 As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents C1TextBox5 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents cndtns_dtls3 As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents C1TextBox4 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox7 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox12 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox11 As C1.Win.C1Input.C1TextBox
-    Friend WithEvents C1TextBox10 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents cndtns_dtls2 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents cndtns_dtls5 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents pblshr_fax As C1.Win.C1Input.C1TextBox
+    Friend WithEvents pblshr_prsdnt As C1.Win.C1Input.C1TextBox
+    Friend WithEvents pblshr_tel As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents C1TextBox9 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents pblshr_cmpnyname As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents C1TextBox8 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents pblshr_address As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel

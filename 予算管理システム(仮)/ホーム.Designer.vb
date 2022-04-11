@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -345,10 +345,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = Nothing
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = Nothing
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
