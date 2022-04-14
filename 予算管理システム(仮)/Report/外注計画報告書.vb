@@ -130,12 +130,25 @@ Public Class 外注計画報告書
             DTRow("outsrcr_code") = Nothing
             DTRow("outsrcr_Name") = Nothing
             DTRow("amount0") = Nothing
-            DTRow("amount1") = Nothing
-            DTRow("amount2") = Nothing
-            DTRow("amount3") = Nothing
-            DTRow("amount4") = Nothing
-            DTRow("amount5") = Nothing
-            DTRow("amount6") = Nothing
+            If VendorCount >= 2 Then
+                DTRow("amount1") = Nothing
+            End If
+            If VendorCount >= 3 Then
+                DTRow("amount2") = Nothing
+            End If
+            If VendorCount >= 4 Then
+                DTRow("amount3") = Nothing
+            End If
+            If VendorCount >= 5 Then
+                DTRow("amount4") = Nothing
+            End If
+            If VendorCount >= 6 Then
+                DTRow("amount5") = Nothing
+            End If
+            If VendorCount >= 7 Then
+                DTRow("amount6") = Nothing
+            End If
+
             DT.Rows.Add(DTRow)
         Next
 

@@ -575,15 +575,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\予算管理システムレポート.flxr" />
     <Content Include="bin\Debug\Resources\Edit_source.png" />
     <None Include="bin\Debug\Resources\loader.gif" />
     <Content Include="bin\Debug\Resources\Modify.png" />
     <Content Include="bin\Debug\Resources\OpenFile.png" />
     <Content Include="bin\Debug\Resources\Search.png" />
-    <Content Include="bin\Release\予算管理システムレポート.flxr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -652,9 +648,6 @@
     <None Include="M_TOR_TOMOE.xss">
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </None>
-    <Content Include="予算管理システムレポート.flxr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />
@@ -687,6 +680,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\Debug\bin\Release\" />
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
