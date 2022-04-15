@@ -21,18 +21,18 @@ Public Class 外注計画
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"
         ReportData.DataProvider = DataProvider.OLEDB
-        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=D:\DD0000テスト工事.mdf;Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token="""
-        ReportData.RecordSource = "SELECT DISTINCT outsourcing_plans.outsrc_no,
-	outsourcing_plans.dtl_id,
-	outsourcing_plans.outsrcng_quanity,
-	outsourcing_plans.outsrcng_costea,
-	outsourcing_plans.budget_no,
-	outsourcing_plans.outsrcr_id
-FROM  outsourcing_plans
-WHERE ((outsourcing_plans.outsrc_no) =(SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND
-	((outsourcing_plans.budget_no) = (SELECT MAX(budget_no) FROM budget_summary);"
-        レポート.C1FlexReport1.DataSources.Add(ReportData)
-        レポート.C1FlexReport1.DataSourceName = ReportData.Name
+        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=" & ホーム.UserDataPath & ホーム.UserDataName & ";Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token="""
+        '        ReportData.RecordSource = "SELECT DISTINCT outsourcing_plans.outsrc_no,
+        '	outsourcing_plans.dtl_id,
+        '	outsourcing_plans.outsrcng_quanity,
+        '	outsourcing_plans.outsrcng_costea,
+        '	outsourcing_plans.budget_no,
+        '	outsourcing_plans.outsrcr_id
+        'FROM  outsourcing_plans
+        'WHERE ((outsourcing_plans.outsrc_no) =(SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND
+        '	((outsourcing_plans.budget_no) = (SELECT MAX(budget_no) FROM budget_summary);"
+        '        レポート.C1FlexReport1.DataSources.Add(ReportData)
+        '        レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
         Dim Pcode As String = ホーム.Sql.ExecuteScalar
@@ -74,12 +74,18 @@ WHERE ((outsourcing_plans.outsrc_no) =(SELECT MAX(outsrc_no) FROM OutsrcrPlan_Vi
             End If
             SelectVendorlist(Listinsert) = 協力業者選択.SelectVendorName(Listinsert)
         Next
-        レポート.C1FlexReport1.Parameters("prmOutsrcr").Value = SelectVendorlist
+        'レポート.C1FlexReport1.Parameters("prmOutsrcr").Value = SelectVendorlist
 
         Dim VendorIDList As New List(Of Integer)
 
         '業者数ループ ヘッダ作成
         For listcountloop As Integer = 0 To SelectVendorlist.Count - 1
+            Dim name As String = SelectVendorlist(listcountloop)
+            Dim field0 As TextField
+            field0 = CType(レポート.C1FlexReport1.Fields("outsrcr_name" & listcountloop), TextField)
+            field0.Text = name
+
+
             Dim code As String = 協力業者選択.SelectVendorCode(listcountloop)
             Dim field As TextField
             field = CType(レポート.C1FlexReport1.Fields("outsrcr_code" & listcountloop), TextField)
