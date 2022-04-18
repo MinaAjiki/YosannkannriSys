@@ -40,6 +40,7 @@ Public Class ホーム
     Public Reportpath As String
     Public ReportName As String
     Public BeforeForm As String
+    Public ItemSelect As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -94,8 +94,8 @@ Public Class 費用マスタ一覧
     Private Sub MasterContentsList_DoubleClick(sender As Object, e As EventArgs) Handles MasterContentsList.DoubleClick
 
         Try
+            ホーム.ItemSelect = "true"
             Dim Row As Integer = MasterContentsList.Selection.TopRow
-
             If ParentFormName = "明細書" Then
                 ホーム.Modified = "True"
                 明細書入力.DetailsList(明細書入力.SelectRow, 9) = MasterContentsList(Row, 1)
@@ -224,6 +224,10 @@ Public Class 費用マスタ一覧
                     明細書入力.DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
+
+                明細書入力.DetailsList.Focus()
+                明細書入力.DetailsList.Select(明細書入力.SelectRow, 6)
+
                 Me.Close()
 
             ElseIf ParentFormName = "代価表" Then
@@ -342,7 +346,12 @@ Public Class 費用マスタ一覧
                     ProjectCostList.MergedRanges.Add(NewRow, 4, NewRow, 5)
                     ProjectCostList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
+
+
+
                 End If
+                ProjectCostList.Focus()
+                ProjectCostList.Select(ProjectCostRow, 6)
 
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)

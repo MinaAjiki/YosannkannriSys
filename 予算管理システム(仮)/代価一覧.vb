@@ -201,6 +201,7 @@ Public Class 代価一覧
 
         Try
             Dim Row As Integer = ProjectCostList.Selection.TopRow
+            ホーム.ItemSelect = "true"
 
             If ParentFormName = "明細書" Then
                 明細書入力.DetailsList(明細書入力.SelectRow, 9) = ProjectCostList(Row, 1)
@@ -300,6 +301,9 @@ Public Class 代価一覧
 
                 End If
 
+                明細書入力.DetailsList.Focus()
+                明細書入力.DetailsList.Select(明細書入力.SelectRow, 6)
+
             ElseIf ParentFormName = "代価表" Then
 
                 Dim Count As Integer = ホーム.ProjectCostSelectRow.Count
@@ -383,7 +387,8 @@ Public Class 代価一覧
                     ProjectCostList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-
+                ProjectCostList.Focus()
+                ProjectCostList.Select(ProjectCostRow, 6)
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)
 
