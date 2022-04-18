@@ -656,6 +656,7 @@
     <None Include="M_TOR_TOMOE.xss">
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </None>
+    <None Include="予算管理システムレポート.flxr" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />
