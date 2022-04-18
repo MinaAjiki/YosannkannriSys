@@ -660,9 +660,6 @@
     <None Include="M_TOR_TOMOE.xss">
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </None>
-    <Content Include="予算管理システムレポート.flxr">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />
