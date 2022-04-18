@@ -126,8 +126,14 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.右クリックメニュー
+        Me.DetailsList.EditOptions = CType((((((C1.Win.C1FlexGrid.EditFlags.AutoSearch Or C1.Win.C1FlexGrid.EditFlags.CycleOnDoubleClick) _
+            Or C1.Win.C1FlexGrid.EditFlags.MultiCheck) _
+            Or C1.Win.C1FlexGrid.EditFlags.UseNumericEditor) _
+            Or C1.Win.C1FlexGrid.EditFlags.DelayedCommit) _
+            Or C1.Win.C1FlexGrid.EditFlags.EditOnRequest), C1.Win.C1FlexGrid.EditFlags)
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.DetailsList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
         Me.DetailsList.Location = New System.Drawing.Point(10, 65)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
@@ -146,6 +152,7 @@ Partial Class 明細書入力
         '右クリックメニュー
         '
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
@@ -271,6 +278,7 @@ Partial Class 明細書入力
         Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.CategoryList.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.CategoryList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
@@ -296,7 +304,6 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CategoryTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CategoryTotalList.ColumnInfo = resources.GetString("CategoryTotalList.ColumnInfo")
-        Me.CategoryTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.CategoryTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryTotalList.Location = New System.Drawing.Point(0, 506)
         Me.CategoryTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -364,7 +371,6 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerTotalList.ColumnInfo = resources.GetString("OutsoucerTotalList.ColumnInfo")
-        Me.OutsoucerTotalList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.OutsoucerTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerTotalList.Location = New System.Drawing.Point(0, 506)
         Me.OutsoucerTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)

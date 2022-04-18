@@ -3,12 +3,14 @@ Imports System.Windows.Forms.Form
 Imports C1.Win.C1Command
 Imports System.Data.SqlClient
 Imports C1.Win.C1Input
+Imports System.Windows.Input.Keyboard
 Public Class 代価表入力
     Public SelectRow As Integer = 1
     Public CopyList(10) As String
     Public CostID As Integer
     Public ClassCode As Integer = 0
     Public Command As String
+    Dim Key As String
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -55,15 +57,48 @@ Public Class 代価表入力
 
             Dim CopyCostID As Integer = 0
             Dim CopyClassCode As Integer = 0
-            If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+            If 作成代価選択.Visible = True Then
 
-                CopyCostID = 作成代価選択.CopyCostID
-                CopyClassCode = 作成代価選択.CopyClassCode
+                If 明細書入力.Visible = True Then
+                    If 明細書入力.DetailsList(明細書入力.SelectRow, 4) <> "" Then
+                        CostName.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 4)
+                        CostSpec.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 1, 4)
+                        CostUnit.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 5)
+                        CostQuanity.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 6)
+                    End If
+                Else
+
+                    Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                    Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                    Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+
+                    If ProjectCostList(ProjectCostRow, 4) <> "" Then
+                        CostName.Text = ProjectCostList(ProjectCostRow, 4)
+                        CostSpec.Text = ProjectCostList(ProjectCostRow + 1, 4)
+                        CostUnit.Text = ProjectCostList(ProjectCostRow + 2, 5)
+                        CostQuanity.Text = ProjectCostList(ProjectCostRow, 6)
+                    End If
+                End If
+
+                    If 作成代価選択.Text = "コピー代価選択" Then
+
+                    CopyCostID = 作成代価選択.CopyCostID
+                    CopyClassCode = 作成代価選択.CopyClassCode
+                End If
 
             End If
 
-            BreakDownList.AllowEditing = False
-            BreakDownList.ContextMenuStrip.Visible = False
+
+            If CostQuanity.Text <> "" Then
+
+                BreakDownList.AllowEditing = True
+                BreakDownList.ContextMenuStrip.Visible = True
+            Else
+
+                BreakDownList.AllowEditing = False
+                BreakDownList.ContextMenuStrip.Visible = False
+            End If
 
 
             If Me.FormBorderStyle = FormBorderStyle.Sizable Then
@@ -856,37 +891,38 @@ Public Class 代価表入力
     Private Sub BreakDownList_AfterRowColChange(sender As Object, e As RangeEventArgs) Handles BreakDownList.AfterRowColChange
 
         Try
-            Dim Col As Integer = BreakDownList.Selection.LeftCol
-            Dim Row As Integer = BreakDownList.Selection.TopRow
+            If Key = "" Then
+                Dim Col As Integer = BreakDownList.Selection.LeftCol
+                Dim Row As Integer = BreakDownList.Selection.TopRow
 
-            If Not Command = "Insert" AndAlso Not Command = "Cut" Then
+                If Not Command = "Insert" AndAlso Not Command = "Cut" Then
 
-                For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
-                    If DetailsRowCount < BreakDownList.Rows.Count - 3 Then
-                        BreakDownList.Rows(DetailsRowCount + 2).Caption = ""
+                    For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
+                        If DetailsRowCount < BreakDownList.Rows.Count - 3 Then
+                            BreakDownList.Rows(DetailsRowCount + 2).Caption = ""
+                        Else
+                            Exit For
+                        End If
+                    Next
+
+                    Dim RowNo As Integer = BreakDownList(Row, 7)
+                    If RowNo = 1 Or RowNo = 4 Then
+                        BreakDownList.Rows(Row).Caption = "▶"
+                    ElseIf RowNo = 2 Or RowNo = 5 Then
+                        BreakDownList.Rows(Row - 1).Caption = "▶"
                     Else
-                        Exit For
+                        BreakDownList.Rows(Row - 2).Caption = "▶"
                     End If
-                Next
 
-                Dim RowNo As Integer = BreakDownList(Row, 7)
-                If RowNo = 1 Or RowNo = 4 Then
-                    BreakDownList.Rows(Row).Caption = "▶"
-                ElseIf RowNo = 2 Or RowNo = 5 Then
-                    BreakDownList.Rows(Row - 1).Caption = "▶"
-                Else
-                    BreakDownList.Rows(Row - 2).Caption = "▶"
+
                 End If
 
-
+                If Col >= 6 Then
+                    BreakDownList.ImeMode = ImeMode.Disable
+                Else
+                    BreakDownList.ImeMode = ImeMode.On
+                End If
             End If
-
-            If Col = 6 Then
-                BreakDownList.ImeMode = ImeMode.Disable
-            Else
-                BreakDownList.ImeMode = ImeMode.On
-            End If
-
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -1306,6 +1342,7 @@ Public Class 代価表入力
             Dim Row As Integer = e.Row
             Dim Col As Integer = e.Col
 
+
             If Col = 6 Then
                 If IsNumeric(BreakDownList(Row, 6)) = True Then
                     If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1364,6 +1401,23 @@ Public Class 代価表入力
                     ExpensCostea.Value = Expenseea
                 End If
 
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 2 Or RowIndex = 5 Then
+                            BreakDownList.Select(Row - 1, 10)
+
+                        ElseIf RowIndex = 1 Or RowIndex = 4 Then
+                            If ホーム.ItemSelect = "true" Then
+                                BreakDownList.Select(Row + 2, 4)
+                                ホーム.ItemSelect = ""
+                            End If
+                        End If
+                    End If
+                    Key = ""
+                End If
+
             ElseIf Col = 10 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1386,6 +1440,15 @@ Public Class 代価表入力
                 LaborCostea.Value = Laborea
 
 
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 2 Or RowIndex = 5 Then
+                            BreakDownList.Select(Row - 1, 11)
+                        End If
+                    End If
+                    Key = ""
+                End If
             ElseIf Col = 11 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1408,6 +1471,15 @@ Public Class 代価表入力
                 MaterialCostea.Value = Materialea
 
 
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 2 Or RowIndex = 5 Then
+                            BreakDownList.Select(Row - 1, 12)
+                        End If
+                    End If
+                    Key = ""
+                End If
             ElseIf Col = 12 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1430,6 +1502,15 @@ Public Class 代価表入力
                 MachineCostea.Value = Machineea
 
 
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 2 Or RowIndex = 5 Then
+                            BreakDownList.Select(Row - 1, 13)
+                        End If
+                    End If
+                    Key = ""
+                End If
             ElseIf Col = 13 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1451,6 +1532,16 @@ Public Class 代価表入力
                 Dim Subcntrctea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
                 SubcntrctCostea.Value = Subcntrctea
 
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 2 Or RowIndex = 5 Then
+                            BreakDownList.Select(Row - 1, 14)
+                        End If
+                    End If
+                    Key = ""
+                End If
             ElseIf Col = 14 Then
 
 
@@ -1472,6 +1563,13 @@ Public Class 代価表入力
                 ExpenseTotal.Value = ColTotal
                 Dim Expenseea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
                 ExpensCostea.Value = Expenseea
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True AndAlso Key = "" Then
+                    Dim RowIndex As Integer = BreakDownList(Row, 7)
+                    If RowIndex = 2 Or RowIndex = 5 Then
+                        BreakDownList.Select(Row + 1, 4)
+                    End If
+                End If
 
             ElseIf Col = 4 Then
                 If Row + 3 = BreakDownList.Rows.Count Then
@@ -1515,6 +1613,27 @@ Public Class 代価表入力
 
                 End If
 
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If Key = "" Then
+                        Dim RowIndex As Integer = BreakDownList(Row, 7)
+                        If RowIndex = 3 Or RowIndex = 6 Then
+                            BreakDownList.Select(Row - 1, 5)
+                        End If
+                    End If
+                    Key = ""
+                End If
+            ElseIf Col = 5 Then
+                If IsKeyDown(Windows.Input.Key.Enter) = True AndAlso Key = "" Then
+                    Dim RowIndex As Integer = BreakDownList(Row, 7)
+                    If RowIndex = 3 Or RowIndex = 6 Then
+                        BreakDownList.Select(Row - 3, 6)
+                    End If
+                End If
+            Else
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    Key = ""
+                End If
             End If
 
             Dim DeleteRow As Integer = 0
@@ -1546,44 +1665,6 @@ Public Class 代価表入力
         End Try
 
     End Sub
-
-    'Private Sub BreakDownList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles BreakDownList.BeforeEdit
-    '    Try
-    '        If e.Row > 0 Then
-    '            If BreakDownList(e.Row, 7) = 1 Or BreakDownList(e.Row, 7) = 4 Then
-    '                If e.Col = 4 Or e.Col = 5 Then
-    '                    BreakDownList.Rows(e.Row + 2).AllowEditing = True
-    '                Else
-    '                    Dim SelectRange As CellRange = BreakDownList.GetCellRange(e.Row + 2, e.Col)
-    '                    BreakDownList.Rows(e.Row + 2).AllowEditing = False
-    '                End If
-    '            ElseIf BreakDownList(e.Row, 7) = 2 Or BreakDownList(e.Row, 7) = 5 Then
-    '                If e.Col = 4 Or e.Col = 5 Then
-    '                    BreakDownList.Rows(e.Row + 1).AllowEditing = True
-    '                Else
-    '                    BreakDownList.Rows(e.Row + 1).AllowEditing = False
-    '                End If
-    '            ElseIf BreakDownList(e.Row, 7) = 3 Or BreakDownList(e.Row, 7) = 6 Then
-    '                If e.Col = 4 Or e.Col = 5 Then
-    '                    BreakDownList.Rows(e.Row).AllowEditing = True
-    '                Else
-    '                    BreakDownList.Rows(e.Row).AllowEditing = False
-    '                End If
-    '            End If
-    '        End If
-
-    '        If e.Col = 6 Then
-    '            BreakDownList.ImeMode = ImeMode.Disable
-    '        Else
-    '            BreakDownList.ImeMode = ImeMode.On
-    '        End If
-    '    Catch ex As Exception
-    '        ホーム.ErrorMessage = ex.Message
-    '        ホーム.StackTrace = ex.StackTrace
-    '        エラー.Show()
-    '        Exit Sub
-    '    End Try
-    'End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
 
@@ -1988,8 +2069,10 @@ Public Class 代価表入力
         Try
 
             If CostQuanity.Text <> "" AndAlso CostQuanity.Value > 0 Then
-                Dim Costea As Int64 = Math.Floor(CostUnitPrice.Value / CostQuanity.Value)
-                CostCostea.Value = Costea
+                If CostUnitPrice.Text <> "" Then
+                    Dim Costea As Int64 = Math.Floor(CostUnitPrice.Value / CostQuanity.Value)
+                    CostCostea.Value = Costea
+                End If
 
                 Dim Laborea As Int64 = Math.Floor(LaborTotal.Value / CostQuanity.Value)
                 LaborCostea.Value = Laborea
@@ -2225,7 +2308,7 @@ Public Class 代価表入力
                     End If
                 End If
 
-                If SelectionCol = 6 Then
+                If SelectionCol >= 6 Then
                     BreakDownList.ImeMode = ImeMode.Disable
                 Else
                     BreakDownList.ImeMode = ImeMode.On
@@ -2259,9 +2342,11 @@ Public Class 代価表入力
     Private Sub BreakDownList_StartEdit(sender As Object, e As RowColEventArgs) Handles BreakDownList.StartEdit
         Try
 
+
             Dim SelectionCol As Integer = BreakDownList.Selection.LeftCol
 
-            If SelectionCol = 6 Then
+
+            If SelectionCol >= 6 Then
                 BreakDownList.ImeMode = ImeMode.Disable
             Else
                 BreakDownList.ImeMode = ImeMode.On
@@ -2274,5 +2359,95 @@ Public Class 代価表入力
         End Try
     End Sub
 
+    Private Sub BreakDownList_KeyDown(sender As Object, e As KeyEventArgs) Handles BreakDownList.KeyDown
+        Try
 
+
+
+            If e.KeyCode = Keys.Enter Then
+
+
+
+
+                Key = "enter"
+
+                Dim SelectionCol As Integer = BreakDownList.Selection.LeftCol
+                Dim SelectionRow As Integer = BreakDownList.Selection.TopRow
+
+                Dim RowIndex As Integer = BreakDownList(SelectionRow, 7)
+
+                If RowIndex = 3 Or RowIndex = 6 Then
+                    If SelectionCol = 4 Then
+                        SendKeys.Send("{ENTER}")
+                        BreakDownList.Select(SelectionRow - 1, 5)
+
+                    ElseIf SelectionCol = 5 Then
+                        SendKeys.Send("{ENTER}")
+                        BreakDownList.Select(SelectionRow - 3, 6)
+                    Else
+                        SendKeys.Send("{ENTER}")
+                    End If
+                ElseIf RowIndex = 2 Or RowIndex = 5 Then
+                    If SelectionCol = 6 Then
+                        SendKeys.Send("{ENTER}")
+
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 10 Then
+                        SendKeys.Send("{ENTER}")
+
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 11 Then
+                        SendKeys.Send("{ENTER}")
+
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 12 Then
+                        SendKeys.Send("{ENTER}")
+
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 13 Then
+                        SendKeys.Send("{ENTER}")
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 14 Then
+                        If BreakDownList(SelectionRow + 2, 7) = 1 Or BreakDownList(SelectionRow + 2, 7) = 4 Then
+                            BreakDownList.Select(SelectionRow + 2, 4)
+                            SendKeys.Send("{DOWN}")
+                            SendKeys.Send("{UP}")
+
+                        Else
+                            BreakDownList.Select(SelectionRow + 1, 4)
+                        End If
+                    Else
+                        SendKeys.Send("{ENTER}")
+                    End If
+                Else
+                    SendKeys.Send("{ENTER}")
+                End If
+            End If
+
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub BreakDownList_RowColChange(sender As Object, e As EventArgs) Handles BreakDownList.RowColChange
+
+        Dim SelectionCol As Integer = BreakDownList.Selection.LeftCol
+
+
+        If SelectionCol >= 6 Then
+            BreakDownList.ImeMode = ImeMode.Disable
+        Else
+            BreakDownList.ImeMode = ImeMode.On
+        End If
+    End Sub
 End Class

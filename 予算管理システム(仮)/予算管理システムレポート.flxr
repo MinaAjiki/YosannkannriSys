@@ -32146,18 +32146,19 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
     </DataSources>
     <ReportParameters>
       <ReportParameter>
-        <Name>prmOutsrcr</Name>
+        <Name>prmOutsrcr0</Name>
         <Nullable>true</Nullable>
         <AllowBlank>true</AllowBlank>
         <MultiValue>true</MultiValue>
         <Hidden>true</Hidden>
         <Prompt>出力したい業者を選択(5社まで)</Prompt>
         <AllowedValuesDefinition>
-          <Binding>
-            <DataSourceName>dsOutsrcr</DataSourceName>
-            <ValueExpression>=outsrcr_name</ValueExpression>
-            <LabelExpression>=outsrcr_name</LabelExpression>
-          </Binding>
+          <Values />
+        </AllowedValuesDefinition>
+      </ReportParameter>
+      <ReportParameter>
+        <Name>Parameter0</Name>
+        <AllowedValuesDefinition>
           <Values />
         </AllowedValuesDefinition>
       </ReportParameter>
@@ -32200,6 +32201,9 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         <SubSections>
           <SubSection>
             <Height>402</Height>
+          </SubSection>
+          <SubSection>
+            <Height>1440</Height>
           </SubSection>
         </SubSections>
         <Type>Footer</Type>
@@ -34741,137 +34745,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         </Font>
         <TextFitMode>AutoFontSize</TextFitMode>
         <Text>
-          <Expression>prmOutsrcr.Value(0)</Expression>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>Gy5</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>20385</Left>
-        <Top>938</Top>
-        <Width>2582</Width>
-        <Height>284</Height>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>メイリオ</Name>
-          <Size>9</Size>
-        </Font>
-        <TextFitMode>AutoFontSize</TextFitMode>
-        <Text>
-          <Expression>prmOutsrcr.Value(4)</Expression>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>Gy2</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
-        <Left>12420</Left>
-        <Top>953</Top>
-        <Width>2557</Width>
-        <Height>300</Height>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>メイリオ</Name>
-          <Size>10</Size>
-        </Font>
-        <TextFitMode>AutoFontSize</TextFitMode>
-        <Text>
-          <Expression>prmOutsrcr.Value(1)</Expression>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>Gy3</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
-        <Left>15075</Left>
-        <Top>953</Top>
-        <Width>2565</Width>
-        <Height>284</Height>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>メイリオ</Name>
-          <Size>10</Size>
-        </Font>
-        <TextFitMode>AutoFontSize</TextFitMode>
-        <Text>
-          <Expression>prmOutsrcr.Value(2)</Expression>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>Gy4</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>PageHeader</Section>
-        <Left>17745</Left>
-        <Top>953</Top>
-        <Width>2561</Width>
-        <Height>284</Height>
-        <Align>LeftMiddle</Align>
-        <Font>
-          <Name>メイリオ</Name>
-          <Size>10</Size>
-        </Font>
-        <TextFitMode>AutoFontSize</TextFitMode>
-        <Text>
-          <Expression>prmOutsrcr.Value(3)</Expression>
+          <Expression>prmOutsrcr0.Value</Expression>
         </Text>
       </TextField>
       <ShapeField>
