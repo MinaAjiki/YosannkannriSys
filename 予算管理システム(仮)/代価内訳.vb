@@ -73,4 +73,12 @@ Public Class 代価内訳
         Entry.ImageIndex = 3
     End Sub
 
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        代価一覧.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+        Me.Close()
+    End Sub
 End Class

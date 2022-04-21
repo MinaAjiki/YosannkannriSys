@@ -46,6 +46,7 @@ Partial Class 代価内訳
         Me.C1NumericEdit13 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit14 = New C1.Win.C1Input.C1NumericEdit()
         Me.C1NumericEdit15 = New C1.Win.C1Input.C1NumericEdit()
+        Me.ItemSelect = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.C1SplitterPanel1 = New C1.Win.C1SplitContainer.C1SplitterPanel()
@@ -583,6 +584,25 @@ Partial Class 代価内訳
         Me.C1NumericEdit15.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.C1NumericEdit15.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
+        'ItemSelect
+        '
+        Me.ItemSelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ItemSelect.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ItemSelect.FlatAppearance.BorderSize = 0
+        Me.ItemSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ItemSelect.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.ItemSelect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.ItemSelect.ImageIndex = 0
+        Me.ItemSelect.ImageList = Me.ButtonImageList
+        Me.ItemSelect.Location = New System.Drawing.Point(9, 6)
+        Me.ItemSelect.Margin = New System.Windows.Forms.Padding(0)
+        Me.ItemSelect.Name = "ItemSelect"
+        Me.ItemSelect.Size = New System.Drawing.Size(100, 30)
+        Me.ItemSelect.TabIndex = 103
+        Me.ItemSelect.Text = "項目選択"
+        Me.ItemSelect.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.ItemSelect.UseVisualStyleBackColor = True
+        '
         'Label9
         '
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
@@ -798,6 +818,7 @@ Partial Class 代価内訳
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.ItemSelect)
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
         Me.C1SplitterPanel2.Controls.Add(Me.Entry)
         Me.C1SplitterPanel2.Dock = C1.Win.C1SplitContainer.PanelDockStyle.Bottom
@@ -847,16 +868,15 @@ Partial Class 代価内訳
         '
         '代価内訳
         '
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(990, 662)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
         Me.Font = New System.Drawing.Font("メイリオ", 10.0!)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "代価内訳"
-        Me.Opacity = 0.2R
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "協力業者入力"
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
@@ -923,4 +943,5 @@ Partial Class 代価内訳
     Friend WithEvents C1NumericEdit13 As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents C1NumericEdit12 As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents C1NumericEdit11 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents ItemSelect As Button
 End Class
