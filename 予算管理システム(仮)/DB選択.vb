@@ -73,6 +73,10 @@ Public Class DB選択
             Dim OpenFileName As String = IO.Path.GetFileName(OtherFileOpenDialog.FileName)
             Dim OpenFilePath As String = IO.Path.GetDirectoryName(OtherFileOpenDialog.FileName)
 
+            If Not OpenFilePath.Last = "\" Then
+                OpenFilePath += "\"
+            End If
+
             Cursor.Current = Cursors.WaitCursor
 
             If OpenFileName.Contains(".mdf") = False Then
@@ -85,19 +89,19 @@ Public Class DB選択
                 ホーム.SystemMdf.CommandText = ""
                 ホーム.SystemMdf.Parameters.Clear()
 
-                ホーム.SystemMdf.CommandText = "SELECT Count(*) FROM userfiles WHERE filename=@filename"
+                ホーム.SystemMdf.CommandText = "SELECT Count(*) FROM userfiles WHERE filename=@filename AND filepath=@filepath"
                 ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
                 ホーム.SystemMdf.Parameters("@filename").Value = OpenFileName
+                ホーム.SystemMdf.Parameters("@filepath").Value = OpenFilePath
                 Dim Filecount As Integer = ホーム.SystemMdf.ExecuteScalar
 
                 If Filecount >= 1 Then
-                    ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate='" & Now & "' WHERE filename=@filename"
+                    ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate='" & Now & "' WHERE filename=@filename AND filepath=@filepath"
                     ホーム.SystemMdf.ExecuteNonQuery()
                 Else
                     ホーム.SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
-                    ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
                     ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
-                    ホーム.SystemMdf.Parameters("@filepath").Value = OpenFilePath
                     ホーム.SystemMdf.Parameters("@filedate").Value = Now
                     ホーム.SystemMdf.ExecuteNonQuery()
                 End If
@@ -111,7 +115,7 @@ Public Class DB選択
             ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OtherFileOpenDialog.FileName & ";Integrated Security=True"
             ホーム.Connection.Open()
             ホーム.Sql.Connection = ホーム.Connection
-            ホーム.Text = "予算管理システム　(" & OpenFilePath & "\" & OpenFileName & ")"
+            ホーム.Text = "予算管理システム　(" & OpenFilePath & OpenFileName & ")"
 
 
             Me.Close()
@@ -175,7 +179,7 @@ Public Class DB選択
             ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & OpenFileName.Data & ";Integrated Security=True"
             ホーム.Connection.Open()
             ホーム.Sql.Connection = ホーム.Connection
-            ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & "\" & OpenFileName.Data & ")"
+            ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & OpenFileName.Data & ")"
             ホーム.UserDataPath = OpenFilePath.Data
             ホーム.UserDataName = OpenFileName.Data
 

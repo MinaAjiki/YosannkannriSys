@@ -39,6 +39,8 @@ Public Class ホーム
     Public ExpnsbdName As String
     Public Reportpath As String
     Public ReportName As String
+    Public BeforeForm As String
+    Public ItemSelect As String
 
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -258,6 +260,7 @@ Public Class ホーム
             FormClose = FormCloseLoad.FormCheck
         End If
 
+            BeforeForm = "予算"
             大工種選択.TopLevel = False
             FormPanel.Controls.Add(大工種選択)
             大工種選択.Show()
@@ -944,7 +947,10 @@ Public Class ホーム
                 FormClose = FormCloseLoad.FormCheck
             End If
 
-            見積掛率入力.ShowDialog()
+            BeforeForm = "見積"
+            大工種選択.TopLevel = False
+            FormPanel.Controls.Add(大工種選択)
+            大工種選択.Show()
 
         Catch ex As Exception
             ErrorMessage = ex.Message
@@ -952,5 +958,50 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub 見積表紙_Click(sender As Object, e As ClickEventArgs) Handles 見積表紙.Click
+        ReportName = "見積書"
+        レポート.Show()
+    End Sub
+
+    Private Sub 値引き無_Click(sender As Object, e As ClickEventArgs) Handles 値引き無.Click
+        ReportName = "見積書_値引き無"
+        レポート.Show()
+    End Sub
+
+    Private Sub 値引き有_Click(sender As Object, e As ClickEventArgs) Handles 値引き有.Click
+        ReportName = "見積書_値引き有"
+        レポート.Show()
+    End Sub
+
+    Private Sub 見積条件詳細_Click(sender As Object, e As ClickEventArgs) Handles 見積条件詳細.Click
+        ReportName = "見積条件詳細"
+        レポート.Show()
+    End Sub
+
+    Private Sub 金込_Click(sender As Object, e As ClickEventArgs) Handles 金込.Click
+        ReportName = "見積内訳"
+        レポート.Show()
+    End Sub
+
+    Private Sub 金抜_Click(sender As Object, e As ClickEventArgs) Handles 金抜.Click
+        ReportName = "見積内訳(金抜き)"
+        レポート.Show()
+    End Sub
+
+    Private Sub 見積代価_金込_Click(sender As Object, e As ClickEventArgs) Handles 見積代価_金込.Click
+        ReportName = "見積代価内訳"
+        レポート.Show()
+    End Sub
+
+    Private Sub 見積代価_金抜_Click(sender As Object, e As ClickEventArgs) Handles 見積代価_金抜.Click
+        ReportName = "見積代価内訳(金抜き)"
+        レポート.Show()
+    End Sub
+
+    Private Sub 代価_Click(sender As Object, e As ClickEventArgs) Handles 代価.Click
+        ReportName = "代価内訳書_簡易"
+        印刷代価選択.Show()
     End Sub
 End Class

@@ -2,12 +2,14 @@
 Imports System.Windows.Forms.Form
 Imports C1.Win.C1Command
 Imports System.Data.SqlClient
+Imports System.Windows.Input.Keyboard
 Public Class 明細書入力
     Public SelectRow As Integer = 0
     Public CopyList(10) As String
     Dim outsrcr_x As Integer = 0
     Dim outsrcr_y As Integer = 0
     Public Command As String
+    Dim Key As String
 
 
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +17,8 @@ Public Class 明細書入力
         Try
 
             Me.TopMost = False
+            Cursor.Current = Cursors.WaitCursor
+
 
             SWorkType.Value = ホーム.sworktypecode & " " & ホーム.sworktypename
             DetailsList(0, 2) = "削除"
@@ -52,7 +56,13 @@ Public Class 明細書入力
 
             Category.Checked = True
 
-
+            If ホーム.BeforeForm = "見積" Then
+                ItemSelect.Visible = False
+                CostCreation.Visible = False
+                CostModify.Visible = False
+                CostCopy.Visible = False
+                Reference.Visible = False
+            End If
 
             Me.Anchor = AnchorStyles.Top
             Me.Anchor = AnchorStyles.Left
@@ -271,6 +281,7 @@ Public Class 明細書入力
                     OutsoucerList(1, DataCount) = OutsourcersReader.Item("outsrcr_name")
                     OutsoucerList.Cols(DataCount).StyleFixedNew.WordWrap = True
                     OutsoucerList.Cols(DataCount).Width = 95
+                    OutsoucerTotalList.Cols(DataCount).Width = 95
                     OutsoucerList.Cols(DataCount).StyleFixedNew.Font = New Font("メイリオ", 8, FontStyle.Regular)
                     OutsoucerList.Cols(DataCount).StyleFixedNew.TextAlign = TextAlignEnum.LeftCenter
                     OutsoucerList.Cols(DataCount).StyleNew.Font = New Font("Arial", 9, FontStyle.Regular)
@@ -282,11 +293,12 @@ Public Class 明細書入力
                 OutsourcersReader.Close()
             End If
 
+            DetailsList.Focus()
             DetailsList.Select(3, 4)
-
 
             ホーム.Modified = "False"
 
+            Cursor.Current = Cursors.Default
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -489,32 +501,33 @@ Public Class 明細書入力
     Private Sub DetailsList_AfterRowColChange(sender As Object, e As RangeEventArgs) Handles DetailsList.AfterRowColChange
 
         Try
-            Dim Col As Integer = DetailsList.Selection.LeftCol
-            Dim Row As Integer = DetailsList.Selection.TopRow
+            If Key = "" Then
+                Dim Col As Integer = DetailsList.Selection.LeftCol
+                Dim Row As Integer = DetailsList.Selection.TopRow
 
-            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
-                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
-                    DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                    If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                        DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                Dim RowNo As Integer = DetailsList(Row, 7)
+                If RowNo = 1 Or RowNo = 4 Then
+                    DetailsList.Rows(Row).Caption = "▶"
+                ElseIf RowNo = 2 Or RowNo = 5 Then
+                    DetailsList.Rows(Row - 1).Caption = "▶"
                 Else
-                    Exit For
+                    DetailsList.Rows(Row - 2).Caption = "▶"
                 End If
-            Next
 
-            Dim RowNo As Integer = DetailsList(Row, 7)
-            If RowNo = 1 Or RowNo = 4 Then
-                DetailsList.Rows(Row).Caption = "▶"
-            ElseIf RowNo = 2 Or RowNo = 5 Then
-                DetailsList.Rows(Row - 1).Caption = "▶"
-            Else
-                DetailsList.Rows(Row - 2).Caption = "▶"
+                If Col = 6 Then
+                    DetailsList.ImeMode = ImeMode.Disable
+                Else
+                    DetailsList.ImeMode = ImeMode.On
+                End If
             End If
-
-            If Col = 6 Then
-                DetailsList.ImeMode = ImeMode.Disable
-            Else
-                DetailsList.ImeMode = ImeMode.On
-            End If
-
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -634,6 +647,34 @@ Public Class 明細書入力
             CategoryTotalList(1, Col) = ColTotal
         End If
 
+        Dim RowIndex As Integer = DetailsList(Row, 7)
+
+        If IsKeyDown(Windows.Input.Key.Enter) = True Then
+            If Col = 6 Then
+                DetailsList.Focus()
+                DetailsList.Select(Row + 2, 4)
+            End If
+            If Key = "" Then
+                Key = "enter"
+                If Col = 6 Then
+                    DetailsList.Focus()
+                    DetailsList.Select(Row + 2, 4)
+                ElseIf Col = 2 Then
+                    SendKeys.Send("{RIGHT}")
+                    SendKeys.Send("{UP}")
+                ElseIf Col = 3 Then
+                    SendKeys.Send("{RIGHT}")
+                    SendKeys.Send("{UP}")
+                ElseIf Col = 4 Then
+                    SendKeys.Send("{RIGHT}")
+                    SendKeys.Send("{UP}")
+                ElseIf Col = 5 Then
+                    SendKeys.Send("{RIGHT}")
+                    SendKeys.Send("{UP}")
+                End If
+            End If
+            Key = ""
+        End If
     End Sub
 
     Private Sub CategoryList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.BeforeEdit
@@ -648,7 +689,6 @@ Public Class 明細書入力
             CategoryList.Rows(e.Row - 2).AllowEditing = False
             CategoryList.Rows(e.Row).AllowEditing = False
         End If
-
 
     End Sub
 
@@ -1154,7 +1194,6 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
-
                 項目選択.Show()
                 項目選択.TopMost = True
                 項目選択.TopMost = False
@@ -1711,6 +1750,23 @@ Public Class 明細書入力
                     CategoryTotalList(0, 6) = ExpenseColTotal
 
                 End If
+
+                Dim RowIndex As Integer = DetailsList(Row, 7)
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    If RowIndex = 2 Or RowIndex = 5 Then
+                        CategoryList.Focus()
+                        CategoryList.Select(Row, 2)
+
+
+                    ElseIf RowIndex = 1 Or RowIndex = 4 Then
+                        If ホーム.ItemSelect = "true" Then
+                            DetailsList.Select(Row + 2, 4)
+                            ホーム.ItemSelect = ""
+                        End If
+                    End If
+                    End If
+
             ElseIf Col = 4 Then
                 If Row + 3 = DetailsList.Rows.Count Then
                     DetailsList.Rows.Add(3)
@@ -1771,6 +1827,28 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
+
+
+
+                If IsKeyDown(Windows.Input.Key.Enter) = True AndAlso Key = "" Then
+                    Key = "enter"
+                    Dim RowIndex As Integer = DetailsList(Row, 7)
+                    If RowIndex = 3 Or RowIndex = 6 Then
+                        If DetailsList(Row, 4) <> "" Then
+                            SendKeys.Send("{UP}")
+                            SendKeys.Send("{RIGHT}")
+                        End If
+
+                    End If
+                End If
+            ElseIf Col = 5 Then
+                If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                    Dim RowIndex As Integer = DetailsList(Row, 7)
+
+                    If RowIndex = 3 Or RowIndex = 6 Then
+                        DetailsList.Select(Row - 3, 6)
+                    End If
+                End If
             End If
 
             Dim DeleteRow As Integer = 0
@@ -1803,36 +1881,6 @@ Public Class 明細書入力
         End Try
 
     End Sub
-
-    'Private Sub DetailsList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.BeforeEdit
-
-    '    If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
-
-    '        If e.Col = 4 Or e.Col = 5 Then
-    '            DetailsList.Rows(e.Row + 2).AllowEditing = True
-    '        Else
-    '            DetailsList.Rows(e.Row + 2).AllowEditing = False
-    '        End If
-    '    ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
-    '        If e.Col = 4 Or e.Col = 5 Then
-    '            DetailsList.Rows(e.Row + 1).AllowEditing = True
-    '        Else
-    '            DetailsList.Rows(e.Row + 1).AllowEditing = False
-    '        End If
-    '    ElseIf DetailsList(e.Row, 7) = 3 Or DetailsList(e.Row, 7) = 6 Then
-    '        If e.Col = 4 Or e.Col = 5 Then
-    '            DetailsList.Rows(e.Row).AllowEditing = True
-    '        Else
-    '            DetailsList.Rows(e.Row).AllowEditing = False
-    '        End If
-    '    End If
-
-    '    If e.Col = 6 Then
-    '        DetailsList.ImeMode = ImeMode.Disable
-    '    Else
-    '        DetailsList.ImeMode = ImeMode.On
-    '    End If
-    'End Sub
 
     Private Sub 明細書入力_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
         Try
@@ -2090,6 +2138,8 @@ Public Class 明細書入力
 
     Private Sub DetailsList_StartEdit(sender As Object, e As RowColEventArgs) Handles DetailsList.StartEdit
         Try
+            Key = ""
+
 
             Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
 
@@ -2098,6 +2148,146 @@ Public Class 明細書入力
             Else
                 DetailsList.ImeMode = ImeMode.On
             End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub DetailsList_KeyDown(sender As Object, e As KeyEventArgs) Handles DetailsList.KeyDown
+
+        Try
+
+            If e.KeyCode = Keys.Enter Then
+
+
+
+
+                Key = "enter"
+
+                Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+                Dim SelectionRow As Integer = DetailsList.Selection.TopRow
+
+                Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
+                SendKeys.Send("{ENTER}")
+
+                If RowIndex = 3 Or RowIndex = 6 Then
+                    If SelectionCol = 4 Then
+                        DetailsList.Select(SelectionRow - 1, 5)
+
+                    ElseIf SelectionCol = 5 Then
+                        DetailsList.Select(SelectionRow - 3, 6)
+                    End If
+                End If
+            End If
+
+
+        Catch ex As Exception
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub CategoryList_KeyDown(sender As Object, e As KeyEventArgs) Handles CategoryList.KeyDown
+        Try
+
+            If e.KeyCode = Keys.Enter Then
+                Key = "enter"
+
+
+                Dim SelectionCol As Integer = CategoryList.Selection.LeftCol
+                Dim SelectionRow As Integer = CategoryList.Selection.TopRow
+
+                Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
+                SendKeys.Send("{ENTER}")
+                If RowIndex = 2 Or RowIndex = 5 Then
+                    If SelectionCol = 2 Then
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+
+                    ElseIf SelectionCol = 3 Then
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+
+                    ElseIf SelectionCol = 4 Then
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+                    ElseIf SelectionCol = 5 Then
+                        SendKeys.Send("{UP}")
+                        SendKeys.Send("{RIGHT}")
+
+                    ElseIf SelectionCol = 6 Then
+                        DetailsList.Focus()
+                        DetailsList.Select(SelectionRow + 2, 4)
+                        If SelectionRow + 3 = DetailsList.Rows.Count Then
+                            DetailsList.Rows.Add(3)
+                            CategoryList.Rows.Add(3)
+                            OutsoucerList.Rows.Add(3)
+                            Dim NewRow As Integer = SelectionRow + 3
+
+                            Dim Quanity As CellRange = DetailsList.GetCellRange(NewRow, 6)
+                            Quanity.StyleNew.Format = "N1"
+                            Dim Costea As CellRange = DetailsList.GetCellRange(NewRow + 1, 6)
+                            Costea.StyleNew.Format = "N0"
+                            Dim Amount As CellRange = DetailsList.GetCellRange(NewRow + 2, 6)
+                            Amount.StyleNew.Format = "N0"
+                            DetailsList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                            If NewRow Mod 2 = 0 Then
+                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                DetailsList(NewRow, 7) = 4
+                                DetailsList(NewRow + 1, 7) = 5
+                                DetailsList(NewRow + 2, 7) = 6
+
+                            Else
+                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+
+                                DetailsList(NewRow, 7) = 1
+                                DetailsList(NewRow + 1, 7) = 2
+                                DetailsList(NewRow + 2, 7) = 3
+
+                            End If
+
+                            DetailsList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
+                            DetailsList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
+                            DetailsList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
+                            DetailsList.MergedRanges.Add(NewRow, 4, NewRow, 5)
+                            DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
+
+                        End If
+                    End If
+
+                End If
+            End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

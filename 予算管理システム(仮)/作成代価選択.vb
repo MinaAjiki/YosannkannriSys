@@ -26,9 +26,23 @@ Public Class 作成代価選択
 
     Private Sub 作成代価選択_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+
+            Dim ClassCode As Integer = 0
+            If 明細書入力.Visible = True Then
+                ClassCode = 11
+            Else
+
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+                Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+
+                ClassCode = ProjectCostList(ProjectCostRow, 8)
+
+            End If
+
             ホーム.Sql.Parameters.Clear()
             CostsList.Items.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>" & ClassCode & " ORDER BY cstclss_code ASC"
             Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While CostClassReader.Read
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))

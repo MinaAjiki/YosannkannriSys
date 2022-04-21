@@ -37,6 +37,7 @@ Partial Class 明細書入力
         Me.CostModifyMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostCopyMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReferenceMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.SWorkType = New C1.Win.C1Input.C1TextBox()
         Me.Category = New System.Windows.Forms.RadioButton()
@@ -61,7 +62,6 @@ Partial Class 明細書入力
         Me.CostCopy = New System.Windows.Forms.Button()
         Me.CostCreation = New System.Windows.Forms.Button()
         Me.CostModify = New System.Windows.Forms.Button()
-        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,8 +126,14 @@ Partial Class 明細書入力
         Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
         Me.DetailsList.ContextMenuStrip = Me.右クリックメニュー
+        Me.DetailsList.EditOptions = CType((((((C1.Win.C1FlexGrid.EditFlags.AutoSearch Or C1.Win.C1FlexGrid.EditFlags.CycleOnDoubleClick) _
+            Or C1.Win.C1FlexGrid.EditFlags.MultiCheck) _
+            Or C1.Win.C1FlexGrid.EditFlags.UseNumericEditor) _
+            Or C1.Win.C1FlexGrid.EditFlags.DelayedCommit) _
+            Or C1.Win.C1FlexGrid.EditFlags.EditOnRequest), C1.Win.C1FlexGrid.EditFlags)
         Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailsList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.DetailsList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
         Me.DetailsList.Location = New System.Drawing.Point(10, 65)
         Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailsList.Name = "DetailsList"
@@ -146,6 +152,7 @@ Partial Class 明細書入力
         '右クリックメニュー
         '
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
@@ -206,6 +213,14 @@ Partial Class 明細書入力
         Me.ReferenceMenu.Size = New System.Drawing.Size(197, 22)
         Me.ReferenceMenu.Text = "代価表参照"
         '
+        'Delete
+        '
+        Me.Delete.Name = "Delete"
+        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.Delete.Size = New System.Drawing.Size(197, 22)
+        Me.Delete.Text = "ToolStripMenuItem1"
+        Me.Delete.Visible = False
+        '
         'SWorkType
         '
         Me.SWorkType.AutoSize = False
@@ -263,6 +278,7 @@ Partial Class 明細書入力
         Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.CategoryList.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.CategoryList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
@@ -356,7 +372,7 @@ Partial Class 明細書入力
         Me.OutsoucerTotalList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerTotalList.ColumnInfo = resources.GetString("OutsoucerTotalList.ColumnInfo")
         Me.OutsoucerTotalList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.OutsoucerTotalList.Location = New System.Drawing.Point(0, 505)
+        Me.OutsoucerTotalList.Location = New System.Drawing.Point(0, 506)
         Me.OutsoucerTotalList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerTotalList.Name = "OutsoucerTotalList"
         Me.OutsoucerTotalList.Rows.Count = 1
@@ -642,14 +658,6 @@ Partial Class 明細書入力
         Me.CostModify.Text = "　代価修正"
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
-        '
-        'Delete
-        '
-        Me.Delete.Name = "Delete"
-        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.Delete.Size = New System.Drawing.Size(197, 22)
-        Me.Delete.Text = "ToolStripMenuItem1"
-        Me.Delete.Visible = False
         '
         '明細書入力
         '

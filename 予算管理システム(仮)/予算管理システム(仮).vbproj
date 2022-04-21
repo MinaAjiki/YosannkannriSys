@@ -168,6 +168,14 @@
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Report\Export明細書.vb" />
     <Compile Include="Report\Export実行予算.vb" />
+    <Compile Include="Report\見積代価内訳_金抜き.vb" />
+    <Compile Include="Report\見積代価内訳.vb" />
+    <Compile Include="Report\見積内訳_金抜き.vb" />
+    <Compile Include="Report\見積内訳.vb" />
+    <Compile Include="Report\見積条件詳細.vb" />
+    <Compile Include="Report\見積内訳鑑_値引き有.vb" />
+    <Compile Include="Report\見積内訳鑑_値引き無.vb" />
+    <Compile Include="Report\見積書.vb" />
     <Compile Include="Report\入力表.vb" />
     <Compile Include="Report\Export外注計画.vb" />
     <Compile Include="Report\Export注文書CSV.vb" />
@@ -648,6 +656,7 @@
     <None Include="M_TOR_TOMOE.xss">
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </None>
+    <None Include="予算管理システムレポート.flxr" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />

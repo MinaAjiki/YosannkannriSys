@@ -82,6 +82,30 @@ Public Class レポート
             ElseIf ホーム.ReportName = "入力表" Then
                 Dim ReportLoadRead As New 入力表
                 ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積書" Then
+                Dim ReportLoadRead As New 見積書
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積書_値引き無" Then
+                Dim ReportLoadRead As New 見積内訳鑑_値引き無
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積書_値引き有" Then
+                Dim ReportLoadRead As New 見積内訳鑑_値引き有
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積条件詳細" Then
+                Dim ReportLoadRead As New 見積条件詳細
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積内訳" Then
+                Dim ReportLoadRead As New 見積内訳
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積内訳(金抜き)" Then
+                Dim ReportLoadRead As New 見積内訳_金抜き
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積代価内訳" Then
+                Dim ReportLoadRead As New 見積代価内訳
+                ReportLoad = ReportLoadRead.ReportLoad
+            ElseIf ホーム.ReportName = "見積代価内訳(金抜き)" Then
+                Dim ReportLoadRead As New 見積代価内訳_金抜き
+                ReportLoad = ReportLoadRead.ReportLoad
             End If
 
             Cursor.Current = Cursors.Default
