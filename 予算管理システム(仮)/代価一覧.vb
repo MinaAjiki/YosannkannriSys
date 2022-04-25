@@ -449,7 +449,83 @@ Public Class 代価一覧
             CostClassCode = CostList.Value
 
             If CostList.Text = "階層追加" Then
-                Me.Close()
+                Dim CostLists(22) As String
+                CostLists(0) = "D"
+                CostLists(1) = "E"
+                CostLists(2) = "F"
+                CostLists(3) = "G"
+                CostLists(4) = "H"
+                CostLists(5) = "I"
+                CostLists(6) = "J"
+                CostLists(7) = "K"
+                CostLists(8) = "L"
+                CostLists(9) = "M"
+                CostLists(10) = "N"
+                CostLists(11) = "O"
+                CostLists(12) = "P"
+                CostLists(13) = "Q"
+                CostLists(14) = "R"
+                CostLists(15) = "S"
+                CostLists(16) = "T"
+                CostLists(17) = "U"
+                CostLists(18) = "V"
+                CostLists(19) = "W"
+                CostLists(20) = "X"
+                CostLists(21) = "Y"
+                CostLists(22) = "Z"
+
+
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
+                Dim MaxCode As Integer = ホーム.Sql.ExecuteScalar
+
+                If CostLists((MaxCode + 1) - 15) = "Z" Then
+                    MsgBox("工事代価 Z 以上の階層は追加できません。", MsgBoxStyle.Exclamation, "作成代価選択")
+                    Me.Visible = False
+                    Exit Sub
+                End If
+
+                If MsgBox("工事代価" & CostLists((MaxCode + 1) - 15) & "を作成します。" & vbCrLf & "よろしいですか？", MsgBoxStyle.OkCancel, "代価階層追加") = MsgBoxResult.Ok Then
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.CommandText = "INSERT INTO cost_classes (cstclss_code,cstclss_name) VALUES (@cstclsscode,@cstclssname)"
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclssname", SqlDbType.NVarChar))
+                    ホーム.Sql.Parameters("@cstclsscode").Value = MaxCode + 1
+                    ホーム.Sql.Parameters("@cstclssname").Value = "工事代価" & CostLists((MaxCode + 1) - 15)
+                    ホーム.Sql.ExecuteNonQuery()
+
+                    Dim dt As DataTable
+                    dt = New DataTable
+                    dt.Columns.Add("code", GetType(System.Int32))
+                    dt.Columns.Add("name", GetType(System.String))
+                    Dim code As Int32
+                    Dim name As String
+
+                    ホーム.Sql.Parameters.Clear()
+                    CostList.Items.Clear()
+                    ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                    Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While CostClassReader.Read
+                        code = CostClassReader("cstclss_code")
+                        name = CostClassReader("cstclss_name")
+                        dt.Rows.Add(code, name)
+                    End While
+                    dt.Rows.Add(0, "階層追加")
+                    CostClassReader.Close()
+
+                    CostList.TextDetached = True
+                    CostList.ItemsDataSource = dt.DefaultView
+                    'CostList.ItemsDisplayMember = "name"
+                    'CostList.ItemsValueMember = "code"
+                    'CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                    ''CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                    'CostList.SelectedIndex = -1
+                    'CostList.Text = "工事代価を選択"
+
+                End If
+
             Else
                 ProjectCostList.Clear(ClearFlags.Content)
                 ホーム.Sql.Parameters.Clear()
