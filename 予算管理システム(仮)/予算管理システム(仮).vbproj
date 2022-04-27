@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\217003\デスクトップ\YosankanriSys\</PublishUrl>
+    <PublishUrl>C:\Users\206029\デスクトップ\YosankanriSys\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -165,6 +165,7 @@
     <Compile Include="Class\CancelClick.vb" />
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
+    <Compile Include="Class\Recalculation.vb" />
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Report\Export明細書.vb" />
     <Compile Include="Report\Export実行予算.vb" />
@@ -656,7 +657,9 @@
     <None Include="M_TOR_TOMOE.xss">
       <DependentUpon>M_TOR_TOMOE.xsd</DependentUpon>
     </None>
-    <None Include="予算管理システムレポート.flxr" />
+    <Content Include="予算管理システムレポート.flxr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Edit_source.png" />

@@ -1962,6 +1962,21 @@ Public Class 代価表入力
 
             MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
 
+
+            ホーム.Sql.Parameters.Clear()
+
+            'ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT,name )"
+            'ホーム.Sql.ExecuteNonQuery()
+
+            'ホーム.Sql.CommandText = "INSERT INTO #UpdateID (prjctcstid) VALUES (@prjctcstid)"
+            'ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstid", SqlDbType.Int)).Value = CostID
+            'ホーム.Sql.ExecuteNonQuery()
+
+            'Dim Recalculation As String = ""
+
+            'Dim RecalculationLoad As New Recalculation(ClassCode)
+            'Recalculation = RecalculationLoad.Recalculation
+
             Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
             If FormCount - 2 < 0 Then
@@ -2449,5 +2464,110 @@ Public Class 代価表入力
         Else
             BreakDownList.ImeMode = ImeMode.On
         End If
+    End Sub
+
+    Private Sub CostName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostName.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostQuanity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostQuanity.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostUnit_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostUnit.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostUnitPrice_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostUnitPrice.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostCostea_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostCostea.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostSpec_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostSpec.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostNo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CostNo.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class
