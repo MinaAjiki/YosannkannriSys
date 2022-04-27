@@ -136,6 +136,7 @@ Partial Class 代価一覧
         'CostList
         '
         Me.CostList.AllowSpinLoop = False
+        Me.CostList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.CostList.AutoSize = False
         Me.CostList.BackColor = System.Drawing.Color.White
         Me.CostList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -143,7 +144,6 @@ Partial Class 代価一覧
         Me.CostList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CostList.GapHeight = 0
         Me.CostList.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.CostList.Items.Add("A代価")
         Me.CostList.Location = New System.Drawing.Point(29, 52)
         Me.CostList.Name = "CostList"
         Me.CostList.Size = New System.Drawing.Size(111, 23)

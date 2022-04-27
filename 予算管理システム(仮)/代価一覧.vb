@@ -49,6 +49,36 @@ Public Class 代価一覧
                 End While
                 BasicCostsReader.Close()
 
+            ElseIf CostClassName = "工事代価" Then
+
+                Dim dt As DataTable
+                dt = New DataTable
+                dt.Columns.Add("code", GetType(System.Int32))
+                dt.Columns.Add("name", GetType(System.String))
+                Dim code As Int32
+                Dim name As String
+
+                ホーム.Sql.Parameters.Clear()
+                CostList.Items.Clear()
+                ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While CostClassReader.Read
+                    code = CostClassReader("cstclss_code")
+                    name = CostClassReader("cstclss_name")
+                    dt.Rows.Add(code, name)
+                End While
+                dt.Rows.Add(0, "階層追加")
+                CostClassReader.Close()
+
+                CostList.TextDetached = True
+                CostList.ItemsDataSource = dt.DefaultView
+                CostList.ItemsDisplayMember = "name"
+                CostList.ItemsValueMember = "code"
+                CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                CostList.SelectedIndex = -1
+                CostList.Text = "工事代価を選択"
+
             Else
 
                 ホーム.Sql.Parameters.Clear()
@@ -300,6 +330,7 @@ Public Class 代価一覧
                     明細書入力.DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
+                Me.Close()
 
                 明細書入力.DetailsList.Focus()
                 明細書入力.DetailsList.Select(明細書入力.SelectRow, 6)
@@ -391,10 +422,9 @@ Public Class 代価一覧
                 ProjectCostList.Select(ProjectCostRow, 6)
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)
-
+                Me.Close()
             End If
 
-            Me.Close()
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -406,6 +436,152 @@ Public Class 代価一覧
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CostList_SelectedItemChanged(sender As Object, e As EventArgs) Handles CostList.SelectedItemChanged
+
+    End Sub
+
+    Private Sub CostList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CostList.SelectedIndexChanged
+        Try
+            CostClassName = CostList.Text
+            CostClassCode = CostList.Value
+
+            If CostList.Text = "階層追加" Then
+                Dim CostLists(22) As String
+                CostLists(0) = "D"
+                CostLists(1) = "E"
+                CostLists(2) = "F"
+                CostLists(3) = "G"
+                CostLists(4) = "H"
+                CostLists(5) = "I"
+                CostLists(6) = "J"
+                CostLists(7) = "K"
+                CostLists(8) = "L"
+                CostLists(9) = "M"
+                CostLists(10) = "N"
+                CostLists(11) = "O"
+                CostLists(12) = "P"
+                CostLists(13) = "Q"
+                CostLists(14) = "R"
+                CostLists(15) = "S"
+                CostLists(16) = "T"
+                CostLists(17) = "U"
+                CostLists(18) = "V"
+                CostLists(19) = "W"
+                CostLists(20) = "X"
+                CostLists(21) = "Y"
+                CostLists(22) = "Z"
+
+
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
+                Dim MaxCode As Integer = ホーム.Sql.ExecuteScalar
+
+                If CostLists((MaxCode + 1) - 15) = "Z" Then
+                    MsgBox("工事代価 Z 以上の階層は追加できません。", MsgBoxStyle.Exclamation, "作成代価選択")
+                    Me.Visible = False
+                    Exit Sub
+                End If
+
+                If MsgBox("工事代価" & CostLists((MaxCode + 1) - 15) & "を作成します。" & vbCrLf & "よろしいですか？", MsgBoxStyle.OkCancel, "代価階層追加") = MsgBoxResult.Ok Then
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.CommandText = "INSERT INTO cost_classes (cstclss_code,cstclss_name) VALUES (@cstclsscode,@cstclssname)"
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclssname", SqlDbType.NVarChar))
+                    ホーム.Sql.Parameters("@cstclsscode").Value = MaxCode + 1
+                    ホーム.Sql.Parameters("@cstclssname").Value = "工事代価" & CostLists((MaxCode + 1) - 15)
+                    ホーム.Sql.ExecuteNonQuery()
+
+                    Dim dt As DataTable
+                    dt = New DataTable
+                    dt.Columns.Add("code", GetType(System.Int32))
+                    dt.Columns.Add("name", GetType(System.String))
+                    Dim code As Int32
+                    Dim name As String
+
+                    ホーム.Sql.Parameters.Clear()
+                    CostList.Items.Clear()
+                    ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                    Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While CostClassReader.Read
+                        code = CostClassReader("cstclss_code")
+                        name = CostClassReader("cstclss_name")
+                        dt.Rows.Add(code, name)
+                    End While
+                    dt.Rows.Add(0, "階層追加")
+                    CostClassReader.Close()
+
+                    CostList.TextDetached = True
+                    CostList.ItemsDataSource = dt.DefaultView
+                    'CostList.ItemsDisplayMember = "name"
+                    'CostList.ItemsValueMember = "code"
+                    'CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                    ''CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                    'CostList.SelectedIndex = -1
+                    'CostList.Text = "工事代価を選択"
+
+                End If
+
+            Else
+                ProjectCostList.Clear(ClearFlags.Content)
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
+                Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
+
+                If ProjectCostsCount > 21 Then
+                    ProjectCostList.Rows.Count = ProjectCostsCount + 1
+                Else
+                    ProjectCostList.Rows.Count = 22
+                End If
+
+
+                Dim RowCount As Integer = 0
+                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo & " ORDER BY prjctcst_no ASC"
+                Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While ProjectCostsReader.Read
+                    RowCount += 1
+                    ProjectCostList(RowCount, 1) = ProjectCostsReader.Item("prjctcst_id")
+                    ProjectCostList(RowCount, 3) = ProjectCostsReader.Item("prjctcst_no")
+                    ProjectCostList(RowCount, 4) = ProjectCostsReader.Item("prjctcst_name")
+                    ProjectCostList(RowCount, 5) = ProjectCostsReader.Item("prjctcst_spec")
+                    ProjectCostList(RowCount, 6) = ProjectCostsReader.Item("prjctcst_unit")
+                    ProjectCostList(RowCount, 7) = ProjectCostsReader.Item("prjctcst_quanity")
+                    ProjectCostList(RowCount, 8) = ProjectCostsReader.Item("prjctcst_costea")
+                    ProjectCostList(RowCount, 9) = Math.Floor(ProjectCostsReader.Item("prjctcst_costea") * ProjectCostsReader.Item("prjctcst_quanity"))
+                    ProjectCostList(RowCount, 10) = ProjectCostsReader.Item("prjctcst_laborea")
+                    ProjectCostList(RowCount, 11) = ProjectCostsReader.Item("prjctcst_materialea")
+                    ProjectCostList(RowCount, 12) = ProjectCostsReader.Item("prjctcst_machineea")
+                    ProjectCostList(RowCount, 13) = ProjectCostsReader.Item("prjctcst_subcntrctea")
+                    ProjectCostList(RowCount, 14) = ProjectCostsReader.Item("prjctcst_expenseea")
+
+                End While
+                ProjectCostsReader.Close()
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
+        代価内訳.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
+        代価内訳.Show()
         Me.Close()
     End Sub
 End Class

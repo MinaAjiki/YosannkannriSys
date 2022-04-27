@@ -159,24 +159,24 @@ Public Class 出来高入力
             Deadline.Text = DeadlineDate.Replace("-", "/")
 
             '外注業者テーブルからデータを取得し、コンボボックスに入れる
-            Dim dt As DataTable
-            dt = New DataTable
-            dt.Columns.Add("ID", GetType(System.Int32))
-            dt.Columns.Add("Code", GetType(System.Int32))
-            dt.Columns.Add("Name", GetType(System.String))
-            Dim id As Int32
-            Dim code As Int32
-            Dim name As String
+            'Dim dt As DataTable
+            'dt = New DataTable
+            'dt.Columns.Add("ID", GetType(System.Int32))
+            'dt.Columns.Add("Code", GetType(System.Int32))
+            'dt.Columns.Add("Name", GetType(System.String))
+            'Dim id As Int32
+            'Dim code As Int32
+            'Dim name As String
 
-            ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
-            Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While Coopreader.Read
-                id = Coopreader("outsrcr_id")
-                code = Coopreader("outsrcr_code")
-                name = Coopreader("outsrcr_name")
-                dt.Rows.Add(id, code, name)
-            End While
-            Coopreader.Close()
+            'ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+            'Dim Coopreader As SqlDataReader = ホーム.Sql.ExecuteReader
+            'While Coopreader.Read
+            '    id = Coopreader("outsrcr_id")
+            '    code = Coopreader("outsrcr_code")
+            '    name = Coopreader("outsrcr_name")
+            '    dt.Rows.Add(id, code, name)
+            'End While
+            'Coopreader.Close()
 
             '選択した業者の業者IDを取得
             If VendorList.SelectedIndex >= 0 Then
@@ -187,12 +187,20 @@ Public Class 出来高入力
             Dim Coopid As Integer = ホーム.Sql.ExecuteScalar
 
             Dim DtlIDlist As New List(Of Integer) '指定業者の明細書IDリスト
+            Dim Oquanity As Decimal
+            Dim Ocostea As Int64
 
             '外注計画テーブルから指定の外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & Coopid & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
+            ホーム.Sql.CommandText = "SELECT dtl_id,outsrcng_quanity,outsrcng_costea FROM outsourcing_plans WHERE outsrcr_id = " & Coopid & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
             Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
             While DtlID.Read
+                Oquanity = DtlID.Item("outsrcng_quanity")
+                Ocostea = DtlID.Item("outsrcng_costea")
+                '数量０単価０で登録されている明細書IDは省く
+                If Oquanity = 0 And Ocostea = 0 Then
+                    Continue While
+                End If
                 DtlIDlist.Add(DtlID.Item("dtl_id"))
             End While
             DtlID.Close()
@@ -258,8 +266,8 @@ Public Class 出来高入力
 
                 '明細書IDで明細書テーブルからデータを取得
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM details WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND budget_no = (SELECT MAX(budget_no) FROM details)"
-                Dim details As SqlDataReader = ホーム.Sql.ExecuteReader
+                    ホーム.Sql.CommandText = "SELECT * FROM details WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND budget_no = (SELECT MAX(budget_no) FROM details) ORDER BY s_worktype_code,dtl_no ASC"
+                    Dim details As SqlDataReader = ホーム.Sql.ExecuteReader
                 While details.Read
                     DetailsList(Detarow1, 1) = details.Item("dtl_id")
                     DetailsList(Detarow1, 2) = details.Item("s_worktype_code")
@@ -299,9 +307,9 @@ Public Class 出来高入力
                     Continue For
                 Else
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE  AND outsrcr_id = " & Coopid
                     ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                     ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
+                    ホーム.Sql.CommandText = "SELECT * FROM productions WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND closing_date = @DLDATE  AND outsrcr_id = " & Coopid
                     Dim production As SqlDataReader = ホーム.Sql.ExecuteReader
                     Dim LastTotal As Integer
                     Dim TotalTotal As Integer
@@ -370,6 +378,9 @@ Public Class 出来高入力
             While DetailsList.Rows.Count < 21
                 DetailsList.Rows.Add()
             End While
+            Me.DetailsList.Rows.Add()
+            Me.DetailsList.Rows.Add()
+            Me.DetailsList.Rows.Add()
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -427,12 +438,12 @@ Public Class 出来高入力
                 Cuamount = amount - Lamount
                 DetailsList(e.Row, 8) = Cuamount
                 If amount > DetailsList(e.Row, 5) Then
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
                     errorco.StyleNew.ForeColor = Color.Red
                     MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
                     ErrorCheck += 1
                 Else
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
                     errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
                     ErrorCheck -= 1
                 End If
