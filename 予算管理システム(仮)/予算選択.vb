@@ -270,6 +270,40 @@ Public Class 予算選択
                 ホーム.見積.Enabled = True
                 ホーム.外注管理.Enabled = True
 
+                ホーム.HomeTreeView.Nodes.Clear()
+
+                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=20"
+                Dim ProjectCode As String = ホーム.Sql.ExecuteScalar
+
+                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=21"
+                Dim ProjectName As String = ホーム.Sql.ExecuteScalar
+
+                ホーム.HomeTreeView.Columns(0).HeaderText = ProjectCode & " " & ProjectName
+
+                Dim index As Integer = 0
+                ホーム.Sql.CommandText = "SELECT DISTINCT l_wrktyp_code,l_wrktyp_name,s_wrktyp_code,s_wrktyp_name FROM L_worktype_total 
+                                          WHERE budget_no=" & ホーム.BudgetNo & " AND NOT l_wrktyp_code=890 
+                                          GROUP BY l_wrktyp_code,l_wrktyp_name,s_wrktyp_code,s_wrktyp_name ORDER BY l_wrktyp_code,s_wrktyp_code ASC"
+                Dim s_wrktypReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While s_wrktypReader.Read
+
+                    If ホーム.HomeTreeView.Nodes.Count = 0 Then
+                        ホーム.HomeTreeView.Nodes.Add(s_wrktypReader.Item("l_wrktyp_code") & " " & s_wrktypReader.Item("l_wrktyp_name"))
+                        ホーム.HomeTreeView.Nodes(index).Nodes.Add(s_wrktypReader.Item("s_wrktyp_code") & " " & s_wrktypReader.Item("s_wrktyp_name"))
+                    Else
+                        If ホーム.HomeTreeView.Nodes(index).GetValue = s_wrktypReader.Item("l_wrktyp_code") & " " & s_wrktypReader.Item("l_wrktyp_name") Then
+                            ホーム.HomeTreeView.Nodes(index).Nodes.Add(s_wrktypReader.Item("s_wrktyp_code") & " " & s_wrktypReader.Item("s_wrktyp_name"))
+                        Else
+                            ホーム.HomeTreeView.Nodes.Add(s_wrktypReader.Item("l_wrktyp_code") & " " & s_wrktypReader.Item("l_wrktyp_name"))
+                            index += 1
+                            ホーム.HomeTreeView.Nodes(index).Nodes.Add(s_wrktypReader.Item("s_wrktyp_code") & " " & s_wrktypReader.Item("s_wrktyp_name"))
+                        End If
+
+                    End If
+
+                End While
+                s_wrktypReader.Close()
+
             End If
 
             Me.Close()

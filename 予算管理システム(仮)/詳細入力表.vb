@@ -95,9 +95,9 @@ Public Class 詳細入力表
             Dim BlncTotal As Int64 = 0
             Dim SubjectTotal(9) As Int64
 
-            ホーム.Sql.CommandText = "SELECT * FROM subject_details WHERE budget_no=" & ホーム.BudgetNo & " ORDER BY s_wrktyp_code,dtl_no ASC"
-            Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While DetailsReader.Read
+        ホーム.Sql.CommandText = "SELECT * FROM subject_details WHERE budget_no=" & ホーム.BudgetNo & " ORDER BY s_wrktyp_code,dtl_no ASC"
+        Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
+        While DetailsReader.Read
                     RowCount += 1
                     RowNo += 1
 
@@ -174,10 +174,10 @@ Public Class 詳細入力表
             進行状況.Close()
 
         Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
@@ -195,15 +195,6 @@ Public Class 詳細入力表
         End Try
     End Sub
 
-
-    'Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-    '    Me.BackgroundWorker1.ReportProgress(10)
-
-    'End Sub
-
-    'Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-    '    進行状況.Close()
-    'End Sub
     Private Sub DetailList_DoubleClick(sender As Object, e As EventArgs) Handles DetailList.DoubleClick
         Try
             Dim range As CellRange = DetailList.CursorCell
