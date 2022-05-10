@@ -151,7 +151,7 @@ Public Class 代価表入力
                     ElseIf No.Length = 4 Then
                         No = "0" & No
                     End If
-                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+                    CostNo.Value = "第" & ClassName.Last & "-" & No & "号"
                     CostName.Text = ProjectCostsReader.Item("prjctcst_name")
                     CostSpec.Text = ProjectCostsReader.Item("prjctcst_spec")
                     CostUnit.Text = ProjectCostsReader.Item("prjctcst_unit")
@@ -313,7 +313,7 @@ Public Class 代価表入力
                         MaterialTotal.Text = TotalReader.Item("material")
                         MachineTotal.Text = TotalReader.Item("machine")
                         SubcntrctTotal.Text = TotalReader.Item("subcntrct")
-                        ExpenseTotal.Text = TotalReader.Item("expens")
+                        ExpenseTotal.Text = TotalReader.Item("expense")
                     End While
                     TotalReader.Close()
                 Else
@@ -1890,6 +1890,8 @@ Public Class 代価表入力
             Next
 
             ホーム.Transaction.Commit()
+
+
         Catch ex As Exception
             ホーム.Transaction.Rollback()
             ホーム.ErrorMessage = ex.Message
@@ -1960,22 +1962,66 @@ Public Class 代価表入力
 
             ホーム.Modified = "False"
 
-            MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
-
 
             ホーム.Sql.Parameters.Clear()
 
-            'ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT,name )"
-            'ホーム.Sql.ExecuteNonQuery()
+            ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT DEFAULT (0) NOT NULL,
+                                                              name NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              spec NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              unit NVARCHAR(5) DEFAULT ('') NOT NULL,
+                                                              costea MONEY DEFAULT (0) NOT NULL,
+                                                              labor MONEY DEFAULT (0) NOT NULL,
+                                                              material MONEY DEFAULT (0) NOT NULL,
+                                                              machine MONEY DEFAULT (0) NOT NULL,
+                                                              subcntrct MONEY DEFAULT (0) NOT NULL,
+                                                              expense MONEY DEFAULT (0) NOT NULL)"
+            ホーム.Sql.ExecuteNonQuery()
 
-            'ホーム.Sql.CommandText = "INSERT INTO #UpdateID (prjctcstid) VALUES (@prjctcstid)"
-            'ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstid", SqlDbType.Int)).Value = CostID
-            'ホーム.Sql.ExecuteNonQuery()
+            ホーム.Sql.CommandText = "INSERT INTO #UpdateID (id,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
+                                      VALUES (@id,@name,@spec,@unit,@costea,@labor,@material,@machine,@subcntrct,@expense)"
+            ホーム.Sql.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = CostID
+            ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = CostName.Value
+            If IsNothing(CostSpec.Value) = True Or Not CostSpec.Text <> "" Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = CostSpec.Value
+            End If
+            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = CostUnit.Value
+            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = CostCostea.Value
+            If IsNothing(LaborCostea.Value) = True Or IsDBNull(LaborCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = LaborCostea.Value
+            End If
+            If IsNothing(MaterialCostea.Value) = True Or IsDBNull(MaterialCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = MaterialCostea.Value
+            End If
+            If IsNothing(MachineCostea.Value) = True Or IsDBNull(MachineCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = MachineCostea.Value
+            End If
+            If IsNothing(SubcntrctCostea.Value) = True Or IsDBNull(SubcntrctCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = SubcntrctCostea.Value
+            End If
+            If IsNothing(ExpensCostea.Value) = True Or IsDBNull(ExpensCostea.Value) = True Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = 0
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = ExpensCostea.Value
+            End If
+            ホーム.Sql.ExecuteNonQuery()
 
-            'Dim Recalculation As String = ""
+            Dim Recalculation As String = ""
 
-            'Dim RecalculationLoad As New Recalculation(ClassCode)
-            'Recalculation = RecalculationLoad.Recalculation
+            Dim RecalculationLoad As New Recalculation(ClassCode)
+            Recalculation = RecalculationLoad.Recalculation
+
+            MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
+
 
             Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
