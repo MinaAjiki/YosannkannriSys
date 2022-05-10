@@ -7,6 +7,9 @@ Imports System.Windows.Forms.Form
 Public Class 予算選択
     Private Sub OK_Click(sender As Object, e As EventArgs) Handles OK.Click
         Try
+
+            Cursor.Current = Cursors.WaitCursor
+
             If ホーム.Connection.State = ConnectionState.Open Then
                 ホーム.Connection.Close()
             End If
@@ -21,6 +24,8 @@ Public Class 予算選択
                 ホーム.Text = "予算管理システム(当初)" & FilePath.Text
                 ホーム.BudgetNo = 0
             ElseIf Contract_NoList.SelectedItem = "変更予算作成" Then
+
+
                 ホーム.Transaction = ホーム.Connection.BeginTransaction
 
                 ホーム.Sql.Transaction = ホーム.Transaction
@@ -252,6 +257,7 @@ Public Class 予算選択
                 ホーム.Text = "予算管理システム" & "(第" & MaxNo + 1 & "回変更)" & FilePath.Text
                 ホーム.BudgetNo = MaxNo + 1
 
+
             Else
                 ホーム.Text = "予算管理システム" & "(" & Contract_NoList.SelectedItem & ")" & FilePath.Text
                 Dim BudgetNo As String = Contract_NoList.SelectedItem
@@ -355,6 +361,9 @@ Public Class 予算選択
                 ホーム.Enabled = True
                 Me.Close()
             End If
+
+            Cursor.Current = Cursors.Default
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

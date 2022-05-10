@@ -170,6 +170,7 @@ Partial Class 代価表入力
         '
         Me.右クリックメニュー.BackColor = System.Drawing.Color.White
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
@@ -247,6 +248,7 @@ Partial Class 代価表入力
         Me.CostNo.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CostNo.Location = New System.Drawing.Point(99, 42)
         Me.CostNo.Name = "CostNo"
+        Me.CostNo.ReadOnly = True
         Me.CostNo.Size = New System.Drawing.Size(173, 20)
         Me.CostNo.TabIndex = 1
         Me.CostNo.Tag = Nothing
