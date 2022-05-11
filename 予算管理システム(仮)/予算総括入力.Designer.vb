@@ -121,11 +121,19 @@ Partial Class 予算総括入力
         Me.C1ComboBox1 = New C1.Win.C1Input.C1ComboBox()
         Me.Year = New C1.Win.C1Input.C1ComboBox()
         Me.CnsdrtnDate = New C1.Win.C1Input.C1DateEdit()
+        Me.SubCntrctPanel = New System.Windows.Forms.Panel()
+        Me.Others = New System.Windows.Forms.RadioButton()
+        Me.City = New System.Windows.Forms.RadioButton()
+        Me.Prefecture = New System.Windows.Forms.RadioButton()
         Me.RemarksLabel = New System.Windows.Forms.Label()
         Me.SubContractRateLabel = New System.Windows.Forms.Label()
         Me.OutsourcersLabel = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.RatePanel = New System.Windows.Forms.Panel()
+        Me.Rate3 = New System.Windows.Forms.RadioButton()
+        Me.Rate2 = New System.Windows.Forms.RadioButton()
+        Me.Rate1 = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CostRateLabel = New System.Windows.Forms.Label()
         Me.BdgtDprtmntLabel = New System.Windows.Forms.Label()
@@ -220,9 +228,11 @@ Partial Class 予算総括入力
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Year, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SubCntrctPanel.SuspendLayout()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
+        Me.RatePanel.SuspendLayout()
         Me.FooterPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -567,7 +577,7 @@ Partial Class 予算総括入力
         Me.SubContractRate.Location = New System.Drawing.Point(101, 374)
         Me.SubContractRate.Multiline = True
         Me.SubContractRate.Name = "SubContractRate"
-        Me.SubContractRate.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.SubContractRate.ReadOnly = True
         Me.SubContractRate.Size = New System.Drawing.Size(372, 60)
         Me.SubContractRate.TabIndex = 24
         Me.SubContractRate.Tag = Nothing
@@ -2080,6 +2090,58 @@ Partial Class 予算総括入力
         Me.CnsdrtnDate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.DropDown
         Me.CnsdrtnDate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
+        'SubCntrctPanel
+        '
+        Me.SubCntrctPanel.BackColor = System.Drawing.Color.White
+        Me.SubCntrctPanel.Controls.Add(Me.Others)
+        Me.SubCntrctPanel.Controls.Add(Me.City)
+        Me.SubCntrctPanel.Controls.Add(Me.Prefecture)
+        Me.SubCntrctPanel.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SubCntrctPanel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.SubCntrctPanel.Location = New System.Drawing.Point(103, 376)
+        Me.SubCntrctPanel.Name = "SubCntrctPanel"
+        Me.SubCntrctPanel.Size = New System.Drawing.Size(117, 53)
+        Me.SubCntrctPanel.TabIndex = 89
+        Me.SystemTheme.SetTheme(Me.SubCntrctPanel, "(default)")
+        '
+        'Others
+        '
+        Me.Others.AutoSize = True
+        Me.Others.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Others.Location = New System.Drawing.Point(4, 37)
+        Me.Others.Name = "Others"
+        Me.Others.Size = New System.Drawing.Size(74, 22)
+        Me.Others.TabIndex = 2
+        Me.Others.TabStop = True
+        Me.Others.Text = "該当なし"
+        Me.Others.UseVisualStyleBackColor = False
+        '
+        'City
+        '
+        Me.City.AutoSize = True
+        Me.City.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.City.Location = New System.Drawing.Point(4, 18)
+        Me.City.Margin = New System.Windows.Forms.Padding(0)
+        Me.City.Name = "City"
+        Me.City.Size = New System.Drawing.Size(62, 22)
+        Me.City.TabIndex = 1
+        Me.City.TabStop = True
+        Me.City.Text = "岐阜市"
+        Me.City.UseVisualStyleBackColor = False
+        '
+        'Prefecture
+        '
+        Me.Prefecture.AutoSize = True
+        Me.Prefecture.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Prefecture.Location = New System.Drawing.Point(4, 0)
+        Me.Prefecture.Margin = New System.Windows.Forms.Padding(0)
+        Me.Prefecture.Name = "Prefecture"
+        Me.Prefecture.Size = New System.Drawing.Size(62, 22)
+        Me.Prefecture.TabIndex = 0
+        Me.Prefecture.TabStop = True
+        Me.Prefecture.Text = "岐阜県"
+        Me.Prefecture.UseVisualStyleBackColor = False
+        '
         'RemarksLabel
         '
         Me.RemarksLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
@@ -2139,6 +2201,8 @@ Partial Class 予算総括入力
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.RatePanel)
+        Me.FormPanel.Controls.Add(Me.SubCntrctPanel)
         Me.FormPanel.Controls.Add(Me.CnsdrtnDate)
         Me.FormPanel.Controls.Add(Me.Year)
         Me.FormPanel.Controls.Add(Me.Label1)
@@ -2208,6 +2272,55 @@ Partial Class 予算総括入力
         Me.FormPanel.SizeRatio = 94.1R
         Me.FormPanel.TabIndex = 0
         Me.FormPanel.Text = "パネル1"
+        '
+        'RatePanel
+        '
+        Me.RatePanel.Controls.Add(Me.Rate3)
+        Me.RatePanel.Controls.Add(Me.Rate2)
+        Me.RatePanel.Controls.Add(Me.Rate1)
+        Me.RatePanel.Location = New System.Drawing.Point(222, 376)
+        Me.RatePanel.Name = "RatePanel"
+        Me.RatePanel.Size = New System.Drawing.Size(177, 53)
+        Me.RatePanel.TabIndex = 91
+        Me.RatePanel.Visible = False
+        '
+        'Rate3
+        '
+        Me.Rate3.AutoSize = True
+        Me.Rate3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Rate3.Location = New System.Drawing.Point(4, 37)
+        Me.Rate3.Name = "Rate3"
+        Me.Rate3.Size = New System.Drawing.Size(74, 22)
+        Me.Rate3.TabIndex = 2
+        Me.Rate3.TabStop = True
+        Me.Rate3.Text = "該当なし"
+        Me.Rate3.UseVisualStyleBackColor = False
+        '
+        'Rate2
+        '
+        Me.Rate2.AutoSize = True
+        Me.Rate2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Rate2.Location = New System.Drawing.Point(4, 18)
+        Me.Rate2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Rate2.Name = "Rate2"
+        Me.Rate2.Size = New System.Drawing.Size(62, 22)
+        Me.Rate2.TabIndex = 1
+        Me.Rate2.TabStop = True
+        Me.Rate2.Text = "岐阜市"
+        Me.Rate2.UseVisualStyleBackColor = False
+        '
+        'Rate1
+        '
+        Me.Rate1.AutoSize = True
+        Me.Rate1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.Rate1.Location = New System.Drawing.Point(4, 0)
+        Me.Rate1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Rate1.Name = "Rate1"
+        Me.Rate1.Size = New System.Drawing.Size(62, 22)
+        Me.Rate1.TabIndex = 0
+        Me.Rate1.TabStop = True
+        Me.Rate1.Text = "岐阜県"
+        Me.Rate1.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -2631,10 +2744,14 @@ Partial Class 予算総括入力
         CType(Me.C1ComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Year, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CnsdrtnDate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SubCntrctPanel.ResumeLayout(False)
+        Me.SubCntrctPanel.PerformLayout()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.FormPanel.ResumeLayout(False)
         Me.FormPanel.PerformLayout()
+        Me.RatePanel.ResumeLayout(False)
+        Me.RatePanel.PerformLayout()
         Me.FooterPanel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -2769,4 +2886,12 @@ Partial Class 予算総括入力
     Friend WithEvents C1ComboBox1 As C1.Win.C1Input.C1ComboBox
     Friend WithEvents OutsrcrToolTip As ToolTip
     Friend WithEvents CnsdrtnDate As C1.Win.C1Input.C1DateEdit
+    Friend WithEvents RatePanel As Panel
+    Friend WithEvents Rate3 As RadioButton
+    Friend WithEvents Rate2 As RadioButton
+    Friend WithEvents Rate1 As RadioButton
+    Friend WithEvents SubCntrctPanel As Panel
+    Friend WithEvents Others As RadioButton
+    Friend WithEvents City As RadioButton
+    Friend WithEvents Prefecture As RadioButton
 End Class
