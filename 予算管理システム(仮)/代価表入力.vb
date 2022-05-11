@@ -14,6 +14,9 @@ Public Class 代価表入力
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+
+            Me.KeyPreview = True
+
             BreakDownList(0, 2) = "削除"
             BreakDownList(1, 2) = "削除"
             BreakDownList(2, 2) = "削除"
@@ -81,7 +84,7 @@ Public Class 代価表入力
                     End If
                 End If
 
-                    If 作成代価選択.Text = "コピー代価選択" Then
+                If 作成代価選択.Text = "コピー代価選択" Then
 
                     CopyCostID = 作成代価選択.CopyCostID
                     CopyClassCode = 作成代価選択.CopyClassCode
@@ -532,6 +535,8 @@ Public Class 代価表入力
                     作成代価選択.CopyList = BreakDownList
                     BreakDownList(SelectRow, 3) = SelectRow / 3
 
+                    作成代価選択.HeadLine.Text = "<<作成代価選択"
+                    作成代価選択.Text = "作成代価選択"
                     作成代価選択.ShowDialog()
                     作成代価選択.TopMost = True
                     作成代価選択.TopMost = False
@@ -576,6 +581,8 @@ Public Class 代価表入力
                     作成代価選択.CopyList = BreakDownList
                     BreakDownList(SelectRow, 3) = SelectRow / 3
 
+                    作成代価選択.HeadLine.Text = "<<作成代価選択"
+                    作成代価選択.Text = "作成代価選択"
                     作成代価選択.ShowDialog()
                     作成代価選択.TopMost = True
                     作成代価選択.TopMost = False
@@ -944,6 +951,8 @@ Public Class 代価表入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.PrjctCstList.Add(BreakDownList)
 
                 項目選択.TopMost = True
                 項目選択.Show()
@@ -957,8 +966,6 @@ Public Class 代価表入力
             エラー.Show()
             Exit Sub
         End Try
-
-
     End Sub
 
 
@@ -970,7 +977,16 @@ Public Class 代価表入力
                 Exit Sub
             End If
 
+
             Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+            Dim CancelClick As String = ""
+            Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
+            CancelClick = CancelClickLoad.ModifyCheck
+
+            If CancelClick = "Cancel" Then
+                Exit Sub
+            End If
 
             If FormCount - 2 < 0 Then
                 ホーム.Modified = "True"
@@ -1000,9 +1016,6 @@ Public Class 代価表入力
                 End While
                 ProjectCostReader.Close()
 
-                Dim CancelClick As String = ""
-                Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
-                CancelClick = CancelClickLoad.ModifyCheck
 
                 明細書入力.Visible = True
 
@@ -1034,9 +1047,6 @@ Public Class 代価表入力
                 End While
                 ProjectCostReader.Close()
 
-                Dim CancelClick As String = ""
-                Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
-                CancelClick = CancelClickLoad.ModifyCheck
 
                 ホーム.ProjectCostForm(FormCount - 2).Visible = True
             Else
@@ -2437,6 +2447,7 @@ Public Class 代価表入力
 
                 Dim RowIndex As Integer = BreakDownList(SelectionRow, 7)
 
+
                 If RowIndex = 3 Or RowIndex = 6 Then
                     If SelectionCol = 4 Then
                         SendKeys.Send("{ENTER}")
@@ -2451,34 +2462,24 @@ Public Class 代価表入力
                 ElseIf RowIndex = 2 Or RowIndex = 5 Then
                     If SelectionCol = 6 Then
                         SendKeys.Send("{ENTER}")
-
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                        BreakDownList.Select(SelectionRow - 1, 10)
                     ElseIf SelectionCol = 10 Then
                         SendKeys.Send("{ENTER}")
-
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                        BreakDownList.Select(SelectionRow - 1, 11)
                     ElseIf SelectionCol = 11 Then
                         SendKeys.Send("{ENTER}")
-
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                        BreakDownList.Select(SelectionRow - 1, 12)
                     ElseIf SelectionCol = 12 Then
                         SendKeys.Send("{ENTER}")
-
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                        BreakDownList.Select(SelectionRow - 1, 13)
                     ElseIf SelectionCol = 13 Then
                         SendKeys.Send("{ENTER}")
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                        BreakDownList.Select(SelectionRow - 1, 14)
                     ElseIf SelectionCol = 14 Then
                         If BreakDownList(SelectionRow + 2, 7) = 1 Or BreakDownList(SelectionRow + 2, 7) = 4 Then
                             BreakDownList.Select(SelectionRow + 2, 4)
                             SendKeys.Send("{DOWN}")
                             SendKeys.Send("{UP}")
-
                         Else
                             BreakDownList.Select(SelectionRow + 1, 4)
                         End If

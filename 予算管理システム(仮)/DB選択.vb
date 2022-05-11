@@ -134,10 +134,12 @@ Public Class DB選択
                 ホーム.見積.Enabled = True
                 ホーム.外注管理.Enabled = True
                 ホーム.出力.Enabled = True
+                ホーム.予算内訳登録.Enabled = True
 
             Else
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
+                ホーム.予算内訳登録.Enabled = False
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
                 ホーム.出力.Enabled = False
@@ -197,6 +199,7 @@ Public Class DB選択
                 ホーム.見積.Enabled = True
                 ホーム.外注管理.Enabled = True
                 ホーム.出力.Enabled = True
+                ホーム.予算内訳登録.Enabled = True
 
 
             Else
@@ -205,6 +208,8 @@ Public Class DB選択
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
                 ホーム.出力.Enabled = False
+                ホーム.予算内訳登録.Enabled = False
+
             End If
 
             Cursor.Current = Cursors.Default

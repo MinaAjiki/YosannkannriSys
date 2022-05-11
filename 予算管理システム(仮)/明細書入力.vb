@@ -16,9 +16,10 @@ Public Class 明細書入力
 
         Try
 
+            Command = "Load"
             Me.TopMost = False
             Cursor.Current = Cursors.WaitCursor
-
+            Me.KeyPreview = True
 
             SWorkType.Value = ホーム.sworktypecode & " " & ホーム.sworktypename
             DetailsList(0, 2) = "削除"
@@ -250,54 +251,11 @@ Public Class 明細書入力
             End If
 
 
-
-
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcers"
-            Dim OutsourcersCount As Integer = ホーム.Sql.ExecuteScalar
-
-            OutsoucerList.MergedRanges.Add(1, 6, 2, 6)
-            OutsoucerList.MergedRanges.Add(1, 2, 2, 2)
-            OutsoucerList.MergedRanges.Add(1, 3, 2, 3)
-            OutsoucerList.MergedRanges.Add(1, 4, 2, 4)
-            OutsoucerList.MergedRanges.Add(1, 5, 2, 5)
-
-            If OutsourcersCount > 0 Then
-                Dim ColsCount As Integer = OutsoucerList.Cols.Count - 2
-
-                If OutsourcersCount > ColsCount Then
-                    OutsoucerList.Cols.Count = OutsourcersCount + 2
-                    OutsoucerTotalList.Cols.Count = OutsourcersCount + 2
-                End If
-
-                Dim DataCount As Integer = 1
-
-                ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
-                Dim OutsourcersReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OutsourcersReader.Read
-                    DataCount += 1
-
-                    OutsoucerList.MergedRanges.Add(1, DataCount, 2, DataCount)
-                    OutsoucerList(0, DataCount) = OutsourcersReader.Item("outsrcr_code")
-                    OutsoucerList(1, DataCount) = OutsourcersReader.Item("outsrcr_name")
-                    OutsoucerList.Cols(DataCount).StyleFixedNew.WordWrap = True
-                    OutsoucerList.Cols(DataCount).Width = 95
-                    OutsoucerTotalList.Cols(DataCount).Width = 95
-                    OutsoucerList.Cols(DataCount).StyleFixedNew.Font = New Font("メイリオ", 8, FontStyle.Regular)
-                    OutsoucerList.Cols(DataCount).StyleFixedNew.TextAlign = TextAlignEnum.LeftCenter
-                    OutsoucerList.Cols(DataCount).StyleNew.Font = New Font("Arial", 9, FontStyle.Regular)
-                    OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
-                    OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
-                    OutsoucerList.Cols(DataCount).StyleNew.DataType = GetType(Decimal)
-
-                End While
-                OutsourcersReader.Close()
-            End If
-
             DetailsList.Focus()
             DetailsList.Select(3, 4)
 
             ホーム.Modified = "False"
-
+            Command = ""
             Cursor.Current = Cursors.Default
 
         Catch ex As Exception
@@ -350,6 +308,48 @@ Public Class 明細書入力
                 CategoryTotalList.Visible = False
                 OutsoucerList.Visible = True
                 OutsoucerTotalList.Visible = True
+
+
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcers"
+                Dim OutsourcersCount As Integer = ホーム.Sql.ExecuteScalar
+
+                OutsoucerList.MergedRanges.Add(1, 6, 2, 6)
+                OutsoucerList.MergedRanges.Add(1, 2, 2, 2)
+                OutsoucerList.MergedRanges.Add(1, 3, 2, 3)
+                OutsoucerList.MergedRanges.Add(1, 4, 2, 4)
+                OutsoucerList.MergedRanges.Add(1, 5, 2, 5)
+
+                If OutsourcersCount > 0 Then
+                    Dim ColsCount As Integer = OutsoucerList.Cols.Count - 2
+
+                    If OutsourcersCount > ColsCount Then
+                        OutsoucerList.Cols.Count = OutsourcersCount + 2
+                        OutsoucerTotalList.Cols.Count = OutsourcersCount + 2
+                    End If
+
+                    Dim DataCount As Integer = 1
+
+                    ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
+                    Dim OutsourcersReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While OutsourcersReader.Read
+                        DataCount += 1
+
+                        OutsoucerList.MergedRanges.Add(1, DataCount, 2, DataCount)
+                        OutsoucerList(0, DataCount) = OutsourcersReader.Item("outsrcr_code")
+                        OutsoucerList(1, DataCount) = OutsourcersReader.Item("outsrcr_name")
+                        OutsoucerList.Cols(DataCount).StyleFixedNew.WordWrap = True
+                        OutsoucerList.Cols(DataCount).Width = 95
+                        OutsoucerTotalList.Cols(DataCount).Width = 95
+                        OutsoucerList.Cols(DataCount).StyleFixedNew.Font = New Font("メイリオ", 8, FontStyle.Regular)
+                        OutsoucerList.Cols(DataCount).StyleFixedNew.TextAlign = TextAlignEnum.LeftCenter
+                        OutsoucerList.Cols(DataCount).StyleNew.Font = New Font("Arial", 9, FontStyle.Regular)
+                        OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
+                        OutsoucerList.Cols(DataCount).StyleNew.TextAlign = TextAlignEnum.RightCenter
+                        OutsoucerList.Cols(DataCount).StyleNew.DataType = GetType(Decimal)
+
+                    End While
+                    OutsourcersReader.Close()
+                End If
 
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
                 Dim TableDataCount As Integer = ホーム.Sql.ExecuteScalar
@@ -1071,7 +1071,8 @@ Public Class 明細書入力
 
 
                         作成代価選択.SelectRow = SelectRow
-
+                        作成代価選択.HeadLine.Text = "<<作成代価選択"
+                        作成代価選択.Text = "作成代価選択"
                         作成代価選択.ShowDialog()
                         作成代価選択.TopMost = True
                         作成代価選択.TopMost = False
@@ -1127,7 +1128,8 @@ Public Class 明細書入力
                         作成代価選択.SelectRow = SelectRow
 
                         DetailsList(SelectRow, 3) = SelectRow / 3
-
+                        作成代価選択.HeadLine.Text = "<<作成代価選択"
+                        作成代価選択.Text = "作成代価選択"
                         作成代価選択.ShowDialog()
                         作成代価選択.TopMost = True
                         作成代価選択.TopMost = False
@@ -1952,46 +1954,7 @@ Public Class 明細書入力
 
     Private Sub CategoryList_CellChanged(sender As Object, e As RowColEventArgs) Handles CategoryList.CellChanged
         Try
-            Dim RowNo As Integer = 0
-            Dim ColTotal As Int64 = 0
-            Dim LaborColTotal As Int64 = 0
-            Dim MaterialColTotal As Int64 = 0
-            Dim MachineColTotal As Int64 = 0
-            Dim SubcntrctColTotal As Int64 = 0
-            Dim ExpenseColTotal As Int64 = 0
-
-
-            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-
-                ColTotal += DetailsList((RowCount * 3) + 2, 6)
-                LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
-                MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
-                MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
-                SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
-                ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
-
-            Next
-
-            DetailTotal.Value = ColTotal
-            CategoryTotalList(0, 2) = LaborColTotal
-            CategoryTotalList(0, 3) = MaterialColTotal
-            CategoryTotalList(0, 4) = MachineColTotal
-            CategoryTotalList(0, 5) = SubcntrctColTotal
-            CategoryTotalList(0, 6) = ExpenseColTotal
-
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
-
-    End Sub
-
-    Private Sub DetailsList_CellChanged(sender As Object, e As RowColEventArgs) Handles DetailsList.CellChanged
-        Try
-
-            If DetailsList.Rows.Count = CategoryList.Rows.Count Then
+            If Not Command = "Load" Then
                 Dim RowNo As Integer = 0
                 Dim ColTotal As Int64 = 0
                 Dim LaborColTotal As Int64 = 0
@@ -2002,16 +1965,6 @@ Public Class 明細書入力
 
 
                 For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                    Dim Quanity As Decimal = 0
-                    If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
-                        Quanity = DetailsList(RowCount * 3, 6)
-                        DetailsList((RowCount * 3) + 2, 6) = Math.Floor(DetailsList((RowCount * 3) + 1, 6) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 2) = Math.Floor(CategoryList((RowCount * 3) + 1, 2) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 3) = Math.Floor(CategoryList((RowCount * 3) + 1, 3) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 4) = Math.Floor(CategoryList((RowCount * 3) + 1, 4) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 5) = Math.Floor(CategoryList((RowCount * 3) + 1, 5) * Quanity)
-                        CategoryList((RowCount * 3) + 2, 6) = Math.Floor(CategoryList((RowCount * 3) + 1, 6) * Quanity)
-                    End If
 
                     ColTotal += DetailsList((RowCount * 3) + 2, 6)
                     LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
@@ -2028,6 +1981,59 @@ Public Class 明細書入力
                 CategoryTotalList(0, 4) = MachineColTotal
                 CategoryTotalList(0, 5) = SubcntrctColTotal
                 CategoryTotalList(0, 6) = ExpenseColTotal
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+
+    End Sub
+
+    Private Sub DetailsList_CellChanged(sender As Object, e As RowColEventArgs) Handles DetailsList.CellChanged
+        Try
+
+            If Not Command = "Load" Then
+                If DetailsList.Rows.Count = CategoryList.Rows.Count Then
+                    Dim RowNo As Integer = 0
+                    Dim ColTotal As Int64 = 0
+                    Dim LaborColTotal As Int64 = 0
+                    Dim MaterialColTotal As Int64 = 0
+                    Dim MachineColTotal As Int64 = 0
+                    Dim SubcntrctColTotal As Int64 = 0
+                    Dim ExpenseColTotal As Int64 = 0
+
+
+                    For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                        Dim Quanity As Decimal = 0
+                        If IsDBNull(DetailsList(RowCount * 3, 6)) = False Then
+                            Quanity = DetailsList(RowCount * 3, 6)
+                            DetailsList((RowCount * 3) + 2, 6) = Math.Floor(DetailsList((RowCount * 3) + 1, 6) * Quanity)
+                            CategoryList((RowCount * 3) + 2, 2) = Math.Floor(CategoryList((RowCount * 3) + 1, 2) * Quanity)
+                            CategoryList((RowCount * 3) + 2, 3) = Math.Floor(CategoryList((RowCount * 3) + 1, 3) * Quanity)
+                            CategoryList((RowCount * 3) + 2, 4) = Math.Floor(CategoryList((RowCount * 3) + 1, 4) * Quanity)
+                            CategoryList((RowCount * 3) + 2, 5) = Math.Floor(CategoryList((RowCount * 3) + 1, 5) * Quanity)
+                            CategoryList((RowCount * 3) + 2, 6) = Math.Floor(CategoryList((RowCount * 3) + 1, 6) * Quanity)
+                        End If
+
+                        ColTotal += DetailsList((RowCount * 3) + 2, 6)
+                        LaborColTotal += CategoryList((RowCount * 3) + 2, 2)
+                        MaterialColTotal += CategoryList((RowCount * 3) + 2, 3)
+                        MachineColTotal += CategoryList((RowCount * 3) + 2, 4)
+                        SubcntrctColTotal += CategoryList((RowCount * 3) + 2, 5)
+                        ExpenseColTotal += CategoryList((RowCount * 3) + 2, 6)
+
+                    Next
+
+                    DetailTotal.Value = ColTotal
+                    CategoryTotalList(0, 2) = LaborColTotal
+                    CategoryTotalList(0, 3) = MaterialColTotal
+                    CategoryTotalList(0, 4) = MachineColTotal
+                    CategoryTotalList(0, 5) = SubcntrctColTotal
+                    CategoryTotalList(0, 6) = ExpenseColTotal
+                End If
+
             End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
