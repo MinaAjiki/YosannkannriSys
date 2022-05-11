@@ -244,7 +244,7 @@ Partial Class 予算総括入力
         Me.HeadLine.Location = New System.Drawing.Point(14, 14)
         Me.HeadLine.Name = "HeadLine"
         Me.HeadLine.Size = New System.Drawing.Size(104, 18)
-        Me.HeadLine.TabIndex = 25
+        Me.HeadLine.TabIndex = 0
         Me.HeadLine.Text = "<< 予算総括入力"
         '
         'ButtonImageList
@@ -512,6 +512,7 @@ Partial Class 予算総括入力
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.Amount.EditFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.[Integer]
         Me.Amount.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat Or C1.Win.C1Input.FormatInfoInheritFlags.NullText) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
@@ -561,7 +562,7 @@ Partial Class 予算総括入力
         Me.Remarks.Name = "Remarks"
         Me.Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Remarks.Size = New System.Drawing.Size(372, 60)
-        Me.Remarks.TabIndex = 25
+        Me.Remarks.TabIndex = 30
         Me.Remarks.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.Remarks, "予算管理テーマ")
         Me.Remarks.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -601,7 +602,7 @@ Partial Class 予算総括入力
         Me.OutsoucersList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.OutsoucersList.Size = New System.Drawing.Size(372, 122)
         Me.OutsoucersList.StyleInfo = resources.GetString("OutsoucersList.StyleInfo")
-        Me.OutsoucersList.TabIndex = 25
+        Me.OutsoucersList.TabIndex = 31
         Me.SystemTheme.SetTheme(Me.OutsoucersList, "予算管理テーマ")
         '
         'Department
@@ -713,6 +714,8 @@ Partial Class 予算総括入力
         '
         'Manager
         '
+        Me.Manager.AcceptsReturn = True
+        Me.Manager.AcceptsTab = True
         Me.Manager.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.Manager.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.Manager.AutoSize = False
@@ -841,7 +844,7 @@ Partial Class 予算総括入力
         Me.BdgtDprtmnt.Name = "BdgtDprtmnt"
         Me.BdgtDprtmnt.Size = New System.Drawing.Size(114, 20)
         Me.BdgtDprtmnt.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.BdgtDprtmnt.TabIndex = 26
+        Me.BdgtDprtmnt.TabIndex = 32
         Me.BdgtDprtmnt.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.BdgtDprtmnt, "予算管理テーマ")
         Me.BdgtDprtmnt.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -862,7 +865,7 @@ Partial Class 予算総括入力
         Me.ExpenseRate.Name = "ExpenseRate"
         Me.ExpenseRate.NullText = "0.00"
         Me.ExpenseRate.Size = New System.Drawing.Size(61, 20)
-        Me.ExpenseRate.TabIndex = 27
+        Me.ExpenseRate.TabIndex = 33
         Me.ExpenseRate.Tag = Nothing
         Me.ExpenseRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.ExpenseRate, "予算管理テーマ")
@@ -1316,7 +1319,7 @@ Partial Class 予算総括入力
         Me.ProjectAmount.Name = "ProjectAmount"
         Me.ProjectAmount.NullText = "0"
         Me.ProjectAmount.Size = New System.Drawing.Size(120, 20)
-        Me.ProjectAmount.TabIndex = 88
+        Me.ProjectAmount.TabIndex = 0
         Me.ProjectAmount.Tag = Nothing
         Me.ProjectAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ProjectAmount.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -1330,7 +1333,7 @@ Partial Class 予算総括入力
         Me.ProjectAmountLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ProjectAmountLabel.Name = "ProjectAmountLabel"
         Me.ProjectAmountLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ProjectAmountLabel.TabIndex = 87
+        Me.ProjectAmountLabel.TabIndex = 0
         Me.ProjectAmountLabel.Text = "請負金額"
         Me.ProjectAmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1422,7 +1425,7 @@ Partial Class 予算総括入力
         Me.Mtrldffrnc.Name = "Mtrldffrnc"
         Me.Mtrldffrnc.NullText = "0"
         Me.Mtrldffrnc.Size = New System.Drawing.Size(120, 20)
-        Me.Mtrldffrnc.TabIndex = 94
+        Me.Mtrldffrnc.TabIndex = 0
         Me.Mtrldffrnc.Tag = Nothing
         Me.Mtrldffrnc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.Mtrldffrnc.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -1435,7 +1438,7 @@ Partial Class 予算総括入力
         Me.ExpectedTotalLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ExpectedTotalLabel.Name = "ExpectedTotalLabel"
         Me.ExpectedTotalLabel.Size = New System.Drawing.Size(107, 20)
-        Me.ExpectedTotalLabel.TabIndex = 95
+        Me.ExpectedTotalLabel.TabIndex = 0
         Me.ExpectedTotalLabel.Text = "合算見込"
         Me.ExpectedTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1460,7 +1463,7 @@ Partial Class 予算総括入力
         Me.DrctCnstrctnCst.Name = "DrctCnstrctnCst"
         Me.DrctCnstrctnCst.NullText = "0"
         Me.DrctCnstrctnCst.Size = New System.Drawing.Size(120, 20)
-        Me.DrctCnstrctnCst.TabIndex = 90
+        Me.DrctCnstrctnCst.TabIndex = 0
         Me.DrctCnstrctnCst.Tag = Nothing
         Me.DrctCnstrctnCst.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.DrctCnstrctnCst.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -1473,7 +1476,7 @@ Partial Class 予算総括入力
         Me.Label35.Margin = New System.Windows.Forms.Padding(0)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(17, 20)
-        Me.Label35.TabIndex = 88
+        Me.Label35.TabIndex = 0
         Me.Label35.Text = "%"
         Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SystemTheme.SetTheme(Me.Label35, "(default)")
@@ -1485,7 +1488,7 @@ Partial Class 予算総括入力
         Me.Label34.Margin = New System.Windows.Forms.Padding(0)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(17, 20)
-        Me.Label34.TabIndex = 87
+        Me.Label34.TabIndex = 0
         Me.Label34.Text = "%"
         Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SystemTheme.SetTheme(Me.Label34, "(default)")
@@ -1498,7 +1501,7 @@ Partial Class 予算総括入力
         Me.MtrldffrncLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.MtrldffrncLabel.Name = "MtrldffrncLabel"
         Me.MtrldffrncLabel.Size = New System.Drawing.Size(107, 20)
-        Me.MtrldffrncLabel.TabIndex = 93
+        Me.MtrldffrncLabel.TabIndex = 0
         Me.MtrldffrncLabel.Text = "材料差額"
         Me.MtrldffrncLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1548,7 +1551,7 @@ Partial Class 予算総括入力
         Me.TmprryExpnssLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.TmprryExpnssLabel.Name = "TmprryExpnssLabel"
         Me.TmprryExpnssLabel.Size = New System.Drawing.Size(107, 20)
-        Me.TmprryExpnssLabel.TabIndex = 91
+        Me.TmprryExpnssLabel.TabIndex = 0
         Me.TmprryExpnssLabel.Text = "仮設費"
         Me.TmprryExpnssLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1573,7 +1576,7 @@ Partial Class 予算総括入力
         Me.TmprryExpnss.Name = "TmprryExpnss"
         Me.TmprryExpnss.NullText = "0"
         Me.TmprryExpnss.Size = New System.Drawing.Size(120, 20)
-        Me.TmprryExpnss.TabIndex = 92
+        Me.TmprryExpnss.TabIndex = 0
         Me.TmprryExpnss.Tag = Nothing
         Me.TmprryExpnss.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TmprryExpnss.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -1611,7 +1614,7 @@ Partial Class 予算総括入力
         Me.MtrldffrncRate.Name = "MtrldffrncRate"
         Me.MtrldffrncRate.NullText = "0.0"
         Me.MtrldffrncRate.Size = New System.Drawing.Size(44, 20)
-        Me.MtrldffrncRate.TabIndex = 2
+        Me.MtrldffrncRate.TabIndex = 0
         Me.MtrldffrncRate.Tag = Nothing
         Me.MtrldffrncRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.MtrldffrncRate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -1625,7 +1628,7 @@ Partial Class 予算総括入力
         Me.DrctCnstrctnCstLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.DrctCnstrctnCstLabel.Name = "DrctCnstrctnCstLabel"
         Me.DrctCnstrctnCstLabel.Size = New System.Drawing.Size(107, 20)
-        Me.DrctCnstrctnCstLabel.TabIndex = 89
+        Me.DrctCnstrctnCstLabel.TabIndex = 0
         Me.DrctCnstrctnCstLabel.Text = "直工"
         Me.DrctCnstrctnCstLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1661,7 +1664,7 @@ Partial Class 予算総括入力
         Me.TmprryExpnssRate.Name = "TmprryExpnssRate"
         Me.TmprryExpnssRate.NullText = "0.0"
         Me.TmprryExpnssRate.Size = New System.Drawing.Size(44, 20)
-        Me.TmprryExpnssRate.TabIndex = 1
+        Me.TmprryExpnssRate.TabIndex = 0
         Me.TmprryExpnssRate.Tag = Nothing
         Me.TmprryExpnssRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TmprryExpnssRate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
@@ -1747,7 +1750,7 @@ Partial Class 予算総括入力
         Me.Authorizer5.Location = New System.Drawing.Point(121, 88)
         Me.Authorizer5.Name = "Authorizer5"
         Me.Authorizer5.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer5.TabIndex = 32
+        Me.Authorizer5.TabIndex = 38
         Me.Authorizer5.Tag = Nothing
         Me.Authorizer5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1760,7 +1763,7 @@ Partial Class 予算総括入力
         Me.Authorizer4.Location = New System.Drawing.Point(121, 67)
         Me.Authorizer4.Name = "Authorizer4"
         Me.Authorizer4.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer4.TabIndex = 31
+        Me.Authorizer4.TabIndex = 37
         Me.Authorizer4.Tag = Nothing
         Me.Authorizer4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1773,7 +1776,7 @@ Partial Class 予算総括入力
         Me.Authorizer3.Location = New System.Drawing.Point(121, 46)
         Me.Authorizer3.Name = "Authorizer3"
         Me.Authorizer3.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer3.TabIndex = 30
+        Me.Authorizer3.TabIndex = 36
         Me.Authorizer3.Tag = Nothing
         Me.Authorizer3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1786,7 +1789,7 @@ Partial Class 予算総括入力
         Me.Authorizer2.Location = New System.Drawing.Point(121, 25)
         Me.Authorizer2.Name = "Authorizer2"
         Me.Authorizer2.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer2.TabIndex = 29
+        Me.Authorizer2.TabIndex = 35
         Me.Authorizer2.Tag = Nothing
         Me.Authorizer2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1799,7 +1802,7 @@ Partial Class 予算総括入力
         Me.Authorizer1.Location = New System.Drawing.Point(121, 4)
         Me.Authorizer1.Name = "Authorizer1"
         Me.Authorizer1.Size = New System.Drawing.Size(110, 20)
-        Me.Authorizer1.TabIndex = 28
+        Me.Authorizer1.TabIndex = 34
         Me.Authorizer1.Tag = Nothing
         Me.Authorizer1.Value = ""
         Me.Authorizer1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -1891,7 +1894,7 @@ Partial Class 予算総括入力
         Me.Circulator3.Location = New System.Drawing.Point(121, 49)
         Me.Circulator3.Name = "Circulator3"
         Me.Circulator3.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator3.TabIndex = 35
+        Me.Circulator3.TabIndex = 41
         Me.Circulator3.Tag = Nothing
         Me.Circulator3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1904,7 +1907,7 @@ Partial Class 予算総括入力
         Me.Circulator5.Location = New System.Drawing.Point(121, 91)
         Me.Circulator5.Name = "Circulator5"
         Me.Circulator5.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator5.TabIndex = 37
+        Me.Circulator5.TabIndex = 43
         Me.Circulator5.Tag = Nothing
         Me.Circulator5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1929,7 +1932,7 @@ Partial Class 予算総括入力
         Me.Circulator4.Location = New System.Drawing.Point(121, 70)
         Me.Circulator4.Name = "Circulator4"
         Me.Circulator4.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator4.TabIndex = 36
+        Me.Circulator4.TabIndex = 42
         Me.Circulator4.Tag = Nothing
         Me.Circulator4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1966,7 +1969,7 @@ Partial Class 予算総括入力
         Me.Circulator2.Location = New System.Drawing.Point(121, 28)
         Me.Circulator2.Name = "Circulator2"
         Me.Circulator2.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator2.TabIndex = 34
+        Me.Circulator2.TabIndex = 40
         Me.Circulator2.Tag = Nothing
         Me.Circulator2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -1991,7 +1994,7 @@ Partial Class 予算総括入力
         Me.Circulator1.Location = New System.Drawing.Point(121, 7)
         Me.Circulator1.Name = "Circulator1"
         Me.Circulator1.Size = New System.Drawing.Size(110, 20)
-        Me.Circulator1.TabIndex = 33
+        Me.Circulator1.TabIndex = 39
         Me.Circulator1.Tag = Nothing
         Me.Circulator1.Value = ""
         Me.Circulator1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -2101,7 +2104,7 @@ Partial Class 予算総括入力
         Me.SubCntrctPanel.Location = New System.Drawing.Point(103, 376)
         Me.SubCntrctPanel.Name = "SubCntrctPanel"
         Me.SubCntrctPanel.Size = New System.Drawing.Size(117, 53)
-        Me.SubCntrctPanel.TabIndex = 89
+        Me.SubCntrctPanel.TabIndex = 0
         Me.SystemTheme.SetTheme(Me.SubCntrctPanel, "(default)")
         '
         'Others
@@ -2111,7 +2114,7 @@ Partial Class 予算総括入力
         Me.Others.Location = New System.Drawing.Point(4, 37)
         Me.Others.Name = "Others"
         Me.Others.Size = New System.Drawing.Size(74, 22)
-        Me.Others.TabIndex = 2
+        Me.Others.TabIndex = 26
         Me.Others.TabStop = True
         Me.Others.Text = "該当なし"
         Me.Others.UseVisualStyleBackColor = False
@@ -2124,7 +2127,7 @@ Partial Class 予算総括入力
         Me.City.Margin = New System.Windows.Forms.Padding(0)
         Me.City.Name = "City"
         Me.City.Size = New System.Drawing.Size(62, 22)
-        Me.City.TabIndex = 1
+        Me.City.TabIndex = 25
         Me.City.TabStop = True
         Me.City.Text = "岐阜市"
         Me.City.UseVisualStyleBackColor = False
@@ -2137,7 +2140,7 @@ Partial Class 予算総括入力
         Me.Prefecture.Margin = New System.Windows.Forms.Padding(0)
         Me.Prefecture.Name = "Prefecture"
         Me.Prefecture.Size = New System.Drawing.Size(62, 22)
-        Me.Prefecture.TabIndex = 0
+        Me.Prefecture.TabIndex = 24
         Me.Prefecture.TabStop = True
         Me.Prefecture.Text = "岐阜県"
         Me.Prefecture.UseVisualStyleBackColor = False
@@ -2150,7 +2153,7 @@ Partial Class 予算総括入力
         Me.RemarksLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.RemarksLabel.Name = "RemarksLabel"
         Me.RemarksLabel.Size = New System.Drawing.Size(70, 60)
-        Me.RemarksLabel.TabIndex = 51
+        Me.RemarksLabel.TabIndex = 0
         Me.RemarksLabel.Text = "特記事項"
         Me.RemarksLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2162,7 +2165,7 @@ Partial Class 予算総括入力
         Me.SubContractRateLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.SubContractRateLabel.Name = "SubContractRateLabel"
         Me.SubContractRateLabel.Size = New System.Drawing.Size(70, 60)
-        Me.SubContractRateLabel.TabIndex = 53
+        Me.SubContractRateLabel.TabIndex = 0
         Me.SubContractRateLabel.Text = "県内・市内" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "業者への" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "下請率"
         Me.SubContractRateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2174,7 +2177,7 @@ Partial Class 予算総括入力
         Me.OutsourcersLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.OutsourcersLabel.Name = "OutsourcersLabel"
         Me.OutsourcersLabel.Size = New System.Drawing.Size(70, 122)
-        Me.OutsourcersLabel.TabIndex = 55
+        Me.OutsourcersLabel.TabIndex = 0
         Me.OutsourcersLabel.Text = "協力会社" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "予定"
         Me.OutsourcersLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -2281,7 +2284,7 @@ Partial Class 予算総括入力
         Me.RatePanel.Location = New System.Drawing.Point(222, 376)
         Me.RatePanel.Name = "RatePanel"
         Me.RatePanel.Size = New System.Drawing.Size(177, 53)
-        Me.RatePanel.TabIndex = 91
+        Me.RatePanel.TabIndex = 0
         Me.RatePanel.Visible = False
         '
         'Rate3
@@ -2291,7 +2294,7 @@ Partial Class 予算総括入力
         Me.Rate3.Location = New System.Drawing.Point(4, 37)
         Me.Rate3.Name = "Rate3"
         Me.Rate3.Size = New System.Drawing.Size(74, 22)
-        Me.Rate3.TabIndex = 2
+        Me.Rate3.TabIndex = 29
         Me.Rate3.TabStop = True
         Me.Rate3.Text = "該当なし"
         Me.Rate3.UseVisualStyleBackColor = False
@@ -2304,7 +2307,7 @@ Partial Class 予算総括入力
         Me.Rate2.Margin = New System.Windows.Forms.Padding(0)
         Me.Rate2.Name = "Rate2"
         Me.Rate2.Size = New System.Drawing.Size(62, 22)
-        Me.Rate2.TabIndex = 1
+        Me.Rate2.TabIndex = 28
         Me.Rate2.TabStop = True
         Me.Rate2.Text = "岐阜市"
         Me.Rate2.UseVisualStyleBackColor = False
@@ -2317,7 +2320,7 @@ Partial Class 予算総括入力
         Me.Rate1.Margin = New System.Windows.Forms.Padding(0)
         Me.Rate1.Name = "Rate1"
         Me.Rate1.Size = New System.Drawing.Size(62, 22)
-        Me.Rate1.TabIndex = 0
+        Me.Rate1.TabIndex = 27
         Me.Rate1.TabStop = True
         Me.Rate1.Text = "岐阜県"
         Me.Rate1.UseVisualStyleBackColor = False
@@ -2330,7 +2333,7 @@ Partial Class 予算総括入力
         Me.Label1.Margin = New System.Windows.Forms.Padding(0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(70, 20)
-        Me.Label1.TabIndex = 88
+        Me.Label1.TabIndex = 0
         Me.Label1.Text = "単価年度"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2342,7 +2345,7 @@ Partial Class 予算総括入力
         Me.CostRateLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.CostRateLabel.Name = "CostRateLabel"
         Me.CostRateLabel.Size = New System.Drawing.Size(70, 20)
-        Me.CostRateLabel.TabIndex = 83
+        Me.CostRateLabel.TabIndex = 0
         Me.CostRateLabel.Text = "経費率"
         Me.CostRateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2354,7 +2357,7 @@ Partial Class 予算総括入力
         Me.BdgtDprtmntLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.BdgtDprtmntLabel.Name = "BdgtDprtmntLabel"
         Me.BdgtDprtmntLabel.Size = New System.Drawing.Size(70, 20)
-        Me.BdgtDprtmntLabel.TabIndex = 81
+        Me.BdgtDprtmntLabel.TabIndex = 0
         Me.BdgtDprtmntLabel.Text = "予算部門"
         Me.BdgtDprtmntLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2366,7 +2369,7 @@ Partial Class 予算総括入力
         Me.Staff4Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Staff4Label.Name = "Staff4Label"
         Me.Staff4Label.Size = New System.Drawing.Size(70, 20)
-        Me.Staff4Label.TabIndex = 69
+        Me.Staff4Label.TabIndex = 0
         Me.Staff4Label.Text = "現場担当員"
         Me.Staff4Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2378,7 +2381,7 @@ Partial Class 予算総括入力
         Me.Staff3Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Staff3Label.Name = "Staff3Label"
         Me.Staff3Label.Size = New System.Drawing.Size(70, 20)
-        Me.Staff3Label.TabIndex = 68
+        Me.Staff3Label.TabIndex = 0
         Me.Staff3Label.Text = "現場担当員"
         Me.Staff3Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2390,7 +2393,7 @@ Partial Class 予算総括入力
         Me.Staff2Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Staff2Label.Name = "Staff2Label"
         Me.Staff2Label.Size = New System.Drawing.Size(70, 20)
-        Me.Staff2Label.TabIndex = 67
+        Me.Staff2Label.TabIndex = 0
         Me.Staff2Label.Text = "現場担当員"
         Me.Staff2Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2402,7 +2405,7 @@ Partial Class 予算総括入力
         Me.Staff1Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Staff1Label.Name = "Staff1Label"
         Me.Staff1Label.Size = New System.Drawing.Size(70, 20)
-        Me.Staff1Label.TabIndex = 66
+        Me.Staff1Label.TabIndex = 0
         Me.Staff1Label.Text = "現場担当員"
         Me.Staff1Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2414,7 +2417,7 @@ Partial Class 予算総括入力
         Me.Expert3Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Expert3Label.Name = "Expert3Label"
         Me.Expert3Label.Size = New System.Drawing.Size(70, 20)
-        Me.Expert3Label.TabIndex = 65
+        Me.Expert3Label.TabIndex = 0
         Me.Expert3Label.Text = "主任技術者"
         Me.Expert3Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2426,7 +2429,7 @@ Partial Class 予算総括入力
         Me.Expert1Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Expert1Label.Name = "Expert1Label"
         Me.Expert1Label.Size = New System.Drawing.Size(70, 20)
-        Me.Expert1Label.TabIndex = 64
+        Me.Expert1Label.TabIndex = 0
         Me.Expert1Label.Text = "現場代理人"
         Me.Expert1Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2438,7 +2441,7 @@ Partial Class 予算総括入力
         Me.ChiefLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ChiefLabel.Name = "ChiefLabel"
         Me.ChiefLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ChiefLabel.TabIndex = 63
+        Me.ChiefLabel.TabIndex = 0
         Me.ChiefLabel.Text = "作業所長"
         Me.ChiefLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2450,7 +2453,7 @@ Partial Class 予算総括入力
         Me.ManagerLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ManagerLabel.Name = "ManagerLabel"
         Me.ManagerLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ManagerLabel.TabIndex = 62
+        Me.ManagerLabel.TabIndex = 0
         Me.ManagerLabel.Text = "課長"
         Me.ManagerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2462,7 +2465,7 @@ Partial Class 予算総括入力
         Me.Expert2Label.Margin = New System.Windows.Forms.Padding(0)
         Me.Expert2Label.Name = "Expert2Label"
         Me.Expert2Label.Size = New System.Drawing.Size(70, 20)
-        Me.Expert2Label.TabIndex = 61
+        Me.Expert2Label.TabIndex = 0
         Me.Expert2Label.Text = "監理技術者"
         Me.Expert2Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2474,7 +2477,7 @@ Partial Class 予算総括入力
         Me.DirectorLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.DirectorLabel.Name = "DirectorLabel"
         Me.DirectorLabel.Size = New System.Drawing.Size(70, 20)
-        Me.DirectorLabel.TabIndex = 59
+        Me.DirectorLabel.TabIndex = 0
         Me.DirectorLabel.Text = "部長"
         Me.DirectorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2486,7 +2489,7 @@ Partial Class 予算総括入力
         Me.DepartmentLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.DepartmentLabel.Name = "DepartmentLabel"
         Me.DepartmentLabel.Size = New System.Drawing.Size(70, 20)
-        Me.DepartmentLabel.TabIndex = 57
+        Me.DepartmentLabel.TabIndex = 0
         Me.DepartmentLabel.Text = "担当部署"
         Me.DepartmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2498,7 +2501,7 @@ Partial Class 予算総括入力
         Me.SummaryLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.SummaryLabel.Name = "SummaryLabel"
         Me.SummaryLabel.Size = New System.Drawing.Size(70, 60)
-        Me.SummaryLabel.TabIndex = 49
+        Me.SummaryLabel.TabIndex = 0
         Me.SummaryLabel.Text = "工事概要"
         Me.SummaryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2510,7 +2513,7 @@ Partial Class 予算総括入力
         Me.CnsdrtnDateLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.CnsdrtnDateLabel.Name = "CnsdrtnDateLabel"
         Me.CnsdrtnDateLabel.Size = New System.Drawing.Size(70, 20)
-        Me.CnsdrtnDateLabel.TabIndex = 47
+        Me.CnsdrtnDateLabel.TabIndex = 0
         Me.CnsdrtnDateLabel.Text = "検討年月日"
         Me.CnsdrtnDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2522,7 +2525,7 @@ Partial Class 予算総括入力
         Me.CategoryLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.CategoryLabel.Name = "CategoryLabel"
         Me.CategoryLabel.Size = New System.Drawing.Size(70, 41)
-        Me.CategoryLabel.TabIndex = 44
+        Me.CategoryLabel.TabIndex = 0
         Me.CategoryLabel.Text = "工事種類"
         Me.CategoryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2534,7 +2537,7 @@ Partial Class 予算総括入力
         Me.AmountLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.AmountLabel.Name = "AmountLabel"
         Me.AmountLabel.Size = New System.Drawing.Size(70, 20)
-        Me.AmountLabel.TabIndex = 42
+        Me.AmountLabel.TabIndex = 0
         Me.AmountLabel.Text = "請負金額"
         Me.AmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2546,7 +2549,7 @@ Partial Class 予算総括入力
         Me.TermLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.TermLabel.Name = "TermLabel"
         Me.TermLabel.Size = New System.Drawing.Size(70, 62)
-        Me.TermLabel.TabIndex = 37
+        Me.TermLabel.TabIndex = 0
         Me.TermLabel.Text = "契約工期"
         Me.TermLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2558,7 +2561,7 @@ Partial Class 予算総括入力
         Me.ContracteeLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ContracteeLabel.Name = "ContracteeLabel"
         Me.ContracteeLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ContracteeLabel.TabIndex = 35
+        Me.ContracteeLabel.TabIndex = 0
         Me.ContracteeLabel.Text = "発注者"
         Me.ContracteeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2570,7 +2573,7 @@ Partial Class 予算総括入力
         Me.ProjectAddressLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ProjectAddressLabel.Name = "ProjectAddressLabel"
         Me.ProjectAddressLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ProjectAddressLabel.TabIndex = 33
+        Me.ProjectAddressLabel.TabIndex = 0
         Me.ProjectAddressLabel.Text = "工事場所"
         Me.ProjectAddressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2582,7 +2585,7 @@ Partial Class 予算総括入力
         Me.ProjectNameLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ProjectNameLabel.Name = "ProjectNameLabel"
         Me.ProjectNameLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ProjectNameLabel.TabIndex = 31
+        Me.ProjectNameLabel.TabIndex = 0
         Me.ProjectNameLabel.Text = "工事名"
         Me.ProjectNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2594,7 +2597,7 @@ Partial Class 予算総括入力
         Me.ProjectCodeLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.ProjectCodeLabel.Name = "ProjectCodeLabel"
         Me.ProjectCodeLabel.Size = New System.Drawing.Size(70, 20)
-        Me.ProjectCodeLabel.TabIndex = 29
+        Me.ProjectCodeLabel.TabIndex = 0
         Me.ProjectCodeLabel.Text = "工事コード"
         Me.ProjectCodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2606,7 +2609,7 @@ Partial Class 予算総括入力
         Me.CompanyLabel.Margin = New System.Windows.Forms.Padding(0)
         Me.CompanyLabel.Name = "CompanyLabel"
         Me.CompanyLabel.Size = New System.Drawing.Size(70, 20)
-        Me.CompanyLabel.TabIndex = 26
+        Me.CompanyLabel.TabIndex = 0
         Me.CompanyLabel.Text = "会社名"
         Me.CompanyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -2636,7 +2639,7 @@ Partial Class 予算総括入力
         Me.Cancel.Margin = New System.Windows.Forms.Padding(0)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(100, 30)
-        Me.Cancel.TabIndex = 42
+        Me.Cancel.TabIndex = 45
         Me.Cancel.Text = "キャンセル"
         Me.Cancel.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Cancel.UseVisualStyleBackColor = True
@@ -2655,7 +2658,7 @@ Partial Class 予算総括入力
         Me.Entry.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.Entry.Name = "Entry"
         Me.Entry.Size = New System.Drawing.Size(100, 30)
-        Me.Entry.TabIndex = 41
+        Me.Entry.TabIndex = 44
         Me.Entry.Text = "　登 録"
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True

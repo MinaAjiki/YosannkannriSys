@@ -35,6 +35,8 @@ Partial Class ホーム
         Me.HomeSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.TreePanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.HomeTreeView = New C1.Win.TreeView.C1TreeView()
+        Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ReferenceMode = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.MenuComｍand = New C1.Win.C1Command.C1CommandHolder()
@@ -231,6 +233,7 @@ Partial Class ホーム
         Me.HomeSplitContainer.SuspendLayout()
         Me.TreePanel.SuspendLayout()
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.右クリックメニュー.SuspendLayout()
         CType(Me.MenuComｍand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -349,6 +352,7 @@ Partial Class ホーム
         C1TreeColumn1.HeaderText = Nothing
         C1TreeColumn1.Name = "Column1"
         Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        Me.HomeTreeView.ContextMenuStrip = Me.右クリックメニュー
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
         Me.HomeTreeView.Size = New System.Drawing.Size(270, 664)
@@ -363,6 +367,22 @@ Partial Class ホーム
         Me.HomeTreeView.Styles.UnfocusedSelected.BackColor = System.Drawing.Color.White
         Me.HomeTreeView.TabIndex = 44
         Me.SystemTheme.SetTheme(Me.HomeTreeView, "予算管理テーマ")
+        '
+        '右クリックメニュー
+        '
+        Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReferenceMode})
+        Me.右クリックメニュー.Name = "ContextMenuStrip1"
+        Me.右クリックメニュー.ShowImageMargin = False
+        Me.右クリックメニュー.Size = New System.Drawing.Size(148, 26)
+        Me.右クリックメニュー.Text = "項目選択"
+        '
+        'ReferenceMode
+        '
+        Me.ReferenceMode.Name = "ReferenceMode"
+        Me.ReferenceMode.Size = New System.Drawing.Size(147, 22)
+        Me.ReferenceMode.Text = "参照モードで開く"
         '
         'FormPanel
         '
@@ -1665,6 +1685,7 @@ Partial Class ホーム
         Me.HomeSplitContainer.ResumeLayout(False)
         Me.TreePanel.ResumeLayout(False)
         CType(Me.HomeTreeView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.右クリックメニュー.ResumeLayout(False)
         CType(Me.MenuComｍand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1876,5 +1897,6 @@ Partial Class ホーム
 
     Friend WithEvents C1XLBook1 As C1.C1Excel.C1XLBook
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
-
+    Friend WithEvents 右クリックメニュー As ContextMenuStrip
+    Friend WithEvents ReferenceMode As ToolStripMenuItem
 End Class

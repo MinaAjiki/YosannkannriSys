@@ -1108,9 +1108,58 @@ Public Class ホーム
         End Try
     End Sub
 
-    Private Sub HomeTreeView_SelectionChanged(sender As Object, e As C1.Win.TreeView.C1TreeViewEventArgs) Handles HomeTreeView.SelectionChanged
-        Try
 
+    Private Sub ReferenceMode_Click(sender As Object, e As EventArgs) Handles ReferenceMode.Click
+
+        Dim node As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
+
+        Dim nodevalue As String = node.GetValue
+        Dim level As Integer = node.Level
+
+        Dim index As Integer = nodevalue.Length - 1
+        Dim cost As String = nodevalue.Substring(index - 8, 1)
+        Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
+
+        Dim clssname As String = "工事代価" & cost
+        Sql.CommandText = ""
+        Sql.Parameters.Clear()
+        Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
+        Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
+        Dim clsscode As Integer = Sql.ExecuteScalar
+
+        Sql.CommandText = ""
+        Sql.Parameters.Clear()
+        Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
+        Dim prjctcstid As Integer = Sql.ExecuteScalar
+
+        Dim DaikaForm As New 代価表入力
+        DaikaForm.CostID = prjctcstid
+        DaikaForm.ClassCode = clsscode
+        DaikaForm.TopLevel = True
+        DaikaForm.TopMost = True
+        DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
+        DaikaForm.CostNo.Enabled = False
+        DaikaForm.CostName.Enabled = False
+        DaikaForm.CostSpec.Enabled = False
+        DaikaForm.CostQuanity.Enabled = False
+        DaikaForm.CostUnit.Enabled = False
+        DaikaForm.CostUnitPrice.Enabled = False
+        DaikaForm.CostCostea.Enabled = False
+        DaikaForm.BreakDownList.AllowEditing = False
+        DaikaForm.ItemSelect.Visible = False
+        DaikaForm.CostCreation.Visible = False
+        DaikaForm.CostModify.Visible = False
+        DaikaForm.CostCopy.Visible = False
+        DaikaForm.Reference.Visible = False
+        DaikaForm.Entry.Visible = False
+        DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+        DaikaForm.Show()
+        DaikaForm.TopMost = False
+
+    End Sub
+
+    Private Sub HomeTreeView_DoubleClick(sender As Object, e As EventArgs) Handles HomeTreeView.DoubleClick
+        Try
             Cursor.Current = Cursors.WaitCursor
 
             If FormPanel.Controls.Count > 0 Then
@@ -1131,10 +1180,14 @@ Public Class ホーム
                 Next
             End If
 
-            Dim nodevalue As String = e.Node.GetValue
-            Dim level As Integer = e.Node.Level
+            Dim node As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
+
+            Dim nodevalue As String = node.GetValue
+            Dim level As Integer = node.Level
 
             If level = 0 Then
+                右クリックメニュー.Visible = False
+
 
                 Dim length As Integer = nodevalue.Length
 
@@ -1149,58 +1202,61 @@ Public Class ホーム
                 小工種選択.Show()
 
 
-        ElseIf level = 1 Then
+            ElseIf level = 1 Then
 
-            Dim length As Integer = nodevalue.Length
+                右クリックメニュー.Visible = False
 
-            Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
-            Dim sname As String = nodevalue.Substring(4, length - 5)
+                Dim length As Integer = nodevalue.Length
 
-            sworktypecode = scode
-            sworktypename = sname
+                Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
+                Dim sname As String = nodevalue.Substring(4, length - 5)
 
-            明細書入力.TopLevel = False
-            FormPanel.Controls.Add(明細書入力)
-            明細書入力.Show()
+                sworktypecode = scode
+                sworktypename = sname
 
-        Else
+                明細書入力.TopLevel = False
+                FormPanel.Controls.Add(明細書入力)
+                明細書入力.Show()
 
-            Dim index As Integer = nodevalue.Length - 1
-            Dim cost As String = nodevalue.Substring(index - 8, 1)
-            Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
+            Else
 
-            Dim clssname As String = "工事代価" & cost
-            Sql.CommandText = ""
-            Sql.Parameters.Clear()
-            Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
-            Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
-            Dim clsscode As Integer = Sql.ExecuteScalar
+                右クリックメニュー.Visible = True
 
-            Sql.CommandText = ""
-            Sql.Parameters.Clear()
-            Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
-            Dim prjctcstid As Integer = Sql.ExecuteScalar
+                Dim index As Integer = nodevalue.Length - 1
+                Dim cost As String = nodevalue.Substring(index - 8, 1)
+                Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
 
-            Dim ProjectCostList As New C1FlexGrid
+                Dim clssname As String = "工事代価" & cost
+                Sql.CommandText = ""
+                Sql.Parameters.Clear()
+                Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
+                Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
+                Dim clsscode As Integer = Sql.ExecuteScalar
 
-            ProjectCostForm.Add(New 代価表入力)
-            ProjectCostForm(0).TopLevel = False
-            FormPanel.Controls.Add(ProjectCostForm(0))
-            ProjectCostSelectRow.Add(0)
-            ProjectCostID.Add(prjctcstid)
-            PrjctCstClassCode.Add(clsscode)
-            PrjctCstList.Add(ProjectCostList)
-            ProjectCostForm(0).Show()
-        End If
+                Sql.CommandText = ""
+                Sql.Parameters.Clear()
+                Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
+                Dim prjctcstid As Integer = Sql.ExecuteScalar
 
-        Cursor.Current = Cursors.Default
+                Dim ProjectCostList As New C1FlexGrid
+
+                ProjectCostForm.Add(New 代価表入力)
+                ProjectCostForm(0).TopLevel = False
+                FormPanel.Controls.Add(ProjectCostForm(0))
+                ProjectCostSelectRow.Add(0)
+                ProjectCostID.Add(prjctcstid)
+                PrjctCstClassCode.Add(clsscode)
+                PrjctCstList.Add(ProjectCostList)
+                ProjectCostForm(0).Show()
+            End If
+
+            Cursor.Current = Cursors.Default
 
         Catch ex As Exception
-        ErrorMessage = ex.Message
+            ErrorMessage = ex.Message
         StackTrace = ex.StackTrace
         エラー.Show()
         Exit Sub
         End Try
-
     End Sub
 End Class
