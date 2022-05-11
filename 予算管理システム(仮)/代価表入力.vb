@@ -193,7 +193,7 @@ Public Class 代価表入力
                     ElseIf No.Length = 4 Then
                         No = "0" & No
                     End If
-                    CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+                    CostNo.Value = "第" & ClassName.Last & "-" & No & "号"
                 End If
 
 
@@ -372,7 +372,7 @@ Public Class 代価表入力
                 ElseIf No.Length = 4 Then
                     No = "0" & No
                 End If
-                CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
+                CostNo.Value = "第" & ClassName.Last & "-" & No & "号"
 
                 Dim RowNo As Integer = 0
                 For RowCount = 1 To 6

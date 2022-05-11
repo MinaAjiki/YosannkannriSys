@@ -46,10 +46,6 @@ Public Class 予算総括入力
             End While
             CompanyReader.Close()
 
-            SubContractRate.Value = "岐阜県〔県内企業の活用率〕" & vbCrLf & "■90％以上" & vbCrLf & "□50％以上90％未満" & vbCrLf & "□50％未満" & vbCrLf &
-                                "岐阜市〔市内企業の活用率〕" & vbCrLf & "□100％" & vbCrLf & "□50％以上100％未満" & vbCrLf & "□50％未満"
-
-
             Authorizer1.Value = "常務取締役"
             Authorizer2.Value = "取締役"
             Authorizer3.Value = "部長"
@@ -96,6 +92,7 @@ Public Class 予算総括入力
                     CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text = ホーム.Sql.ExecuteScalar
                 Next
 
+                Dim subcntrctratecode As Integer = 0
                 ホーム.Sql.CommandText = "SELECT * FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
                 Dim BudgetReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While BudgetReader.Read
@@ -107,7 +104,6 @@ Public Class 予算総括入力
                         CnsdrtnDate.Value = BudgetReader.Item("cnsdrtn_date")
                     End If
                     Summary.Value = BudgetReader.Item("prjct_summary")
-                    SubContractRate.Value = BudgetReader.Item("subcontract_rate")
                     Remarks.Value = BudgetReader.Item("remarks")
                     Department.Value = BudgetReader.Item("department")
                     Director.Value = BudgetReader.Item("director")
@@ -122,10 +118,39 @@ Public Class 予算総括入力
                     Staff4.Value = BudgetReader.Item("staff_4")
                     BdgtDprtmnt.Value = BudgetReader.Item("bdgt_dprtmnt")
                     ExpenseRate.Value = BudgetReader.Item("expense_rate")
+                    subcntrctratecode = BudgetReader.Item("sbcntrct_rate_code")
                 End While
                 BudgetReader.Close()
 
                 ProjectAmount.Value = Amount.Value
+
+                If subcntrctratecode = 0 Then
+                    Others.Checked = True
+                Else
+
+                    ホーム.SystemSql.CommandText = "SELECT * FROM name_masters WHERE class_code=6 AND detail_code=" & subcntrctratecode
+                    Dim MasterReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                    While MasterReader.Read
+                        Dim ItemName As String = MasterReader.Item("item_name")
+                        Dim RateNo As Integer = Integer.Parse(ItemName.Last)
+                        If ItemName.Contains("岐阜県") = True Then
+                            Prefecture.Checked = True
+                        ElseIf ItemName.Contains("岐阜市") = True Then
+                            City.Checked = True
+                        End If
+
+                        If RateNo = 1 Then
+                            Rate1.Checked = True
+                        ElseIf RateNo = 2 Then
+                            Rate2.Checked = True
+                        ElseIf RateNo = 3 Then
+                            Rate3.Checked = True
+                        End If
+                    End While
+                    MasterReader.Close()
+
+                End If
+
 
             End If
 
@@ -356,6 +381,30 @@ Public Class 予算総括入力
             ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
             Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
+
+            Dim sbcntrctratecode As Integer = 0
+            Dim itemname As String = ""
+
+            If Prefecture.Checked = True Then
+                itemname = "岐阜県"
+            ElseIf City.Checked = True Then
+                itemname = "岐阜市"
+            End If
+
+            If Rate1.Checked = True Then
+                itemname = itemname & "1"
+            ElseIf Rate2.Checked = True Then
+                itemname = itemname & "2"
+            ElseIf Rate3.Checked = True Then
+                itemname = itemname & "3"
+            End If
+
+            ホーム.SystemSql.CommandText = "SELECT detail_code FROM name_masters WHERE item_name=@itemname"
+            ホーム.SystemSql.Parameters.Add("@itemname", SqlDbType.NVarChar).Value = itemname
+            sbcntrctratecode = ホーム.SystemSql.ExecuteScalar
+
+            ホーム.SystemSql.Parameters.Clear()
+
             ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = Integer.Parse(ホーム.BudgetNo)
             ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse(TermS.Text)
             ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
@@ -367,7 +416,7 @@ Public Class 予算総括入力
                 ホーム.Sql.Parameters.Add(New SqlParameter("@cnsdrtndate", SqlDbType.DateTime)).Value = DateTime.Parse(CnsdrtnDate.Text)
             End If
             ホーム.Sql.Parameters.Add(New SqlParameter("@summary", SqlDbType.NVarChar)).Value = Summary.Text
-            ホーム.Sql.Parameters.Add(New SqlParameter("@subcontractrate", SqlDbType.NVarChar)).Value = SubContractRate.Text
+            ホーム.Sql.Parameters.Add(New SqlParameter("@subcontractrate", SqlDbType.SmallInt)).Value = sbcntrctratecode
             ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = Remarks.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@department", SqlDbType.NVarChar)).Value = Department.Text
             ホーム.Sql.Parameters.Add(New SqlParameter("@director", SqlDbType.NVarChar)).Value = Director.Text
@@ -389,13 +438,13 @@ Public Class 予算総括入力
             If DataCount >= 1 Then
 
                 ホーム.Sql.CommandText = "UPDATE budget_summary SET prjct_term_s=@terms,prjct_term_e=@terme,cntrct_amount=@amount,prjct_category=@category 
-                                        ,cnsdrtn_date=@cnsdrtndate,prjct_summary=@summary,subcontract_rate=@subcontractrate,remarks=@remarks,department=@department,director=@director
+                                        ,cnsdrtn_date=@cnsdrtndate,prjct_summary=@summary,sbcntrct_rate_code=@subcontractrate,remarks=@remarks,department=@department,director=@director
                                         ,manager=@manager,chief=@chief,expert_1=@expert1,expert_2=@expert2,expert_3=@expert3,staff_1=@staff1,staff_2=@staff2
                                         ,staff_3=@staff3,staff_4=@staff4,bdgt_dprtmnt=@bdgtdprtmnt,expense_rate=@expenserate WHERE budget_no=@budgetno"
             Else
 
                 ホーム.Sql.CommandText = "INSERT INTO budget_summary (budget_no,prjct_term_s,prjct_term_e,cntrct_amount,prjct_category,cnsdrtn_date,prjct_summary
-                                                                   ,subcontract_rate,remarks,department,director,manager,chief,expert_1,expert_2
+                                                                   ,sbcntrct_rate_code,remarks,department,director,manager,chief,expert_1,expert_2
                                                                     ,expert_3,staff_1,staff_2,staff_3,staff_4,bdgt_dprtmnt,expense_rate) 
                                       VALUES (@budgetno,@terms,@terme,@amount,@category,@cnsdrtndate,@summary,@subcontractrate,@remarks,@department,
                                               @director,@manager,@chief,@expert1,@expert2,@expert3,@staff1,@staff2,@staff3,@staff4,@bdgtdprtmnt,@expenserate)"
@@ -546,5 +595,29 @@ Public Class 予算総括入力
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub Prefecture_CheckedChanged(sender As Object, e As EventArgs) Handles Prefecture.CheckedChanged
+        If Prefecture.Checked = True Then
+            RatePanel.Visible = True
+            Rate1.Text = "90％以上"
+            Rate2.Text = "50％以上90％未満"
+            Rate3.Text = "50％未満"
+        End If
+    End Sub
+
+    Private Sub City_CheckedChanged(sender As Object, e As EventArgs) Handles City.CheckedChanged
+        If City.Checked = True Then
+            RatePanel.Visible = True
+            Rate1.Text = "100％"
+            Rate2.Text = "50％以上100％未満"
+            Rate3.Text = "50％未満"
+        End If
+    End Sub
+
+    Private Sub Others_CheckedChanged(sender As Object, e As EventArgs) Handles Others.CheckedChanged
+        If Others.Checked = True Then
+            RatePanel.Visible = False
+        End If
     End Sub
 End Class

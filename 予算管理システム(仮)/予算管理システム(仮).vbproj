@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>31</ApplicationRevision>
-    <ApplicationVersion>1.0.0.31</ApplicationVersion>
+    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationVersion>1.0.0.32</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -589,6 +589,8 @@
     <Content Include="bin\Debug\Resources\Modify.png" />
     <Content Include="bin\Debug\Resources\OpenFile.png" />
     <Content Include="bin\Debug\Resources\Search.png" />
+    <None Include="bin\Debug\予算管理システムレポート.flxr" />
+    <None Include="bin\Release\予算管理システムレポート.flxr" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -692,7 +694,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\Debug\bin\Release\" />
-    <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

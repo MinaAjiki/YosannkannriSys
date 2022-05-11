@@ -31142,8 +31142,8 @@ FROM  subject_details;</RecordSource>
         <Section>GroupFooter1</Section>
         <Left>91</Left>
         <Top>638</Top>
-        <Width>227</Width>
-        <Height>1667</Height>
+        <Width>1904</Width>
+        <Height>189</Height>
         <Align>CenterTop</Align>
         <Font>
           <Name>メイリオ</Name>
@@ -32057,10 +32057,10 @@ FROM  subject_details;</RecordSource>
           </Bottom>
         </Border>
         <Section>GroupFooter1</Section>
-        <Left>498</Left>
-        <Top>647</Top>
-        <Width>2554</Width>
-        <Height>1667</Height>
+        <Left>315</Left>
+        <Top>917</Top>
+        <Width>2737</Width>
+        <Height>1397</Height>
         <Align>JustTop</Align>
         <Font>
           <Name>メイリオ</Name>
