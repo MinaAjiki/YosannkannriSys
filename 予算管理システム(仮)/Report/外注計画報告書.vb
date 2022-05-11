@@ -30,8 +30,33 @@ Public Class 外注計画報告書
         Dim Pname As String = ホーム.Sql.ExecuteScalar
         ホーム.Sql.CommandText = "SELECT chief FROM budget_summary"
         Dim Cname As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT subcontract_rate FROM budget_summary"
-        Dim subcontractrate As String = ホーム.Sql.ExecuteScalar
+
+        ホーム.Sql.CommandText = "SELECT sbcntrct_rate_code FROM budget_summary"
+        Dim subcontractratecode As Integer = ホーム.Sql.ExecuteScalar
+
+        Dim subcontractratename As String = ""
+        Dim subcontractrate As String = ""
+
+        If subcontractratecode = 0 Then
+            subcontractratename = "該当なし"
+        End If
+
+        ホーム.SystemSql.CommandText = "SELECT * FROM name_masters WHERE class_code=6 AND detail_code=" & subcontractratecode
+        Dim MasterReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        While MasterReader.Read
+            Dim ItemName As String = MasterReader.Item("item_name")
+            Dim RateNo As Integer = Integer.Parse(ItemName.Last)
+            If ItemName.Contains("岐阜県") = True Then
+                subcontractratename = "岐阜県"
+            ElseIf ItemName.Contains("岐阜市") = True Then
+                subcontractratename = "岐阜市"
+            End If
+
+            subcontractrate = MasterReader.Item("item_value")
+
+        End While
+        MasterReader.Close()
+
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=70"
         Dim name0 As String = ホーム.Sql.ExecuteScalar
         ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=71"
@@ -89,7 +114,7 @@ Public Class 外注計画報告書
 
         Dim field16 As TextField
         field16 = CType(レポート.C1FlexReport1.Fields("特記事項"), TextField)
-        field16.Text = subcontractrate
+        field16.Text = subcontractratename & "　" & subcontractrate
 
 
         Dim AmountList As New List(Of Decimal)
@@ -210,7 +235,12 @@ Public Class 外注計画報告書
             Dim ChangeTxt As String = ホーム.Sql.ExecuteScalar
             Dim field8 As Field
             field8 = CType(レポート.C1FlexReport1.Fields("changes" & ONCount), Field)
-            field8.Value = ChangeTxt
+            If IsNothing(ChangeTxt) = True Then
+                field8.Value = ""
+            Else
+                field8.Value = ChangeTxt
+
+            End If
 
 
             '業者数ループ

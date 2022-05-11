@@ -589,6 +589,8 @@
     <Content Include="bin\Debug\Resources\Modify.png" />
     <Content Include="bin\Debug\Resources\OpenFile.png" />
     <Content Include="bin\Debug\Resources\Search.png" />
+    <None Include="bin\Debug\予算管理システムレポート.flxr" />
+    <None Include="bin\Release\予算管理システムレポート.flxr" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -692,7 +694,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\Debug\bin\Release\" />
-    <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
