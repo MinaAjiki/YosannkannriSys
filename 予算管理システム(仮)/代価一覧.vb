@@ -6,6 +6,8 @@ Public Class 代価一覧
     Public ParentFormName As String
     Public CostClassCode As Integer
     Public CostClassName As String
+    Public SelectRow As Integer = 0
+    Public AddFlag As Integer = 0
     Private Sub 代価一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             If CostClassName = "基礎代価" Then
@@ -448,7 +450,8 @@ Public Class 代価一覧
             CostClassName = CostList.Text
             CostClassCode = CostList.Value
 
-            If CostList.Text = "階層追加" Then
+
+            If CostList.Text = "階層追加" And AddFlag = 0 Then
                 Dim CostLists(22) As String
                 CostLists(0) = "D"
                 CostLists(1) = "E"
@@ -515,17 +518,19 @@ Public Class 代価一覧
                     dt.Rows.Add(0, "階層追加")
                     CostClassReader.Close()
 
+                    AddFlag = 1
                     CostList.TextDetached = True
                     CostList.ItemsDataSource = dt.DefaultView
-                    'CostList.ItemsDisplayMember = "name"
-                    'CostList.ItemsValueMember = "code"
-                    'CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                    ''CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
-                    'CostList.SelectedIndex = -1
-                    'CostList.Text = "工事代価を選択"
+                    CostList.ItemsDisplayMember = "name"
+                    CostList.ItemsValueMember = "code"
+                    CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                    'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                    CostList.SelectedIndex = (MaxCode + 1) - 12
+
 
                 End If
 
+                '階層追加以外を選択
             Else
                 ProjectCostList.Clear(ClearFlags.Content)
                 ホーム.Sql.Parameters.Clear()
@@ -561,6 +566,13 @@ Public Class 代価一覧
 
                 End While
                 ProjectCostsReader.Close()
+                If AddFlag = 1 Then
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
+                    Dim MaxCode As Integer = ホーム.Sql.ExecuteScalar
+                    AddFlag = 0
+                    CostList.SelectedIndex = (MaxCode + 1) - 15
+                End If
             End If
 
         Catch ex As Exception
@@ -576,12 +588,44 @@ Public Class 代価一覧
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
-        代価内訳.Show()
-        Me.Close()
+        Try
+            代価内訳.ClassCode = CostClassCode
+            代価内訳.Show()
+            If CostClassCode = 11 Then
+                ホーム.BeforeForm = "基礎代価一覧"
+            ElseIf CostClassCode > 11 Then
+                ホーム.BeforeForm = "工事代価一覧"
+            End If
+
+            Me.Visible = False
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
-        代価内訳.Show()
-        Me.Close()
+        Try
+
+            SelectRow = ProjectCostList.Selection.TopRow
+            代価内訳.CostID = ProjectCostList(SelectRow, 1)
+            '代価内訳.CostID = ProjectCostList(SelectRow, 3)
+            代価内訳.ClassCode = CostClassCode
+            If CostClassCode = 11 Then
+                ホーム.BeforeForm = "基礎代価一覧"
+            ElseIf CostClassCode > 11 Then
+                ホーム.BeforeForm = "工事代価一覧"
+            End If
+
+            代価内訳.Show()
+            Me.Visible = False
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class
