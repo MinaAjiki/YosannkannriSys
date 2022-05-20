@@ -85,6 +85,7 @@ Public Class ホーム
                             予算内訳登録.Enabled = False
                         Else
                             予算内訳登録.Enabled = True
+                            参照作成command.Enabled = True
                         End If
 
                     Else
@@ -96,7 +97,7 @@ Public Class ホーム
                         出力.Enabled = False
                         見積.Enabled = False
                         外注管理.Enabled = False
-
+                        参照作成command.Enabled = False
                     End If
 
                     SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
@@ -120,7 +121,7 @@ Public Class ホーム
                     マスタ.Enabled = False
                     開く.Enabled = False
                     材料表インポート.Enabled = False
-                    参照作成.Enabled = False
+                    参照作成command.Enabled = False
                 End If
             Else
 
@@ -132,7 +133,7 @@ Public Class ホーム
                 マスタ.Enabled = False
                 開く.Enabled = False
                 材料表インポート.Enabled = False
-                参照作成.Enabled = False
+                参照作成command.Enabled = False
             End If
 
         Catch ex As Exception
@@ -155,8 +156,8 @@ Public Class ホーム
         DB選択.Show()
     End Sub
 
-    Private Sub 参照作成_Click(sender As Object, e As ClickEventArgs) Handles 参照作成.Click
-        Form参照作成.Show()
+    Private Sub 参照作成_Click(sender As Object, e As ClickEventArgs) Handles 参照作成command.Click
+        参照作成.Show()
     End Sub
 
     Private Sub 協力業者登録_Click(sender As Object, e As ClickEventArgs) Handles 協力業者登録.Click
@@ -388,7 +389,7 @@ Public Class ホーム
             マスタ.Enabled = True
             開く.Enabled = True
             材料表インポート.Enabled = True
-            参照作成.Enabled = True
+            参照作成command.Enabled = True
 
             SystemMdf.Parameters.Clear()
 
@@ -446,21 +447,30 @@ Public Class ホーム
     End Sub
 
     Private Sub 出来形数量査定書_Excel_Click(sender As Object, e As ClickEventArgs) Handles 出来形数量査定書_Excel.Click
-        If FormPanel.Controls.Count > 0 Then
-            Dim FormClose As String = ""
 
-            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
-            FormClose = FormCloseLoad.FormCheck
-        End If
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
 
-        現場経費作成.Anchor = AnchorStyles.Top
-        '協力業者入力.Anchor = AnchorStyles.Bottom
-        現場経費作成.Anchor = AnchorStyles.Left
-        '協力業者入力.Anchor = AnchorStyles.Right
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
 
-        現場経費作成.TopLevel = False
-        FormPanel.Controls.Add(現場経費作成)
-        現場経費作成.Show()
+            現場経費作成.Anchor = AnchorStyles.Top
+            '協力業者入力.Anchor = AnchorStyles.Bottom
+            現場経費作成.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Right
+
+            現場経費作成.TopLevel = False
+            FormPanel.Controls.Add(現場経費作成)
+            現場経費作成.Show()
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub 入力表作成_Click(sender As Object, e As ClickEventArgs) Handles 入力表作成.Click
@@ -796,14 +806,23 @@ Public Class ホーム
 
 
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As CancelEventArgs) Handles SaveFileDialog1.FileOk
-        Dim SavePath As String = SaveFileDialog1.FileName
-        Dim ReportLoad As String = ""
-        SaveFileDialog1.FileName = "外注計画"
-        Dim ExportXLoadRead As New Export外注計画(SavePath)
-        ReportLoad = ExportXLoadRead.ExportLoad
 
-        'メッセージを表示する
-        MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
+        Try
+            Dim SavePath As String = SaveFileDialog1.FileName
+            Dim ReportLoad As String = ""
+            SaveFileDialog1.FileName = "外注計画"
+            Dim ExportXLoadRead As New Export外注計画(SavePath)
+            ReportLoad = ExportXLoadRead.ExportLoad
+
+            'メッセージを表示する
+            MsgBox("エクスポート完了", MsgBoxStyle.OkOnly, "エクスポート")
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub 注文書明細_CSV_Click(sender As Object, e As ClickEventArgs) Handles 注文書明細_CSV.Click
@@ -907,13 +926,21 @@ Public Class ホーム
     End Sub
 
     Private Sub 全て印刷_簡易_Click(sender As Object, e As ClickEventArgs) Handles 全て印刷_簡易.Click
-        Cursor.Current = Cursors.WaitCursor
+        Try
+            Cursor.Current = Cursors.WaitCursor
 
-        Dim ReportLoad As String = ""
-        Dim ReportLoadRead As New 全_簡易
-        ReportLoad = ReportLoadRead.ReportLoad
+            Dim ReportLoad As String = ""
+            Dim ReportLoadRead As New 全_簡易
+            ReportLoad = ReportLoadRead.ReportLoad
 
-        Cursor.Current = Cursors.Default
+            Cursor.Current = Cursors.Default
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub 見積書作成_Click(sender As Object, e As ClickEventArgs) Handles 見積書作成.Click
@@ -1020,7 +1047,7 @@ Public Class ホーム
 
                     Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
 
-                    Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND cstclss_code>11 ORDER BY dtl_no ASC"
+                    Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND cstclss_code > 11 ORDER BY dtl_no ASC"
                     Dim DetailsReader As SqlDataReader = Sql.ExecuteReader
                     While DetailsReader.Read
 
@@ -1043,7 +1070,7 @@ Public Class ホーム
                     Sql.CommandText = "SELECT cstmstr_id FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND dtl_no=" & dtlno
                     Dim cstmstrid As Integer = Sql.ExecuteScalar
 
-                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code>11 ORDER BY prjctcst_bd_no ASC"
+                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
                     Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
                     While PrjctCstBDReader.Read
 
@@ -1078,11 +1105,11 @@ Public Class ホーム
                     Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
                     Dim prjctcstid As Integer = Sql.ExecuteScalar
 
-                    Sql.CommandText = "SELECT Count(prjctcst_bd_remarks) FROM project_cost_breakdowns WHERE prjctcst_id=" & prjctcstid & " AND cstclss_code>11"
+                    Sql.CommandText = "SELECT Count(prjctcst_bd_remarks) FROM project_cost_breakdowns WHERE prjctcst_id=" & prjctcstid & " AND cstclss_code > 11"
                     Dim Count As Integer = Sql.ExecuteScalar
 
 
-                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & prjctcstid & " AND cstclss_code>11 ORDER BY prjctcst_bd_no ASC"
+                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & prjctcstid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
                     Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
                     While PrjctCstBDReader.Read
 
@@ -1111,152 +1138,182 @@ Public Class ホーム
 
     Private Sub ReferenceMode_Click(sender As Object, e As EventArgs) Handles ReferenceMode.Click
 
-        Dim node As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
-
-        Dim nodevalue As String = node.GetValue
-        Dim level As Integer = node.Level
-
-        Dim index As Integer = nodevalue.Length - 1
-        Dim cost As String = nodevalue.Substring(index - 8, 1)
-        Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
-
-        Dim clssname As String = "工事代価" & cost
-        Sql.CommandText = ""
-        Sql.Parameters.Clear()
-        Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
-        Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
-        Dim clsscode As Integer = Sql.ExecuteScalar
-
-        Sql.CommandText = ""
-        Sql.Parameters.Clear()
-        Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
-        Dim prjctcstid As Integer = Sql.ExecuteScalar
-
-        Dim DaikaForm As New 代価表入力
-        DaikaForm.CostID = prjctcstid
-        DaikaForm.ClassCode = clsscode
-        DaikaForm.TopLevel = True
-        DaikaForm.TopMost = True
-        DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
-        DaikaForm.CostNo.Enabled = False
-        DaikaForm.CostName.Enabled = False
-        DaikaForm.CostSpec.Enabled = False
-        DaikaForm.CostQuanity.Enabled = False
-        DaikaForm.CostUnit.Enabled = False
-        DaikaForm.CostUnitPrice.Enabled = False
-        DaikaForm.CostCostea.Enabled = False
-        DaikaForm.BreakDownList.AllowEditing = False
-        DaikaForm.ItemSelect.Visible = False
-        DaikaForm.CostCreation.Visible = False
-        DaikaForm.CostModify.Visible = False
-        DaikaForm.CostCopy.Visible = False
-        DaikaForm.Reference.Visible = False
-        DaikaForm.Entry.Visible = False
-        DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
-        DaikaForm.Show()
-        DaikaForm.TopMost = False
-
-    End Sub
-
-    Private Sub HomeTreeView_DoubleClick(sender As Object, e As EventArgs) Handles HomeTreeView.DoubleClick
         Try
-            Cursor.Current = Cursors.WaitCursor
-
-            If FormPanel.Controls.Count > 0 Then
-                Dim FormClose As String = ""
-
-                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
-                FormClose = FormCloseLoad.FormCheck
-            End If
-
-            Dim formcount As Integer = ProjectCostForm.Count
-            If formcount > 0 Then
-                For formloop As Integer = 0 To formcount - 1
-                    ProjectCostForm.RemoveAt(formloop)
-                    ProjectCostID.RemoveAt(formloop)
-                    ProjectCostSelectRow.RemoveAt(formloop)
-                    PrjctCstClassCode.RemoveAt(formloop)
-                    PrjctCstList.RemoveAt(formloop)
-                Next
-            End If
 
             Dim node As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
 
             Dim nodevalue As String = node.GetValue
             Dim level As Integer = node.Level
 
-            If level = 0 Then
-                右クリックメニュー.Visible = False
+            Dim index As Integer = nodevalue.Length - 1
+            Dim cost As String = nodevalue.Substring(index - 8, 1)
+            Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
+
+            Dim clssname As String = "工事代価" & cost
+            Sql.CommandText = ""
+            Sql.Parameters.Clear()
+            Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
+            Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
+            Dim clsscode As Integer = Sql.ExecuteScalar
+
+            Sql.CommandText = ""
+            Sql.Parameters.Clear()
+            Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
+            Dim prjctcstid As Integer = Sql.ExecuteScalar
+
+            Dim DaikaForm As New 代価表入力
+            DaikaForm.CostID = prjctcstid
+            DaikaForm.ClassCode = clsscode
+            DaikaForm.TopLevel = True
+            DaikaForm.TopMost = True
+            DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
+            DaikaForm.CostNo.Enabled = False
+            DaikaForm.CostName.Enabled = False
+            DaikaForm.CostSpec.Enabled = False
+            DaikaForm.CostQuanity.Enabled = False
+            DaikaForm.CostUnit.Enabled = False
+            DaikaForm.CostUnitPrice.Enabled = False
+            DaikaForm.CostCostea.Enabled = False
+            DaikaForm.BreakDownList.AllowEditing = False
+            DaikaForm.ItemSelect.Visible = False
+            DaikaForm.CostCreation.Visible = False
+            DaikaForm.CostModify.Visible = False
+            DaikaForm.CostCopy.Visible = False
+            DaikaForm.Reference.Visible = False
+            DaikaForm.Entry.Visible = False
+            DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+            DaikaForm.Show()
+            DaikaForm.TopMost = False
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub HomeTreeView_DoubleClick(sender As Object, e As EventArgs) Handles HomeTreeView.DoubleClick
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If HomeTreeView.SelectedNodes.Count >= 1 Then
+
+                If FormPanel.Controls.Count > 0 Then
+                    Dim FormClose As String = ""
+
+                    Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                    FormClose = FormCloseLoad.FormCheck
+                End If
+
+                Dim formcount As Integer = ProjectCostForm.Count
+                If formcount > 0 Then
+                    For formloop As Integer = 0 To formcount - 1
+                        ProjectCostForm.RemoveAt(formloop)
+                        ProjectCostID.RemoveAt(formloop)
+                        ProjectCostSelectRow.RemoveAt(formloop)
+                        PrjctCstClassCode.RemoveAt(formloop)
+                        PrjctCstList.RemoveAt(formloop)
+                    Next
+                End If
 
 
-                Dim length As Integer = nodevalue.Length
+                Dim node As C1.Win.TreeView.C1TreeNode
 
-                Dim lcode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
-                Dim lname As String = nodevalue.Substring(4, length - 5)
+                node = HomeTreeView.SelectedNodes(0)
 
-                lworktypecode = lcode
-                lworktypename = lname
+                Dim nodevalue As String = node.GetValue
+                Dim level As Integer = node.Level
 
-                小工種選択.TopLevel = False
-                FormPanel.Controls.Add(小工種選択)
-                小工種選択.Show()
+                If IsNothing(nodevalue) = False Then
+                    If level = 0 Then
+                        右クリックメニュー.Visible = False
 
 
-            ElseIf level = 1 Then
+                        Dim length As Integer = nodevalue.Length
 
-                右クリックメニュー.Visible = False
+                        Dim lcode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
+                        Dim lname As String = nodevalue.Substring(4, length - 5)
 
-                Dim length As Integer = nodevalue.Length
+                        lworktypecode = lcode
+                        lworktypename = lname
 
-                Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
-                Dim sname As String = nodevalue.Substring(4, length - 5)
+                        小工種選択.TopLevel = False
+                        FormPanel.Controls.Add(小工種選択)
+                        小工種選択.Show()
 
-                sworktypecode = scode
-                sworktypename = sname
 
-                明細書入力.TopLevel = False
-                FormPanel.Controls.Add(明細書入力)
-                明細書入力.Show()
+                    ElseIf level = 1 Then
 
-            Else
+                        右クリックメニュー.Visible = False
 
-                右クリックメニュー.Visible = True
+                        Dim length As Integer = nodevalue.Length
 
-                Dim index As Integer = nodevalue.Length - 1
-                Dim cost As String = nodevalue.Substring(index - 8, 1)
-                Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
+                        Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
+                        Dim sname As String = nodevalue.Substring(4, length - 5)
 
-                Dim clssname As String = "工事代価" & cost
-                Sql.CommandText = ""
-                Sql.Parameters.Clear()
-                Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
-                Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
-                Dim clsscode As Integer = Sql.ExecuteScalar
+                        sworktypecode = scode
+                        sworktypename = sname
 
-                Sql.CommandText = ""
-                Sql.Parameters.Clear()
-                Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
-                Dim prjctcstid As Integer = Sql.ExecuteScalar
+                        明細書入力.TopLevel = False
+                        FormPanel.Controls.Add(明細書入力)
+                        明細書入力.Show()
 
-                Dim ProjectCostList As New C1FlexGrid
+                    Else
 
-                ProjectCostForm.Add(New 代価表入力)
-                ProjectCostForm(0).TopLevel = False
-                FormPanel.Controls.Add(ProjectCostForm(0))
-                ProjectCostSelectRow.Add(0)
-                ProjectCostID.Add(prjctcstid)
-                PrjctCstClassCode.Add(clsscode)
-                PrjctCstList.Add(ProjectCostList)
-                ProjectCostForm(0).Show()
+                        右クリックメニュー.Visible = True
+
+                        Dim index As Integer = nodevalue.Length - 1
+                        Dim subindex As Integer = nodevalue.IndexOf("(")
+                        Dim cost As String = nodevalue.Substring(subindex + 1, 1)
+                        Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 5, 5))
+
+                        Dim clssname As String = "工事代価" & cost
+                        Sql.CommandText = ""
+                        Sql.Parameters.Clear()
+                        Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@name"
+                        Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = clssname
+                        Dim clsscode As Integer = Sql.ExecuteScalar
+
+                        Sql.CommandText = ""
+                        Sql.Parameters.Clear()
+                        Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & BudgetNo & "  AND cstclss_code=" & clsscode & " AND prjctcst_no=" & costno
+                        Dim prjctcstid As Integer = Sql.ExecuteScalar
+
+                        Dim ProjectCostList As New C1FlexGrid
+
+                        ProjectCostForm.Add(New 代価表入力)
+                        ProjectCostForm(0).TopLevel = False
+                        FormPanel.Controls.Add(ProjectCostForm(0))
+                        ProjectCostSelectRow.Add(0)
+                        ProjectCostID.Add(prjctcstid)
+                        PrjctCstClassCode.Add(clsscode)
+                        PrjctCstList.Add(ProjectCostList)
+                        ProjectCostForm(0).Show()
+                    End If
+                End If
             End If
-
             Cursor.Current = Cursors.Default
 
         Catch ex As Exception
             ErrorMessage = ex.Message
-        StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
+    End Sub
+
+    Private Sub 材料表インポート_CommandLinkAdded(sender As Object, e As CommandLinkEventArgs) Handles 材料表インポート.CommandLinkAdded
+
+    End Sub
+
+    Private Sub 閉じる_Click(sender As Object, e As ClickEventArgs) Handles 閉じる.Click
+        If FormPanel.Controls.Count > 0 Then
+            Dim FormClose As String = ""
+
+            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+            FormClose = FormCloseLoad.FormCheck
+        End If
+
+        Me.Close()
     End Sub
 End Class

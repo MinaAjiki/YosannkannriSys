@@ -663,60 +663,72 @@ Public Class 代価表入力
     End Sub
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
+        Try
 
-        For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
-            If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                SelectRow = DetailsRowCount + 2
-                Exit For
+            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
+                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If BreakDownList(SelectRow, 8) >= 12 Then
+
+                Dim count As Integer = ホーム.ProjectCostForm.Count
+
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(count).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(count))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
+                ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
+                ホーム.PrjctCstList.Add(BreakDownList)
+                ホーム.ProjectCostForm(count).Show()
+                Me.Visible = False
+
+            Else
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        Next
 
-        If BreakDownList(SelectRow, 8) >= 12 Then
-
-            Dim count As Integer = ホーム.ProjectCostForm.Count
-
-            ホーム.ProjectCostForm.Add(New 代価表入力)
-            ホーム.ProjectCostForm(count).TopLevel = False
-            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(count))
-            ホーム.ProjectCostSelectRow.Add(SelectRow)
-            ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
-            ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
-            ホーム.PrjctCstList.Add(BreakDownList)
-            ホーム.ProjectCostForm(count).Show()
-            Me.Visible = False
-
-        Else
-            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
-        End If
-
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostModifyMenu_Click(sender As Object, e As EventArgs) Handles CostModifyMenu.Click
-        For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
-            If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                SelectRow = DetailsRowCount + 2
-                Exit For
+        Try
+            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
+                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+
+            If BreakDownList(SelectRow, 8) >= 12 Then
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                ホーム.ProjectCostForm.Add(New 代価表入力)
+                ホーム.ProjectCostForm(FormCount).TopLevel = False
+                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+                ホーム.ProjectCostSelectRow.Add(SelectRow)
+                ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
+                ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
+                ホーム.PrjctCstList.Add(BreakDownList)
+                ホーム.ProjectCostForm(FormCount).Show()
+                Me.Visible = False
+
+            Else
+                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        Next
-
-        If BreakDownList(SelectRow, 8) >= 12 Then
-            Dim FormCount As Integer = ホーム.ProjectCostForm.Count
-
-            ホーム.ProjectCostForm.Add(New 代価表入力)
-            ホーム.ProjectCostForm(FormCount).TopLevel = False
-            ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
-            ホーム.ProjectCostSelectRow.Add(SelectRow)
-            ホーム.ProjectCostID.Add(BreakDownList(SelectRow, 9))
-            ホーム.PrjctCstClassCode.Add(BreakDownList(SelectRow, 8))
-            ホーム.PrjctCstList.Add(BreakDownList)
-            ホーム.ProjectCostForm(FormCount).Show()
-            Me.Visible = False
-
-        Else
-            MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
-        End If
-
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CostCopy_Click(sender As Object, e As EventArgs) Handles CostCopy.Click
@@ -1748,6 +1760,7 @@ Public Class 代価表入力
 
             ホーム.Sql.Transaction = ホーム.Transaction
 
+
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = CostName.Value
@@ -1903,11 +1916,11 @@ Public Class 代価表入力
 
 
         Catch ex As Exception
-            ホーム.Transaction.Rollback()
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.Transaction.Rollback()
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
 
         Try
@@ -1976,6 +1989,7 @@ Public Class 代価表入力
             ホーム.Sql.Parameters.Clear()
 
             ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT DEFAULT (0) NOT NULL,
+                                                              cstclss_code INT DEFAULT (0) NOT NULL, 
                                                               name NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               spec NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               unit NVARCHAR(5) DEFAULT ('') NOT NULL,
@@ -1987,9 +2001,10 @@ Public Class 代価表入力
                                                               expense MONEY DEFAULT (0) NOT NULL)"
             ホーム.Sql.ExecuteNonQuery()
 
-            ホーム.Sql.CommandText = "INSERT INTO #UpdateID (id,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
-                                      VALUES (@id,@name,@spec,@unit,@costea,@labor,@material,@machine,@subcntrct,@expense)"
+            ホーム.Sql.CommandText = "INSERT INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
+                                      VALUES (@id,@cstclsscode,@name,@spec,@unit,@costea,@labor,@material,@machine,@subcntrct,@expense)"
             ホーム.Sql.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = CostID
+            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.Int)).Value = ClassCode
             ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = CostName.Value
             If IsNothing(CostSpec.Value) = True Or Not CostSpec.Text <> "" Then
                 ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
@@ -2129,10 +2144,10 @@ Public Class 代価表入力
             ホーム.Sql.Parameters.Clear()
 
         Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
 
     End Sub

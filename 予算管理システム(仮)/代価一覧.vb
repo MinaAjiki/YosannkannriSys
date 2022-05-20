@@ -99,7 +99,7 @@ Public Class 代価一覧
 
 
                 Dim RowCount As Integer = 0
-                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo & " ORDER BY prjctcst_no ASC"
+                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE budget_no=" & ホーム.BudgetNo & " AND  cstclss_code=" & CostClassCode & " ORDER BY prjctcst_no ASC"
                 Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While ProjectCostsReader.Read
                     RowCount += 1

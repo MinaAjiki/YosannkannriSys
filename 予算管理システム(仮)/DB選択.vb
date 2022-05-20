@@ -126,6 +126,8 @@ Public Class DB選択
             ホーム.UserDataPath = OpenFilePath
             ホーム.UserDataName = OpenFileName
 
+            ホーム.HomeTreeView.Nodes.Clear()
+
             If DataCount >= 1 Then
                 予算選択.Show()
 
@@ -135,6 +137,7 @@ Public Class DB選択
                 ホーム.外注管理.Enabled = True
                 ホーム.出力.Enabled = True
                 ホーム.予算内訳登録.Enabled = True
+                ホーム.参照作成command.Enabled = True
 
             Else
                 ホーム.Enabled = True
@@ -143,6 +146,8 @@ Public Class DB選択
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
                 ホーム.出力.Enabled = False
+                ホーム.参照作成command.Enabled = False
+
             End If
 
             Cursor.Current = Cursors.Default
@@ -164,6 +169,7 @@ Public Class DB選択
             Dim OpenFileName As CellRange = FileList.GetCellRange(SelectRow, 1)
             Dim OpenFilePath As CellRange = FileList.GetCellRange(SelectRow, 2)
 
+            ホーム.HomeTreeView.Nodes.Clear()
 
 
             ホーム.SystemMdf.CommandText = ""
@@ -200,6 +206,7 @@ Public Class DB選択
                 ホーム.外注管理.Enabled = True
                 ホーム.出力.Enabled = True
                 ホーム.予算内訳登録.Enabled = True
+                ホーム.参照作成command.Enabled = True
 
 
             Else
@@ -209,6 +216,7 @@ Public Class DB選択
                 ホーム.外注管理.Enabled = False
                 ホーム.出力.Enabled = False
                 ホーム.予算内訳登録.Enabled = False
+                ホーム.参照作成command.Enabled = False
 
             End If
 
