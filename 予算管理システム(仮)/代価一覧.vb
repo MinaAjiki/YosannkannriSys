@@ -11,6 +11,7 @@ Public Class 代価一覧
     Private Sub 代価一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             If CostClassName = "基礎代価" Then
+                CostClassCode = 11
                 ホーム.SystemSql.Parameters.Clear()
                 ホーム.SystemSql.CommandText = ""
                 ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & CostClassCode
@@ -533,6 +534,14 @@ Public Class 代価一覧
                 '階層追加以外を選択
             Else
                 ProjectCostList.Clear(ClearFlags.Content)
+                ProjectCostList(0, 2) = "削除"
+                ProjectCostList(0, 3) = "No"
+                ProjectCostList(0, 4) = "名称"
+                ProjectCostList(0, 5) = "規格"
+                ProjectCostList(0, 6) = "単位"
+                ProjectCostList(0, 7) = "数量"
+                ProjectCostList(0, 8) = "単価"
+                ProjectCostList(0, 9) = "代価計"
                 ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
@@ -584,20 +593,29 @@ Public Class 代価一覧
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
+        If CostList.SelectedIndex = -1 Then
+            MsgBox("代価表を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+            Exit Sub
+        End If
         Me.Close()
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
         Try
             代価内訳.ClassCode = CostClassCode
-            代価内訳.Show()
+
+            If CostList.Text = "工事代価を選択" Then
+                MsgBox("工事代価を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                Exit Sub
+            End If
             If CostClassCode = 11 Then
                 ホーム.BeforeForm = "基礎代価一覧"
             ElseIf CostClassCode > 11 Then
                 ホーム.BeforeForm = "工事代価一覧"
             End If
 
-            Me.Visible = False
+            代価内訳.Show()
+            Me.Close()
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -608,11 +626,14 @@ Public Class 代価一覧
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
         Try
-
+            If CostList.Text = "工事代価を選択" Then
+                MsgBox("工事代価を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                Exit Sub
+            End If
             SelectRow = ProjectCostList.Selection.TopRow
             代価内訳.CostID = ProjectCostList(SelectRow, 1)
-            '代価内訳.CostID = ProjectCostList(SelectRow, 3)
             代価内訳.ClassCode = CostClassCode
+
             If CostClassCode = 11 Then
                 ホーム.BeforeForm = "基礎代価一覧"
             ElseIf CostClassCode > 11 Then
@@ -620,7 +641,40 @@ Public Class 代価一覧
             End If
 
             代価内訳.Show()
-            Me.Visible = False
+            Me.Close()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub CostCopy_Click(sender As Object, e As EventArgs) Handles CostCopy.Click
+        Try
+            SelectRow = ProjectCostList.Selection.TopRow
+            If SelectRow = 0 Then
+                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+            Else
+                ホーム.ProjectCommand = "CostCopy"
+                ホーム.BeforeForm = "代価一覧"
+                'If BreakDownList(SelectRow, 8) >= 12 Then
+
+                作成代価選択.HeadLine.Text = "<<コピー代価選択"
+                    作成代価選択.Text = "コピー代価選択"
+                    作成代価選択.SelectRow = SelectRow
+                '作成代価選択.CopyList = BreakDownList
+
+
+                作成代価選択.ShowDialog()
+                    作成代価選択.TopMost = True
+                    作成代価選択.TopMost = False
+                'Else
+                '    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+                'End If
+
+            End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

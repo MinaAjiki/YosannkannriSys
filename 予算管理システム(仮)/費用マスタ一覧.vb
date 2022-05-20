@@ -247,9 +247,7 @@ Public Class 費用マスタ一覧
                 If IsNothing(ProjectCostList(ProjectCostRow, 6)) = False Then
                     ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor((ProjectCostList(ProjectCostRow, 6) * MasterContentsList(Row, 8)))
                 End If
-                If IsNothing(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
-                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor((明細書入力.DetailsList(明細書入力.SelectRow, 6) * MasterContentsList(Row, 8)))
-                End If
+
                 If CostClassCode = 1 Then
                     ProjectCostList(ProjectCostRow + 1, 10) = MasterContentsList(Row, 8)
                     ProjectCostList(ProjectCostRow + 2, 10) = ProjectCostList(ProjectCostRow + 2, 6)
