@@ -26,26 +26,34 @@ Partial Class 代価内訳
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(代価内訳))
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
-        Me.DetailsList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.BreakDownList = New C1.Win.C1FlexGrid.C1FlexGrid()
+        Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ItemSelectMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InsertMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CutMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PastingMenu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Delete = New System.Windows.Forms.ToolStripMenuItem()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
-        Me.C1TextBox1 = New C1.Win.C1Input.C1TextBox()
+        Me.CostNo = New C1.Win.C1Input.C1TextBox()
         Me.C1NumericEdit2 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1TextBox2 = New C1.Win.C1Input.C1TextBox()
-        Me.C1TextBox3 = New C1.Win.C1Input.C1TextBox()
-        Me.C1NumericEdit1 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit3 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit4 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit5 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit6 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit7 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit8 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit9 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit10 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit11 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit12 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit13 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit14 = New C1.Win.C1Input.C1NumericEdit()
-        Me.C1NumericEdit15 = New C1.Win.C1Input.C1NumericEdit()
+        Me.CostName = New C1.Win.C1Input.C1TextBox()
+        Me.CostSpec = New C1.Win.C1Input.C1TextBox()
+        Me.CostQuanity = New C1.Win.C1Input.C1NumericEdit()
+        Me.CostUnitPrice = New C1.Win.C1Input.C1NumericEdit()
+        Me.CostCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.LaborCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.MaterialCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.MachineCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.SubcntrctCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.ExpensCostea = New C1.Win.C1Input.C1NumericEdit()
+        Me.LaborTotal = New C1.Win.C1Input.C1NumericEdit()
+        Me.ExpenseTotal = New C1.Win.C1Input.C1NumericEdit()
+        Me.MaterialTotal = New C1.Win.C1Input.C1NumericEdit()
+        Me.MachineTotal = New C1.Win.C1Input.C1NumericEdit()
+        Me.SubcntrctTotal = New C1.Win.C1Input.C1NumericEdit()
+        Me.CostUnit2 = New C1.Win.C1Input.C1NumericEdit()
+        Me.CostUnit = New C1.Win.C1Input.C1TextBox()
         Me.ItemSelect = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.FormSplitContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
@@ -62,26 +70,29 @@ Partial Class 代価内訳
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
-        CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CostCopy = New System.Windows.Forms.Button()
+        CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostNo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C1NumericEdit15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostName, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostSpec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostQuanity, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LaborCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MaterialCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MachineCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SubcntrctCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ExpensCostea, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LaborTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ExpenseTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MaterialTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MachineTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SubcntrctTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostUnit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CostUnit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.C1SplitterPanel1.SuspendLayout()
@@ -125,47 +136,94 @@ Partial Class 代価内訳
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
-        'DetailsList
+        'BreakDownList
         '
-        Me.DetailsList.AllowDelete = True
-        Me.DetailsList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.DetailsList.AllowEditing = False
-        Me.DetailsList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
-        Me.DetailsList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.DetailsList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.BreakDownList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
+        Me.BreakDownList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
+        Me.BreakDownList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.BreakDownList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.DetailsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.DetailsList.ColumnInfo = resources.GetString("DetailsList.ColumnInfo")
-        Me.DetailsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.DetailsList.Location = New System.Drawing.Point(28, 184)
-        Me.DetailsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.DetailsList.Name = "DetailsList"
-        Me.DetailsList.Rows.Count = 25
-        Me.DetailsList.Rows.Fixed = 3
-        Me.DetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.DetailsList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
-        Me.DetailsList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
-        Me.DetailsList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.DetailsList.Size = New System.Drawing.Size(936, 408)
-        Me.DetailsList.StyleInfo = resources.GetString("DetailsList.StyleInfo")
-        Me.DetailsList.TabIndex = 43
-        Me.SystemTheme.SetTheme(Me.DetailsList, "予算管理テーマ")
+        Me.BreakDownList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
+        Me.BreakDownList.ColumnInfo = resources.GetString("BreakDownList.ColumnInfo")
+        Me.BreakDownList.ContextMenuStrip = Me.右クリックメニュー
+        Me.BreakDownList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.BreakDownList.Location = New System.Drawing.Point(28, 185)
+        Me.BreakDownList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.BreakDownList.Name = "BreakDownList"
+        Me.BreakDownList.Rows.Count = 25
+        Me.BreakDownList.Rows.Fixed = 3
+        Me.BreakDownList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.BreakDownList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
+        Me.BreakDownList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell
+        Me.BreakDownList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
+        Me.BreakDownList.Size = New System.Drawing.Size(950, 408)
+        Me.BreakDownList.StyleInfo = resources.GetString("BreakDownList.StyleInfo")
+        Me.BreakDownList.TabIndex = 43
+        Me.SystemTheme.SetTheme(Me.BreakDownList, "予算管理テーマ2")
         '
-        'C1TextBox1
+        '右クリックメニュー
         '
-        Me.C1TextBox1.AutoSize = False
-        Me.C1TextBox1.BackColor = System.Drawing.Color.White
-        Me.C1TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1TextBox1.Enabled = False
-        Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1TextBox1.Location = New System.Drawing.Point(99, 60)
-        Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(173, 20)
-        Me.C1TextBox1.TabIndex = 45
-        Me.C1TextBox1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1TextBox1, "予算管理テーマ")
-        Me.C1TextBox1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.右クリックメニュー.BackColor = System.Drawing.Color.White
+        Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.Delete})
+        Me.右クリックメニュー.Name = "ContextMenuStrip1"
+        Me.右クリックメニュー.ShowImageMargin = False
+        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 136)
+        Me.右クリックメニュー.Text = "項目選択"
+        Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
+        '
+        'ItemSelectMenu
+        '
+        Me.ItemSelectMenu.Name = "ItemSelectMenu"
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
+        Me.ItemSelectMenu.Text = "項目選択"
+        '
+        'InsertMenu
+        '
+        Me.InsertMenu.Name = "InsertMenu"
+        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
+        Me.InsertMenu.Text = "行の挿入"
+        '
+        'CutMenu
+        '
+        Me.CutMenu.Name = "CutMenu"
+        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CutMenu.Text = "行の切り取り"
+        '
+        'CopyMenu
+        '
+        Me.CopyMenu.Name = "CopyMenu"
+        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CopyMenu.Text = "行のコピー"
+        '
+        'PastingMenu
+        '
+        Me.PastingMenu.Name = "PastingMenu"
+        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
+        Me.PastingMenu.Text = "行の貼り付け"
+        '
+        'Delete
+        '
+        Me.Delete.Name = "Delete"
+        Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.Delete.Size = New System.Drawing.Size(123, 22)
+        Me.Delete.Visible = False
+        '
+        'CostNo
+        '
+        Me.CostNo.AutoSize = False
+        Me.CostNo.BackColor = System.Drawing.Color.White
+        Me.CostNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CostNo.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostNo.Enabled = False
+        Me.CostNo.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostNo.Location = New System.Drawing.Point(99, 60)
+        Me.CostNo.Name = "CostNo"
+        Me.CostNo.Size = New System.Drawing.Size(173, 20)
+        Me.CostNo.TabIndex = 45
+        Me.CostNo.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CostNo, "予算管理テーマ")
+        Me.CostNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'C1NumericEdit2
         '
@@ -193,396 +251,437 @@ Partial Class 代価内訳
         Me.C1NumericEdit2.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.C1NumericEdit2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
-        'C1TextBox2
-        '
-        Me.C1TextBox2.AutoSize = False
-        Me.C1TextBox2.BackColor = System.Drawing.Color.White
-        Me.C1TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox2.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1TextBox2.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1TextBox2.Location = New System.Drawing.Point(99, 81)
-        Me.C1TextBox2.Name = "C1TextBox2"
-        Me.C1TextBox2.Size = New System.Drawing.Size(228, 20)
-        Me.C1TextBox2.TabIndex = 63
-        Me.C1TextBox2.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1TextBox2, "予算管理テーマ")
-        Me.C1TextBox2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1TextBox3
-        '
-        Me.C1TextBox3.AutoSize = False
-        Me.C1TextBox3.BackColor = System.Drawing.Color.White
-        Me.C1TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.C1TextBox3.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1TextBox3.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1TextBox3.Location = New System.Drawing.Point(402, 81)
-        Me.C1TextBox3.Name = "C1TextBox3"
-        Me.C1TextBox3.Size = New System.Drawing.Size(543, 20)
-        Me.C1TextBox3.TabIndex = 70
-        Me.C1TextBox3.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1TextBox3, "予算管理テーマ")
-        Me.C1TextBox3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit1
-        '
-        Me.C1NumericEdit1.AutoSize = False
-        Me.C1NumericEdit1.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit1.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit1.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit1.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit1.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit1.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit1.GapHeight = 0
-        Me.C1NumericEdit1.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit1.Location = New System.Drawing.Point(66, 102)
-        Me.C1NumericEdit1.Name = "C1NumericEdit1"
-        Me.C1NumericEdit1.Size = New System.Drawing.Size(110, 20)
-        Me.C1NumericEdit1.TabIndex = 71
-        Me.C1NumericEdit1.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit1, "予算管理テーマ")
-        Me.C1NumericEdit1.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit1.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit3
-        '
-        Me.C1NumericEdit3.AutoSize = False
-        Me.C1NumericEdit3.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit3.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit3.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit3.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit3.DataType = GetType(Long)
-        Me.C1NumericEdit3.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit3.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit3.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit3.GapHeight = 0
-        Me.C1NumericEdit3.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit3.Location = New System.Drawing.Point(370, 102)
-        Me.C1NumericEdit3.Name = "C1NumericEdit3"
-        Me.C1NumericEdit3.Size = New System.Drawing.Size(110, 20)
-        Me.C1NumericEdit3.TabIndex = 72
-        Me.C1NumericEdit3.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit3, "予算管理テーマ")
-        Me.C1NumericEdit3.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit3.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit4
-        '
-        Me.C1NumericEdit4.AutoSize = False
-        Me.C1NumericEdit4.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit4.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit4.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit4.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit4.DataType = GetType(Long)
-        Me.C1NumericEdit4.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit4.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit4.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit4.GapHeight = 0
-        Me.C1NumericEdit4.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit4.Location = New System.Drawing.Point(218, 102)
-        Me.C1NumericEdit4.Name = "C1NumericEdit4"
-        Me.C1NumericEdit4.Size = New System.Drawing.Size(110, 20)
-        Me.C1NumericEdit4.TabIndex = 73
-        Me.C1NumericEdit4.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit4, "予算管理テーマ")
-        Me.C1NumericEdit4.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit4.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit5
-        '
-        Me.C1NumericEdit5.AutoSize = False
-        Me.C1NumericEdit5.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit5.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit5.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit5.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit5.DataType = GetType(Long)
-        Me.C1NumericEdit5.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit5.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit5.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit5.GapHeight = 0
-        Me.C1NumericEdit5.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit5.Location = New System.Drawing.Point(522, 102)
-        Me.C1NumericEdit5.Name = "C1NumericEdit5"
-        Me.C1NumericEdit5.Size = New System.Drawing.Size(110, 20)
-        Me.C1NumericEdit5.TabIndex = 74
-        Me.C1NumericEdit5.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit5, "予算管理テーマ")
-        Me.C1NumericEdit5.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit5.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit6
-        '
-        Me.C1NumericEdit6.AutoSize = False
-        Me.C1NumericEdit6.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit6.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit6.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit6.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit6.DataType = GetType(Long)
-        Me.C1NumericEdit6.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit6.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit6.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit6.GapHeight = 0
-        Me.C1NumericEdit6.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit6.Location = New System.Drawing.Point(470, 163)
-        Me.C1NumericEdit6.Name = "C1NumericEdit6"
-        Me.C1NumericEdit6.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit6.TabIndex = 75
-        Me.C1NumericEdit6.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit6, "予算管理テーマ")
-        Me.C1NumericEdit6.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit6.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit7
-        '
-        Me.C1NumericEdit7.AutoSize = False
-        Me.C1NumericEdit7.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit7.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit7.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit7.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit7.DataType = GetType(Long)
-        Me.C1NumericEdit7.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit7.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit7.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit7.GapHeight = 0
-        Me.C1NumericEdit7.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit7.Location = New System.Drawing.Point(565, 163)
-        Me.C1NumericEdit7.Name = "C1NumericEdit7"
-        Me.C1NumericEdit7.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit7.TabIndex = 76
-        Me.C1NumericEdit7.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit7, "予算管理テーマ")
-        Me.C1NumericEdit7.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit7.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit8
-        '
-        Me.C1NumericEdit8.AutoSize = False
-        Me.C1NumericEdit8.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit8.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit8.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit8.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit8.DataType = GetType(Long)
-        Me.C1NumericEdit8.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit8.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit8.GapHeight = 0
-        Me.C1NumericEdit8.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit8.Location = New System.Drawing.Point(660, 163)
-        Me.C1NumericEdit8.Name = "C1NumericEdit8"
-        Me.C1NumericEdit8.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit8.TabIndex = 77
-        Me.C1NumericEdit8.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit8, "予算管理テーマ")
-        Me.C1NumericEdit8.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit8.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit9
-        '
-        Me.C1NumericEdit9.AutoSize = False
-        Me.C1NumericEdit9.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit9.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit9.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit9.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit9.DataType = GetType(Long)
-        Me.C1NumericEdit9.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit9.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit9.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit9.GapHeight = 0
-        Me.C1NumericEdit9.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit9.Location = New System.Drawing.Point(755, 163)
-        Me.C1NumericEdit9.Name = "C1NumericEdit9"
-        Me.C1NumericEdit9.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit9.TabIndex = 78
-        Me.C1NumericEdit9.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit9, "予算管理テーマ")
-        Me.C1NumericEdit9.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit9.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit10
-        '
-        Me.C1NumericEdit10.AutoSize = False
-        Me.C1NumericEdit10.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit10.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit10.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit10.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit10.DataType = GetType(Long)
-        Me.C1NumericEdit10.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit10.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit10.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit10.GapHeight = 0
-        Me.C1NumericEdit10.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit10.Location = New System.Drawing.Point(850, 163)
-        Me.C1NumericEdit10.Name = "C1NumericEdit10"
-        Me.C1NumericEdit10.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit10.TabIndex = 79
-        Me.C1NumericEdit10.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit10, "予算管理テーマ")
-        Me.C1NumericEdit10.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit10.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit11
-        '
-        Me.C1NumericEdit11.AutoSize = False
-        Me.C1NumericEdit11.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit11.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit11.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit11.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit11.DataType = GetType(Long)
-        Me.C1NumericEdit11.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit11.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit11.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit11.GapHeight = 0
-        Me.C1NumericEdit11.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit11.Location = New System.Drawing.Point(470, 594)
-        Me.C1NumericEdit11.Name = "C1NumericEdit11"
-        Me.C1NumericEdit11.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit11.TabIndex = 80
-        Me.C1NumericEdit11.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit11, "予算管理テーマ")
-        Me.C1NumericEdit11.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit11.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit12
-        '
-        Me.C1NumericEdit12.AutoSize = False
-        Me.C1NumericEdit12.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit12.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit12.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit12.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit12.DataType = GetType(Long)
-        Me.C1NumericEdit12.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit12.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit12.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit12.GapHeight = 0
-        Me.C1NumericEdit12.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit12.Location = New System.Drawing.Point(850, 594)
-        Me.C1NumericEdit12.Name = "C1NumericEdit12"
-        Me.C1NumericEdit12.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit12.TabIndex = 81
-        Me.C1NumericEdit12.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit12, "予算管理テーマ")
-        Me.C1NumericEdit12.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit12.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit13
-        '
-        Me.C1NumericEdit13.AutoSize = False
-        Me.C1NumericEdit13.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit13.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit13.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit13.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit13.DataType = GetType(Long)
-        Me.C1NumericEdit13.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit13.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit13.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit13.GapHeight = 0
-        Me.C1NumericEdit13.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit13.Location = New System.Drawing.Point(565, 594)
-        Me.C1NumericEdit13.Name = "C1NumericEdit13"
-        Me.C1NumericEdit13.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit13.TabIndex = 82
-        Me.C1NumericEdit13.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit13, "予算管理テーマ")
-        Me.C1NumericEdit13.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit13.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit14
-        '
-        Me.C1NumericEdit14.AutoSize = False
-        Me.C1NumericEdit14.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit14.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit14.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit14.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit14.DataType = GetType(Long)
-        Me.C1NumericEdit14.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit14.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit14.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit14.GapHeight = 0
-        Me.C1NumericEdit14.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit14.Location = New System.Drawing.Point(660, 594)
-        Me.C1NumericEdit14.Name = "C1NumericEdit14"
-        Me.C1NumericEdit14.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit14.TabIndex = 83
-        Me.C1NumericEdit14.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit14, "予算管理テーマ")
-        Me.C1NumericEdit14.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit14.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        '
-        'C1NumericEdit15
-        '
-        Me.C1NumericEdit15.AutoSize = False
-        Me.C1NumericEdit15.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        '
-        '
-        '
-        Me.C1NumericEdit15.Calculator.BackColor = System.Drawing.Color.White
-        Me.C1NumericEdit15.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.C1NumericEdit15.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
-        Me.C1NumericEdit15.DataType = GetType(Long)
-        Me.C1NumericEdit15.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.C1NumericEdit15.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.C1NumericEdit15.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
-        Me.C1NumericEdit15.GapHeight = 0
-        Me.C1NumericEdit15.ImagePadding = New System.Windows.Forms.Padding(0)
-        Me.C1NumericEdit15.Location = New System.Drawing.Point(755, 594)
-        Me.C1NumericEdit15.Name = "C1NumericEdit15"
-        Me.C1NumericEdit15.Size = New System.Drawing.Size(95, 20)
-        Me.C1NumericEdit15.TabIndex = 84
-        Me.C1NumericEdit15.Tag = Nothing
-        Me.SystemTheme.SetTheme(Me.C1NumericEdit15, "予算管理テーマ")
-        Me.C1NumericEdit15.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
-        Me.C1NumericEdit15.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        'CostName
+        '
+        Me.CostName.AutoSize = False
+        Me.CostName.BackColor = System.Drawing.Color.White
+        Me.CostName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CostName.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostName.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostName.Location = New System.Drawing.Point(99, 81)
+        Me.CostName.Name = "CostName"
+        Me.CostName.Size = New System.Drawing.Size(228, 20)
+        Me.CostName.TabIndex = 63
+        Me.CostName.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CostName, "予算管理テーマ")
+        Me.CostName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostSpec
+        '
+        Me.CostSpec.AutoSize = False
+        Me.CostSpec.BackColor = System.Drawing.Color.White
+        Me.CostSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CostSpec.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostSpec.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostSpec.Location = New System.Drawing.Point(402, 81)
+        Me.CostSpec.Name = "CostSpec"
+        Me.CostSpec.Size = New System.Drawing.Size(543, 20)
+        Me.CostSpec.TabIndex = 70
+        Me.CostSpec.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CostSpec, "予算管理テーマ")
+        Me.CostSpec.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostQuanity
+        '
+        Me.CostQuanity.AutoSize = False
+        Me.CostQuanity.BackColor = System.Drawing.Color.White
+        Me.CostQuanity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.CostQuanity.Calculator.BackColor = System.Drawing.Color.White
+        Me.CostQuanity.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostQuanity.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.CostQuanity.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostQuanity.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.CostQuanity.GapHeight = 0
+        Me.CostQuanity.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostQuanity.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.CostQuanity.Location = New System.Drawing.Point(66, 102)
+        Me.CostQuanity.Name = "CostQuanity"
+        Me.CostQuanity.Size = New System.Drawing.Size(110, 20)
+        Me.CostQuanity.TabIndex = 71
+        Me.CostQuanity.Tag = Nothing
+        Me.CostQuanity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.CostQuanity, "予算管理テーマ")
+        Me.CostQuanity.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.CostQuanity.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostUnitPrice
+        '
+        Me.CostUnitPrice.AutoSize = False
+        Me.CostUnitPrice.BackColor = System.Drawing.Color.White
+        Me.CostUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.CostUnitPrice.Calculator.BackColor = System.Drawing.Color.White
+        Me.CostUnitPrice.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostUnitPrice.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.CostUnitPrice.DataType = GetType(Long)
+        Me.CostUnitPrice.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostUnitPrice.Enabled = False
+        Me.CostUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.CostUnitPrice.GapHeight = 0
+        Me.CostUnitPrice.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostUnitPrice.Location = New System.Drawing.Point(370, 102)
+        Me.CostUnitPrice.Name = "CostUnitPrice"
+        Me.CostUnitPrice.Size = New System.Drawing.Size(110, 20)
+        Me.CostUnitPrice.TabIndex = 72
+        Me.CostUnitPrice.Tag = Nothing
+        Me.CostUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.CostUnitPrice, "予算管理テーマ")
+        Me.CostUnitPrice.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.CostUnitPrice.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostCostea
+        '
+        Me.CostCostea.AutoSize = False
+        Me.CostCostea.BackColor = System.Drawing.Color.White
+        Me.CostCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.CostCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.CostCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.CostCostea.DataType = GetType(Long)
+        Me.CostCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.CostCostea.GapHeight = 0
+        Me.CostCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostCostea.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.CostCostea.Location = New System.Drawing.Point(522, 102)
+        Me.CostCostea.Name = "CostCostea"
+        Me.CostCostea.Size = New System.Drawing.Size(110, 20)
+        Me.CostCostea.TabIndex = 74
+        Me.CostCostea.Tag = Nothing
+        Me.CostCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.CostCostea, "予算管理テーマ")
+        Me.CostCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.CostCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'LaborCostea
+        '
+        Me.LaborCostea.AutoSize = False
+        Me.LaborCostea.BackColor = System.Drawing.Color.White
+        Me.LaborCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.LaborCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.LaborCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.LaborCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.LaborCostea.DataType = GetType(Long)
+        Me.LaborCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LaborCostea.Enabled = False
+        Me.LaborCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.LaborCostea.GapHeight = 0
+        Me.LaborCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.LaborCostea.Location = New System.Drawing.Point(483, 163)
+        Me.LaborCostea.Name = "LaborCostea"
+        Me.LaborCostea.NullText = "0"
+        Me.LaborCostea.Size = New System.Drawing.Size(95, 20)
+        Me.LaborCostea.TabIndex = 75
+        Me.LaborCostea.Tag = Nothing
+        Me.LaborCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.LaborCostea, "予算管理テーマ")
+        Me.LaborCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.LaborCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'MaterialCostea
+        '
+        Me.MaterialCostea.AutoSize = False
+        Me.MaterialCostea.BackColor = System.Drawing.Color.White
+        Me.MaterialCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.MaterialCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.MaterialCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.MaterialCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.MaterialCostea.DataType = GetType(Long)
+        Me.MaterialCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MaterialCostea.Enabled = False
+        Me.MaterialCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.MaterialCostea.GapHeight = 0
+        Me.MaterialCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.MaterialCostea.Location = New System.Drawing.Point(578, 163)
+        Me.MaterialCostea.Name = "MaterialCostea"
+        Me.MaterialCostea.NullText = "0"
+        Me.MaterialCostea.Size = New System.Drawing.Size(95, 20)
+        Me.MaterialCostea.TabIndex = 76
+        Me.MaterialCostea.Tag = Nothing
+        Me.MaterialCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.MaterialCostea, "予算管理テーマ")
+        Me.MaterialCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.MaterialCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'MachineCostea
+        '
+        Me.MachineCostea.AutoSize = False
+        Me.MachineCostea.BackColor = System.Drawing.Color.White
+        Me.MachineCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.MachineCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.MachineCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.MachineCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.MachineCostea.DataType = GetType(Long)
+        Me.MachineCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MachineCostea.Enabled = False
+        Me.MachineCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.MachineCostea.GapHeight = 0
+        Me.MachineCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.MachineCostea.Location = New System.Drawing.Point(673, 163)
+        Me.MachineCostea.Name = "MachineCostea"
+        Me.MachineCostea.NullText = "0"
+        Me.MachineCostea.Size = New System.Drawing.Size(95, 20)
+        Me.MachineCostea.TabIndex = 77
+        Me.MachineCostea.Tag = Nothing
+        Me.MachineCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.MachineCostea, "予算管理テーマ")
+        Me.MachineCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.MachineCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'SubcntrctCostea
+        '
+        Me.SubcntrctCostea.AutoSize = False
+        Me.SubcntrctCostea.BackColor = System.Drawing.Color.White
+        Me.SubcntrctCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.SubcntrctCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.SubcntrctCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SubcntrctCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SubcntrctCostea.DataType = GetType(Long)
+        Me.SubcntrctCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SubcntrctCostea.Enabled = False
+        Me.SubcntrctCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.SubcntrctCostea.GapHeight = 0
+        Me.SubcntrctCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.SubcntrctCostea.Location = New System.Drawing.Point(768, 163)
+        Me.SubcntrctCostea.Name = "SubcntrctCostea"
+        Me.SubcntrctCostea.NullText = "0"
+        Me.SubcntrctCostea.Size = New System.Drawing.Size(95, 20)
+        Me.SubcntrctCostea.TabIndex = 78
+        Me.SubcntrctCostea.Tag = Nothing
+        Me.SubcntrctCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.SubcntrctCostea, "予算管理テーマ")
+        Me.SubcntrctCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.SubcntrctCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'ExpensCostea
+        '
+        Me.ExpensCostea.AutoSize = False
+        Me.ExpensCostea.BackColor = System.Drawing.Color.White
+        Me.ExpensCostea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.ExpensCostea.Calculator.BackColor = System.Drawing.Color.White
+        Me.ExpensCostea.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ExpensCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ExpensCostea.DataType = GetType(Long)
+        Me.ExpensCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpensCostea.Enabled = False
+        Me.ExpensCostea.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.ExpensCostea.GapHeight = 0
+        Me.ExpensCostea.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.ExpensCostea.Location = New System.Drawing.Point(863, 163)
+        Me.ExpensCostea.Name = "ExpensCostea"
+        Me.ExpensCostea.NullText = "0"
+        Me.ExpensCostea.Size = New System.Drawing.Size(95, 20)
+        Me.ExpensCostea.TabIndex = 79
+        Me.ExpensCostea.Tag = Nothing
+        Me.ExpensCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.ExpensCostea, "予算管理テーマ")
+        Me.ExpensCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.ExpensCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'LaborTotal
+        '
+        Me.LaborTotal.AutoSize = False
+        Me.LaborTotal.BackColor = System.Drawing.Color.White
+        Me.LaborTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.LaborTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.LaborTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.LaborTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.LaborTotal.DataType = GetType(Long)
+        Me.LaborTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LaborTotal.Enabled = False
+        Me.LaborTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.LaborTotal.GapHeight = 0
+        Me.LaborTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.LaborTotal.Location = New System.Drawing.Point(483, 594)
+        Me.LaborTotal.Name = "LaborTotal"
+        Me.LaborTotal.Size = New System.Drawing.Size(95, 20)
+        Me.LaborTotal.TabIndex = 80
+        Me.LaborTotal.Tag = Nothing
+        Me.LaborTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.LaborTotal, "予算管理テーマ")
+        Me.LaborTotal.Value = CType(0, Long)
+        Me.LaborTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.LaborTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'ExpenseTotal
+        '
+        Me.ExpenseTotal.AutoSize = False
+        Me.ExpenseTotal.BackColor = System.Drawing.Color.White
+        Me.ExpenseTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.ExpenseTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.ExpenseTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.ExpenseTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.ExpenseTotal.DataType = GetType(Long)
+        Me.ExpenseTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpenseTotal.Enabled = False
+        Me.ExpenseTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.ExpenseTotal.GapHeight = 0
+        Me.ExpenseTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.ExpenseTotal.Location = New System.Drawing.Point(863, 594)
+        Me.ExpenseTotal.Name = "ExpenseTotal"
+        Me.ExpenseTotal.Size = New System.Drawing.Size(95, 20)
+        Me.ExpenseTotal.TabIndex = 81
+        Me.ExpenseTotal.Tag = Nothing
+        Me.ExpenseTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.ExpenseTotal, "予算管理テーマ")
+        Me.ExpenseTotal.Value = CType(0, Long)
+        Me.ExpenseTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.ExpenseTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'MaterialTotal
+        '
+        Me.MaterialTotal.AutoSize = False
+        Me.MaterialTotal.BackColor = System.Drawing.Color.White
+        Me.MaterialTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.MaterialTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.MaterialTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.MaterialTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.MaterialTotal.DataType = GetType(Long)
+        Me.MaterialTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MaterialTotal.Enabled = False
+        Me.MaterialTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.MaterialTotal.GapHeight = 0
+        Me.MaterialTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.MaterialTotal.Location = New System.Drawing.Point(578, 594)
+        Me.MaterialTotal.Name = "MaterialTotal"
+        Me.MaterialTotal.Size = New System.Drawing.Size(95, 20)
+        Me.MaterialTotal.TabIndex = 82
+        Me.MaterialTotal.Tag = Nothing
+        Me.MaterialTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.MaterialTotal, "予算管理テーマ")
+        Me.MaterialTotal.Value = CType(0, Long)
+        Me.MaterialTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.MaterialTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'MachineTotal
+        '
+        Me.MachineTotal.AutoSize = False
+        Me.MachineTotal.BackColor = System.Drawing.Color.White
+        Me.MachineTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.MachineTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.MachineTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.MachineTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.MachineTotal.DataType = GetType(Long)
+        Me.MachineTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MachineTotal.Enabled = False
+        Me.MachineTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.MachineTotal.GapHeight = 0
+        Me.MachineTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.MachineTotal.Location = New System.Drawing.Point(673, 594)
+        Me.MachineTotal.Name = "MachineTotal"
+        Me.MachineTotal.Size = New System.Drawing.Size(95, 20)
+        Me.MachineTotal.TabIndex = 83
+        Me.MachineTotal.Tag = Nothing
+        Me.MachineTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.MachineTotal, "予算管理テーマ")
+        Me.MachineTotal.Value = CType(0, Long)
+        Me.MachineTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.MachineTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'SubcntrctTotal
+        '
+        Me.SubcntrctTotal.AutoSize = False
+        Me.SubcntrctTotal.BackColor = System.Drawing.Color.White
+        Me.SubcntrctTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.SubcntrctTotal.Calculator.BackColor = System.Drawing.Color.White
+        Me.SubcntrctTotal.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.SubcntrctTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.SubcntrctTotal.DataType = GetType(Long)
+        Me.SubcntrctTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SubcntrctTotal.Enabled = False
+        Me.SubcntrctTotal.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.SubcntrctTotal.GapHeight = 0
+        Me.SubcntrctTotal.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.SubcntrctTotal.Location = New System.Drawing.Point(768, 594)
+        Me.SubcntrctTotal.Name = "SubcntrctTotal"
+        Me.SubcntrctTotal.Size = New System.Drawing.Size(95, 20)
+        Me.SubcntrctTotal.TabIndex = 84
+        Me.SubcntrctTotal.Tag = Nothing
+        Me.SubcntrctTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.SubcntrctTotal, "予算管理テーマ")
+        Me.SubcntrctTotal.Value = CType(0, Long)
+        Me.SubcntrctTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.SubcntrctTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostUnit2
+        '
+        Me.CostUnit2.AutoSize = False
+        Me.CostUnit2.BackColor = System.Drawing.Color.White
+        Me.CostUnit2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        '
+        '
+        '
+        Me.CostUnit2.Calculator.BackColor = System.Drawing.Color.White
+        Me.CostUnit2.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostUnit2.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        Me.CostUnit2.DataType = GetType(Byte)
+        Me.CostUnit2.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostUnit2.Font = New System.Drawing.Font("Arial", 9.0!)
+        Me.CostUnit2.FormatType = C1.Win.C1Input.FormatTypeEnum.Currency
+        Me.CostUnit2.GapHeight = 0
+        Me.CostUnit2.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostUnit2.Location = New System.Drawing.Point(218, 102)
+        Me.CostUnit2.Name = "CostUnit2"
+        Me.CostUnit2.Size = New System.Drawing.Size(110, 20)
+        Me.CostUnit2.TabIndex = 73
+        Me.CostUnit2.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.CostUnit2, "(default)")
+        Me.CostUnit2.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
+        Me.CostUnit2.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'CostUnit
+        '
+        Me.CostUnit.AutoSize = False
+        Me.CostUnit.BackColor = System.Drawing.Color.White
+        Me.CostUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CostUnit.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostUnit.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.CostUnit.Location = New System.Drawing.Point(218, 102)
+        Me.CostUnit.Name = "CostUnit"
+        Me.CostUnit.Size = New System.Drawing.Size(109, 20)
+        Me.CostUnit.TabIndex = 85
+        Me.CostUnit.Tag = Nothing
+        Me.CostUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.SystemTheme.SetTheme(Me.CostUnit, "予算管理テーマ")
+        Me.CostUnit.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'ItemSelect
         '
@@ -610,7 +709,7 @@ Partial Class 代価内訳
         Me.Label9.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label9.Location = New System.Drawing.Point(470, 143)
+        Me.Label9.Location = New System.Drawing.Point(483, 143)
         Me.Label9.Margin = New System.Windows.Forms.Padding(0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(475, 20)
@@ -643,34 +742,34 @@ Partial Class 代価内訳
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit15)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit14)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit13)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit12)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit11)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit10)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit9)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit8)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit7)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit6)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit5)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit4)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit3)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1NumericEdit1)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox3)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostUnit)
+        Me.C1SplitterPanel1.Controls.Add(Me.SubcntrctTotal)
+        Me.C1SplitterPanel1.Controls.Add(Me.MachineTotal)
+        Me.C1SplitterPanel1.Controls.Add(Me.MaterialTotal)
+        Me.C1SplitterPanel1.Controls.Add(Me.ExpenseTotal)
+        Me.C1SplitterPanel1.Controls.Add(Me.LaborTotal)
+        Me.C1SplitterPanel1.Controls.Add(Me.ExpensCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.SubcntrctCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.MachineCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.MaterialCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.LaborCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostCostea)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostUnitPrice)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostQuanity)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostSpec)
         Me.C1SplitterPanel1.Controls.Add(Me.Label9)
         Me.C1SplitterPanel1.Controls.Add(Me.Label8)
         Me.C1SplitterPanel1.Controls.Add(Me.Label7)
         Me.C1SplitterPanel1.Controls.Add(Me.Label6)
         Me.C1SplitterPanel1.Controls.Add(Me.Label5)
         Me.C1SplitterPanel1.Controls.Add(Me.Label4)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox2)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostName)
         Me.C1SplitterPanel1.Controls.Add(Me.Label3)
         Me.C1SplitterPanel1.Controls.Add(Me.Label1)
         Me.C1SplitterPanel1.Controls.Add(Me.TableName)
         Me.C1SplitterPanel1.Controls.Add(Me.Label2)
-        Me.C1SplitterPanel1.Controls.Add(Me.C1TextBox1)
-        Me.C1SplitterPanel1.Controls.Add(Me.DetailsList)
+        Me.C1SplitterPanel1.Controls.Add(Me.CostNo)
+        Me.C1SplitterPanel1.Controls.Add(Me.BreakDownList)
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
@@ -807,7 +906,7 @@ Partial Class 代価内訳
         Me.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(397, 594)
+        Me.Label2.Location = New System.Drawing.Point(410, 594)
         Me.Label2.Margin = New System.Windows.Forms.Padding(0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(73, 20)
@@ -818,6 +917,7 @@ Partial Class 代価内訳
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.CostCopy)
         Me.C1SplitterPanel2.Controls.Add(Me.ItemSelect)
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
         Me.C1SplitterPanel2.Controls.Add(Me.Entry)
@@ -866,6 +966,25 @@ Partial Class 代価内訳
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
         '
+        'CostCopy
+        '
+        Me.CostCopy.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CostCopy.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CostCopy.FlatAppearance.BorderSize = 0
+        Me.CostCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CostCopy.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.CostCopy.ImageIndex = 15
+        Me.CostCopy.ImageList = Me.ButtonImageList
+        Me.CostCopy.Location = New System.Drawing.Point(109, 6)
+        Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.CostCopy.Name = "CostCopy"
+        Me.CostCopy.Size = New System.Drawing.Size(100, 30)
+        Me.CostCopy.TabIndex = 104
+        Me.CostCopy.Text = "　　代価コピー"
+        Me.CostCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CostCopy.UseVisualStyleBackColor = True
+        '
         '代価内訳
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -877,27 +996,29 @@ Partial Class 代価内訳
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "代価内訳"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "協力業者入力"
-        CType(Me.DetailsList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "代価内訳"
+        CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.右クリックメニュー.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostNo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C1NumericEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C1NumericEdit15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostName, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostSpec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostQuanity, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LaborCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MaterialCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MachineCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SubcntrctCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ExpensCostea, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LaborTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ExpenseTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MaterialTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MachineTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SubcntrctTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostUnit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CostUnit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
         Me.C1SplitterPanel1.ResumeLayout(False)
@@ -909,39 +1030,48 @@ Partial Class 代価内訳
     Friend WithEvents HeadLine As Label
     Friend WithEvents ButtonImageList As ImageList
     Friend WithEvents Entry As Button
-    Friend WithEvents DetailsList As C1.Win.C1FlexGrid.C1FlexGrid
+    Friend WithEvents BreakDownList As C1.Win.C1FlexGrid.C1FlexGrid
     Friend WithEvents SystemTheme As C1.Win.C1Themes.C1ThemeController
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents Cancel As Button
-    Friend WithEvents C1TextBox1 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents CostNo As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents C1NumericEdit2 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit10 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit9 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit8 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit7 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit6 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit5 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit4 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit3 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit1 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1TextBox3 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents ExpensCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents SubcntrctCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents MachineCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents MaterialCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents LaborCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents CostCostea As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents CostUnitPrice As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents CostQuanity As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents CostSpec As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents C1TextBox2 As C1.Win.C1Input.C1TextBox
+    Friend WithEvents CostName As C1.Win.C1Input.C1TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents TableName As Label
-    Friend WithEvents C1NumericEdit15 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit14 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit13 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit12 As C1.Win.C1Input.C1NumericEdit
-    Friend WithEvents C1NumericEdit11 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents SubcntrctTotal As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents MachineTotal As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents MaterialTotal As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents ExpenseTotal As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents LaborTotal As C1.Win.C1Input.C1NumericEdit
     Friend WithEvents ItemSelect As Button
+    Friend WithEvents CostUnit As C1.Win.C1Input.C1TextBox
+    Friend WithEvents CostUnit2 As C1.Win.C1Input.C1NumericEdit
+    Friend WithEvents 右クリックメニュー As ContextMenuStrip
+    Friend WithEvents ItemSelectMenu As ToolStripMenuItem
+    Friend WithEvents InsertMenu As ToolStripMenuItem
+    Friend WithEvents CutMenu As ToolStripMenuItem
+    Friend WithEvents CopyMenu As ToolStripMenuItem
+    Friend WithEvents PastingMenu As ToolStripMenuItem
+    Friend WithEvents Delete As ToolStripMenuItem
+    Friend WithEvents CostCopy As Button
 End Class

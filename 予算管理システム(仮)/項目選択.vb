@@ -120,6 +120,11 @@ Public Class 項目選択
             End While
             CostClassReader.Close()
 
+            If ホーム.BeforeForm = "基礎代価内訳" Then
+                Label2.Visible = False
+                CostsList.Visible = False
+            End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

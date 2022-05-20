@@ -2048,6 +2048,7 @@ Public Class 代価表入力
             MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
 
 
+            '閉じる階層処理
             Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
             If FormCount - 2 < 0 Then
