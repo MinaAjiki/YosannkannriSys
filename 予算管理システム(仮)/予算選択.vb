@@ -272,9 +272,13 @@ Public Class 予算選択
             If DataCount = 0 Then
                 ホーム.見積.Enabled = False
                 ホーム.外注管理.Enabled = False
+                ホーム.参照作成command.Enabled = False
+                ホーム.予算内訳登録.Enabled = False
             Else
                 ホーム.見積.Enabled = True
                 ホーム.外注管理.Enabled = True
+                ホーム.参照作成command.Enabled = True
+                ホーム.予算内訳登録.Enabled = True
 
                 ホーム.HomeTreeView.Nodes.Clear()
 

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form参照作成
+Partial Class 参照作成
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -23,19 +23,18 @@ Partial Class Form参照作成
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form参照作成))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(参照作成))
         Me.HeadLine = New System.Windows.Forms.Label()
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FileName = New C1.Win.C1Input.C1TextBox()
         Me.FileContens = New System.Windows.Forms.GroupBox()
         Me.CopyRange = New System.Windows.Forms.Label()
         Me.Contract_No = New System.Windows.Forms.Label()
-        Me.Contract_NoList = New System.Windows.Forms.ComboBox()
+        Me.BudgetNoList = New System.Windows.Forms.ComboBox()
         Me.CopyItem = New System.Windows.Forms.GroupBox()
         Me.ProjectCostsList = New System.Windows.Forms.CheckedListBox()
         Me.ProjectCosts = New System.Windows.Forms.CheckBox()
         Me.Details = New System.Windows.Forms.CheckBox()
-        Me.BudgetsSummary = New System.Windows.Forms.CheckBox()
         Me.ProjectCostsCopyPanel = New System.Windows.Forms.Panel()
         Me.ProjectCostsPartCopy = New System.Windows.Forms.RadioButton()
         Me.ProjectCostsAllCopy = New System.Windows.Forms.RadioButton()
@@ -50,6 +49,7 @@ Partial Class Form参照作成
         Me.OK = New System.Windows.Forms.Button()
         Me.ReferenceFile = New System.Windows.Forms.Label()
         Me.FileOpen = New System.Windows.Forms.Button()
+        Me.FileOpenDialog = New System.Windows.Forms.OpenFileDialog()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FileName, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FileContens.SuspendLayout()
@@ -58,6 +58,7 @@ Partial Class Form参照作成
         Me.CopyRangePanel.SuspendLayout()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
+        Me.MainPanel.SuspendLayout()
         Me.FooterPanel.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,7 +80,7 @@ Partial Class Form参照作成
         Me.FileName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FileName.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.FileName.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.FileName.Location = New System.Drawing.Point(63, 63)
+        Me.FileName.Location = New System.Drawing.Point(56, 76)
         Me.FileName.Name = "FileName"
         Me.FileName.ReadOnly = True
         Me.FileName.Size = New System.Drawing.Size(418, 20)
@@ -93,16 +94,16 @@ Partial Class Form参照作成
         Me.FileContens.BackColor = System.Drawing.Color.White
         Me.FileContens.Controls.Add(Me.CopyRange)
         Me.FileContens.Controls.Add(Me.Contract_No)
-        Me.FileContens.Controls.Add(Me.Contract_NoList)
+        Me.FileContens.Controls.Add(Me.BudgetNoList)
         Me.FileContens.Controls.Add(Me.CopyItem)
         Me.FileContens.Controls.Add(Me.CopyRangePanel)
         Me.FileContens.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.FileContens.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.FileContens.Location = New System.Drawing.Point(34, 96)
+        Me.FileContens.Location = New System.Drawing.Point(27, 99)
         Me.FileContens.Margin = New System.Windows.Forms.Padding(0)
         Me.FileContens.Name = "FileContens"
         Me.FileContens.Padding = New System.Windows.Forms.Padding(0)
-        Me.FileContens.Size = New System.Drawing.Size(550, 349)
+        Me.FileContens.Size = New System.Drawing.Size(550, 335)
         Me.FileContens.TabIndex = 50
         Me.FileContens.TabStop = False
         Me.SystemTheme.SetTheme(Me.FileContens, "予算管理テーマ")
@@ -112,7 +113,7 @@ Partial Class Form参照作成
         Me.CopyRange.AutoSize = True
         Me.CopyRange.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.CopyRange.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CopyRange.Location = New System.Drawing.Point(173, 27)
+        Me.CopyRange.Location = New System.Drawing.Point(173, 24)
         Me.CopyRange.Name = "CopyRange"
         Me.CopyRange.Size = New System.Drawing.Size(78, 18)
         Me.CopyRange.TabIndex = 52
@@ -124,23 +125,22 @@ Partial Class Form参照作成
         Me.Contract_No.AutoSize = True
         Me.Contract_No.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Contract_No.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Contract_No.Location = New System.Drawing.Point(18, 27)
+        Me.Contract_No.Location = New System.Drawing.Point(18, 37)
         Me.Contract_No.Name = "Contract_No"
         Me.Contract_No.Size = New System.Drawing.Size(66, 18)
         Me.Contract_No.TabIndex = 51
         Me.Contract_No.Text = "[変更回数]"
         Me.SystemTheme.SetTheme(Me.Contract_No, "(default)")
         '
-        'Contract_NoList
+        'BudgetNoList
         '
-        Me.Contract_NoList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Contract_NoList.FormattingEnabled = True
-        Me.Contract_NoList.ItemHeight = 18
-        Me.Contract_NoList.Items.AddRange(New Object() {"当初", "第１回", "第２回"})
-        Me.Contract_NoList.Location = New System.Drawing.Point(25, 51)
-        Me.Contract_NoList.Name = "Contract_NoList"
-        Me.Contract_NoList.Size = New System.Drawing.Size(121, 26)
-        Me.Contract_NoList.TabIndex = 51
+        Me.BudgetNoList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.BudgetNoList.FormattingEnabled = True
+        Me.BudgetNoList.ItemHeight = 18
+        Me.BudgetNoList.Location = New System.Drawing.Point(25, 61)
+        Me.BudgetNoList.Name = "BudgetNoList"
+        Me.BudgetNoList.Size = New System.Drawing.Size(121, 26)
+        Me.BudgetNoList.TabIndex = 51
         '
         'CopyItem
         '
@@ -148,13 +148,12 @@ Partial Class Form参照作成
         Me.CopyItem.Controls.Add(Me.ProjectCostsList)
         Me.CopyItem.Controls.Add(Me.ProjectCosts)
         Me.CopyItem.Controls.Add(Me.Details)
-        Me.CopyItem.Controls.Add(Me.BudgetsSummary)
         Me.CopyItem.Controls.Add(Me.ProjectCostsCopyPanel)
         Me.CopyItem.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CopyItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CopyItem.Location = New System.Drawing.Point(22, 108)
+        Me.CopyItem.Location = New System.Drawing.Point(19, 106)
         Me.CopyItem.Name = "CopyItem"
-        Me.CopyItem.Size = New System.Drawing.Size(511, 237)
+        Me.CopyItem.Size = New System.Drawing.Size(511, 214)
         Me.CopyItem.TabIndex = 50
         Me.CopyItem.TabStop = False
         Me.CopyItem.Text = "項目を選択"
@@ -166,8 +165,7 @@ Partial Class Form参照作成
         Me.ProjectCostsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ProjectCostsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.ProjectCostsList.FormattingEnabled = True
-        Me.ProjectCostsList.Items.AddRange(New Object() {"A代価", "B代価", "C代価", "D代価", "F代価"})
-        Me.ProjectCostsList.Location = New System.Drawing.Point(157, 140)
+        Me.ProjectCostsList.Location = New System.Drawing.Point(157, 113)
         Me.ProjectCostsList.MultiColumn = True
         Me.ProjectCostsList.Name = "ProjectCostsList"
         Me.ProjectCostsList.ScrollAlwaysVisible = True
@@ -181,7 +179,7 @@ Partial Class Form参照作成
         Me.ProjectCosts.AutoSize = True
         Me.ProjectCosts.BackColor = System.Drawing.Color.Transparent
         Me.ProjectCosts.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ProjectCosts.Location = New System.Drawing.Point(17, 80)
+        Me.ProjectCosts.Location = New System.Drawing.Point(17, 53)
         Me.ProjectCosts.Name = "ProjectCosts"
         Me.ProjectCosts.Size = New System.Drawing.Size(75, 22)
         Me.ProjectCosts.TabIndex = 51
@@ -194,26 +192,13 @@ Partial Class Form参照作成
         Me.Details.AutoSize = True
         Me.Details.BackColor = System.Drawing.Color.Transparent
         Me.Details.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.Details.Location = New System.Drawing.Point(17, 52)
+        Me.Details.Location = New System.Drawing.Point(17, 25)
         Me.Details.Name = "Details"
         Me.Details.Size = New System.Drawing.Size(63, 22)
         Me.Details.TabIndex = 50
         Me.Details.Text = "明細書"
         Me.SystemTheme.SetTheme(Me.Details, "(default)")
         Me.Details.UseVisualStyleBackColor = False
-        '
-        'BudgetsSummary
-        '
-        Me.BudgetsSummary.AutoSize = True
-        Me.BudgetsSummary.BackColor = System.Drawing.Color.Transparent
-        Me.BudgetsSummary.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.BudgetsSummary.Location = New System.Drawing.Point(17, 24)
-        Me.BudgetsSummary.Name = "BudgetsSummary"
-        Me.BudgetsSummary.Size = New System.Drawing.Size(87, 22)
-        Me.BudgetsSummary.TabIndex = 49
-        Me.BudgetsSummary.Text = "予算総括表"
-        Me.SystemTheme.SetTheme(Me.BudgetsSummary, "(default)")
-        Me.BudgetsSummary.UseVisualStyleBackColor = False
         '
         'ProjectCostsCopyPanel
         '
@@ -222,7 +207,7 @@ Partial Class Form参照作成
         Me.ProjectCostsCopyPanel.Controls.Add(Me.ProjectCostsAllCopy)
         Me.ProjectCostsCopyPanel.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.ProjectCostsCopyPanel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ProjectCostsCopyPanel.Location = New System.Drawing.Point(20, 106)
+        Me.ProjectCostsCopyPanel.Location = New System.Drawing.Point(20, 79)
         Me.ProjectCostsCopyPanel.Name = "ProjectCostsCopyPanel"
         Me.ProjectCostsCopyPanel.Size = New System.Drawing.Size(125, 65)
         Me.ProjectCostsCopyPanel.TabIndex = 55
@@ -264,7 +249,7 @@ Partial Class Form参照作成
         Me.CopyRangePanel.Controls.Add(Me.AllCopy)
         Me.CopyRangePanel.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CopyRangePanel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.CopyRangePanel.Location = New System.Drawing.Point(176, 47)
+        Me.CopyRangePanel.Location = New System.Drawing.Point(176, 44)
         Me.CopyRangePanel.Name = "CopyRangePanel"
         Me.CopyRangePanel.Size = New System.Drawing.Size(229, 48)
         Me.CopyRangePanel.TabIndex = 53
@@ -314,7 +299,7 @@ Partial Class Form参照作成
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.MainPanel)
         Me.FormSplitContainer.Panels.Add(Me.FooterPanel)
-        Me.FormSplitContainer.Size = New System.Drawing.Size(636, 503)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(605, 503)
         Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.FormSplitContainer.SplitterMovingColor = System.Drawing.Color.Black
         Me.FormSplitContainer.SplitterWidth = 0
@@ -325,10 +310,11 @@ Partial Class Form参照作成
         'MainPanel
         '
         Me.MainPanel.BackColor = System.Drawing.Color.White
+        Me.MainPanel.Controls.Add(Me.FileContens)
         Me.MainPanel.Height = 463
         Me.MainPanel.Location = New System.Drawing.Point(0, 0)
         Me.MainPanel.Name = "MainPanel"
-        Me.MainPanel.Size = New System.Drawing.Size(636, 463)
+        Me.MainPanel.Size = New System.Drawing.Size(605, 463)
         Me.MainPanel.SizeRatio = 92.048R
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
@@ -341,7 +327,7 @@ Partial Class Form参照作成
         Me.FooterPanel.Height = 40
         Me.FooterPanel.Location = New System.Drawing.Point(0, 463)
         Me.FooterPanel.Name = "FooterPanel"
-        Me.FooterPanel.Size = New System.Drawing.Size(636, 40)
+        Me.FooterPanel.Size = New System.Drawing.Size(605, 40)
         Me.FooterPanel.TabIndex = 1
         '
         'Cancel
@@ -412,7 +398,7 @@ Partial Class Form参照作成
         Me.ReferenceFile.AutoSize = True
         Me.ReferenceFile.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.ReferenceFile.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.ReferenceFile.Location = New System.Drawing.Point(31, 41)
+        Me.ReferenceFile.Location = New System.Drawing.Point(24, 54)
         Me.ReferenceFile.Name = "ReferenceFile"
         Me.ReferenceFile.Size = New System.Drawing.Size(80, 18)
         Me.ReferenceFile.TabIndex = 44
@@ -426,25 +412,29 @@ Partial Class Form参照作成
         Me.FileOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.FileOpen.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FileOpen.Image = Global.予算管理システム_仮_.My.Resources.Resources.OpenFile
-        Me.FileOpen.Location = New System.Drawing.Point(35, 63)
+        Me.FileOpen.Location = New System.Drawing.Point(28, 76)
         Me.FileOpen.Name = "FileOpen"
         Me.FileOpen.Size = New System.Drawing.Size(25, 20)
         Me.FileOpen.TabIndex = 48
         Me.FileOpen.UseVisualStyleBackColor = False
         '
-        'Form参照作成
+        'FileOpenDialog
+        '
+        Me.FileOpenDialog.Filter = "MDFファイル|*.mdf|すべて|*.*"
+        Me.FileOpenDialog.InitialDirectory = "D:\"
+        '
+        '参照作成
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(605, 502)
+        Me.ClientSize = New System.Drawing.Size(605, 501)
         Me.Controls.Add(Me.FileName)
         Me.Controls.Add(Me.FileOpen)
         Me.Controls.Add(Me.ReferenceFile)
         Me.Controls.Add(Me.HeadLine)
-        Me.Controls.Add(Me.FileContens)
         Me.Controls.Add(Me.FormSplitContainer)
-        Me.Name = "Form参照作成"
+        Me.Name = "参照作成"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "参照作成"
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
@@ -459,6 +449,7 @@ Partial Class Form参照作成
         Me.CopyRangePanel.PerformLayout()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
+        Me.MainPanel.ResumeLayout(False)
         Me.FooterPanel.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -475,11 +466,10 @@ Partial Class Form参照作成
     Friend WithEvents CopyItem As GroupBox
     Friend WithEvents CopyRange As Label
     Friend WithEvents Contract_No As Label
-    Friend WithEvents Contract_NoList As ComboBox
+    Friend WithEvents BudgetNoList As ComboBox
     Friend WithEvents ProjectCostsList As CheckedListBox
     Friend WithEvents ProjectCosts As CheckBox
     Friend WithEvents Details As CheckBox
-    Friend WithEvents BudgetsSummary As CheckBox
     Friend WithEvents CopyRangePanel As Panel
     Friend WithEvents PartCopy As RadioButton
     Friend WithEvents AllCopy As RadioButton
@@ -491,4 +481,5 @@ Partial Class Form参照作成
     Friend WithEvents FooterPanel As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents OK As Button
     Friend WithEvents Cancel As Button
+    Friend WithEvents FileOpenDialog As OpenFileDialog
 End Class

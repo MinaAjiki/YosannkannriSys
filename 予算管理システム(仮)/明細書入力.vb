@@ -978,6 +978,7 @@ Public Class 明細書入力
                 CategoryList.Rows.RemoveRange(SelectRow, 3)
                 OutsoucerList.Rows.RemoveRange(SelectRow, 3)
 
+
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
                     RowNo += 1
@@ -1030,6 +1031,10 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
                     DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
                 Next
+
+                DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
+                DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
+                DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
             End If
 
         Catch ex As Exception
