@@ -70,6 +70,7 @@ Partial Class 代価内訳
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
+        Me.CostCopy = New System.Windows.Forms.Button()
         CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,45 +168,45 @@ Partial Class 代価内訳
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 158)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 136)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(155, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(155, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.Size = New System.Drawing.Size(155, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.Size = New System.Drawing.Size(155, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'Delete
         '
         Me.Delete.Name = "Delete"
         Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.Delete.Size = New System.Drawing.Size(155, 22)
+        Me.Delete.Size = New System.Drawing.Size(123, 22)
         Me.Delete.Visible = False
         '
         'CostNo
@@ -295,6 +296,7 @@ Partial Class 代価内訳
         Me.CostQuanity.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostQuanity.GapHeight = 0
         Me.CostQuanity.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.CostQuanity.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.CostQuanity.Location = New System.Drawing.Point(66, 102)
         Me.CostQuanity.Name = "CostQuanity"
         Me.CostQuanity.Size = New System.Drawing.Size(110, 20)
@@ -523,6 +525,7 @@ Partial Class 代価内訳
         Me.LaborTotal.Tag = Nothing
         Me.LaborTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.LaborTotal, "予算管理テーマ")
+        Me.LaborTotal.Value = CType(0, Long)
         Me.LaborTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.LaborTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -550,6 +553,7 @@ Partial Class 代価内訳
         Me.ExpenseTotal.Tag = Nothing
         Me.ExpenseTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.ExpenseTotal, "予算管理テーマ")
+        Me.ExpenseTotal.Value = CType(0, Long)
         Me.ExpenseTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.ExpenseTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -577,6 +581,7 @@ Partial Class 代価内訳
         Me.MaterialTotal.Tag = Nothing
         Me.MaterialTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MaterialTotal, "予算管理テーマ")
+        Me.MaterialTotal.Value = CType(0, Long)
         Me.MaterialTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MaterialTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -604,6 +609,7 @@ Partial Class 代価内訳
         Me.MachineTotal.Tag = Nothing
         Me.MachineTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.MachineTotal, "予算管理テーマ")
+        Me.MachineTotal.Value = CType(0, Long)
         Me.MachineTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.MachineTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -631,6 +637,7 @@ Partial Class 代価内訳
         Me.SubcntrctTotal.Tag = Nothing
         Me.SubcntrctTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.SubcntrctTotal, "予算管理テーマ")
+        Me.SubcntrctTotal.Value = CType(0, Long)
         Me.SubcntrctTotal.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.SubcntrctTotal.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -910,6 +917,7 @@ Partial Class 代価内訳
         'C1SplitterPanel2
         '
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.C1SplitterPanel2.Controls.Add(Me.CostCopy)
         Me.C1SplitterPanel2.Controls.Add(Me.ItemSelect)
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
         Me.C1SplitterPanel2.Controls.Add(Me.Entry)
@@ -958,6 +966,25 @@ Partial Class 代価内訳
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
         '
+        'CostCopy
+        '
+        Me.CostCopy.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CostCopy.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CostCopy.FlatAppearance.BorderSize = 0
+        Me.CostCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CostCopy.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.CostCopy.ImageIndex = 15
+        Me.CostCopy.ImageList = Me.ButtonImageList
+        Me.CostCopy.Location = New System.Drawing.Point(109, 6)
+        Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.CostCopy.Name = "CostCopy"
+        Me.CostCopy.Size = New System.Drawing.Size(100, 30)
+        Me.CostCopy.TabIndex = 104
+        Me.CostCopy.Text = "　　代価コピー"
+        Me.CostCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CostCopy.UseVisualStyleBackColor = True
+        '
         '代価内訳
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -969,7 +996,7 @@ Partial Class 代価内訳
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "代価内訳"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "協力業者入力"
+        Me.Text = "代価内訳"
         CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.右クリックメニュー.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1046,4 +1073,5 @@ Partial Class 代価内訳
     Friend WithEvents CopyMenu As ToolStripMenuItem
     Friend WithEvents PastingMenu As ToolStripMenuItem
     Friend WithEvents Delete As ToolStripMenuItem
+    Friend WithEvents CostCopy As Button
 End Class

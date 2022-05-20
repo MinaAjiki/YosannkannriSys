@@ -30,6 +30,8 @@ Public Class 作成代価選択
             Dim ClassCode As Integer = 0
             If 明細書入力.Visible = True Then
                 ClassCode = 11
+            ElseIf ホーム.BeforeForm = "代価一覧" Then
+                ClassCode = 12
             Else
 
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
