@@ -7,6 +7,7 @@ Public Class 作成代価選択
     Public CopyCostID As Integer = 0
     Public SelectRow As Integer = 0
     Public CopyList As C1FlexGrid
+    Public BeforeClass As Integer = 0
     Private Sub AddLevel_MouseLeave(sender As Object, e As EventArgs) Handles AddLevel.MouseLeave
         AddLevel.ImageIndex = 0
     End Sub
@@ -34,11 +35,11 @@ Public Class 作成代価選択
                 ClassCode = 12
             Else
 
-                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
-                Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
-                Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+                'Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+                'Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                'Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                ClassCode = ProjectCostList(ProjectCostRow, 8)
+                ClassCode = BeforeClass
 
             End If
 

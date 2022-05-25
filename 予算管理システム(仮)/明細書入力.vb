@@ -5,7 +5,7 @@ Imports System.Data.SqlClient
 Imports System.Windows.Input.Keyboard
 Public Class 明細書入力
     Public SelectRow As Integer = 0
-    Public CopyList(10) As String
+    Public CopyRow As Integer = 0
     Dim outsrcr_x As Integer = 0
     Dim outsrcr_y As Integer = 0
     Public Command As String
@@ -821,19 +821,46 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+                If Command = "Cut" Or Command = "Copy" Then
+                    Dim Row As Integer = DetailsList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
 
-                DetailsList.Rows(SelectRow).StyleFixedNew.BackColor = Color.FromArgb(105, 189, 131)
-                CopyList(0) = DetailsList(SelectRow, 1)
-                CopyList(1) = DetailsList(SelectRow, 3)
-                CopyList(2) = DetailsList(SelectRow, 4)
-                CopyList(3) = DetailsList(SelectRow + 1, 4)
-                CopyList(4) = DetailsList(SelectRow + 2, 4)
-                CopyList(5) = DetailsList(SelectRow + 2, 5)
-                CopyList(6) = DetailsList(SelectRow, 6)
-                CopyList(7) = DetailsList(SelectRow + 1, 6)
-                CopyList(8) = DetailsList(SelectRow + 2, 6)
-                CopyList(9) = DetailsList(SelectRow, 8)
-                CopyList(10) = DetailsList(SelectRow, 9)
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+                End If
+                Command = "Copy"
+                DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CopyRow = SelectRow
+
             End If
 
         Catch ex As Exception
@@ -869,18 +896,27 @@ Public Class 明細書入力
                 OutsoucerList.Rows.Insert(SelectRow)
                 OutsoucerList.Rows.Insert(SelectRow + 1)
                 OutsoucerList.Rows.Insert(SelectRow + 2)
-                DetailsList(SelectRow, 1) = CopyList(0)
-                DetailsList(SelectRow, 3) = CopyList(1)
-                DetailsList(SelectRow, 4) = CopyList(2)
-                DetailsList(SelectRow + 1, 4) = CopyList(3)
-                DetailsList(SelectRow + 2, 4) = CopyList(4)
-                DetailsList(SelectRow + 2, 5) = CopyList(5)
-                DetailsList(SelectRow, 6) = CopyList(6)
-                DetailsList(SelectRow + 1, 6) = CopyList(7)
-                DetailsList(SelectRow + 2, 6) = CopyList(8)
-                DetailsList(SelectRow, 8) = CopyList(9)
-                DetailsList(SelectRow, 9) = CopyList(10)
+                DetailsList(SelectRow, 1) = DetailsList(CopyRow, 1)
+                DetailsList(SelectRow, 3) = DetailsList(CopyRow, 3)
+                DetailsList(SelectRow, 4) = DetailsList(CopyRow, 4)
+                DetailsList(SelectRow + 1, 4) = DetailsList(CopyRow + 1, 4)
+                DetailsList(SelectRow + 2, 4) = DetailsList(CopyRow + 2, 4)
+                DetailsList(SelectRow + 2, 5) = DetailsList(CopyRow + 2, 5)
+                DetailsList(SelectRow, 6) = DetailsList(CopyRow, 6)
+                DetailsList(SelectRow + 1, 6) = DetailsList(CopyRow + 1, 6)
+                DetailsList(SelectRow + 2, 6) = DetailsList(CopyRow + 2, 6)
+                DetailsList(SelectRow, 8) = DetailsList(CopyRow, 8)
+                DetailsList(SelectRow, 9) = DetailsList(CopyRow, 9)
+                For categoryloop As Integer = 2 To 6
+                    CategoryList(SelectRow + 1, categoryloop) = CategoryList(CopyRow + 1, categoryloop)
+                    CategoryList(SelectRow + 2, categoryloop) = CategoryList(CopyRow + 2, categoryloop)
+                Next
 
+                If Command = "Cut" Then
+                    DetailsList.Rows.RemoveRange(CopyRow, 3)
+                    CategoryList.Rows.RemoveRange(CopyRow, 3)
+                    OutsoucerList.Rows.RemoveRange(CopyRow, 3)
+                End If
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
@@ -897,7 +933,7 @@ Public Class 明細書入力
                     Costea.StyleNew.Format = "N0"
                     Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
                     Amount.StyleNew.Format = "N0"
-                    DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+                    'DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
 
 
                     If RowCount Mod 2 = 0 Then
@@ -940,6 +976,9 @@ Public Class 明細書入力
                     DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
                 Next
             End If
+
+            Command = ""
+            CopyRow = 0
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -961,81 +1000,51 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
+                If Command = "Cut" Or Command = "Copy" Then
+                    Dim Row As Integer = DetailsList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+                End If
                 ホーム.Modified = "True"
 
-                CopyList(0) = DetailsList(SelectRow, 1)
-                CopyList(1) = DetailsList(SelectRow, 3)
-                CopyList(2) = DetailsList(SelectRow, 4)
-                CopyList(3) = DetailsList(SelectRow + 1, 4)
-                CopyList(4) = DetailsList(SelectRow + 2, 4)
-                CopyList(5) = DetailsList(SelectRow + 2, 5)
-                CopyList(6) = DetailsList(SelectRow, 6)
-                CopyList(7) = DetailsList(SelectRow + 1, 6)
-                CopyList(8) = DetailsList(SelectRow + 2, 6)
-                CopyList(9) = DetailsList(SelectRow, 8)
-                CopyList(10) = DetailsList(SelectRow, 9)
-                DetailsList.Rows.RemoveRange(SelectRow, 3)
-                CategoryList.Rows.RemoveRange(SelectRow, 3)
-                OutsoucerList.Rows.RemoveRange(SelectRow, 3)
+                    Command = "Cut"
+                    CopyRow = SelectRow
 
 
-                Dim RowNo As Integer = 0
-                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                    RowNo += 1
+                DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    CategoryList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    CategoryList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    CategoryList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    OutsoucerList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    OutsoucerList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                    OutsoucerList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
 
-                    Dim Quanity As CellRange = DetailsList.GetCellRange(RowCount * 3, 6)
-                    Quanity.StyleNew.Format = "N1"
-                    Dim Costea As CellRange = DetailsList.GetCellRange(RowCount * 3 + 1, 6)
-                    Costea.StyleNew.Format = "N0"
-                    Dim Amount As CellRange = DetailsList.GetCellRange(RowCount * 3 + 2, 6)
-                    Amount.StyleNew.Format = "N0"
-                    DetailsList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
-
-
-                    If RowCount Mod 2 = 0 Then
-                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-
-                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-
-                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                    Else
-                        DetailsList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        DetailsList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        DetailsList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-
-                        CategoryList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        CategoryList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        CategoryList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-
-                        OutsoucerList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        OutsoucerList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        OutsoucerList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                    End If
-
-                    DetailsList(RowCount * 3, 7) = RowNo * RowNo
-                    DetailsList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                    DetailsList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                    If (RowNo * RowNo) + 2 = 6 Then
-                        RowNo = 0
-                    End If
-
-                    DetailsList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                    DetailsList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                    DetailsList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                    DetailsList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                    DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                Next
-
-                DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
-                DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
-                DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 192, 192)
-            End If
+                End If
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -2192,6 +2201,38 @@ Public Class 明細書入力
                         DetailsList.Select(SelectionRow - 3, 6)
                     End If
                 End If
+
+            ElseIf e.KeyCode = Keys.Escape Then
+                If Command = "Cut" Or Command = "Copy" Then
+
+                    Dim Row As Integer = DetailsList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                    Else
+                        DetailsList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        DetailsList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        CategoryList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        CategoryList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                        OutsoucerList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        OutsoucerList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+
+                End If
             End If
 
 
@@ -2306,4 +2347,5 @@ Public Class 明細書入力
             Exit Sub
         End Try
     End Sub
+
 End Class

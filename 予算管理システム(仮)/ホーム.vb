@@ -67,52 +67,66 @@ Public Class ホーム
 
                 If UserDataName <> "" Then
 
-                    Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & UserDataPath & UserDataName & ";Integrated Security=True"
-                    Connection.Open()
-                    Sql.Connection = Connection
+                    If System.IO.File.Exists(UserDataPath & UserDataName) = True Then
+
+                        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & UserDataPath & UserDataName & ";Integrated Security=True"
+                        Connection.Open()
+                        Sql.Connection = Connection
 
 
-                    Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
-                    Dim DataCount As Integer = Sql.ExecuteScalar
+                        Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
+                        Dim DataCount As Integer = Sql.ExecuteScalar
 
-                    If DataCount >= 1 Then
+                        If DataCount >= 1 Then
 
-                        予算選択.Show()
+                            予算選択.Show()
 
-                        Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-                        Dim Year As Integer = 0
-                        If IsError(Year = Sql.ExecuteScalar) = True Then
-                            予算内訳登録.Enabled = False
+                            Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                            Dim Year As Integer = 0
+                            If IsError(Year = Sql.ExecuteScalar) = True Then
+                                予算内訳登録.Enabled = False
+                            Else
+                                予算内訳登録.Enabled = True
+                                参照作成command.Enabled = True
+                            End If
+
                         Else
-                            予算内訳登録.Enabled = True
-                            参照作成command.Enabled = True
+                            Me.Enabled = True
+                            Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
+                            BudgetNo = 0
+
+                            予算内訳登録.Enabled = False
+                            出力.Enabled = False
+                            見積.Enabled = False
+                            外注管理.Enabled = False
+                            参照作成command.Enabled = False
                         End If
 
-                    Else
-                        Me.Enabled = True
-                        Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
-                        BudgetNo = 0
+                        SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
+                        Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
+                        While M_TANTReader.Read
+                            AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
+                        End While
+                        M_TANTReader.Close()
 
-                        予算内訳登録.Enabled = False
-                        出力.Enabled = False
-                        見積.Enabled = False
-                        外注管理.Enabled = False
-                        参照作成command.Enabled = False
+                        'レポートのデザインが格納されているファイルのパスを変数に代入する
+                        Reportpath = Application.StartupPath & "\予算管理システムレポート.flxr"
+                    Else
+
+
+                        SystemMdf.CommandText = "DELETE FROM userfiles WHERE filename=@name AND filepath=@path"
+                        SystemMdf.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = UserDataName
+                        SystemMdf.Parameters.Add(New SqlParameter("@path", SqlDbType.NVarChar)).Value = UserDataPath
+                        SystemMdf.ExecuteNonQuery()
+
+                        DB選択.Show()
+                        MsgBox("前回使用していたファイルが存在しません。" & vbCrLf & "別のファイルを指定して下さい。" & vbCrLf & vbCrLf & UserDataPath & UserDataName & vbCrLf)
+
+                        DB選択.TopMost = True
                     End If
 
-                    SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
-                    Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
-                    While M_TANTReader.Read
-                        AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
-                    End While
-                    M_TANTReader.Close()
-
-                    'レポートのデザインが格納されているファイルのパスを変数に代入する
-                    Reportpath = Application.StartupPath & "\予算管理システムレポート.flxr"
 
                 Else
-
-
                     Me.Enabled = True
                     予算.Enabled = False
                     見積.Enabled = False

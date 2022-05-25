@@ -6,10 +6,11 @@ Imports C1.Win.C1Input
 Imports System.Windows.Input.Keyboard
 Public Class 代価表入力
     Public SelectRow As Integer = 1
-    Public CopyList(10) As String
+    Public CopyRow As Integer = 0
     Public CostID As Integer
     Public ClassCode As Integer = 0
     Public Command As String
+    Public Command1 As String
     Dim Key As String
 
     Private Sub Page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -50,24 +51,27 @@ Public Class 代価表入力
             Me.Anchor = AnchorStyles.Left
             Me.Anchor = AnchorStyles.Bottom
 
+
             If Me.FormBorderStyle = FormBorderStyle.None Then
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
                 'BeforeSelectRow = ホーム.ProjectCostSelectRow(FormCount - 1)
                 CostID = ホーム.ProjectCostID(FormCount - 1)
                 ClassCode = ホーム.PrjctCstClassCode(FormCount - 1)
-
             End If
 
             Dim CopyCostID As Integer = 0
             Dim CopyClassCode As Integer = 0
             If 作成代価選択.Visible = True Then
-
                 If 明細書入力.Visible = True Then
                     If 明細書入力.DetailsList(明細書入力.SelectRow, 4) <> "" Then
                         CostName.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 4)
                         CostSpec.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 1, 4)
                         CostUnit.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 5)
-                        CostQuanity.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 6)
+                        If IsDBNull(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
+                            If 明細書入力.DetailsList(明細書入力.SelectRow, 6) > 0 Then
+                                CostQuanity.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 6)
+                            End If
+                        End If
                     End If
                 Else
 
@@ -80,7 +84,11 @@ Public Class 代価表入力
                         CostName.Text = ProjectCostList(ProjectCostRow, 4)
                         CostSpec.Text = ProjectCostList(ProjectCostRow + 1, 4)
                         CostUnit.Text = ProjectCostList(ProjectCostRow + 2, 5)
-                        CostQuanity.Text = ProjectCostList(ProjectCostRow, 6)
+                        If IsDBNull(ProjectCostList(ProjectCostRow, 6)) = False Then
+                            If ProjectCostList(ProjectCostRow, 6) > 0 Then
+                                CostQuanity.Text = ProjectCostList(ProjectCostRow, 6)
+                            End If
+                        End If
                     End If
                 End If
 
@@ -414,7 +422,6 @@ Public Class 代価表入力
 
 
 
-
             ホーム.Modified = "False"
 
 
@@ -580,7 +587,7 @@ Public Class 代価表入力
                     作成代価選択.SelectRow = SelectRow
                     作成代価選択.CopyList = BreakDownList
                     BreakDownList(SelectRow, 3) = SelectRow / 3
-
+                    作成代価選択.BeforeClass = ClassCode
                     作成代価選択.HeadLine.Text = "<<作成代価選択"
                     作成代価選択.Text = "作成代価選択"
                     作成代価選択.ShowDialog()
@@ -828,7 +835,6 @@ Public Class 代価表入力
                     DaikaForm.CostID = BreakDownList(SelectRow, 9)
                     DaikaForm.ClassCode = BreakDownList(SelectRow, 8)
                     DaikaForm.TopLevel = True
-                    DaikaForm.TopMost = True
                     DaikaForm.FormBorderStyle = FormBorderStyle.Sizable
                     DaikaForm.CostNo.Enabled = False
                     DaikaForm.CostName.Enabled = False
@@ -914,8 +920,7 @@ Public Class 代価表入力
                 Dim Col As Integer = BreakDownList.Selection.LeftCol
                 Dim Row As Integer = BreakDownList.Selection.TopRow
 
-                If Not Command = "Insert" AndAlso Not Command = "Cut" Then
-
+                If Not Command = "Insert" AndAlso Not Command = "Pasting" Then
                     For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
                         If DetailsRowCount < BreakDownList.Rows.Count - 3 Then
                             BreakDownList.Rows(DetailsRowCount + 2).Caption = ""
@@ -1171,18 +1176,27 @@ Public Class 代価表入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
-                BreakDownList.Rows(SelectRow).StyleFixedNew.BackColor = Color.FromArgb(105, 189, 131)
-                CopyList(0) = BreakDownList(SelectRow, 1)
-                CopyList(1) = BreakDownList(SelectRow, 3)
-                CopyList(2) = BreakDownList(SelectRow, 4)
-                CopyList(3) = BreakDownList(SelectRow + 1, 4)
-                CopyList(4) = BreakDownList(SelectRow + 2, 4)
-                CopyList(5) = BreakDownList(SelectRow + 2, 5)
-                CopyList(6) = BreakDownList(SelectRow, 6)
-                CopyList(7) = BreakDownList(SelectRow + 1, 6)
-                CopyList(8) = BreakDownList(SelectRow + 2, 6)
-                CopyList(9) = BreakDownList(SelectRow, 8)
-                CopyList(10) = BreakDownList(SelectRow, 9)
+                If Command1 = "Cut" Or Command1 = "Copy" Then
+                    Dim Row As Integer = BreakDownList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                    Else
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+                End If
+
+                Command = "Copy"
+                Command1 = "Copy"
+                BreakDownList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                BreakDownList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                BreakDownList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+
+                CopyRow = SelectRow
             End If
 
         Catch ex As Exception
@@ -1207,23 +1221,26 @@ Public Class 代価表入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
+
+
                 Command = "Pasting"
                 BreakDownList.Rows.Insert(SelectRow)
                 BreakDownList.Rows.Insert(SelectRow + 1)
                 BreakDownList.Rows.Insert(SelectRow + 2)
-                BreakDownList(SelectRow, 1) = CopyList(0)
-                BreakDownList(SelectRow, 3) = CopyList(1)
-                BreakDownList(SelectRow, 4) = CopyList(2)
-                BreakDownList(SelectRow + 1, 4) = CopyList(3)
-                BreakDownList(SelectRow + 2, 4) = CopyList(4)
-                BreakDownList(SelectRow + 2, 5) = CopyList(5)
-                BreakDownList(SelectRow, 6) = CopyList(6)
-                BreakDownList(SelectRow + 1, 6) = CopyList(7)
-                BreakDownList(SelectRow + 2, 6) = CopyList(8)
-                BreakDownList(SelectRow, 8) = CopyList(9)
-                BreakDownList(SelectRow, 9) = CopyList(10)
-
-                Command = ""
+                BreakDownList(SelectRow, 1) = BreakDownList(CopyRow, 1)
+                BreakDownList(SelectRow, 3) = BreakDownList(CopyRow, 3)
+                BreakDownList(SelectRow, 4) = BreakDownList(CopyRow, 4)
+                BreakDownList(SelectRow + 1, 4) = BreakDownList(CopyRow + 1, 4)
+                BreakDownList(SelectRow + 2, 4) = BreakDownList(CopyRow + 2, 4)
+                BreakDownList(SelectRow + 2, 5) = BreakDownList(CopyRow + 2, 5)
+                BreakDownList(SelectRow, 6) = BreakDownList(CopyRow, 6)
+                BreakDownList(SelectRow + 1, 6) = BreakDownList(CopyRow + 1, 6)
+                BreakDownList(SelectRow + 2, 6) = BreakDownList(CopyRow + 2, 6)
+                BreakDownList(SelectRow, 8) = BreakDownList(CopyRow, 8)
+                BreakDownList(SelectRow, 9) = BreakDownList(CopyRow, 9)
+                If Command1 = "Cut" Then
+                    BreakDownList.Rows.RemoveRange(CopyRow, 3)
+                End If
 
                 Dim RowNo As Integer = 0
                 For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
@@ -1236,7 +1253,7 @@ Public Class 代価表入力
                         End If
                     End If
 
-                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
                     Quanity.StyleNew.Format = "N1"
                     Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
                     Costea.StyleNew.Format = "N0"
@@ -1271,6 +1288,11 @@ Public Class 代価表入力
                 Next
             End If
 
+            Command1 = ""
+            Command = ""
+            CopyRow = 0
+
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -1291,59 +1313,79 @@ Public Class 代価表入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
+
+                If Command1 = "Cut" Or Command1 = "Copy" Then
+                    Dim Row As Integer = BreakDownList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                    Else
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                    End If
+                End If
+
                 ホーム.Modified = "True"
                 Command = "Cut"
+                Command1 = "Cut"
+                CopyRow = SelectRow
+                'CopyList(0) = BreakDownList(SelectRow, 1)
+                'CopyList(1) = BreakDownList(SelectRow, 3)
+                'CopyList(2) = BreakDownList(SelectRow, 4)
+                'CopyList(3) = BreakDownList(SelectRow + 1, 4)
+                'CopyList(4) = BreakDownList(SelectRow + 2, 4)
+                'CopyList(5) = BreakDownList(SelectRow + 2, 5)
+                'CopyList(6) = BreakDownList(SelectRow, 6)
+                'CopyList(7) = BreakDownList(SelectRow + 1, 6)
+                'CopyList(8) = BreakDownList(SelectRow + 2, 6)
+                'CopyList(9) = BreakDownList(SelectRow, 8)
+                'CopyList(10) = BreakDownList(SelectRow, 9)
+                'BreakDownList.Rows.RemoveRange(SelectRow, 3)
+                'Command = ""
 
-                CopyList(0) = BreakDownList(SelectRow, 1)
-                CopyList(1) = BreakDownList(SelectRow, 3)
-                CopyList(2) = BreakDownList(SelectRow, 4)
-                CopyList(3) = BreakDownList(SelectRow + 1, 4)
-                CopyList(4) = BreakDownList(SelectRow + 2, 4)
-                CopyList(5) = BreakDownList(SelectRow + 2, 5)
-                CopyList(6) = BreakDownList(SelectRow, 6)
-                CopyList(7) = BreakDownList(SelectRow + 1, 6)
-                CopyList(8) = BreakDownList(SelectRow + 2, 6)
-                CopyList(9) = BreakDownList(SelectRow, 8)
-                CopyList(10) = BreakDownList(SelectRow, 9)
-                BreakDownList.Rows.RemoveRange(SelectRow, 3)
-                Command = ""
+                'Dim RowNo As Integer = 0
+                'For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
+                '    RowNo += 1
 
-                Dim RowNo As Integer = 0
-                For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
-                    RowNo += 1
-
-                    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                    Quanity.StyleNew.Format = "N1"
-                    Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                    Costea.StyleNew.Format = "N0"
-                    Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                    Amount.StyleNew.Format = "N0"
-                    BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+                '    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                '    Quanity.StyleNew.Format = "N1"
+                '    Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                '    Costea.StyleNew.Format = "N0"
+                '    Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                '    Amount.StyleNew.Format = "N0"
+                '    BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
 
 
-                    If RowCount Mod 2 = 0 Then
-                        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                    Else
-                        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                    End If
+                '    If RowCount Mod 2 = 0 Then
+                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                '    Else
+                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                '    End If
 
-                    BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                    BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                    BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                    If (RowNo * RowNo) + 2 = 6 Then
-                        RowNo = 0
-                    End If
+                '    BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                '    BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                '    BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                '    If (RowNo * RowNo) + 2 = 6 Then
+                '        RowNo = 0
+                '    End If
 
-                    BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                    BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                    BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                    BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                    BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                Next
+                '    BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                '    BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                '    BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                '    BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                '    BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                'Next
+
+                BreakDownList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                BreakDownList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                BreakDownList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
             End If
 
 
@@ -2219,30 +2261,33 @@ Public Class 代価表入力
 
                 Next
 
-                CostUnitPrice.Value = ColTotal
-                Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
-                CostCostea.Value = Costea
+                If IsDBNull(CostQuanity.Value) = False Then
+                    If CostQuanity.Value > 0 Then
+                        CostUnitPrice.Value = ColTotal
+                        Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                        CostCostea.Value = Costea
 
-                LaborTotal.Value = LaborColTotal
-                Dim Laborea As Int64 = Math.Floor(LaborColTotal / CostQuanity.Value)
-                LaborCostea.Value = Laborea
+                        LaborTotal.Value = LaborColTotal
+                        Dim Laborea As Int64 = Math.Floor(LaborColTotal / CostQuanity.Value)
+                        LaborCostea.Value = Laborea
 
-                MaterialTotal.Value = MaterialColTotal
-                Dim Materialea As Int64 = Math.Floor(MaterialColTotal / CostQuanity.Value)
-                MaterialCostea.Value = Materialea
+                        MaterialTotal.Value = MaterialColTotal
+                        Dim Materialea As Int64 = Math.Floor(MaterialColTotal / CostQuanity.Value)
+                        MaterialCostea.Value = Materialea
 
-                MachineTotal.Value = MachineColTotal
-                Dim Machineea As Int64 = Math.Floor(MachineColTotal / CostQuanity.Value)
-                MachineCostea.Value = Machineea
+                        MachineTotal.Value = MachineColTotal
+                        Dim Machineea As Int64 = Math.Floor(MachineColTotal / CostQuanity.Value)
+                        MachineCostea.Value = Machineea
 
-                SubcntrctTotal.Value = SubcntrctColTotal
-                Dim Subcntrctea As Int64 = Math.Floor(SubcntrctColTotal / CostQuanity.Value)
-                SubcntrctCostea.Value = Subcntrctea
+                        SubcntrctTotal.Value = SubcntrctColTotal
+                        Dim Subcntrctea As Int64 = Math.Floor(SubcntrctColTotal / CostQuanity.Value)
+                        SubcntrctCostea.Value = Subcntrctea
 
-                ExpenseTotal.Value = ExpenseColTotal
-                Dim Expenseea As Int64 = Math.Floor(ExpenseColTotal / CostQuanity.Value)
-                ExpensCostea.Value = Expenseea
-
+                        ExpenseTotal.Value = ExpenseColTotal
+                        Dim Expenseea As Int64 = Math.Floor(ExpenseColTotal / CostQuanity.Value)
+                        ExpensCostea.Value = Expenseea
+                    End If
+                End If
 
             End If
         Catch ex As Exception
@@ -2310,40 +2355,35 @@ Public Class 代価表入力
                 Next
 
                 If IsDBNull(CostQuanity.Value) = False Then
-                    CostUnitPrice.Value = ColTotal
-                    Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
-                    CostCostea.Value = Costea
+                    If CostQuanity.Value > 0 Then
+                        CostUnitPrice.Value = ColTotal
+                        Dim Costea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
+                        CostCostea.Value = Costea
+
+                        LaborTotal.Value = LaborColTotal
+                        Dim Laborea As Int64 = Math.Floor(LaborColTotal / CostQuanity.Value)
+                        LaborCostea.Value = Laborea
+
+                        MaterialTotal.Value = MaterialColTotal
+                        Dim Materialea As Int64 = Math.Floor(MaterialColTotal / CostQuanity.Value)
+                        MaterialCostea.Value = Materialea
+
+
+                        MachineTotal.Value = MachineColTotal
+                        Dim Machineea As Int64 = Math.Floor(MachineColTotal / CostQuanity.Value)
+                        MachineCostea.Value = Machineea
+
+
+                        SubcntrctTotal.Value = SubcntrctColTotal
+                        Dim Subcntrctea As Int64 = Math.Floor(SubcntrctColTotal / CostQuanity.Value)
+                        SubcntrctCostea.Value = Subcntrctea
+
+                        ExpenseTotal.Value = ExpenseColTotal
+                        Dim Expenseea As Int64 = Math.Floor(ExpenseColTotal / CostQuanity.Value)
+                        ExpensCostea.Value = Expenseea
+                    End If
                 End If
 
-                If IsDBNull(CostQuanity.Value) = False Then
-                    LaborTotal.Value = LaborColTotal
-                    Dim Laborea As Int64 = Math.Floor(LaborColTotal / CostQuanity.Value)
-                    LaborCostea.Value = Laborea
-                End If
-
-                If IsDBNull(CostQuanity.Value) = False Then
-                    MaterialTotal.Value = MaterialColTotal
-                    Dim Materialea As Int64 = Math.Floor(MaterialColTotal / CostQuanity.Value)
-                    MaterialCostea.Value = Materialea
-                End If
-
-                If IsDBNull(CostQuanity.Value) = False Then
-                    MachineTotal.Value = MachineColTotal
-                    Dim Machineea As Int64 = Math.Floor(MachineColTotal / CostQuanity.Value)
-                    MachineCostea.Value = Machineea
-                End If
-
-                If IsDBNull(CostQuanity.Value) = False Then
-                    SubcntrctTotal.Value = SubcntrctColTotal
-                    Dim Subcntrctea As Int64 = Math.Floor(SubcntrctColTotal / CostQuanity.Value)
-                    SubcntrctCostea.Value = Subcntrctea
-                End If
-
-                If IsDBNull(CostQuanity.Value) = False Then
-                    ExpenseTotal.Value = ExpenseColTotal
-                    Dim Expenseea As Int64 = Math.Floor(ExpenseColTotal / CostQuanity.Value)
-                    ExpensCostea.Value = Expenseea
-                End If
             End If
 
         Catch ex As Exception
@@ -2452,10 +2492,6 @@ Public Class 代価表入力
 
 
             If e.KeyCode = Keys.Enter Then
-
-
-
-
                 Key = "enter"
 
                 Dim SelectionCol As Integer = BreakDownList.Selection.LeftCol
@@ -2504,6 +2540,24 @@ Public Class 代価表入力
                     End If
                 Else
                     SendKeys.Send("{ENTER}")
+                End If
+            ElseIf e.KeyCode = Keys.Escape Then
+                If Command = "Cut" Or Command = "Copy" Then
+
+                    Dim Row As Integer = BreakDownList(CopyRow, 3)
+                    If Row Mod 2 = 0 Then
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                    Else
+                        BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                        BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+
+                    End If
+
                 End If
             End If
 
@@ -2632,5 +2686,9 @@ Public Class 代価表入力
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub 代価表入力_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        CostName.Focus()
     End Sub
 End Class
