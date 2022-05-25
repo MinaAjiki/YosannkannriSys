@@ -426,6 +426,24 @@ Public Class 代価一覧
                 ホーム.ProjectCostSelectRow.RemoveAt(Count - 1)
                 ホーム.PrjctCstList.RemoveAt(Count - 1)
                 Me.Close()
+
+            ElseIf CostClassName = "基礎代価" Or 0 <= CostClassName.IndexOf("工事代価") Then
+                If CostList.Text = "工事代価を選択" Then
+                    MsgBox("工事代価を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                    Exit Sub
+                End If
+                SelectRow = ProjectCostList.Selection.TopRow
+                代価内訳.CostID = ProjectCostList(SelectRow, 1)
+                代価内訳.ClassCode = CostClassCode
+
+                If CostClassCode = 11 Then
+                    ホーム.BeforeForm = "基礎代価一覧"
+                ElseIf CostClassCode > 11 Then
+                    ホーム.BeforeForm = "工事代価一覧"
+                End If
+
+                代価内訳.Show()
+                Me.Visible = False
             End If
 
 
@@ -615,7 +633,7 @@ Public Class 代価一覧
             End If
 
             代価内訳.Show()
-            Me.Close()
+            Me.Visible = False
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -641,7 +659,7 @@ Public Class 代価一覧
             End If
 
             代価内訳.Show()
-            Me.Close()
+            Me.Visible = False
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -661,14 +679,14 @@ Public Class 代価一覧
                 'If BreakDownList(SelectRow, 8) >= 12 Then
 
                 作成代価選択.HeadLine.Text = "<<コピー代価選択"
-                    作成代価選択.Text = "コピー代価選択"
-                    作成代価選択.SelectRow = SelectRow
-                '作成代価選択.CopyList = BreakDownList
+                作成代価選択.Text = "コピー代価選択"
+                作成代価選択.SelectRow = SelectRow
+                '作成代価選択.CopyList = ProjectCostList
 
 
                 作成代価選択.ShowDialog()
-                    作成代価選択.TopMost = True
-                    作成代価選択.TopMost = False
+                作成代価選択.TopMost = True
+                作成代価選択.TopMost = False
                 'Else
                 '    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
                 'End If
