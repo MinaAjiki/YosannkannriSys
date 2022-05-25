@@ -48,7 +48,7 @@ Partial Class ホーム
         Me.C1CommandLink16 = New C1.Win.C1Command.C1CommandLink()
         Me.材料表インポート = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink17 = New C1.Win.C1Command.C1CommandLink()
-        Me.参照作成 = New C1.Win.C1Command.C1Command()
+        Me.参照作成command = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink18 = New C1.Win.C1Command.C1CommandLink()
         Me.管理者登録 = New C1.Win.C1Command.C1Command()
         Me.C1CommandLink19 = New C1.Win.C1Command.C1CommandLink()
@@ -432,7 +432,7 @@ Partial Class ホーム
         Me.MenuComｍand.Commands.Add(Me.ヘルプ)
         Me.MenuComｍand.Commands.Add(Me.開く)
         Me.MenuComｍand.Commands.Add(Me.材料表インポート)
-        Me.MenuComｍand.Commands.Add(Me.参照作成)
+        Me.MenuComｍand.Commands.Add(Me.参照作成command)
         Me.MenuComｍand.Commands.Add(Me.管理者登録)
         Me.MenuComｍand.Commands.Add(Me.閉じる)
         Me.MenuComｍand.Commands.Add(Me.予算総括登録)
@@ -563,14 +563,14 @@ Partial Class ホーム
         '
         'C1CommandLink17
         '
-        Me.C1CommandLink17.Command = Me.参照作成
+        Me.C1CommandLink17.Command = Me.参照作成command
         Me.C1CommandLink17.SortOrder = 3
         '
-        '参照作成
+        '参照作成command
         '
-        Me.参照作成.Name = "参照作成"
-        Me.参照作成.ShortcutText = ""
-        Me.参照作成.Text = "参照作成"
+        Me.参照作成command.Name = "参照作成command"
+        Me.参照作成command.ShortcutText = ""
+        Me.参照作成command.Text = "参照作成"
         '
         'C1CommandLink18
         '
@@ -1730,7 +1730,7 @@ Partial Class ホーム
     Friend WithEvents C1CommandLink16 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 材料表インポート As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink17 As C1.Win.C1Command.C1CommandLink
-    Friend WithEvents 参照作成 As C1.Win.C1Command.C1Command
+    Friend WithEvents 参照作成command As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink18 As C1.Win.C1Command.C1CommandLink
     Friend WithEvents 管理者登録 As C1.Win.C1Command.C1Command
     Friend WithEvents C1CommandLink19 As C1.Win.C1Command.C1CommandLink

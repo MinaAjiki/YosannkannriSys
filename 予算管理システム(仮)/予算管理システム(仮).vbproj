@@ -167,6 +167,7 @@
     <Compile Include="Class\ImportMaterial.vb" />
     <Compile Include="Class\Recalculation.vb" />
     <Compile Include="Class\Reference.vb" />
+    <Compile Include="Class\Reference_Details.vb" />
     <Compile Include="Report\Export明細書.vb" />
     <Compile Include="Report\Export実行予算.vb" />
     <Compile Include="Report\見積代価内訳_金抜き.vb" />
@@ -407,10 +408,10 @@
     <Compile Include="外注内訳入力.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form参照作成.Designer.vb">
-      <DependentUpon>Form参照作成.vb</DependentUpon>
+    <Compile Include="参照作成.Designer.vb">
+      <DependentUpon>参照作成.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form参照作成.vb">
+    <Compile Include="参照作成.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="業者選択_Export.Designer.vb">
@@ -505,8 +506,8 @@
     <EmbeddedResource Include="DB選択.resx">
       <DependentUpon>DB選択.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form参照作成.resx">
-      <DependentUpon>Form参照作成.vb</DependentUpon>
+    <EmbeddedResource Include="参照作成.resx">
+      <DependentUpon>参照作成.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ホーム.resx">
       <DependentUpon>ホーム.vb</DependentUpon>
