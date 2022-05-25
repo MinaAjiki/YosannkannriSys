@@ -549,7 +549,7 @@ Public Class 代価内訳
                         MaterialTotal.Text = TotalReader.Item("material")
                         MachineTotal.Text = TotalReader.Item("machine")
                         SubcntrctTotal.Text = TotalReader.Item("subcntrct")
-                        ExpenseTotal.Text = TotalReader.Item("expens")
+                        ExpenseTotal.Text = TotalReader.Item("expense")
                     End While
                     TotalReader.Close()
                 Else
@@ -2210,7 +2210,7 @@ Public Class 代価内訳
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
                 ホーム.ProjectCommand = "CostCopy"
-
+                ホーム.BeforeForm = "代価内訳"
                 If BreakDownList(SelectRow, 8) >= 12 Then
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"

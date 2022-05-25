@@ -7,6 +7,7 @@ Public Class 作成代価選択
     Public CopyCostID As Integer = 0
     Public SelectRow As Integer = 0
     Public CopyList As C1FlexGrid
+
     Private Sub AddLevel_MouseLeave(sender As Object, e As EventArgs) Handles AddLevel.MouseLeave
         AddLevel.ImageIndex = 0
     End Sub
@@ -30,7 +31,7 @@ Public Class 作成代価選択
             Dim ClassCode As Integer = 0
             If 明細書入力.Visible = True Then
                 ClassCode = 11
-            ElseIf ホーム.BeforeForm = "代価一覧" Then
+            ElseIf ホーム.BeforeForm = "代価一覧" Or ホーム.BeforeForm = "代価内訳" Then
                 ClassCode = 12
             Else
 
@@ -176,6 +177,25 @@ Public Class 作成代価選択
                 CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
                 ホーム.ProjectCostForm(0).Show()
                 明細書入力.Visible = False
+            ElseIf ホーム.BeforeForm = "代価一覧" Then
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                'ホーム.ProjectCostForm.Add(New 代価一覧)
+                'ホーム.ProjectCostForm(FormCount).TopLevel = False
+                'ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+                'ホーム.ProjectCostSelectRow.Add(SelectRow)
+                'ホーム.ProjectCostID.Add(0)
+                'ホーム.PrjctCstClassCode.Add(ClassCode)
+                'ホーム.PrjctCstList.Add(CopyList)
+                CopyClassCode = 代価一覧.CostClassCode
+                CopyCostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                代価内訳.ClassCode = ClassCode
+                'ホーム.ProjectCostForm(FormCount).Show()
+                'ホーム.ProjectCostForm(FormCount - 1).Visible = False
+                代価内訳.Show()
+
+                代価一覧.Visible = False
+
             Else
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 

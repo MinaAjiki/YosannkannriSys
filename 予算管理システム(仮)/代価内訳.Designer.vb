@@ -68,9 +68,9 @@ Partial Class 代価内訳
         Me.TableName = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.CostCopy = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
-        Me.CostCopy = New System.Windows.Forms.Button()
         CType(Me.BreakDownList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -320,6 +320,12 @@ Partial Class 代価内訳
         Me.CostUnitPrice.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.CostUnitPrice.DataType = GetType(Long)
         Me.CostUnitPrice.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostUnitPrice.DisplayFormat.CustomFormat = "#,###"
+        Me.CostUnitPrice.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.CostUnitPrice.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.CostUnitPrice.Enabled = False
         Me.CostUnitPrice.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostUnitPrice.GapHeight = 0
@@ -347,6 +353,12 @@ Partial Class 代価内訳
         Me.CostCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.CostCostea.DataType = GetType(Long)
         Me.CostCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.CostCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.CostCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.CostCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostCostea.GapHeight = 0
         Me.CostCostea.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -374,6 +386,12 @@ Partial Class 代価内訳
         Me.LaborCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.LaborCostea.DataType = GetType(Long)
         Me.LaborCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LaborCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.LaborCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.LaborCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.LaborCostea.Enabled = False
         Me.LaborCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.LaborCostea.GapHeight = 0
@@ -402,6 +420,12 @@ Partial Class 代価内訳
         Me.MaterialCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.MaterialCostea.DataType = GetType(Long)
         Me.MaterialCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MaterialCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.MaterialCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.MaterialCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.MaterialCostea.Enabled = False
         Me.MaterialCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.MaterialCostea.GapHeight = 0
@@ -430,6 +454,12 @@ Partial Class 代価内訳
         Me.MachineCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.MachineCostea.DataType = GetType(Long)
         Me.MachineCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MachineCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.MachineCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.MachineCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.MachineCostea.Enabled = False
         Me.MachineCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.MachineCostea.GapHeight = 0
@@ -458,6 +488,12 @@ Partial Class 代価内訳
         Me.SubcntrctCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SubcntrctCostea.DataType = GetType(Long)
         Me.SubcntrctCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SubcntrctCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.SubcntrctCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.SubcntrctCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.SubcntrctCostea.Enabled = False
         Me.SubcntrctCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.SubcntrctCostea.GapHeight = 0
@@ -486,6 +522,12 @@ Partial Class 代価内訳
         Me.ExpensCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ExpensCostea.DataType = GetType(Long)
         Me.ExpensCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpensCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.ExpensCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.ExpensCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.ExpensCostea.Enabled = False
         Me.ExpensCostea.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.ExpensCostea.GapHeight = 0
@@ -514,6 +556,11 @@ Partial Class 代価内訳
         Me.LaborTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.LaborTotal.DataType = GetType(Long)
         Me.LaborTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.LaborTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.LaborTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.LaborTotal.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.LaborTotal.Enabled = False
         Me.LaborTotal.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.LaborTotal.GapHeight = 0
@@ -542,6 +589,12 @@ Partial Class 代価内訳
         Me.ExpenseTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.ExpenseTotal.DataType = GetType(Long)
         Me.ExpenseTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.ExpenseTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.ExpenseTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.ExpenseTotal.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.ExpenseTotal.Enabled = False
         Me.ExpenseTotal.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.ExpenseTotal.GapHeight = 0
@@ -570,6 +623,12 @@ Partial Class 代価内訳
         Me.MaterialTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.MaterialTotal.DataType = GetType(Long)
         Me.MaterialTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MaterialTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.MaterialTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.MaterialTotal.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.MaterialTotal.Enabled = False
         Me.MaterialTotal.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.MaterialTotal.GapHeight = 0
@@ -598,6 +657,12 @@ Partial Class 代価内訳
         Me.MachineTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.MachineTotal.DataType = GetType(Long)
         Me.MachineTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.MachineTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.MachineTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.MachineTotal.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.MachineTotal.Enabled = False
         Me.MachineTotal.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.MachineTotal.GapHeight = 0
@@ -626,6 +691,12 @@ Partial Class 代価内訳
         Me.SubcntrctTotal.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.SubcntrctTotal.DataType = GetType(Long)
         Me.SubcntrctTotal.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.SubcntrctTotal.DisplayFormat.CustomFormat = "#,###"
+        Me.SubcntrctTotal.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.SubcntrctTotal.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.SubcntrctTotal.Enabled = False
         Me.SubcntrctTotal.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.SubcntrctTotal.GapHeight = 0
@@ -929,6 +1000,25 @@ Partial Class 代価内訳
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
+        'CostCopy
+        '
+        Me.CostCopy.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CostCopy.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CostCopy.FlatAppearance.BorderSize = 0
+        Me.CostCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CostCopy.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.CostCopy.ImageIndex = 15
+        Me.CostCopy.ImageList = Me.ButtonImageList
+        Me.CostCopy.Location = New System.Drawing.Point(109, 6)
+        Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.CostCopy.Name = "CostCopy"
+        Me.CostCopy.Size = New System.Drawing.Size(100, 30)
+        Me.CostCopy.TabIndex = 104
+        Me.CostCopy.Text = "　　代価コピー"
+        Me.CostCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.CostCopy.UseVisualStyleBackColor = True
+        '
         'Cancel
         '
         Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -965,25 +1055,6 @@ Partial Class 代価内訳
         Me.Entry.Text = "　登　録"
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
-        '
-        'CostCopy
-        '
-        Me.CostCopy.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CostCopy.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CostCopy.FlatAppearance.BorderSize = 0
-        Me.CostCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CostCopy.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.CostCopy.ImageIndex = 15
-        Me.CostCopy.ImageList = Me.ButtonImageList
-        Me.CostCopy.Location = New System.Drawing.Point(109, 6)
-        Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
-        Me.CostCopy.Name = "CostCopy"
-        Me.CostCopy.Size = New System.Drawing.Size(100, 30)
-        Me.CostCopy.TabIndex = 104
-        Me.CostCopy.Text = "　　代価コピー"
-        Me.CostCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.CostCopy.UseVisualStyleBackColor = True
         '
         '代価内訳
         '
