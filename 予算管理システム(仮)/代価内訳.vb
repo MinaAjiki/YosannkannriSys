@@ -549,7 +549,7 @@ Public Class 代価内訳
                         MaterialTotal.Text = TotalReader.Item("material")
                         MachineTotal.Text = TotalReader.Item("machine")
                         SubcntrctTotal.Text = TotalReader.Item("subcntrct")
-                        ExpenseTotal.Text = TotalReader.Item("expens")
+                        ExpenseTotal.Text = TotalReader.Item("expense")
                     End While
                     TotalReader.Close()
                 Else

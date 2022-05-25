@@ -325,6 +325,14 @@ Partial Class 代価表入力
         Me.CostQuanity.Calculator.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CostQuanity.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.CostQuanity.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostQuanity.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.CostQuanity.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType Or C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
         Me.CostQuanity.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.CostQuanity.GapHeight = 0
         Me.CostQuanity.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -354,7 +362,11 @@ Partial Class 代価表入力
         Me.CostUnitPrice.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CostUnitPrice.DisplayFormat.CustomFormat = "#,###"
         Me.CostUnitPrice.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CostUnitPrice.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+        Me.CostUnitPrice.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.CostUnitPrice.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType Or C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
@@ -369,6 +381,7 @@ Partial Class 代価表入力
         Me.CostUnitPrice.Tag = Nothing
         Me.CostUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostUnitPrice, "予算管理テーマ")
+        Me.CostUnitPrice.Value = CType(0, Long)
         Me.CostUnitPrice.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.CostUnitPrice.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
@@ -387,7 +400,11 @@ Partial Class 代価表入力
         Me.CostCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.CostCostea.DisplayFormat.CustomFormat = "#,###"
         Me.CostCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
-        Me.CostCostea.DisplayFormat.Inherit = CType(((((C1.Win.C1Input.FormatInfoInheritFlags.NullText Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
+        Me.CostCostea.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
+        Me.CostCostea.EditFormat.Inherit = CType((((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType Or C1.Win.C1Input.FormatInfoInheritFlags.CustomFormat) _
+            Or C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.CalendarType), C1.Win.C1Input.FormatInfoInheritFlags)
@@ -402,6 +419,7 @@ Partial Class 代価表入力
         Me.CostCostea.Tag = Nothing
         Me.CostCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostCostea, "予算管理テーマ")
+        Me.CostCostea.Value = CType(0, Long)
         Me.CostCostea.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None
         Me.CostCostea.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
