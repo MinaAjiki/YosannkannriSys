@@ -1679,7 +1679,7 @@ Partial Class ホーム
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.Name = "ホーム"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "予算管理システム(仮)"
+        Me.Text = "予算管理システム"
         Me.SystemTheme.SetTheme(Me, "予算管理テーマ")
         CType(Me.HomeSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.HomeSplitContainer.ResumeLayout(False)

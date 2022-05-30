@@ -538,26 +538,27 @@ Public Class 明細書入力
 
     Private Sub CategoryList_AfterRowColChange(sender As Object, e As RangeEventArgs) Handles CategoryList.AfterRowColChange
         Try
-            Dim Col As Integer = CategoryList.Selection.LeftCol
-            Dim Row As Integer = CategoryList.Selection.TopRow
+            If Key = "" Then
+                Dim Col As Integer = CategoryList.Selection.LeftCol
+                Dim Row As Integer = CategoryList.Selection.TopRow
 
-            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
-                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
-                    DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                    If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                        DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                Dim RowNo As Integer = DetailsList(Row, 7)
+                If RowNo = 1 Or RowNo = 4 Then
+                    DetailsList.Rows(Row).Caption = "▶"
+                ElseIf RowNo = 2 Or RowNo = 5 Then
+                    DetailsList.Rows(Row - 1).Caption = "▶"
                 Else
-                    Exit For
+                    DetailsList.Rows(Row - 2).Caption = "▶"
                 End If
-            Next
-
-            Dim RowNo As Integer = DetailsList(Row, 7)
-            If RowNo = 1 Or RowNo = 4 Then
-                DetailsList.Rows(Row).Caption = "▶"
-            ElseIf RowNo = 2 Or RowNo = 5 Then
-                DetailsList.Rows(Row - 1).Caption = "▶"
-            Else
-                DetailsList.Rows(Row - 2).Caption = "▶"
             End If
-
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -627,54 +628,71 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CategoryList_AfterEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.AfterEdit
+        Try
+            Dim Row As Integer = e.Row
+            Dim Col As Integer = e.Col
 
-        Dim Row As Integer = e.Row
-        Dim Col As Integer = e.Col
 
+            If IsNumeric(CategoryList(Row, Col)) = True Then
+                CategoryList(Row + 1, Col) = Math.Floor((DetailsList(Row - 1, 6) * CategoryList(Row, Col)))
 
-        If IsNumeric(CategoryList(Row, Col)) = True Then
-            CategoryList(Row + 1, Col) = Math.Floor((DetailsList(Row - 1, 6) * CategoryList(Row, Col)))
+                Dim RowNo As Integer = 0
+                Dim EditRow As Integer = e.Row + 1
+                Dim ColTotal As Int64 = 0
+                For RowCount = EditRow To ((DetailsList.Rows.Count - 3) / 3)
 
-            Dim RowNo As Integer = 0
-            Dim EditRow As Integer = e.Row + 1
-            Dim ColTotal As Int64 = 0
-            For RowCount = EditRow To ((DetailsList.Rows.Count - 3) / 3)
+                    RowNo += 1
+                    ColTotal += CategoryList(EditRow * 3, Col)
+                Next
 
-                RowNo += 1
-                ColTotal += CategoryList(EditRow * 3, Col)
-            Next
-
-            CategoryTotalList(1, Col) = ColTotal
-        End If
-
-        Dim RowIndex As Integer = DetailsList(Row, 7)
-
-        If IsKeyDown(Windows.Input.Key.Enter) = True Then
-            If Col = 6 Then
-                DetailsList.Focus()
-                DetailsList.Select(Row + 2, 4)
+                CategoryTotalList(1, Col) = ColTotal
             End If
-            If Key = "" Then
-                Key = "enter"
-                If Col = 6 Then
-                    DetailsList.Focus()
-                    DetailsList.Select(Row + 2, 4)
-                ElseIf Col = 2 Then
-                    SendKeys.Send("{RIGHT}")
-                    SendKeys.Send("{UP}")
-                ElseIf Col = 3 Then
-                    SendKeys.Send("{RIGHT}")
-                    SendKeys.Send("{UP}")
-                ElseIf Col = 4 Then
-                    SendKeys.Send("{RIGHT}")
-                    SendKeys.Send("{UP}")
-                ElseIf Col = 5 Then
-                    SendKeys.Send("{RIGHT}")
-                    SendKeys.Send("{UP}")
+
+            Dim RowIndex As Integer = DetailsList(Row, 7)
+
+
+
+
+            If IsKeyDown(Windows.Input.Key.Enter) = True Then
+                If DetailsList.Rows.Count - 1 > Row + (3 - RowIndex) Then
+                    If Col = 6 Then
+                        DetailsList.Focus()
+                        DetailsList.Select(Row + 2, 4)
+                        DetailsList.Rows(Row - 1).Caption = ""
+                        DetailsList.Rows(Row + 2).Caption = "▶"
+
+                    End If
+
+                    If Key = "" Then
+                        Key = "enter"
+                        If Col = 6 Then
+                            DetailsList.Focus()
+                            DetailsList.Select(Row + 2, 4)
+                            DetailsList.Rows(Row - 1).Caption = ""
+                            DetailsList.Rows(Row + 2).Caption = "▶"
+                        ElseIf Col = 2 Then
+                            SendKeys.Send("{RIGHT}")
+                            SendKeys.Send("{UP}")
+                        ElseIf Col = 3 Then
+                            SendKeys.Send("{RIGHT}")
+                            SendKeys.Send("{UP}")
+                        ElseIf Col = 4 Then
+                            SendKeys.Send("{RIGHT}")
+                            SendKeys.Send("{UP}")
+                        ElseIf Col = 5 Then
+                            SendKeys.Send("{RIGHT}")
+                            SendKeys.Send("{UP}")
+                        End If
+                    End If
                 End If
             End If
-            Key = ""
-        End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub CategoryList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.BeforeEdit
@@ -1030,21 +1048,21 @@ Public Class 明細書入力
                 End If
                 ホーム.Modified = "True"
 
-                    Command = "Cut"
-                    CopyRow = SelectRow
+                Command = "Cut"
+                CopyRow = SelectRow
 
 
                 DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    CategoryList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    CategoryList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    CategoryList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    OutsoucerList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    OutsoucerList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
-                    OutsoucerList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                DetailsList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                DetailsList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                CategoryList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+                OutsoucerList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
 
-                End If
+            End If
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1781,9 +1799,10 @@ Public Class 明細書入力
                             ホーム.ItemSelect = ""
                         End If
                     End If
-                    End If
+                End If
 
             ElseIf Col = 4 Then
+
                 If Row + 3 = DetailsList.Rows.Count Then
                     DetailsList.Rows.Add(3)
                     CategoryList.Rows.Add(3)
@@ -1854,7 +1873,6 @@ Public Class 明細書入力
                             SendKeys.Send("{UP}")
                             SendKeys.Send("{RIGHT}")
                         End If
-
                     End If
                 End If
             ElseIf Col = 5 Then
@@ -1875,7 +1893,7 @@ Public Class 明細書入力
                             DetailsList(RowCount * 3, 3) = RowCount - DeleteRow
                         End If
                     End If
-                    Else
+                Else
                     If DetailsList(RowCount * 3, 2) = False Then
                         If RowCount <= ((DetailsList.Rows.Count - 3) / 3) Then
                             If IsNothing(DetailsList(RowCount * 3, 4)) = False Then
@@ -2103,8 +2121,26 @@ Public Class 明細書入力
     Private Sub DetailsList_Click(sender As Object, e As EventArgs) Handles DetailsList.Click
         Try
 
+
             Dim SelectionRow As Integer = DetailsList.Selection.TopRow
             Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                    DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                Else
+                    Exit For
+                End If
+            Next
+
+            Dim RowNo As Integer = DetailsList(SelectionRow, 7)
+            If RowNo = 1 Or RowNo = 4 Then
+                DetailsList.Rows(SelectionRow).Caption = "▶"
+            ElseIf RowNo = 2 Or RowNo = 5 Then
+                DetailsList.Rows(SelectionRow - 1).Caption = "▶"
+            Else
+                DetailsList.Rows(SelectionRow - 2).Caption = "▶"
+            End If
 
             If DetailsList(SelectionRow, 7) = 1 Or DetailsList(SelectionRow, 7) = 4 Then
 
@@ -2182,9 +2218,6 @@ Public Class 明細書入力
 
             If e.KeyCode = Keys.Enter Then
 
-
-
-
                 Key = "enter"
 
                 Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
@@ -2201,7 +2234,6 @@ Public Class 明細書入力
                         DetailsList.Select(SelectionRow - 3, 6)
                     End If
                 End If
-
             ElseIf e.KeyCode = Keys.Escape Then
                 If Command = "Cut" Or Command = "Copy" Then
 
@@ -2235,18 +2267,19 @@ Public Class 明細書入力
                 End If
             End If
 
-
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
 
     End Sub
 
+
     Private Sub CategoryList_KeyDown(sender As Object, e As KeyEventArgs) Handles CategoryList.KeyDown
         Try
+
 
             If e.KeyCode = Keys.Enter Then
                 Key = "enter"
@@ -2257,88 +2290,96 @@ Public Class 明細書入力
 
                 Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
                 SendKeys.Send("{ENTER}")
-                If RowIndex = 2 Or RowIndex = 5 Then
-                    If SelectionCol = 2 Then
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                Dim difference As Integer = 0
 
-                    ElseIf SelectionCol = 3 Then
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                If DetailsList.Rows.Count - 1 > SelectionRow + (3 - RowIndex) Then
 
-                    ElseIf SelectionCol = 4 Then
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
-                    ElseIf SelectionCol = 5 Then
-                        SendKeys.Send("{UP}")
-                        SendKeys.Send("{RIGHT}")
+                    If RowIndex = 2 Or RowIndex = 5 Then
+                        If SelectionCol = 2 Then
+                            SendKeys.Send("{UP}")
+                            SendKeys.Send("{RIGHT}")
 
-                    ElseIf SelectionCol = 6 Then
-                        DetailsList.Focus()
-                        DetailsList.Select(SelectionRow + 2, 4)
-                        If SelectionRow + 3 = DetailsList.Rows.Count Then
-                            DetailsList.Rows.Add(3)
-                            CategoryList.Rows.Add(3)
-                            OutsoucerList.Rows.Add(3)
-                            Dim NewRow As Integer = SelectionRow + 3
+                        ElseIf SelectionCol = 3 Then
+                            SendKeys.Send("{UP}")
+                            SendKeys.Send("{RIGHT}")
 
-                            Dim Quanity As CellRange = DetailsList.GetCellRange(NewRow, 6)
-                            Quanity.StyleNew.Format = "N1"
-                            Dim Costea As CellRange = DetailsList.GetCellRange(NewRow + 1, 6)
-                            Costea.StyleNew.Format = "N0"
-                            Dim Amount As CellRange = DetailsList.GetCellRange(NewRow + 2, 6)
-                            Amount.StyleNew.Format = "N0"
-                            DetailsList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+                        ElseIf SelectionCol = 4 Then
+                            SendKeys.Send("{UP}")
+                            SendKeys.Send("{RIGHT}")
+                        ElseIf SelectionCol = 5 Then
+                            SendKeys.Send("{UP}")
+                            SendKeys.Send("{RIGHT}")
 
+                        ElseIf SelectionCol = 6 Then
+                            DetailsList.Focus()
+                            DetailsList.Select(SelectionRow + 2, 4)
+                            DetailsList.Rows(SelectionRow - 1).Caption = ""
+                            DetailsList.Rows(SelectionRow + 2).Caption = "▶"
+                            If SelectionRow + 3 = DetailsList.Rows.Count Then
+                                DetailsList.Rows.Add(3)
+                                CategoryList.Rows.Add(3)
+                                OutsoucerList.Rows.Add(3)
+                                Dim NewRow As Integer = SelectionRow + 3
 
-                            If NewRow Mod 2 = 0 Then
-                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-
-                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-
-                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-
-                                DetailsList(NewRow, 7) = 4
-                                DetailsList(NewRow + 1, 7) = 5
-                                DetailsList(NewRow + 2, 7) = 6
-
-                            Else
-                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-
-                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-
-                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                Dim Quanity As CellRange = DetailsList.GetCellRange(NewRow, 6)
+                                Quanity.StyleNew.Format = "N1"
+                                Dim Costea As CellRange = DetailsList.GetCellRange(NewRow + 1, 6)
+                                Costea.StyleNew.Format = "N0"
+                                Dim Amount As CellRange = DetailsList.GetCellRange(NewRow + 2, 6)
+                                Amount.StyleNew.Format = "N0"
+                                DetailsList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
 
 
-                                DetailsList(NewRow, 7) = 1
-                                DetailsList(NewRow + 1, 7) = 2
-                                DetailsList(NewRow + 2, 7) = 3
+                                If NewRow Mod 2 = 0 Then
+                                    DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                    CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                    OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                    OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                    DetailsList(NewRow, 7) = 4
+                                    DetailsList(NewRow + 1, 7) = 5
+                                    DetailsList(NewRow + 2, 7) = 6
+
+                                Else
+                                    DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                    CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                    OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                    OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+
+                                    DetailsList(NewRow, 7) = 1
+                                    DetailsList(NewRow + 1, 7) = 2
+                                    DetailsList(NewRow + 2, 7) = 3
+
+                                End If
+
+                                DetailsList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
+                                DetailsList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
+                                DetailsList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
+                                DetailsList.MergedRanges.Add(NewRow, 4, NewRow, 5)
+                                DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                             End If
-
-                            DetailsList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
-                            DetailsList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
-                            DetailsList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
-                            DetailsList.MergedRanges.Add(NewRow, 4, NewRow, 5)
-                            DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
-
                         End If
                     End If
 
                 End If
             End If
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -2348,4 +2389,61 @@ Public Class 明細書入力
         End Try
     End Sub
 
+    Private Sub CategoryList_Click(sender As Object, e As EventArgs) Handles CategoryList.Click
+        Try
+            Dim SelectionRow As Integer = CategoryList.Selection.TopRow
+            Dim SelectionCol As Integer = CategoryList.Selection.LeftCol
+
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                    DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                Else
+                    Exit For
+                End If
+            Next
+
+            Dim RowNo As Integer = DetailsList(SelectionRow, 7)
+            If RowNo = 1 Or RowNo = 4 Then
+                DetailsList.Rows(SelectionRow).Caption = "▶"
+            ElseIf RowNo = 2 Or RowNo = 5 Then
+                DetailsList.Rows(SelectionRow - 1).Caption = "▶"
+            Else
+                DetailsList.Rows(SelectionRow - 2).Caption = "▶"
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub OutsoucerList_Click(sender As Object, e As EventArgs) Handles OutsoucerList.Click
+        Try
+            Dim SelectionRow As Integer = OutsoucerList.Selection.TopRow
+            Dim SelectionCol As Integer = OutsoucerList.Selection.LeftCol
+
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+                If DetailsRowCount < DetailsList.Rows.Count - 3 Then
+                    DetailsList.Rows(DetailsRowCount + 2).Caption = ""
+                Else
+                    Exit For
+                End If
+            Next
+
+            Dim RowNo As Integer = DetailsList(SelectionRow, 7)
+            If RowNo = 1 Or RowNo = 4 Then
+                DetailsList.Rows(SelectionRow).Caption = "▶"
+            ElseIf RowNo = 2 Or RowNo = 5 Then
+                DetailsList.Rows(SelectionRow - 1).Caption = "▶"
+            Else
+                DetailsList.Rows(SelectionRow - 2).Caption = "▶"
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class
