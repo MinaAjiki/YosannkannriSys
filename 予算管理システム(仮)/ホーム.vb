@@ -57,14 +57,47 @@ Public Class ホーム
                 SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
                 SystmMdfCnnctn.Open()
 
+                Dim fileDate As Date
+
                 SystemMdf.Connection = SystmMdfCnnctn
                 SystemMdf.CommandText = "SELECT TOP 1 * FROM userfiles ORDER BY filedate DESC"
                 Dim FileReader As SqlDataReader = SystemMdf.ExecuteReader
                 While FileReader.Read
                     UserDataName = FileReader.Item("filename")
                     UserDataPath = FileReader.Item("filepath")
+                    fileDate = FileReader.Item("filedate")
                 End While
                 FileReader.Close()
+
+                Dim checkdate As Date = fileDate.AddMonths(1)
+
+
+                If IsNetworkDeployed = True Then
+                    'ClickOnceアプリケーションの場合、アプリケーションがアップデート可能かどうかを判別する
+                    Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+                    If AD.CheckForUpdate = True Then
+                        If checkdate <= Today Then
+                            'メッセージを表示し、ユーザーの返答を判別する
+                            If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
+                                'メッセージに対し[はい]を選択した場合、アップデートする
+                                AD.Update()
+                                'メッセージを表示し、ユーザーの返答を判別する
+                                If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.OkOnly, "再起動の確認") = MsgBoxResult.Ok Then
+                                    Application.Restart()
+                                End If
+                            Else
+                                アップデート.Enabled = True
+                            End If
+                        Else
+                            アップデート.Enabled = True
+                        End If
+
+                    Else
+                        アップデート.Enabled = False
+                    End If
+                Else
+                    アップデート.Enabled = False
+                End If
 
                 If UserDataName <> "" Then
 
@@ -104,7 +137,7 @@ Public Class ホーム
                             Me.Enabled = True
                             Me.Text = "予算管理システム　(" & UserDataPath & UserDataName & ")"
                             BudgetNo = 0
-
+                            HomeTreeView.Columns(0).HeaderText = ""
                             予算内訳登録.Enabled = False
                             出力.Enabled = False
                             見積.Enabled = False
@@ -129,12 +162,14 @@ Public Class ホーム
                         SystemMdf.Parameters.Add(New SqlParameter("@path", SqlDbType.NVarChar)).Value = UserDataPath
                         SystemMdf.ExecuteNonQuery()
 
-                        DB選択.Show()
-                        MsgBox("前回使用していたファイルが存在しません。" & vbCrLf & "別のファイルを指定して下さい。" & vbCrLf & vbCrLf & UserDataPath & UserDataName & vbCrLf)
+                        If MsgBox("前回使用していたファイルが存在しません。" & vbCrLf & UserDataPath & UserDataName & vbCrLf & vbCrLf & "新しいファイルを作成しますか ?" & vbCrLf, MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                            CreateFileDialog.ShowDialog()
+                        Else
+                            DB選択.Show()
+                            DB選択.TopMost = True
 
-                        DB選択.TopMost = True
+                        End If
                     End If
-
 
                 Else
                     Me.Enabled = True
@@ -394,6 +429,7 @@ Public Class ホーム
 
             Transaction.Commit()
 
+            SystemMdf.Parameters.Clear()
             SystemMdf.Connection = SystmMdfCnnctn
             SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
             SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
@@ -408,7 +444,8 @@ Public Class ホーム
 
             MsgBox("作成完了" & vbCrLf & vbCrLf & CreateFileDialog.FileName, MsgBoxStyle.Information, "新規作成")
 
-
+            HomeTreeView.Columns(0).HeaderText = ""
+            HomeTreeView.Nodes.Clear()
             予算.Enabled = True
             マスタ.Enabled = True
             開く.Enabled = True
@@ -1331,13 +1368,62 @@ Public Class ホーム
     End Sub
 
     Private Sub 閉じる_Click(sender As Object, e As ClickEventArgs) Handles 閉じる.Click
-        If FormPanel.Controls.Count > 0 Then
-            Dim FormClose As String = ""
+        Try
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
 
-            Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
-            FormClose = FormCloseLoad.FormCheck
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
+
+            Me.Close()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub HomeTreeView_Collapsed(sender As Object, e As C1.Win.TreeView.C1TreeViewEventArgs) Handles HomeTreeView.Collapsed
+        Try
+            Sql.Parameters.Clear()
+            Sql.CommandText = ""
+
+            Dim childcount As Integer = e.Node.Nodes.Count
+            For nodeindex As Integer = 0 To childcount - 1
+                Dim childnode As C1.Win.TreeView.C1TreeNode = e.Node.Nodes(nodeindex)
+                childnode.Nodes.Clear()
+                childnode.Collapse()
+            Next
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub アップデート_Click(sender As Object, e As ClickEventArgs) Handles アップデート.Click
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        'メッセージを表示し、ユーザーの返答を判別する
+        If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
+            'メッセージに対し[はい]を選択した場合、アップデートする
+            AD.Update()
+            'メッセージを表示し、ユーザーの返答を判別する
+            If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.YesNo, "再起動の確認") = MsgBoxResult.Yes Then
+                'メッセージに対し[はい]を選択した場合、再起動する
+                Application.Restart()
+            End If
         End If
 
-        Me.Close()
+    End Sub
+
+    Private Sub バージョン情報_Click(sender As Object, e As ClickEventArgs) Handles バージョン情報.Click
+
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        Dim version As String = AD.CurrentVersion.ToString
+        MsgBox("Version " & version, MsgBoxStyle.OkOnly, "予算管理システム")
     End Sub
 End Class

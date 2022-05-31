@@ -168,15 +168,14 @@ Partial Class 代価表入力
         '
         '右クリックメニュー
         '
-        Me.右クリックメニュー.BackColor = System.Drawing.Color.White
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.CostCreateMenu, Me.CostModifyMenu, Me.CostCopyMenu, Me.ReferenceMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
+        Me.右クリックメニュー.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
         Me.右クリックメニュー.ShowImageMargin = False
         Me.右クリックメニュー.Size = New System.Drawing.Size(124, 224)
         Me.右クリックメニュー.Text = "項目選択"
-        Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'ItemSelectMenu
         '
@@ -398,7 +397,7 @@ Partial Class 代価表入力
         Me.CostCostea.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.CostCostea.DataType = GetType(Long)
         Me.CostCostea.DisabledForeColor = System.Drawing.SystemColors.GrayText
-        Me.CostCostea.DisplayFormat.CustomFormat = "#,###"
+        Me.CostCostea.DisplayFormat.CustomFormat = "#,##0"
         Me.CostCostea.DisplayFormat.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.CostCostea.DisplayFormat.Inherit = CType((((C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull Or C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) _
             Or C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd) _

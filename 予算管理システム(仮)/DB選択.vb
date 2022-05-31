@@ -140,6 +140,8 @@ Public Class DB選択
                 ホーム.参照作成command.Enabled = True
 
             Else
+                ホーム.HomeTreeView.Columns(0).HeaderText = ""
+                ホーム.HomeTreeView.Nodes.Clear()
                 ホーム.Enabled = True
                 ホーム.BudgetNo = 0
                 ホーム.予算内訳登録.Enabled = False
@@ -165,61 +167,75 @@ Public Class DB選択
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            Dim SelectRow As Integer = FileList.Row
+            Dim SelectRow As Integer = FileList.Selection.TopRow
             Dim OpenFileName As CellRange = FileList.GetCellRange(SelectRow, 1)
             Dim OpenFilePath As CellRange = FileList.GetCellRange(SelectRow, 2)
 
-            ホーム.HomeTreeView.Nodes.Clear()
+            If System.IO.File.Exists(OpenFilePath.Data & OpenFileName.Data) = True Then
+                ホーム.HomeTreeView.Nodes.Clear()
 
 
-            ホーム.SystemMdf.CommandText = ""
-            ホーム.SystemMdf.Parameters.Clear()
-            ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate=@filedate WHERE filename=@filename"
-            ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
-            ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
-            ホーム.SystemMdf.Parameters("@filedate").Value = Now
-            ホーム.SystemMdf.Parameters("@filename").Value = OpenFileName.Data
-            ホーム.SystemMdf.ExecuteNonQuery()
+                ホーム.SystemMdf.CommandText = ""
+                ホーム.SystemMdf.Parameters.Clear()
+                ホーム.SystemMdf.CommandText = "UPDATE userfiles SET filedate=@filedate WHERE filename=@filename"
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
+                ホーム.SystemMdf.Parameters("@filedate").Value = Now
+                ホーム.SystemMdf.Parameters("@filename").Value = OpenFileName.Data
+                ホーム.SystemMdf.ExecuteNonQuery()
 
-            ホーム.Connection.Close()
-            ホーム.Connection.Dispose()
+                ホーム.Connection.Close()
+                ホーム.Connection.Dispose()
 
-            ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & OpenFileName.Data & ";Integrated Security=True"
-            ホーム.Connection.Open()
-            ホーム.Sql.Connection = ホーム.Connection
-            ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & OpenFileName.Data & ")"
-            ホーム.UserDataPath = OpenFilePath.Data
-            ホーム.UserDataName = OpenFileName.Data
+                ホーム.Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & OpenFilePath.Data & OpenFileName.Data & ";Integrated Security=True"
+                ホーム.Connection.Open()
+                ホーム.Sql.Connection = ホーム.Connection
+                ホーム.Text = "予算管理システム　(" & OpenFilePath.Data & OpenFileName.Data & ")"
+                ホーム.UserDataPath = OpenFilePath.Data
+                ホーム.UserDataName = OpenFileName.Data
 
-            ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
-            Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
+                ホーム.Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
+                Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
-            Me.Close()
-
-
-            If DataCount >= 1 Then
-                予算選択.Show()
-
-                予算選択.TopMost = True
-                予算選択.TopMost = False
-                ホーム.見積.Enabled = True
-                ホーム.外注管理.Enabled = True
-                ホーム.出力.Enabled = True
-                ホーム.予算内訳登録.Enabled = True
-                ホーム.参照作成command.Enabled = True
+                Me.Close()
 
 
+                If DataCount >= 1 Then
+                    予算選択.Show()
+
+                    予算選択.TopMost = True
+                    予算選択.TopMost = False
+                    ホーム.見積.Enabled = True
+                    ホーム.外注管理.Enabled = True
+                    ホーム.出力.Enabled = True
+                    ホーム.予算内訳登録.Enabled = True
+                    ホーム.参照作成command.Enabled = True
+
+
+                Else
+                    ホーム.HomeTreeView.Columns(0).HeaderText = ""
+                    ホーム.HomeTreeView.Nodes.Clear()
+                    ホーム.Enabled = True
+                    ホーム.BudgetNo = 0
+                    ホーム.見積.Enabled = False
+                    ホーム.外注管理.Enabled = False
+                    ホーム.出力.Enabled = False
+                    ホーム.予算内訳登録.Enabled = False
+                    ホーム.参照作成command.Enabled = False
+
+                End If
             Else
-                ホーム.Enabled = True
-                ホーム.BudgetNo = 0
-                ホーム.見積.Enabled = False
-                ホーム.外注管理.Enabled = False
-                ホーム.出力.Enabled = False
-                ホーム.予算内訳登録.Enabled = False
-                ホーム.参照作成command.Enabled = False
+                MsgBox("選択されたファイルが存在しません。" & vbCrLf & OpenFilePath.Data & OpenFileName.Data & vbCrLf & vbCrLf & "他のファイルを選択して下さい。")
+
+
+                ホーム.SystemMdf.CommandText = "DELETE FROM userfiles WHERE filename=@name AND filepath=@path"
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = OpenFileName.Data
+                ホーム.SystemMdf.Parameters.Add(New SqlParameter("@path", SqlDbType.NVarChar)).Value = OpenFilePath.Data
+                ホーム.SystemMdf.ExecuteNonQuery()
+
+                FileList.Rows.Remove(SelectRow)
 
             End If
-
             Cursor.Current = Cursors.Default
 
         Catch ex As Exception
@@ -228,6 +244,14 @@ Public Class DB選択
             エラー.Show()
             Exit Sub
         End Try
+
+    End Sub
+
+    Private Sub DB選択_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
+        If ホーム.Text.Contains("(") = False Then
+            MsgBox("ファイル選択されていません。")
+        End If
 
     End Sub
 End Class

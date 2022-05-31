@@ -52797,11 +52797,13 @@ WHERE ((Production_View.budget_no) =0) AND
     <DataSourceName>DataSource1</DataSourceName>
     <GrowShrinkMode>Access</GrowShrinkMode>
     <Layout>
-      <Width>13980</Width>
-      <Margin>1701</Margin>
-      <MarginTop>1134</MarginTop>
-      <MarginRight>851</MarginRight>
-      <MarginBottom>567</MarginBottom>
+      <Width>15183</Width>
+      <Margin>1008</Margin>
+      <MarginTop>1080</MarginTop>
+      <MarginRight>1008</MarginRight>
+      <MarginBottom>1080</MarginBottom>
+      <Orientation>Landscape</Orientation>
+      <PaperSize>A4</PaperSize>
     </Layout>
     <DataSources>
       <DataSource>
@@ -52844,7 +52846,7 @@ FROM  estimates;</RecordSource>
         </Background>
         <SubSections>
           <SubSection>
-            <Height>9977</Height>
+            <Height>9480</Height>
           </SubSection>
         </SubSections>
         <Type>Detail</Type>
@@ -52903,15 +52905,16 @@ FROM  estimates;</RecordSource>
         <Section>Detail</Section>
         <Left>0</Left>
         <Top>0</Top>
-        <Width>13608</Width>
-        <Height>454</Height>
+        <Width>15183</Width>
+        <Height>679</Height>
         <Align>CenterTop</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>22</Size>
+          <Name>游明朝</Name>
+          <Size>24</Size>
+          <Bold>true</Bold>
         </Font>
         <Text>
-          <Value sys="string">御　 　見　 　積　 　書</Value>
+          <Value sys="string">御見積書</Value>
         </Text>
       </TextField>
       <Field>
@@ -52935,16 +52938,16 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>10200</Left>
-        <Top>737</Top>
-        <Width>3402</Width>
-        <Height>285</Height>
+        <Left>13290</Left>
+        <Top>1592</Top>
+        <Width>1893</Width>
+        <Height>343</Height>
         <Text>estmt_date</Text>
         <Calculated>true</Calculated>
         <Format>yyyy年MM月dd日</Format>
-        <Align>RightTop</Align>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
+          <Name>游明朝</Name>
           <Size>11</Size>
         </Font>
       </Field>
@@ -52966,50 +52969,18 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>227</Left>
-        <Top>4253</Top>
-        <Width>2268</Width>
-        <Height>851</Height>
+        <Left>567</Left>
+        <Top>4605</Top>
+        <Width>1293</Width>
+        <Height>690</Height>
         <MarginTop>170</MarginTop>
-        <Align>JustTop</Align>
+        <Align>LeftTop</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
+          <Name>游明朝</Name>
+          <Size>16</Size>
         </Font>
         <Text>
           <Value sys="string">工事名称</Value>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>ラベル4</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>227</Left>
-        <Top>5216</Top>
-        <Width>2268</Width>
-        <Height>851</Height>
-        <MarginTop>170</MarginTop>
-        <Align>JustTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
-        </Font>
-        <Text>
-          <Value sys="string">工事場所</Value>
         </Text>
       </TextField>
       <TextField>
@@ -53030,15 +53001,15 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>227</Left>
-        <Top>6179</Top>
-        <Width>2268</Width>
-        <Height>851</Height>
+        <Left>567</Left>
+        <Top>5385</Top>
+        <Width>1323</Width>
+        <Height>648</Height>
         <MarginTop>170</MarginTop>
-        <Align>JustTop</Align>
+        <Align>LeftBottom</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
+          <Name>游明朝</Name>
+          <Size>16</Size>
         </Font>
         <Text>
           <Value sys="string">見積金額</Value>
@@ -53062,79 +53033,18 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>567</Left>
-        <Top>7371</Top>
-        <Width>1928</Width>
-        <Height>465</Height>
-        <Align>JustTop</Align>
+        <Left>286</Left>
+        <Top>7047</Top>
+        <Width>854</Width>
+        <Height>360</Height>
+        <Align>CenterMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
+          <Name>游明朝</Name>
+          <Size>9</Size>
         </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
         <Text>
-          <Value sys="string">御支払条件</Value>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>ラベル7</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>567</Left>
-        <Top>8533</Top>
-        <Width>1928</Width>
-        <Height>465</Height>
-        <Align>JustTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-        <Text>
-          <Value sys="string">見積条件</Value>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>ラベル8</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>567</Left>
-        <Top>7952</Top>
-        <Width>1928</Width>
-        <Height>465</Height>
-        <Align>JustTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-        <Text>
-          <Value sys="string">見積有効期限</Value>
+          <Value sys="string">工事場所</Value>
         </Text>
       </TextField>
       <TextField>
@@ -53155,17 +53065,17 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>227</Left>
-        <Top>3125</Top>
-        <Width>7371</Width>
+        <Left>1127</Left>
+        <Top>3365</Top>
+        <Width>8023</Width>
         <Height>735</Height>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
+          <Name>游明朝</Name>
           <Size>11</Size>
         </Font>
         <Text>
-          <Value sys="string">この度は弊社に見積の機会をお与え下さいまして誠に有難うございます。
-下記の通りお見積り申し上げます。ご検討の程宜しくお願い申し上げます。</Value>
+          <Value sys="string">この度は弊社に見積の機会をお与えくださいまして誠に有難うございます。
+下記の通りお見積り申し上げます。ご検討の程よろしくお願い申し上げます。</Value>
         </Text>
       </TextField>
       <Field>
@@ -53182,6 +53092,7 @@ FROM  estimates;</RecordSource>
             <Width>15</Width>
           </Right>
           <Bottom>
+            <Style>Solid</Style>
             <Width>15</Width>
           </Bottom>
         </Border>
@@ -53189,310 +53100,48 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>4253</Top>
-        <Width>9639</Width>
-        <Height>851</Height>
+        <Left>2115</Left>
+        <Top>4650</Top>
+        <Width>12180</Width>
+        <Height>645</Height>
         <Text>estmt_prjct_name</Text>
         <Calculated>true</Calculated>
-        <Align>LeftMiddle</Align>
+        <Align>LeftBottom</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
+          <Name>游明朝</Name>
+          <Size>16</Size>
         </Font>
       </Field>
       <Field>
         <Name>prjct_address</Name>
         <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
         <Background type="Solid">
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>5216</Top>
-        <Width>9639</Width>
-        <Height>851</Height>
+        <Left>1320</Left>
+        <Top>7080</Top>
+        <Width>4920</Width>
+        <Height>327</Height>
         <Text>prjct_address</Text>
         <Calculated>true</Calculated>
-        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+          <GdiCharSet>128</GdiCharSet>
         </Font>
       </Field>
-      <Field>
-        <Name>estmt_amount</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>6179</Top>
-        <Width>3402</Width>
-        <Height>851</Height>
-        <MarginTop>369</MarginTop>
-        <Text>estmt_amount</Text>
-        <Calculated>true</Calculated>
-        <Format>\\#,##0".-";"-\"#,##0".-"</Format>
-        <Align>RightTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>paymentterms</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>7371</Top>
-        <Width>7938</Width>
-        <Height>465</Height>
-        <Text>paymentterms</Text>
-        <Calculated>true</Calculated>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>conditions</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>8533</Top>
-        <Width>7938</Width>
-        <Height>465</Height>
-        <Text>conditions</Text>
-        <Calculated>true</Calculated>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>expirationdate</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>7952</Top>
-        <Width>7938</Width>
-        <Height>465</Height>
-        <Text>expirationdate</Text>
-        <Calculated>true</Calculated>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>destination</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>227</Left>
-        <Top>1140</Top>
-        <Width>6521</Width>
-        <Height>1588</Height>
-        <Text>destination</Text>
-        <Calculated>true</Calculated>
-        <Align>LeftTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>20</Size>
-        </Font>
-      </Field>
-      <ShapeField>
-        <Name>直線26</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>5160</Top>
-        <Width>9639</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </ShapeField>
-      <ShapeField>
-        <Name>直線27</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>6123</Top>
-        <Width>9639</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-      </ShapeField>
       <ShapeField>
         <Name>直線28</Name>
         <Tag sys="string" />
         <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>7086</Top>
-        <Width>9639</Width>
+        <Left>2115</Left>
+        <Top>6033</Top>
+        <Width>8410</Width>
         <Height>0</Height>
         <Shape type="LineShape">
           <LineSlant>Down</LineSlant>
         </Shape>
-      </ShapeField>
-      <ShapeField>
-        <Name>直線30</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>7894</Top>
-        <Width>7938</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-        <Line>
-          <Style>Dot</Style>
-        </Line>
-      </ShapeField>
-      <ShapeField>
-        <Name>直線31</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>8475</Top>
-        <Width>7938</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-        <Line>
-          <Style>Dot</Style>
-        </Line>
-      </ShapeField>
-      <ShapeField>
-        <Name>直線32</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>9056</Top>
-        <Width>7938</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-        <Line>
-          <Style>Dot</Style>
-        </Line>
-      </ShapeField>
-      <ShapeField>
-        <Name>直線33</Name>
-        <Tag sys="string" />
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>9637</Top>
-        <Width>7938</Width>
-        <Height>0</Height>
-        <Shape type="LineShape">
-          <LineSlant>Down</LineSlant>
-        </Shape>
-        <Line>
-          <Style>Dot</Style>
-        </Line>
       </ShapeField>
       <Field>
         <Name>estmt_code</Name>
@@ -53515,15 +53164,15 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>13032</Left>
-        <Top>454</Top>
-        <Width>567</Width>
-        <Height>225</Height>
+        <Left>13709</Left>
+        <Top>1189</Top>
+        <Width>1474</Width>
+        <Height>345</Height>
         <Text>estmt_code</Text>
         <Calculated>true</Calculated>
-        <Align>RightTop</Align>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
+          <Name>游明朝</Name>
           <Size>11</Size>
         </Font>
       </Field>
@@ -53545,17 +53194,17 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>12465</Left>
-        <Top>454</Top>
-        <Width>567</Width>
-        <Height>225</Height>
-        <Align>RightTop</Align>
+        <Left>13290</Left>
+        <Top>1189</Top>
+        <Width>360</Width>
+        <Height>345</Height>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
+          <Name>游明朝</Name>
           <Size>11</Size>
         </Font>
         <Text>
-          <Value sys="string">NO.</Value>
+          <Value sys="string">No.</Value>
         </Text>
       </TextField>
       <Field>
@@ -53575,22 +53224,19 @@ FROM  estimates;</RecordSource>
             <Width>15</Width>
           </Bottom>
         </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
         <Section>Detail</Section>
-        <Left>9979</Left>
-        <Top>6468</Top>
+        <Left>8370</Left>
+        <Top>5505</Top>
         <Width>2155</Width>
-        <Height>567</Height>
+        <Height>528</Height>
         <MarginTop>199</MarginTop>
         <Text>estmt_tax</Text>
         <Calculated>true</Calculated>
-        <Format>\\#,##0".-";"-\"#,##0".-"</Format>
-        <Align>RightTop</Align>
+        <Format>"\"#,##0".- ）"</Format>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>14</Size>
+          <Name>游明朝</Name>
+          <Size>10.5</Size>
         </Font>
       </Field>
       <TextField>
@@ -53611,144 +53257,20 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>7144</Left>
-        <Top>6468</Top>
-        <Width>2835</Width>
-        <Height>567</Height>
+        <Left>6165</Left>
+        <Top>5505</Top>
+        <Width>2205</Width>
+        <Height>528</Height>
         <MarginTop>199</MarginTop>
-        <Align>RightTop</Align>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>14</Size>
+          <Name>游明朝</Name>
+          <Size>10.5</Size>
         </Font>
         <Text>
           <Value sys="string">（うち消費税等相当額</Value>
         </Text>
       </TextField>
-      <TextField>
-        <Name>ラベル38</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>12134</Left>
-        <Top>6468</Top>
-        <Width>340</Width>
-        <Height>567</Height>
-        <MarginTop>199</MarginTop>
-        <Font>
-          <Name>ＭＳ 明朝</Name>
-          <Size>14</Size>
-        </Font>
-        <Text>
-          <Value sys="string">）</Value>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>ラベル39</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>567</Left>
-        <Top>9114</Top>
-        <Width>1928</Width>
-        <Height>465</Height>
-        <Align>JustTop</Align>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-        <Text>
-          <Value sys="string">契約時の消費税等のお取扱いについて</Value>
-        </Text>
-      </TextField>
-      <TextField>
-        <Name>ラベル40</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Section>Detail</Section>
-        <Left>2835</Left>
-        <Top>9114</Top>
-        <Width>7938</Width>
-        <Height>465</Height>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
-        </Font>
-        <Text>
-          <Value sys="string">工事お引渡時点の消費税率が変更された場合には、変更後の消費税率に基づいて算出される消費税等額のご負担をお願いしますのでご了承ください。</Value>
-        </Text>
-      </TextField>
-      <Field>
-        <Name>pblshr_cmpnyname</Name>
-        <Tag sys="string" />
-        <Border>
-          <Left>
-            <Width>15</Width>
-          </Left>
-          <Top>
-            <Width>15</Width>
-          </Top>
-          <Right>
-            <Width>15</Width>
-          </Right>
-          <Bottom>
-            <Width>15</Width>
-          </Bottom>
-        </Border>
-        <Background type="Solid">
-          <Color>FFFFFFFF</Color>
-        </Background>
-        <Section>Detail</Section>
-        <Left>9075</Left>
-        <Top>1305</Top>
-        <Width>4536</Width>
-        <Height>360</Height>
-        <Text>pblshr_cmpnyname</Text>
-        <Calculated>true</Calculated>
-        <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>14</Size>
-        </Font>
-      </Field>
       <Field>
         <Name>pblshr_address</Name>
         <Tag sys="string" />
@@ -53770,15 +53292,16 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>9075</Left>
-        <Top>2156</Top>
-        <Width>4536</Width>
-        <Height>300</Height>
+        <Left>10245</Left>
+        <Top>7662</Top>
+        <Width>3825</Width>
+        <Height>315</Height>
         <Text>pblshr_address</Text>
         <Calculated>true</Calculated>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
+          <Name>游明朝</Name>
+          <Size>10.5</Size>
+          <GdiCharSet>128</GdiCharSet>
         </Font>
       </Field>
       <Field>
@@ -53802,15 +53325,16 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>9075</Left>
-        <Top>2456</Top>
-        <Width>4536</Width>
+        <Left>10245</Left>
+        <Top>8016</Top>
+        <Width>1860</Width>
         <Height>300</Height>
-        <Text>"TEL " &amp; pblshr_tel</Text>
+        <Text>"TEL:" &amp; pblshr_tel</Text>
         <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
+          <Name>游明朝</Name>
+          <Size>10.5</Size>
         </Font>
       </Field>
       <Field>
@@ -53834,19 +53358,218 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>9075</Left>
-        <Top>2706</Top>
-        <Width>4536</Width>
-        <Height>334</Height>
-        <Text>"FAX " &amp; pblshr_fax</Text>
+        <Left>12240</Left>
+        <Top>8016</Top>
+        <Width>1830</Width>
+        <Height>300</Height>
+        <Text>"FAX:" &amp; pblshr_fax</Text>
         <Calculated>true</Calculated>
+        <Align>LeftMiddle</Align>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>11</Size>
+          <Name>游明朝</Name>
+          <Size>10.5</Size>
         </Font>
       </Field>
       <Field>
-        <Name>pblshr_prsdnt</Name>
+        <Name>estmt_amount</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>2516</Left>
+        <Top>5463</Top>
+        <Width>3004</Width>
+        <Height>612</Height>
+        <Text>estmt_amount</Text>
+        <Calculated>true</Calculated>
+        <Format>"\"#,##0".-"</Format>
+        <Align>LeftBottom</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>16</Size>
+        </Font>
+      </Field>
+      <TextField>
+        <Name>ラベル1</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>286</Left>
+        <Top>7407</Top>
+        <Width>854</Width>
+        <Height>360</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Value sys="string">御支払条件</Value>
+        </Text>
+      </TextField>
+      <TextField>
+        <Name>ラベル2</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>286</Left>
+        <Top>7767</Top>
+        <Width>854</Width>
+        <Height>360</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Value sys="string">有効期限</Value>
+        </Text>
+      </TextField>
+      <TextField>
+        <Name>ラベル4</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>286</Left>
+        <Top>8133</Top>
+        <Width>854</Width>
+        <Height>360</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Value sys="string">見積条件</Value>
+        </Text>
+      </TextField>
+      <Field>
+        <Name>paymentterms</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>1320</Left>
+        <Top>7440</Top>
+        <Width>4920</Width>
+        <Height>327</Height>
+        <Text>paymentterms</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <Field>
+        <Name>expirationdate</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>1320</Left>
+        <Top>7800</Top>
+        <Width>4920</Width>
+        <Height>327</Height>
+        <Text>expirationdate</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <Field>
+        <Name>conditions</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Color>00FFFFFF</Color>
+          </Bottom>
+        </Border>
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>1320</Left>
+        <Top>8175</Top>
+        <Width>4920</Width>
+        <Height>900</Height>
+        <Text>conditions</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>9</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <Field>
+        <Name>destination</Name>
         <Tag sys="string" />
         <Border>
           <Left>
@@ -53866,15 +53589,220 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>9075</Left>
-        <Top>1665</Top>
-        <Width>4536</Width>
-        <Height>360</Height>
-        <Text>pblshr_prsdnt</Text>
+        <Left>567</Left>
+        <Top>2295</Top>
+        <Width>9639</Width>
+        <Height>591</Height>
+        <Text>destination</Text>
+        <Calculated>true</Calculated>
+        <Align>LeftBottom</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>18</Size>
+        </Font>
+      </Field>
+      <TextField>
+        <Name>pblshr_cmpnyname</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>10245</Left>
+        <Top>6753</Top>
+        <Width>3825</Width>
+        <Height>540</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>16</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Expression>pblshr_cmpnyname</Expression>
+        </Text>
+      </TextField>
+      <TextField>
+        <Name>pblshr_prsdnt</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>10245</Left>
+        <Top>7293</Top>
+        <Width>3780</Width>
+        <Height>369</Height>
+        <Align>LeftTop</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10.53</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Expression>pblshr_prsdnt</Expression>
+        </Text>
+      </TextField>
+      <TextField>
+        <Name>ラベル7</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>10245</Left>
+        <Top>8547</Top>
+        <Width>705</Width>
+        <Height>291</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Value sys="string">見積担当</Value>
+        </Text>
+      </TextField>
+      <Field>
+        <Name>prjct_address1</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>11130</Left>
+        <Top>8547</Top>
+        <Width>1650</Width>
+        <Height>291</Height>
+        <Text>prjct_address</Text>
         <Calculated>true</Calculated>
         <Font>
-          <Name>ＭＳ Ｐ明朝</Name>
-          <Size>14</Size>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <TextField>
+        <Name>ラベル8</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>Detail</Section>
+        <Left>10245</Left>
+        <Top>8928</Top>
+        <Width>705</Width>
+        <Height>291</Height>
+        <Align>CenterMiddle</Align>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoCharSpacing</TextFitMode>
+        <Text>
+          <Value sys="string">営業担当</Value>
+        </Text>
+      </TextField>
+      <Field>
+        <Name>prjct_address2</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>11130</Left>
+        <Top>8928</Top>
+        <Width>1650</Width>
+        <Height>291</Height>
+        <Text>prjct_address</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <Field>
+        <Name>prjct_address3</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>12960</Left>
+        <Top>8547</Top>
+        <Width>1650</Width>
+        <Height>291</Height>
+        <Text>prjct_address</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+          <GdiCharSet>128</GdiCharSet>
+        </Font>
+      </Field>
+      <Field>
+        <Name>prjct_address4</Name>
+        <Tag sys="string" />
+        <Background type="Solid">
+          <Color>FFFFFFFF</Color>
+        </Background>
+        <Section>Detail</Section>
+        <Left>12960</Left>
+        <Top>8928</Top>
+        <Width>1650</Width>
+        <Height>291</Height>
+        <Text>prjct_address</Text>
+        <Calculated>true</Calculated>
+        <Font>
+          <Name>游明朝</Name>
+          <Size>10</Size>
+          <GdiCharSet>128</GdiCharSet>
         </Font>
       </Field>
     </Fields>
