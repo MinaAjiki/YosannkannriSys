@@ -56,14 +56,47 @@ Public Class ホーム
                 SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
                 SystmMdfCnnctn.Open()
 
+                Dim fileDate As Date
+
                 SystemMdf.Connection = SystmMdfCnnctn
                 SystemMdf.CommandText = "SELECT TOP 1 * FROM userfiles ORDER BY filedate DESC"
                 Dim FileReader As SqlDataReader = SystemMdf.ExecuteReader
                 While FileReader.Read
                     UserDataName = FileReader.Item("filename")
                     UserDataPath = FileReader.Item("filepath")
+                    fileDate = FileReader.Item("filedate")
                 End While
                 FileReader.Close()
+
+                Dim checkdate As Date = fileDate.AddMonths(1)
+
+
+                If IsNetworkDeployed = True Then
+                    'ClickOnceアプリケーションの場合、アプリケーションがアップデート可能かどうかを判別する
+                    Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+                    If AD.CheckForUpdate = True Then
+                        If checkdate <= Today Then
+                            'メッセージを表示し、ユーザーの返答を判別する
+                            If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
+                                'メッセージに対し[はい]を選択した場合、アップデートする
+                                AD.Update()
+                                'メッセージを表示し、ユーザーの返答を判別する
+                                If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.OkOnly, "再起動の確認") = MsgBoxResult.Ok Then
+                                    Application.Restart()
+                                End If
+                            Else
+                                アップデート.Enabled = True
+                            End If
+                        Else
+                            アップデート.Enabled = True
+                        End If
+
+                    Else
+                        アップデート.Enabled = False
+                    End If
+                Else
+                    アップデート.Enabled = False
+                End If
 
                 If UserDataName <> "" Then
 
@@ -1360,5 +1393,24 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub アップデート_Click(sender As Object, e As ClickEventArgs) Handles アップデート.Click
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        'メッセージを表示し、ユーザーの返答を判別する
+        If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
+            'メッセージに対し[はい]を選択した場合、アップデートする
+            AD.Update()
+            'メッセージを表示し、ユーザーの返答を判別する
+            If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.YesNo, "再起動の確認") = MsgBoxResult.Yes Then
+                'メッセージに対し[はい]を選択した場合、再起動する
+                Application.Restart()
+            End If
+        End If
+
+    End Sub
+
+    Private Sub バージョン情報_Click(sender As Object, e As ClickEventArgs) Handles バージョン情報.Click
+        MsgBox("Version " & Application.ProductVersion, MsgBoxStyle.OkOnly, "予算管理システム")
     End Sub
 End Class
