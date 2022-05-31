@@ -9,6 +9,9 @@ Public Class 見積書表紙
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
 
+            estimator.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+            sales_staff.AutoCompleteCustomSource = ホーム.AutoCmpCllctn
+
             ホーム.Sql.CommandText = "SELECT Count(*) FROM estimates"
             Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
@@ -40,7 +43,10 @@ Public Class 見積書表紙
                     cndtns_dtls3.Value = EstimateReader.Item("cndtns_dtls3")
                     cndtns_dtls4.Value = EstimateReader.Item("cndtns_dtls4")
                     cndtns_dtls5.Value = EstimateReader.Item("cndtns_dtls5")
-
+                    estimator.Value = EstimateReader.Item("estimator")
+                    estmt_department.Value = EstimateReader.Item("estmt_department")
+                    sales_staff.Value = EstimateReader.Item("sales_staff")
+                    sales_department.Value = EstimateReader.Item("sales_department")
                 End While
                 EstimateReader.Close()
 
@@ -54,8 +60,8 @@ Public Class 見積書表紙
                 pblshr_cmpnyname.Value = "株式会社　市川工務店"
                 pblshr_prsdnt.Value = "代表取締役　小川　健"
                 pblshr_address.Value = "〒500-8518　岐阜市鹿島町6丁目27番地"
-                pblshr_tel.Value = "058-251-2240"
-                pblshr_fax.Value = "058-251-2066"
+                pblshr_tel.Value = "058-251-2244"
+                pblshr_fax.Value = "058-253-3930"
 
             End If
 
@@ -212,8 +218,7 @@ Public Class 見積書表紙
             ホーム.Sql.CommandText = "SELECT Count(*) FROM estimates"
             Dim DataCount As Integer = ホーム.Sql.ExecuteScalar
 
-
-            ホーム.Sql.Parameters.Add(New SqlParameter("@estmtcode", SqlDbType.SmallInt)).Value = Integer.Parse(EstmtCode.Value)
+            ホーム.Sql.Parameters.Add(New SqlParameter("@estmtcode", SqlDbType.NVarChar)).Value = EstmtCode.Value
             ホーム.Sql.Parameters.Add(New SqlParameter("@estmtdate", SqlDbType.DateTime)).Value = DateTime.Parse(EstmtDate.Value)
             If IsDBNull(PrjctName.Value) = False Then
                 ホーム.Sql.Parameters.Add(New SqlParameter("@prjctname", SqlDbType.NVarChar)).Value = PrjctName.Value
@@ -269,6 +274,26 @@ Public Class 見積書表紙
             Else
                 ホーム.Sql.Parameters.Add(New SqlParameter("@fax", SqlDbType.NVarChar)).Value = ""
             End If
+            If IsDBNull(estimator.Value) = False Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@estimator", SqlDbType.NVarChar)).Value = estimator.Value
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@estimator", SqlDbType.NVarChar)).Value = ""
+            End If
+            If IsDBNull(estmt_department.Value) = False Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@estmt_department", SqlDbType.NVarChar)).Value = estmt_department.Value
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@estmt_department", SqlDbType.NVarChar)).Value = ""
+            End If
+            If IsDBNull(sales_staff.Value) = False Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@sales_staff", SqlDbType.NVarChar)).Value = sales_staff.Value
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@sales_staff", SqlDbType.NVarChar)).Value = ""
+            End If
+            If IsDBNull(conditions.Value) = False Then
+                ホーム.Sql.Parameters.Add(New SqlParameter("@sales_department", SqlDbType.NVarChar)).Value = sales_department.Value
+            Else
+                ホーム.Sql.Parameters.Add(New SqlParameter("@sales_department", SqlDbType.NVarChar)).Value = ""
+            End If
             If IsDBNull(conditions.Value) = False Then
                 ホーム.Sql.Parameters.Add(New SqlParameter("@conditions", SqlDbType.NVarChar)).Value = conditions.Value
             Else
@@ -307,14 +332,15 @@ Public Class 見積書表紙
 
             If DataCount = 0 Then
                 ホーム.Sql.CommandText = "INSERT INTO estimates (estmt_code,estmt_date,estmt_prjct_name,estmt_amount,estmt_taxin,estmt_tax,prjct_address,paymentterms,expirationdate,destination,
-                                        pblshr_address,pblshr_cmpnyname,pblshr_prsdnt,pblshr_tel,pblshr_fax,conditions,cndtns_dtls1,cndtns_dtls2,cndtns_dtls3,cndtns_dtls4,cndtns_dtls5,discount)
+                                        pblshr_address,pblshr_cmpnyname,pblshr_prsdnt,pblshr_tel,pblshr_fax,conditions,estimator,estmt_department,sales_staff,sales_department,cndtns_dtls1,
+                                        cndtns_dtls2,cndtns_dtls3,cndtns_dtls4,cndtns_dtls5,discount)
                                         VALUES (@estmtcode,@estmtdate,@prjctname,@amount,@taxin,@tax,@prjctaddress,@paymentterms,@expirationdate,@destination,@pblshraddress,@cmpnyname,@prsdnt,
-                                        @tel,@fax,@conditions,@dtls1,@dtls2,@dtls3,@dtls4,@dtls5,@discount)"
+                                        @tel,@fax,@estimator,@estmt_department,@sales_staff,@sales_department,@conditions,@dtls1,@dtls2,@dtls3,@dtls4,@dtls5,@discount)"
             Else
                 ホーム.Sql.CommandText = "UPDATE estimates SET estmt_code=@estmtcode,estmt_date=@estmtdate,estmt_prjct_name=@prjctname,estmt_amount=@amount,estmt_taxin=@taxin,estmt_tax=@tax,
                                           prjct_address=@prjctaddress,paymentterms=@paymentterms,expirationdate=@expirationdate,destination=@destination,pblshr_address=@pblshraddress,pblshr_cmpnyname=@cmpnyname,
-                                          pblshr_prsdnt=@prsdnt,pblshr_tel=@tel,pblshr_fax=@fax,conditions=@conditions,cndtns_dtls1=@dtls1,cndtns_dtls2=@dtls2,cndtns_dtls3=@dtls3,cndtns_dtls4=@dtls4,cndtns_dtls5=@dtls5,
-                                          discount=@discount"
+                                          pblshr_prsdnt=@prsdnt,pblshr_tel=@tel,pblshr_fax=@fax,estimator=@estimator,estmt_department=@estmt_department,sales_staff=@sales_staff,sales_department=@sales_department,
+                                          conditions=@conditions,cndtns_dtls1=@dtls1,cndtns_dtls2=@dtls2,cndtns_dtls3=@dtls3,cndtns_dtls4=@dtls4,cndtns_dtls5=@dtls5,discount=@discount"
             End If
             ホーム.Sql.ExecuteNonQuery()
 

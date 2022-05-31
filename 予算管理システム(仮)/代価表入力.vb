@@ -104,11 +104,11 @@ Public Class 代価表入力
             If CostQuanity.Text <> "" Then
 
                 BreakDownList.AllowEditing = True
-                BreakDownList.ContextMenuStrip.Visible = True
+                BreakDownList.ContextMenuStrip.Enabled = True
             Else
 
                 BreakDownList.AllowEditing = False
-                BreakDownList.ContextMenuStrip.Visible = False
+                BreakDownList.ContextMenuStrip.Enabled = False
             End If
 
 
@@ -128,7 +128,7 @@ Public Class 代価表入力
                 CostCopy.Visible = False
                 Reference.Visible = False
                 Entry.Visible = False
-                BreakDownList.ContextMenuStrip.Visible = False
+                BreakDownList.ContextMenuStrip.Enabled = False
             End If
 
             LaborCostea.Text = 0
@@ -850,7 +850,7 @@ Public Class 代価表入力
                     DaikaForm.CostCopy.Visible = False
                     DaikaForm.Reference.Visible = False
                     DaikaForm.Entry.Visible = False
-                    DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+                    DaikaForm.BreakDownList.ContextMenuStrip.Enabled = False
                     DaikaForm.Show()
                     DaikaForm.TopMost = False
 
@@ -899,7 +899,7 @@ Public Class 代価表入力
                 DaikaForm.CostCopy.Visible = False
                 DaikaForm.Reference.Visible = False
                 DaikaForm.Entry.Visible = False
-                DaikaForm.BreakDownList.ContextMenuStrip.Visible = False
+                DaikaForm.BreakDownList.ContextMenuStrip.Enabled = False
                 DaikaForm.Show()
                 DaikaForm.TopMost = False
             Else
@@ -2219,6 +2219,7 @@ Public Class 代価表入力
                 ExpensCostea.Value = Expenseea
 
                 BreakDownList.AllowEditing = True
+                BreakDownList.ContextMenuStrip.Enabled = True
 
             ElseIf CostQuanity.Text <> "" AndAlso CostQuanity.Value = 0 Then
                 CostCostea.Value = 0
@@ -2306,10 +2307,16 @@ Public Class 代価表入力
             Dim row As Integer = range.TopRow
             Dim col As Integer = range.LeftCol
 
-            If col = 4 Or col = 5 Then
-                BreakDownList.Rows(row).AllowEditing = True
-            Else
-                BreakDownList.Rows(row).AllowEditing = False
+            If BreakDownList(row, 7) = 1 Or BreakDownList(row, 7) = 4 Then
+                BreakDownList.Rows(row + 2).AllowEditing = False
+            ElseIf BreakDownList(row, 7) = 2 Or BreakDownList(row, 7) = 5 Then
+                BreakDownList.Rows(row + 1).AllowEditing = False
+            ElseIf BreakDownList(row, 7) = 3 Or BreakDownList(row, 7) = 6 Then
+                If col = 4 Or col = 5 Then
+                    BreakDownList.Rows(row).AllowEditing = True
+                Else
+                    BreakDownList.Rows(row).AllowEditing = False
+                End If
             End If
 
         Catch ex As Exception
@@ -2554,8 +2561,6 @@ Public Class 代価表入力
                         BreakDownList.Rows(CopyRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
                         BreakDownList.Rows(CopyRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
                         BreakDownList.Rows(CopyRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-
-
                     End If
 
                 End If
