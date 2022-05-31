@@ -41,9 +41,11 @@ Partial Class マスタメンテナンス
         Me.Costs = New System.Windows.Forms.GroupBox()
         Me.ProjectCosts = New System.Windows.Forms.Button()
         Me.BasicCosts = New System.Windows.Forms.Button()
+        Me.SwitchBox = New C1.Win.C1Input.C1ComboBox()
         Me.CostMaster.SuspendLayout()
         Me.OtherMaster.SuspendLayout()
         Me.Costs.SuspendLayout()
+        CType(Me.SwitchBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HeadLine
@@ -172,6 +174,7 @@ Partial Class マスタメンテナンス
         Me.Material.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Material.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.Material.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Material.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Material.Location = New System.Drawing.Point(35, 69)
         Me.Material.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Material.Name = "Material"
@@ -272,6 +275,7 @@ Partial Class マスタメンテナンス
         'ProjectCosts
         '
         Me.ProjectCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.ProjectCosts.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.ProjectCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ProjectCosts.Location = New System.Drawing.Point(32, 69)
         Me.ProjectCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -284,6 +288,7 @@ Partial Class マスタメンテナンス
         'BasicCosts
         '
         Me.BasicCosts.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.BasicCosts.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.BasicCosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BasicCosts.Location = New System.Drawing.Point(32, 31)
         Me.BasicCosts.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -293,12 +298,30 @@ Partial Class マスタメンテナンス
         Me.BasicCosts.Text = "基礎代価"
         Me.BasicCosts.UseVisualStyleBackColor = False
         '
+        'SwitchBox
+        '
+        Me.SwitchBox.AllowSpinLoop = False
+        Me.SwitchBox.AutoSize = False
+        Me.SwitchBox.GapHeight = 0
+        Me.SwitchBox.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.SwitchBox.InitialSelectedIndex = 0
+        Me.SwitchBox.Items.Add("一般")
+        Me.SwitchBox.Items.Add("管理者")
+        Me.SwitchBox.Location = New System.Drawing.Point(459, 14)
+        Me.SwitchBox.Name = "SwitchBox"
+        Me.SwitchBox.Size = New System.Drawing.Size(83, 23)
+        Me.SwitchBox.TabIndex = 57
+        Me.SwitchBox.Tag = Nothing
+        Me.SwitchBox.Value = "一般"
+        Me.SwitchBox.Visible = False
+        '
         'マスタメンテナンス
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(605, 435)
+        Me.Controls.Add(Me.SwitchBox)
         Me.Controls.Add(Me.Costs)
         Me.Controls.Add(Me.OtherMaster)
         Me.Controls.Add(Me.CostMaster)
@@ -311,6 +334,7 @@ Partial Class マスタメンテナンス
         Me.CostMaster.ResumeLayout(False)
         Me.OtherMaster.ResumeLayout(False)
         Me.Costs.ResumeLayout(False)
+        CType(Me.SwitchBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -334,4 +358,5 @@ Partial Class マスタメンテナンス
     Friend WithEvents ExperimentCosts As Button
     Friend WithEvents StampTaxes As Button
     Friend WithEvents Insurances As Button
+    Friend WithEvents SwitchBox As C1.Win.C1Input.C1ComboBox
 End Class

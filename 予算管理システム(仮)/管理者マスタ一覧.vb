@@ -5,31 +5,39 @@ Imports System.Data.SqlClient
 Public Class 管理者マスタ一覧
     Public RowCount As Integer = 0
     Private Sub 管理者マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            AdminList.Rows(0).Height = 20
+        'Try
+        AdminList.Rows(0).Height = 20
 
-            ホーム.SystemSql.CommandText = "SELECT COUNT(admn_no) FROM administrators"
-            Dim AdminCount As Integer = ホーム.SystemSql.ExecuteScalar
+        ホーム.SystemSql.CommandText = "SELECT COUNT(admn_no) FROM administrators"
+        Dim AdminCount As Integer = ホーム.SystemSql.ExecuteScalar
 
-            ホーム.SystemSql.CommandText = "SELECT admn_no FROM administrators"
-            Dim AdminReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        ホーム.SystemSql.CommandText = "SELECT admn_no FROM administrators"
+        Dim AdminReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
 
-            Dim datacount As Integer = 1
-            While AdminReader.Read
-                Me.AdminList.Rows.Add()
-                AdminList(datacount, 1) = AdminReader.Item("admn_no")
-                ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND CODE =" & AdminList(datacount, 1)
-                AdminList(datacount, 2) = ホーム.SystemSql.ExecuteScalar
-                datacount += 1
-            End While
-            AdminReader.Close()
+        Dim datacount As Integer = 1
+        While AdminReader.Read
+            Me.AdminList.Rows.Add()
+            AdminList(datacount, 1) = AdminReader.Item("admn_no")
+            'ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND CODE =" & AdminList(datacount, 1)
+            'AdminList(datacount, 2) = ホーム.SystemSql.ExecuteScalar
+            datacount += 1
+        End While
+        AdminReader.Close()
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        datacount = 1
+        For adminloop As Integer = 1 To AdminCount
+            ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH = 0 AND CODE = " & AdminList(datacount, 1)
+            Dim name As String = ホーム.SystemSql.ExecuteScalar
+            AdminList(datacount, 2) = name
+            datacount += 1
+        Next
+
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
     End Sub
 
     Private Sub Entry_MouseDown(sender As Object, e As MouseEventArgs) Handles Entry.MouseDown
@@ -73,7 +81,7 @@ Public Class 管理者マスタ一覧
     Private Sub AdminList_AfterEdit(sender As Object, e As RowColEventArgs) Handles AdminList.AfterEdit
         Try
             If AdminList(e.Row, 1) <> Nothing Then
-                ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND AND CODE =" & AdminList(e.Row, 1)
+                ホーム.SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0 AND CODE =" & AdminList(e.Row, 1)
                 AdminList(e.Row, 2) = ホーム.SystemSql.ExecuteScalar
                 If AdminList(e.Row, 2) = Nothing Then
                     MsgBox("登録できない番号です。", MsgBoxStyle.OkOnly, "エラー")
