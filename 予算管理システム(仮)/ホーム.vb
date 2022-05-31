@@ -1411,6 +1411,9 @@ Public Class ホーム
     End Sub
 
     Private Sub バージョン情報_Click(sender As Object, e As ClickEventArgs) Handles バージョン情報.Click
-        MsgBox("Version " & Application.ProductVersion, MsgBoxStyle.OkOnly, "予算管理システム")
+
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        Dim version As String = AD.CurrentVersion.ToString
+        MsgBox("Version " & version, MsgBoxStyle.OkOnly, "予算管理システム")
     End Sub
 End Class
