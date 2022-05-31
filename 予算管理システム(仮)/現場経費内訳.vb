@@ -1,7 +1,7 @@
 ﻿Imports C1.Win.C1FlexGrid
 Imports System.Data.SqlClient
 Public Class 現場経費内訳
-    Dim TExpns As Integer
+    Dim TExpns As Int64
     Dim quanity As Decimal
     Dim costea As Int64
     Dim amount As Int64
@@ -186,6 +186,10 @@ Public Class 現場経費内訳
                 ElseIf Dflag.Data = True Then
 
                     If ExpnsID.Data <> Nothing Then
+                        quanity = ExpnsQuanity.Data
+                        costea = ExpnsCostea.Data
+                        amount = Math.Floor(quanity * costea)
+                        TExpns -= amount
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "DELETE FROM expense_breakdowns WHERE expns_bd_id=" & ExpnsID.Data
                         ホーム.Sql.ExecuteNonQuery()
@@ -218,6 +222,10 @@ Public Class 現場経費内訳
 
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "現場経費内訳")
             ホーム.Modified = "false"
+            Me.Close()
+            現場経費作成.TopLevel = False
+            ホーム.FormPanel.Controls.Add(現場経費作成)
+            現場経費作成.Show()
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

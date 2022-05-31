@@ -9,28 +9,56 @@ Public Class 費用マスタ一覧
     Public CopyList(7) As String
     Private Sub 費用マスタ一覧_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
-            Dim CostMasterCount As Integer = ホーム.Sql.ExecuteScalar
+            If マスタメンテナンス.SwitchBox.Text = "一般" Then
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
+                Dim CostMasterCount As Integer = ホーム.Sql.ExecuteScalar
 
-            TableName.Text = CostClassName
+                TableName.Text = CostClassName
 
-            MasterContentsList.Rows.Count = CostMasterCount + 2
+                MasterContentsList.Rows.Count = CostMasterCount + 2
 
-            Dim RowCount As Integer = 0
-            ホーム.Sql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 ORDER BY cstmstr_seq ASC"
-            Dim CostMasterReader As SqlDataReader = ホーム.Sql.ExecuteReader
-            While CostMasterReader.Read
-                RowCount += 1
-                MasterContentsList(RowCount, 1) = CostMasterReader.Item("cstmstr_id")
-                MasterContentsList(RowCount, 2) = CostMasterReader.Item("cstmstr_seq")
-                MasterContentsList(RowCount, 3) = CostMasterReader.Item("cstmstr_category")
-                MasterContentsList(RowCount, 4) = CostMasterReader.Item("cstmstr_code")
-                MasterContentsList(RowCount, 5) = CostMasterReader.Item("cstmstr_name")
-                MasterContentsList(RowCount, 6) = CostMasterReader.Item("cstmstr_spec")
-                MasterContentsList(RowCount, 7) = CostMasterReader.Item("cstmstr_unit")
-                MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
-            End While
-            CostMasterReader.Close()
+                Dim RowCount As Integer = 0
+                ホーム.Sql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 ORDER BY cstmstr_seq ASC"
+                Dim CostMasterReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While CostMasterReader.Read
+                    RowCount += 1
+                    MasterContentsList(RowCount, 1) = CostMasterReader.Item("cstmstr_id")
+                    MasterContentsList(RowCount, 2) = CostMasterReader.Item("cstmstr_seq")
+                    MasterContentsList(RowCount, 3) = CostMasterReader.Item("cstmstr_category")
+                    MasterContentsList(RowCount, 4) = CostMasterReader.Item("cstmstr_code")
+                    MasterContentsList(RowCount, 5) = CostMasterReader.Item("cstmstr_name")
+                    MasterContentsList(RowCount, 6) = CostMasterReader.Item("cstmstr_spec")
+                    MasterContentsList(RowCount, 7) = CostMasterReader.Item("cstmstr_unit")
+                    MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
+                End While
+                CostMasterReader.Close()
+
+            ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
+                HeadLine.Text = "費用マスタ一覧(管理モード)"
+                MainPanel.BackColor = Color.FromArgb(255, 245, 245)
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
+                Dim CostMasterCount As Integer = ホーム.SystemSql.ExecuteScalar
+
+                TableName.Text = CostClassName
+
+                MasterContentsList.Rows.Count = CostMasterCount + 2
+
+                Dim RowCount As Integer = 0
+                ホーム.SystemSql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 ORDER BY cstmstr_seq ASC"
+                Dim CostMasterReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                While CostMasterReader.Read
+                    RowCount += 1
+                    MasterContentsList(RowCount, 1) = CostMasterReader.Item("cstmstr_id")
+                    MasterContentsList(RowCount, 2) = CostMasterReader.Item("cstmstr_seq")
+                    MasterContentsList(RowCount, 3) = CostMasterReader.Item("cstmstr_category")
+                    MasterContentsList(RowCount, 4) = CostMasterReader.Item("cstmstr_code")
+                    MasterContentsList(RowCount, 5) = CostMasterReader.Item("cstmstr_name")
+                    MasterContentsList(RowCount, 6) = CostMasterReader.Item("cstmstr_spec")
+                    MasterContentsList(RowCount, 7) = CostMasterReader.Item("cstmstr_unit")
+                    MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
+                End While
+                CostMasterReader.Close()
+            End If
 
             If ParentFormName = "明細書" Or ParentFormName = "代価表" Then
                 MasterContentsList.Cols(9).Visible = False
@@ -408,64 +436,125 @@ Public Class 費用マスタ一覧
                 Exit Sub
             End If
 
-            For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.Parameters.Clear()
-                If IsNothing(MasterContentsList(RowCount, 1)) = False Then
+            If マスタメンテナンス.SwitchBox.Text = "一般" Then
+                For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.Parameters.Clear()
+                    If IsNothing(MasterContentsList(RowCount, 1)) = False Then
 
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 5)
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 2)
-                    If IsNothing(MasterContentsList(RowCount, 3)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = ""
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 3)
-                    End If
-                    If IsNothing(MasterContentsList(RowCount, 4)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = 0
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 4)
-                    End If
-                    If MasterContentsList(RowCount, 1) = 0 Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 11
-                    ElseIf IsNothing(MasterContentsList(RowCount, 10)) = False Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 12
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 5)
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 2)
+                        If IsNothing(MasterContentsList(RowCount, 3)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 3)
+                        End If
+                        If IsNothing(MasterContentsList(RowCount, 4)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 4)
+                        End If
+                        If MasterContentsList(RowCount, 1) = 0 Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 11
+                        ElseIf IsNothing(MasterContentsList(RowCount, 10)) = False Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 12
 
-                    ElseIf MasterContentsList(RowCount, 9) = "True" Or IsNothing(MasterContentsList(RowCount, 9)) = False Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 13
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 0
-                    End If
+                        ElseIf MasterContentsList(RowCount, 9) = "True" Or IsNothing(MasterContentsList(RowCount, 9)) = False Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 13
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 0
+                        End If
 
-                    If IsNothing(MasterContentsList(RowCount, 6)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 6)
-                    End If
-                    If IsNothing(MasterContentsList(RowCount, 7)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 7)
-                    End If
+                        If IsNothing(MasterContentsList(RowCount, 6)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 6)
+                        End If
+                        If IsNothing(MasterContentsList(RowCount, 7)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 7)
+                        End If
 
-                    If IsNothing(MasterContentsList(RowCount, 8)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = MasterContentsList(RowCount, 8)
-                    End If
+                        If IsNothing(MasterContentsList(RowCount, 8)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = MasterContentsList(RowCount, 8)
+                        End If
 
 
-                    If MasterContentsList(RowCount, 1) = 0 Then
-                        ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
+                        If MasterContentsList(RowCount, 1) = 0 Then
+                            ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
                                                                    ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
                                                   VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
-                    Else
-                        ホーム.Sql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
+                        Else
+                            ホーム.Sql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
                                                 cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
+                        End If
+                        ホーム.Sql.ExecuteNonQuery()
                     End If
-                    ホーム.Sql.ExecuteNonQuery()
-                End If
-            Next
+                Next
+            ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
+                For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
+                    ホーム.SystemSql.CommandText = ""
+                    ホーム.SystemSql.Parameters.Clear()
+                    If IsNothing(MasterContentsList(RowCount, 1)) = False Then
+
+                        ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
+                        ホーム.SystemSql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 5)
+                        ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 2)
+                        If IsNothing(MasterContentsList(RowCount, 3)) = True Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 3)
+                        End If
+                        If IsNothing(MasterContentsList(RowCount, 4)) = True Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = 0
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 4)
+                        End If
+                        If MasterContentsList(RowCount, 1) = 0 Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 11
+                        ElseIf IsNothing(MasterContentsList(RowCount, 10)) = False Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 12
+
+                        ElseIf MasterContentsList(RowCount, 9) = "True" Or IsNothing(MasterContentsList(RowCount, 9)) = False Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 13
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 0
+                        End If
+
+                        If IsNothing(MasterContentsList(RowCount, 6)) = True Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 6)
+                        End If
+                        If IsNothing(MasterContentsList(RowCount, 7)) = True Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 7)
+                        End If
+
+                        If IsNothing(MasterContentsList(RowCount, 8)) = True Then
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                        Else
+                            ホーム.SystemSql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = MasterContentsList(RowCount, 8)
+                        End If
+
+
+                        If MasterContentsList(RowCount, 1) = 0 Then
+                            ホーム.SystemSql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
+                                                                   ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
+                                                  VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
+                        Else
+                            ホーム.SystemSql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
+                                                cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
+                        End If
+                        ホーム.SystemSql.ExecuteNonQuery()
+                    End If
+                Next
+            End If
 
             ホーム.Modified = "False"
 

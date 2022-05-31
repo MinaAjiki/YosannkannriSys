@@ -24,6 +24,7 @@ Public Class ホーム
     Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
     Public Modified As String = "False"                                    'データ修正判断
+    Public AdminChk As String = "False"
     Public lworktypecode As Integer
     Public lworktypename As String
     Public sworktypecode As Integer
@@ -106,6 +107,15 @@ Public Class ホーム
                         Connection.Open()
                         Sql.Connection = Connection
 
+                        '管理者チェック
+                        Dim no As Integer = My.User.Name.Remove(0, 7)
+                        管理者登録.Enabled = False
+                        SystemSql.CommandText = "SELECT COUNT(admn_no) FROM administrators WHERE admn_no = " & no
+                        Dim NoChk As Integer = SystemSql.ExecuteScalar
+                        If NoChk >= 1 Then
+                            AdminChk = "True"
+                            管理者登録.Enabled = True
+                        End If
 
                         Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
                         Dim DataCount As Integer = Sql.ExecuteScalar
