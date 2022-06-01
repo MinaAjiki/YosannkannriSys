@@ -115,6 +115,7 @@ Public Class ホーム
                         If NoChk >= 1 Then
                             AdminChk = "True"
                             管理者登録.Enabled = True
+                            マスタ.Enabled = True
                         End If
 
                         Sql.CommandText = "SELECT Count(budget_no) FROM budget_summary"
@@ -447,7 +448,7 @@ Public Class ホーム
             HomeTreeView.Columns(0).HeaderText = ""
             HomeTreeView.Nodes.Clear()
             予算.Enabled = True
-            マスタ.Enabled = True
+            'マスタ.Enabled = True
             開く.Enabled = True
             材料表インポート.Enabled = True
             参照作成command.Enabled = True
