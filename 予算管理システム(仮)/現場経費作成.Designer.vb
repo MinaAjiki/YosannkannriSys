@@ -34,6 +34,8 @@ Partial Class 現場経費作成
         Me.Cancel = New System.Windows.Forms.Button()
         Me.ButtonImageList = New System.Windows.Forms.ImageList(Me.components)
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
+        Me.Total = New C1.Win.C1Input.C1TextBox()
+        Me.TotalLabel = New System.Windows.Forms.Label()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
         Me.FormPanel.SuspendLayout()
@@ -42,6 +44,7 @@ Partial Class 現場経費作成
         CType(Me.CodeLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FooterPanel.SuspendLayout()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Total, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'FormSplitContainer
@@ -67,6 +70,8 @@ Partial Class 現場経費作成
         'FormPanel
         '
         Me.FormPanel.BackColor = System.Drawing.Color.White
+        Me.FormPanel.Controls.Add(Me.TotalLabel)
+        Me.FormPanel.Controls.Add(Me.Total)
         Me.FormPanel.Controls.Add(Me.ExpenceLabel)
         Me.FormPanel.Controls.Add(Me.DetailsList)
         Me.FormPanel.Controls.Add(Me.CodeLabel)
@@ -203,6 +208,37 @@ Partial Class 現場経費作成
         Me.ButtonImageList.Images.SetKeyName(19, "Recalculation_mousenter.png")
         Me.ButtonImageList.Images.SetKeyName(20, "Recalculation_mousedown.png")
         '
+        'Total
+        '
+        Me.Total.AutoSize = False
+        Me.Total.BackColor = System.Drawing.Color.White
+        Me.Total.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Total.CustomFormat = "N0"
+        Me.Total.DataType = GetType(Long)
+        Me.Total.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.Total.Enabled = False
+        Me.Total.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.Total.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
+        Me.Total.Location = New System.Drawing.Point(752, 50)
+        Me.Total.Name = "Total"
+        Me.Total.Size = New System.Drawing.Size(107, 23)
+        Me.Total.TabIndex = 5
+        Me.Total.Tag = Nothing
+        Me.Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.SystemTheme.SetTheme(Me.Total, "予算管理テーマ")
+        Me.Total.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
+        'TotalLabel
+        '
+        Me.TotalLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
+        Me.TotalLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TotalLabel.Location = New System.Drawing.Point(714, 50)
+        Me.TotalLabel.Name = "TotalLabel"
+        Me.TotalLabel.Size = New System.Drawing.Size(38, 23)
+        Me.TotalLabel.TabIndex = 6
+        Me.TotalLabel.Text = "合計"
+        Me.TotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         '現場経費作成
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
@@ -225,6 +261,7 @@ Partial Class 現場経費作成
         CType(Me.CodeLabel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FooterPanel.ResumeLayout(False)
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Total, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -239,4 +276,6 @@ Partial Class 現場経費作成
     Friend WithEvents Cancel As Button
     Private WithEvents ButtonImageList As ImageList
     Friend WithEvents ExpenceLabel As C1.Win.C1Input.C1TextBox
+    Friend WithEvents Total As C1.Win.C1Input.C1TextBox
+    Friend WithEvents TotalLabel As Label
 End Class

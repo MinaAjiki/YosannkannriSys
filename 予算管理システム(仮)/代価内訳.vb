@@ -157,7 +157,10 @@ Public Class 代価内訳
                 End While
                 ProjectCostsReader.Close()
 
-                Dim No As String = CostID.ToString
+                ホーム.SystemSql.CommandText = "SELECT MAX(bsscst_no) FROM basis_costs WHERE cstclss_code=" & ClassCode
+                Dim PrjctNo As Integer = ホーム.SystemSql.ExecuteScalar
+
+                Dim No As String = PrjctNo.ToString
                 If No.Length = 1 Then
                     No = "0000" & No
                 ElseIf No.Length = 2 Then
@@ -167,21 +170,22 @@ Public Class 代価内訳
                 ElseIf No.Length = 4 Then
                     No = "0" & No
                 End If
-                If ClassName = "基礎代価" Then
+                If 作成代価選択.CopyClassCode = 11 Then
                     CostNo.Text = "第K" & "-" & No & "号"
                 Else
                     CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
                 End If
 
                 If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
-                    ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & ClassCode
-                    Dim CostCount As Integer = ホーム.SystemSql.ExecuteScalar
+                    ClassCode = 作成代価選択.CopyClassCode
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
+                    Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
 
                     Dim MaxNo As Integer = 0
 
                     If CostCount > 0 Then
-                        ホーム.SystemSql.CommandText = "SELECT MAX(bsscst_no) FROM basis_costs WHERE cstclss_code=" & ClassCode
-                        MaxNo = ホーム.SystemSql.ExecuteScalar
+                        ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
+                        MaxNo = ホーム.Sql.ExecuteScalar
                     End If
 
                     No = MaxNo + 1
@@ -194,11 +198,8 @@ Public Class 代価内訳
                     ElseIf No.Length = 4 Then
                         No = "0" & No
                     End If
-                    If ClassName = "基礎代価" Then
-                        CostNo.Text = "第K" & "-" & No & "号"
-                    Else
-                        CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
-                    End If
+                    CostNo.Text = "第" & 代価一覧.CostClassName.Last & "-" & No & "号"
+                    CostID = 0
                     CostCopy.Visible = False
                 End If
 
@@ -451,7 +452,9 @@ Public Class 代価内訳
                 End While
                 ProjectCostsReader.Close()
 
-                Dim No As String = CostID.ToString
+                ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
+                Dim PrjctNo As Integer = ホーム.Sql.ExecuteScalar
+                Dim No As String = PrjctNo.ToString
                 If No.Length = 1 Then
                     No = "0000" & No
                 ElseIf No.Length = 2 Then
@@ -461,13 +464,14 @@ Public Class 代価内訳
                 ElseIf No.Length = 4 Then
                     No = "0" & No
                 End If
-                If ClassName = "基礎代価" Then
+                If 作成代価選択.CopyClassCode = 11 Then
                     CostNo.Text = "第K" & "-" & No & "号"
                 Else
                     CostNo.Text = "第" & ClassName.Last & "-" & No & "号"
                 End If
 
                 If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+                    ClassCode = 作成代価選択.CopyClassCode
                     ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
                     Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
 
@@ -488,7 +492,8 @@ Public Class 代価内訳
                     ElseIf No.Length = 4 Then
                         No = "0" & No
                     End If
-                    CostNo.Value = "第" & ClassName.Last & "-" & No & "号"
+                    CostNo.Value = "第" & 代価一覧.CostClassName.Last & "-" & No & "号"
+                    CostID = 0
                     CostCopy.Visible = False
                 End If
                 CostName.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 4)

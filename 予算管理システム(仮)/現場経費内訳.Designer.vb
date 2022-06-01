@@ -102,14 +102,12 @@ Partial Class 現場経費内訳
         '
         Me.TotalExpense.AutoSize = False
         Me.TotalExpense.BackColor = System.Drawing.Color.White
-        Me.TotalExpense.BorderColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.TotalExpense.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TotalExpense.CustomFormat = "N0"
         Me.TotalExpense.DataType = GetType(Long)
         Me.TotalExpense.DisabledForeColor = System.Drawing.SystemColors.GrayText
         Me.TotalExpense.Enabled = False
         Me.TotalExpense.Font = New System.Drawing.Font("メイリオ", 9.0!)
-        Me.TotalExpense.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.TotalExpense.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat
         Me.TotalExpense.Location = New System.Drawing.Point(846, 50)
         Me.TotalExpense.Name = "TotalExpense"
@@ -118,7 +116,6 @@ Partial Class 現場経費内訳
         Me.TotalExpense.Tag = Nothing
         Me.TotalExpense.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.TotalExpense, "予算管理テーマ")
-        Me.TotalExpense.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         Me.TotalExpense.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'ExpenceLabel

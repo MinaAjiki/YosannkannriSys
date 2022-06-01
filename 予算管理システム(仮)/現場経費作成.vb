@@ -35,15 +35,19 @@ Public Class 現場経費作成
             ホーム.Sql.CommandText = "SELECT * FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo & "ORDER BY stexpns_code ASC"
             Dim stexpns As SqlDataReader = ホーム.Sql.ExecuteReader
             Dim datacount As Integer = 1
+            Dim Tamount As Int64
             While stexpns.Read
                 DetailsList.Rows.Add()
                 DetailsList(datacount, 0) = stexpns.Item("stexpns_id")
                 DetailsList(datacount, 1) = stexpns.Item("stexpns_code")
                 DetailsList(datacount, 2) = stexpns.Item("stexpns_name")
                 DetailsList(datacount, 3) = stexpns.Item("stexpns_amount")
+                Dim amount As Int64 = DetailsList(datacount, 3)
+                Tamount += amount
                 datacount += 1
             End While
             stexpns.Close()
+            Total.Value = Tamount
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

@@ -637,39 +637,50 @@ Public Class 代価一覧
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        If CostList.SelectedIndex = -1 And CostClassName = "工事代価" Then
-            MsgBox("代価表を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
-            Exit Sub
-        End If
+        Try
+            If CostList.SelectedIndex = -1 And CostClassName = "工事代価" Then
+                MsgBox("代価表を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                Exit Sub
+            End If
 
-        If CostClassName = "基礎代価" Then
-            ホーム.Transaction = ホーム.SystemSqlCnnctn.BeginTransaction
-            ホーム.SystemSql.Transaction = ホーム.Transaction
-            ホーム.SystemSql.CommandText = ""
-            ホーム.SystemSql.Parameters.Clear()
-            ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode
-            Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
-            ホーム.SystemSql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
-            For DeleteBasic As Integer = 1 To BasicCostsCount
-                If ProjectCostList(DeleteBasic, 2) = True Then
-                    ホーム.SystemSql.CommandText = "UPDATE basis_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
-                    ホーム.SystemSql.ExecuteNonQuery()
-                    'ホーム.SystemSql.CommandText = "UPDATE basis_cost_breakdown SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
-                    'ホーム.SystemSql.ExecuteNonQuery()
-                End If
-            Next
-        ElseIf CostClassName = "工事代価" Then
-            ホーム.Transaction = ホーム.Connection.BeginTransaction
-            ホーム.Sql.Transaction = ホーム.Transaction
-            ホーム.Sql.CommandText = ""
-            ホーム.Sql.Parameters.Clear()
+            If CostClassName = "基礎代価" Then
 
-        End If
+                ホーム.SystemSql.CommandText = ""
+                ホーム.SystemSql.Parameters.Clear()
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
+                For DeleteBasic As Integer = 1 To BasicCostsCount
+                    If ProjectCostList(DeleteBasic, 2) = True Then
+                        ホーム.SystemSql.CommandText = "UPDATE basis_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                        ホーム.SystemSql.ExecuteNonQuery()
+                        'ホーム.SystemSql.CommandText = "UPDATE basis_cost_breakdown SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                        'ホーム.SystemSql.ExecuteNonQuery()
+                    End If
+                Next
+            ElseIf CostClassName = "工事代価" Then
 
+                ホーム.Sql.CommandText = ""
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                Dim BasicCostsCount As Integer = ホーム.Sql.ExecuteScalar
+                ホーム.Sql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
+                For DeleteBasic As Integer = 1 To BasicCostsCount
+                    If ProjectCostList(DeleteBasic, 2) = True Then
+                        ホーム.Sql.CommandText = "UPDATE project_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                        ホーム.Sql.ExecuteNonQuery()
+                    End If
+                Next
+            End If
 
-        ホーム.Transaction.Commit()
-        MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
-        Me.Close()
+            MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
+            Me.Close()
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
