@@ -227,6 +227,8 @@ Partial Class 代価一覧
         Me.ProjectCostList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.ProjectCostList.ColumnInfo = resources.GetString("ProjectCostList.ColumnInfo")
         Me.ProjectCostList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.ProjectCostList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
+        Me.ProjectCostList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.ProjectCostList.Location = New System.Drawing.Point(29, 78)
         Me.ProjectCostList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.ProjectCostList.Name = "ProjectCostList"

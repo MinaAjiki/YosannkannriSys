@@ -34,7 +34,7 @@ Public Class 作成代価選択
             ElseIf ホーム.BeforeForm = "代価一覧" Then
                 If 代価一覧.CostClassName = "基礎代価" Then
                     ClassCode = 11
-                ElseIf 代価一覧.CostClassName = "工事代価" Then
+                ElseIf 代価一覧.CostClasscode >= 12 Then
                     ClassCode = 代価一覧.CostClassCode
                 End If
             ElseIf ホーム.BeforeForm = "代価内訳" Then
@@ -57,9 +57,9 @@ Public Class 作成代価選択
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))
             End While
             CostClassReader.Close()
-            If ClassCode = 11 Then
-                CostsList.Items.Add("基礎代価")
-            End If
+            'If ClassCode = 11 Then
+            '    CostsList.Items.Add("基礎代価")
+            'End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
