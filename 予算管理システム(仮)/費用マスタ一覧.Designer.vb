@@ -28,6 +28,7 @@ Partial Class 費用マスタ一覧
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.YearList = New C1.Win.C1Input.C1ComboBox()
         Me.SearchName = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         Me.TableName = New System.Windows.Forms.Label()
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
@@ -45,6 +46,7 @@ Partial Class 費用マスタ一覧
         CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormContainer.SuspendLayout()
         Me.MainPanel.SuspendLayout()
+        CType(Me.YearList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.右クリックメニュー.SuspendLayout()
@@ -110,6 +112,7 @@ Partial Class 費用マスタ一覧
         'MainPanel
         '
         Me.MainPanel.BackColor = System.Drawing.Color.Transparent
+        Me.MainPanel.Controls.Add(Me.YearList)
         Me.MainPanel.Controls.Add(Me.SearchName)
         Me.MainPanel.Controls.Add(Me.TableName)
         Me.MainPanel.Controls.Add(Me.NameLabel)
@@ -125,6 +128,27 @@ Partial Class 費用マスタ一覧
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
         Me.MainPanel.Width = 1195
+        '
+        'YearList
+        '
+        Me.YearList.AllowSpinLoop = False
+        Me.YearList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.YearList.AutoSize = False
+        Me.YearList.BackColor = System.Drawing.Color.White
+        Me.YearList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.YearList.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.YearList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.YearList.GapHeight = 0
+        Me.YearList.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.YearList.Location = New System.Drawing.Point(117, 50)
+        Me.YearList.Name = "YearList"
+        Me.YearList.Size = New System.Drawing.Size(112, 23)
+        Me.YearList.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.YearList.TabIndex = 65
+        Me.YearList.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.YearList, "予算管理テーマ")
+        Me.YearList.Visible = False
+        Me.YearList.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
         '
         'SearchName
         '
@@ -191,6 +215,8 @@ Partial Class 費用マスタ一覧
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
         Me.MasterContentsList.ContextMenuStrip = Me.右クリックメニュー
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.MasterContentsList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
+        Me.MasterContentsList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.MasterContentsList.Location = New System.Drawing.Point(29, 78)
         Me.MasterContentsList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.MasterContentsList.Name = "MasterContentsList"
@@ -308,6 +334,7 @@ Partial Class 費用マスタ一覧
         Me.FormContainer.ResumeLayout(False)
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
+        CType(Me.YearList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MasterContentsList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.右クリックメニュー.ResumeLayout(False)
@@ -333,4 +360,5 @@ Partial Class 費用マスタ一覧
     Friend WithEvents CutMenu As ToolStripMenuItem
     Friend WithEvents CopyMenu As ToolStripMenuItem
     Friend WithEvents PastingMenu As ToolStripMenuItem
+    Friend WithEvents YearList As C1.Win.C1Input.C1ComboBox
 End Class

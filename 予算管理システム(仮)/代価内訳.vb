@@ -170,7 +170,7 @@ Public Class 代価内訳
                 ElseIf No.Length = 4 Then
                     No = "0" & No
                 End If
-                If 作成代価選択.CopyClassCode = 11 Then
+                If ClassName = "基礎代価" Then
                     CostNo.Text = "第K" & "-" & No & "号"
                 Else
                     CostNo.Text = "第" & ClassName.Last & "-" & No & "号"

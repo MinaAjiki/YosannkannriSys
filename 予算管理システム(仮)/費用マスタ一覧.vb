@@ -36,7 +36,35 @@ Public Class 費用マスタ一覧
             ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
                 HeadLine.Text = "費用マスタ一覧(管理モード)"
                 MainPanel.BackColor = Color.FromArgb(255, 245, 245)
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13"
+                YearList.Visible = True
+
+                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
+
+                Dim dt2 As DataTable
+                dt2 = New DataTable
+                dt2.Columns.Add("year", GetType(System.Int32))
+                Dim years As Int32
+
+                ホーム.SystemSql.Parameters.Clear()
+                YearList.Items.Clear()
+                ホーム.SystemSql.CommandText = "SELECT DISTINCT year FROM cost_masters WHERE cstclss_code = " & CostClassCode & "ORDER BY year ASC"
+                Dim YearReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                While YearReader.Read
+                    years = YearReader("year")
+                    dt2.Rows.Add(years)
+                End While
+                YearReader.Close()
+
+                YearList.TextDetached = True
+                YearList.ItemsDataSource = dt2.DefaultView
+                YearList.ItemsDisplayMember = "year"
+                YearList.ItemsValueMember = "year"
+                YearList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                YearList.Visible = True
+                YearList.Text = Year
+
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 AND year = " & Year
                 Dim CostMasterCount As Integer = ホーム.SystemSql.ExecuteScalar
 
                 TableName.Text = CostClassName
@@ -44,7 +72,7 @@ Public Class 費用マスタ一覧
                 MasterContentsList.Rows.Count = CostMasterCount + 2
 
                 Dim RowCount As Integer = 0
-                ホーム.SystemSql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 ORDER BY cstmstr_seq ASC"
+                ホーム.SystemSql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 AND year = " & Year & "ORDER BY cstmstr_seq ASC"
                 Dim CostMasterReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
                 While CostMasterReader.Read
                     RowCount += 1
@@ -501,6 +529,7 @@ Public Class 費用マスタ一覧
                     ホーム.SystemSql.Parameters.Clear()
                     If IsNothing(MasterContentsList(RowCount, 1)) = False Then
 
+                        ホーム.SystemSql.Parameters.Add(New SqlParameter("@year", SqlDbType.SmallInt)).Value = YearList.Text
                         ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
                         ホーム.SystemSql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = MasterContentsList(RowCount, 5)
                         ホーム.SystemSql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = MasterContentsList(RowCount, 2)
@@ -544,11 +573,11 @@ Public Class 費用マスタ一覧
 
 
                         If MasterContentsList(RowCount, 1) = 0 Then
-                            ホーム.SystemSql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
+                            ホーム.SystemSql.CommandText = "INSERT INTO cost_masters (year,cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
                                                                    ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
-                                                  VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
+                                                  VALUES (@year,@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
                         Else
-                            ホーム.SystemSql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
+                            ホーム.SystemSql.CommandText = "UPDATE cost_masters SET year=@year,cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
                                                 cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
                         End If
                         ホーム.SystemSql.ExecuteNonQuery()
@@ -704,5 +733,38 @@ Public Class 費用マスタ一覧
 
         Dim CancelClickLoad As New CancelClick(Me)
         CancelClick = CancelClickLoad.ModifyCheck
+    End Sub
+
+    Private Sub YearList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles YearList.SelectedIndexChanged
+        MasterContentsList.Clear(ClearFlags.Content)
+        MasterContentsList(0, 2) = "No"
+        MasterContentsList(0, 3) = "分類名"
+        MasterContentsList(0, 4) = "材料ｺｰﾄﾞ"
+        MasterContentsList(0, 5) = "名称"
+        MasterContentsList(0, 6) = "規格"
+        MasterContentsList(0, 7) = "単位"
+        MasterContentsList(0, 8) = "単価"
+        MasterContentsList(0, 9) = "削除"
+        MasterContentsList(0, 10) = "変更"
+        ホーム.SystemSql.CommandText = "SELECT Count(*) FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 AND year = " & YearList.Text
+        Dim CostMasterCount As Integer = ホーム.SystemSql.ExecuteScalar
+
+        MasterContentsList.Rows.Count = CostMasterCount + 2
+
+        Dim RowCount As Integer = 0
+        ホーム.SystemSql.CommandText = "SELECT * FROM cost_masters WHERE cstclss_code=" & CostClassCode & " AND changecode<13 AND year = " & YearList.Text & "ORDER BY cstmstr_seq ASC"
+        Dim CostMasterReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        While CostMasterReader.Read
+            RowCount += 1
+            MasterContentsList(RowCount, 1) = CostMasterReader.Item("cstmstr_id")
+            MasterContentsList(RowCount, 2) = CostMasterReader.Item("cstmstr_seq")
+            MasterContentsList(RowCount, 3) = CostMasterReader.Item("cstmstr_category")
+            MasterContentsList(RowCount, 4) = CostMasterReader.Item("cstmstr_code")
+            MasterContentsList(RowCount, 5) = CostMasterReader.Item("cstmstr_name")
+            MasterContentsList(RowCount, 6) = CostMasterReader.Item("cstmstr_spec")
+            MasterContentsList(RowCount, 7) = CostMasterReader.Item("cstmstr_unit")
+            MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
+        End While
+        CostMasterReader.Close()
     End Sub
 End Class

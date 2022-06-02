@@ -448,7 +448,7 @@ Public Class ホーム
             HomeTreeView.Columns(0).HeaderText = ""
             HomeTreeView.Nodes.Clear()
             予算.Enabled = True
-            'マスタ.Enabled = True
+            マスタ.Enabled = True
             開く.Enabled = True
             材料表インポート.Enabled = True
             参照作成command.Enabled = True

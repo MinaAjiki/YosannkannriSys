@@ -207,7 +207,7 @@
             ProjectCosts.ForeColor = Color.Gray
             ProjectCosts.FlatAppearance.BorderColor = Color.Gray
             ProjectCosts.Enabled = False
-
+            Circulator.Enabled = False
         ElseIf SwitchBox.Text = "一般" Then
             Me.Text = "マスタメンテナンス"
             HeadLine.Text = "マスタメンテナンス"
@@ -218,6 +218,18 @@
             ProjectCosts.Enabled = True
             ProjectCosts.ForeColor = Color.Black
             ProjectCosts.FlatAppearance.BorderColor = Color.Black
+            Circulator.Enabled = True
         End If
+    End Sub
+
+    Private Sub Circulator_Click(sender As Object, e As EventArgs) Handles Circulator.Click
+        マスタ一覧.ClickButton = "Circulator"
+        If SwitchBox.Text = "一般" Then
+
+        ElseIf SwitchBox.Text = "管理者" Then
+            マスタ一覧.HeadLine.Text = "マスタ一覧(管理モード)"
+            マスタ一覧.MainPanel.BackColor = Color.FromArgb(255, 245, 245)
+        End If
+        マスタ一覧.Show()
     End Sub
 End Class

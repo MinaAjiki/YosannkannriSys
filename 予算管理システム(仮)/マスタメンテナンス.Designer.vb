@@ -42,6 +42,7 @@ Partial Class マスタメンテナンス
         Me.ProjectCosts = New System.Windows.Forms.Button()
         Me.BasicCosts = New System.Windows.Forms.Button()
         Me.SwitchBox = New C1.Win.C1Input.C1ComboBox()
+        Me.Circulator = New System.Windows.Forms.Button()
         Me.CostMaster.SuspendLayout()
         Me.OtherMaster.SuspendLayout()
         Me.Costs.SuspendLayout()
@@ -185,6 +186,7 @@ Partial Class マスタメンテナンス
         '
         'OtherMaster
         '
+        Me.OtherMaster.Controls.Add(Me.Circulator)
         Me.OtherMaster.Controls.Add(Me.StampTaxes)
         Me.OtherMaster.Controls.Add(Me.Insurances)
         Me.OtherMaster.Controls.Add(Me.LevyCosts)
@@ -315,6 +317,18 @@ Partial Class マスタメンテナンス
         Me.SwitchBox.Value = "一般"
         Me.SwitchBox.Visible = False
         '
+        'Circulator
+        '
+        Me.Circulator.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(209, Byte), Integer))
+        Me.Circulator.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Circulator.Location = New System.Drawing.Point(33, 297)
+        Me.Circulator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Circulator.Name = "Circulator"
+        Me.Circulator.Size = New System.Drawing.Size(85, 30)
+        Me.Circulator.TabIndex = 14
+        Me.Circulator.Text = "回覧者"
+        Me.Circulator.UseVisualStyleBackColor = False
+        '
         'マスタメンテナンス
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
@@ -359,4 +373,5 @@ Partial Class マスタメンテナンス
     Friend WithEvents StampTaxes As Button
     Friend WithEvents Insurances As Button
     Friend WithEvents SwitchBox As C1.Win.C1Input.C1ComboBox
+    Friend WithEvents Circulator As Button
 End Class
