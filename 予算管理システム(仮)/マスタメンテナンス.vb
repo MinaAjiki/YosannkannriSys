@@ -166,6 +166,7 @@
 
     Private Sub ProjectCosts_Click(sender As Object, e As EventArgs) Handles ProjectCosts.Click
         代価一覧.ParentFormName = "マスタメンテナンス"
+        代価一覧.CostList.Enabled = True
         代価一覧.CostClassCode = 11
         代価一覧.CostClassName = "工事代価"
         代価一覧.Show()
@@ -173,7 +174,6 @@
 
     Private Sub BasicCosts_Click(sender As Object, e As EventArgs) Handles BasicCosts.Click
         代価一覧.ParentFormName = "マスタメンテナンス"
-        代価一覧.CostList.Enabled = False
         代価一覧.CostClassCode = 11
         代価一覧.CostClassName = "基礎代価"
         If SwitchBox.Text = "一般" Then
