@@ -165,6 +165,7 @@ Partial Class 代価一覧
         Me.CostList.BackColor = System.Drawing.Color.White
         Me.CostList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CostList.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostList.Enabled = False
         Me.CostList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CostList.GapHeight = 0
         Me.CostList.ImagePadding = New System.Windows.Forms.Padding(0)

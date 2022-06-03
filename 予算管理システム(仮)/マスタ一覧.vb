@@ -178,8 +178,8 @@ Public Class マスタ一覧
                 MasterContentsList.Rows.Count = 18
 
                 ホーム.SystemMdf.Parameters.Clear()
-                ホーム.SystemMdf.CommandText = "SELECT * FROM controldata"
-                Dim CircReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                ホーム.SystemMdf.CommandText = "SELECT * FROM controldata WHERE class_code >=10"
+                Dim CircReader As SqlDataReader = ホーム.SystemMdf.ExecuteReader
                 Dim datacount As Integer = 1
                 While CircReader.Read
                     MasterContentsList(datacount, 0) = CircReader.Item("class_code")
@@ -692,7 +692,7 @@ Public Class マスタ一覧
                     Else
                         ホーム.SystemMdf.Parameters("@contents").Value = contents.Data
                     End If
-                    ホーム.Sql.ExecuteNonQuery()
+                    ホーム.SystemMdf.ExecuteNonQuery()
                 Next
                 Me.Close()
                 MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
