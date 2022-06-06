@@ -693,6 +693,16 @@ Public Class 代価表入力
                 ホーム.ProjectCostForm(count).Show()
                 Me.Visible = False
 
+                Dim NodeExpand As String = ""
+
+                Dim remarks As String = BreakDownList(SelectRow + 2, 4)
+                remarks = remarks.Replace("第", "")
+                remarks = remarks.Replace("号", "")
+
+                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                NodeExpand = NodeExpandLoad.NodeExpand
+
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -726,6 +736,16 @@ Public Class 代価表入力
                 ホーム.PrjctCstList.Add(BreakDownList)
                 ホーム.ProjectCostForm(FormCount).Show()
                 Me.Visible = False
+
+                Dim NodeExpand As String = ""
+
+                Dim remarks As String = BreakDownList(SelectRow + 2, 4)
+                remarks = remarks.Replace("第", "")
+                remarks = remarks.Replace("号", "")
+
+                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                NodeExpand = NodeExpandLoad.NodeExpand
 
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
@@ -994,90 +1014,111 @@ Public Class 代価表入力
                 Exit Sub
             End If
 
-
-            Dim FormCount As Integer = ホーム.ProjectCostForm.Count
-
             Dim CancelClick As String = ""
-            Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
-            CancelClick = CancelClickLoad.ModifyCheck
 
-            If CancelClick = "Cancel" Then
-                Exit Sub
-            End If
+            If ホーム.lworktypecode = 0 Then
+                Dim CancelClickLoad As New CancelClick(Me)
+                CancelClick = CancelClickLoad.ModifyCheck
 
-            If FormCount - 2 < 0 Then
-                ホーム.Modified = "True"
-
-                Dim ProjectCostID As Integer = 明細書入力.DetailsList(明細書入力.SelectRow, 9)
-
-                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
-                Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While ProjectCostReader.Read
-                    明細書入力.DetailsList(明細書入力.SelectRow, 4) = ProjectCostReader.Item("prjctcst_name")
-                    明細書入力.DetailsList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
-                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
-                    明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
-                    明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6))
-                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = ProjectCostReader.Item("prjctcst_laborea")
-                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 2))
-                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = ProjectCostReader.Item("prjctcst_materialea")
-                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 3))
-                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_machineea")
-                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 4))
-                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = ProjectCostReader.Item("prjctcst_subcntrctea")
-                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 5))
-                    明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_expenseea")
-                    明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 6))
-
-
-                End While
-                ProjectCostReader.Close()
-
-
-                明細書入力.Visible = True
-
-            ElseIf (FormCount - 2) >= 0 Then
-                ホーム.Modified = "True"
-
-                Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
-                Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
-                Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
-
-                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
-                Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While ProjectCostReader.Read
-                    ProjectCostList(ProjectCostRow, 4) = ProjectCostReader.Item("prjctcst_name")
-                    ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
-                    ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
-                    ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
-                    ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
-                    ProjectCostList(ProjectCostRow + 1, 10) = ProjectCostReader.Item("prjctcst_laborea")
-                    ProjectCostList(ProjectCostRow + 2, 10) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 10))
-                    ProjectCostList(ProjectCostRow + 1, 11) = ProjectCostReader.Item("prjctcst_materialea")
-                    ProjectCostList(ProjectCostRow + 2, 11) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 11))
-                    ProjectCostList(ProjectCostRow + 1, 12) = ProjectCostReader.Item("prjctcst_machineea")
-                    ProjectCostList(ProjectCostRow + 2, 12) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 12))
-                    ProjectCostList(ProjectCostRow + 1, 13) = ProjectCostReader.Item("prjctcst_subcntrctea")
-                    ProjectCostList(ProjectCostRow + 2, 13) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 13))
-                    ProjectCostList(ProjectCostRow + 1, 14) = ProjectCostReader.Item("prjctcst_expenseea")
-                    ProjectCostList(ProjectCostRow + 2, 14) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 14))
-                End While
-                ProjectCostReader.Close()
-
-
-                ホーム.ProjectCostForm(FormCount - 2).Visible = True
+                ホーム.BeforeForm = "予算"
+                大工種選択.TopLevel = False
+                ホーム.FormPanel.Controls.Add(大工種選択)
+                大工種選択.Show()
             Else
-                ホーム.Modified = "False"
+                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
+                Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
+                CancelClick = CancelClickLoad.ModifyCheck
+
+                If CancelClick = "Cancel" Then
+                    Exit Sub
+                End If
+
+                If FormCount - 2 < 0 Then
+                    ホーム.Modified = "True"
+
+                    Dim ProjectCostID As Integer = 明細書入力.DetailsList(明細書入力.SelectRow, 9)
+
+                    ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
+                    Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While ProjectCostReader.Read
+                        明細書入力.DetailsList(明細書入力.SelectRow, 4) = ProjectCostReader.Item("prjctcst_name")
+                        明細書入力.DetailsList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
+                        明細書入力.DetailsList(明細書入力.SelectRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
+                        明細書入力.DetailsList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                        明細書入力.DetailsList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.DetailsList(明細書入力.SelectRow + 1, 6))
+                        明細書入力.CategoryList(明細書入力.SelectRow + 1, 2) = ProjectCostReader.Item("prjctcst_laborea")
+                        明細書入力.CategoryList(明細書入力.SelectRow + 2, 2) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 2))
+                        明細書入力.CategoryList(明細書入力.SelectRow + 1, 3) = ProjectCostReader.Item("prjctcst_materialea")
+                        明細書入力.CategoryList(明細書入力.SelectRow + 2, 3) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 3))
+                        明細書入力.CategoryList(明細書入力.SelectRow + 1, 4) = ProjectCostReader.Item("prjctcst_machineea")
+                        明細書入力.CategoryList(明細書入力.SelectRow + 2, 4) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 4))
+                        明細書入力.CategoryList(明細書入力.SelectRow + 1, 5) = ProjectCostReader.Item("prjctcst_subcntrctea")
+                        明細書入力.CategoryList(明細書入力.SelectRow + 2, 5) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 5))
+                        明細書入力.CategoryList(明細書入力.SelectRow + 1, 6) = ProjectCostReader.Item("prjctcst_expenseea")
+                        明細書入力.CategoryList(明細書入力.SelectRow + 2, 6) = Math.Floor(明細書入力.DetailsList(明細書入力.SelectRow, 6) * 明細書入力.CategoryList(明細書入力.SelectRow + 1, 6))
+
+
+                    End While
+                    ProjectCostReader.Close()
+
+
+                    明細書入力.Visible = True
+
+                ElseIf (FormCount - 2) >= 0 Then
+                    ホーム.Modified = "True"
+
+                    Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
+                    Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                    Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+
+                    ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
+                    Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While ProjectCostReader.Read
+                        ProjectCostList(ProjectCostRow, 4) = ProjectCostReader.Item("prjctcst_name")
+                        ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
+                        ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
+                        ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                        ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
+                        ProjectCostList(ProjectCostRow + 1, 10) = ProjectCostReader.Item("prjctcst_laborea")
+                        ProjectCostList(ProjectCostRow + 2, 10) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 10))
+                        ProjectCostList(ProjectCostRow + 1, 11) = ProjectCostReader.Item("prjctcst_materialea")
+                        ProjectCostList(ProjectCostRow + 2, 11) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 11))
+                        ProjectCostList(ProjectCostRow + 1, 12) = ProjectCostReader.Item("prjctcst_machineea")
+                        ProjectCostList(ProjectCostRow + 2, 12) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 12))
+                        ProjectCostList(ProjectCostRow + 1, 13) = ProjectCostReader.Item("prjctcst_subcntrctea")
+                        ProjectCostList(ProjectCostRow + 2, 13) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 13))
+                        ProjectCostList(ProjectCostRow + 1, 14) = ProjectCostReader.Item("prjctcst_expenseea")
+                        ProjectCostList(ProjectCostRow + 2, 14) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 14))
+                    End While
+                    ProjectCostReader.Close()
+
+
+                    ホーム.ProjectCostForm(FormCount - 2).Visible = True
+                Else
+                    ホーム.Modified = "False"
+
+                End If
+
+                ホーム.ProjectCostForm.RemoveAt(FormCount - 1)
+                ホーム.ProjectCostID.RemoveAt(FormCount - 1)
+                ホーム.ProjectCostSelectRow.RemoveAt(FormCount - 1)
+                ホーム.PrjctCstClassCode.RemoveAt(FormCount - 1)
+                ホーム.PrjctCstList.RemoveAt(FormCount - 1)
+
+                FormCount = ホーム.ProjectCostForm.Count
+
+                'ホーム.SelectNode.Collapse()
+                'ホーム.SelectNode = ホーム.SelectNode.ParentCollection.Parent
+                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                ホーム.SelectNodeList(maxindex).Collapse()
+                If ホーム.SelectNodeList.Count > 0 Then
+                    ホーム.SelectNodeList.RemoveAt(maxindex)
+                End If
             End If
 
-            ホーム.ProjectCostForm.RemoveAt(FormCount - 1)
-            ホーム.ProjectCostID.RemoveAt(FormCount - 1)
-            ホーム.ProjectCostSelectRow.RemoveAt(FormCount - 1)
-            ホーム.PrjctCstClassCode.RemoveAt(FormCount - 1)
-            ホーム.PrjctCstList.RemoveAt(FormCount - 1)
 
-            FormCount = ホーム.ProjectCostForm.Count
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1221,7 +1262,9 @@ Public Class 代価表入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
             Else
 
-
+                If SelectRow < CopyRow Then
+                    CopyRow += 3
+                End If
 
                 Command = "Pasting"
                 BreakDownList.Rows.Insert(SelectRow)
@@ -1332,56 +1375,6 @@ Public Class 代価表入力
                 Command = "Cut"
                 Command1 = "Cut"
                 CopyRow = SelectRow
-                'CopyList(0) = BreakDownList(SelectRow, 1)
-                'CopyList(1) = BreakDownList(SelectRow, 3)
-                'CopyList(2) = BreakDownList(SelectRow, 4)
-                'CopyList(3) = BreakDownList(SelectRow + 1, 4)
-                'CopyList(4) = BreakDownList(SelectRow + 2, 4)
-                'CopyList(5) = BreakDownList(SelectRow + 2, 5)
-                'CopyList(6) = BreakDownList(SelectRow, 6)
-                'CopyList(7) = BreakDownList(SelectRow + 1, 6)
-                'CopyList(8) = BreakDownList(SelectRow + 2, 6)
-                'CopyList(9) = BreakDownList(SelectRow, 8)
-                'CopyList(10) = BreakDownList(SelectRow, 9)
-                'BreakDownList.Rows.RemoveRange(SelectRow, 3)
-                'Command = ""
-
-                'Dim RowNo As Integer = 0
-                'For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
-                '    RowNo += 1
-
-                '    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                '    Quanity.StyleNew.Format = "N1"
-                '    Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                '    Costea.StyleNew.Format = "N0"
-                '    Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                '    Amount.StyleNew.Format = "N0"
-                '    BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
-
-
-                '    If RowCount Mod 2 = 0 Then
-                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '    Else
-                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '    End If
-
-                '    BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                '    BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                '    BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                '    If (RowNo * RowNo) + 2 = 6 Then
-                '        RowNo = 0
-                '    End If
-
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                '    BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                'Next
 
                 BreakDownList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
                 BreakDownList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
@@ -1734,6 +1727,9 @@ Public Class 代価表入力
 
         Try
 
+            Cursor.Current = Cursors.WaitCursor
+
+
             Dim ErrorCount As Integer = 0
 
             If Not CostName.Text <> "" Then
@@ -1958,7 +1954,7 @@ Public Class 代価表入力
 
 
         Catch ex As Exception
-        ホーム.Transaction.Rollback()
+            ホーム.Transaction.Rollback()
         ホーム.ErrorMessage = ex.Message
         ホーム.StackTrace = ex.StackTrace
         エラー.Show()
@@ -2184,6 +2180,13 @@ Public Class 代価表入力
 
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
+
+            ホーム.HomeTreeView.CollapseAll()
+            Dim NodeExpand As String = ""
+            Dim NodeExpandLoad As New TreeNode_ParentExpand
+            NodeExpand = NodeExpandLoad.NodeExpand
+
+            Cursor.Current = Cursors.Default
 
         Catch ex As Exception
         ホーム.ErrorMessage = ex.Message

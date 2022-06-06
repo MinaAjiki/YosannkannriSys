@@ -718,9 +718,21 @@ Public Class 明細書入力
             Dim CancelClickLoad As New CancelClick(Me)
             CancelClick = CancelClickLoad.ModifyCheck
 
-            小工種選択.TopLevel = False
-            ホーム.FormPanel.Controls.Add(小工種選択)
-            小工種選択.Show()
+            If ホーム.lworktypecode = 0 Then
+                ホーム.BeforeForm = "予算"
+                大工種選択.TopLevel = False
+                ホーム.FormPanel.Controls.Add(大工種選択)
+                大工種選択.Show()
+            Else
+                小工種選択.TopLevel = False
+                ホーム.FormPanel.Controls.Add(小工種選択)
+                小工種選択.Show()
+
+                ホーム.SelectNodeList(1).Collapse()
+                If ホーム.SelectNodeList.Count > 0 Then
+                    ホーム.SelectNodeList.RemoveAt(1)
+                End If
+            End If
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -904,6 +916,9 @@ Public Class 明細書入力
             Else
 
                 ホーム.Modified = "True"
+                If SelectRow < CopyRow Then
+                    CopyRow += 3
+                End If
 
                 DetailsList.Rows.Insert(SelectRow)
                 DetailsList.Rows.Insert(SelectRow + 1)
@@ -1264,14 +1279,24 @@ Public Class 明細書入力
                 ホーム.ProjectCostForm(0).Show()
                 Me.Visible = False
 
+
+                Dim NodeExpand As String = ""
+
+                Dim remarks As String = DetailsList(SelectRow + 2, 4)
+                remarks = remarks.Replace("第", "")
+                remarks = remarks.Replace("号", "")
+
+                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                NodeExpand = NodeExpandLoad.NodeExpand
+
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
         Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
 
@@ -1295,6 +1320,14 @@ Public Class 明細書入力
                 ホーム.ProjectCostForm(0).Show()
                 Me.Visible = False
 
+                Dim NodeExpand As String = ""
+
+                Dim remarks As String = DetailsList(SelectRow + 2, 4)
+                remarks = remarks.Replace("第", "")
+                remarks = remarks.Replace("号", "")
+
+                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                NodeExpand = NodeExpandLoad.NodeExpand
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -1716,18 +1749,25 @@ Public Class 明細書入力
 
             ホーム.Modified = "False"
 
+            ホーム.HomeTreeView.CollapseAll()
+            ホーム.SelectNodeList(0).Expand()
 
-            MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
+        MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
 
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
 
+            Me.Close()
+            小工種選択.TopLevel = False
+            ホーム.FormPanel.Controls.Add(小工種選択)
+            小工種選択.Show()
+
         Catch ex As Exception
-            ホーム.Transaction.Rollback()
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ホーム.Transaction.Rollback()
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
 
     End Sub
@@ -2096,26 +2136,34 @@ Public Class 明細書入力
     End Sub
 
     Private Sub OutsoucerList_AfterEdit(sender As Object, e As RowColEventArgs) Handles OutsoucerList.AfterEdit
-        Dim Row As Integer = e.Row
-        Dim Col As Integer = e.Col
+        Try
+            Dim Row As Integer = e.Row
+            Dim Col As Integer = e.Col
 
 
-        If IsNumeric(OutsoucerList(Row, Col)) = True Then
-            Dim ColTotal As Int64
-            If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
-                OutsoucerList(Row + 2, Col) = Math.Floor((OutsoucerList(Row, Col) * OutsoucerList(Row + 1, Col)))
-            ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
-                OutsoucerList(Row + 1, Col) = Math.Floor((OutsoucerList(Row - 1, Col) * OutsoucerList(Row, Col)))
+            If IsNumeric(OutsoucerList(Row, Col)) = True Then
+                Dim ColTotal As Int64
+                If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
+                    OutsoucerList(Row + 2, Col) = Math.Floor((OutsoucerList(Row, Col) * OutsoucerList(Row + 1, Col)))
+                ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
+                    OutsoucerList(Row + 1, Col) = Math.Floor((OutsoucerList(Row - 1, Col) * OutsoucerList(Row, Col)))
+                End If
+
+                For RowCount As Integer = 1 To ((OutsoucerList.Rows.Count - 3) / 3)
+
+                    ColTotal += OutsoucerList((RowCount * 3) + 2, Col)
+                Next
+
+                OutsoucerTotalList(0, Col) = ColTotal
+
             End If
 
-            For RowCount As Integer = 1 To ((OutsoucerList.Rows.Count - 3) / 3)
-
-                ColTotal += OutsoucerList((RowCount * 3) + 2, Col)
-            Next
-
-            OutsoucerTotalList(0, Col) = ColTotal
-
-        End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub DetailsList_Click(sender As Object, e As EventArgs) Handles DetailsList.Click

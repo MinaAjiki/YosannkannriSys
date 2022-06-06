@@ -33,53 +33,53 @@ Public Class 基礎代価内訳書
 	basis_costs_view.bsscst_subcnstrctea,
 	basis_costs_view.bsscst_expnseea,
 	basis_costs_view.bsscst_amount,
-	basis_costs_view.basiscst_bd_no,
-	basis_costs_view.basiscst_name,
-	basis_costs_view.basiscst_spec,
-	basis_costs_view.basiscst_unit,
-	basis_costs_view.basiscst_quanity,
-	basis_costs_view.basiscst_amount,
-	basis_costs_view.basiscst_costea,
-	basis_costs_view.basiscst_labor,
-	basis_costs_view.basiscst_material,
-	basis_costs_view.basiscst_machine,
-	basis_costs_view.basiscst_subcntrct,
-	basis_costs_view.basiscst_expense,
-	basis_costs_view.basiscst_remarks
+	basis_costs_view.bsscst_bd_no,
+	basis_costs_view.bsscst_bd_name,
+	basis_costs_view.bsscst_bd_spec,
+	basis_costs_view.bsscst_bd_unit,
+	basis_costs_view.bsscst_bd_amount,
+	basis_costs_view.bsscst_bd_costea,
+	basis_costs_view.bsscst_bd_labor,
+	basis_costs_view.bsscst_bd_material,
+	basis_costs_view.bsscst_bd_machine,
+	basis_costs_view.bsscst_bd_subcntrct,
+	basis_costs_view.bsscst_bd_expense,
+	basis_costs_view.bsscst_bd_remarks,
+    basis_costs_view.bsscst_bd_quanity
 FROM  basis_costs_view
 WHERE ((basis_costs_view.year) =" & Year & ") 
-ORDER BY basis_costs_view.bsscst_no,basis_costs_view.basiscst_bd_no;"
+ORDER BY basis_costs_view.bsscst_no,basis_costs_view.bsscst_bd_no;"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
 
         Dim GrandTotalField As C1.Win.FlexReport.Field
         GrandTotalField = CType(レポート.C1FlexReport1.Fields("amount_total"), C1.Win.FlexReport.Field)
-        GrandTotalField.Text = "SUM(basiscst_amount)"
+        GrandTotalField.Text = "SUM(bsscst_bd_amount)"
 
 
         Dim LaborTotalField As C1.Win.FlexReport.Field
         LaborTotalField = CType(レポート.C1FlexReport1.Fields("labor_total"), C1.Win.FlexReport.Field)
-        LaborTotalField.Text = "SUM(basiscst_labor)"
+        LaborTotalField.Text = "SUM(bsscst_bd_labor)"
 
 
         Dim MaterialTotalField As C1.Win.FlexReport.Field
         MaterialTotalField = CType(レポート.C1FlexReport1.Fields("material_total"), C1.Win.FlexReport.Field)
-        MaterialTotalField.Text = "SUM(basiscst_material)"
+        MaterialTotalField.Text = "SUM(bsscst_bd_material)"
 
 
         Dim MachineTotalField As C1.Win.FlexReport.Field
         MachineTotalField = CType(レポート.C1FlexReport1.Fields("machine_total"), C1.Win.FlexReport.Field)
-        MachineTotalField.Text = "SUM(basiscst_machine)"
+        MachineTotalField.Text = "SUM(bsscst_bd_machine)"
 
 
         Dim SubcntrctTotalField As C1.Win.FlexReport.Field
         SubcntrctTotalField = CType(レポート.C1FlexReport1.Fields("subcntrct_total"), C1.Win.FlexReport.Field)
-        SubcntrctTotalField.Text = "SUM(basiscst_subcntrct)"
+        SubcntrctTotalField.Text = "SUM(bsscst_bd_subcntrct)"
 
         Dim ExpensTotalField As C1.Win.FlexReport.Field
         ExpensTotalField = CType(レポート.C1FlexReport1.Fields("expens_total"), C1.Win.FlexReport.Field)
-        ExpensTotalField.Text = "SUM(basiscst_expense)"
+        ExpensTotalField.Text = "SUM(bsscst_bd_expense)"
 
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
 

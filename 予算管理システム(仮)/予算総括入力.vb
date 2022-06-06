@@ -48,16 +48,16 @@ Public Class 予算総括入力
             End While
             CompanyReader.Close()
 
-            Authorizer1.Value = "常務取締役"
-            Authorizer2.Value = "取締役"
-            Authorizer3.Value = "部長"
-            Authorizer4.Value = "工事部長"
-            Authorizer5.Value = "工事課長"
-            Circulator1.Value = ""
-            Circulator2.Value = ""
-            Circulator3.Value = "取締役工務部長"
-            Circulator4.Value = "工務部長"
-            Circulator5.Value = "工務課"
+            For AuthorizerCount As Integer = 1 To 5
+                ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 9 + AuthorizerCount
+                AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text = ホーム.SystemMdf.ExecuteScalar
+            Next
+
+            For CirculatorCount As Integer = 1 To 5
+                ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 19 + CirculatorCount
+                CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text = ホーム.SystemMdf.ExecuteScalar
+            Next
+
 
             ホーム.Sql.CommandText = "SELECT Count(*) FROM budget_summary WHERE budget_no=" & ホーム.BudgetNo
             Dim BudgetCount As Integer = ホーム.Sql.ExecuteScalar
@@ -82,16 +82,6 @@ Public Class 予算総括入力
                 For ControlCount As Integer = 0 To 5
                     ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & ClassCode(ControlCount)
                     FormPanel.Controls.Item(ControlName(ControlCount)).Text = ホーム.Sql.ExecuteScalar
-                Next
-
-                For AuthorizerCount As Integer = 1 To 5
-                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 49 + AuthorizerCount
-                    AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text = ホーム.Sql.ExecuteScalar
-                Next
-
-                For CirculatorCount As Integer = 1 To 5
-                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=" & 59 + CirculatorCount
-                    CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text = ホーム.Sql.ExecuteScalar
                 Next
 
                 Dim subcntrctratecode As Integer = 0
@@ -355,6 +345,8 @@ Public Class 予算総括入力
 
             ホーム.Sql.Parameters.Add(New SqlParameter("@classcode", SqlDbType.SmallInt))
             ホーム.Sql.Parameters.Add(New SqlParameter("@contents", SqlDbType.NVarChar))
+            ホーム.SystemMdf.Parameters.Add(New SqlParameter("@classcode", SqlDbType.SmallInt))
+            ホーム.SystemMdf.Parameters.Add(New SqlParameter("@contents", SqlDbType.NVarChar))
 
             For ControlDataCount As Integer = 0 To 5
                 ホーム.Sql.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
@@ -364,17 +356,17 @@ Public Class 予算総括入力
             Next
 
             For AuthorizerCount As Integer = 1 To 5
-                ホーム.Sql.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
-                ホーム.Sql.Parameters("@classcode").Value = 49 + AuthorizerCount
-                ホーム.Sql.Parameters("@contents").Value = AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text
-                ホーム.Sql.ExecuteNonQuery()
+                ホーム.SystemMdf.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
+                ホーム.SystemMdf.Parameters("@classcode").Value = 9 + AuthorizerCount
+                ホーム.SystemMdf.Parameters("@contents").Value = AuthorizerPanel.Controls.Item("Authorizer" & AuthorizerCount).Text
+                ホーム.SystemMdf.ExecuteNonQuery()
             Next
 
             For CirculatorCount As Integer = 1 To 5
-                ホーム.Sql.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
-                ホーム.Sql.Parameters("@classcode").Value = 59 + CirculatorCount
-                ホーム.Sql.Parameters("@contents").Value = CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text
-                ホーム.Sql.ExecuteNonQuery()
+                ホーム.SystemMdf.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
+                ホーム.SystemMdf.Parameters("@classcode").Value = 19 + CirculatorCount
+                ホーム.SystemMdf.Parameters("@contents").Value = CirculatorPanel.Controls.Item("Circulator" & CirculatorCount).Text
+                ホーム.SystemMdf.ExecuteNonQuery()
             Next
 
             ホーム.Sql.CommandText = ""
@@ -500,6 +492,9 @@ Public Class 予算総括入力
                 End If
 
             Next
+
+            ホーム.Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters] WHERE year=" & Year.Text
+            ホーム.Sql.ExecuteNonQuery()
 
             ホーム.Transaction.Commit()
 

@@ -24,16 +24,16 @@
         <ConnectionString>Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=D:\DD0000テスト工事.mdf;Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token=""</ConnectionString>
         <RecordSource>SELECT DISTINCT bdgt_smmry_report.project_code,
 	bdgt_smmry_report.project_name,
-	bdgt_smmry_report.budget_no,
 	bdgt_smmry_report.contractee,
 	bdgt_smmry_report.prjct_address,
+	bdgt_smmry_report.budget_no,
 	bdgt_smmry_report.prjct_term_s,
 	bdgt_smmry_report.prjct_term_e,
 	bdgt_smmry_report.cntrct_amount,
 	bdgt_smmry_report.prjct_category,
 	bdgt_smmry_report.cnsdrtn_date,
 	bdgt_smmry_report.prjct_summary,
-	bdgt_smmry_report.subcontract_rate,
+	bdgt_smmry_report.sbcntrct_rate_code,
 	bdgt_smmry_report.remarks,
 	bdgt_smmry_report.department,
 	bdgt_smmry_report.director,
@@ -58,8 +58,7 @@
 	bdgt_smmry_report.circulator3,
 	bdgt_smmry_report.circulator4,
 	bdgt_smmry_report.circulator5
-FROM  bdgt_smmry_report
-WHERE ((bdgt_smmry_report.budget_no) =0);</RecordSource>
+FROM  bdgt_smmry_report;</RecordSource>
       </DataSource>
       <DataSource>
         <Name>DataSource2</Name>
@@ -13003,7 +13002,10 @@ FROM  details_bd;</RecordSource>
         <Name>DataSource1</Name>
         <DataProvider>OLEDB</DataProvider>
         <ConnectionString>Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=PMS;Data Source=SVACD001;Initial File Name="";Server SPN="";Authentication="";Access Token=""</ConnectionString>
-        <RecordSource>SELECT DISTINCT basis_costs_view.year,
+        <RecordSource>SELECT DISTINCT basis_costs_view.bsscst_id,
+	basis_costs_view.bsscst_bd_id,
+	basis_costs_view.year,
+	basis_costs_view.cstclss_code,
 	basis_costs_view.bsscst_no,
 	basis_costs_view.bsscst_name,
 	basis_costs_view.bsscst_spec,
@@ -13016,19 +13018,19 @@ FROM  details_bd;</RecordSource>
 	basis_costs_view.bsscst_subcnstrctea,
 	basis_costs_view.bsscst_expnseea,
 	basis_costs_view.bsscst_amount,
-	basis_costs_view.basiscst_bd_no,
-	basis_costs_view.basiscst_name,
-	basis_costs_view.basiscst_spec,
-	basis_costs_view.basiscst_unit,
-	basis_costs_view.basiscst_quanity,
-	basis_costs_view.basiscst_amount,
-	basis_costs_view.basiscst_costea,
-	basis_costs_view.basiscst_labor,
-	basis_costs_view.basiscst_material,
-	basis_costs_view.basiscst_machine,
-	basis_costs_view.basiscst_subcntrct,
-	basis_costs_view.basiscst_expense,
-	basis_costs_view.basiscst_remarks
+	basis_costs_view.cstmstr_id,
+	basis_costs_view.bsscst_bd_no,
+	basis_costs_view.bsscst_bd_name,
+	basis_costs_view.bsscst_bd_spec,
+	basis_costs_view.bsscst_bd_unit,
+	basis_costs_view.bsscst_bd_amount,
+	basis_costs_view.bsscst_bd_costea,
+	basis_costs_view.bsscst_bd_labor,
+	basis_costs_view.bsscst_bd_material,
+	basis_costs_view.bsscst_bd_machine,
+	basis_costs_view.bsscst_bd_subcntrct,
+	basis_costs_view.bsscst_bd_expense,
+	basis_costs_view.bsscst_bd_remarks,basis_costs_view.bsscst_bd_quanity
 FROM  basis_costs_view;</RecordSource>
       </DataSource>
     </DataSources>
@@ -14702,7 +14704,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_name</Expression>
+          <Expression>bsscst_bd_name</Expression>
         </Text>
       </TextField>
       <TextField>
@@ -14718,7 +14720,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_spec</Expression>
+          <Expression>bsscst_bd_spec</Expression>
         </Text>
       </TextField>
       <TextField>
@@ -14734,7 +14736,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_unit</Expression>
+          <Expression>bsscst_bd_unit</Expression>
         </Text>
       </TextField>
       <TextField>
@@ -14750,7 +14752,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_quanity</Expression>
+          <Expression>bsscst_bd_quanity</Expression>
         </Text>
         <Format>#,##0.0</Format>
       </TextField>
@@ -14767,7 +14769,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_costea</Expression>
+          <Expression>bsscst_bd_costea</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14784,7 +14786,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_amount</Expression>
+          <Expression>bsscst_bd_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14801,7 +14803,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_labor</Expression>
+          <Expression>bsscst_bd_labor</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14818,7 +14820,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_material</Expression>
+          <Expression>bsscst_bd_material</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14835,7 +14837,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_machine</Expression>
+          <Expression>bsscst_bd_machine</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14852,7 +14854,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_subcntrct</Expression>
+          <Expression>bsscst_bd_subcntrct</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14869,7 +14871,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_expense</Expression>
+          <Expression>bsscst_bd_expense</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14886,7 +14888,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>basiscst_remarks</Expression>
+          <Expression>bsscst_bd_remarks</Expression>
         </Text>
       </TextField>
       <TextField>
@@ -20781,7 +20783,9 @@ FROM  projectcst_bd;</RecordSource>
         <Name>DataSource1</Name>
         <DataProvider>OLEDB</DataProvider>
         <ConnectionString>Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=PMS;Data Source=SVACD001;Initial File Name="";Server SPN="";Authentication="";Access Token=""</ConnectionString>
-        <RecordSource>SELECT DISTINCT basis_costs_view.year,
+        <RecordSource>SELECT DISTINCT basis_costs_view.bsscst_id,
+	basis_costs_view.bsscst_bd_id,
+	basis_costs_view.year,
 	basis_costs_view.cstclss_code,
 	basis_costs_view.bsscst_no,
 	basis_costs_view.bsscst_name,
@@ -20790,14 +20794,15 @@ FROM  projectcst_bd;</RecordSource>
 	basis_costs_view.bsscst_quanity,
 	basis_costs_view.bsscst_costea,
 	basis_costs_view.bsscst_amount,
-	basis_costs_view.basiscst_bd_no,
-	basis_costs_view.basiscst_name,
-	basis_costs_view.basiscst_spec,
-	basis_costs_view.basiscst_unit,
-	basis_costs_view.basiscst_quanity,
-	basis_costs_view.basiscst_amount,
-	basis_costs_view.basiscst_costea,
-	basis_costs_view.basiscst_remarks
+	basis_costs_view.cstmstr_id,
+	basis_costs_view.bsscst_bd_no,
+	basis_costs_view.bsscst_bd_name,
+	basis_costs_view.bsscst_bd_spec,
+	basis_costs_view.bsscst_bd_unit,
+	basis_costs_view.bsscst_bd_quanity,
+	basis_costs_view.bsscst_bd_amount,
+	basis_costs_view.bsscst_bd_costea,
+	basis_costs_view.bsscst_bd_remarks
 FROM  basis_costs_view;</RecordSource>
       </DataSource>
     </DataSources>
@@ -21305,7 +21310,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>330</Width>
         <Height>240</Height>
-        <Text>=basiscst_bd_no</Text>
+        <Text>bsscst_bd_no</Text>
         <Calculated>true</Calculated>
         <Align>RightMiddle</Align>
         <Font>
@@ -21335,7 +21340,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>29</Top>
         <Width>3969</Width>
         <Height>454</Height>
-        <Text>=basiscst_name</Text>
+        <Text>bsscst_bd_name</Text>
         <Calculated>true</Calculated>
         <Align>LeftMiddle</Align>
         <Font>
@@ -21365,7 +21370,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>29</Top>
         <Width>3969</Width>
         <Height>454</Height>
-        <Text>=basiscst_spec</Text>
+        <Text>bsscst_bd_spec</Text>
         <Calculated>true</Calculated>
         <Align>LeftMiddle</Align>
         <Font>
@@ -21374,7 +21379,7 @@ FROM  basis_costs_view;</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>basiscst_quanity</Name>
+        <Name>basiscst_unit</Name>
         <Tag sys="string" />
         <Border>
           <Left>
@@ -21395,7 +21400,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>567</Width>
         <Height>300</Height>
-        <Text>=basiscst_unit</Text>
+        <Text>bsscst_bd_unit</Text>
         <Calculated>true</Calculated>
         <Align>CenterTop</Align>
         <Font>
@@ -21425,7 +21430,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>1021</Width>
         <Height>300</Height>
-        <Text>=basiscst_quanity</Text>
+        <Text>bsscst_bd_quanity</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -21456,7 +21461,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>1418</Width>
         <Height>300</Height>
-        <Text>=basiscst_costea</Text>
+        <Text>bsscst_bd_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -21487,7 +21492,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>1418</Width>
         <Height>285</Height>
-        <Text>=basiscst_amount</Text>
+        <Text>bsscst_bd_amount</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -21518,7 +21523,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>135</Top>
         <Width>1758</Width>
         <Height>300</Height>
-        <Text>=basiscst_remarks</Text>
+        <Text>bsscst_bd_remarks</Text>
         <Calculated>true</Calculated>
         <Align>RightTop</Align>
         <Font>
@@ -52914,7 +52919,7 @@ FROM  estimates;</RecordSource>
           <Bold>true</Bold>
         </Font>
         <Text>
-          <Value sys="string">御見積書</Value>
+          <Value sys="string">御　見　積　書</Value>
         </Text>
       </TextField>
       <Field>
@@ -53033,8 +53038,8 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>286</Left>
-        <Top>7047</Top>
+        <Left>567</Left>
+        <Top>6933</Top>
         <Width>854</Width>
         <Height>360</Height>
         <Align>CenterMiddle</Align>
@@ -53065,8 +53070,8 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>1127</Left>
-        <Top>3365</Top>
+        <Left>2115</Left>
+        <Top>3275</Top>
         <Width>8023</Width>
         <Height>735</Height>
         <Font>
@@ -53119,8 +53124,8 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>1320</Left>
-        <Top>7080</Top>
+        <Left>1601</Left>
+        <Top>6966</Top>
         <Width>4920</Width>
         <Height>327</Height>
         <Text>prjct_address</Text>
@@ -53419,8 +53424,8 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>286</Left>
-        <Top>7407</Top>
+        <Left>567</Left>
+        <Top>7293</Top>
         <Width>854</Width>
         <Height>360</Height>
         <Align>CenterMiddle</Align>
@@ -53451,8 +53456,8 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>286</Left>
-        <Top>7767</Top>
+        <Left>567</Left>
+        <Top>7653</Top>
         <Width>854</Width>
         <Height>360</Height>
         <Align>CenterMiddle</Align>
@@ -53483,8 +53488,8 @@ FROM  estimates;</RecordSource>
           </Bottom>
         </Border>
         <Section>Detail</Section>
-        <Left>286</Left>
-        <Top>8133</Top>
+        <Left>567</Left>
+        <Top>8019</Top>
         <Width>854</Width>
         <Height>360</Height>
         <Align>CenterMiddle</Align>
@@ -53504,8 +53509,8 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>1320</Left>
-        <Top>7440</Top>
+        <Left>1601</Left>
+        <Top>7326</Top>
         <Width>4920</Width>
         <Height>327</Height>
         <Text>paymentterms</Text>
@@ -53523,8 +53528,8 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>1320</Left>
-        <Top>7800</Top>
+        <Left>1601</Left>
+        <Top>7686</Top>
         <Width>4920</Width>
         <Height>327</Height>
         <Text>expirationdate</Text>
@@ -53556,8 +53561,8 @@ FROM  estimates;</RecordSource>
           <Color>FFFFFFFF</Color>
         </Background>
         <Section>Detail</Section>
-        <Left>1320</Left>
-        <Top>8175</Top>
+        <Left>1601</Left>
+        <Top>8061</Top>
         <Width>4920</Width>
         <Height>900</Height>
         <Text>conditions</Text>

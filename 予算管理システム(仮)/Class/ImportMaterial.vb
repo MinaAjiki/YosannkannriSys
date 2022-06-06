@@ -42,14 +42,6 @@ Public Class ImportMaterial
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
                     ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 2
-                    If IsDBNull(DataRow.Item(1)) = False Then
-                        Dim Category As String = DataRow.Item(1)
-                        Category = Category.Replace(vbCrLf, " ")
-                        Category = Category.Replace(vbLf, " ")
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = Category
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_category", SqlDbType.NVarChar)).Value = ""
-                    End If
                     ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_code", SqlDbType.SmallInt)).Value = DataRow.Item(2)
                     Name = Name.Replace(vbCrLf, " ")
                     Name = Name.Replace(vbLf, " ")
@@ -72,9 +64,9 @@ Public Class ImportMaterial
                     ホーム.Sql.Parameters.Add(New SqlParameter("@change_code", SqlDbType.SmallInt)).Value = 0
                     ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstr_seq", SqlDbType.SmallInt)).Value = RowLoop + 1
 
-                    ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
+                    ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_code,cstmstr_name,cstmstr_spec
                                                                    ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
-                                                  VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
+                                                  VALUES (@cstclsscode,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
 
                     ホーム.Sql.ExecuteNonQuery()
 

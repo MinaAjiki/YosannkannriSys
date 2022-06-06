@@ -25,7 +25,7 @@ Public Class 予算総括表
 	                                               bdgt_smmry_report.prjct_category,
 	                                               bdgt_smmry_report.cnsdrtn_date,
 	                                               bdgt_smmry_report.prjct_summary,
-	                                               bdgt_smmry_report.subcontract_rate,
+	                                               bdgt_smmry_report.sbcntrct_rate_code,
 	                                               bdgt_smmry_report.remarks,
 	                                               bdgt_smmry_report.department,
                                                    bdgt_smmry_report.director,

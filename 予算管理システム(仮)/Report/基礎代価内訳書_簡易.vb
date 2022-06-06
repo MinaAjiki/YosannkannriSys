@@ -30,17 +30,17 @@ Public Class 基礎代価内訳書_簡易
 	basis_costs_view.bsscst_quanity,
 	basis_costs_view.bsscst_costea,
 	basis_costs_view.bsscst_amount,
-	basis_costs_view.basiscst_bd_no,
-	basis_costs_view.basiscst_name,
-	basis_costs_view.basiscst_spec,
-	basis_costs_view.basiscst_unit,
-	basis_costs_view.basiscst_quanity,
-	basis_costs_view.basiscst_amount,
-	basis_costs_view.basiscst_costea,
-	basis_costs_view.basiscst_remarks
+basis_costs_view.bsscst_bd_no,
+	basis_costs_view.bsscst_bd_name,
+	basis_costs_view.bsscst_bd_spec,
+	basis_costs_view.bsscst_bd_unit,
+	basis_costs_view.bsscst_bd_amount,
+	basis_costs_view.bsscst_bd_costea,
+	basis_costs_view.bsscst_bd_remarks,
+    basis_costs_view.bsscst_bd_quanity
 FROM  basis_costs_view
 WHERE ((basis_costs_view.year) =" & Year & ") 
-ORDER BY basis_costs_view.bsscst_no,basis_costs_view.basiscst_bd_no;"
+ORDER BY basis_costs_view.bsscst_no,basis_costs_view.bsscst_bd_no;"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name
 
