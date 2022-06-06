@@ -31,8 +31,14 @@ Public Class 作成代価選択
             Dim ClassCode As Integer = 0
             If 明細書入力.Visible = True Then
                 ClassCode = 11
-            ElseIf ホーム.BeforeForm = "代価一覧" Or ホーム.BeforeForm = "代価内訳" Then
-                ClassCode = 12
+            ElseIf ホーム.BeforeForm = "代価一覧" Then
+                If 代価一覧.CostClassName = "基礎代価" Then
+                    ClassCode = 11
+                ElseIf 代価一覧.CostClasscode >= 12 Then
+                    ClassCode = 代価一覧.CostClassCode
+                End If
+            ElseIf ホーム.BeforeForm = "代価内訳" Then
+                ClassCode = 代価内訳.ClassCode
             Else
 
                 'Dim FormCount As Integer = ホーム.ProjectCostForm.Count
@@ -51,6 +57,9 @@ Public Class 作成代価選択
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))
             End While
             CostClassReader.Close()
+            'If ClassCode = 11 Then
+            '    CostsList.Items.Add("基礎代価")
+            'End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -157,6 +166,7 @@ Public Class 作成代価選択
 
     Private Sub CostsList_DoubleClick(sender As Object, e As EventArgs) Handles CostsList.DoubleClick
         Try
+            '選択したコピー先代価コードを取得
             ホーム.Sql.Parameters.Clear()
             ホーム.Sql.CommandText = "SELECT cstclss_code FROM cost_classes WHERE cstclss_name=@cstclssname"
             ホーム.Sql.Parameters.Add(New SqlParameter("@cstclssname", SqlDbType.NVarChar))
@@ -177,25 +187,38 @@ Public Class 作成代価選択
                 CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
                 ホーム.ProjectCostForm(0).Show()
                 明細書入力.Visible = False
-            ElseIf ホーム.BeforeForm = "代価一覧" Then
-                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
-                'ホーム.ProjectCostForm.Add(New 代価一覧)
-                'ホーム.ProjectCostForm(FormCount).TopLevel = False
-                'ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
-                'ホーム.ProjectCostSelectRow.Add(SelectRow)
-                'ホーム.ProjectCostID.Add(0)
-                'ホーム.PrjctCstClassCode.Add(ClassCode)
-                'ホーム.PrjctCstList.Add(CopyList)
-                CopyClassCode = 代価一覧.CostClassCode
+            ElseIf ホーム.BeforeForm = "代価一覧" Then
+
+                If 代価一覧.CostClassCode = 11 Then
+                    ホーム.BeforeForm = "基礎代価一覧"
+                ElseIf 代価一覧.CostClassCode > 11 Then
+                    ホーム.BeforeForm = "工事代価一覧"
+                End If
+                代価内訳.ClassCode = 代価一覧.CostClassCode
                 CopyCostID = 代価一覧.ProjectCostList(SelectRow, 1)
-                代価内訳.ClassCode = ClassCode
-                'ホーム.ProjectCostForm(FormCount).Show()
-                'ホーム.ProjectCostForm(FormCount - 1).Visible = False
+                代価内訳.CostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                CopyClassCode = ClassCode
+                代価一覧.CostClassName = CostsList.Text
                 代価内訳.Show()
 
                 代価一覧.Visible = False
 
+            ElseIf ホーム.BeforeForm = "代価内訳" Then
+                If 代価一覧.CostClassCode = 11 Then
+                    ホーム.BeforeForm = "基礎代価一覧"
+                ElseIf 代価一覧.CostClassCode > 11 Then
+                    ホーム.BeforeForm = "工事代価一覧"
+                End If
+                Dim DaikaForm As New 代価内訳
+                DaikaForm.ClassCode = 代価一覧.CostClassCode
+                DaikaForm.CostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                CopyCostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                CopyClassCode = ClassCode
+                代価一覧.CostClassName = CostsList.Text
+
+                DaikaForm.Show()
+                代価内訳.Close()
             Else
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 

@@ -161,6 +161,33 @@ Public Class マスタ一覧
                     datacount += 1
                 End While
                 Stamptaxreader.Close()
+            ElseIf ClickButton = "Circulator" Then
+                YearLabel.Visible = False
+                SelectYear.Visible = False
+                TableName.Text = "回覧マスタ"
+                MasterContentsList.Clear(ClearFlags.Content)
+                MasterContentsList(0, 1) = "フェーズ名"
+                MasterContentsList(0, 2) = "役職名"
+                MasterContentsList.Cols(2).StyleNew.DataType = GetType(String)
+                MasterContentsList(0, 6) = "変更"
+                MasterContentsList.Cols(1).Width = 200
+                MasterContentsList.Cols(2).Width = 200
+                MasterContentsList.Cols(3).Width = 0
+                MasterContentsList.Cols(4).Width = 0
+                MasterContentsList.Cols(5).Width = 0
+                MasterContentsList.Rows.Count = 18
+
+                ホーム.SystemMdf.Parameters.Clear()
+                ホーム.SystemMdf.CommandText = "SELECT * FROM controldata WHERE class_code >=10"
+                Dim CircReader As SqlDataReader = ホーム.SystemMdf.ExecuteReader
+                Dim datacount As Integer = 1
+                While CircReader.Read
+                    MasterContentsList(datacount, 0) = CircReader.Item("class_code")
+                    MasterContentsList(datacount, 1) = CircReader.Item("explanation")
+                    MasterContentsList(datacount, 2) = CircReader.Item("contents")
+                    datacount += 1
+                End While
+                CircReader.Close()
             End If
             ホーム.Modified = "false"
 
@@ -646,6 +673,26 @@ Public Class マスタ一覧
                         ホーム.SystemSql.Parameters("@amount").Value = amount.Data
                         ホーム.SystemSql.ExecuteNonQuery()
                     End If
+                Next
+                Me.Close()
+                MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")
+
+            ElseIf ClickButton = "Circulator" Then
+                For Circuloop As Integer = 1 To RowIndex - 1
+                    Dim code As CellRange = MasterContentsList.GetCellRange(Circuloop, 0)
+                    Dim contents As CellRange = MasterContentsList.GetCellRange(Circuloop, 2)
+                    ホーム.SystemMdf.CommandText = ""
+                    ホーム.SystemMdf.Parameters.Clear()
+                    ホーム.SystemMdf.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@class_code"
+                    ホーム.SystemMdf.Parameters.Add(New SqlParameter("@class_code", SqlDbType.Int))
+                    ホーム.SystemMdf.Parameters.Add(New SqlParameter("@contents", SqlDbType.NVarChar))
+                    ホーム.SystemMdf.Parameters("@class_code").Value = code.Data
+                    If contents.Data = Nothing Then
+                        ホーム.SystemMdf.Parameters("@contents").Value = ""
+                    Else
+                        ホーム.SystemMdf.Parameters("@contents").Value = contents.Data
+                    End If
+                    ホーム.SystemMdf.ExecuteNonQuery()
                 Next
                 Me.Close()
                 MsgBox("登録完了", MsgBoxStyle.OkOnly, "マスタ登録")

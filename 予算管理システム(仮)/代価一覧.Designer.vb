@@ -28,6 +28,7 @@ Partial Class 代価一覧
         Me.SystemTheme = New C1.Win.C1Themes.C1ThemeController()
         Me.FormContainer = New C1.Win.C1SplitContainer.C1SplitContainer()
         Me.MainPanel = New C1.Win.C1SplitContainer.C1SplitterPanel()
+        Me.YearList = New C1.Win.C1Input.C1ComboBox()
         Me.CostList = New C1.Win.C1Input.C1ComboBox()
         Me.SearchName = New C1.Win.C1FlexGrid.C1FlexGridSearchPanel()
         Me.NameLabel = New C1.Win.C1Input.C1TextBox()
@@ -51,6 +52,7 @@ Partial Class 代価一覧
         CType(Me.FormContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormContainer.SuspendLayout()
         Me.MainPanel.SuspendLayout()
+        CType(Me.YearList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CostList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProjectCostList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +119,7 @@ Partial Class 代価一覧
         'MainPanel
         '
         Me.MainPanel.BackColor = System.Drawing.Color.Transparent
+        Me.MainPanel.Controls.Add(Me.YearList)
         Me.MainPanel.Controls.Add(Me.CostList)
         Me.MainPanel.Controls.Add(Me.SearchName)
         Me.MainPanel.Controls.Add(Me.NameLabel)
@@ -133,6 +136,27 @@ Partial Class 代価一覧
         Me.MainPanel.Text = "パネル1"
         Me.MainPanel.Width = 949
         '
+        'YearList
+        '
+        Me.YearList.AllowSpinLoop = False
+        Me.YearList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.YearList.AutoSize = False
+        Me.YearList.BackColor = System.Drawing.Color.White
+        Me.YearList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.YearList.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.YearList.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.YearList.GapHeight = 0
+        Me.YearList.ImagePadding = New System.Windows.Forms.Padding(0)
+        Me.YearList.Location = New System.Drawing.Point(146, 52)
+        Me.YearList.Name = "YearList"
+        Me.YearList.Size = New System.Drawing.Size(111, 23)
+        Me.YearList.Style.Font = New System.Drawing.Font("メイリオ", 9.0!)
+        Me.YearList.TabIndex = 66
+        Me.YearList.Tag = Nothing
+        Me.SystemTheme.SetTheme(Me.YearList, "予算管理テーマ")
+        Me.YearList.Visible = False
+        Me.YearList.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
+        '
         'CostList
         '
         Me.CostList.AllowSpinLoop = False
@@ -141,6 +165,7 @@ Partial Class 代価一覧
         Me.CostList.BackColor = System.Drawing.Color.White
         Me.CostList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.CostList.DisabledForeColor = System.Drawing.SystemColors.GrayText
+        Me.CostList.Enabled = False
         Me.CostList.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.CostList.GapHeight = 0
         Me.CostList.ImagePadding = New System.Windows.Forms.Padding(0)
@@ -196,7 +221,6 @@ Partial Class 代価一覧
         'ProjectCostList
         '
         Me.ProjectCostList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
-        Me.ProjectCostList.AllowEditing = False
         Me.ProjectCostList.AllowFiltering = True
         Me.ProjectCostList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.ProjectCostList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -204,6 +228,8 @@ Partial Class 代価一覧
         Me.ProjectCostList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.ProjectCostList.ColumnInfo = resources.GetString("ProjectCostList.ColumnInfo")
         Me.ProjectCostList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.ProjectCostList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
+        Me.ProjectCostList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.ProjectCostList.Location = New System.Drawing.Point(29, 78)
         Me.ProjectCostList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.ProjectCostList.Name = "ProjectCostList"
@@ -262,7 +288,7 @@ Partial Class 代価一覧
         Me.CostModify.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.CostModify.ImageIndex = 12
         Me.CostModify.ImageList = Me.ButtonImageList
-        Me.CostModify.Location = New System.Drawing.Point(111, 6)
+        Me.CostModify.Location = New System.Drawing.Point(214, 6)
         Me.CostModify.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CostModify.Name = "CostModify"
         Me.CostModify.Size = New System.Drawing.Size(100, 30)
@@ -270,6 +296,7 @@ Partial Class 代価一覧
         Me.CostModify.Text = "　代価修正"
         Me.CostModify.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CostModify.UseVisualStyleBackColor = True
+        Me.CostModify.Visible = False
         '
         'CostCopy
         '
@@ -281,7 +308,7 @@ Partial Class 代価一覧
         Me.CostCopy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.CostCopy.ImageIndex = 15
         Me.CostCopy.ImageList = Me.ButtonImageList
-        Me.CostCopy.Location = New System.Drawing.Point(214, 6)
+        Me.CostCopy.Location = New System.Drawing.Point(111, 6)
         Me.CostCopy.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CostCopy.Name = "CostCopy"
         Me.CostCopy.Size = New System.Drawing.Size(100, 30)
@@ -399,6 +426,7 @@ Partial Class 代価一覧
         Me.FormContainer.ResumeLayout(False)
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
+        CType(Me.YearList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CostList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NameLabel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProjectCostList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -431,4 +459,5 @@ Partial Class 代価一覧
     Friend WithEvents CostModifyMenu As ToolStripMenuItem
     Friend WithEvents CostCopyMenu As ToolStripMenuItem
     Friend WithEvents CostCreation As Button
+    Friend WithEvents YearList As C1.Win.C1Input.C1ComboBox
 End Class

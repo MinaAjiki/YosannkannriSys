@@ -18,7 +18,7 @@ Public Class 外注計画報告書
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"
         ReportData.DataProvider = DataProvider.OLEDB
-        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=D:\DD0000テスト工事.mdf;Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token="""
+        ReportData.ConnectionString = "Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=" & ホーム.UserDataPath & ホーム.UserDataName & ";Data Source=(localdb)\MSSQLLocalDB;Initial File Name="";Server SPN="";Authentication="";Access Token="""
         ReportData.RecordSource = "SELECT * FROM  bdgt_smmry_report WHERE ((bdgt_smmry_report.budget_no) = " & ホーム.BudgetNo & ");"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name
@@ -122,6 +122,11 @@ Public Class 外注計画報告書
         '業者数取得
         ホーム.Sql.CommandText = "SELECT COUNT(outsrcr_id) FROM outsourcers"
         Dim VendorCount As Integer = ホーム.Sql.ExecuteScalar
+        If VendorCount = 0 Then
+            MsgBox("協力会社が登録されていません", MsgBoxStyle.Exclamation, "外注計画報告書")
+            進行状況.Close()
+            Exit Function
+        End If
 
 
         '業者IDリスト作成

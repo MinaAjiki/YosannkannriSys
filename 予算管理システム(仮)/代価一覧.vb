@@ -14,7 +14,7 @@ Public Class 代価一覧
                 CostClassCode = 11
                 ホーム.SystemSql.Parameters.Clear()
                 ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & CostClassCode
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode
                 Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
 
                 If BasicCostsCount > 21 Then
@@ -31,7 +31,8 @@ Public Class 代価一覧
                 Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
 
                 Dim RowCount As Integer = 0
-                ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & " ORDER BY bsscst_no ASC"
+
+                ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0 ORDER BY bsscst_no ASC"
                 Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
                 While BasicCostsReader.Read
                     RowCount += 1
@@ -51,6 +52,30 @@ Public Class 代価一覧
 
                 End While
                 BasicCostsReader.Close()
+
+                Dim dt2 As DataTable
+                dt2 = New DataTable
+                dt2.Columns.Add("year", GetType(System.Int32))
+                Dim years As Int32
+
+                ホーム.SystemSql.Parameters.Clear()
+                YearList.Items.Clear()
+                ホーム.SystemSql.CommandText = "SELECT DISTINCT year FROM basis_costs ORDER BY year ASC"
+                Dim YearReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                While YearReader.Read
+                    years = YearReader("year")
+                    dt2.Rows.Add(years)
+                End While
+                YearReader.Close()
+
+                YearList.TextDetached = True
+                YearList.ItemsDataSource = dt2.DefaultView
+                YearList.ItemsDisplayMember = "year"
+                YearList.ItemsValueMember = "year"
+                YearList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                YearList.Visible = True
+                YearList.Text = Year
+                ProjectCostList.Cols(2).AllowEditing = True
 
             ElseIf CostClassName = "工事代価" Then
 
@@ -81,6 +106,8 @@ Public Class 代価一覧
                 'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
                 CostList.SelectedIndex = -1
                 CostList.Text = "工事代価を選択"
+
+                ProjectCostList.Cols(2).AllowEditing = True
 
             Else
 
@@ -611,11 +638,70 @@ Public Class 代価一覧
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        If CostList.SelectedIndex = -1 Then
-            MsgBox("代価表を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
-            Exit Sub
-        End If
-        Me.Close()
+        Try
+            If CostList.SelectedIndex = -1 And CostClassName = "工事代価" Then
+                MsgBox("代価表を選択して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                Exit Sub
+            End If
+
+            If CostClassCode = 11 Then
+
+                ホーム.SystemSql.CommandText = ""
+                ホーム.SystemSql.Parameters.Clear()
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+                ホーム.SystemSql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
+                For DeleteBasic As Integer = 1 To BasicCostsCount
+                    If ProjectCostList(DeleteBasic, 2) = True Then
+                        ホーム.SystemSql.CommandText = "UPDATE basis_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                        ホーム.SystemSql.ExecuteNonQuery()
+                        'ホーム.SystemSql.CommandText = "UPDATE basis_cost_breakdown SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                        'ホーム.SystemSql.ExecuteNonQuery()
+                    End If
+                Next
+            ElseIf CostClassCode >= 12 Then
+                Dim RowCount As Integer = ProjectCostList.Rows.Count - 1
+                ホーム.Transaction = ホーム.Connection.BeginTransaction
+                ホーム.Sql.Transaction = ホーム.Transaction
+                For prjctloop As Integer = 1 To RowCount
+                    Dim prjctID As CellRange = ProjectCostList.GetCellRange(prjctloop, 1)
+                    If ProjectCostList(prjctloop, 2) = True Then
+                        If prjctID.Data <> Nothing Then
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "DELETE FROM project_costs WHERE prjctcst_id = " & prjctID.Data & "AND budget_no =" & ホーム.BudgetNo
+                            ホーム.Sql.ExecuteNonQuery()
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_id = " & prjctID.Data
+                            ホーム.Sql.ExecuteNonQuery()
+                        End If
+                    End If
+                Next
+                ホーム.Transaction.Commit()
+                'ホーム.Sql.CommandText = ""
+                'ホーム.Sql.Parameters.Clear()
+                'ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                'Dim BasicCostsCount As Integer = ホーム.Sql.ExecuteScalar
+                'ホーム.Sql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
+                'For DeleteBasic As Integer = 1 To BasicCostsCount
+                '    If ProjectCostList(DeleteBasic, 2) = True Then
+                '        ホーム.Sql.CommandText = "UPDATE project_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
+                '        ホーム.Sql.ExecuteNonQuery()
+                '    End If
+                'Next
+            End If
+
+            MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
+            Me.Close()
+
+        Catch ex As Exception
+            ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 
     Private Sub CostCreation_Click(sender As Object, e As EventArgs) Handles CostCreation.Click
@@ -699,5 +785,57 @@ Public Class 代価一覧
             エラー.Show()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub YearList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles YearList.SelectedIndexChanged
+        ProjectCostList.Clear(ClearFlags.Content)
+        ProjectCostList(0, 2) = "削除"
+        ProjectCostList(0, 3) = "No"
+        ProjectCostList(0, 4) = "名称"
+        ProjectCostList(0, 5) = "規格"
+        ProjectCostList(0, 6) = "単位"
+        ProjectCostList(0, 7) = "数量"
+        ProjectCostList(0, 8) = "単価"
+        ProjectCostList(0, 9) = "代価計"
+        ホーム.SystemSql.Parameters.Clear()
+        ホーム.SystemSql.CommandText = ""
+        ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND year = " & YearList.Text & " AND cstclss_code=" & CostClassCode
+        Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+
+        If BasicCostsCount > 21 Then
+            ProjectCostList.Rows.Count = BasicCostsCount + 1
+        Else
+            ProjectCostList.Rows.Count = 22
+        End If
+
+        CostList.Text = CostClassName
+
+        ProjectCostList.Rows.Count = BasicCostsCount + 1
+
+        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+        Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
+
+        Dim RowCount As Integer = 0
+
+        ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & YearList.Text & "AND deleted = 0 ORDER BY bsscst_no ASC"
+        Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+        While BasicCostsReader.Read
+            RowCount += 1
+            ProjectCostList(RowCount, 1) = BasicCostsReader.Item("bsscst_id")
+            ProjectCostList(RowCount, 3) = BasicCostsReader.Item("bsscst_no")
+            ProjectCostList(RowCount, 4) = BasicCostsReader.Item("bsscst_name")
+            ProjectCostList(RowCount, 5) = BasicCostsReader.Item("bsscst_spec")
+            ProjectCostList(RowCount, 6) = BasicCostsReader.Item("bsscst_unit")
+            ProjectCostList(RowCount, 7) = BasicCostsReader.Item("bsscst_quanity")
+            ProjectCostList(RowCount, 8) = BasicCostsReader.Item("bsscst_costea")
+            ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("bsscst_costea") * BasicCostsReader.Item("bsscst_quanity"))
+            ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
+            ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
+            ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
+            ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
+            ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
+
+        End While
+        BasicCostsReader.Close()
     End Sub
 End Class
