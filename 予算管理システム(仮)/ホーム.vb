@@ -41,7 +41,7 @@ Public Class ホーム
     Public ReportName As String
     Public BeforeForm As String
     Public ItemSelect As String
-
+    Public SelectNodeList As New List(Of C1.Win.TreeView.C1TreeNode)
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -387,9 +387,6 @@ Public Class ホーム
             Sql.Parameters.Clear()
             Sql.CommandText = ""
 
-            Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters]"
-            Sql.ExecuteNonQuery()
-
             Sql.CommandText = "INSERT INTO cost_classes SELECT * FROM [SVACD001].[PMS].[dbo].[cost_classes]"
             Sql.ExecuteNonQuery()
 
@@ -414,7 +411,7 @@ Public Class ホーム
             Sql.CommandText = "UPDATE #expense_bd SET expns_bd_quanity=0"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea,expns_bd_quanity FROM #expense_bd"
+            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
             Sql.ExecuteNonQuery()
 
             Transaction.Commit()
@@ -690,10 +687,6 @@ Public Class ホーム
     Private Sub 代価内訳_Click(sender As Object, e As ClickEventArgs) Handles 代価内訳.Click
         ReportName = "代価内訳書_簡易"
         印刷代価選択.Show()
-    End Sub
-
-    Private Sub 注文書_Click(sender As Object, e As ClickEventArgs) Handles 注文書.Click
-
     End Sub
 
     Private Sub 注文書_金込_Click(sender As Object, e As ClickEventArgs) Handles 注文書_金込.Click
@@ -1098,49 +1091,51 @@ Public Class ホーム
 
                     Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
 
-                    Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND cstclss_code > 11 ORDER BY dtl_no ASC"
-                    Dim DetailsReader As SqlDataReader = Sql.ExecuteReader
-                    While DetailsReader.Read
+                    If Not scode = 841 Then
+                        Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND cstclss_code > 11 ORDER BY dtl_no ASC"
+                        Dim DetailsReader As SqlDataReader = Sql.ExecuteReader
+                        While DetailsReader.Read
 
-                        Dim remarks As String = DetailsReader.Item("dtl_remarks")
-                        remarks = remarks.Remove(0, 1)
-                        remarks = remarks.Remove(remarks.Length - 1, 1)
+                            Dim remarks As String = DetailsReader.Item("dtl_remarks")
+                            remarks = remarks.Remove(0, 1)
+                            remarks = remarks.Remove(remarks.Length - 1, 1)
 
-                        e.Node.Nodes(nodeindex).Nodes.Add(DetailsReader.Item("dtl_no") & " " & DetailsReader.Item("dtl_name") & "(" & remarks & ")")
+                            e.Node.Nodes(nodeindex).Nodes.Add(DetailsReader.Item("dtl_no") & " " & DetailsReader.Item("dtl_name") & "(" & remarks & ")")
 
-                    End While
-                    DetailsReader.Close()
+                        End While
+                        DetailsReader.Close()
+                    End If
 
                 ElseIf e.Node.Level = 1 Then
 
-                    Dim parentvalue As String = e.Node.GetValue
-                    Dim scode As Integer = Integer.Parse(parentvalue.Substring(0, 3))
-                    Dim spaceindex As Integer = nodevalue.IndexOf(" ")
-                    Dim dtlno As Integer = Integer.Parse(nodevalue.Substring(0, spaceindex))
+                        Dim parentvalue As String = e.Node.GetValue
+                        Dim scode As Integer = Integer.Parse(parentvalue.Substring(0, 3))
+                        Dim spaceindex As Integer = nodevalue.IndexOf(" ")
+                        Dim dtlno As Integer = Integer.Parse(nodevalue.Substring(0, spaceindex))
 
-                    Sql.CommandText = "SELECT cstmstr_id FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND dtl_no=" & dtlno
-                    Dim cstmstrid As Integer = Sql.ExecuteScalar
+                        Sql.CommandText = "SELECT cstmstr_id FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND dtl_no=" & dtlno
+                        Dim cstmstrid As Integer = Sql.ExecuteScalar
 
-                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
-                    Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
-                    While PrjctCstBDReader.Read
+                        Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
+                        Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
+                        While PrjctCstBDReader.Read
 
-                        Dim remarks As String = PrjctCstBDReader.Item("prjctcst_bd_remarks")
-                        remarks = remarks.Remove(0, 1)
-                        remarks = remarks.Remove(remarks.Length - 1, 1)
+                            Dim remarks As String = PrjctCstBDReader.Item("prjctcst_bd_remarks")
+                            remarks = remarks.Remove(0, 1)
+                            remarks = remarks.Remove(remarks.Length - 1, 1)
 
-                        e.Node.Nodes(nodeindex).Nodes.Add(PrjctCstBDReader.Item("prjctcst_bd_no") & " " & PrjctCstBDReader.Item("prjctcst_bd_name") & "(" & remarks & ")")
+                            e.Node.Nodes(nodeindex).Nodes.Add(PrjctCstBDReader.Item("prjctcst_bd_no") & " " & PrjctCstBDReader.Item("prjctcst_bd_name") & "(" & remarks & ")")
 
-                    End While
-                    PrjctCstBDReader.Close()
+                        End While
+                        PrjctCstBDReader.Close()
 
-                ElseIf e.Node.Level >= 2 Then
+                    ElseIf e.Node.Level >= 2 Then
 
-                    Sql.CommandText = ""
+                        Sql.CommandText = ""
                     Sql.Parameters.Clear()
 
-                    Dim index As Integer = nodevalue.IndexOf("(")
-                    Dim cost As String = nodevalue.Substring(index + 1, 1)
+                Dim index As Integer = nodevalue.LastIndexOf("(")
+                Dim cost As String = nodevalue.Substring(index + 1, 1)
                     Dim costno As Integer = Integer.Parse(nodevalue.Substring(index + 3, 5))
 
                     Dim clssname As String = "工事代価" & cost
@@ -1179,10 +1174,10 @@ Public Class ホーム
             Next
 
         Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ErrorMessage = ex.Message
+        StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
 
@@ -1268,22 +1263,28 @@ Public Class ホーム
                 End If
 
 
-                Dim node As C1.Win.TreeView.C1TreeNode
+                lworktypecode = 0
+                lworktypename = 0
+                sworktypecode = 0
+                sworktypename = 0
 
-                node = HomeTreeView.SelectedNodes(0)
 
-                Dim nodevalue As String = node.GetValue
-                Dim level As Integer = node.Level
+                Dim SelectNode As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
+
+                Dim nodevalue As String = SelectNode.GetValue
+                Dim level As Integer = SelectNode.Level
 
                 If IsNothing(nodevalue) = False Then
+
+
                     If level = 0 Then
                         右クリックメニュー.Visible = False
 
-
+                        SelectNodeList.Add(SelectNode)
                         Dim length As Integer = nodevalue.Length
 
                         Dim lcode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
-                        Dim lname As String = nodevalue.Substring(4, length - 5)
+                        Dim lname As String = nodevalue.Remove(0, 4)
 
                         lworktypecode = lcode
                         lworktypename = lname
@@ -1300,21 +1301,33 @@ Public Class ホーム
                         Dim length As Integer = nodevalue.Length
 
                         Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
-                        Dim sname As String = nodevalue.Substring(4, length - 5)
+                        Dim sname As String = nodevalue.Remove(0, 4)
+                        Dim parentnode As C1.Win.TreeView.C1TreeNode = SelectNode.ParentCollection.Parent
+                        Dim parentvalue As String = parentnode.GetValue
+                        lworktypecode = Integer.Parse(parentvalue.Substring(0, 3))
+                        lworktypename = parentvalue.Remove(0, 4)
+                        SelectNodeList.Add(parentnode)
+                        SelectNodeList.Add(SelectNode)
 
                         sworktypecode = scode
                         sworktypename = sname
 
-                        明細書入力.TopLevel = False
-                        FormPanel.Controls.Add(明細書入力)
-                        明細書入力.Show()
+                        If Not scode = 841 Then
+                            明細書入力.TopLevel = False
+                            FormPanel.Controls.Add(明細書入力)
+                            明細書入力.Show()
+                        Else
+                            現場経費作成.TopLevel = False
+                            FormPanel.Controls.Add(現場経費作成)
+                            現場経費作成.Show()
+                        End If
 
                     Else
-
+                        SelectNodeList.Add(SelectNode)
                         右クリックメニュー.Visible = True
 
                         Dim index As Integer = nodevalue.Length - 1
-                        Dim subindex As Integer = nodevalue.IndexOf("(")
+                        Dim subindex As Integer = nodevalue.LastIndexOf("(")
                         Dim cost As String = nodevalue.Substring(subindex + 1, 1)
                         Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 5, 5))
 
@@ -1351,10 +1364,6 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub 材料表インポート_CommandLinkAdded(sender As Object, e As CommandLinkEventArgs) Handles 材料表インポート.CommandLinkAdded
-
     End Sub
 
     Private Sub 閉じる_Click(sender As Object, e As ClickEventArgs) Handles 閉じる.Click

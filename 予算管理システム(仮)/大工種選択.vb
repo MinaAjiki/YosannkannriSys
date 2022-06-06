@@ -136,6 +136,10 @@ Public Class 大工種選択
             小工種選択.TopLevel = False
             ホーム.FormPanel.Controls.Add(小工種選択)
             小工種選択.Show()
+
+            ホーム.HomeTreeView.Nodes(ClickRow - 1).Expand()
+            ホーム.SelectNodeList.Add(ホーム.HomeTreeView.Nodes(ClickRow - 1))
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

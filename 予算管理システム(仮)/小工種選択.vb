@@ -148,6 +148,13 @@ Public Class 小工種選択
                 明細書入力.TopLevel = False
                 ホーム.FormPanel.Controls.Add(明細書入力)
                 明細書入力.Show()
+
+                Dim NodeExpand As String = ""
+
+                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(0), S_WorkTypesList(ClickRow, 1) & " " & S_WorkTypesList(ClickRow, 2))
+                NodeExpand = NodeExpandLoad.NodeExpand
+
             End If
 
 
@@ -166,5 +173,8 @@ Public Class 小工種選択
         大工種選択.TopLevel = False
         ホーム.FormPanel.Controls.Add(大工種選択)
         大工種選択.Show()
+
+        ホーム.SelectNodeList(0).Collapse()
+        ホーム.SelectNodeList.RemoveAt(0)
     End Sub
 End Class

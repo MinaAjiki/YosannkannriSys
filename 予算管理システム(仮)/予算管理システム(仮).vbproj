@@ -168,6 +168,8 @@
     <Compile Include="Class\Recalculation.vb" />
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Class\Reference_Details.vb" />
+    <Compile Include="Class\TreeNode_ParentExpand.vb" />
+    <Compile Include="Class\TreeNode_ChildExpand.vb" />
     <Compile Include="Report\Export明細書.vb" />
     <Compile Include="Report\Export実行予算.vb" />
     <Compile Include="Report\見積代価内訳_金抜き.vb" />
