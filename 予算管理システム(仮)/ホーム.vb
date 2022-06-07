@@ -7,6 +7,8 @@ Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Imports System.Data.Odbc
 Imports C1.Win.C1FlexGrid
+Imports C1.Framework
+Imports C1.Win.TreeView
 
 Public Class ホーム
 
@@ -416,10 +418,7 @@ Public Class ホーム
             Sql.CommandText = "SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea INTO #expense_bd FROM [SVACD001].[PMS].[dbo].[expense_breakdowns]"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "ALTER TABLE #expense_bd ADD expns_bd_quanity decimal(15,2)"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "UPDATE #expense_bd SET expns_bd_quanity=0"
+            Sql.CommandText = "ALTER TABLE #expense_bd ADD expns_bd_quanity decimal(15,2)  DEFAULT ((0)) NOT NULL"
             Sql.ExecuteNonQuery()
 
             Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
@@ -449,6 +448,11 @@ Public Class ホーム
             開く.Enabled = True
             材料表インポート.Enabled = True
             参照作成command.Enabled = True
+            予算内訳登録.Enabled = False
+            出力.Enabled = False
+            見積.Enabled = False
+            外注管理.Enabled = False
+            参照作成command.Enabled = False
 
             SystemMdf.Parameters.Clear()
 
@@ -1095,7 +1099,7 @@ Public Class ホーム
             Dim childcount As Integer = e.Node.Nodes.Count
 
             For nodeindex As Integer = 0 To childcount - 1
-                Dim childnode As C1.Win.TreeView.C1TreeNode = e.Node.Nodes(nodeindex)
+                Dim childnode As C1TreeNode = e.Node.Nodes(nodeindex)
                 Dim nodevalue As String = childnode.GetValue
 
                 If e.Node.Level = 0 Then
@@ -1119,34 +1123,34 @@ Public Class ホーム
 
                 ElseIf e.Node.Level = 1 Then
 
-                        Dim parentvalue As String = e.Node.GetValue
-                        Dim scode As Integer = Integer.Parse(parentvalue.Substring(0, 3))
-                        Dim spaceindex As Integer = nodevalue.IndexOf(" ")
-                        Dim dtlno As Integer = Integer.Parse(nodevalue.Substring(0, spaceindex))
+                    Dim parentvalue As String = e.Node.GetValue
+                    Dim scode As Integer = Integer.Parse(parentvalue.Substring(0, 3))
+                    Dim spaceindex As Integer = nodevalue.IndexOf(" ")
+                    Dim dtlno As Integer = Integer.Parse(nodevalue.Substring(0, spaceindex))
 
-                        Sql.CommandText = "SELECT cstmstr_id FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND dtl_no=" & dtlno
-                        Dim cstmstrid As Integer = Sql.ExecuteScalar
+                    Sql.CommandText = "SELECT cstmstr_id FROM details WHERE budget_no=" & BudgetNo & "  AND s_worktype_code=" & scode & " AND dtl_no=" & dtlno
+                    Dim cstmstrid As Integer = Sql.ExecuteScalar
 
-                        Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
-                        Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
-                        While PrjctCstBDReader.Read
+                    Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & cstmstrid & " AND cstclss_code > 11 ORDER BY prjctcst_bd_no ASC"
+                    Dim PrjctCstBDReader As SqlDataReader = Sql.ExecuteReader
+                    While PrjctCstBDReader.Read
 
-                            Dim remarks As String = PrjctCstBDReader.Item("prjctcst_bd_remarks")
-                            remarks = remarks.Remove(0, 1)
-                            remarks = remarks.Remove(remarks.Length - 1, 1)
+                        Dim remarks As String = PrjctCstBDReader.Item("prjctcst_bd_remarks")
+                        remarks = remarks.Remove(0, 1)
+                        remarks = remarks.Remove(remarks.Length - 1, 1)
 
-                            e.Node.Nodes(nodeindex).Nodes.Add(PrjctCstBDReader.Item("prjctcst_bd_no") & " " & PrjctCstBDReader.Item("prjctcst_bd_name") & "(" & remarks & ")")
+                        e.Node.Nodes(nodeindex).Nodes.Add(PrjctCstBDReader.Item("prjctcst_bd_no") & " " & PrjctCstBDReader.Item("prjctcst_bd_name") & "(" & remarks & ")")
 
-                        End While
-                        PrjctCstBDReader.Close()
+                    End While
+                    PrjctCstBDReader.Close()
 
-                    ElseIf e.Node.Level >= 2 Then
+                ElseIf e.Node.Level >= 2 Then
 
-                        Sql.CommandText = ""
+                    Sql.CommandText = ""
                     Sql.Parameters.Clear()
 
-                Dim index As Integer = nodevalue.LastIndexOf("(")
-                Dim cost As String = nodevalue.Substring(index + 1, 1)
+                    Dim index As Integer = nodevalue.LastIndexOf("(")
+                    Dim cost As String = nodevalue.Substring(index + 1, 1)
                     Dim costno As Integer = Integer.Parse(nodevalue.Substring(index + 3, 5))
 
                     Dim clssname As String = "工事代価" & cost
@@ -1185,10 +1189,10 @@ Public Class ホーム
             Next
 
         Catch ex As Exception
-        ErrorMessage = ex.Message
-        StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 
@@ -1197,7 +1201,7 @@ Public Class ホーム
 
         Try
 
-            Dim node As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
+            Dim node As C1TreeNode = HomeTreeView.SelectedNodes(0)
 
             Dim nodevalue As String = node.GetValue
             Dim level As Integer = node.Level
@@ -1249,43 +1253,102 @@ Public Class ホーム
             Exit Sub
         End Try
     End Sub
-
-    Private Sub HomeTreeView_DoubleClick(sender As Object, e As EventArgs) Handles HomeTreeView.DoubleClick
+    Private Sub 閉じる_Click(sender As Object, e As ClickEventArgs) Handles 閉じる.Click
         Try
-            Cursor.Current = Cursors.WaitCursor
-            If HomeTreeView.SelectedNodes.Count >= 1 Then
+            If FormPanel.Controls.Count > 0 Then
+                Dim FormClose As String = ""
 
-                If FormPanel.Controls.Count > 0 Then
-                    Dim FormClose As String = ""
+                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                FormClose = FormCloseLoad.FormCheck
+            End If
 
-                    Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
-                    FormClose = FormCloseLoad.FormCheck
-                End If
+            Me.Close()
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 
-                Dim formcount As Integer = ProjectCostForm.Count
-                If formcount > 0 Then
-                    For formloop As Integer = 0 To formcount - 1
-                        ProjectCostForm.RemoveAt(formloop)
-                        ProjectCostID.RemoveAt(formloop)
-                        ProjectCostSelectRow.RemoveAt(formloop)
-                        PrjctCstClassCode.RemoveAt(formloop)
-                        PrjctCstList.RemoveAt(formloop)
-                    Next
-                End If
+    Private Sub HomeTreeView_Collapsed(sender As Object, e As C1.Win.TreeView.C1TreeViewEventArgs) Handles HomeTreeView.Collapsed
+        Try
+            Sql.Parameters.Clear()
+            Sql.CommandText = ""
+
+            Dim childcount As Integer = e.Node.Nodes.Count
+            For nodeindex As Integer = 0 To childcount - 1
+                Dim childnode As C1TreeNode = e.Node.Nodes(nodeindex)
+                childnode.Nodes.Clear()
+                childnode.Collapse()
+            Next
+
+        Catch ex As Exception
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub アップデート_Click(sender As Object, e As ClickEventArgs) Handles アップデート.Click
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        'メッセージを表示し、ユーザーの返答を判別する
+        If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
+            'メッセージに対し[はい]を選択した場合、アップデートする
+            AD.Update()
+            'メッセージを表示し、ユーザーの返答を判別する
+            If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.YesNo, "再起動の確認") = MsgBoxResult.Yes Then
+                'メッセージに対し[はい]を選択した場合、再起動する
+                Application.Restart()
+            End If
+        End If
+
+    End Sub
+
+    Private Sub バージョン情報_Click(sender As Object, e As ClickEventArgs) Handles バージョン情報.Click
+
+        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
+        Dim version As String = AD.CurrentVersion.ToString
+        MsgBox("Version " & version, MsgBoxStyle.OkOnly, "予算管理システム")
+    End Sub
+
+    Private Sub HomeTreeView_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles HomeTreeView.MouseDoubleClick
+        Try
+            Dim ht As Element = HomeTreeView.HitTest()
+            If (Not (ht) Is Nothing) Then
+                Dim SelectNode As C1TreeNode = HomeTreeView.GetNodeAtPoint(New Point(e.X, e.Y))
+
+                If IsNothing(SelectNode) = False Then
+                    Dim nodevalue As String = SelectNode.GetValue
+                    Dim level As Integer = SelectNode.Level
+
+                    Cursor.Current = Cursors.WaitCursor
 
 
-                lworktypecode = 0
-                lworktypename = 0
-                sworktypecode = 0
-                sworktypename = 0
+                    If FormPanel.Controls.Count > 0 Then
+                        Dim FormClose As String = ""
+
+                        Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
+                        FormClose = FormCloseLoad.FormCheck
+                    End If
+
+                    Dim formcount As Integer = ProjectCostForm.Count
+                    If formcount > 0 Then
+                        For formloop As Integer = 0 To formcount - 1
+                            ProjectCostForm.RemoveAt(formloop)
+                            ProjectCostID.RemoveAt(formloop)
+                            ProjectCostSelectRow.RemoveAt(formloop)
+                            PrjctCstClassCode.RemoveAt(formloop)
+                            PrjctCstList.RemoveAt(formloop)
+                        Next
+                    End If
 
 
-                Dim SelectNode As C1.Win.TreeView.C1TreeNode = HomeTreeView.SelectedNodes(0)
-
-                Dim nodevalue As String = SelectNode.GetValue
-                Dim level As Integer = SelectNode.Level
-
-                If IsNothing(nodevalue) = False Then
+                    lworktypecode = 0
+                    lworktypename = 0
+                    sworktypecode = 0
+                    sworktypename = 0
 
 
                     If level = 0 Then
@@ -1313,7 +1376,7 @@ Public Class ホーム
 
                         Dim scode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
                         Dim sname As String = nodevalue.Remove(0, 4)
-                        Dim parentnode As C1.Win.TreeView.C1TreeNode = SelectNode.ParentCollection.Parent
+                        Dim parentnode As C1TreeNode = SelectNode.ParentCollection.Parent
                         Dim parentvalue As String = parentnode.GetValue
                         lworktypecode = Integer.Parse(parentvalue.Substring(0, 3))
                         lworktypename = parentvalue.Remove(0, 4)
@@ -1368,72 +1431,11 @@ Public Class ホーム
                 End If
             End If
             Cursor.Current = Cursors.Default
-
         Catch ex As Exception
             ErrorMessage = ex.Message
             StackTrace = ex.StackTrace
             エラー.Show()
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub 閉じる_Click(sender As Object, e As ClickEventArgs) Handles 閉じる.Click
-        Try
-            If FormPanel.Controls.Count > 0 Then
-                Dim FormClose As String = ""
-
-                Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
-                FormClose = FormCloseLoad.FormCheck
-            End If
-
-            Me.Close()
-        Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
-    End Sub
-
-    Private Sub HomeTreeView_Collapsed(sender As Object, e As C1.Win.TreeView.C1TreeViewEventArgs) Handles HomeTreeView.Collapsed
-        Try
-            Sql.Parameters.Clear()
-            Sql.CommandText = ""
-
-            Dim childcount As Integer = e.Node.Nodes.Count
-            For nodeindex As Integer = 0 To childcount - 1
-                Dim childnode As C1.Win.TreeView.C1TreeNode = e.Node.Nodes(nodeindex)
-                childnode.Nodes.Clear()
-                childnode.Collapse()
-            Next
-
-        Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
-    End Sub
-
-    Private Sub アップデート_Click(sender As Object, e As ClickEventArgs) Handles アップデート.Click
-        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
-        'メッセージを表示し、ユーザーの返答を判別する
-        If MsgBox("予算管理システムの最新バージョンが利用できます。更新しますか?", MsgBoxStyle.YesNo, "更新の確認") = MsgBoxResult.Yes Then
-            'メッセージに対し[はい]を選択した場合、アップデートする
-            AD.Update()
-            'メッセージを表示し、ユーザーの返答を判別する
-            If MsgBox("更新が完了しました。" & vbCrLf & "予算管理システムを再起動します。", MsgBoxStyle.YesNo, "再起動の確認") = MsgBoxResult.Yes Then
-                'メッセージに対し[はい]を選択した場合、再起動する
-                Application.Restart()
-            End If
-        End If
-
-    End Sub
-
-    Private Sub バージョン情報_Click(sender As Object, e As ClickEventArgs) Handles バージョン情報.Click
-
-        Dim AD As ApplicationDeployment = ApplicationDeployment.CurrentDeployment
-        Dim version As String = AD.CurrentVersion.ToString
-        MsgBox("Version " & version, MsgBoxStyle.OkOnly, "予算管理システム")
     End Sub
 End Class

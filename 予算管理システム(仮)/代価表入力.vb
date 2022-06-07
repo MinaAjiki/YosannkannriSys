@@ -870,6 +870,7 @@ Public Class 代価表入力
                     DaikaForm.CostCopy.Visible = False
                     DaikaForm.Reference.Visible = False
                     DaikaForm.Entry.Visible = False
+                    DaikaForm.AutoScaleMode = AutoScaleMode.Dpi
                     DaikaForm.BreakDownList.ContextMenuStrip.Enabled = False
                     DaikaForm.Show()
                     DaikaForm.TopMost = False
@@ -2181,15 +2182,19 @@ Public Class 代価表入力
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
 
-            ホーム.HomeTreeView.CollapseAll()
-            Dim NodeExpand As String = ""
-            Dim NodeExpandLoad As New TreeNode_ParentExpand
-            NodeExpand = NodeExpandLoad.NodeExpand
+            If Not 明細書入力.EntryCommand = "INSERT" Then
+                ホーム.HomeTreeView.CollapseAll()
+                Dim NodeExpand As String = ""
+                Dim NodeExpandLoad As New TreeNode_ParentExpand
+                NodeExpand = NodeExpandLoad.NodeExpand
+            End If
 
             Cursor.Current = Cursors.Default
 
+
+
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
+            ホーム.ErrorMessage = ex.Message
         ホーム.StackTrace = ex.StackTrace
         エラー.Show()
         Exit Sub

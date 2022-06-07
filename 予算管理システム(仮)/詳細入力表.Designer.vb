@@ -638,7 +638,8 @@ Partial Class 詳細入力表
         '
         '詳細入力表
         '
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1212, 684)
         Me.Controls.Add(Me.FormSplitContainer)

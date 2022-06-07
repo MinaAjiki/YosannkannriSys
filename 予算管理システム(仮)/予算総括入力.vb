@@ -509,6 +509,9 @@ Public Class 予算総括入力
 
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
+            ホーム.SystemMdf.CommandText = ""
+            ホーム.SystemMdf.Parameters.Clear()
+
 
         Catch ex As Exception
             ホーム.Transaction.Rollback()
