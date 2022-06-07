@@ -141,7 +141,9 @@ Public Class 代価内訳
 
                 ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE bsscst_id=" & CreateCostID
                 Dim ProjectCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                Dim No As String
                 While ProjectCostsReader.Read
+                    No = ProjectCostsReader.Item("bsscst_no")
                     CostCostea.Text = ProjectCostsReader.Item("bsscst_costea")
                     BreakDownList.AllowEditing = True
                     Dim labor As Int64 = ProjectCostsReader.Item("bsscst_laborea")
@@ -160,7 +162,7 @@ Public Class 代価内訳
                 ホーム.SystemSql.CommandText = "SELECT MAX(bsscst_no) FROM basis_costs WHERE cstclss_code=" & ClassCode
                 Dim PrjctNo As Integer = ホーム.SystemSql.ExecuteScalar
 
-                Dim No As String = PrjctNo.ToString
+                'Dim No As String = PrjctNo.ToString
                 If No.Length = 1 Then
                     No = "0000" & No
                 ElseIf No.Length = 2 Then
@@ -368,7 +370,7 @@ Public Class 代価内訳
 
 
         ElseIf ホーム.BeforeForm = "工事代価一覧" Or ホーム.BeforeForm = "工事代価" Then
-
+            CostCopy.Visible = False '------------------------------------------------------------------------------------------------------delete
             '工事代価　新規
             If CostID = 0 Then
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
@@ -436,7 +438,9 @@ Public Class 代価内訳
 
                 ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CreateCostID
                 Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                Dim No As String
                 While ProjectCostsReader.Read
+                    No = ProjectCostsReader.Item("prjctcst_no")
                     CostCostea.Text = ProjectCostsReader.Item("prjctcst_costea")
                     BreakDownList.AllowEditing = True
                     Dim labor As Int64 = ProjectCostsReader.Item("prjctcst_laborea")
@@ -454,7 +458,7 @@ Public Class 代価内訳
 
                 ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
                 Dim PrjctNo As Integer = ホーム.Sql.ExecuteScalar
-                Dim No As String = PrjctNo.ToString
+                'Dim No As String = PrjctNo.ToString
                 If No.Length = 1 Then
                     No = "0000" & No
                 ElseIf No.Length = 2 Then
