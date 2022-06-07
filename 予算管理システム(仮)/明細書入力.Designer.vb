@@ -274,6 +274,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CategoryList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CategoryList.ColumnInfo = resources.GetString("CategoryList.ColumnInfo")
+        Me.CategoryList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.CategoryList.ImeMode = System.Windows.Forms.ImeMode.Disable
@@ -341,6 +342,7 @@ Partial Class 明細書入力
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.OutsoucerList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.OutsoucerList.ColumnInfo = resources.GetString("OutsoucerList.ColumnInfo")
+        Me.OutsoucerList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.OutsoucerList.ImeMode = System.Windows.Forms.ImeMode.Disable
