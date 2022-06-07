@@ -10,6 +10,7 @@ Public Class 明細書入力
     Dim outsrcr_y As Integer = 0
     Public Command As String
     Dim Key As String
+    Public EntryCommand As String
 
 
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -715,6 +716,7 @@ Public Class 明細書入力
 
             Dim CancelClick As String = ""
 
+            EntryCommand = ""
             Dim CancelClickLoad As New CancelClick(Me)
             CancelClick = CancelClickLoad.ModifyCheck
 
@@ -1116,7 +1118,7 @@ Public Class 明細書入力
                             Call Insert_Click(sender, e)
                         End If
 
-
+                        EntryCommand = "INSERT"
                         作成代価選択.SelectRow = SelectRow
                         作成代価選択.HeadLine.Text = "<<作成代価選択"
                         作成代価選択.Text = "作成代価選択"
@@ -1166,14 +1168,13 @@ Public Class 明細書入力
                     If SelectRow = 0 Then
                         MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
                     Else
-
+                        EntryCommand = "INSERT"
 
                         If SelectRow = DetailsList.Rows.Count - 3 Then
                             Call Insert_Click(sender, e)
                         End If
 
                         作成代価選択.SelectRow = SelectRow
-
                         DetailsList(SelectRow, 3) = SelectRow / 3
                         作成代価選択.HeadLine.Text = "<<作成代価選択"
                         作成代価選択.Text = "作成代価選択"
@@ -1259,8 +1260,8 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
-        Try
-            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+        'Try
+        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
                 If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
                     SelectRow = DetailsRowCount + 2
                     Exit For
@@ -1286,18 +1287,19 @@ Public Class 明細書入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
+            If ホーム.SelectNodeList.Count > 2 Then
                 Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
                 NodeExpand = NodeExpandLoad.NodeExpand
-
-            Else
+            End If
+        Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
-        End Try
+        'Catch ex As Exception
+        'ホーム.ErrorMessage = ex.Message
+        'ホーム.StackTrace = ex.StackTrace
+        'エラー.Show()
+        'Exit Sub
+        'End Try
     End Sub
 
     Private Sub CostModifyMenu_Click(sender As Object, e As EventArgs) Handles CostModifyMenu.Click
@@ -1325,6 +1327,7 @@ Public Class 明細書入力
                 Dim remarks As String = DetailsList(SelectRow + 2, 4)
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
+                EntryCommand = "INSERT"
 
                 Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
                 NodeExpand = NodeExpandLoad.NodeExpand
@@ -1747,9 +1750,10 @@ Public Class 明細書入力
                 DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
             Next
 
-            ホーム.Modified = "False"
+        ホーム.Modified = "False"
+        EntryCommand = ""
 
-            ホーム.HomeTreeView.CollapseAll()
+        ホーム.HomeTreeView.CollapseAll()
             ホーム.SelectNodeList(0).Expand()
 
         MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")

@@ -43,8 +43,9 @@ Public Class 大工種選択
                             ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
                             If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
 
-                                L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
-
+                                If ホーム.Sql.ExecuteScalar > 0 Then
+                                    L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+                                End If
                                 Total += L_WorkTypesList(RowCount, 3)
                             End If
                         End If
@@ -83,9 +84,9 @@ Public Class 大工種選択
                         If SiteExpenseCount > 0 Then
                             ホーム.Sql.CommandText = "SELECT SUM(stexpns_amount) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
                             If IsDBNull(ホーム.Sql.ExecuteScalar) = False Then
-
-                                L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
-
+                                If ホーム.Sql.ExecuteScalar > 0 Then
+                                    L_WorkTypesList(RowCount, 3) = ホーム.Sql.ExecuteScalar
+                                End If
                                 Total += L_WorkTypesList(RowCount, 3)
                             End If
                         End If
@@ -107,6 +108,7 @@ Public Class 大工種選択
             エラー.Show()
             Exit Sub
         End Try
+
     End Sub
 
     Private Sub Cancel_MouseDown(sender As Object, e As MouseEventArgs) Handles Cancel.MouseDown

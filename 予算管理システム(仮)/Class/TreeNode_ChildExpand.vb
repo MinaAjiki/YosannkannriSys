@@ -1,5 +1,6 @@
-﻿Public Class TreeNode_ChildExpand
-    Private selectnode As C1.Win.TreeView.C1TreeNode
+﻿Imports C1.Win.TreeView
+Public Class TreeNode_ChildExpand
+    Private selectnode As C1TreeNode
     Private selectname As String
     Public Sub New(ByVal node As C1.Win.TreeView.C1TreeNode, ByVal name As String)
         selectnode = node
