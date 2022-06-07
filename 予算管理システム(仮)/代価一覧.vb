@@ -27,8 +27,14 @@ Public Class 代価一覧
 
                 ProjectCostList.Rows.Count = BasicCostsCount + 1
 
-                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-                Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                Dim Year As Integer
+                If ホーム.AdminChk = "True" Then
+                    ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+                    Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+                ElseIf ホーム.AdminChk = "False" Then
+                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                End If
 
                 Dim RowCount As Integer = 0
 
@@ -73,45 +79,47 @@ Public Class 代価一覧
                 YearList.ItemsDisplayMember = "year"
                 YearList.ItemsValueMember = "year"
                 YearList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                YearList.Visible = True
+                If ホーム.AdminChk = "True" Then
+                    YearList.Visible = True
+                End If
                 YearList.Text = Year
                 ProjectCostList.Cols(2).AllowEditing = True
 
             ElseIf CostClassName = "工事代価" Then
 
-                Dim dt As DataTable
-                dt = New DataTable
-                dt.Columns.Add("code", GetType(System.Int32))
-                dt.Columns.Add("name", GetType(System.String))
-                Dim code As Int32
-                Dim name As String
+                    Dim dt As DataTable
+                    dt = New DataTable
+                    dt.Columns.Add("code", GetType(System.Int32))
+                    dt.Columns.Add("name", GetType(System.String))
+                    Dim code As Int32
+                    Dim name As String
 
-                ホーム.Sql.Parameters.Clear()
-                CostList.Items.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
-                Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While CostClassReader.Read
-                    code = CostClassReader("cstclss_code")
-                    name = CostClassReader("cstclss_name")
-                    dt.Rows.Add(code, name)
-                End While
-                dt.Rows.Add(0, "階層追加")
-                CostClassReader.Close()
+                    ホーム.Sql.Parameters.Clear()
+                    CostList.Items.Clear()
+                    ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                    Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While CostClassReader.Read
+                        code = CostClassReader("cstclss_code")
+                        name = CostClassReader("cstclss_name")
+                        dt.Rows.Add(code, name)
+                    End While
+                    dt.Rows.Add(0, "階層追加")
+                    CostClassReader.Close()
 
-                CostList.TextDetached = True
-                CostList.ItemsDataSource = dt.DefaultView
-                CostList.ItemsDisplayMember = "name"
-                CostList.ItemsValueMember = "code"
-                CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
-                CostList.SelectedIndex = -1
-                CostList.Text = "工事代価を選択"
+                    CostList.TextDetached = True
+                    CostList.ItemsDataSource = dt.DefaultView
+                    CostList.ItemsDisplayMember = "name"
+                    CostList.ItemsValueMember = "code"
+                    CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                    'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                    CostList.SelectedIndex = -1
+                    CostList.Text = "工事代価を選択"
 
-                ProjectCostList.Cols(2).AllowEditing = True
+                    ProjectCostList.Cols(2).AllowEditing = True
 
-            Else
+                Else
 
-                ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
                 Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
@@ -812,8 +820,14 @@ Public Class 代価一覧
 
         ProjectCostList.Rows.Count = BasicCostsCount + 1
 
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-        Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
+        Dim Year As Integer
+        If ホーム.AdminChk = "True" Then
+            ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+            Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+        ElseIf ホーム.AdminChk = "False" Then
+            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+            Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+        End If
 
         Dim RowCount As Integer = 0
 
