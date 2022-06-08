@@ -406,23 +406,12 @@ Public Class ホーム
             Sql.CommandText = "SELECT stexpns_code,stexpns_name INTO #site_expenses FROM [SVACD001].[PMS].[dbo].[site_expenses]"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "ALTER TABLE #site_expenses ADD budget_no smallint,stexpns_amount money"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "UPDATE #site_expenses SET budget_no=0,stexpns_amount=0"
+            Sql.CommandText = "ALTER TABLE #site_expenses ADD budget_no smallint DEFAULT ((0)) NOT NULL ,stexpns_amount money DEFAULT ((0)) NOT NULL"
             Sql.ExecuteNonQuery()
 
             Sql.CommandText = "INSERT INTO site_expenses SELECT budget_no,stexpns_code,stexpns_name,stexpns_amount FROM #site_expenses"
             Sql.ExecuteNonQuery()
 
-            Sql.CommandText = "SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea INTO #expense_bd FROM [SVACD001].[PMS].[dbo].[expense_breakdowns]"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "ALTER TABLE #expense_bd ADD expns_bd_quanity decimal(15,2)  DEFAULT ((0)) NOT NULL"
-            Sql.ExecuteNonQuery()
-
-            Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
-            Sql.ExecuteNonQuery()
 
             Transaction.Commit()
 
@@ -457,6 +446,7 @@ Public Class ホーム
             SystemMdf.Parameters.Clear()
 
             Cursor.Current = Cursors.Default
+
         Catch ex As Exception
             ErrorMessage = ex.Message
             StackTrace = ex.StackTrace

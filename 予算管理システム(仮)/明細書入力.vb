@@ -52,6 +52,7 @@ Public Class 明細書入力
             CategoryList.MergedRanges.Add(0, 6, 2, 6)
 
             OutsoucerList.Visible = False
+            PastingMenu.Enabled = False
 
             CategoryTotalList.Rows(0).Height = 20
             OutsoucerTotalList.Rows(0).Height = 20
@@ -87,7 +88,7 @@ Public Class 明細書入力
 
             If DetailsCount > 0 Then
 
-                ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode
+                ホーム.Sql.CommandText = "SELECT * FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode & " ORDER BY dtl_no ASC"
                 Dim DetailsReader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While DetailsReader.Read
                     RowCount += 1
@@ -730,8 +731,8 @@ Public Class 明細書入力
                 ホーム.FormPanel.Controls.Add(小工種選択)
                 小工種選択.Show()
 
-                ホーム.SelectNodeList(1).Collapse()
                 If ホーム.SelectNodeList.Count > 0 Then
+                    ホーム.SelectNodeList(1).Collapse()
                     ホーム.SelectNodeList.RemoveAt(1)
                 End If
             End If
@@ -891,7 +892,9 @@ Public Class 明細書入力
                 OutsoucerList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
                 OutsoucerList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
                 OutsoucerList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
+
                 CopyRow = SelectRow
+                PastingMenu.Enabled = True
 
             End If
 
@@ -906,6 +909,7 @@ Public Class 明細書入力
 
     Private Sub Pasting_Click(sender As Object, e As EventArgs) Handles PastingMenu.Click
         Try
+
             For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
                 If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
                     SelectRow = DetailsRowCount + 2
@@ -1014,6 +1018,7 @@ Public Class 明細書入力
 
             Command = ""
             CopyRow = 0
+            PastingMenu.Enabled = False
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1067,6 +1072,7 @@ Public Class 明細書入力
 
                 Command = "Cut"
                 CopyRow = SelectRow
+                PastingMenu.Enabled = True
 
 
                 DetailsList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
@@ -1260,8 +1266,8 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CostModify_Click(sender As Object, e As EventArgs) Handles CostModify.Click
-        'Try
-        For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
+        Try
+            For DetailsRowCount As Integer = 0 To DetailsList.Rows.Count - 1
                 If DetailsRowCount < DetailsList.Rows.Count - 3 AndAlso DetailsList.Rows(DetailsRowCount + 2).Caption = "▶" Then
                     SelectRow = DetailsRowCount + 2
                     Exit For
@@ -1287,19 +1293,19 @@ Public Class 明細書入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-            If ホーム.SelectNodeList.Count > 2 Then
+            If ホーム.SelectNodeList.Count >= 2 Then
                 Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
                 NodeExpand = NodeExpandLoad.NodeExpand
             End If
         Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
-        'Catch ex As Exception
-        'ホーム.ErrorMessage = ex.Message
-        'ホーム.StackTrace = ex.StackTrace
-        'エラー.Show()
-        'Exit Sub
-        'End Try
+        Catch ex As Exception
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 
     Private Sub CostModifyMenu_Click(sender As Object, e As EventArgs) Handles CostModifyMenu.Click
@@ -1329,10 +1335,13 @@ Public Class 明細書入力
                 remarks = remarks.Replace("号", "")
                 EntryCommand = "INSERT"
 
-                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                NodeExpand = NodeExpandLoad.NodeExpand
+                If ホーム.SelectNodeList.Count >= 2 Then
+                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                    NodeExpand = NodeExpandLoad.NodeExpand
+                End If
+
             Else
-                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message

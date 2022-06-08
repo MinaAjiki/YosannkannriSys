@@ -51,6 +51,8 @@ Public Class 代価表入力
             Me.Anchor = AnchorStyles.Left
             Me.Anchor = AnchorStyles.Bottom
 
+            PastingMenu.Enabled = False
+
 
             If Me.FormBorderStyle = FormBorderStyle.None Then
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
@@ -699,12 +701,13 @@ Public Class 代価表入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
-                NodeExpand = NodeExpandLoad.NodeExpand
-
+                If ホーム.SelectNodeList.Count >= 3 Then
+                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                    NodeExpand = NodeExpandLoad.NodeExpand
+                End If
             Else
-                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
 
         Catch ex As Exception
@@ -742,13 +745,13 @@ Public Class 代価表入力
                 Dim remarks As String = BreakDownList(SelectRow + 2, 4)
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
-
-                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
-                NodeExpand = NodeExpandLoad.NodeExpand
-
+                If ホーム.SelectNodeList.Count >= 3 Then
+                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                    NodeExpand = NodeExpandLoad.NodeExpand
+                End If
             Else
-                MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
+                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -1239,6 +1242,7 @@ Public Class 代価表入力
                 BreakDownList.Rows(SelectRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
 
                 CopyRow = SelectRow
+                PastingMenu.Enabled = True
             End If
 
         Catch ex As Exception
@@ -1335,6 +1339,7 @@ Public Class 代価表入力
             Command1 = ""
             Command = ""
             CopyRow = 0
+            PastingMenu.Enabled = False
 
 
         Catch ex As Exception
@@ -1376,6 +1381,7 @@ Public Class 代価表入力
                 Command = "Cut"
                 Command1 = "Cut"
                 CopyRow = SelectRow
+                PastingMenu.Enabled = True
 
                 BreakDownList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
                 BreakDownList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
