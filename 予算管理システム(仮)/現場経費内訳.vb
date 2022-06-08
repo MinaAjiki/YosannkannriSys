@@ -139,6 +139,20 @@ Public Class 現場経費内訳
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Try
+            Dim ErrorCount As Integer = 0
+
+            For DelChk As Integer = 1 To DetailsList.Rows.Count - 1
+                If DetailsList(DelChk, 2) = True Then
+                    ErrorCount += 1
+                End If
+            Next
+
+            If ErrorCount > 0 Then
+                If MsgBox("削除される項目があります。このまま登録しますか？", MsgBoxStyle.OkCancel) = MsgBoxResult.Cancel Then
+                    Exit Sub
+                End If
+            End If
+
             Dim RowIndex As Integer = DetailsList.Rows.Count - 1
             For RowsLoop As Integer = 1 To RowIndex - 1
                 Dim Dflag As CellRange = DetailsList.GetCellRange(RowsLoop, 2)

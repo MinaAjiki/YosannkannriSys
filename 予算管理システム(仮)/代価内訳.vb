@@ -62,12 +62,6 @@ Public Class 代価内訳
         CostUnitPrice.Value = 0
 
 
-        'ログインユーザが管理者でない時、編集を無効にする
-        If ホーム.AdminChk = "False" Then
-            BreakDownList.AllowEditing = False
-            Entry.Visible = False
-        End If
-
         ホーム.Sql.Parameters.Clear()
         ホーム.Sql.CommandText = "SELECT cstclss_name FROM cost_classes WHERE cstclss_code=" & ClassCode
         Dim ClassName As String = ホーム.Sql.ExecuteScalar
@@ -75,6 +69,12 @@ Public Class 代価内訳
 
 
         If ホーム.BeforeForm = "基礎代価一覧" Or ホーム.BeforeForm = "基礎代価" Then
+            'ログインユーザが管理者でない時、編集を無効にする
+            If ホーム.AdminChk = "False" Then
+                BreakDownList.AllowEditing = False
+                Entry.Visible = False
+            End If
+
             '基礎代価　新規
             If CostID = 0 Then
                 ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & ClassCode
@@ -179,6 +179,8 @@ Public Class 代価内訳
                 End If
 
                 If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+                    BreakDownList.AllowEditing = True
+                    Entry.Visible = True
                     ClassCode = 作成代価選択.CopyClassCode
                     ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
                     Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
@@ -2333,32 +2335,16 @@ Public Class 代価内訳
 
     Private Sub CostCopy_Click(sender As Object, e As EventArgs) Handles CostCopy.Click
         Try
-            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
-                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
-                    SelectRow = DetailsRowCount + 2
-                    Exit For
-                End If
-            Next
-
-            If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-            Else
+            If ホーム.BeforeForm = "基礎代価一覧" Or ホーム.BeforeForm = "基礎代価" Then
                 ホーム.ProjectCommand = "CostCopy"
                 ホーム.BeforeForm = "代価内訳"
-                If BreakDownList(SelectRow, 8) >= 12 Then
-
-                    作成代価選択.HeadLine.Text = "<<コピー代価選択"
-                    作成代価選択.Text = "コピー代価選択"
-                    作成代価選択.SelectRow = SelectRow
-                    作成代価選択.CopyList = BreakDownList
-
-
-                    作成代価選択.ShowDialog()
-                    作成代価選択.TopMost = True
-                    作成代価選択.TopMost = False
-                Else
-                    MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-                End If
+                作成代価選択.HeadLine.Text = "<<コピー代価選択"
+                作成代価選択.Text = "コピー代価選択"
+                作成代価選択.SelectRow = 代価一覧.SelectRow
+                作成代価選択.ShowDialog()
+                作成代価選択.TopMost = True
+                作成代価選択.TopMost = False
+            ElseIf ホーム.BeforeForm = "工事代価一覧" Or ホーム.BeforeForm = "工事代価" Then
 
             End If
 

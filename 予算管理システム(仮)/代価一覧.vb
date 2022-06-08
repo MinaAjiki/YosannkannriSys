@@ -86,8 +86,9 @@ Public Class 代価一覧
                 ProjectCostList.Cols(2).AllowEditing = True
 
             ElseIf CostClassName = "工事代価" Then
+                'ContextMenuStrip = 右クリックメニュー
 
-                    Dim dt As DataTable
+                Dim dt As DataTable
                     dt = New DataTable
                     dt.Columns.Add("code", GetType(System.Int32))
                     dt.Columns.Add("name", GetType(System.String))
@@ -851,5 +852,46 @@ Public Class 代価一覧
 
         End While
         BasicCostsReader.Close()
+    End Sub
+
+    Private Sub InsertMenu_Click(sender As Object, e As EventArgs) Handles InsertMenu.Click
+        SelectRow = ProjectCostList.Selection.TopRow
+        If SelectRow = 0 Then
+            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        Else
+            ホーム.Modified = "True"
+            'Command = "Insert"
+            ProjectCostList.Rows.Insert(SelectRow)
+        End If
+    End Sub
+
+    Private Sub CopyMenu_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
+        SelectRow = ProjectCostList.Selection.TopRow
+        If SelectRow = 0 Then
+            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        Else
+            ホーム.Modified = "True"
+
+        End If
+    End Sub
+
+    Private Sub PastingMenu_Click(sender As Object, e As EventArgs) Handles PastingMenu.Click
+        SelectRow = ProjectCostList.Selection.TopRow
+        If SelectRow = 0 Then
+            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        Else
+            ホーム.Modified = "True"
+
+        End If
+    End Sub
+
+    Private Sub CutMenu_Click(sender As Object, e As EventArgs) Handles CutMenu.Click
+        SelectRow = ProjectCostList.Selection.TopRow
+        If SelectRow = 0 Then
+            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        Else
+            ホーム.Modified = "True"
+
+        End If
     End Sub
 End Class
