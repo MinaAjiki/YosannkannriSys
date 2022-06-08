@@ -139,9 +139,10 @@ Public Class 大工種選択
             ホーム.FormPanel.Controls.Add(小工種選択)
             小工種選択.Show()
 
-            ホーム.HomeTreeView.Nodes(ClickRow - 1).Expand()
-            ホーム.SelectNodeList.Add(ホーム.HomeTreeView.Nodes(ClickRow - 1))
-
+            If ホーム.HomeTreeView.Nodes.Count > 0 Then
+                ホーム.HomeTreeView.Nodes(ClickRow - 1).Expand()
+                ホーム.SelectNodeList.Add(ホーム.HomeTreeView.Nodes(ClickRow - 1))
+            End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

@@ -45,6 +45,7 @@ Public Class ホーム
     Public BeforeForm As String
     Public ItemSelect As String
     Public SelectNodeList As New List(Of C1.Win.TreeView.C1TreeNode)
+    Public FirstTime As String = "False"
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -133,7 +134,7 @@ Public Class ホーム
                                 予算内訳登録.Enabled = False
                             Else
                                 予算内訳登録.Enabled = True
-                                参照作成command.Enabled = True
+                                参照作成command.Enabled = False
                             End If
 
                         Else
