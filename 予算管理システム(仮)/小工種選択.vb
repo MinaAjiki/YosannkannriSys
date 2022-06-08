@@ -151,10 +151,11 @@ Public Class 小工種選択
 
                 Dim NodeExpand As String = ""
 
-                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(0), S_WorkTypesList(ClickRow, 1) & " " & S_WorkTypesList(ClickRow, 2))
-                NodeExpand = NodeExpandLoad.NodeExpand
-
+                If ホーム.HomeTreeView.Nodes.Count > 0 Then
+                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(0), S_WorkTypesList(ClickRow, 1) & " " & S_WorkTypesList(ClickRow, 2))
+                    NodeExpand = NodeExpandLoad.NodeExpand
+                End If
             End If
 
 
