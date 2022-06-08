@@ -38,8 +38,14 @@ Public Class 費用マスタ一覧
                 MainPanel.BackColor = Color.FromArgb(255, 245, 245)
                 YearList.Visible = True
 
-                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-                Dim Year As Integer = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                Dim Year As Integer
+                If ホーム.AdminChk = "True" Then
+                    ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+                    Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+                ElseIf ホーム.AdminChk = "False" Then
+                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                End If
 
                 Dim dt2 As DataTable
                 dt2 = New DataTable
