@@ -42,13 +42,17 @@ Public Class 費用マスタ一覧
                 If ホーム.AdminChk = "True" Then
                     ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
                     Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-                ElseIf ホーム.AdminChk = "False" Then
-                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-                    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+            ElseIf ホーム.AdminChk = "False" Then
+                ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
+                Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                If Year = 0 Then
+                    MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                    Exit Sub
                 End If
+            End If
 
-                Dim dt2 As DataTable
-                dt2 = New DataTable
+            Dim dt2 As DataTable
+            dt2 = New DataTable
                 dt2.Columns.Add("year", GetType(System.Int32))
                 Dim years As Int32
 
