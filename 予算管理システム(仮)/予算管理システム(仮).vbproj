@@ -501,6 +501,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="代価一覧.resx">
       <DependentUpon>代価一覧.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="項目選択.resx">
       <DependentUpon>項目選択.vb</DependentUpon>
