@@ -28,15 +28,19 @@ Public Class 代価一覧
                 ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim Year As Integer
-                If ホーム.AdminChk = "True" Then
-                    ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+                'If ホーム.AdminChk = "True" Then
+                ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
                     Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-                ElseIf ホーム.AdminChk = "False" Then
-                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-                    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
-                End If
+                    'ElseIf ホーム.AdminChk = "False" Then
+                    '    ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
+                    '    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                    '    If Year = 0 Then
+                    '        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                    '        Exit Sub
+                    '    End If
+                    'End If
 
-                Dim RowCount As Integer = 0
+                    Dim RowCount As Integer = 0
 
                 ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0 ORDER BY bsscst_no ASC"
                 Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
@@ -86,41 +90,40 @@ Public Class 代価一覧
                 ProjectCostList.Cols(2).AllowEditing = True
 
             ElseIf CostClassName = "工事代価" Then
-                'ContextMenuStrip = 右クリックメニュー
 
                 Dim dt As DataTable
-                    dt = New DataTable
-                    dt.Columns.Add("code", GetType(System.Int32))
-                    dt.Columns.Add("name", GetType(System.String))
-                    Dim code As Int32
-                    Dim name As String
+                dt = New DataTable
+                dt.Columns.Add("code", GetType(System.Int32))
+                dt.Columns.Add("name", GetType(System.String))
+                Dim code As Int32
+                Dim name As String
 
-                    ホーム.Sql.Parameters.Clear()
-                    CostList.Items.Clear()
-                    ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
-                    Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                    While CostClassReader.Read
-                        code = CostClassReader("cstclss_code")
-                        name = CostClassReader("cstclss_name")
-                        dt.Rows.Add(code, name)
-                    End While
-                    dt.Rows.Add(0, "階層追加")
-                    CostClassReader.Close()
+                ホーム.Sql.Parameters.Clear()
+                CostList.Items.Clear()
+                ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While CostClassReader.Read
+                    code = CostClassReader("cstclss_code")
+                    name = CostClassReader("cstclss_name")
+                    dt.Rows.Add(code, name)
+                End While
+                dt.Rows.Add(0, "階層追加")
+                CostClassReader.Close()
 
-                    CostList.TextDetached = True
-                    CostList.ItemsDataSource = dt.DefaultView
-                    CostList.ItemsDisplayMember = "name"
-                    CostList.ItemsValueMember = "code"
-                    CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                    'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
-                    CostList.SelectedIndex = -1
-                    CostList.Text = "工事代価を選択"
+                CostList.TextDetached = True
+                CostList.ItemsDataSource = dt.DefaultView
+                CostList.ItemsDisplayMember = "name"
+                CostList.ItemsValueMember = "code"
+                CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                CostList.SelectedIndex = -1
+                CostList.Text = "工事代価を選択"
 
-                    ProjectCostList.Cols(2).AllowEditing = True
+                ProjectCostList.Cols(2).AllowEditing = True
 
-                Else
+            Else
 
-                    ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
                 Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
@@ -707,9 +710,9 @@ Public Class 代価一覧
         Catch ex As Exception
             ホーム.Transaction.Rollback()
             ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 
@@ -822,15 +825,19 @@ Public Class 代価一覧
         ProjectCostList.Rows.Count = BasicCostsCount + 1
 
         Dim Year As Integer
-        If ホーム.AdminChk = "True" Then
-            ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+        'If ホーム.AdminChk = "True" Then
+        ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
             Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-        ElseIf ホーム.AdminChk = "False" Then
-            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-            Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
-        End If
+            'ElseIf ホーム.AdminChk = "False" Then
+            '    ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
+            '    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+            '    If Year = 0 Then
+            '        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+            '        Exit Sub
+            '    End If
+            'End If
 
-        Dim RowCount As Integer = 0
+            Dim RowCount As Integer = 0
 
         ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & YearList.Text & "AND deleted = 0 ORDER BY bsscst_no ASC"
         Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
@@ -852,46 +859,5 @@ Public Class 代価一覧
 
         End While
         BasicCostsReader.Close()
-    End Sub
-
-    Private Sub InsertMenu_Click(sender As Object, e As EventArgs) Handles InsertMenu.Click
-        SelectRow = ProjectCostList.Selection.TopRow
-        If SelectRow = 0 Then
-            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-        Else
-            ホーム.Modified = "True"
-            'Command = "Insert"
-            ProjectCostList.Rows.Insert(SelectRow)
-        End If
-    End Sub
-
-    Private Sub CopyMenu_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
-        SelectRow = ProjectCostList.Selection.TopRow
-        If SelectRow = 0 Then
-            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-        Else
-            ホーム.Modified = "True"
-
-        End If
-    End Sub
-
-    Private Sub PastingMenu_Click(sender As Object, e As EventArgs) Handles PastingMenu.Click
-        SelectRow = ProjectCostList.Selection.TopRow
-        If SelectRow = 0 Then
-            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-        Else
-            ホーム.Modified = "True"
-
-        End If
-    End Sub
-
-    Private Sub CutMenu_Click(sender As Object, e As EventArgs) Handles CutMenu.Click
-        SelectRow = ProjectCostList.Selection.TopRow
-        If SelectRow = 0 Then
-            MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
-        Else
-            ホーム.Modified = "True"
-
-        End If
     End Sub
 End Class
