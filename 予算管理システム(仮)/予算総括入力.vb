@@ -448,7 +448,6 @@ Public Class 予算総括入力
             ホーム.Sql.ExecuteNonQuery()
 
             Dim ListRowCount As Integer = OutsoucersList.Rows.Count
-
             For ListRow As Integer = 0 To ListRowCount - 2
 
                 ホーム.Sql.CommandText = ""
@@ -489,12 +488,48 @@ Public Class 予算総括入力
                     ホーム.Sql.CommandText = "DELETE FROM outsourcers WHERE outsrcr_id=" & IDCell
                     ホーム.Sql.ExecuteNonQuery()
 
+
                 End If
 
             Next
 
-            ホーム.Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters] WHERE year=" & Year.Text
-            ホーム.Sql.ExecuteNonQuery()
+
+            ListRowCount = OutsoucersList.Rows.Count - 2
+
+            For ListRow As Integer = 0 To ListRowCount
+
+                If ListRow + 1 < ListRowCount Then
+                    Dim IDCell As Integer = OutsoucersList(ListRow + 1, 1)
+                    Dim DeleteCell As String = "False"
+
+                    If IsNothing(OutsoucersList(ListRow + 1, 2)) = False Then
+                        DeleteCell = "True"
+                    End If
+
+                    If DeleteCell = "True" Then
+                        OutsoucersList.Rows.RemoveRange(ListRow + 1, 1)
+                        ListRowCount = ListRowCount - 1
+                    End If
+                End If
+            Next
+
+
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM cost_masters"
+            Dim costmastercount As Integer = ホーム.Sql.ExecuteScalar
+
+            If costmastercount = 0 Then
+                ホーム.Sql.CommandText = "INSERT INTO cost_masters SELECT cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq FROM [SVACD001].[PMS].[dbo].[cost_masters] WHERE year=" & Year.Text
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_costea INTO #expense_bd FROM [SVACD001].[PMS].[dbo].[expense_breakdowns] WHERE year=" & Year.Text
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "ALTER TABLE #expense_bd ADD expns_bd_quanity decimal(15,2)  DEFAULT ((0)) NOT NULL"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM #expense_bd"
+                ホーム.Sql.ExecuteNonQuery()
+            End If
 
             ホーム.Transaction.Commit()
 
@@ -950,10 +985,6 @@ Public Class 予算総括入力
             エラー.Show()
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub Circulator5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Circulator5.KeyPress
-
     End Sub
 
 End Class
