@@ -47,6 +47,7 @@ Public Class 締切日入力
             If BeforeDeadline = "" Then
                 BeforeDeadline = "1900/01/01"
             End If
+            Dim OutsrcrID As Integer
             Dim ProID As Integer
             Dim Costea As Integer
             Dim Quanity As Integer
@@ -84,6 +85,7 @@ Public Class 締切日入力
                 ホーム.Sql.Parameters("@BDDATE").Value = ReBeforeDeadline
                 Dim Productreader As SqlDataReader = ホーム.Sql.ExecuteReader
                 While Productreader.Read
+                    OutsrcrID = Productreader.Item("outsrcr_id")
                     ProID = Productreader.Item("dtl_id")
                     Costea = Productreader.Item("total_costea")
                     Quanity = Productreader.Item("total_quanity")
@@ -93,9 +95,10 @@ Public Class 締切日入力
 
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,last_costea,last_quanity,last_amount,total_costea,total_quanity,total_amount)VALUES(@closing_date,@dtl_id,@last_costea,@last_quanity,@last_amount,@total_costea,@total_quanity,@total_amount)"
+                ホーム.Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,outsrcr_id,last_costea,last_quanity,last_amount,total_costea,total_quanity,total_amount)VALUES(@closing_date,@dtl_id,@outsrcr_id,@last_costea,@last_quanity,@last_amount,@total_costea,@total_quanity,@total_amount)"
                 ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@last_costea", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
@@ -104,6 +107,7 @@ Public Class 締切日入力
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
                 ホーム.Sql.Parameters("@closing_date").Value = AfterDeadline
                 ホーム.Sql.Parameters("@dtl_id").Value = ProID
+                ホーム.Sql.Parameters("@outsrcr_id").Value = OutsrcrID
                 ホーム.Sql.Parameters("@last_costea").Value = Costea
                 ホーム.Sql.Parameters("@last_quanity").Value = Quanity
                 ホーム.Sql.Parameters("@last_amount").Value = Amount

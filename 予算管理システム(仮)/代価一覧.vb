@@ -43,88 +43,88 @@ Public Class 代価一覧
 
                 Dim RowCount As Integer = 0
 
-                    ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0 ORDER BY bsscst_no ASC"
-                    Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-                    While BasicCostsReader.Read
-                        RowCount += 1
-                        ProjectCostList(RowCount, 1) = BasicCostsReader.Item("bsscst_id")
-                        ProjectCostList(RowCount, 3) = BasicCostsReader.Item("bsscst_no")
-                        ProjectCostList(RowCount, 4) = BasicCostsReader.Item("bsscst_name")
-                        ProjectCostList(RowCount, 5) = BasicCostsReader.Item("bsscst_spec")
-                        ProjectCostList(RowCount, 6) = BasicCostsReader.Item("bsscst_unit")
-                        ProjectCostList(RowCount, 7) = BasicCostsReader.Item("bsscst_quanity")
-                        ProjectCostList(RowCount, 8) = BasicCostsReader.Item("bsscst_costea")
-                        ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("bsscst_costea") * BasicCostsReader.Item("bsscst_quanity"))
-                        ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
-                        ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
-                        ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
-                        ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
-                        ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
+                ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0 ORDER BY bsscst_no ASC"
+                Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                While BasicCostsReader.Read
+                    RowCount += 1
+                    ProjectCostList(RowCount, 1) = BasicCostsReader.Item("bsscst_id")
+                    ProjectCostList(RowCount, 3) = BasicCostsReader.Item("bsscst_no")
+                    ProjectCostList(RowCount, 4) = BasicCostsReader.Item("bsscst_name")
+                    ProjectCostList(RowCount, 5) = BasicCostsReader.Item("bsscst_spec")
+                    ProjectCostList(RowCount, 6) = BasicCostsReader.Item("bsscst_unit")
+                    ProjectCostList(RowCount, 7) = BasicCostsReader.Item("bsscst_quanity")
+                    ProjectCostList(RowCount, 8) = BasicCostsReader.Item("bsscst_costea")
+                    ProjectCostList(RowCount, 9) = Math.Floor(BasicCostsReader.Item("bsscst_costea") * BasicCostsReader.Item("bsscst_quanity"))
+                    ProjectCostList(RowCount, 10) = BasicCostsReader.Item("bsscst_laborea")
+                    ProjectCostList(RowCount, 11) = BasicCostsReader.Item("bsscst_materialea")
+                    ProjectCostList(RowCount, 12) = BasicCostsReader.Item("bsscst_machineea")
+                    ProjectCostList(RowCount, 13) = BasicCostsReader.Item("bsscst_subcnstrctea")
+                    ProjectCostList(RowCount, 14) = BasicCostsReader.Item("bsscst_expnseea")
 
-                    End While
-                    BasicCostsReader.Close()
+                End While
+                BasicCostsReader.Close()
 
-                    Dim dt2 As DataTable
-                    dt2 = New DataTable
-                    dt2.Columns.Add("year", GetType(System.Int32))
-                    Dim years As Int32
+                Dim dt2 As DataTable
+                dt2 = New DataTable
+                dt2.Columns.Add("year", GetType(System.Int32))
+                Dim years As Int32
 
-                    ホーム.SystemSql.Parameters.Clear()
-                    YearList.Items.Clear()
-                    ホーム.SystemSql.CommandText = "SELECT DISTINCT year FROM basis_costs ORDER BY year ASC"
-                    Dim YearReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-                    While YearReader.Read
-                        years = YearReader("year")
-                        dt2.Rows.Add(years)
-                    End While
-                    YearReader.Close()
+                ホーム.SystemSql.Parameters.Clear()
+                YearList.Items.Clear()
+                ホーム.SystemSql.CommandText = "SELECT DISTINCT year FROM basis_costs ORDER BY year ASC"
+                Dim YearReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                While YearReader.Read
+                    years = YearReader("year")
+                    dt2.Rows.Add(years)
+                End While
+                YearReader.Close()
 
-                    YearList.TextDetached = True
-                    YearList.ItemsDataSource = dt2.DefaultView
-                    YearList.ItemsDisplayMember = "year"
-                    YearList.ItemsValueMember = "year"
-                    YearList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                    If ホーム.AdminChk = "True" Then
-                        YearList.Visible = True
-                    End If
-                    YearList.Text = Year
-                    ProjectCostList.Cols(2).AllowEditing = True
+                YearList.TextDetached = True
+                YearList.ItemsDataSource = dt2.DefaultView
+                YearList.ItemsDisplayMember = "year"
+                YearList.ItemsValueMember = "year"
+                YearList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                If ホーム.AdminChk = "True" Then
+                    YearList.Visible = True
+                End If
+                YearList.Text = Year
+                ProjectCostList.Cols(2).AllowEditing = True
 
-                ElseIf CostClassName = "工事代価" Then
-                'ProjectCostList.ContextMenuStrip = 右クリックメニュー
+            ElseIf CostClassName = "工事代価" Then
+                ProjectCostList.ContextMenuStrip = 右クリックメニュー
                 Dim dt As DataTable
-                    dt = New DataTable
-                    dt.Columns.Add("code", GetType(System.Int32))
-                    dt.Columns.Add("name", GetType(System.String))
-                    Dim code As Int32
-                    Dim name As String
+                dt = New DataTable
+                dt.Columns.Add("code", GetType(System.Int32))
+                dt.Columns.Add("name", GetType(System.String))
+                Dim code As Int32
+                Dim name As String
 
-                    ホーム.Sql.Parameters.Clear()
-                    CostList.Items.Clear()
-                    ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
-                    Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                    While CostClassReader.Read
-                        code = CostClassReader("cstclss_code")
-                        name = CostClassReader("cstclss_name")
-                        dt.Rows.Add(code, name)
-                    End While
-                    dt.Rows.Add(0, "階層追加")
-                    CostClassReader.Close()
+                ホーム.Sql.Parameters.Clear()
+                CostList.Items.Clear()
+                ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"
+                Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                While CostClassReader.Read
+                    code = CostClassReader("cstclss_code")
+                    name = CostClassReader("cstclss_name")
+                    dt.Rows.Add(code, name)
+                End While
+                dt.Rows.Add(0, "階層追加")
+                CostClassReader.Close()
 
-                    CostList.TextDetached = True
-                    CostList.ItemsDataSource = dt.DefaultView
-                    CostList.ItemsDisplayMember = "name"
-                    CostList.ItemsValueMember = "code"
-                    CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
-                    'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
-                    CostList.SelectedIndex = -1
-                    CostList.Text = "工事代価を選択"
+                CostList.TextDetached = True
+                CostList.ItemsDataSource = dt.DefaultView
+                CostList.ItemsDisplayMember = "name"
+                CostList.ItemsValueMember = "code"
+                CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
+                'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
+                CostList.SelectedIndex = -1
+                CostList.Text = "工事代価を選択"
 
-                    ProjectCostList.Cols(2).AllowEditing = True
+                ProjectCostList.Cols(2).AllowEditing = True
 
-                Else
+            Else
 
-                    ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
                 Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
@@ -828,17 +828,17 @@ Public Class 代価一覧
         Dim Year As Integer
         'If ホーム.AdminChk = "True" Then
         ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
-            Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-            'ElseIf ホーム.AdminChk = "False" Then
-            '    ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
-            '    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
-            '    If Year = 0 Then
-            '        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
-            '        Exit Sub
-            '    End If
-            'End If
+        Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+        'ElseIf ホーム.AdminChk = "False" Then
+        '    ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
+        '    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+        '    If Year = 0 Then
+        '        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+        '        Exit Sub
+        '    End If
+        'End If
 
-            Dim RowCount As Integer = 0
+        Dim RowCount As Integer = 0
 
         ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE cstclss_code=" & CostClassCode & " AND year=" & YearList.Text & "AND deleted = 0 ORDER BY bsscst_no ASC"
         Dim BasicCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
