@@ -41,10 +41,7 @@ Partial Class 代価一覧
         Me.Cancel = New System.Windows.Forms.Button()
         Me.Entry = New System.Windows.Forms.Button()
         Me.右クリックメニュー = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.InsertMenu = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CutMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyMenu = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PastingMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostCreateMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostModifyMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostCopyMenu = New System.Windows.Forms.ToolStripMenuItem()
@@ -358,44 +355,19 @@ Partial Class 代価一覧
         Me.右クリックメニュー.BackColor = System.Drawing.Color.White
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu})
+        Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(171, 114)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(159, 26)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
-        'InsertMenu
-        '
-        Me.InsertMenu.Enabled = False
-        Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(170, 22)
-        Me.InsertMenu.Text = "行の挿入"
-        Me.InsertMenu.Visible = False
-        '
-        'CutMenu
-        '
-        Me.CutMenu.Enabled = False
-        Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.CutMenu.Size = New System.Drawing.Size(170, 22)
-        Me.CutMenu.Text = "行の切り取り"
-        '
         'CopyMenu
         '
-        Me.CopyMenu.Enabled = False
         Me.CopyMenu.Name = "CopyMenu"
         Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyMenu.Size = New System.Drawing.Size(170, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(158, 22)
         Me.CopyMenu.Text = "行のコピー"
-        '
-        'PastingMenu
-        '
-        Me.PastingMenu.Enabled = False
-        Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PastingMenu.Size = New System.Drawing.Size(170, 22)
-        Me.PastingMenu.Text = "行の貼り付け"
         '
         'CostCreateMenu
         '
@@ -456,10 +428,7 @@ Partial Class 代価一覧
     Friend WithEvents CostCopy As Button
     Friend WithEvents CostModify As Button
     Friend WithEvents 右クリックメニュー As ContextMenuStrip
-    Friend WithEvents InsertMenu As ToolStripMenuItem
-    Friend WithEvents CutMenu As ToolStripMenuItem
     Friend WithEvents CopyMenu As ToolStripMenuItem
-    Friend WithEvents PastingMenu As ToolStripMenuItem
     Friend WithEvents CostCreateMenu As ToolStripMenuItem
     Friend WithEvents CostModifyMenu As ToolStripMenuItem
     Friend WithEvents CostCopyMenu As ToolStripMenuItem

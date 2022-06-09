@@ -17,6 +17,9 @@ Public Class 協力業者入力
             'While Namemaster.Read
             '    CoopVendorList.Cols(5).ComboList = Namemaster.Item("item_name")
             'End While
+            CoopVendorList.VisualStyle = C1.Win.C1FlexGrid.VisualStyle.Custom
+            C1SplitterPanel1.Anchor = AnchorStyles.Top & Bottom
+            C1SplitterPanel2.Anchor = AnchorStyles.Bottom
 
             ホーム.Sql.CommandText = "SELECT count(outsrcr_code) FROM outsourcers"
             Dim Outsrcrcount As Integer = ホーム.Sql.ExecuteScalar
@@ -121,7 +124,7 @@ Public Class 協力業者入力
                 Dim CoopDeleteF As CellRange = CoopVendorList.GetCellRange(Vendorloop, 7)
 
                 '業者ｺｰﾄﾞ入力時、工期、発注形態入力チェック
-                If CoopCode.Data <> Nothing Then
+                If CoopCode.Data <> Nothing And CoopDeleteF.Data = False Then
                     If Coopterme.Data = Nothing Then
                         MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
                         Exit Sub
