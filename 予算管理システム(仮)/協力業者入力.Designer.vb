@@ -80,9 +80,9 @@ Partial Class 協力業者入力
         'CoopVendorList
         '
         Me.CoopVendorList.AllowAddNew = True
-        Me.CoopVendorList.AllowDelete = True
         Me.CoopVendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.CoopVendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
+        Me.CoopVendorList.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.CoopVendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.CoopVendorList.ColumnInfo = resources.GetString("CoopVendorList.ColumnInfo")
         Me.CoopVendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
@@ -102,10 +102,11 @@ Partial Class 協力業者入力
         '
         'FormSplitContainer
         '
+        Me.FormSplitContainer.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FormSplitContainer.AutoSizeElement = C1.Framework.AutoSizeElement.Both
         Me.FormSplitContainer.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(238, Byte), Integer))
         Me.FormSplitContainer.CollapsingAreaColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.FormSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FormSplitContainer.FixedLineColor = System.Drawing.Color.White
         Me.FormSplitContainer.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(91, Byte), Integer))
         Me.FormSplitContainer.HeaderHeight = 0
@@ -125,11 +126,12 @@ Partial Class 協力業者入力
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.C1SplitterPanel1.Height = 621
+        Me.C1SplitterPanel1.KeepRelativeSize = False
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
         Me.C1SplitterPanel1.ResizeWhileDragging = True
         Me.C1SplitterPanel1.Size = New System.Drawing.Size(990, 621)
-        Me.C1SplitterPanel1.SizeRatio = 94.1R
+        Me.C1SplitterPanel1.SizeRatio = 93.949R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
         Me.C1SplitterPanel1.Width = 990

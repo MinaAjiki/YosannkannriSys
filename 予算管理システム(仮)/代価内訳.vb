@@ -141,7 +141,7 @@ Public Class 代価内訳
 
                 ホーム.SystemSql.CommandText = "SELECT * FROM basis_costs WHERE bsscst_id=" & CreateCostID
                 Dim ProjectCostsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
-                Dim No As String
+                Dim No As String = ""
                 While ProjectCostsReader.Read
                     No = ProjectCostsReader.Item("bsscst_no")
                     CostCostea.Text = ProjectCostsReader.Item("bsscst_costea")
@@ -440,7 +440,7 @@ Public Class 代価内訳
 
                 ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CreateCostID
                 Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                Dim No As String
+                Dim No As String = ""
                 While ProjectCostsReader.Read
                     No = ProjectCostsReader.Item("prjctcst_no")
                     CostCostea.Text = ProjectCostsReader.Item("prjctcst_costea")
