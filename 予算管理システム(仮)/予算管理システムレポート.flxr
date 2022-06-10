@@ -32149,25 +32149,6 @@ FROM  outsourcers
 WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
       </DataSource>
     </DataSources>
-    <ReportParameters>
-      <ReportParameter>
-        <Name>prmOutsrcr0</Name>
-        <Nullable>true</Nullable>
-        <AllowBlank>true</AllowBlank>
-        <MultiValue>true</MultiValue>
-        <Hidden>true</Hidden>
-        <Prompt>出力したい業者を選択(5社まで)</Prompt>
-        <AllowedValuesDefinition>
-          <Values />
-        </AllowedValuesDefinition>
-      </ReportParameter>
-      <ReportParameter>
-        <Name>Parameter0</Name>
-        <AllowedValuesDefinition>
-          <Values />
-        </AllowedValuesDefinition>
-      </ReportParameter>
-    </ReportParameters>
     <Groups>
       <Group>
         <Name>Group1</Name>
@@ -34721,7 +34702,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         </Text>
       </TextField>
       <TextField>
-        <Name>Gy1</Name>
+        <Name>outsrcr_name0</Name>
         <Tag sys="string" />
         <Border>
           <Left>
@@ -34749,9 +34730,6 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           <Size>10</Size>
         </Font>
         <TextFitMode>AutoFontSize</TextFitMode>
-        <Text>
-          <Expression>prmOutsrcr0.Value</Expression>
-        </Text>
       </TextField>
       <ShapeField>
         <Name>直線168</Name>
@@ -34787,7 +34765,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>10828</Left>
+        <Left>10898</Left>
         <Top>1303</Top>
         <Width>270</Width>
         <Height>240</Height>
@@ -34818,7 +34796,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>13561</Left>
+        <Left>13576</Left>
         <Top>1303</Top>
         <Width>270</Width>
         <Height>225</Height>
@@ -34850,7 +34828,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         </Border>
         <Section>PageHeader</Section>
         <Left>16247</Left>
-        <Top>1288</Top>
+        <Top>1303</Top>
         <Width>270</Width>
         <Height>240</Height>
         <Align>LeftTop</Align>
@@ -34944,7 +34922,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         <Section>PageHeader</Section>
         <Left>9771</Left>
         <Top>1304</Top>
-        <Width>1001</Width>
+        <Width>1127</Width>
         <Height>240</Height>
         <Align>LeftTop</Align>
         <Font>
@@ -35000,7 +34978,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         <Section>PageHeader</Section>
         <Left>12465</Left>
         <Top>1304</Top>
-        <Width>1016</Width>
+        <Width>1111</Width>
         <Height>225</Height>
         <Align>LeftTop</Align>
         <Font>
@@ -35054,10 +35032,10 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>15097</Left>
+        <Left>15090</Left>
         <Top>1304</Top>
-        <Width>1061</Width>
-        <Height>225</Height>
+        <Width>1157</Width>
+        <Height>249</Height>
         <Align>LeftTop</Align>
         <Font>
           <Name>メイリオ</Name>
@@ -35082,9 +35060,9 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>16607</Left>
+        <Left>16517</Left>
         <Top>1304</Top>
-        <Width>1016</Width>
+        <Width>1106</Width>
         <Height>240</Height>
         <Align>LeftTop</Align>
         <Font>
@@ -35112,7 +35090,7 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
         <Section>PageHeader</Section>
         <Left>17749</Left>
         <Top>1304</Top>
-        <Width>1076</Width>
+        <Width>1144</Width>
         <Height>225</Height>
         <Align>LeftTop</Align>
         <Font>
@@ -35138,9 +35116,9 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           </Bottom>
         </Border>
         <Section>PageHeader</Section>
-        <Left>19215</Left>
-        <Top>1304</Top>
-        <Width>1076</Width>
+        <Left>19166</Left>
+        <Top>1289</Top>
+        <Width>1129</Width>
         <Height>240</Height>
         <Align>LeftTop</Align>
         <Font>
@@ -37059,6 +37037,126 @@ WHERE ((outsourcers.outsrcr_id) =prmOutsrcr);</RecordSource>
           <Color>FFA9A9A9</Color>
         </Line>
       </ShapeField>
+      <TextField>
+        <Name>outsrcr_name1</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
+        <Left>12465</Left>
+        <Top>953</Top>
+        <Width>2574</Width>
+        <Height>284</Height>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>メイリオ</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoFontSize</TextFitMode>
+      </TextField>
+      <TextField>
+        <Name>outsrcr_name2</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
+        <Left>15090</Left>
+        <Top>953</Top>
+        <Width>2574</Width>
+        <Height>284</Height>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>メイリオ</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoFontSize</TextFitMode>
+      </TextField>
+      <TextField>
+        <Name>outsrcr_name3</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
+        <Left>17749</Left>
+        <Top>953</Top>
+        <Width>2574</Width>
+        <Height>284</Height>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>メイリオ</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoFontSize</TextFitMode>
+      </TextField>
+      <TextField>
+        <Name>outsrcr_name4</Name>
+        <Tag sys="string" />
+        <Border>
+          <Left>
+            <Width>15</Width>
+          </Left>
+          <Top>
+            <Width>15</Width>
+          </Top>
+          <Right>
+            <Width>15</Width>
+          </Right>
+          <Bottom>
+            <Width>15</Width>
+          </Bottom>
+        </Border>
+        <Section>PageHeader</Section>
+        <SplitVertBehavior>KeepTogether</SplitVertBehavior>
+        <Left>20422</Left>
+        <Top>953</Top>
+        <Width>2574</Width>
+        <Height>284</Height>
+        <Align>LeftMiddle</Align>
+        <Font>
+          <Name>メイリオ</Name>
+          <Size>10</Size>
+        </Font>
+        <TextFitMode>AutoFontSize</TextFitMode>
+      </TextField>
     </Fields>
   </Report>
   <Report ref="1">

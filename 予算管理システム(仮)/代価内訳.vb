@@ -502,169 +502,181 @@ Public Class 代価内訳
                     CostID = 0
                     CostCopy.Visible = False
                 End If
-                CostName.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 4)
-                CostSpec.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 5)
-                CostUnit.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 6)
+                If IsDBNull(代価一覧.ProjectCostList(代価一覧.SelectRow, 4)) = True Then
+                    CostName.Text = ""
+                Else
+                    CostName.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 4)
+                End If
+                If IsDBNull(代価一覧.ProjectCostList(代価一覧.SelectRow, 5)) = True Then
+                    CostSpec.Text = ""
+                Else
+                    CostSpec.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 5)
+                End If
+                If IsDBNull(代価一覧.ProjectCostList(代価一覧.SelectRow, 6)) = True Then
+                    CostUnit.Text = ""
+                Else
+                    CostUnit.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 6)
+                End If
                 CostQuanity.Text = 代価一覧.ProjectCostList(代価一覧.SelectRow, 7)
 
-                ホーム.Sql.CommandText = "SELECT prjctcst_costea FROM project_costs WHERE prjctcst_id=" & CreateCostID
-                CostUnitPrice.Value = ホーム.Sql.ExecuteScalar
+                    ホーム.Sql.CommandText = "SELECT prjctcst_costea FROM project_costs WHERE prjctcst_id=" & CreateCostID
+                    CostUnitPrice.Value = ホーム.Sql.ExecuteScalar
 
-                '内訳数取得？
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID
-                Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
+                    '内訳数取得？
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID
+                    Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
 
-                '内訳数によって行数を指定
-                If BreakDownCount > 5 Then
-                    BreakDownList.Rows.Count = (BreakDownCount * 3) + 6
-                Else
-                    BreakDownList.Rows.Count = 21
+                    '内訳数によって行数を指定
+                    If BreakDownCount > 5 Then
+                        BreakDownList.Rows.Count = (BreakDownCount * 3) + 6
+                    Else
+                        BreakDownList.Rows.Count = 21
+                    End If
+
+                    Dim RowCount As Integer = 0
+                    Dim RowNo As Integer = 0
+
+                    'Dim OutsrcngSql As New SqlCommand
+                    'OutsrcngSql.Connection = ホーム.Connection
+
+                    '内訳があるとき
+                    If BreakDownCount > 0 Then
+                        'IDを指定して工事代価内訳テーブルから取得
+                        ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID & " ORDER BY prjctcst_bd_no ASC "
+                        Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                        While BreakDownReader.Read
+                            RowCount += 1
+                            RowNo += 1
+                            If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
+                                BreakDownList(RowCount * 3, 1) = 0
+                            Else
+                                BreakDownList(RowCount * 3, 1) = BreakDownReader.Item("prjctcst_bd_id")
+                            End If
+                            BreakDownList(RowCount * 3, 9) = BreakDownReader.Item("cstmstr_id")
+                            BreakDownList(RowCount * 3, 8) = BreakDownReader.Item("cstclss_code")
+                            BreakDownList(RowCount * 3, 3) = BreakDownReader.Item("prjctcst_bd_no")
+                            BreakDownList(RowCount * 3, 4) = BreakDownReader.Item("prjctcst_bd_name")
+
+                            BreakDownList((RowCount * 3) + 1, 4) = BreakDownReader.Item("prjctcst_bd_spec")
+                            BreakDownList((RowCount * 3) + 2, 4) = BreakDownReader.Item("prjctcst_bd_remarks")
+                            BreakDownList((RowCount * 3) + 2, 5) = BreakDownReader.Item("prjctcst_bd_unit")
+                            BreakDownList(RowCount * 3, 6) = BreakDownReader.Item("prjctcst_bd_quanity")
+                            Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                            Quanity.StyleNew.Format = "N1"
+                            BreakDownList((RowCount * 3) + 1, 6) = BreakDownReader.Item("prjctcst_bd_costea")
+                            Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                            Costea.StyleNew.Format = "N0"
+                            BreakDownList((RowCount * 3) + 2, 6) = Math.Floor((BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_costea")))
+                            Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                            Amount.StyleNew.Format = "N0"
+
+                            BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                            BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                            BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                            If (RowNo * RowNo) + 2 = 6 Then
+                                RowNo = 0
+                            End If
+
+                            If RowCount Mod 2 = 0 Then
+                                BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            End If
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                            BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+
+                            BreakDownList((RowCount * 3) + 1, 10) = BreakDownReader.Item("prjctcst_bd_labor")
+                            BreakDownList((RowCount * 3) + 1, 11) = BreakDownReader.Item("prjctcst_bd_material")
+                            BreakDownList((RowCount * 3) + 1, 12) = BreakDownReader.Item("prjctcst_bd_machine")
+                            BreakDownList((RowCount * 3) + 1, 13) = BreakDownReader.Item("prjctcst_bd_subcntrct")
+                            BreakDownList((RowCount * 3) + 1, 14) = BreakDownReader.Item("prjctcst_bd_expense")
+                            BreakDownList((RowCount * 3) + 2, 10) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_labor"))
+                            BreakDownList((RowCount * 3) + 2, 11) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_material"))
+                            BreakDownList((RowCount * 3) + 2, 12) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_machine"))
+                            BreakDownList((RowCount * 3) + 2, 13) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_subcntrct"))
+                            BreakDownList((RowCount * 3) + 2, 14) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_expense"))
+
+                        End While
+                        BreakDownReader.Close()
+
+                        Dim DataRowCount As Integer = RowCount * 3
+                        Dim BlankRow As Integer = ((BreakDownList.Rows.Count - 3) - DataRowCount) / 3
+                        For BlankLoop As Integer = 0 To BlankRow - 1
+                            RowCount += 1
+                            RowNo = 1
+                            BreakDownList((RowCount * 3), 7) = (RowNo * RowNo)
+                            BreakDownList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
+                            BreakDownList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
+
+                            If RowCount Mod 2 = 0 Then
+                                BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            End If
+
+                            Dim LastQuanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                            LastQuanity.StyleNew.Format = "N1"
+                            Dim LastCostea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                            LastCostea.StyleNew.Format = "N0"
+                            Dim LastAmount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                            LastAmount.StyleNew.Format = "N0"
+
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                            BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                        Next
+
+                        ホーム.Sql.CommandText = "SELECT * FROM projectcst_bd_total WHERE prjctcst_id=" & CreateCostID
+                        Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                        While TotalReader.Read
+                            LaborTotal.Text = TotalReader.Item("labor")
+                            MaterialTotal.Text = TotalReader.Item("material")
+                            MachineTotal.Text = TotalReader.Item("machine")
+                            SubcntrctTotal.Text = TotalReader.Item("subcntrct")
+                            ExpenseTotal.Text = TotalReader.Item("expense")
+                        End While
+                        TotalReader.Close()
+                    Else
+
+                        For RowCount = 1 To 6
+                            RowNo += 1
+
+                            Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
+                            Quanity.StyleNew.Format = "N1"
+                            Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
+                            Costea.StyleNew.Format = "N0"
+                            Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
+                            Amount.StyleNew.Format = "N0"
+
+                            If RowCount Mod 2 = 0 Then
+                                BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            End If
+
+                            BreakDownList(RowCount * 3, 7) = RowNo * RowNo
+                            BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
+                            BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
+                            If (RowNo * RowNo) + 2 = 6 Then
+                                RowNo = 0
+                            End If
+
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
+                            BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
+                            BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
+                        Next
+                    End If
+
+
                 End If
-
-                Dim RowCount As Integer = 0
-                Dim RowNo As Integer = 0
-
-                'Dim OutsrcngSql As New SqlCommand
-                'OutsrcngSql.Connection = ホーム.Connection
-
-                '内訳があるとき
-                If BreakDownCount > 0 Then
-                    'IDを指定して工事代価内訳テーブルから取得
-                    ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CreateCostID & " ORDER BY prjctcst_bd_no ASC "
-                    Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                    While BreakDownReader.Read
-                        RowCount += 1
-                        RowNo += 1
-                        If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
-                            BreakDownList(RowCount * 3, 1) = 0
-                        Else
-                            BreakDownList(RowCount * 3, 1) = BreakDownReader.Item("prjctcst_bd_id")
-                        End If
-                        BreakDownList(RowCount * 3, 9) = BreakDownReader.Item("cstmstr_id")
-                        BreakDownList(RowCount * 3, 8) = BreakDownReader.Item("cstclss_code")
-                        BreakDownList(RowCount * 3, 3) = BreakDownReader.Item("prjctcst_bd_no")
-                        BreakDownList(RowCount * 3, 4) = BreakDownReader.Item("prjctcst_bd_name")
-
-                        BreakDownList((RowCount * 3) + 1, 4) = BreakDownReader.Item("prjctcst_bd_spec")
-                        BreakDownList((RowCount * 3) + 2, 4) = BreakDownReader.Item("prjctcst_bd_remarks")
-                        BreakDownList((RowCount * 3) + 2, 5) = BreakDownReader.Item("prjctcst_bd_unit")
-                        BreakDownList(RowCount * 3, 6) = BreakDownReader.Item("prjctcst_bd_quanity")
-                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                        Quanity.StyleNew.Format = "N1"
-                        BreakDownList((RowCount * 3) + 1, 6) = BreakDownReader.Item("prjctcst_bd_costea")
-                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                        Costea.StyleNew.Format = "N0"
-                        BreakDownList((RowCount * 3) + 2, 6) = Math.Floor((BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_costea")))
-                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                        Amount.StyleNew.Format = "N0"
-
-                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                        If (RowNo * RowNo) + 2 = 6 Then
-                            RowNo = 0
-                        End If
-
-                        If RowCount Mod 2 = 0 Then
-                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        End If
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-
-                        BreakDownList((RowCount * 3) + 1, 10) = BreakDownReader.Item("prjctcst_bd_labor")
-                        BreakDownList((RowCount * 3) + 1, 11) = BreakDownReader.Item("prjctcst_bd_material")
-                        BreakDownList((RowCount * 3) + 1, 12) = BreakDownReader.Item("prjctcst_bd_machine")
-                        BreakDownList((RowCount * 3) + 1, 13) = BreakDownReader.Item("prjctcst_bd_subcntrct")
-                        BreakDownList((RowCount * 3) + 1, 14) = BreakDownReader.Item("prjctcst_bd_expense")
-                        BreakDownList((RowCount * 3) + 2, 10) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_labor"))
-                        BreakDownList((RowCount * 3) + 2, 11) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_material"))
-                        BreakDownList((RowCount * 3) + 2, 12) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_machine"))
-                        BreakDownList((RowCount * 3) + 2, 13) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_subcntrct"))
-                        BreakDownList((RowCount * 3) + 2, 14) = Math.Floor(BreakDownReader.Item("prjctcst_bd_quanity") * BreakDownReader.Item("prjctcst_bd_expense"))
-
-                    End While
-                    BreakDownReader.Close()
-
-                    Dim DataRowCount As Integer = RowCount * 3
-                    Dim BlankRow As Integer = ((BreakDownList.Rows.Count - 3) - DataRowCount) / 3
-                    For BlankLoop As Integer = 0 To BlankRow - 1
-                        RowCount += 1
-                        RowNo = 1
-                        BreakDownList((RowCount * 3), 7) = (RowNo * RowNo)
-                        BreakDownList((RowCount * 3) + 1, 7) = (RowNo * RowNo) + 1
-                        BreakDownList((RowCount * 3) + 2, 7) = (RowNo * RowNo) + 2
-
-                        If RowCount Mod 2 = 0 Then
-                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        End If
-
-                        Dim LastQuanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                        LastQuanity.StyleNew.Format = "N1"
-                        Dim LastCostea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                        LastCostea.StyleNew.Format = "N0"
-                        Dim LastAmount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                        LastAmount.StyleNew.Format = "N0"
-
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                    Next
-
-                    ホーム.Sql.CommandText = "SELECT * FROM projectcst_bd_total WHERE prjctcst_id=" & CreateCostID
-                    Dim TotalReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                    While TotalReader.Read
-                        LaborTotal.Text = TotalReader.Item("labor")
-                        MaterialTotal.Text = TotalReader.Item("material")
-                        MachineTotal.Text = TotalReader.Item("machine")
-                        SubcntrctTotal.Text = TotalReader.Item("subcntrct")
-                        ExpenseTotal.Text = TotalReader.Item("expense")
-                    End While
-                    TotalReader.Close()
-                Else
-
-                    For RowCount = 1 To 6
-                        RowNo += 1
-
-                        Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                        Quanity.StyleNew.Format = "N1"
-                        Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                        Costea.StyleNew.Format = "N0"
-                        Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                        Amount.StyleNew.Format = "N0"
-
-                        If RowCount Mod 2 = 0 Then
-                            BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                            BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        End If
-
-                        BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                        BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                        BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                        If (RowNo * RowNo) + 2 = 6 Then
-                            RowNo = 0
-                        End If
-
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                        BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                        BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                    Next
-                End If
-
-
-            End If
-            If CostQuanity.Text <> "" Then
+                If CostQuanity.Text <> "" Then
 
                 BreakDownList.AllowEditing = True
                 BreakDownList.ContextMenuStrip.Visible = True

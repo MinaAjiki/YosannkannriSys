@@ -124,18 +124,20 @@ Public Class 協力業者入力
                 Dim CoopDeleteF As CellRange = CoopVendorList.GetCellRange(Vendorloop, 7)
 
                 '業者ｺｰﾄﾞ入力時、工期、発注形態入力チェック
-                If CoopCode.Data <> Nothing And CoopDeleteF.Data = False Then
-                    If Coopterme.Data = Nothing Then
-                        MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
-                    End If
-                    If Coopordr.Data = Nothing Then
-                        MsgBox("発注形態を選択してください。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
-                    End If
-                    If CoopVendorList(Vendorloop, 3) >= CoopVendorList(Vendorloop, 4) Then
-                        MsgBox("" & CoopVendorList(Vendorloop, 2) & "の実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
-                        Exit Sub
+                If CoopCode.Data <> Nothing Then
+                    If CoopDeleteF.Data = False Then
+                        If Coopterme.Data = Nothing Then
+                            MsgBox("実施工期を入力してください。", MsgBoxStyle.OkOnly, "エラー")
+                            Exit Sub
+                        End If
+                        If Coopordr.Data = Nothing Then
+                            MsgBox("発注形態を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                            Exit Sub
+                        End If
+                        If CoopVendorList(Vendorloop, 3) >= CoopVendorList(Vendorloop, 4) Then
+                            MsgBox("" & CoopVendorList(Vendorloop, 2) & "の実施工期が適切ではありません。", MsgBoxStyle.OkOnly, "エラー")
+                            Exit Sub
+                        End If
                     End If
                 Else
                     '業者ｺｰﾄﾞ未入力時、その行を削除し次のループへ
@@ -209,7 +211,7 @@ Public Class 協力業者入力
             Next
             ホーム.Modified = "false"
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
-
+            Me.Close()
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

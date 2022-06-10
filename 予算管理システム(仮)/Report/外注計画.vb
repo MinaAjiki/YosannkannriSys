@@ -189,7 +189,9 @@ Public Class 外注計画
             Dim DtlCount As Integer = ホーム.Sql.ExecuteScalar
 
             '明細データを取得
-            ホーム.Sql.CommandText = "SELECT DISTINCT outsrc_no,dtl_id,dtl_no,s_worktype_code,s_wrktyp_name,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & "  ORDER BY s_worktype_code,dtl_no ASC"
+
+            ホーム.Sql.CommandText = "SELECT dtl_id,dtl_no,s_wrktyp_code,s_wrktyp_name,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_amount FROM details_bd WHERE budget_no = " & ホーム.BudgetNo & " AND s_wrktyp_code =  " & s_worktype_code & "  ORDER BY s_wrktyp_code,dtl_no ASC"
+            'ホーム.Sql.CommandText = "SELECT DISTINCT outsrc_no,dtl_id,dtl_no,s_worktype_code,s_wrktyp_name,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & "  ORDER BY s_worktype_code,dtl_no ASC"
             Dim DtlReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While DtlReader.Read
                 'If IsDBNull(DtlReader.Item("outsrc_no")) Then
@@ -211,9 +213,9 @@ Public Class 外注計画
                 '業者数ループ
                 For VendorLoop As Integer = 0 To 協力業者選択.SelectVendorcount - 1
                     '変更回数がNULLでない場合
-                    If Not IsDBNull(DtlReader.Item("outsrc_no")) Then
-                        '外注計画データ取得
-                        Dim Connection As New SqlConnection
+                    'If Not IsDBNull(DtlReader.Item("outsrc_no")) Then
+                    '外注計画データ取得
+                    Dim Connection As New SqlConnection
                         Dim Sql As New SqlCommand
                         Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
                         Connection.Open()
@@ -227,7 +229,7 @@ Public Class 外注計画
                         Sql.CommandText = "SELECT ISNULL(outsrcng_amount,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
                         Dim amount As Decimal = Sql.ExecuteScalar
                         AmountList(VendorLoop) = amount
-                    End If
+                    'End If
                 Next
                 'テーブルに行を追加
                 DT.Rows.Add(s_worktype_code, s_wrktyp_name, dtl_name, dtl_spec, dtl_unit, dtl_quanity, dtl_costea, dtl_amount, QuanityList(0), CosteaList(0), AmountList(0), QuanityList(1), CosteaList(1), AmountList(1), QuanityList(2), CosteaList(2), AmountList(2), QuanityList(3), CosteaList(3), AmountList(3), QuanityList(4), CosteaList(4), AmountList(4))

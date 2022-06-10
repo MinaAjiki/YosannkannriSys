@@ -170,6 +170,7 @@ Public Class 代価一覧
                 CostCreation.Visible = False
                 CostModify.Visible = False
                 CostCopy.Visible = False
+                YearList.Visible = False
                 右クリックメニュー.Visible = False
             End If
 
