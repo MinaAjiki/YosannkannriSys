@@ -138,8 +138,8 @@ Public Class 現場経費内訳
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        Try
-            Dim ErrorCount As Integer = 0
+        'Try
+        Dim ErrorCount As Integer = 0
 
             For DelChk As Integer = 1 To DetailsList.Rows.Count - 1
                 If DetailsList(DelChk, 2) = True Then
@@ -162,7 +162,7 @@ Public Class 現場経費内訳
                 Dim ExpnsUnit As CellRange = DetailsList.GetCellRange(RowsLoop, 6)
                 Dim ExpnsQuanity As CellRange = DetailsList.GetCellRange(RowsLoop, 7)
                 Dim ExpnsCostea As CellRange = DetailsList.GetCellRange(RowsLoop, 8)
-                If Dflag.Data = False And ExpnsName.Data <> Nothing Then
+                If Dflag.Data = False Then
                     If ExpnsID.Data = Nothing Then
                         ホーム.Sql.CommandText = ""
                         ホーム.Sql.Parameters.Clear()
@@ -175,31 +175,36 @@ Public Class 現場経費内訳
                         ホーム.Sql.Parameters("@expns_bd_id").Value = ExpnsID.Data
                     End If
                     ホーム.Sql.Parameters.Add(New SqlParameter("@stexpns_id", SqlDbType.Int))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar))
+                    If IsNothing(DetailsList(RowsLoop, 4)) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = ""
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = DetailsList(RowsLoop, 4)
+                    End If
+
                     ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_spec", SqlDbType.NVarChar))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_unit", SqlDbType.NVarChar))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_quanity", SqlDbType.Decimal))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_costea", SqlDbType.Money))
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_unit", SqlDbType.NVarChar))
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_quanity", SqlDbType.Decimal))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_costea", SqlDbType.Money)).Value = DetailsList(RowsLoop, 8)
                     ホーム.Sql.Parameters("@stexpns_id").Value = ホーム.ExpnsbdID
-                    If ExpnsName.Data = Nothing Then
-                        ExpnsName.Data = " "
-                    End If
-                    ホーム.Sql.Parameters("@expns_bd_name").Value = ExpnsName.Data
+                    'If IsDBNull(ExpnsName.Data) = True Then
+                    '    ExpnsName.Data = "仮データ"
+                    'End If
+                    'ホーム.Sql.Parameters("@expns_bd_name").Value = ExpnsName.Data
                     If ExpnsSpec.Data = Nothing Then
-                        ExpnsSpec.Data = " "
-                    End If
-                    ホーム.Sql.Parameters("@expns_bd_spec").Value = ExpnsSpec.Data
-                    If ExpnsUnit.Data = Nothing Then
-                        ExpnsUnit.Data = " "
-                    End If
-                    ホーム.Sql.Parameters("@expns_bd_unit").Value = ExpnsUnit.Data
+                            ExpnsSpec.Data = ""
+                        End If
+                        ホーム.Sql.Parameters("@expns_bd_spec").Value = ExpnsSpec.Data
+                        If ExpnsUnit.Data = Nothing Then
+                            ExpnsUnit.Data = ""
+                        End If
+                        ホーム.Sql.Parameters("@expns_bd_unit").Value = ExpnsUnit.Data
 
-                    ホーム.Sql.Parameters("@expns_bd_quanity").Value = ExpnsQuanity.Data
-                    ホーム.Sql.Parameters("@expns_bd_costea").Value = ExpnsCostea.Data
-                    ホーム.Sql.ExecuteNonQuery()
-                ElseIf Dflag.Data = True Then
+                        ホーム.Sql.Parameters("@expns_bd_quanity").Value = ExpnsQuanity.Data
+                'ホーム.Sql.Parameters("@expns_bd_costea").Value = ExpnsCostea.Data
+                ホーム.Sql.ExecuteNonQuery()
+                    ElseIf Dflag.Data = True Then
 
-                    If ExpnsID.Data <> Nothing Then
+                        If ExpnsID.Data <> Nothing Then
                         quanity = ExpnsQuanity.Data
                         costea = ExpnsCostea.Data
                         amount = Math.Floor(quanity * costea)
@@ -241,12 +246,12 @@ Public Class 現場経費内訳
             ホーム.FormPanel.Controls.Add(現場経費作成)
             現場経費作成.Show()
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
 
     End Sub
 

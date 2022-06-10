@@ -506,7 +506,7 @@ Public Class 出来高入力
 
             '外注計画テーブルから外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans)"
+            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND budget_no = " & ホーム.BudgetNo
             Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
             While DtlID.Read
                 'dtl_id=0 はあたまなので表示されない
