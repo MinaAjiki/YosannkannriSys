@@ -12,7 +12,9 @@
               <DbSource ConnectionRef="SystemSql (MySettings)" DbObjectName="PMS.dbo.M_TOR_TOMOE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL FROM dbo.M_TOR_TOMOE</CommandText>
+                    <CommandText>SELECT                      CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL
+FROM                         M_TOR_TOMOE
+ORDER BY               CODE</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -36,7 +38,7 @@
   <xs:element name="M_TOR_TOMOE" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="M_TOR_TOMOE" msprop:Generator_UserDSName="M_TOR_TOMOE">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="M_TOR_TOMOE" msprop:Generator_TableClassName="M_TOR_TOMOEDataTable" msprop:Generator_TableVarName="tableM_TOR_TOMOE" msprop:Generator_TablePropName="_M_TOR_TOMOE" msprop:Generator_RowDeletingName="M_TOR_TOMOERowDeleting" msprop:Generator_RowChangingName="M_TOR_TOMOERowChanging" msprop:Generator_RowEvHandlerName="M_TOR_TOMOERowChangeEventHandler" msprop:Generator_RowDeletedName="M_TOR_TOMOERowDeleted" msprop:Generator_UserTableName="M_TOR_TOMOE" msprop:Generator_RowChangedName="M_TOR_TOMOERowChanged" msprop:Generator_RowEvArgName="M_TOR_TOMOERowChangeEvent" msprop:Generator_RowClassName="M_TOR_TOMOERow">
+        <xs:element name="M_TOR_TOMOE" msprop:Generator_TableClassName="M_TOR_TOMOEDataTable" msprop:Generator_TableVarName="tableM_TOR_TOMOE" msprop:Generator_RowChangedName="M_TOR_TOMOERowChanged" msprop:Generator_TablePropName="_M_TOR_TOMOE" msprop:Generator_RowDeletingName="M_TOR_TOMOERowDeleting" msprop:Generator_RowChangingName="M_TOR_TOMOERowChanging" msprop:Generator_RowEvHandlerName="M_TOR_TOMOERowChangeEventHandler" msprop:Generator_RowDeletedName="M_TOR_TOMOERowDeleted" msprop:Generator_RowClassName="M_TOR_TOMOERow" msprop:Generator_UserTableName="M_TOR_TOMOE" msprop:Generator_RowEvArgName="M_TOR_TOMOERowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CODE" msprop:Generator_ColumnVarNameInTable="columnCODE" msprop:Generator_ColumnPropNameInRow="CODE" msprop:Generator_ColumnPropNameInTable="CODEColumn" msprop:Generator_UserColumnName="CODE">

@@ -174,7 +174,8 @@ Partial Class 外注内訳入力
         '
         Me.TotalBreakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.TotalBreakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.TotalBreakdown.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TotalBreakdown.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TotalBreakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.TotalBreakdown.ColumnInfo = "8,0,0,0,0,110,Columns:0{Width:95;}" & Global.Microsoft.VisualBasic.ChrW(9) & "1{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "2{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "3{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "4{Wi" &
     "dth:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "5{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "6{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9) & "7{Width:110;}" & Global.Microsoft.VisualBasic.ChrW(9)
@@ -287,8 +288,9 @@ Partial Class 外注内訳入力
         '
         Me.Breakdown.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.Breakdown.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.Breakdown.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Breakdown.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Breakdown.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.Breakdown.ColumnInfo = resources.GetString("Breakdown.ColumnInfo")
         Me.Breakdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))

@@ -232,9 +232,9 @@ Public Class ホーム
                 FormClose = FormCloseLoad.FormCheck
             End If
 
-            協力業者入力.Anchor = AnchorStyles.Top
+            協力業者入力.Anchor = AnchorStyles.Top & Bottom
             '協力業者入力.Anchor = AnchorStyles.Bottom
-            協力業者入力.Anchor = AnchorStyles.Left
+            '協力業者入力.Anchor = AnchorStyles.Left
             '協力業者入力.Anchor = AnchorStyles.Right
 
             協力業者入力.TopLevel = False

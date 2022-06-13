@@ -957,7 +957,8 @@ Namespace M_TOR_ICHIKAWATableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL FROM dbo.M_TOR_ICHKAKWA"
+            Me._commandCollection(0).CommandText = "SELECT                      CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
+                "                   M_TOR_ICHKAKWA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY               CODE"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

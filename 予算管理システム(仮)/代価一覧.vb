@@ -28,13 +28,18 @@ Public Class 代価一覧
                 ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim Year As Integer
-                If ホーム.AdminChk = "True" Then
-                    ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
-                    Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-                ElseIf ホーム.AdminChk = "False" Then
-                    ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
+                If IsNumeric(ホーム.Sql.ExecuteScalar) = True Then
                     Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+                Else
+                    If ホーム.AdminChk = "True" Then
+                        ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+                        Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+                    Else
+                        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+                    End If
                 End If
+
 
                 Dim RowCount As Integer = 0
 
@@ -86,6 +91,14 @@ Public Class 代価一覧
                 ProjectCostList.Cols(2).AllowEditing = True
 
             ElseIf CostClassName = "工事代価" Then
+                ProjectCostList.ContextMenuStrip = 右クリックメニュー
+                Dim dt As DataTable
+                dt = New DataTable
+                dt.Columns.Add("code", GetType(System.Int32))
+                dt.Columns.Add("name", GetType(System.String))
+                Dim code As Int32
+                Dim name As String
+
 
                 Dim dt As DataTable
                 dt = New DataTable
@@ -93,6 +106,7 @@ Public Class 代価一覧
                 dt.Columns.Add("name", GetType(System.String))
                 Dim code As Int32
                 Dim name As String
+
 
                 ホーム.Sql.Parameters.Clear()
                 CostList.Items.Clear()
@@ -165,6 +179,7 @@ Public Class 代価一覧
                 CostCreation.Visible = False
                 CostModify.Visible = False
                 CostCopy.Visible = False
+                YearList.Visible = False
                 右クリックメニュー.Visible = False
             End If
 
@@ -597,7 +612,7 @@ Public Class 代価一覧
                 ProjectCostList(0, 9) = "代価計"
                 ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = ""
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
                 Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
 
                 If ProjectCostsCount > 21 Then
@@ -821,13 +836,17 @@ Public Class 代価一覧
         ProjectCostList.Rows.Count = BasicCostsCount + 1
 
         Dim Year As Integer
-        If ホーム.AdminChk = "True" Then
-            ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
-            Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
-        ElseIf ホーム.AdminChk = "False" Then
-            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-            Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
-        End If
+        'If ホーム.AdminChk = "True" Then
+        ホーム.SystemSql.CommandText = "SELECT MAX(year) FROM years"
+        Year = Integer.Parse(ホーム.SystemSql.ExecuteScalar)
+        'ElseIf ホーム.AdminChk = "False" Then
+        '    ホーム.Sql.CommandText = "SELECT ISNULL(contents,0) FROM controldata WHERE class_code=12"
+        '    Year = Integer.Parse(ホーム.Sql.ExecuteScalar)
+        '    If Year = 0 Then
+        '        MsgBox("予算総括を登録して下さい。", MsgBoxStyle.Exclamation, "代価一覧")
+        '        Exit Sub
+        '    End If
+        'End If
 
         Dim RowCount As Integer = 0
 
@@ -851,5 +870,138 @@ Public Class 代価一覧
 
         End While
         BasicCostsReader.Close()
+    End Sub
+
+    Private Sub ProjectCostList_CellChecked(sender As Object, e As RowColEventArgs) Handles ProjectCostList.CellChecked
+        If ProjectCostList(e.Row, 2) = True Then
+            ProjectCostList.Rows(e.Row).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 230, 230)
+        Else
+            ProjectCostList.Rows(e.Row).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+        End If
+    End Sub
+
+    Private Sub CopyMenu_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
+        'SelectRow = ProjectCostList.Selection.TopRow
+        'If ProjectCostList(SelectRow, 1) = Nothing Then
+
+        'Else
+        '    If SelectRow = 0 Then
+        '        MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+        '    Else
+        '        Dim CopyID As Integer = ProjectCostList(SelectRow, 1)
+        '        ホーム.Sql.Parameters.Clear()
+        '        ホーム.Sql.CommandText = ""
+        '        ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+        '        Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
+        '        If ProjectCostsCount > 21 Then
+        '            ProjectCostList.Rows.Count += 1
+        '        End If
+        '        Dim PasteRow As Integer = ProjectCostsCount + 1
+        '        '代価一覧新規行作成
+        '        ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+        '        Dim PrjctNo As Integer = ホーム.Sql.ExecuteScalar
+        '        ProjectCostList(PasteRow, 3) = PrjctNo + 1
+        '        ProjectCostList(PasteRow, 4) = ProjectCostList(SelectRow, 4)
+        '        ProjectCostList(PasteRow, 5) = ProjectCostList(SelectRow, 5)
+        '        ProjectCostList(PasteRow, 6) = ProjectCostList(SelectRow, 6)
+        '        ProjectCostList(PasteRow, 7) = ProjectCostList(SelectRow, 7)
+        '        ProjectCostList(PasteRow, 8) = ProjectCostList(SelectRow, 8)
+        '        ProjectCostList(PasteRow, 9) = ProjectCostList(SelectRow, 9)
+
+        '        ホーム.Transaction = ホーム.Connection.BeginTransaction
+
+        '        '代価を新規登録
+        '        ホーム.Sql.CommandText = ""
+        '        ホーム.Sql.Parameters.Clear()
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 4)
+        '        If IsNothing(ProjectCostList(PasteRow, 5)) = True Or Not ProjectCostList(PasteRow, 5) <> "" Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 5)
+        '        End If
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 6)
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = ProjectCostList(PasteRow, 7)
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = ProjectCostList(PasteRow, 8)
+
+        '        ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id = " & CopyID & " AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+        '        Dim prjctcstread As SqlDataReader = ホーム.Sql.ExecuteReader
+        '        Dim Laborcostea As Int64
+        '        Dim materialcostea As Int64
+        '        Dim machinecostea As Int64
+        '        Dim subcntrctcostea As Int64
+        '        Dim expenscostea As Int64
+        '        While prjctcstread.Read
+        '            Laborcostea = prjctcstread.Item("prjctcst_laborea")
+        '            materialcostea = prjctcstread.Item("prjctcst_materialea")
+        '            machinecostea = prjctcstread.Item("prjctcst_machineea")
+        '            subcntrctcostea = prjctcstread.Item("prjctcst_subcntrctea")
+        '            expenscostea = prjctcstread.Item("prjctcst_expenseea")
+        '        End While
+        '        prjctcstread.Close()
+
+        '        If IsNothing(Laborcostea) = True Or IsDBNull(Laborcostea) = True Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = Laborcostea
+        '        End If
+        '        If IsNothing(materialcostea) = True Or IsDBNull(materialcostea) = True Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = materialcostea
+        '        End If
+        '        If IsNothing(machinecostea) = True Or IsDBNull(machinecostea) = True Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = machinecostea
+        '        End If
+        '        If IsNothing(subcntrctcostea) = True Or IsDBNull(subcntrctcostea) = True Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = subcntrctcostea
+        '        End If
+        '        If IsNothing(expenscostea) = True Or IsDBNull(expenscostea) = True Then
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = 0
+        '        Else
+        '            ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = expenscostea
+        '        End If
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
+        '        ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstno", SqlDbType.SmallInt)).Value = Integer.Parse(ProjectCostList(PasteRow, 3))
+        '        ホーム.Sql.CommandText = "INSERT INTO project_costs (budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,
+        '                                  prjctcst_quanity,prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea)
+        '                                    VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
+        '        ホーム.Sql.ExecuteNonQuery()
+
+        '        '新規行の工事代価IDを取得
+        '        ホーム.Sql.Parameters.Clear()
+        '        ホーム.Sql.CommandText = ""
+        '        ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND prjctcst_no=" & Integer.Parse(ProjectCostList(PasteRow, 3)) & " AND budget_no=" & ホーム.BudgetNo
+        '        Dim CreateCopyID = ホーム.Sql.ExecuteScalar
+
+        '        '代価内訳を新規登録
+
+        '        ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID
+        '        Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
+        '        If BreakDownCount > 0 Then
+        '            For BDLoop As Integer = 0 To BreakDownCount - 1
+        '                ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID & " AND prjctcst_bd_no = " & BDLoop & " AND budget_no=" & ホーム.BudgetNo
+        '                Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
+        '                While BreakDownReader.Read
+
+        '                End While
+        '                BreakDownReader.Close()
+
+
+        '            Next
+
+        '        End If
+
+        '        '登録されたprjctcst_idを代価一覧新規行にコピー
+        '        ProjectCostList(PasteRow, 1) = CreateCopyID
+
+        '        ホーム.Transaction.Commit()
+        '    End If
+
+        'End If
     End Sub
 End Class

@@ -12,7 +12,9 @@
               <DbSource ConnectionRef="SystemSql (MySettings)" DbObjectName="PMS.dbo.M_TOR_ICHKAKWA" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL FROM dbo.M_TOR_ICHKAKWA</CommandText>
+                    <CommandText>SELECT                      CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL
+FROM                         M_TOR_ICHKAKWA
+ORDER BY               CODE</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -36,7 +38,7 @@
   <xs:element name="M_TOR_ICHIKAWA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="M_TOR_ICHIKAWA" msprop:Generator_UserDSName="M_TOR_ICHIKAWA">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="M_TOR_ICHKAKWA" msprop:Generator_TableClassName="M_TOR_ICHKAKWADataTable" msprop:Generator_TableVarName="tableM_TOR_ICHKAKWA" msprop:Generator_TablePropName="M_TOR_ICHKAKWA" msprop:Generator_RowDeletingName="M_TOR_ICHKAKWARowDeleting" msprop:Generator_RowChangingName="M_TOR_ICHKAKWARowChanging" msprop:Generator_RowEvHandlerName="M_TOR_ICHKAKWARowChangeEventHandler" msprop:Generator_RowDeletedName="M_TOR_ICHKAKWARowDeleted" msprop:Generator_UserTableName="M_TOR_ICHKAKWA" msprop:Generator_RowChangedName="M_TOR_ICHKAKWARowChanged" msprop:Generator_RowEvArgName="M_TOR_ICHKAKWARowChangeEvent" msprop:Generator_RowClassName="M_TOR_ICHKAKWARow">
+        <xs:element name="M_TOR_ICHKAKWA" msprop:Generator_TableClassName="M_TOR_ICHKAKWADataTable" msprop:Generator_TableVarName="tableM_TOR_ICHKAKWA" msprop:Generator_RowChangedName="M_TOR_ICHKAKWARowChanged" msprop:Generator_TablePropName="M_TOR_ICHKAKWA" msprop:Generator_RowDeletingName="M_TOR_ICHKAKWARowDeleting" msprop:Generator_RowChangingName="M_TOR_ICHKAKWARowChanging" msprop:Generator_RowEvHandlerName="M_TOR_ICHKAKWARowChangeEventHandler" msprop:Generator_RowDeletedName="M_TOR_ICHKAKWARowDeleted" msprop:Generator_RowClassName="M_TOR_ICHKAKWARow" msprop:Generator_UserTableName="M_TOR_ICHKAKWA" msprop:Generator_RowEvArgName="M_TOR_ICHKAKWARowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CODE" msprop:Generator_ColumnVarNameInTable="columnCODE" msprop:Generator_ColumnPropNameInRow="CODE" msprop:Generator_ColumnPropNameInTable="CODEColumn" msprop:Generator_UserColumnName="CODE">
