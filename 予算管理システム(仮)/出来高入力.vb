@@ -489,8 +489,8 @@ Public Class 出来高入力
         End Try
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        Try
-            If ErrorCheck >= 1 Then
+        'Try
+        If ErrorCheck >= 1 Then
                 MsgBox("累計出来高の金額が、契約金額を超えている行があります。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
@@ -506,14 +506,19 @@ Public Class 出来高入力
 
             '外注計画テーブルから外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-            ホーム.Sql.CommandText = "SELECT dtl_id FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND budget_no = " & ホーム.BudgetNo
-            Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
-            While DtlID.Read
-                'dtl_id=0 はあたまなので表示されない
-                If DtlID.Item("dtl_id") = 0 Then
-                    Continue While
-                End If
-                DtlIDlist.Add(DtlID.Item("dtl_id"))
+        ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND budget_no = " & ホーム.BudgetNo
+        Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
+        Dim Oquanity As Decimal
+        Dim Ocostea As Int64
+        While DtlID.Read
+            'dtl_id=0 はあたまなので表示されない
+            Oquanity = DtlID.Item("outsrcng_quanity")
+            Ocostea = DtlID.Item("outsrcng_costea")
+            '数量０単価０で登録されている明細書IDは省く
+            If Oquanity = 0 And Ocostea = 0 Then
+                Continue While
+            End If
+            DtlIDlist.Add(DtlID.Item("dtl_id"))
             End While
             DtlID.Close()
 
@@ -574,12 +579,12 @@ Public Class 出来高入力
             '外注内訳入力.ChangeFlag = 0
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "出来高登録")
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
     End Sub
 
 End Class

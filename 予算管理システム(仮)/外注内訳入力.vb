@@ -176,32 +176,38 @@ Public Class 外注内訳入力
     End Sub
 
     Private Sub DetailList_AfterScroll(sender As Object, e As RangeEventArgs) Handles DetailList.AfterScroll
-        Breakdown.ScrollPosition = DetailList.ScrollPosition
-
+        'Breakdown.ScrollPosition = DetailList.ScrollPosition
+        If Not outsrcr_x = Breakdown.ScrollPosition.X Then
+            outsrcr_x = Breakdown.ScrollPosition.X
+        End If
+        If Not outsrcr_y = DetailList.ScrollPosition.Y Then
+            outsrcr_y = DetailList.ScrollPosition.Y
+        End If
+        Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
 
     Private Sub Breakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles Breakdown.AfterScroll
         DetailList.ScrollPosition = Breakdown.ScrollPosition
         TotalBreakdown.ScrollPosition = Breakdown.ScrollPosition
 
-        If Not outsrcr_x = Breakdown.ScrollPosition.X Then
-            outsrcr_x = Breakdown.ScrollPosition.X
-        End If
-        If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
-            outsrcr_y = Breakdown.ScrollPosition.Y
-        End If
-        TotalBreakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
-
-    End Sub
-    Private Sub TotalBreakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles TotalBreakdown.AfterScroll
-        Breakdown.ScrollPosition = TotalBreakdown.ScrollPosition
         'If Not outsrcr_x = Breakdown.ScrollPosition.X Then
         '    outsrcr_x = Breakdown.ScrollPosition.X
         'End If
         'If Not outsrcr_y = Breakdown.ScrollPosition.Y Then
         '    outsrcr_y = Breakdown.ScrollPosition.Y
         'End If
-        'Breakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
+        'TotalBreakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
+
+    End Sub
+    Private Sub TotalBreakdown_AfterScroll(sender As Object, e As RangeEventArgs) Handles TotalBreakdown.AfterScroll
+        'Breakdown.ScrollPosition = TotalBreakdown.ScrollPosition
+        'If Not outsrcr_x = TotalBreakdown.ScrollPosition.X Then
+        '    outsrcr_x = TotalBreakdown.ScrollPosition.X
+        'End If
+        'If Not outsrcr_y = TotalBreakdown.ScrollPosition.Y Then
+        '    outsrcr_y = TotalBreakdown.ScrollPosition.Y
+        'End If
+        'TotalBreakdown.ScrollPosition = New Point(outsrcr_x, outsrcr_y)
     End Sub
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
         Try
