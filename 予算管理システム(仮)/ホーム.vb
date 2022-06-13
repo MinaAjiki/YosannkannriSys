@@ -55,7 +55,12 @@ Public Class ホーム
 
             If System.IO.File.Exists("C:\PMS\system.mdf") = True Then
 
-
+                SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
+                Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
+                While M_TANTReader.Read
+                    AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
+                End While
+                M_TANTReader.Close()
 
                 SystmMdfCnnctn.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\PMS\system.mdf;Integrated Security=True"
                 SystmMdfCnnctn.Open()
@@ -149,12 +154,6 @@ Public Class ホーム
                             参照作成command.Enabled = False
                         End If
 
-                        SystemSql.CommandText = "SELECT NAME FROM M_TANT_ALL WHERE NON_SEARCH=0"
-                        Dim M_TANTReader As SqlDataReader = SystemSql.ExecuteReader
-                        While M_TANTReader.Read
-                            AutoCmpCllctn.Add(M_TANTReader.Item("NAME"))
-                        End While
-                        M_TANTReader.Close()
 
                         'レポートのデザインが格納されているファイルのパスを変数に代入する
                         Reportpath = Application.StartupPath & "\予算管理システムレポート.flxr"
@@ -324,6 +323,7 @@ Public Class ホーム
                 FormClose = FormCloseLoad.FormCheck
             End If
 
+
             BeforeForm = "予算"
             大工種選択.TopLevel = False
             FormPanel.Controls.Add(大工種選択)
@@ -421,10 +421,10 @@ Public Class ホーム
             SystemMdf.CommandText = "INSERT INTO userfiles (filename,filepath,filedate) VALUES (@filename,@filepath,@filedate)"
             SystemMdf.Parameters.Add(New SqlParameter("@filename", SqlDbType.NVarChar))
             SystemMdf.Parameters.Add(New SqlParameter("@filepath", SqlDbType.NVarChar))
-            SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.Date))
+            SystemMdf.Parameters.Add(New SqlParameter("@filedate", SqlDbType.DateTime))
             SystemMdf.Parameters("@filename").Value = FileName
             SystemMdf.Parameters("@filepath").Value = FilePath
-            SystemMdf.Parameters("@filedate").Value = Today
+            SystemMdf.Parameters("@filedate").Value = Now
             SystemMdf.ExecuteNonQuery()
 
             Me.Text = "予算管理システム　(" & CreateFileDialog.FileName & ")"
@@ -443,6 +443,7 @@ Public Class ホーム
             見積.Enabled = False
             外注管理.Enabled = False
             参照作成command.Enabled = False
+            Me.Enabled = True
 
             SystemMdf.Parameters.Clear()
 

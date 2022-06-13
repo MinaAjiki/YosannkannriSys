@@ -69,11 +69,11 @@ Public Class 代価表入力
                         CostName.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 4)
                         CostSpec.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 1, 4)
                         CostUnit.Text = 明細書入力.DetailsList(明細書入力.SelectRow + 2, 5)
-                        If IsDBNull(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
-                            If 明細書入力.DetailsList(明細書入力.SelectRow, 6) > 0 Then
-                                CostQuanity.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 6)
-                            End If
-                        End If
+                        'If IsDBNull(明細書入力.DetailsList(明細書入力.SelectRow, 6)) = False Then
+                        '    If 明細書入力.DetailsList(明細書入力.SelectRow, 6) > 0 Then
+                        '        CostQuanity.Text = 明細書入力.DetailsList(明細書入力.SelectRow, 6)
+                        '    End If
+                        'End If
                     End If
                 Else
 
@@ -86,11 +86,11 @@ Public Class 代価表入力
                         CostName.Text = ProjectCostList(ProjectCostRow, 4)
                         CostSpec.Text = ProjectCostList(ProjectCostRow + 1, 4)
                         CostUnit.Text = ProjectCostList(ProjectCostRow + 2, 5)
-                        If IsDBNull(ProjectCostList(ProjectCostRow, 6)) = False Then
-                            If ProjectCostList(ProjectCostRow, 6) > 0 Then
-                                CostQuanity.Text = ProjectCostList(ProjectCostRow, 6)
-                            End If
-                        End If
+                        'If IsDBNull(ProjectCostList(ProjectCostRow, 6)) = False Then
+                        '    If ProjectCostList(ProjectCostRow, 6) > 0 Then
+                        '        CostQuanity.Text = ProjectCostList(ProjectCostRow, 6)
+                        '    End If
+                        'End If
                     End If
                 End If
 
@@ -943,6 +943,7 @@ Public Class 代価表入力
             If Key = "" Then
                 Dim Col As Integer = BreakDownList.Selection.LeftCol
                 Dim Row As Integer = BreakDownList.Selection.TopRow
+                Dim RowNo As Integer = BreakDownList(Row, 7)
 
                 If Not Command = "Insert" AndAlso Not Command = "Pasting" Then
                     For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
@@ -953,7 +954,6 @@ Public Class 代価表入力
                         End If
                     Next
 
-                    Dim RowNo As Integer = BreakDownList(Row, 7)
                     If RowNo = 1 Or RowNo = 4 Then
                         BreakDownList.Rows(Row).Caption = "▶"
                     ElseIf RowNo = 2 Or RowNo = 5 Then
@@ -967,8 +967,14 @@ Public Class 代価表入力
 
                 If Col >= 6 Then
                     BreakDownList.ImeMode = ImeMode.Disable
+                    If RowNo = 2 Or RowNo = 5 Then
+                        BreakDownList.KeyActionEnter = KeyActionEnum.MoveAcross
+                        BreakDownList.KeyActionTab = KeyActionEnum.MoveAcross
+                    End If
                 Else
-                    BreakDownList.ImeMode = ImeMode.On
+                        BreakDownList.ImeMode = ImeMode.On
+                    BreakDownList.KeyActionEnter = KeyActionEnum.MoveDown
+                    BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
                 End If
             End If
         Catch ex As Exception
@@ -1112,11 +1118,9 @@ Public Class 代価表入力
 
                 FormCount = ホーム.ProjectCostForm.Count
 
-                'ホーム.SelectNode.Collapse()
-                'ホーム.SelectNode = ホーム.SelectNode.ParentCollection.Parent
                 Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                ホーム.SelectNodeList(maxindex).Collapse()
                 If ホーム.SelectNodeList.Count > 0 Then
+                    ホーム.SelectNodeList(maxindex).Collapse()
                     ホーム.SelectNodeList.RemoveAt(maxindex)
                 End If
             End If
@@ -1286,6 +1290,12 @@ Public Class 代価表入力
                 BreakDownList(SelectRow + 2, 6) = BreakDownList(CopyRow + 2, 6)
                 BreakDownList(SelectRow, 8) = BreakDownList(CopyRow, 8)
                 BreakDownList(SelectRow, 9) = BreakDownList(CopyRow, 9)
+                BreakDownList(SelectRow, 10) = BreakDownList(CopyRow, 10)
+                BreakDownList(SelectRow, 11) = BreakDownList(CopyRow, 11)
+                BreakDownList(SelectRow, 12) = BreakDownList(CopyRow, 12)
+                BreakDownList(SelectRow, 13) = BreakDownList(CopyRow, 13)
+                BreakDownList(SelectRow, 14) = BreakDownList(CopyRow, 14)
+
                 If Command1 = "Cut" Then
                     BreakDownList.Rows.RemoveRange(CopyRow, 3)
                 End If
@@ -1469,10 +1479,7 @@ Public Class 代価表入力
                 If IsKeyDown(Windows.Input.Key.Enter) = True Then
                     If Key = "" Then
                         Dim RowIndex As Integer = BreakDownList(Row, 7)
-                        If RowIndex = 2 Or RowIndex = 5 Then
-                            BreakDownList.Select(Row - 1, 10)
-
-                        ElseIf RowIndex = 1 Or RowIndex = 4 Then
+                        If RowIndex = 1 Or RowIndex = 4 Then
                             If ホーム.ItemSelect = "true" Then
                                 BreakDownList.Select(Row + 2, 4)
                                 ホーム.ItemSelect = ""
@@ -1503,16 +1510,6 @@ Public Class 代価表入力
                 Dim Laborea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
                 LaborCostea.Value = Laborea
 
-
-                If IsKeyDown(Windows.Input.Key.Enter) = True Then
-                    If Key = "" Then
-                        Dim RowIndex As Integer = BreakDownList(Row, 7)
-                        If RowIndex = 2 Or RowIndex = 5 Then
-                            BreakDownList.Select(Row - 1, 11)
-                        End If
-                    End If
-                    Key = ""
-                End If
             ElseIf Col = 11 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1535,15 +1532,6 @@ Public Class 代価表入力
                 MaterialCostea.Value = Materialea
 
 
-                If IsKeyDown(Windows.Input.Key.Enter) = True Then
-                    If Key = "" Then
-                        Dim RowIndex As Integer = BreakDownList(Row, 7)
-                        If RowIndex = 2 Or RowIndex = 5 Then
-                            BreakDownList.Select(Row - 1, 12)
-                        End If
-                    End If
-                    Key = ""
-                End If
             ElseIf Col = 12 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1565,16 +1553,6 @@ Public Class 代価表入力
                 Dim Machineea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
                 MachineCostea.Value = Machineea
 
-
-                If IsKeyDown(Windows.Input.Key.Enter) = True Then
-                    If Key = "" Then
-                        Dim RowIndex As Integer = BreakDownList(Row, 7)
-                        If RowIndex = 2 Or RowIndex = 5 Then
-                            BreakDownList.Select(Row - 1, 13)
-                        End If
-                    End If
-                    Key = ""
-                End If
             ElseIf Col = 13 Then
 
                 If BreakDownList(Row, 7) = 1 Or BreakDownList(Row, 7) = 4 Then
@@ -1596,16 +1574,6 @@ Public Class 代価表入力
                 Dim Subcntrctea As Int64 = Math.Floor(ColTotal / CostQuanity.Value)
                 SubcntrctCostea.Value = Subcntrctea
 
-
-                If IsKeyDown(Windows.Input.Key.Enter) = True Then
-                    If Key = "" Then
-                        Dim RowIndex As Integer = BreakDownList(Row, 7)
-                        If RowIndex = 2 Or RowIndex = 5 Then
-                            BreakDownList.Select(Row - 1, 14)
-                        End If
-                    End If
-                    Key = ""
-                End If
             ElseIf Col = 14 Then
 
 
@@ -2533,28 +2501,15 @@ Public Class 代価表入力
                         SendKeys.Send("{ENTER}")
                     End If
                 ElseIf RowIndex = 2 Or RowIndex = 5 Then
-                    If SelectionCol = 6 Then
-                        SendKeys.Send("{ENTER}")
-                        BreakDownList.Select(SelectionRow - 1, 10)
-                    ElseIf SelectionCol = 10 Then
-                        SendKeys.Send("{ENTER}")
-                        BreakDownList.Select(SelectionRow - 1, 11)
-                    ElseIf SelectionCol = 11 Then
-                        SendKeys.Send("{ENTER}")
-                        BreakDownList.Select(SelectionRow - 1, 12)
-                    ElseIf SelectionCol = 12 Then
-                        SendKeys.Send("{ENTER}")
-                        BreakDownList.Select(SelectionRow - 1, 13)
-                    ElseIf SelectionCol = 13 Then
-                        SendKeys.Send("{ENTER}")
-                        BreakDownList.Select(SelectionRow - 1, 14)
-                    ElseIf SelectionCol = 14 Then
+                    If SelectionCol = 14 Then
                         If BreakDownList(SelectionRow + 2, 7) = 1 Or BreakDownList(SelectionRow + 2, 7) = 4 Then
-                            BreakDownList.Select(SelectionRow + 2, 4)
-                            SendKeys.Send("{DOWN}")
-                            SendKeys.Send("{UP}")
+                            BreakDownList.Select(SelectionRow + 1, 4)
+                            BreakDownList.KeyActionEnter = KeyActionEnum.MoveDown
+                            BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
+                            SendKeys.Send("{ENTER}")
                         Else
                             BreakDownList.Select(SelectionRow + 1, 4)
+
                         End If
                     Else
                         SendKeys.Send("{ENTER}")

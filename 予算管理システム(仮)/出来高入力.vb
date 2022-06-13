@@ -489,8 +489,8 @@ Public Class 出来高入力
         End Try
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        Try
-            If ErrorCheck >= 1 Then
+        'Try
+        If ErrorCheck >= 1 Then
                 MsgBox("累計出来高の金額が、契約金額を超えている行があります。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
@@ -574,12 +574,12 @@ Public Class 出来高入力
             '外注内訳入力.ChangeFlag = 0
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "出来高登録")
 
-        Catch ex As Exception
-            ホーム.ErrorMessage = ex.Message
-            ホーム.StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    ホーム.ErrorMessage = ex.Message
+        '    ホーム.StackTrace = ex.StackTrace
+        '    エラー.Show()
+        '    Exit Sub
+        'End Try
     End Sub
 
 End Class

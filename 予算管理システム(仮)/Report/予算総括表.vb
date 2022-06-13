@@ -57,7 +57,12 @@ Public Class 予算総括表
 
         Dim BudgetField As C1.Win.FlexReport.Field
         BudgetField = CType(レポート.C1FlexReport1.Fields("budget_no"), C1.Win.FlexReport.Field)
-        BudgetField.Text = "第" & ホーム.BudgetNo & "回変更"
+        If ホーム.BudgetNo = 0 Then
+            BudgetField.Text = "当初"
+        Else
+            BudgetField.Text = "第" & ホーム.BudgetNo & "回変更"
+
+        End If
 
         ホーム.Sql.CommandText = "SELECT Count(*) FROM site_expenses WHERE budget_no=" & ホーム.BudgetNo
         Dim SiteExpenseCount As Integer = ホーム.Sql.ExecuteScalar

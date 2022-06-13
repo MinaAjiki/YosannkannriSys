@@ -136,9 +136,11 @@ Public Class 詳細入力表
                 DetailList.MergedRanges.Add((RowCount * 3) + 2, 3, (RowCount * 3) + 2, 4)
                 DetailList(RowCount * 3, 4) = DetailsReader.Item("dtl_unit")
                 DetailList((RowCount * 3), 5) = DetailsReader.Item("dtl_amount")
-                DetailList((RowCount * 3) + 1, 5) = OutsrcngAmount - DetailList((RowCount * 3) + 2, 8)
-                DetailList((RowCount * 3) + 2, 5) = DetailList((RowCount * 3), 5) - DetailList((RowCount * 3) + 1, 5)
-                DtlTotal += DetailList((RowCount * 3), 5)
+                DetailList((RowCount * 3) + 1, 5) = OutsrcngAmount
+                Dim total As Int64 = DetailList((RowCount * 3) + 1, 5) + DetailList((RowCount * 3) + 2, 8)
+                DetailList((RowCount * 3) + 2, 5) = DetailList((RowCount * 3), 5) - total
+
+                    DtlTotal += DetailList((RowCount * 3), 5)
 
                 Dim DrctlyMngmntTotalRange As CellRange = DetailList.GetCellRange((RowCount * 3) + 2, 5)
                 DrctlyMngmntTotalRange.StyleNew.ForeColor = Color.Red
@@ -225,23 +227,30 @@ Public Class 詳細入力表
         End Try
     End Sub
     Private Sub DetailList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles DetailList.BeforeEdit
-        Dim range As CellRange = DetailList.CursorCell
+        Try
+            Dim range As CellRange = DetailList.CursorCell
 
-        Dim row As Integer = range.TopRow
-        Dim col As Integer = range.LeftCol
+            Dim row As Integer = range.TopRow
+            Dim col As Integer = range.LeftCol
 
-        If col = 8 Then
-            DetailList.Rows(row).AllowEditing = False
+            If col = 8 Then
+                DetailList.Rows(row).AllowEditing = False
+                Exit Sub
+            End If
+
+            Dim Text As String = DetailList(row, col)
+
+            If IsNothing(Text) = True Then
+                DetailList.Rows(row).AllowEditing = False
+            Else
+                DetailList.Rows(row).AllowEditing = True
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
             Exit Sub
-        End If
-
-        Dim Text As String = DetailList(row, col)
-
-        If IsNothing(Text) = True Then
-            DetailList.Rows(row).AllowEditing = False
-        Else
-            DetailList.Rows(row).AllowEditing = True
-        End If
+        End Try
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
 
@@ -257,22 +266,24 @@ Public Class 詳細入力表
                     If Not subjectloop = 8 Then
                         ホーム.Sql.CommandText = ""
                         ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "SELECT Count(*) FROM subjects WHERE budget_no=" & ホーム.BudgetNo & "AND dtl_id=" & DetailList(RowCount * 3, 1) & " AND sbjct_code=" & DetailList(0, subjectloop)
-                        Dim SubjectCount As Integer = ホーム.Sql.ExecuteScalar
+                        If IsNothing(DetailList(RowCount * 3, 1)) = False Then
+                            ホーム.Sql.CommandText = "SELECT Count(*) FROM subjects WHERE budget_no=" & ホーム.BudgetNo & " AND dtl_id=" & DetailList(RowCount * 3, 1) & " AND sbjct_code=" & DetailList(0, subjectloop)
+                            Dim SubjectCount As Integer = ホーム.Sql.ExecuteScalar
 
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_code", SqlDbType.SmallInt)).Value = DetailList(0, subjectloop)
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_amount", SqlDbType.Money)).Value = DetailList((RowCount * 3) + 2, subjectloop)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_code", SqlDbType.SmallInt)).Value = DetailList(0, subjectloop)
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_amount", SqlDbType.Money)).Value = DetailList((RowCount * 3) + 2, subjectloop)
 
-                        If Not DetailList((RowCount * 3) + 2, subjectloop) = 0 Then
-                            If SubjectCount = 0 Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int)).Value = DetailList(RowCount * 3, 1)
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                                ホーム.Sql.CommandText = "INSERT INTO subjects (dtl_id,budget_no,sbjct_code,sbjct_amount) VALUES (@dtl_id,@budget_no,@sbjct_code,@sbjct_amount)"
-                            Else
-                                ホーム.Sql.CommandText = "UPDATE subjects SET @sbjct_amount=@sbjct_amount WHERE budget_no=" & ホーム.BudgetNo & " AND dtl_id=" & DetailList(RowCount * 3, 1) _
-                                                           & " AND sbjct_code=@sbjct_code"
+                            If Not DetailList((RowCount * 3) + 2, subjectloop) = 0 Then
+                                If SubjectCount = 0 Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int)).Value = DetailList(RowCount * 3, 1)
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                    ホーム.Sql.CommandText = "INSERT INTO subjects (dtl_id,budget_no,sbjct_code,sbjct_amount) VALUES (@dtl_id,@budget_no,@sbjct_code,@sbjct_amount)"
+                                Else
+                                    ホーム.Sql.CommandText = "UPDATE subjects SET sbjct_amount=@sbjct_amount WHERE budget_no=" & ホーム.BudgetNo & " AND dtl_id=" & DetailList(RowCount * 3, 1) _
+                                                               & " AND sbjct_code=@sbjct_code"
+                                End If
+                                ホーム.Sql.ExecuteNonQuery()
                             End If
-                            ホーム.Sql.ExecuteNonQuery()
                         End If
                     End If
                 Next
@@ -319,8 +330,10 @@ Public Class 詳細入力表
                     End If
                 Next
 
-                DetailList((RowCount * 3) + 1, 5) = DetailList(RowCount * 3, 5) - DetailList((RowCount * 3) + 2, 8)
-                DetailList((RowCount * 3) + 2, 5) = DetailList((RowCount * 3) + 1, 5) - subjectsum
+                DetailList((RowCount * 3) + 1, 5) = subjectsum
+                Dim total As Int64 = DetailList((RowCount * 3) + 1, 5) + DetailList((RowCount * 3) + 2, 8)
+                DetailList((RowCount * 3) + 2, 5) = DetailList((RowCount * 3), 5) - total
+
                 MngmntTotal += DetailList((RowCount * 3), 5) - DetailList((RowCount * 3) + 2, 8)
                 BlncTotal += DetailList((RowCount * 3) + 1, 5) - subjectsum
 

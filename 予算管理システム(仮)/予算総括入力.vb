@@ -30,7 +30,7 @@ Public Class 予算総括入力
 
             OutsoucersList.Cols(0).ShowButtons = ShowButtonsEnum.Always
 
-            ホーム.SystemSql.CommandText = "SELECT year FROM years ORDER BY year ASC"
+            ホーム.SystemSql.CommandText = "SELECT year FROM years ORDER BY year DESC"
             Dim YearsReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
             While YearsReader.Read
                 Year.Items.Add(YearsReader.Item("year"))
@@ -477,8 +477,8 @@ Public Class 予算総括入力
                                                 VALUES (@code,@name,@terms,@terme,@worktype,@ordrfrm,@ecntrct)"
                     ホーム.Sql.Parameters.Add(New SqlParameter("@code", SqlDbType.Int)).Value = Integer.Parse(OutsrcrCodeCell)
                     ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = OutsrceNameCell
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse("1900/01/01")
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse("1900/01/01")
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse(TermS.Text)
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
                     ホーム.Sql.Parameters.Add(New SqlParameter("@worktype", SqlDbType.NVarChar)).Value = WorkTypeCell
                     ホーム.Sql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt)).Value = 0
                     ホーム.Sql.Parameters.Add(New SqlParameter("@ecntrct", SqlDbType.NVarChar)).Value = ""
