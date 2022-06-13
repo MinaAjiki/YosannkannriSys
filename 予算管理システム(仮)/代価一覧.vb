@@ -92,12 +92,7 @@ Public Class 代価一覧
 
             ElseIf CostClassName = "工事代価" Then
                 ProjectCostList.ContextMenuStrip = 右クリックメニュー
-                Dim dt As DataTable
-                dt = New DataTable
-                dt.Columns.Add("code", GetType(System.Int32))
-                dt.Columns.Add("name", GetType(System.String))
-                Dim code As Int32
-                Dim name As String
+
 
 
                 Dim dt As DataTable
