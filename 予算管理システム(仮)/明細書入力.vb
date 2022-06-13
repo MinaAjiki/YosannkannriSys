@@ -11,6 +11,7 @@ Public Class 明細書入力
     Public Command As String
     Dim Key As String
     Public EntryCommand As String
+    Dim OutsrcrCount As Integer = 0
 
 
     Private Sub 明細書入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -329,6 +330,7 @@ Public Class 明細書入力
                         OutsoucerTotalList.Cols.Count = OutsourcersCount + 2
                     End If
 
+                    OutsrcrCount = OutsoucerList.Cols.Count
                     Dim DataCount As Integer = 1
 
                     ホーム.Sql.CommandText = "SELECT * FROM outsourcers"
@@ -570,6 +572,7 @@ Public Class 明細書入力
     End Sub
 
     Private Sub OutsoucerList_AfterRowColChange(sender As Object, e As RangeEventArgs) Handles OutsoucerList.AfterRowColChange
+
         Try
             Dim Col As Integer = OutsoucerList.Selection.LeftCol
             Dim Row As Integer = OutsoucerList.Selection.TopRow
@@ -664,28 +667,6 @@ Public Class 明細書入力
                         DetailsList.Rows(Row + 2).Caption = "▶"
 
                     End If
-
-                    If Key = "" Then
-                        Key = "enter"
-                        If Col = 6 Then
-                            DetailsList.Focus()
-                            DetailsList.Select(Row + 2, 4)
-                            DetailsList.Rows(Row - 1).Caption = ""
-                            DetailsList.Rows(Row + 2).Caption = "▶"
-                        ElseIf Col = 2 Then
-                            SendKeys.Send("{RIGHT}")
-                            SendKeys.Send("{UP}")
-                        ElseIf Col = 3 Then
-                            SendKeys.Send("{RIGHT}")
-                            SendKeys.Send("{UP}")
-                        ElseIf Col = 4 Then
-                            SendKeys.Send("{RIGHT}")
-                            SendKeys.Send("{UP}")
-                        ElseIf Col = 5 Then
-                            SendKeys.Send("{RIGHT}")
-                            SendKeys.Send("{UP}")
-                        End If
-                    End If
                 End If
             End If
 
@@ -710,6 +691,7 @@ Public Class 明細書入力
             CategoryList.Rows(e.Row).AllowEditing = False
         End If
 
+
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
@@ -731,9 +713,11 @@ Public Class 明細書入力
                 ホーム.FormPanel.Controls.Add(小工種選択)
                 小工種選択.Show()
 
-                If ホーム.SelectNodeList.Count > 0 Then
-                    ホーム.SelectNodeList(1).Collapse()
-                    ホーム.SelectNodeList.RemoveAt(1)
+                If ホーム.SelectNodeList.Count > 1 Then
+                    If ホーム.SelectNodeList(1).Nodes.Count > 0 Then
+                        ホーム.SelectNodeList(1).Collapse()
+                        ホーム.SelectNodeList.RemoveAt(1)
+                    End If
                 End If
             End If
 
@@ -1523,6 +1507,7 @@ Public Class 明細書入力
 
             ホーム.Sql.Transaction = ホーム.Transaction
 
+
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Clear()
@@ -1762,10 +1747,13 @@ Public Class 明細書入力
         ホーム.Modified = "False"
         EntryCommand = ""
 
-        ホーム.HomeTreeView.CollapseAll()
-            ホーム.SelectNodeList(0).Expand()
 
-        MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
+            If ホーム.HomeTreeView.Nodes.Count > 0 Then
+                ホーム.HomeTreeView.CollapseAll()
+                ホーム.SelectNodeList(0).Expand()
+            End If
+
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
 
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
@@ -1776,8 +1764,8 @@ Public Class 明細書入力
             小工種選択.Show()
 
         Catch ex As Exception
-        ホーム.Transaction.Rollback()
-        ホーム.ErrorMessage = ex.Message
+            'ホーム.Transaction.Rollback()
+            ホーム.ErrorMessage = ex.Message
         ホーム.StackTrace = ex.StackTrace
         エラー.Show()
         Exit Sub
@@ -1852,6 +1840,7 @@ Public Class 明細書入力
                             ホーム.ItemSelect = ""
                         End If
                     End If
+
                 End If
 
             ElseIf Col = 4 Then
@@ -2158,8 +2147,14 @@ Public Class 明細書入力
                 Dim ColTotal As Int64
                 If DetailsList(Row, 7) = 1 Or DetailsList(Row, 7) = 4 Then
                     OutsoucerList(Row + 2, Col) = Math.Floor((OutsoucerList(Row, Col) * OutsoucerList(Row + 1, Col)))
+
                 ElseIf DetailsList(Row, 7) = 2 Or DetailsList(Row, 7) = 5 Then
                     OutsoucerList(Row + 1, Col) = Math.Floor((OutsoucerList(Row - 1, Col) * OutsoucerList(Row, Col)))
+                    If Col = OutsrcrCount - 1 Then
+                        OutsoucerList.Select(Row + 1, 2)
+                    ElseIf Col < OutsrcrCount - 1 Then
+                        OutsoucerList.Select(Row - 2, Col + 1)
+                    End If
                 End If
 
                 For RowCount As Integer = 1 To ((OutsoucerList.Rows.Count - 3) / 3)
@@ -2277,21 +2272,22 @@ Public Class 明細書入力
 
         Try
 
+            Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
+            Dim SelectionRow As Integer = DetailsList.Selection.TopRow
+
+            Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
             If e.KeyCode = Keys.Enter Then
 
-                Key = "enter"
-
-                Dim SelectionCol As Integer = DetailsList.Selection.LeftCol
-                Dim SelectionRow As Integer = DetailsList.Selection.TopRow
-
-                Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
                 SendKeys.Send("{ENTER}")
-
                 If RowIndex = 3 Or RowIndex = 6 Then
                     If SelectionCol = 4 Then
+                        Key = "enter"
+
                         DetailsList.Select(SelectionRow - 1, 5)
 
                     ElseIf SelectionCol = 5 Then
+                        Key = "enter"
+
                         DetailsList.Select(SelectionRow - 3, 6)
                     End If
                 End If
@@ -2326,6 +2322,18 @@ Public Class 明細書入力
                     End If
 
                 End If
+            ElseIf e.KeyCode = Keys.Right Then
+
+                If SelectionCol = 6 Then
+                    If Category.Checked = True Then
+                        CategoryList.Focus()
+                        CategoryList.Select(SelectionRow, 2)
+                    Else
+                        OutsoucerList.Focus()
+                        OutsoucerList.Select(SelectionRow, 2)
+                    End If
+
+                End If
             End If
 
         Catch ex As Exception
@@ -2341,37 +2349,21 @@ Public Class 明細書入力
     Private Sub CategoryList_KeyDown(sender As Object, e As KeyEventArgs) Handles CategoryList.KeyDown
         Try
 
+            Dim SelectionCol As Integer = CategoryList.Selection.LeftCol
+            Dim SelectionRow As Integer = CategoryList.Selection.TopRow
 
-            If e.KeyCode = Keys.Enter Then
-                Key = "enter"
+            Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
 
+            If DetailsList.Rows.Count - 1 > SelectionRow + (3 - RowIndex) AndAlso Not Key = "enter" Then
 
-                Dim SelectionCol As Integer = CategoryList.Selection.LeftCol
-                Dim SelectionRow As Integer = CategoryList.Selection.TopRow
+                If RowIndex = 2 Or RowIndex = 5 Then
+                    If e.KeyCode = Keys.Enter Then
+                        SendKeys.Send("{ENTER}")
 
-                Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
-                SendKeys.Send("{ENTER}")
-                Dim difference As Integer = 0
+                        If SelectionCol = 6 Then
 
-                If DetailsList.Rows.Count - 1 > SelectionRow + (3 - RowIndex) Then
+                            Key = "enter"
 
-                    If RowIndex = 2 Or RowIndex = 5 Then
-                        If SelectionCol = 2 Then
-                            SendKeys.Send("{UP}")
-                            SendKeys.Send("{RIGHT}")
-
-                        ElseIf SelectionCol = 3 Then
-                            SendKeys.Send("{UP}")
-                            SendKeys.Send("{RIGHT}")
-
-                        ElseIf SelectionCol = 4 Then
-                            SendKeys.Send("{UP}")
-                            SendKeys.Send("{RIGHT}")
-                        ElseIf SelectionCol = 5 Then
-                            SendKeys.Send("{UP}")
-                            SendKeys.Send("{RIGHT}")
-
-                        ElseIf SelectionCol = 6 Then
                             DetailsList.Focus()
                             DetailsList.Select(SelectionRow + 2, 4)
                             DetailsList.Rows(SelectionRow - 1).Caption = ""
@@ -2436,11 +2428,14 @@ Public Class 明細書入力
 
                             End If
                         End If
+                    ElseIf e.KeyCode = Keys.Left Then
+                        If SelectionCol = 2 Then
+                            DetailsList.Focus()
+                            DetailsList.Select(SelectionRow, 6)
+                        End If
                     End If
-
                 End If
             End If
-
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -2500,6 +2495,119 @@ Public Class 明細書入力
             Else
                 DetailsList.Rows(SelectionRow - 2).Caption = "▶"
             End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub OutsoucerList_KeyDown(sender As Object, e As KeyEventArgs) Handles OutsoucerList.KeyDown
+        Try
+
+            Dim SelectionCol As Integer = OutsoucerList.Selection.LeftCol
+            Dim SelectionRow As Integer = OutsoucerList.Selection.TopRow
+
+            Dim RowIndex As Integer = DetailsList(SelectionRow, 7)
+
+
+            If e.KeyCode = Keys.Enter Then
+
+                If DetailsList.Rows.Count - 1 > SelectionRow + (3 - RowIndex) Then
+
+                    If RowIndex = 2 AndAlso SelectionCol = OutsrcrCount - 1 Or RowIndex = 5 AndAlso SelectionCol = OutsrcrCount - 1 Then
+                        Key = "enter"
+
+                        OutsoucerList.Select(SelectionRow + 2, 2)
+                        SendKeys.Send("{ENTER}")
+                        SendKeys.Send("{UP}")
+
+                        DetailsList.Rows(SelectionRow - 1).Caption = ""
+                        DetailsList.Rows(SelectionRow + 2).Caption = "▶"
+                        If SelectionRow + 3 = DetailsList.Rows.Count Then
+                            DetailsList.Rows.Add(3)
+                            CategoryList.Rows.Add(3)
+                            OutsoucerList.Rows.Add(3)
+                            Dim NewRow As Integer = SelectionRow + 3
+
+                            Dim Quanity As CellRange = DetailsList.GetCellRange(NewRow, 6)
+                            Quanity.StyleNew.Format = "N1"
+                            Dim Costea As CellRange = DetailsList.GetCellRange(NewRow + 1, 6)
+                            Costea.StyleNew.Format = "N0"
+                            Dim Amount As CellRange = DetailsList.GetCellRange(NewRow + 2, 6)
+                            Amount.StyleNew.Format = "N0"
+                            DetailsList.Rows(NewRow).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
+
+
+                            If NewRow Mod 2 = 0 Then
+                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+
+                                DetailsList(NewRow, 7) = 4
+                                DetailsList(NewRow + 1, 7) = 5
+                                DetailsList(NewRow + 2, 7) = 6
+
+                            Else
+                                DetailsList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                DetailsList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                DetailsList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                CategoryList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                CategoryList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                CategoryList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+                                OutsoucerList.Rows(NewRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                OutsoucerList.Rows(NewRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+                                OutsoucerList.Rows(NewRow + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
+
+
+                                DetailsList(NewRow, 7) = 1
+                                DetailsList(NewRow + 1, 7) = 2
+                                DetailsList(NewRow + 2, 7) = 3
+
+                            End If
+
+                            DetailsList.MergedRanges.Add(NewRow, 0, NewRow + 2, 0)
+                            DetailsList.MergedRanges.Add(NewRow, 2, NewRow + 2, 2)
+                            DetailsList.MergedRanges.Add(NewRow, 3, NewRow + 2, 3)
+                            DetailsList.MergedRanges.Add(NewRow, 4, NewRow, 5)
+                            DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
+                        End If
+
+
+                    ElseIf RowIndex = 2 AndAlso SelectionCol < OutsrcrCount - 1 Or RowIndex = 5 AndAlso SelectionCol < OutsrcrCount - 1 Then
+                        Key = "enter"
+
+                        OutsoucerList.Select(SelectionRow - 1, SelectionCol + 1)
+                        SendKeys.Send("{ENTER}")
+                        SendKeys.Send("{UP}")
+
+
+                    Else
+
+
+                        SendKeys.Send("{ENTER}")
+
+                    End If
+                ElseIf e.KeyCode = Keys.Left Then
+                    If SelectionCol = 2 Then
+                        DetailsList.Focus()
+                        DetailsList.Select(SelectionRow, 6)
+                    End If
+
+                End If
+            End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

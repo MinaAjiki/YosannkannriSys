@@ -13023,14 +13023,15 @@ FROM  details_bd;</RecordSource>
 	basis_costs_view.bsscst_bd_name,
 	basis_costs_view.bsscst_bd_spec,
 	basis_costs_view.bsscst_bd_unit,
+	basis_costs_view.bsscst_bd_quanity,
 	basis_costs_view.bsscst_bd_amount,
 	basis_costs_view.bsscst_bd_costea,
-	basis_costs_view.bsscst_bd_labor,
-	basis_costs_view.bsscst_bd_material,
-	basis_costs_view.bsscst_bd_machine,
-	basis_costs_view.bsscst_bd_subcntrct,
-	basis_costs_view.bsscst_bd_expense,
-	basis_costs_view.bsscst_bd_remarks,basis_costs_view.bsscst_bd_quanity
+	basis_costs_view.bd_labor_amount,
+	basis_costs_view.bd_material_amount,
+	basis_costs_view.bd_machine_amount,
+	basis_costs_view.bd_subcntrct_amount,
+	basis_costs_view.bd_expense_amount,
+	basis_costs_view.bsscst_bd_remarks
 FROM  basis_costs_view;</RecordSource>
       </DataSource>
     </DataSources>
@@ -13979,7 +13980,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>1310</Width>
         <Height>300</Height>
-        <Text>amount_total</Text>
+        <Text>Sum(bsscst_bd_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14010,7 +14011,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>980</Width>
         <Height>300</Height>
-        <Text>labor_total</Text>
+        <Text>Sum(bd_labor_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14041,7 +14042,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>980</Width>
         <Height>300</Height>
-        <Text>material_total</Text>
+        <Text>Sum(bd_material_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14072,7 +14073,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>935</Width>
         <Height>300</Height>
-        <Text>machine_total</Text>
+        <Text>Sum(bd_machine_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14103,7 +14104,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>907</Width>
         <Height>300</Height>
-        <Text>subcntrct_total</Text>
+        <Text>Sum(bd_subcntrct_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14134,7 +14135,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>550</Top>
         <Width>935</Width>
         <Height>300</Height>
-        <Text>expens_total</Text>
+        <Text>Sum(bd_expense_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14165,7 +14166,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>990</Top>
         <Width>1310</Width>
         <Height>300</Height>
-        <Text>=bsscst_amount</Text>
+        <Text>bsscst_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -14803,7 +14804,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>bsscst_bd_labor</Expression>
+          <Expression>bd_labor_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14820,7 +14821,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>bsscst_bd_material</Expression>
+          <Expression>bd_material_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14837,7 +14838,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>bsscst_bd_machine</Expression>
+          <Expression>bd_machine_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14854,7 +14855,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>bsscst_bd_subcntrct</Expression>
+          <Expression>bd_subcntrct_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -14871,7 +14872,7 @@ FROM  basis_costs_view;</RecordSource>
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>bsscst_bd_expense</Expression>
+          <Expression>bd_expense_amount</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
@@ -16003,7 +16004,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>1310</Width>
         <Height>300</Height>
-        <Text>amount_total</Text>
+        <Text>Sum(prjctcst_bd_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16034,7 +16035,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>980</Width>
         <Height>300</Height>
-        <Text>labor_total</Text>
+        <Text>Sum(prjctcst_bd_labor)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16065,7 +16066,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>980</Width>
         <Height>300</Height>
-        <Text>material_total</Text>
+        <Text>Sum(prjctcst_bd_material)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16096,7 +16097,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>935</Width>
         <Height>300</Height>
-        <Text>machine_total</Text>
+        <Text>Sum(prjctcst_bd_machine)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16127,7 +16128,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>907</Width>
         <Height>300</Height>
-        <Text>subcntrct_total</Text>
+        <Text>Sum(prjctcst_bd_subcntrct)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16158,7 +16159,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>550</Top>
         <Width>935</Width>
         <Height>300</Height>
-        <Text>expens_total</Text>
+        <Text>Sum(prjctcst_bd_expense)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -16189,7 +16190,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
         <Top>990</Top>
         <Width>1310</Width>
         <Height>300</Height>
-        <Text>=prjctcst_amount</Text>
+        <Text>prjctcst_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -20115,7 +20116,7 @@ FROM  projectcst_bd;</RecordSource>
         <Top>650</Top>
         <Width>1418</Width>
         <Height>280</Height>
-        <Text>=prjctcst_amount/prjctcst_quanity</Text>
+        <Text>prjctcst_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -20146,7 +20147,7 @@ FROM  projectcst_bd;</RecordSource>
         <Top>141</Top>
         <Width>1418</Width>
         <Height>278</Height>
-        <Text>=prjctcst_amount</Text>
+        <Text>Sum(prjctcst_bd_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -21681,7 +21682,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>650</Top>
         <Width>1418</Width>
         <Height>280</Height>
-        <Text>=bsscst_amount/bsscst_quanity</Text>
+        <Text>bsscst_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -21712,7 +21713,7 @@ FROM  basis_costs_view;</RecordSource>
         <Top>141</Top>
         <Width>1418</Width>
         <Height>278</Height>
-        <Text>=bsscst_amount</Text>
+        <Text>Sum(bsscst_bd_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -60345,7 +60346,7 @@ FROM  projectcst_bd;</RecordSource>
         <Top>650</Top>
         <Width>1418</Width>
         <Height>280</Height>
-        <Text>=prjctcst_amount/prjctcst_quanity</Text>
+        <Text>prjctcst_costea</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>
@@ -60376,7 +60377,7 @@ FROM  projectcst_bd;</RecordSource>
         <Top>141</Top>
         <Width>1418</Width>
         <Height>278</Height>
-        <Text>=prjctcst_amount</Text>
+        <Text>Sum(prjctcst_bd_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
         <Align>RightTop</Align>

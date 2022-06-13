@@ -99,6 +99,15 @@ Public Class 代価一覧
                 Dim code As Int32
                 Dim name As String
 
+
+                Dim dt As DataTable
+                dt = New DataTable
+                dt.Columns.Add("code", GetType(System.Int32))
+                dt.Columns.Add("name", GetType(System.String))
+                Dim code As Int32
+                Dim name As String
+
+
                 ホーム.Sql.Parameters.Clear()
                 CostList.Items.Clear()
                 ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>11 ORDER BY cstclss_code ASC"

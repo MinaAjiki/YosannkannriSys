@@ -278,7 +278,8 @@ Partial Class 明細書入力
         Me.CategoryList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.CategoryList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.CategoryList.ImeMode = System.Windows.Forms.ImeMode.Disable
-        Me.CategoryList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
+        Me.CategoryList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
+        Me.CategoryList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.CategoryList.Location = New System.Drawing.Point(0, 0)
         Me.CategoryList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.CategoryList.Name = "CategoryList"
@@ -346,6 +347,7 @@ Partial Class 明細書入力
         Me.OutsoucerList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.OutsoucerList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
         Me.OutsoucerList.ImeMode = System.Windows.Forms.ImeMode.Disable
+        Me.OutsoucerList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveDown
         Me.OutsoucerList.Location = New System.Drawing.Point(0, 0)
         Me.OutsoucerList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.OutsoucerList.Name = "OutsoucerList"
