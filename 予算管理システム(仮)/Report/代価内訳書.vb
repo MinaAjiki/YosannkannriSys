@@ -59,35 +59,6 @@ Public Class 代価内訳書
         CostNoField = CType(レポート.C1FlexReport1.Fields("cstclssname"), C1.Win.FlexReport.TextField)
         CostNoField.Text = CstClssName.Last
 
-        Dim GrandTotalField As C1.Win.FlexReport.Field
-        GrandTotalField = CType(レポート.C1FlexReport1.Fields("amount_total"), C1.Win.FlexReport.Field)
-        GrandTotalField.Text = "SUM(prjctcst_bd_amount)"
-
-
-        Dim LaborTotalField As C1.Win.FlexReport.Field
-        LaborTotalField = CType(レポート.C1FlexReport1.Fields("labor_total"), C1.Win.FlexReport.Field)
-        LaborTotalField.Text = "SUM(prjctcst_bd_labor)"
-
-
-        Dim MaterialTotalField As C1.Win.FlexReport.Field
-        MaterialTotalField = CType(レポート.C1FlexReport1.Fields("material_total"), C1.Win.FlexReport.Field)
-        MaterialTotalField.Text = "SUM(prjctcst_bd_material)"
-
-
-        Dim MachineTotalField As C1.Win.FlexReport.Field
-        MachineTotalField = CType(レポート.C1FlexReport1.Fields("machine_total"), C1.Win.FlexReport.Field)
-        MachineTotalField.Text = "SUM(prjctcst_bd_machine)"
-
-
-        Dim SubcntrctTotalField As C1.Win.FlexReport.Field
-        SubcntrctTotalField = CType(レポート.C1FlexReport1.Fields("subcntrct_total"), C1.Win.FlexReport.Field)
-        SubcntrctTotalField.Text = "SUM(prjctcst_bd_subcntrct)"
-
-
-        Dim ExpensTotalField As C1.Win.FlexReport.Field
-        ExpensTotalField = CType(レポート.C1FlexReport1.Fields("expens_total"), C1.Win.FlexReport.Field)
-        ExpensTotalField.Text = "SUM(prjctcst_bd_expense)"
-
         レポート.C1FlexViewer1.DocumentSource = レポート.C1FlexReport1
 
         Return ReportLoad

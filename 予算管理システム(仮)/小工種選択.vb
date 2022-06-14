@@ -170,12 +170,21 @@ Public Class 小工種選択
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        Me.Close()
-        大工種選択.TopLevel = False
-        ホーム.FormPanel.Controls.Add(大工種選択)
-        大工種選択.Show()
+        Try
+            Me.Close()
+            大工種選択.TopLevel = False
+            ホーム.FormPanel.Controls.Add(大工種選択)
+            大工種選択.Show()
 
-        ホーム.SelectNodeList(0).Collapse()
-        ホーム.SelectNodeList.RemoveAt(0)
+            If ホーム.SelectNodeList.Count > 0 Then
+                ホーム.SelectNodeList(0).Collapse()
+                ホーム.SelectNodeList.RemoveAt(0)
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class
