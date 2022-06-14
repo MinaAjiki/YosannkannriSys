@@ -151,7 +151,6 @@ Partial Class 代価表入力
         Me.BreakDownList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.BreakDownList.ColumnInfo = resources.GetString("BreakDownList.ColumnInfo")
         Me.BreakDownList.ContextMenuStrip = Me.右クリックメニュー
-        Me.BreakDownList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BreakDownList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.BreakDownList.Location = New System.Drawing.Point(28, 160)
         Me.BreakDownList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
