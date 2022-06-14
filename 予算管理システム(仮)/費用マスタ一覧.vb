@@ -739,10 +739,14 @@ Public Class 費用マスタ一覧
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        Dim CancelClick As String = ""
+        If ParentFormName = "明細書" OrElse ParentFormName = "代価表" Then
+            Me.Close()
+        Else
+            Dim CancelClick As String = ""
+            Dim CancelClickLoad As New CancelClick(Me)
+            CancelClick = CancelClickLoad.ModifyCheck
+        End If
 
-        Dim CancelClickLoad As New CancelClick(Me)
-        CancelClick = CancelClickLoad.ModifyCheck
     End Sub
 
     Private Sub YearList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles YearList.SelectedIndexChanged

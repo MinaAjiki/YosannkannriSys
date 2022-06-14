@@ -545,6 +545,7 @@ Partial Class 代価内訳
         '
         'LaborTotal
         '
+        Me.LaborTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LaborTotal.AutoSize = False
         Me.LaborTotal.BackColor = System.Drawing.Color.White
         Me.LaborTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -578,6 +579,7 @@ Partial Class 代価内訳
         '
         'ExpenseTotal
         '
+        Me.ExpenseTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ExpenseTotal.AutoSize = False
         Me.ExpenseTotal.BackColor = System.Drawing.Color.White
         Me.ExpenseTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -612,6 +614,7 @@ Partial Class 代価内訳
         '
         'MaterialTotal
         '
+        Me.MaterialTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MaterialTotal.AutoSize = False
         Me.MaterialTotal.BackColor = System.Drawing.Color.White
         Me.MaterialTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -646,6 +649,7 @@ Partial Class 代価内訳
         '
         'MachineTotal
         '
+        Me.MachineTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.MachineTotal.AutoSize = False
         Me.MachineTotal.BackColor = System.Drawing.Color.White
         Me.MachineTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -680,6 +684,7 @@ Partial Class 代価内訳
         '
         'SubcntrctTotal
         '
+        Me.SubcntrctTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.SubcntrctTotal.AutoSize = False
         Me.SubcntrctTotal.BackColor = System.Drawing.Color.White
         Me.SubcntrctTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -973,6 +978,7 @@ Partial Class 代価内訳
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Label2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))

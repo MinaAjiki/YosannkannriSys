@@ -358,16 +358,15 @@ Partial Class 代価一覧
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(159, 26)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(160, 48)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyMenu.Size = New System.Drawing.Size(158, 22)
-        Me.CopyMenu.Text = "行のコピー"
+        Me.CopyMenu.Size = New System.Drawing.Size(159, 22)
+        Me.CopyMenu.Text = "コピーして貼り付け"
         '
         'CostCreateMenu
         '
