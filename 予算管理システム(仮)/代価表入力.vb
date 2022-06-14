@@ -1030,10 +1030,19 @@ Public Class 代価表入力
                 Dim CancelClickLoad As New CancelClick(Me)
                 CancelClick = CancelClickLoad.ModifyCheck
 
+                If ホーム.ProjectCostForm.Count > 0 Then
+                    ホーム.ProjectCostForm.Clear()
+                    ホーム.ProjectCostID.Clear()
+                    ホーム.ProjectCostSelectRow.Clear()
+                    ホーム.PrjctCstClassCode.Clear()
+                    ホーム.PrjctCstList.Clear()
+                End If
+
                 ホーム.BeforeForm = "予算"
                 大工種選択.TopLevel = False
                 ホーム.FormPanel.Controls.Add(大工種選択)
                 大工種選択.Show()
+
             Else
                 Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
@@ -1110,13 +1119,14 @@ Public Class 代価表入力
 
                 End If
 
+                FormCount = ホーム.ProjectCostForm.Count
+
                 ホーム.ProjectCostForm.RemoveAt(FormCount - 1)
                 ホーム.ProjectCostID.RemoveAt(FormCount - 1)
                 ホーム.ProjectCostSelectRow.RemoveAt(FormCount - 1)
                 ホーム.PrjctCstClassCode.RemoveAt(FormCount - 1)
                 ホーム.PrjctCstList.RemoveAt(FormCount - 1)
 
-                FormCount = ホーム.ProjectCostForm.Count
 
                 Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
                 If ホーム.SelectNodeList.Count > 0 Then
@@ -1126,6 +1136,7 @@ Public Class 代価表入力
             End If
 
 
+            Me.Close()
 
 
         Catch ex As Exception
@@ -1290,11 +1301,11 @@ Public Class 代価表入力
                 BreakDownList(SelectRow + 2, 6) = BreakDownList(CopyRow + 2, 6)
                 BreakDownList(SelectRow, 8) = BreakDownList(CopyRow, 8)
                 BreakDownList(SelectRow, 9) = BreakDownList(CopyRow, 9)
-                BreakDownList(SelectRow, 10) = BreakDownList(CopyRow, 10)
-                BreakDownList(SelectRow, 11) = BreakDownList(CopyRow, 11)
-                BreakDownList(SelectRow, 12) = BreakDownList(CopyRow, 12)
-                BreakDownList(SelectRow, 13) = BreakDownList(CopyRow, 13)
-                BreakDownList(SelectRow, 14) = BreakDownList(CopyRow, 14)
+                BreakDownList(SelectRow + 1, 10) = BreakDownList(CopyRow + 1, 10)
+                BreakDownList(SelectRow + 1, 11) = BreakDownList(CopyRow + 1, 11)
+                BreakDownList(SelectRow + 1, 12) = BreakDownList(CopyRow + 1, 12)
+                BreakDownList(SelectRow + 1, 13) = BreakDownList(CopyRow + 1, 13)
+                BreakDownList(SelectRow + 1, 14) = BreakDownList(CopyRow + 1, 14)
 
                 If Command1 = "Cut" Then
                     BreakDownList.Rows.RemoveRange(CopyRow, 3)
@@ -2664,5 +2675,9 @@ Public Class 代価表入力
 
     Private Sub 代価表入力_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         CostName.Focus()
+    End Sub
+
+    Private Sub CostCreateMenu_DisplayStyleChanged(sender As Object, e As EventArgs) Handles CostCreateMenu.DisplayStyleChanged
+
     End Sub
 End Class

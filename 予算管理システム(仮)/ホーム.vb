@@ -330,10 +330,10 @@ Public Class ホーム
             大工種選択.Show()
 
         Catch ex As Exception
-            ErrorMessage = ex.Message
-            StackTrace = ex.StackTrace
-            エラー.Show()
-            Exit Sub
+        ErrorMessage = ex.Message
+        StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
         End Try
     End Sub
 
@@ -1320,20 +1320,16 @@ Public Class ホーム
 
                     If FormPanel.Controls.Count > 0 Then
                         Dim FormClose As String = ""
-
                         Dim FormCloseLoad As New FormClose(FormPanel.Controls.Item(0))
                         FormClose = FormCloseLoad.FormCheck
                     End If
 
-                    Dim formcount As Integer = ProjectCostForm.Count
-                    If formcount > 0 Then
-                        For formloop As Integer = 0 To formcount - 1
-                            ProjectCostForm.RemoveAt(formloop)
-                            ProjectCostID.RemoveAt(formloop)
-                            ProjectCostSelectRow.RemoveAt(formloop)
-                            PrjctCstClassCode.RemoveAt(formloop)
-                            PrjctCstList.RemoveAt(formloop)
-                        Next
+                    If ProjectCostForm.Count > 0 Then
+                        ProjectCostForm.Clear()
+                        ProjectCostID.Clear()
+                        ProjectCostSelectRow.Clear()
+                        PrjctCstClassCode.Clear()
+                        PrjctCstList.Clear()
                     End If
 
 

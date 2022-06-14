@@ -1267,6 +1267,7 @@ Public Class 明細書入力
                 ホーム.ProjectCostID.Add(DetailsList(SelectRow, 9))
                 ホーム.PrjctCstClassCode.Add(DetailsList(SelectRow, 8))
                 ホーム.PrjctCstList.Add(DetailsList)
+                Dim count As Integer = ホーム.PrjctCstList.Count
                 ホーム.ProjectCostForm(0).Show()
                 Me.Visible = False
 
@@ -1277,11 +1278,11 @@ Public Class 明細書入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-            If ホーム.SelectNodeList.Count >= 2 Then
-                Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                NodeExpand = NodeExpandLoad.NodeExpand
-            End If
-        Else
+                If ホーム.SelectNodeList.Count > 0 Then
+                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                    NodeExpand = NodeExpandLoad.NodeExpand
+                End If
+            Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
         Catch ex As Exception
@@ -1319,7 +1320,7 @@ Public Class 明細書入力
                 remarks = remarks.Replace("号", "")
                 EntryCommand = "INSERT"
 
-                If ホーム.SelectNodeList.Count >= 2 Then
+                If ホーム.SelectNodeList.Count > 0 Then
                     Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
                     NodeExpand = NodeExpandLoad.NodeExpand
                 End If
