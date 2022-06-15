@@ -19,8 +19,8 @@ Public Class Export外注計画
         ホーム.Sql.Parameters.Clear()
 
         Dim xlbook As New C1XLBook
-        'xlbook.Load(Application.StartupPath & "\勤怠情報テンプレート(横).xlsx")
-        xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\外注計画テンプレート.xlsx")
+        xlbook.Load(Application.StartupPath & "\外注計画テンプレート.xlsx")
+        'xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\外注計画テンプレート.xlsx")
         Dim EXSheet As XLSheet = xlbook.Sheets(0)
 
 
