@@ -222,77 +222,82 @@ Public Class 出来高入力
                     Continue For
                 Else
                     ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND outsrcr_id = " & Coopid
-                Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
-                While outsrcng.Read
-                    Me.DetailsList.Rows.Add()
-                    Me.DetailsList.Rows.Add()
-                    Me.DetailsList.Rows.Add()
+                    ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE dtl_id = " & DtlIDlist.Item(DtlIDloop) & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND outsrcr_id = " & Coopid
+                    Dim outsrcng As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While outsrcng.Read
+                        Me.DetailsList.Rows.Add()
+                        Me.DetailsList.Rows.Add()
+                        Me.DetailsList.Rows.Add()
 
-                    DetailsList(Conrow1, 5) = outsrcng.Item("outsrcng_costea")
-                    Dim stl1 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("WhiteSmoke")
-                    stl1.BackColor = Color.WhiteSmoke
-                    DetailsList.SetCellStyle(Conrow1, 7, stl1)
-                    DetailsList.SetCellStyle(Conrow1, 8, stl1)
-                    Dim stl2 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("AliceBlue")
-                    stl2.BackColor = Color.AliceBlue
-                    DetailsList.SetCellStyle(Conrow2, 7, stl2)
-                    Dim Outcostea As CellRange = DetailsList.GetCellRange(Conrow1, 5)
-                    Outcostea.StyleNew.Format = "N0"
+                        DetailsList(Conrow1, 5) = outsrcng.Item("outsrcng_costea")
+                        Dim stl1 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("WhiteSmoke")
+                        stl1.BackColor = Color.WhiteSmoke
+                        DetailsList.SetCellStyle(Conrow1, 7, stl1)
+                        DetailsList.SetCellStyle(Conrow1, 8, stl1)
+                        Dim stl2 As C1.Win.C1FlexGrid.CellStyle = DetailsList.Styles.Add("AliceBlue")
+                        stl2.BackColor = Color.AliceBlue
+                        DetailsList.SetCellStyle(Conrow2, 7, stl2)
+                        Dim Outcostea As CellRange = DetailsList.GetCellRange(Conrow1, 5)
+                        Outcostea.StyleNew.Format = "N0"
 
-                    DetailsList(Conrow2, 5) = outsrcng.Item("outsrcng_quanity")
-                    DetailsList.Rows(Conrow2).StyleNew.Format = "N1"
-                    'Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
-                    'Outquanity.StyleNew.Format = "N1"
+                        DetailsList(Conrow2, 5) = outsrcng.Item("outsrcng_quanity")
+                        DetailsList.Rows(Conrow2).StyleNew.Format = "N1"
+                        'Dim Outquanity As CellRange = DetailsList.GetCellRange(Conrow2, 5)
+                        'Outquanity.StyleNew.Format = "N1"
 
-                    quanity = DetailsList(Conrow2, 5)
-                    costea = DetailsList(Conrow1, 5)
-                    total = Math.Floor(quanity * costea)
-                    DetailsList(Conrow3, 5) = total
-                    DetailsList.Rows(Conrow3).StyleNew.Format = "N0"
-                    Dim Outtotal As CellRange = DetailsList.GetCellRange(Conrow3, 5)
-                    Outtotal.StyleNew.Format = "N0"
+                        quanity = DetailsList(Conrow2, 5)
+                        costea = DetailsList(Conrow1, 5)
+                        total = Math.Floor(quanity * costea)
+                        DetailsList(Conrow3, 5) = total
+                        DetailsList.Rows(Conrow3).StyleNew.Format = "N0"
+                        Dim Outtotal As CellRange = DetailsList.GetCellRange(Conrow3, 5)
+                        Outtotal.StyleNew.Format = "N0"
 
-                    DetailsList.Rows(Conrow1).AllowEditing = False
-                    DetailsList.Rows(Conrow2).AllowEditing = True
-                    DetailsList.Rows(Conrow3).AllowEditing = False
-                    OutsourcTotal += total
-                End While
-                Conrow1 += 3
-                Conrow2 += 3
-                Conrow3 += 3
-                outsrcng.Close()
-                TotalList(0, 1) = OutsourcTotal
+                        DetailsList.Rows(Conrow1).AllowEditing = False
+                        DetailsList.Rows(Conrow2).AllowEditing = True
+                        DetailsList.Rows(Conrow3).AllowEditing = False
+                        OutsourcTotal += total
+                    End While
+                    Conrow1 += 3
+                    Conrow2 += 3
+                    Conrow3 += 3
+                    outsrcng.Close()
+                    TotalList(0, 1) = OutsourcTotal
 
-                '明細書IDで明細書テーブルからデータを取得
-                ホーム.Sql.Parameters.Clear()
+                    '明細書IDで明細書テーブルからデータを取得
+                    ホーム.Sql.Parameters.Clear()
                     ホーム.Sql.CommandText = "SELECT * FROM details WHERE dtl_id =" & DtlIDlist.Item(DtlIDloop) & "AND budget_no = (SELECT MAX(budget_no) FROM details) ORDER BY s_worktype_code,dtl_no ASC"
                     Dim details As SqlDataReader = ホーム.Sql.ExecuteReader
-                While details.Read
-                    DetailsList(Detarow1, 1) = details.Item("dtl_id")
-                    DetailsList(Detarow1, 2) = details.Item("s_worktype_code")
-                    DetailsList(Detarow1, 3) = details.Item("dtl_name")
-                    DetailsList(Detarow1, 4) = details.Item("dtl_unit")
-                    DetailsList(Detarow2, 2) = details.Item("dtl_name")
-                    DetailsList(Detarow2, 3) = details.Item("dtl_name")
-                    DetailsList(Detarow2, 4) = details.Item("dtl_name")
-                    DetailsList.MergedRanges.Add(Detarow2, 2, Detarow2, 4)
-                    DetailsList(Detarow3, 2) = details.Item("dtl_spec")
-                    DetailsList(Detarow3, 3) = details.Item("dtl_spec")
-                    DetailsList(Detarow3, 4) = details.Item("dtl_spec")
-                    DetailsList.MergedRanges.Add(Detarow3, 2, Detarow3, 4)
+                    While details.Read
+                        DetailsList(Detarow1, 1) = details.Item("dtl_id")
+                        DetailsList(Detarow1, 2) = details.Item("s_worktype_code")
+                        DetailsList(Detarow1, 3) = details.Item("dtl_name")
+                        DetailsList(Detarow1, 4) = details.Item("dtl_unit")
+                        If details.Item("dtl_unit") = "式" Then
+                            DetailsList(Detarow1, 4) = 1
+                            DetailsList.Rows(Detarow2).AllowEditing = False
+                            DetailsList.Rows(Detarow3).AllowEditing = True
+                        End If
+                        DetailsList(Detarow2, 2) = details.Item("dtl_name")
+                        DetailsList(Detarow2, 3) = details.Item("dtl_name")
+                        DetailsList(Detarow2, 4) = details.Item("dtl_name")
+                        DetailsList.MergedRanges.Add(Detarow2, 2, Detarow2, 4)
+                        DetailsList(Detarow3, 2) = details.Item("dtl_spec")
+                        DetailsList(Detarow3, 3) = details.Item("dtl_spec")
+                        DetailsList(Detarow3, 4) = details.Item("dtl_spec")
+                        DetailsList.MergedRanges.Add(Detarow3, 2, Detarow3, 4)
 
-                    If Detarow1 Mod 2 = 0 Then
-                        DetailsList.Rows(Detarow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailsList.Rows(Detarow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                        DetailsList.Rows(Detarow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                    End If
+                        If Detarow1 Mod 2 = 0 Then
+                            DetailsList.Rows(Detarow1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            DetailsList.Rows(Detarow1 + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                            DetailsList.Rows(Detarow1 + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
+                        End If
 
-                End While
-                Detarow1 += 3
-                Detarow2 += 3
-                Detarow3 += 3
-                details.Close()
+                    End While
+                    Detarow1 += 3
+                    Detarow2 += 3
+                    Detarow3 += 3
+                    details.Close()
                 End If
             Next
 

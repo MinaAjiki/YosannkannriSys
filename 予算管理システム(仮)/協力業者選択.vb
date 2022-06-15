@@ -190,7 +190,10 @@ Public Class 協力業者選択
                 'レポートのデザインが格納されているファイルのパスを変数に代入する
                 'ホーム.ReportPath = Application.StartupPath & "\予算管理システムレポート.flxr"
                 'ホーム.Reportpath = "C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\予算管理システムレポート.flxr"
-                レポート.Show()
+                If ParentFormName = "注文書" OrElse ParentFormName = "注文書金抜" OrElse ParentFormName = "注文書折衝" Then
+                    レポート.Show()
+                End If
+
 
             End If
         Catch ex As Exception
