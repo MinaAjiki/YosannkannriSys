@@ -20,8 +20,8 @@ Public Class Export出来高
         ホーム.Sql.Parameters.Clear()
 
         Dim xlbook As New C1XLBook
-        'xlbook.Load(Application.StartupPath & "\勤怠情報テンプレート(横).xlsx")
-        xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\出来高数量査定書テンプレート.xlsx")
+        xlbook.Load(Application.StartupPath & "\出来高数量査定書テンプレート.xlsx")
+        'xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\出来高数量査定書テンプレート.xlsx")
         Dim EXSheet As XLSheet = xlbook.Sheets(0)
 
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorCode

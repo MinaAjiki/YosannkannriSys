@@ -49,9 +49,9 @@ Public Class 締切日入力
             End If
             Dim OutsrcrID As Integer
             Dim ProID As Integer
-            Dim Costea As Integer
-            Dim Quanity As Integer
-            Dim Amount As Integer
+            Dim Costea As Int64
+            Dim Quanity As Decimal
+            Dim Amount As Int64
 
             Dim AfterDeadline As String = Deadline(1, 1)
             Dim ReBeforeDeadline As String = BeforeDeadline.Replace("-", "/")
