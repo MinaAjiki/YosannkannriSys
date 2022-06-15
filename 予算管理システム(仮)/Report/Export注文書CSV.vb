@@ -20,7 +20,8 @@ Public Class Export注文書CSV
 
         Dim xlbook As New C1XLBook
         'xlbook.Load(Application.StartupPath & "\勤怠情報テンプレート(横).xlsx")
-        xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\テンプレート.csv")
+        xlbook.Load(Application.StartupPath & "\テンプレート.csv")
+        'xlbook.Load("C:\Users\217003\source\repos\MinaAjiki\YosankanriSys\予算管理システム(仮)\テンプレート.csv")
         Dim EXSheet As XLSheet = xlbook.Sheets(0)
 
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & VendorCode
@@ -45,7 +46,11 @@ Public Class Export注文書CSV
             EXSheet(RowCount, 6).Value = "8130"
             EXSheet(RowCount, 7).Value = ProductionReader.Item("s_worktype_code")
             EXSheet(RowCount, 8).Value = ProductionReader.Item("total_amount")
-            EXSheet(RowCount, 9).Value = Math.Floor(ProductionReader.Item("total_amount")) * 0.1
+            If IsDBNull(ProductionReader.Item("total_amount")) = True Then
+                EXSheet(RowCount, 9).Value = 0
+            Else
+                EXSheet(RowCount, 9).Value = Math.Floor(ProductionReader.Item("total_amount")) * 0.1
+            End If
             EXSheet(RowCount, 10).Value = "50"
             EXSheet(RowCount, 11).Value = "1"
             EXSheet(RowCount, 12).Value = "10"
