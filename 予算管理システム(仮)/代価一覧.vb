@@ -691,18 +691,18 @@ Public Class 代価一覧
                             'Dim usecount As Integer = ホーム.Sql.ExecuteScalar
                             'If usecount = 0 Then
                             ホーム.Sql.CommandText = ""
-                                ホーム.Sql.Parameters.Clear()
-                                ホーム.Sql.CommandText = "DELETE FROM project_costs WHERE prjctcst_id = " & prjctID.Data & "AND budget_no =" & ホーム.BudgetNo
-                                ホーム.Sql.ExecuteNonQuery()
-                                ホーム.Sql.CommandText = ""
-                                ホーム.Sql.Parameters.Clear()
-                                ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_id = " & prjctID.Data
-                                ホーム.Sql.ExecuteNonQuery()
-                                'Else
-                                '    MsgBox(ProjectCostList(prjctloop, 4) & " は使用されている代価のため削除されませんでした。", MsgBoxStyle.Exclamation, "代価一覧")
-                                'End If
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "DELETE FROM project_costs WHERE prjctcst_id = " & prjctID.Data & "AND budget_no =" & ホーム.BudgetNo
+                            ホーム.Sql.ExecuteNonQuery()
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_id = " & prjctID.Data
+                            ホーム.Sql.ExecuteNonQuery()
+                            'Else
+                            '    MsgBox(ProjectCostList(prjctloop, 4) & " は使用されている代価のため削除されませんでした。", MsgBoxStyle.Exclamation, "代価一覧")
+                            'End If
 
-                            End If
+                        End If
                     End If
                 Next
                 ホーム.Transaction.Commit()
@@ -885,213 +885,221 @@ Public Class 代価一覧
     End Sub
 
     Private Sub CopyMenu_Click(sender As Object, e As EventArgs) Handles CopyMenu.Click
-        SelectRow = ProjectCostList.Selection.TopRow
-        If ProjectCostList(SelectRow, 1) = Nothing Then
+        Try
 
-        Else
-            If SelectRow = 0 Then
-                MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+            SelectRow = ProjectCostList.Selection.TopRow
+            If ProjectCostList(SelectRow, 1) = Nothing Then
+
             Else
-                Dim CopyID As Integer = ProjectCostList(SelectRow, 1)
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
-                Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
-                If ProjectCostsCount > 21 Then
-                    ProjectCostList.Rows.Count += 1
-                End If
-                Dim PasteRow As Integer = ProjectCostsCount + 1
-                '代価一覧新規行作成
-                ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
-                Dim PrjctNo As Integer = ホーム.Sql.ExecuteScalar
-                ProjectCostList(PasteRow, 3) = PrjctNo + 1
-                ProjectCostList(PasteRow, 4) = ProjectCostList(SelectRow, 4)
-                ProjectCostList(PasteRow, 5) = ProjectCostList(SelectRow, 5)
-                ProjectCostList(PasteRow, 6) = ProjectCostList(SelectRow, 6)
-                ProjectCostList(PasteRow, 7) = ProjectCostList(SelectRow, 7)
-                ProjectCostList(PasteRow, 8) = ProjectCostList(SelectRow, 8)
-                ProjectCostList(PasteRow, 9) = ProjectCostList(SelectRow, 9)
+                If SelectRow = 0 Then
+                    MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "代価表入力")
+                Else
+                    Dim CopyID As Integer = ProjectCostList(SelectRow, 1)
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                    Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
+                    If ProjectCostsCount > 21 Then
+                        ProjectCostList.Rows.Count += 1
+                    End If
+                    Dim PasteRow As Integer = ProjectCostsCount + 1
+                    '代価一覧新規行作成
+                    ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                    Dim PrjctNo As Integer = ホーム.Sql.ExecuteScalar
+                    ProjectCostList(PasteRow, 3) = PrjctNo + 1
+                    ProjectCostList(PasteRow, 4) = ProjectCostList(SelectRow, 4)
+                    ProjectCostList(PasteRow, 5) = ProjectCostList(SelectRow, 5)
+                    ProjectCostList(PasteRow, 6) = ProjectCostList(SelectRow, 6)
+                    ProjectCostList(PasteRow, 7) = ProjectCostList(SelectRow, 7)
+                    ProjectCostList(PasteRow, 8) = ProjectCostList(SelectRow, 8)
+                    ProjectCostList(PasteRow, 9) = ProjectCostList(SelectRow, 9)
 
-                ホーム.Transaction = ホーム.Connection.BeginTransaction
-                ホーム.Sql.Transaction = ホーム.Transaction
+                    ホーム.Transaction = ホーム.Connection.BeginTransaction
+                    ホーム.Sql.Transaction = ホーム.Transaction
 
-                '代価を新規登録
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 4)
-                If IsNothing(ProjectCostList(PasteRow, 5)) = True Or Not ProjectCostList(PasteRow, 5) <> "" Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 5)
-                End If
-                ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 6)
-                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = ProjectCostList(PasteRow, 7)
-                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = ProjectCostList(PasteRow, 8)
+                    '代価を新規登録
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 4)
+                    If IsNothing(ProjectCostList(PasteRow, 5)) = True Or Not ProjectCostList(PasteRow, 5) <> "" Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 5)
+                    End If
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ProjectCostList(PasteRow, 6)
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = ProjectCostList(PasteRow, 7)
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = ProjectCostList(PasteRow, 8)
 
-                ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id = " & CopyID & " AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
-                Dim prjctcstread As SqlDataReader = ホーム.Sql.ExecuteReader
-                Dim Laborcostea As Int64
-                Dim materialcostea As Int64
-                Dim machinecostea As Int64
-                Dim subcntrctcostea As Int64
-                Dim expenscostea As Int64
-                While prjctcstread.Read
-                    Laborcostea = prjctcstread.Item("prjctcst_laborea")
-                    materialcostea = prjctcstread.Item("prjctcst_materialea")
-                    machinecostea = prjctcstread.Item("prjctcst_machineea")
-                    subcntrctcostea = prjctcstread.Item("prjctcst_subcntrctea")
-                    expenscostea = prjctcstread.Item("prjctcst_expenseea")
-                End While
-                prjctcstread.Close()
+                    ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id = " & CopyID & " AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                    Dim prjctcstread As SqlDataReader = ホーム.Sql.ExecuteReader
+                    Dim Laborcostea As Int64
+                    Dim materialcostea As Int64
+                    Dim machinecostea As Int64
+                    Dim subcntrctcostea As Int64
+                    Dim expenscostea As Int64
+                    While prjctcstread.Read
+                        Laborcostea = prjctcstread.Item("prjctcst_laborea")
+                        materialcostea = prjctcstread.Item("prjctcst_materialea")
+                        machinecostea = prjctcstread.Item("prjctcst_machineea")
+                        subcntrctcostea = prjctcstread.Item("prjctcst_subcntrctea")
+                        expenscostea = prjctcstread.Item("prjctcst_expenseea")
+                    End While
+                    prjctcstread.Close()
 
-                If IsNothing(Laborcostea) = True Or IsDBNull(Laborcostea) = True Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = Laborcostea
-                End If
-                If IsNothing(materialcostea) = True Or IsDBNull(materialcostea) = True Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = materialcostea
-                End If
-                If IsNothing(machinecostea) = True Or IsDBNull(machinecostea) = True Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = machinecostea
-                End If
-                If IsNothing(subcntrctcostea) = True Or IsDBNull(subcntrctcostea) = True Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = subcntrctcostea
-                End If
-                If IsNothing(expenscostea) = True Or IsDBNull(expenscostea) = True Then
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = 0
-                Else
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = expenscostea
-                End If
-                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
-                ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstno", SqlDbType.SmallInt)).Value = Integer.Parse(ProjectCostList(PasteRow, 3))
-                ホーム.Sql.CommandText = "INSERT INTO project_costs (budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,
+                    If IsNothing(Laborcostea) = True Or IsDBNull(Laborcostea) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = Laborcostea
+                    End If
+                    If IsNothing(materialcostea) = True Or IsDBNull(materialcostea) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = materialcostea
+                    End If
+                    If IsNothing(machinecostea) = True Or IsDBNull(machinecostea) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = machinecostea
+                    End If
+                    If IsNothing(subcntrctcostea) = True Or IsDBNull(subcntrctcostea) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = subcntrctcostea
+                    End If
+                    If IsNothing(expenscostea) = True Or IsDBNull(expenscostea) = True Then
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = 0
+                    Else
+                        ホーム.Sql.Parameters.Add(New SqlParameter("@expense", SqlDbType.Money)).Value = expenscostea
+                    End If
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CostClassCode
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstno", SqlDbType.SmallInt)).Value = Integer.Parse(ProjectCostList(PasteRow, 3))
+                    ホーム.Sql.CommandText = "INSERT INTO project_costs (budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,
                                           prjctcst_quanity,prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea)
                                             VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
-                ホーム.Sql.ExecuteNonQuery()
+                    ホーム.Sql.ExecuteNonQuery()
 
-                '新規行の工事代価IDを取得
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND prjctcst_no=" & Integer.Parse(ProjectCostList(PasteRow, 3)) & " AND budget_no=" & ホーム.BudgetNo
-                Dim CreateCopyID = ホーム.Sql.ExecuteScalar
+                    '新規行の工事代価IDを取得
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE cstclss_code=" & CostClassCode & " AND prjctcst_no=" & Integer.Parse(ProjectCostList(PasteRow, 3)) & " AND budget_no=" & ホーム.BudgetNo
+                    Dim CreateCopyID = ホーム.Sql.ExecuteScalar
 
-                '代価内訳を新規登録
-                Dim cstclsscode As Integer
-                Dim cstmstrID As Integer
-                Dim BDname As String = ""
-                Dim BDspec As String = ""
-                Dim BDunit As String = ""
-                Dim BDquanity As Decimal
-                Dim BDcostea As Int64
-                Dim BDlabor As Int64
-                Dim BDmaterial As Int64
-                Dim BDmachine As Int64
-                Dim BDsubcntrct As Int64
-                Dim BDexpense As Int64
-                Dim BDremarks As Int64
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID
-                Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
-                If BreakDownCount > 0 Then
-                    For BDLoop As Integer = 1 To BreakDownCount
-                        ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID & " AND prjctcst_bd_no = " & BDLoop
-                        Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                        While BreakDownReader.Read
-                            cstclsscode = BreakDownReader.Item("cstclss_code")
-                            cstmstrID = BreakDownReader.Item("cstmstr_id")
-                            BDname = BreakDownReader.Item("prjctcst_bd_name")
-                            BDspec = BreakDownReader.Item("prjctcst_bd_spec")
-                            BDunit = BreakDownReader.Item("prjctcst_bd_unit")
-                            BDquanity = BreakDownReader.Item("prjctcst_bd_quanity")
-                            BDcostea = BreakDownReader.Item("prjctcst_bd_costea")
-                            BDlabor = BreakDownReader.Item("prjctcst_bd_labor")
-                            BDmaterial = BreakDownReader.Item("prjctcst_bd_material")
-                            BDmachine = BreakDownReader.Item("prjctcst_bd_machine")
-                            BDsubcntrct = BreakDownReader.Item("prjctcst_bd_subcntrct")
-                            BDexpense = BreakDownReader.Item("prjctcst_bd_expense")
-                            BDremarks = BreakDownReader.Item("prjctcst_bd_remarks")
-                        End While
-                        BreakDownReader.Close()
+                    '代価内訳を新規登録
+                    Dim cstclsscode As Integer
+                    Dim cstmstrID As Integer
+                    Dim BDname As String = ""
+                    Dim BDspec As String = ""
+                    Dim BDunit As String = ""
+                    Dim BDquanity As Decimal
+                    Dim BDcostea As Int64
+                    Dim BDlabor As Int64
+                    Dim BDmaterial As Int64
+                    Dim BDmachine As Int64
+                    Dim BDsubcntrct As Int64
+                    Dim BDexpense As Int64
+                    Dim BDremarks As String = ""
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID
+                    Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
+                    If BreakDownCount > 0 Then
+                        For BDLoop As Integer = 1 To BreakDownCount
+                            ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID & " AND prjctcst_bd_no = " & BDLoop
+                            Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                            While BreakDownReader.Read
+                                cstclsscode = BreakDownReader.Item("cstclss_code")
+                                cstmstrID = BreakDownReader.Item("cstmstr_id")
+                                BDname = BreakDownReader.Item("prjctcst_bd_name")
+                                BDspec = BreakDownReader.Item("prjctcst_bd_spec")
+                                BDunit = BreakDownReader.Item("prjctcst_bd_unit")
+                                BDquanity = BreakDownReader.Item("prjctcst_bd_quanity")
+                                BDcostea = BreakDownReader.Item("prjctcst_bd_costea")
+                                BDlabor = BreakDownReader.Item("prjctcst_bd_labor")
+                                BDmaterial = BreakDownReader.Item("prjctcst_bd_material")
+                                BDmachine = BreakDownReader.Item("prjctcst_bd_machine")
+                                BDsubcntrct = BreakDownReader.Item("prjctcst_bd_subcntrct")
+                                BDexpense = BreakDownReader.Item("prjctcst_bd_expense")
+                                BDremarks = BreakDownReader.Item("prjctcst_bd_remarks")
+                            End While
+                            BreakDownReader.Close()
 
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = CstClssCode
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = cstmstrID
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@bdno", SqlDbType.SmallInt)).Value = BDLoop
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@bdname", SqlDbType.NVarChar)).Value = BDname
-                        If IsNothing(BDspec) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = BDspec
-                        End If
-                        If IsNothing(BDunit) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = BDunit
-                        End If
-                        If IsNothing(BDquanity) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = BDquanity
-                        End If
-                        If IsNothing(BDcostea) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = BDcostea
-                        End If
-                        If IsNothing(BDlabor) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = BDlabor
-                        End If
-                        If IsNothing(BDmaterial) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = BDmaterial
-                        End If
-                        If IsNothing(BDmachine) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = BDmachine
-                        End If
-                        If IsNothing(BDsubcntrct) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = BDsubcntrct
-                        End If
-                        If IsNothing(BDexpense) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpense", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpense", SqlDbType.Money)).Value = BDexpense
-                        End If
-                        If IsNothing(BDremarks) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = BDremarks
-                        End If
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstid", SqlDbType.SmallInt)).Value = CreateCopyID
-                        ホーム.Sql.CommandText = "INSERT project_cost_breakdowns (prjctcst_id,cstclss_code,cstmstr_id,prjctcst_bd_no,prjctcst_bd_name,prjctcst_bd_spec
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = cstclsscode
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = cstmstrID
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdno", SqlDbType.SmallInt)).Value = BDLoop
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@bdname", SqlDbType.NVarChar)).Value = BDname
+                            If IsNothing(BDspec) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdspec", SqlDbType.NVarChar)).Value = BDspec
+                            End If
+                            If IsNothing(BDunit) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdunit", SqlDbType.NVarChar)).Value = BDunit
+                            End If
+                            If IsNothing(BDquanity) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdquanity", SqlDbType.Decimal)).Value = BDquanity
+                            End If
+                            If IsNothing(BDcostea) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdcostea", SqlDbType.Money)).Value = BDcostea
+                            End If
+                            If IsNothing(BDlabor) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdlabor", SqlDbType.Money)).Value = BDlabor
+                            End If
+                            If IsNothing(BDmaterial) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdmaterial", SqlDbType.Money)).Value = BDmaterial
+                            End If
+                            If IsNothing(BDmachine) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdmachine", SqlDbType.Money)).Value = BDmachine
+                            End If
+                            If IsNothing(BDsubcntrct) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdsubcntrct", SqlDbType.Money)).Value = BDsubcntrct
+                            End If
+                            If IsNothing(BDexpense) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpense", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdexpense", SqlDbType.Money)).Value = BDexpense
+                            End If
+                            If IsNothing(BDremarks) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@bdremarks", SqlDbType.NVarChar)).Value = BDremarks
+                            End If
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstid", SqlDbType.SmallInt)).Value = CreateCopyID
+                            ホーム.Sql.CommandText = "INSERT project_cost_breakdowns (prjctcst_id,cstclss_code,cstmstr_id,prjctcst_bd_no,prjctcst_bd_name,prjctcst_bd_spec
                                                                    ,prjctcst_bd_unit,prjctcst_bd_quanity,prjctcst_bd_costea,prjctcst_bd_labor,prjctcst_bd_material,prjctcst_bd_machine,
                                                                     prjctcst_bd_subcntrct,prjctcst_bd_expense,prjctcst_bd_remarks) 
                                                   VALUES (@prjctcstid,@cstclsscode,@cstmstrid,@bdno,@bdname,@bdspec,@bdunit,@bdquanity,@bdcostea,
                                                   @bdlabor,@bdmaterial,@bdmachine,@bdsubcntrct,@bdexpense,@bdremarks)"
-                        ホーム.Sql.ExecuteNonQuery()
+                            ホーム.Sql.ExecuteNonQuery()
 
-                    Next
+                        Next
 
+                    End If
+
+                    '登録されたprjctcst_idを代価一覧新規行にコピー
+                    ProjectCostList(PasteRow, 1) = CreateCopyID
+
+                    ホーム.Transaction.Commit()
                 End If
 
-                '登録されたprjctcst_idを代価一覧新規行にコピー
-                ProjectCostList(PasteRow, 1) = CreateCopyID
-
-                ホーム.Transaction.Commit()
             End If
-
-        End If
+        Catch ex As Exception
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 End Class

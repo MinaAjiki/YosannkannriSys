@@ -81,10 +81,25 @@ Public Class 注文書番号入力
     End Sub
 
     Private Sub OrderNoList_AfterEdit(sender As Object, e As RowColEventArgs) Handles OrderNoList.AfterEdit
-        If ChangeHistory <> OrderNoList(e.Row, e.Col) Then
-            Dim SetImageRow As Integer = e.Row
-            OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
-        End If
+        Try
+            Dim OrderNo As CellRange = OrderNoList.GetCellRange(e.Row, 1)
+            Dim d As String = OrderNo.Data
+            Dim length As Integer = d.Length
+            If OrderNo.Data <> "" Then
+                If length = 5 Then
+                    OrderNoList.SetData(e.Row, 1, "0" & OrderNo.Data)
+                End If
+            End If
+            If ChangeHistory <> OrderNoList(e.Row, e.Col) Then
+                    Dim SetImageRow As Integer = e.Row
+                    OrderNoList.SetCellImage(SetImageRow, 5, Image.FromFile(Application.StartupPath & "\Resources\Edit_source.png"))
+                End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
