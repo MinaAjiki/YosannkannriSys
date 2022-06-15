@@ -1503,166 +1503,179 @@ Public Class 明細書入力
                 Exit Sub
             End If
 
-
             ホーム.Transaction = ホーム.Connection.BeginTransaction
 
+            ホーム.Sql.Connection = ホーム.Connection
             ホーム.Sql.Transaction = ホーム.Transaction
 
+            Try
+                For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.Parameters.Clear()
+                    If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                        If DetailsList(RowCount * 3, 2) = "False" Or IsNothing(DetailsList(RowCount * 3, 2)) = True Then
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@dtlno", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 3)
+                            If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
+                            End If
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3, 4)
+                            If IsNothing(DetailsList(RowCount * 3 + 1, 4)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 1, 4)
+                            End If
+                            If IsNothing(DetailsList(RowCount * 3 + 2, 5)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 5)
+                            End If
+                            If IsNothing(DetailsList(RowCount * 3, 6)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = DetailsList(RowCount * 3, 6)
+                            End If
+                            If IsNothing(DetailsList(RowCount * 3 + 1, 6)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = DetailsList(RowCount * 3 + 1, 6)
+                            End If
+                            If IsNothing(CategoryList(RowCount * 3 + 1, 2)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 2)
+                            End If
+                            If IsNothing(CategoryList(RowCount * 3 + 1, 3)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 3)
+                            End If
+                            If IsNothing(CategoryList(RowCount * 3 + 1, 4)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 4)
+                            End If
+                            If IsNothing(CategoryList(RowCount * 3 + 1, 5)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 5)
+                            End If
+                            If IsNothing(CategoryList(RowCount * 3 + 1, 6)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = 0
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 6)
+                            End If
+                            ホーム.Sql.Parameters.Add(New SqlParameter("@fraction", SqlDbType.Money)).Value = 0
+                            If IsNothing(DetailsList(RowCount * 3 + 2, 4)) = True Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = ""
+                            Else
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 4)
+                            End If
 
-            For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.Parameters.Clear()
-                If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                    If DetailsList(RowCount * 3, 2) = "False" Or IsNothing(DetailsList(RowCount * 3, 2)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@dtlno", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 3)
-                        If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@cstmstrid", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 9)
-                        End If
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3, 4)
-                        If IsNothing(DetailsList(RowCount * 3 + 1, 4)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 1, 4)
-                        End If
-                        If IsNothing(DetailsList(RowCount * 3 + 2, 5)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@unit", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 5)
-                        End If
-                        If IsNothing(DetailsList(RowCount * 3, 6)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = DetailsList(RowCount * 3, 6)
-                        End If
-                        If IsNothing(DetailsList(RowCount * 3 + 1, 6)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = DetailsList(RowCount * 3 + 1, 6)
-                        End If
-                        If IsNothing(CategoryList(RowCount * 3 + 1, 2)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@labor", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 2)
-                        End If
-                        If IsNothing(CategoryList(RowCount * 3 + 1, 3)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@material", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 3)
-                        End If
-                        If IsNothing(CategoryList(RowCount * 3 + 1, 4)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@machine", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 4)
-                        End If
-                        If IsNothing(CategoryList(RowCount * 3 + 1, 5)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@subcntrct", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 5)
-                        End If
-                        If IsNothing(CategoryList(RowCount * 3 + 1, 6)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = 0
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@expens", SqlDbType.Money)).Value = CategoryList(RowCount * 3 + 1, 6)
-                        End If
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@fraction", SqlDbType.Money)).Value = 0
-                        If IsNothing(DetailsList(RowCount * 3 + 2, 4)) = True Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = ""
-                        Else
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@remarks", SqlDbType.NVarChar)).Value = DetailsList(RowCount * 3 + 2, 4)
-                        End If
-
-                        If DetailsList(RowCount * 3, 1) = 0 Then
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                            ホーム.Sql.Parameters.Add(New SqlParameter("@sworktypecode", SqlDbType.SmallInt)).Value = ホーム.sworktypecode
-                            ホーム.Sql.CommandText = "INSERT INTO details (budget_no,dtl_no,s_worktype_code,cstclss_code,cstmstr_id,dtl_name,dtl_spec
+                            If DetailsList(RowCount * 3, 1) = 0 Then
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                ホーム.Sql.Parameters.Add(New SqlParameter("@sworktypecode", SqlDbType.SmallInt)).Value = ホーム.sworktypecode
+                                ホーム.Sql.CommandText = "INSERT INTO details (budget_no,dtl_no,s_worktype_code,cstclss_code,cstmstr_id,dtl_name,dtl_spec
                                                                    ,dtl_unit,dtl_quanity,dtl_costea,dtl_labor,dtl_material,dtl_machine,dtl_subcntrct,dtl_expens
                                                                     ,dtl_fraction,dtl_remarks) 
                                                   VALUES (@budgetno,@dtlno,@sworktypecode,@cstclsscode,@cstmstrid,@name,@spec,@unit,@quanity,@costea,
                                                   @labor,@material,@machine,@subcntrct,@expens,@fraction,@remarks)"
-                        Else
-                            ホーム.Sql.CommandText = "UPDATE details SET dtl_no=@dtlno,cstclss_code=@cstclsscode,cstmstr_id=@cstmstrid,dtl_name=@name 
+                            Else
+                                ホーム.Sql.CommandText = "UPDATE details SET dtl_no=@dtlno,cstclss_code=@cstclsscode,cstmstr_id=@cstmstrid,dtl_name=@name 
                                         ,dtl_spec=@spec,dtl_unit=@unit,dtl_quanity=@quanity,dtl_costea=@costea,dtl_labor=@labor,dtl_material=@material
                                         ,dtl_machine=@machine,dtl_subcntrct=@subcntrct,dtl_expens=@expens,dtl_fraction=@fraction,dtl_remarks=@remarks WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
-                        End If
-                        ホーム.Sql.ExecuteNonQuery()
-                    Else
-                        If Not DetailsList(RowCount * 3, 1) = 0 Then
-                            ホーム.Sql.CommandText = "DELETE FROM details WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                            End If
                             ホーム.Sql.ExecuteNonQuery()
-                            ホーム.Sql.CommandText = "DELETE FROM outsourcing_plans WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
-                            ホーム.Sql.ExecuteNonQuery()
-                            ホーム.Sql.CommandText = "DELETE FROM productions WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
-                            ホーム.Sql.ExecuteNonQuery()
+                        Else
+                            If Not DetailsList(RowCount * 3, 1) = 0 Then
+                                ホーム.Sql.CommandText = "DELETE FROM details WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                                ホーム.Sql.ExecuteNonQuery()
+                                ホーム.Sql.CommandText = "DELETE FROM outsourcing_plans WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                                ホーム.Sql.ExecuteNonQuery()
+                                ホーム.Sql.CommandText = "DELETE FROM productions WHERE dtl_id=" & DetailsList(RowCount * 3, 1)
+                                ホーム.Sql.ExecuteNonQuery()
+                            End If
                         End If
                     End If
-                End If
 
-                If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
-                    ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode & " AND dtl_no=" & DetailsList(RowCount * 3, 3)
-                    Dim detailid As Integer = ホーム.Sql.ExecuteScalar
+                    If IsNothing(DetailsList(RowCount * 3, 4)) = False AndAlso IsNothing(DetailsList(RowCount * 3, 3)) = False Then
+                        ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & ホーム.BudgetNo & " AND s_worktype_code=" & ホーム.sworktypecode & " AND dtl_no=" & DetailsList(RowCount * 3, 3)
+                        Dim detailid As Integer = ホーム.Sql.ExecuteScalar
 
-                    ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-                    Dim TableDataCount As Integer = ホーム.Sql.ExecuteScalar
+                        ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                        Dim TableDataCount As Integer = ホーム.Sql.ExecuteScalar
 
-                    Dim MaxNo As Integer = 0
-                    If TableDataCount > 0 Then
-                        ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
-                        MaxNo = ホーム.Sql.ExecuteScalar
-                    End If
+                        Dim MaxNo As Integer = 0
+                        If TableDataCount > 0 Then
+                            ホーム.Sql.CommandText = "SELECT MAX(outsrc_no) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo
+                            MaxNo = ホーム.Sql.ExecuteScalar
+                        End If
 
-                    Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
-                    Dim DataCount As Integer = 0
-                    For OutsrcrCount As Integer = 1 To ColCount
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
-                            ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
-                            Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
+                        Dim ColCount As Integer = OutsoucerList.Cols.Count - 1
+                        Dim DataCount As Integer = 0
+                        For OutsrcrCount As Integer = 1 To ColCount
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
+                            If IsNothing(OutsoucerList(0, OutsrcrCount + 1)) = False Then
+                                ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code=" & OutsoucerList(0, OutsrcrCount + 1)
+                                Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
-                            ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
-                            Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
+                                ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                                Dim PlanCount As Integer = ホーム.Sql.ExecuteScalar
 
-                            If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
-                            Else
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
-                            End If
-                            If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
-                            Else
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
-                            End If
-                            If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
-                            Else
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
-                            End If
-                            If PlanCount = 0 Then
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
+                                If IsNothing(DetailsList(RowCount * 3, 8)) = True Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = 0
+                                Else
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
+                                End If
+                                If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                                Else
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
+                                End If
+                                If IsNothing(OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)) = True Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = 0
+                                Else
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@costea", SqlDbType.Money)).Value = OutsoucerList((RowCount * 3) + 1, OutsrcrCount + 1)
+                                End If
+                                If PlanCount = 0 Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@budgetno", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcno", SqlDbType.SmallInt)).Value = MaxNo
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtlid", SqlDbType.SmallInt)).Value = detailid
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcrid", SqlDbType.SmallInt)).Value = outsrcrid
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@createddate", SqlDbType.DateTime)).Value = Today
 
-                                ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
+                                    ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans (budget_no,outsrc_no,cstclss_code,outsrcr_id,dtl_id,outsrcng_quanity
                                                                    ,outsrcng_costea,created_date) 
                                                   VALUES (@budgetno,@outsrcno,@cstclsscode,@outsrcrid,@dtlid,@quanity,@costea,@createddate)"
-                            Else
-                                ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
+                                Else
+                                    ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET cstclss_code=@cstclsscode,outsrcng_quanity=@quanity,outsrcng_costea=@costea 
                                                      WHERE budget_no=" & ホーム.BudgetNo & " AND outsrc_no=" & MaxNo & " AND outsrcr_id=" & outsrcrid & " AND dtl_id=" & detailid
+                                End If
+                                ホーム.Sql.ExecuteNonQuery()
+
                             End If
-                            ホーム.Sql.ExecuteNonQuery()
+                        Next
+                    End If
+                Next
 
-                        End If
-                    Next
-                End If
-            Next
+                ホーム.Transaction.Commit()
 
-            ホーム.Transaction.Commit()
+
+            Catch ex As Exception
+                ホーム.Transaction.Rollback()
+                ホーム.ErrorMessage = ex.Message
+                    ホーム.StackTrace = ex.StackTrace
+                    エラー.Show()
+                    Exit Sub
+                End Try
+
+
+
+            ホーム.Sql.Connection = ホーム.Connection
 
             For RowCount As Integer = 1 To ((DetailsList.Rows.Count - 3) / 3)
                 If RowCount * 3 <= (DetailsList.Rows.Count - 3) Then
@@ -1745,8 +1758,8 @@ Public Class 明細書入力
                 DetailsList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
             Next
 
-        ホーム.Modified = "False"
-        EntryCommand = ""
+            ホーム.Modified = "False"
+            EntryCommand = ""
 
 
             If ホーム.HomeTreeView.Nodes.Count > 0 Then
@@ -1765,11 +1778,10 @@ Public Class 明細書入力
             小工種選択.Show()
 
         Catch ex As Exception
-            'ホーム.Transaction.Rollback()
             ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
 
     End Sub

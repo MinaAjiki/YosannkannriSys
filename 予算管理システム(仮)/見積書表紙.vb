@@ -289,7 +289,7 @@ Public Class 見積書表紙
             Else
                 ホーム.Sql.Parameters.Add(New SqlParameter("@sales_staff", SqlDbType.NVarChar)).Value = ""
             End If
-            If IsDBNull(conditions.Value) = False Then
+            If IsDBNull(sales_department.Value) = False Then
                 ホーム.Sql.Parameters.Add(New SqlParameter("@sales_department", SqlDbType.NVarChar)).Value = sales_department.Value
             Else
                 ホーム.Sql.Parameters.Add(New SqlParameter("@sales_department", SqlDbType.NVarChar)).Value = ""
@@ -335,7 +335,7 @@ Public Class 見積書表紙
                                         pblshr_address,pblshr_cmpnyname,pblshr_prsdnt,pblshr_tel,pblshr_fax,conditions,estimator,estmt_department,sales_staff,sales_department,cndtns_dtls1,
                                         cndtns_dtls2,cndtns_dtls3,cndtns_dtls4,cndtns_dtls5,discount)
                                         VALUES (@estmtcode,@estmtdate,@prjctname,@amount,@taxin,@tax,@prjctaddress,@paymentterms,@expirationdate,@destination,@pblshraddress,@cmpnyname,@prsdnt,
-                                        @tel,@fax,@estimator,@estmt_department,@sales_staff,@sales_department,@conditions,@dtls1,@dtls2,@dtls3,@dtls4,@dtls5,@discount)"
+                                        @tel,@fax,@conditions,@estimator,@estmt_department,@sales_staff,@sales_department,@dtls1,@dtls2,@dtls3,@dtls4,@dtls5,@discount)"
             Else
                 ホーム.Sql.CommandText = "UPDATE estimates SET estmt_code=@estmtcode,estmt_date=@estmtdate,estmt_prjct_name=@prjctname,estmt_amount=@amount,estmt_taxin=@taxin,estmt_tax=@tax,
                                           prjct_address=@prjctaddress,paymentterms=@paymentterms,expirationdate=@expirationdate,destination=@destination,pblshr_address=@pblshraddress,pblshr_cmpnyname=@cmpnyname,
@@ -360,4 +360,395 @@ Public Class 見積書表紙
         End Try
 
     End Sub
+
+    Private Sub EstmtCode_KeyPress(sender As Object, e As KeyPressEventArgs) Handles EstmtCode.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub EstmtDate_KeyPress(sender As Object, e As KeyPressEventArgs) Handles EstmtDate.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub EstmtAmount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles EstmtAmount.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Discount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Discount.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub EstmtTax_KeyPress(sender As Object, e As KeyPressEventArgs) Handles EstmtTax.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub EstmtTaxIn_KeyPress(sender As Object, e As KeyPressEventArgs) Handles EstmtTaxIn.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub Destination_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Destination.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub PrjctName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles PrjctName.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub PrjctAddress_KeyPress(sender As Object, e As KeyPressEventArgs) Handles PrjctAddress.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub PymntTerms_KeyPress(sender As Object, e As KeyPressEventArgs) Handles PymntTerms.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub conditions_KeyPress(sender As Object, e As KeyPressEventArgs) Handles conditions.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub expirationdate_KeyPress(sender As Object, e As KeyPressEventArgs) Handles expirationdate.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cndtns_dtls1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cndtns_dtls1.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cndtns_dtls2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cndtns_dtls2.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cndtns_dtls3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cndtns_dtls3.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cndtns_dtls4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cndtns_dtls4.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cndtns_dtls5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cndtns_dtls5.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub pblshr_cmpnyname_KeyPress(sender As Object, e As KeyPressEventArgs) Handles pblshr_cmpnyname.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub pblshr_prsdnt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles pblshr_prsdnt.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub pblshr_address_KeyPress(sender As Object, e As KeyPressEventArgs) Handles pblshr_address.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub pblshr_tel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles pblshr_tel.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub pblshr_fax_KeyPress(sender As Object, e As KeyPressEventArgs) Handles pblshr_fax.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub estmt_department_KeyPress(sender As Object, e As KeyPressEventArgs) Handles estmt_department.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub sales_department_KeyPress(sender As Object, e As KeyPressEventArgs) Handles sales_department.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub sales_staff_KeyPress(sender As Object, e As KeyPressEventArgs) Handles sales_staff.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub estimator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles estimator.KeyPress
+        Try
+            If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+                'Enterキーが押された場合、次の入力項目へ
+                'フォーカスを移動する()
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
 End Class

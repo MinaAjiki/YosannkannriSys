@@ -273,16 +273,18 @@ Public Class 詳細入力表
                             ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_code", SqlDbType.SmallInt)).Value = DetailList(0, subjectloop)
                             ホーム.Sql.Parameters.Add(New SqlParameter("@sbjct_amount", SqlDbType.Money)).Value = DetailList((RowCount * 3) + 2, subjectloop)
 
-                            If Not DetailList((RowCount * 3) + 2, subjectloop) = 0 AndAlso SubjectCount = 0 Then
-
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int)).Value = DetailList(RowCount * 3, 1)
-                                ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
-                                ホーム.Sql.CommandText = "INSERT INTO subjects (dtl_id,budget_no,sbjct_code,sbjct_amount) VALUES (@dtl_id,@budget_no,@sbjct_code,@sbjct_amount)"
+                            If SubjectCount = 0 Then
+                                If Not DetailList((RowCount * 3) + 2, subjectloop) = 0 Then
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int)).Value = DetailList(RowCount * 3, 1)
+                                    ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.SmallInt)).Value = ホーム.BudgetNo
+                                    ホーム.Sql.CommandText = "INSERT INTO subjects (dtl_id,budget_no,sbjct_code,sbjct_amount) VALUES (@dtl_id,@budget_no,@sbjct_code,@sbjct_amount)"
+                                End If
                             Else
                                 ホーム.Sql.CommandText = "UPDATE subjects SET sbjct_amount=@sbjct_amount WHERE budget_no=" & ホーム.BudgetNo & " AND dtl_id=" & DetailList(RowCount * 3, 1) _
-                                                               & " AND sbjct_code=@sbjct_code"
-                                ホーム.Sql.ExecuteNonQuery()
+                                                           & " AND sbjct_code=@sbjct_code"
+
                             End If
+                            ホーム.Sql.ExecuteNonQuery()
                         End If
                     End If
                 Next

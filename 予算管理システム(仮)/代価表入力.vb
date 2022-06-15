@@ -2522,7 +2522,13 @@ Public Class 代価表入力
                             BreakDownList.Select(SelectionRow + 1, 4)
 
                         End If
+                    ElseIf SelectionCol = 4 Then
+                        BreakDownList.KeyActionEnter = KeyActionEnum.MoveDown
+                        BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
+                        SendKeys.Send("{ENTER}")
+
                     Else
+
                         SendKeys.Send("{ENTER}")
                     End If
                 Else
@@ -2675,9 +2681,5 @@ Public Class 代価表入力
 
     Private Sub 代価表入力_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         CostName.Focus()
-    End Sub
-
-    Private Sub CostCreateMenu_DisplayStyleChanged(sender As Object, e As EventArgs) Handles CostCreateMenu.DisplayStyleChanged
-
     End Sub
 End Class
