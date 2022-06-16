@@ -121,8 +121,8 @@ Public Class 代価一覧
                 CostList.ItemsValueMember = "code"
                 CostList.ItemMode = C1.Win.C1Input.ComboItemMode.HtmlPattern
                 'CostList.HtmlPattern = "<table><tr><td width=30>{Code}</td><td width=270>{Name}</td></tr></table>"
-                CostList.SelectedIndex = -1
-                CostList.Text = "工事代価を選択"
+                CostList.SelectedIndex = 0
+                'CostList.Text = "工事代価を選択"
 
                 ProjectCostList.Cols(2).AllowEditing = True
 
@@ -685,38 +685,30 @@ Public Class 代価一覧
                     Dim prjctID As CellRange = ProjectCostList.GetCellRange(prjctloop, 1)
                     If ProjectCostList(prjctloop, 2) = True Then
                         If prjctID.Data <> Nothing Then
-                            'ホーム.Sql.CommandText = ""
-                            'ホーム.Sql.Parameters.Clear()
-                            'ホーム.Sql.CommandText = "SELECT COUNT(prjctcst_id) FROM details WHERE prjctcst_id = " & prjctID.Data
-                            'Dim usecount As Integer = ホーム.Sql.ExecuteScalar
-                            'If usecount = 0 Then
                             ホーム.Sql.CommandText = ""
                             ホーム.Sql.Parameters.Clear()
-                            ホーム.Sql.CommandText = "DELETE FROM project_costs WHERE prjctcst_id = " & prjctID.Data & "AND budget_no =" & ホーム.BudgetNo
-                            ホーム.Sql.ExecuteNonQuery()
-                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.CommandText = "SELECT COUNT(cstmstr_id) FROM details WHERE cstmstr_id = " & prjctID.Data & "AND cstclss_code = " & CostClassCode
+                            Dim usecount As Integer = ホーム.Sql.ExecuteScalar
                             ホーム.Sql.Parameters.Clear()
-                            ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_id = " & prjctID.Data
-                            ホーム.Sql.ExecuteNonQuery()
-                            'Else
-                            '    MsgBox(ProjectCostList(prjctloop, 4) & " は使用されている代価のため削除されませんでした。", MsgBoxStyle.Exclamation, "代価一覧")
-                            'End If
+                            ホーム.Sql.CommandText = "SELECT COUNT(cstmstr_id) FROM project_cost_breakdowns WHERE cstmstr_id = " & prjctID.Data & "AND cstclss_code = " & CostClassCode
+                            Dim usescount As Integer = usecount + ホーム.Sql.ExecuteScalar
+                            If usescount = 0 Then
+                                ホーム.Sql.CommandText = ""
+                                ホーム.Sql.Parameters.Clear()
+                                ホーム.Sql.CommandText = "DELETE FROM project_costs WHERE prjctcst_id = " & prjctID.Data & "AND budget_no =" & ホーム.BudgetNo
+                                ホーム.Sql.ExecuteNonQuery()
+                                ホーム.Sql.CommandText = ""
+                                ホーム.Sql.Parameters.Clear()
+                                ホーム.Sql.CommandText = "DELETE FROM project_cost_breakdowns WHERE prjctcst_id = " & prjctID.Data
+                                ホーム.Sql.ExecuteNonQuery()
+                            Else
+                                MsgBox(ProjectCostList(prjctloop, 4) & " は使用されている代価のため削除されませんでした。", MsgBoxStyle.Exclamation, "代価一覧")
+                            End If
 
                         End If
                     End If
                 Next
                 ホーム.Transaction.Commit()
-                'ホーム.Sql.CommandText = ""
-                'ホーム.Sql.Parameters.Clear()
-                'ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
-                'Dim BasicCostsCount As Integer = ホーム.Sql.ExecuteScalar
-                'ホーム.Sql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
-                'For DeleteBasic As Integer = 1 To BasicCostsCount
-                '    If ProjectCostList(DeleteBasic, 2) = True Then
-                '        ホーム.Sql.CommandText = "UPDATE project_costs SET deleted=@deleted WHERE bsscst_id=" & ProjectCostList(DeleteBasic, 1)
-                '        ホーム.Sql.ExecuteNonQuery()
-                '    End If
-                'Next
             End If
 
             MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
