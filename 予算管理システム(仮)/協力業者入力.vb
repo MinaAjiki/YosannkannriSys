@@ -34,9 +34,24 @@ Public Class 協力業者入力
                 CoopVendorList(datacount, 2) = Coopreader.Item("outsrcr_name")
                 CoopVendorList(datacount, 3) = Coopreader.Item("outsrcr_term_s")
                 CoopVendorList(datacount, 4) = Coopreader.Item("outsrcr_term_e")
+                CoopVendorList(datacount, 9) = Coopreader.Item("outsrcr_name_ryaku")
+                'Dim dt As DataTable
+                'dt = New DataTable
+                'dt.Columns.Add("orderno", GetType(System.Int32))
+                'dt.Columns.Add("ordername", GetType(System.String))
+                'Dim OrderNo As Integer
+                'Dim OrderName As String
+
+                'ホーム.SystemSql.Parameters.Clear()
+                'ホーム.SystemSql.CommandText = ""
+                'Dim OrderReader As SqlDataReader = ホーム.SystemSql.ExecuteReader
+                'While OrderReader.Read
+                '    OrderNo = OrderReader.Item("ordrfrm")
+                'End While
+
                 Dim ordr As String = Coopreader.Item("ordrfrm")
                 If ordr = 11 Then
-                    CoopVendorList(datacount, 5) = "工務課発注"
+                    CoopVendorList(datacount, 5) = "工事課発注"
                 ElseIf ordr = 12 Then
                     CoopVendorList(datacount, 5) = "購買発注"
                 End If
@@ -122,6 +137,7 @@ Public Class 協力業者入力
                 Dim Coopordr As CellRange = CoopVendorList.GetCellRange(Vendorloop, 5)
                 Dim Coopcntrct As CellRange = CoopVendorList.GetCellRange(Vendorloop, 6)
                 Dim CoopDeleteF As CellRange = CoopVendorList.GetCellRange(Vendorloop, 7)
+                Dim CoopRyaku As CellRange = CoopVendorList.GetCellRange(Vendorloop, 9)
 
                 '業者ｺｰﾄﾞ入力時、工期、発注形態入力チェック
                 If CoopCode.Data <> Nothing Then
@@ -147,17 +163,22 @@ Public Class 協力業者入力
                     '最後の行の場合、登録を終了する
                     If RowIndex <= 0 Then
                         MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
+                        Me.Close()
                         Exit Sub
                     End If
                     Continue For
                 End If
                 '削除チェック
                 If CoopDeleteF.Data = True Then
-                    If MsgBox("" & CoopVendorList(Vendorloop, 2) & "が削除されます。", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                    If MsgBox("" & CoopVendorList(Vendorloop, 2) & "の登録された内容が全て削除されます。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                        Me.Close()
                         Exit Sub
                     End If
                     '削除したい行が登録済みか新規か判定し削除
                     If CoopID.Data <> Nothing Then
+                        ホーム.Sql.Parameters.Clear()
+                        ホーム.Sql.CommandText = "DELETE FROM Outsourcing_plans WHERE outsrcr_id = " & CoopID.Data
+                        ホーム.Sql.ExecuteNonQuery()
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "DELETE FROM Outsourcers WHERE outsrcr_code=" & CoopCode.Data & "AND outsrcr_id =" & CoopID.Data
                         ホーム.Sql.ExecuteNonQuery()
@@ -177,22 +198,28 @@ Public Class 協力業者入力
                     If CoopID.Data = Nothing Then
                         ホーム.Sql.CommandText = ""
                         ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "INSERT INTO Outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,ordrfrm,e_cntrct) VALUES (@outsrcr_code,@outsrcr_name,@outsrcr_term_s,@outsrcr_term_e,@ordrfrm,@e_cntrct)"
+                        ホーム.Sql.CommandText = "INSERT INTO Outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,ordrfrm,e_cntrct,outsrcr_name_ryaku) VALUES (@outsrcr_code,@outsrcr_name,@outsrcr_term_s,@outsrcr_term_e,@ordrfrm,@e_cntrct,@outsrcr_name_ryaku)"
                     Else
                         ホーム.Sql.CommandText = ""
                         ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "UPDATE Outsourcers SET outsrcr_code=@outsrcr_code,outsrcr_name=@outsrcr_name,outsrcr_term_s=@outsrcr_term_s,outsrcr_term_e=@outsrcr_term_e,ordrfrm=@ordrfrm,e_cntrct=@e_cntrct where outsrcr_id=@outsrcr_id"
+                        ホーム.Sql.CommandText = "UPDATE Outsourcers SET outsrcr_code=@outsrcr_code,outsrcr_name=@outsrcr_name,outsrcr_term_s=@outsrcr_term_s,outsrcr_term_e=@outsrcr_term_e,ordrfrm=@ordrfrm,e_cntrct=@e_cntrct,outsrcr_name_ryaku=@outsrcr_name_ryaku where outsrcr_id=@outsrcr_id"
                         ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
                         ホーム.Sql.Parameters("@outsrcr_id").Value = CoopID.Data
                     End If
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_code", SqlDbType.Int))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_name", SqlDbType.NVarChar))
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_name_ryaku", SqlDbType.NVarChar))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_s", SqlDbType.DateTime))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_term_e", SqlDbType.DateTime))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@ordrfrm", SqlDbType.SmallInt))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@e_cntrct", SqlDbType.NVarChar))
                     ホーム.Sql.Parameters("@outsrcr_code").Value = CoopCode.Data
                     ホーム.Sql.Parameters("@outsrcr_name").Value = CoopName.Data
+                    'If IsNothing(CoopRyaku.Data) = True Then
+                    '    ホーム.Sql.Parameters("@outsrcr_name_ryaku").Value = ""
+                    'Else
+                    ホーム.Sql.Parameters("@outsrcr_name_ryaku").Value = CoopRyaku.Data
+                    'End If
                     ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
                     ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
                     If Coopordr.Data = "工務課発注" Then
@@ -210,8 +237,8 @@ Public Class 協力業者入力
                 End If
             Next
             ホーム.Modified = "false"
-            MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
             Me.Close()
+            MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

@@ -287,7 +287,11 @@ Partial Public Class M_TOR_HIROKOJI
         
         Private columnNAME As Global.System.Data.DataColumn
         
+        Private columnNAME2 As Global.System.Data.DataColumn
+        
         Private columnKANA As Global.System.Data.DataColumn
+        
+        Private columnRYAKU As Global.System.Data.DataColumn
         
         Private columnADDRESS1 As Global.System.Data.DataColumn
         
@@ -348,9 +352,25 @@ Partial Public Class M_TOR_HIROKOJI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property NAME2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNAME2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property KANAColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnKANA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property RYAKUColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRYAKU
             End Get
         End Property
         
@@ -415,9 +435,9 @@ Partial Public Class M_TOR_HIROKOJI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddM_TOR_HIROKOJIRow(ByVal CODE As String, ByVal NAME As String, ByVal KANA As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String) As M_TOR_HIROKOJIRow
+        Public Overloads Function AddM_TOR_HIROKOJIRow(ByVal CODE As String, ByVal NAME As String, ByVal NAME2 As String, ByVal KANA As String, ByVal RYAKU As String, ByVal ADDRESS1 As String, ByVal ADDRESS2 As String, ByVal TEL As String) As M_TOR_HIROKOJIRow
             Dim rowM_TOR_HIROKOJIRow As M_TOR_HIROKOJIRow = CType(Me.NewRow,M_TOR_HIROKOJIRow)
-            Dim columnValuesArray() As Object = New Object() {CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL}
+            Dim columnValuesArray() As Object = New Object() {CODE, NAME, NAME2, KANA, RYAKU, ADDRESS1, ADDRESS2, TEL}
             rowM_TOR_HIROKOJIRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowM_TOR_HIROKOJIRow)
             Return rowM_TOR_HIROKOJIRow
@@ -448,7 +468,9 @@ Partial Public Class M_TOR_HIROKOJI
         Friend Sub InitVars()
             Me.columnCODE = MyBase.Columns("CODE")
             Me.columnNAME = MyBase.Columns("NAME")
+            Me.columnNAME2 = MyBase.Columns("NAME2")
             Me.columnKANA = MyBase.Columns("KANA")
+            Me.columnRYAKU = MyBase.Columns("RYAKU")
             Me.columnADDRESS1 = MyBase.Columns("ADDRESS1")
             Me.columnADDRESS2 = MyBase.Columns("ADDRESS2")
             Me.columnTEL = MyBase.Columns("TEL")
@@ -461,8 +483,12 @@ Partial Public Class M_TOR_HIROKOJI
             MyBase.Columns.Add(Me.columnCODE)
             Me.columnNAME = New Global.System.Data.DataColumn("NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNAME)
+            Me.columnNAME2 = New Global.System.Data.DataColumn("NAME2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNAME2)
             Me.columnKANA = New Global.System.Data.DataColumn("KANA", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnKANA)
+            Me.columnRYAKU = New Global.System.Data.DataColumn("RYAKU", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRYAKU)
             Me.columnADDRESS1 = New Global.System.Data.DataColumn("ADDRESS1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnADDRESS1)
             Me.columnADDRESS2 = New Global.System.Data.DataColumn("ADDRESS2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -474,7 +500,9 @@ Partial Public Class M_TOR_HIROKOJI
             Me.columnCODE.Unique = true
             Me.columnCODE.MaxLength = 9
             Me.columnNAME.MaxLength = 40
+            Me.columnNAME2.MaxLength = 40
             Me.columnKANA.MaxLength = 20
+            Me.columnRYAKU.MaxLength = 16
             Me.columnADDRESS1.MaxLength = 40
             Me.columnADDRESS2.MaxLength = 40
             Me.columnTEL.MaxLength = 20
@@ -652,6 +680,21 @@ Partial Public Class M_TOR_HIROKOJI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property NAME2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableM_TOR_HIROKOJI.NAME2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_HIROKOJI' にある列 'NAME2' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableM_TOR_HIROKOJI.NAME2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property KANA() As String
             Get
                 Try 
@@ -662,6 +705,21 @@ Partial Public Class M_TOR_HIROKOJI
             End Get
             Set
                 Me(Me.tableM_TOR_HIROKOJI.KANAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property RYAKU() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableM_TOR_HIROKOJI.RYAKUColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'M_TOR_HIROKOJI' にある列 'RYAKU' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableM_TOR_HIROKOJI.RYAKUColumn) = value
             End Set
         End Property
         
@@ -724,6 +782,18 @@ Partial Public Class M_TOR_HIROKOJI
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsNAME2Null() As Boolean
+            Return Me.IsNull(Me.tableM_TOR_HIROKOJI.NAME2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetNAME2Null()
+            Me(Me.tableM_TOR_HIROKOJI.NAME2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsKANANull() As Boolean
             Return Me.IsNull(Me.tableM_TOR_HIROKOJI.KANAColumn)
         End Function
@@ -732,6 +802,18 @@ Partial Public Class M_TOR_HIROKOJI
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetKANANull()
             Me(Me.tableM_TOR_HIROKOJI.KANAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsRYAKUNull() As Boolean
+            Return Me.IsNull(Me.tableM_TOR_HIROKOJI.RYAKUColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetRYAKUNull()
+            Me(Me.tableM_TOR_HIROKOJI.RYAKUColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -939,7 +1021,9 @@ Namespace M_TOR_HIROKOJITableAdapters
             tableMapping.DataSetTable = "M_TOR_HIROKOJI"
             tableMapping.ColumnMappings.Add("CODE", "CODE")
             tableMapping.ColumnMappings.Add("NAME", "NAME")
+            tableMapping.ColumnMappings.Add("NAME2", "NAME2")
             tableMapping.ColumnMappings.Add("KANA", "KANA")
+            tableMapping.ColumnMappings.Add("RYAKU", "RYAKU")
             tableMapping.ColumnMappings.Add("ADDRESS1", "ADDRESS1")
             tableMapping.ColumnMappings.Add("ADDRESS2", "ADDRESS2")
             tableMapping.ColumnMappings.Add("TEL", "TEL")
@@ -959,8 +1043,8 @@ Namespace M_TOR_HIROKOJITableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT                      CODE, NAME, KANA, ADDRESS1, ADDRESS2, TEL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
-                "                   M_TOR_HIROKOJI"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY               CODE"
+            Me._commandCollection(0).CommandText = "SELECT                      CODE, NAME, NAME2, KANA, RYAKU, ADDRESS1, ADDRESS2, T"& _ 
+                "EL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM                         M_TOR_HIROKOJI"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY               CODE"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
