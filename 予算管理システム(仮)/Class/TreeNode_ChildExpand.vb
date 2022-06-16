@@ -10,17 +10,17 @@ Public Class TreeNode_ChildExpand
 
         NodeExpand = ""
 
-        For nodeloop As Integer = 0 To selectnode.Nodes.Count - 1
+        'For nodeloop As Integer = 0 To selectnode.Nodes.Count - 1
 
-            Dim value As String = selectnode.Nodes(nodeloop).GetValue
+        '    Dim value As String = selectnode.Nodes(nodeloop).GetValue
 
-            If value.Contains(selectname) = True Then
-                ホーム.SelectNodeList.Add(selectnode.Nodes(nodeloop))
-                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                ホーム.SelectNodeList(maxindex).Expand()
-                Exit For
-            End If
-        Next
+        '    If value.Contains(selectname) = True Then
+        '        ホーム.SelectNodeList.Add(selectnode.Nodes(nodeloop))
+        '        Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+        '        ホーム.SelectNodeList(maxindex).Expand()
+        '        Exit For
+        '    End If
+        'Next
 
         Return NodeExpand
     End Function

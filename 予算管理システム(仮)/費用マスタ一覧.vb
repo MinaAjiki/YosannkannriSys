@@ -474,7 +474,25 @@ Public Class 費用マスタ一覧
                 Exit Sub
             End If
 
+
+            ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = ""
+
+
             If マスタメンテナンス.SwitchBox.Text = "一般" Then
+
+
+                ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (cstmstr_id INT DEFAULT (0) NOT NULL,
+                                                              cstclss_code INT DEFAULT (0) NOT NULL, 
+                                                              cstmstr_category NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              cstmstr_code INT DEFAULT (0) NOT NULL, 
+                                                              name NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              spec NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              unit NVARCHAR(6) DEFAULT ('') NOT NULL,
+                                                              costea MONEY DEFAULT (0) NOT NULL,
+                                                              seq INT DEFAULT (0) NOT NULL)"
+                ホーム.Sql.ExecuteNonQuery()
+
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
@@ -525,14 +543,34 @@ Public Class 費用マスタ一覧
                         If MasterContentsList(RowCount, 1) = 0 Then
                             ホーム.Sql.CommandText = "INSERT INTO cost_masters (cstclss_code,cstmstr_category,cstmstr_code,cstmstr_name,cstmstr_spec
                                                                    ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
+                                                      OUTPUT inserted.cstmstr_id,inserted.cstclss_code,inserted.cstmstr_category,inserted.cstmstr_code,
+                                                             inserted.cstmstr_name,inserted.cstmstr_spec,inserted.cstmstr_unit,inserted.cstmstr_costea,inseted.cstmstr_seq
+                                                      INTO #UpdateID (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq)
                                                   VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
                         Else
                             ホーム.Sql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
-                                                cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
+                                                            cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq 
+                                                     OUTPUT inserted.cstmstr_id,inserted.cstclss_code,inserted.cstmstr_category,inserted.cstmstr_code,
+                                                            inserted.cstmstr_name,inserted.cstmstr_spec,inserted.cstmstr_unit,inserted.cstmstr_costea,inserted.cstmstr_seq
+                                                     INTO #UpdateID (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq) 
+                                                     WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
                         End If
                         ホーム.Sql.ExecuteNonQuery()
                     End If
+
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+
+                    Dim Recalculation As String = ""
+
+                    Dim RecalculationLoad As New Recalculation_cst(CostClassCode)
+                    Recalculation = RecalculationLoad.Recalculation
+
+                    ホーム.Sql.CommandText = "DELETE FROM #UpdateID"
+                    ホーム.Sql.ExecuteNonQuery()
+
                 Next
+
             ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
                     ホーム.SystemSql.CommandText = ""

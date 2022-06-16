@@ -140,10 +140,10 @@ Public Class 大工種選択
             小工種選択.Show()
 
 
-            If ホーム.HomeTreeView.Nodes.Count > 0 Then
-                ホーム.HomeTreeView.Nodes(ClickRow - 1).Expand()
-                ホーム.SelectNodeList.Add(ホーム.HomeTreeView.Nodes(ClickRow - 1))
-            End If
+            'If ホーム.HomeTreeView.Nodes.Count > 0 Then
+            '    ホーム.HomeTreeView.Nodes(ClickRow - 1).Expand()
+            '    ホーム.SelectNodeList.Add(ホーム.HomeTreeView.Nodes(ClickRow - 1))
+            'End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

@@ -44,7 +44,7 @@ Public Class ホーム
     Public ReportName As String
     Public BeforeForm As String
     Public ItemSelect As String
-    Public SelectNodeList As New List(Of C1.Win.TreeView.C1TreeNode)
+    'Public SelectNodeList As New List(Of C1.Win.TreeView.C1TreeNode)
     Public FirstTime As String = "False"
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -52,6 +52,7 @@ Public Class ホーム
 
             SystemSqlCnnctn.Open()
             SystemSql.Connection = SystemSqlCnnctn
+
 
             If System.IO.File.Exists("C:\PMS\system.mdf") = True Then
 
@@ -330,10 +331,10 @@ Public Class ホーム
             大工種選択.Show()
 
         Catch ex As Exception
-        ErrorMessage = ex.Message
-        StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ErrorMessage = ex.Message
+            StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 
@@ -437,7 +438,6 @@ Public Class ホーム
             マスタ.Enabled = True
             開く.Enabled = True
             材料表インポート.Enabled = True
-            参照作成command.Enabled = True
             予算内訳登録.Enabled = False
             出力.Enabled = False
             見積.Enabled = False
@@ -1198,9 +1198,11 @@ Public Class ホーム
             Dim nodevalue As String = node.GetValue
             Dim level As Integer = node.Level
 
+
             Dim index As Integer = nodevalue.Length - 1
-            Dim cost As String = nodevalue.Substring(index - 8, 1)
-            Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 6, 5))
+            Dim subindex As Integer = nodevalue.LastIndexOf("(")
+            Dim cost As String = nodevalue.Substring(subindex + 1, 1)
+            Dim costno As Integer = Integer.Parse(nodevalue.Substring(index - 5, 5))
 
             Dim clssname As String = "工事代価" & cost
             Sql.CommandText = ""
@@ -1340,9 +1342,8 @@ Public Class ホーム
 
 
                     If level = 0 Then
-                        右クリックメニュー.Visible = False
 
-                        SelectNodeList.Add(SelectNode)
+                        'SelectNodeList.Add(SelectNode)
                         Dim length As Integer = nodevalue.Length
 
                         Dim lcode As Integer = Integer.Parse(nodevalue.Substring(0, 3))
@@ -1358,7 +1359,6 @@ Public Class ホーム
 
                     ElseIf level = 1 Then
 
-                        右クリックメニュー.Visible = False
 
                         Dim length As Integer = nodevalue.Length
 
@@ -1368,8 +1368,8 @@ Public Class ホーム
                         Dim parentvalue As String = parentnode.GetValue
                         lworktypecode = Integer.Parse(parentvalue.Substring(0, 3))
                         lworktypename = parentvalue.Remove(0, 4)
-                        SelectNodeList.Add(parentnode)
-                        SelectNodeList.Add(SelectNode)
+                        'SelectNodeList.Add(parentnode)
+                        'SelectNodeList.Add(SelectNode)
 
                         sworktypecode = scode
                         sworktypename = sname
@@ -1385,8 +1385,7 @@ Public Class ホーム
                         End If
 
                     Else
-                        SelectNodeList.Add(SelectNode)
-                        右クリックメニュー.Visible = True
+                        'SelectNodeList.Add(SelectNode)
 
                         Dim index As Integer = nodevalue.Length - 1
                         Dim subindex As Integer = nodevalue.LastIndexOf("(")
@@ -1426,4 +1425,21 @@ Public Class ホーム
             Exit Sub
         End Try
     End Sub
+
+    Private Sub HomeTreeView_MouseClick(sender As Object, e As MouseEventArgs) Handles HomeTreeView.MouseClick
+
+    End Sub
+
+    Private Sub 右クリックメニュー_Opening(sender As Object, e As CancelEventArgs) Handles 右クリックメニュー.Opening
+
+        Dim node As C1TreeNode = HomeTreeView.SelectedNodes(0)
+
+        If node.Level < 2 Then
+            右クリックメニュー.Enabled = False
+        Else
+            右クリックメニュー.Enabled = True
+        End If
+
+    End Sub
+
 End Class

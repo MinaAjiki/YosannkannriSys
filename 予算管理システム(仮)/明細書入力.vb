@@ -713,12 +713,12 @@ Public Class 明細書入力
                 ホーム.FormPanel.Controls.Add(小工種選択)
                 小工種選択.Show()
 
-                If ホーム.SelectNodeList.Count > 1 Then
-                    If ホーム.SelectNodeList(1).Nodes.Count > 0 Then
-                        ホーム.SelectNodeList(1).Collapse()
-                        ホーム.SelectNodeList.RemoveAt(1)
-                    End If
-                End If
+                'If ホーム.SelectNodeList.Count > 1 Then
+                '    If ホーム.SelectNodeList(1).Nodes.Count > 0 Then
+                '        ホーム.SelectNodeList(1).Collapse()
+                '        ホーム.SelectNodeList.RemoveAt(1)
+                '    End If
+                'End If
             End If
 
         Catch ex As Exception
@@ -1278,10 +1278,10 @@ Public Class 明細書入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-                If ホーム.SelectNodeList.Count > 0 Then
-                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                    NodeExpand = NodeExpandLoad.NodeExpand
-                End If
+                'If ホーム.SelectNodeList.Count > 0 Then
+                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                '    NodeExpand = NodeExpandLoad.NodeExpand
+                'End If
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -1320,10 +1320,10 @@ Public Class 明細書入力
                 remarks = remarks.Replace("号", "")
                 EntryCommand = "INSERT"
 
-                If ホーム.SelectNodeList.Count > 0 Then
-                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                    NodeExpand = NodeExpandLoad.NodeExpand
-                End If
+                'If ホーム.SelectNodeList.Count > 0 Then
+                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
+                '    NodeExpand = NodeExpandLoad.NodeExpand
+                'End If
 
             Else
                     MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
@@ -1762,10 +1762,10 @@ Public Class 明細書入力
             EntryCommand = ""
 
 
-            If ホーム.HomeTreeView.Nodes.Count > 0 Then
-                ホーム.HomeTreeView.CollapseAll()
-                ホーム.SelectNodeList(0).Expand()
-            End If
+            'If ホーム.HomeTreeView.Nodes.Count > 0 Then
+            '    ホーム.HomeTreeView.CollapseAll()
+            '    ホーム.SelectNodeList(0).Expand()
+            'End If
 
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
 

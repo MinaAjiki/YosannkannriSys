@@ -23,7 +23,7 @@ Partial Class ホーム
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim C1TreeColumn1 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
+        Dim C1TreeColumn2 As C1.Win.TreeView.C1TreeColumn = New C1.Win.TreeView.C1TreeColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ホーム))
         Me.ファイルToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.予算ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -348,10 +348,10 @@ Partial Class ホーム
         '
         Me.HomeTreeView.CheckImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
         Me.HomeTreeView.CheckImageList.ImageSize = New System.Drawing.Size(16, 16)
-        C1TreeColumn1.DisplayFieldName = Nothing
-        C1TreeColumn1.HeaderText = Nothing
-        C1TreeColumn1.Name = "Column1"
-        Me.HomeTreeView.Columns.Add(C1TreeColumn1)
+        C1TreeColumn2.DisplayFieldName = Nothing
+        C1TreeColumn2.HeaderText = Nothing
+        C1TreeColumn2.Name = "Column1"
+        Me.HomeTreeView.Columns.Add(C1TreeColumn2)
         Me.HomeTreeView.ContextMenuStrip = Me.右クリックメニュー
         Me.HomeTreeView.Location = New System.Drawing.Point(0, 0)
         Me.HomeTreeView.Name = "HomeTreeView"
@@ -370,12 +370,13 @@ Partial Class ホーム
         '
         '右クリックメニュー
         '
+        Me.右クリックメニュー.AutoSize = False
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReferenceMode})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(148, 26)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(156, 48)
         Me.右クリックメニュー.Text = "項目選択"
         '
         'ReferenceMode
@@ -568,6 +569,7 @@ Partial Class ホーム
         '
         '参照作成command
         '
+        Me.参照作成command.Enabled = False
         Me.参照作成command.Name = "参照作成command"
         Me.参照作成command.ShortcutText = ""
         Me.参照作成command.Text = "参照作成"
@@ -649,6 +651,7 @@ Partial Class ホーム
         '
         '予算費目集計
         '
+        Me.予算費目集計.Enabled = False
         Me.予算費目集計.Name = "予算費目集計"
         Me.予算費目集計.ShortcutText = ""
         Me.予算費目集計.Text = "予算費目集計"
@@ -771,7 +774,6 @@ Partial Class ホーム
         '出力_予算
         '
         Me.出力_予算.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink32, Me.C1CommandLink36, Me.C1CommandLink5, Me.C1CommandLink1, Me.C1CommandLink38, Me.C1CommandLink39, Me.C1CommandLink40, Me.C1CommandLink41, Me.C1CommandLink42, Me.C1CommandLink43, Me.C1CommandLink44, Me.C1CommandLink45, Me.C1CommandLink46})
-        Me.出力_予算.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.出力_予算.HideNonRecentLinks = False
         Me.出力_予算.Name = "出力_予算"
         Me.出力_予算.ShortcutText = ""
@@ -787,7 +789,6 @@ Partial Class ホーム
         '詳細予算内訳印刷
         '
         Me.詳細予算内訳印刷.CommandLinks.AddRange(New C1.Win.C1Command.C1CommandLink() {Me.C1CommandLink35, Me.C1CommandLink47, Me.C1CommandLink48, Me.C1CommandLink49, Me.C1CommandLink50, Me.C1CommandLink51, Me.C1CommandLink52, Me.C1CommandLink53, Me.C1CommandLink54, Me.C1CommandLink55, Me.C1CommandLink56, Me.C1CommandLink57})
-        Me.詳細予算内訳印刷.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.詳細予算内訳印刷.HideNonRecentLinks = False
         Me.詳細予算内訳印刷.Name = "詳細予算内訳印刷"
         Me.詳細予算内訳印刷.ShortcutText = ""
@@ -892,6 +893,7 @@ Partial Class ホーム
         '
         '摘要基礎代価表
         '
+        Me.摘要基礎代価表.Enabled = False
         Me.摘要基礎代価表.Name = "摘要基礎代価表"
         Me.摘要基礎代価表.ShortcutText = ""
         Me.摘要基礎代価表.Text = "摘要基礎代価表"
@@ -1099,6 +1101,7 @@ Partial Class ホーム
         '
         '労働者集計
         '
+        Me.労働者集計.Enabled = False
         Me.労働者集計.Name = "労働者集計"
         Me.労働者集計.ShortcutText = ""
         Me.労働者集計.Text = "労働者集計"
@@ -1110,6 +1113,7 @@ Partial Class ホーム
         '
         '使用材料集計
         '
+        Me.使用材料集計.Enabled = False
         Me.使用材料集計.Name = "使用材料集計"
         Me.使用材料集計.ShortcutText = ""
         Me.使用材料集計.Text = "使用材料集計"
@@ -1121,6 +1125,7 @@ Partial Class ホーム
         '
         '使用機械集計
         '
+        Me.使用機械集計.Enabled = False
         Me.使用機械集計.Name = "使用機械集計"
         Me.使用機械集計.ShortcutText = ""
         Me.使用機械集計.Text = "使用機械集計"
@@ -1132,6 +1137,7 @@ Partial Class ホーム
         '
         '外注項目集計
         '
+        Me.外注項目集計.Enabled = False
         Me.外注項目集計.Name = "外注項目集計"
         Me.外注項目集計.ShortcutText = ""
         Me.外注項目集計.Text = "外注項目集計"
@@ -1143,6 +1149,7 @@ Partial Class ホーム
         '
         '社内機材集計
         '
+        Me.社内機材集計.Enabled = False
         Me.社内機材集計.Name = "社内機材集計"
         Me.社内機材集計.ShortcutText = ""
         Me.社内機材集計.Text = "社内機材集計"
@@ -1154,6 +1161,7 @@ Partial Class ホーム
         '
         '社外機材集計
         '
+        Me.社外機材集計.Enabled = False
         Me.社外機材集計.Name = "社外機材集計"
         Me.社外機材集計.ShortcutText = ""
         Me.社外機材集計.Text = "社外機材集計"

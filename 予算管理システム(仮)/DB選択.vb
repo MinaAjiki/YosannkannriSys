@@ -137,7 +137,7 @@ Public Class DB選択
                 ホーム.外注管理.Enabled = True
                 ホーム.出力.Enabled = True
                 ホーム.予算内訳登録.Enabled = True
-                ホーム.参照作成command.Enabled = True
+                'ホーム.参照作成command.Enabled = True
 
             Else
                 ホーム.HomeTreeView.Columns(0).HeaderText = ""
@@ -209,7 +209,7 @@ Public Class DB選択
                     ホーム.外注管理.Enabled = True
                     ホーム.出力.Enabled = True
                     ホーム.予算内訳登録.Enabled = True
-                    ホーム.参照作成command.Enabled = True
+                    'ホーム.参照作成command.Enabled = True
 
 
                 Else

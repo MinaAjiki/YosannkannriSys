@@ -26,8 +26,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>51</ApplicationRevision>
-    <ApplicationVersion>1.0.0.51</ApplicationVersion>
+
+    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationVersion>1.0.0.52</ApplicationVersion>
+r
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -165,7 +167,8 @@
     <Compile Include="Class\CancelClick.vb" />
     <Compile Include="Class\FormClose.vb" />
     <Compile Include="Class\ImportMaterial.vb" />
-    <Compile Include="Class\Recalculation.vb" />
+    <Compile Include="Class\Recalculation_cst.vb" />
+    <Compile Include="Class\Recalculation_prjctcst.vb" />
     <Compile Include="Class\Reference.vb" />
     <Compile Include="Class\Reference_Details.vb" />
     <Compile Include="Class\TreeNode_ParentExpand.vb" />

@@ -701,11 +701,11 @@ Public Class 代価表入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-                If ホーム.SelectNodeList.Count >= 3 Then
-                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
-                    NodeExpand = NodeExpandLoad.NodeExpand
-                End If
+                'If ホーム.SelectNodeList.Count >= 3 Then
+                '    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                '    NodeExpand = NodeExpandLoad.NodeExpand
+                'End If
             Else
                     MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -745,11 +745,11 @@ Public Class 代価表入力
                 Dim remarks As String = BreakDownList(SelectRow + 2, 4)
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
-                If ホーム.SelectNodeList.Count >= 3 Then
-                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
-                    NodeExpand = NodeExpandLoad.NodeExpand
-                End If
+                'If ホーム.SelectNodeList.Count >= 3 Then
+                '    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(maxindex), BreakDownList(SelectRow, 3) & " " & BreakDownList(SelectRow, 4) & "(" & remarks & ")")
+                '    NodeExpand = NodeExpandLoad.NodeExpand
+                'End If
             Else
                     MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -1128,11 +1128,11 @@ Public Class 代価表入力
                 ホーム.PrjctCstList.RemoveAt(FormCount - 1)
 
 
-                Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                If ホーム.SelectNodeList.Count > 0 Then
-                    ホーム.SelectNodeList(maxindex).Collapse()
-                    ホーム.SelectNodeList.RemoveAt(maxindex)
-                End If
+                'Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                'If ホーム.SelectNodeList.Count > 0 Then
+                '    ホーム.SelectNodeList(maxindex).Collapse()
+                '    ホーム.SelectNodeList.RemoveAt(maxindex)
+                'End If
             End If
 
 
@@ -2016,7 +2016,7 @@ Public Class 代価表入力
                                                               cstclss_code INT DEFAULT (0) NOT NULL, 
                                                               name NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               spec NVARCHAR(50) DEFAULT ('') NOT NULL,
-                                                              unit NVARCHAR(5) DEFAULT ('') NOT NULL,
+                                                              unit NVARCHAR(6) DEFAULT ('') NOT NULL,
                                                               costea MONEY DEFAULT (0) NOT NULL,
                                                               labor MONEY DEFAULT (0) NOT NULL,
                                                               material MONEY DEFAULT (0) NOT NULL,
@@ -2066,7 +2066,7 @@ Public Class 代価表入力
 
             Dim Recalculation As String = ""
 
-            Dim RecalculationLoad As New Recalculation(ClassCode)
+            Dim RecalculationLoad As New Recalculation_prjctcst(ClassCode)
             Recalculation = RecalculationLoad.Recalculation
 
             MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
@@ -2519,6 +2519,8 @@ Public Class 代価表入力
                             BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
                             SendKeys.Send("{ENTER}")
                         Else
+                            BreakDownList.KeyActionEnter = KeyActionEnum.MoveDown
+                            BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
                             BreakDownList.Select(SelectionRow + 1, 4)
 
                         End If
@@ -2528,10 +2530,13 @@ Public Class 代価表入力
                         SendKeys.Send("{ENTER}")
 
                     Else
-
+                        BreakDownList.KeyActionEnter = KeyActionEnum.MoveAcross
+                        BreakDownList.KeyActionTab = KeyActionEnum.MoveAcross
                         SendKeys.Send("{ENTER}")
                     End If
                 Else
+                    BreakDownList.KeyActionEnter = KeyActionEnum.MoveDown
+                    BreakDownList.KeyActionTab = KeyActionEnum.MoveDown
                     SendKeys.Send("{ENTER}")
                 End If
             ElseIf e.KeyCode = Keys.Escape Then

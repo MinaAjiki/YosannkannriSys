@@ -277,7 +277,7 @@ Public Class 予算選択
             Else
                 ホーム.見積.Enabled = True
                 ホーム.外注管理.Enabled = True
-                ホーム.参照作成command.Enabled = True
+                'ホーム.参照作成command.Enabled = True
                 ホーム.予算内訳登録.Enabled = True
 
                 ホーム.HomeTreeView.Nodes.Clear()

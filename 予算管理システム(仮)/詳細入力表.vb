@@ -1,6 +1,8 @@
 ﻿Imports C1.Win.C1FlexGrid
 Imports C1.Win.C1Input
 Imports System.Data.SqlClient
+Imports System.Windows.Input.Keyboard
+
 Public Class 詳細入力表
     Dim ChangeFlag As Integer
     Dim ChangeValue As Integer
@@ -352,6 +354,24 @@ Public Class 詳細入力表
             SubjectTotal8.Value = SubjectTotal(13)
             SubjectTotal9.Value = SubjectTotal(14)
 
+            If IsKeyDown(Windows.Input.Key.Enter) = True Then
+
+                Dim SelectionCol As Integer = DetailList.Selection.LeftCol
+                Dim SelectionRow As Integer = DetailList.Selection.TopRow
+
+
+
+                If SelectionCol = 14 Then
+
+                    DetailList.Select(SelectionRow + 3, 6)
+                    SendKeys.Send("{LEFT}")
+
+                ElseIf SelectionCol = 7 Then
+                    DetailList.Select(SelectionRow, 9)
+                    SendKeys.Send("{LEFT}")
+                End If
+            End If
+
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -367,5 +387,45 @@ Public Class 詳細入力表
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         進行状況.Close()
+    End Sub
+
+    Private Sub DetailList_KeyDown(sender As Object, e As KeyEventArgs) Handles DetailList.KeyDown
+        Try
+
+
+
+            If e.KeyCode = Keys.Enter Then
+
+                Dim SelectionCol As Integer = DetailList.Selection.LeftCol
+                Dim SelectionRow As Integer = DetailList.Selection.TopRow
+
+
+
+                If SelectionCol = 14 Then
+
+                    DetailList.Select(SelectionRow + 3, 6)
+                    SendKeys.Send("{ENTER}")
+                    SendKeys.Send("{LEFT}")
+
+
+                ElseIf SelectionCol = 7 Then
+                    DetailList.Select(SelectionRow, 9)
+                    SendKeys.Send("{ENTER}")
+                    SendKeys.Send("{LEFT}")
+
+                Else
+                    SendKeys.Send("{ENTER}")
+
+                End If
+
+            End If
+
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 End Class
