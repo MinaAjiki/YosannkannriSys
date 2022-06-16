@@ -56,20 +56,24 @@ Public Class 業者一覧
             '    Me.M_TOR_HIROKOJITableAdapter.Fill(Me.M_TOR_HIROKOJI._M_TOR_HIROKOJI)
             '    VendorList.DataSource = MTORHIROKOJIBindingSource
             'End If
-
+            VendorList.Cols(0).Width = 0
             VendorList.Cols(1).Width = 100
-            VendorList.Cols(2).Width = 270
-            VendorList.Cols(3).Width = 0
-            VendorList.Cols(4).Width = 170
-            VendorList.Cols(5).Width = 130
-            VendorList.Cols(6).Width = 100
+            VendorList.Cols(2).Width = 300
+            VendorList.Cols(3).Width = 100
+            VendorList.Cols(4).Width = 0
+            VendorList.Cols(5).Width = 100
+            VendorList.Cols(6).Width = 250
+            VendorList.Cols(7).Width = 150
+            VendorList.Cols(8).Width = 130
 
             VendorList(0, 1) = "取引先コード"
             VendorList(0, 2) = "業者名"
             VendorList(0, 3) = ""
-            VendorList(0, 4) = "住所"
+            VendorList(0, 4) = ""
             VendorList(0, 5) = ""
-            VendorList(0, 6) = "電話番号"
+            VendorList(0, 6) = "住所"
+            VendorList(0, 7) = ""
+            VendorList(0, 8) = "電話番号"
             'カスタムツールチップ
             'For i As Integer = VendorList.Rows.Fixed To VendorList.Rows.Count - 1
             'VendorList.Rows(i).UserData = "Employee: " & VendorList(i, 2) & " " + VendorList(i, 3)
@@ -114,6 +118,7 @@ Public Class 業者一覧
             Dim RowIndex As Integer = 0
             Dim Code As Integer = 0
             Dim Name As String = ""
+            Dim Ryaku As String = ""
 
             If ParentFormName = "予算総括入力" Then
                 RowIndex = VendorList.Selection.TopRow
@@ -134,10 +139,12 @@ Public Class 業者一覧
                 'セルの値を変数に代入する
                 Code = VendorList(RowIndex, 1)
                 Name = VendorList(RowIndex, 2)
+                Ryaku = VendorList(RowIndex, 5)
 
                 '協力業者入力に値を代入する
                 協力業者入力.CoopVendorList(r, 1) = Code
                 協力業者入力.CoopVendorList(r, 2) = Name
+                協力業者入力.CoopVendorList(r, 9) = Ryaku
             End If
 
 
@@ -246,18 +253,23 @@ Public Class 業者一覧
             VendorList.DataSource = MTORHIROKOJIBindingSource
         End If
 
+        VendorList.Cols(0).Width = 0
         VendorList.Cols(1).Width = 100
-        VendorList.Cols(2).Width = 270
-        VendorList.Cols(3).Width = 0
-        VendorList.Cols(4).Width = 170
-        VendorList.Cols(5).Width = 130
-        VendorList.Cols(6).Width = 100
+        VendorList.Cols(2).Width = 300
+        VendorList.Cols(3).Width = 100
+        VendorList.Cols(4).Width = 0
+        VendorList.Cols(5).Width = 100
+        VendorList.Cols(6).Width = 250
+        VendorList.Cols(7).Width = 150
+        VendorList.Cols(8).Width = 130
 
         VendorList(0, 1) = "取引先コード"
         VendorList(0, 2) = "業者名"
         VendorList(0, 3) = ""
-        VendorList(0, 4) = "住所"
+        VendorList(0, 4) = ""
         VendorList(0, 5) = ""
-        VendorList(0, 6) = "電話番号"
+        VendorList(0, 6) = "住所"
+        VendorList(0, 7) = ""
+        VendorList(0, 8) = "電話番号"
     End Sub
 End Class
