@@ -214,6 +214,7 @@ Partial Class 費用マスタ一覧
         Me.MasterContentsList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.MasterContentsList.ColumnInfo = resources.GetString("MasterContentsList.ColumnInfo")
         Me.MasterContentsList.ContextMenuStrip = Me.右クリックメニュー
+        Me.MasterContentsList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.MasterContentsList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MasterContentsList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.MasterContentsList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross

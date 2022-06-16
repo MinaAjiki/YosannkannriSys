@@ -146,8 +146,8 @@ Partial Class 代価表入力
         Me.BreakDownList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.BreakDownList.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom
         Me.BreakDownList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
-        Me.BreakDownList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BreakDownList.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.BreakDownList.AutoClipboard = True
         Me.BreakDownList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.BreakDownList.ColumnInfo = resources.GetString("BreakDownList.ColumnInfo")
         Me.BreakDownList.ContextMenuStrip = Me.右クリックメニュー
@@ -1184,6 +1184,7 @@ Partial Class 代価表入力
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(990, 662)
         Me.Controls.Add(Me.HeadLine)

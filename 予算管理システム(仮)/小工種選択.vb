@@ -151,11 +151,11 @@ Public Class 小工種選択
 
                 Dim NodeExpand As String = ""
 
-                If ホーム.HomeTreeView.Nodes.Count > 0 Then
-                    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
-                    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(0), S_WorkTypesList(ClickRow, 1) & " " & S_WorkTypesList(ClickRow, 2))
-                    NodeExpand = NodeExpandLoad.NodeExpand
-                End If
+                'If ホーム.HomeTreeView.Nodes.Count > 0 Then
+                '    Dim maxindex As Integer = ホーム.SelectNodeList.Count - 1
+                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(0), S_WorkTypesList(ClickRow, 1) & " " & S_WorkTypesList(ClickRow, 2))
+                '    NodeExpand = NodeExpandLoad.NodeExpand
+                'End If
             End If
 
 
@@ -176,10 +176,10 @@ Public Class 小工種選択
             ホーム.FormPanel.Controls.Add(大工種選択)
             大工種選択.Show()
 
-            If ホーム.SelectNodeList.Count > 0 Then
-                ホーム.SelectNodeList(0).Collapse()
-                ホーム.SelectNodeList.RemoveAt(0)
-            End If
+            'If ホーム.SelectNodeList.Count > 0 Then
+            '    ホーム.SelectNodeList(0).Collapse()
+            '    ホーム.SelectNodeList.RemoveAt(0)
+            'End If
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
