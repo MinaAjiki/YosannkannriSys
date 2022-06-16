@@ -170,12 +170,15 @@ Public Class 協力業者入力
                 End If
                 '削除チェック
                 If CoopDeleteF.Data = True Then
-                    If MsgBox("" & CoopVendorList(Vendorloop, 2) & "が削除されます。", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                    If MsgBox("" & CoopVendorList(Vendorloop, 2) & "の登録された内容が全て削除されます。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
                         Me.Close()
                         Exit Sub
                     End If
                     '削除したい行が登録済みか新規か判定し削除
                     If CoopID.Data <> Nothing Then
+                        ホーム.Sql.Parameters.Clear()
+                        ホーム.Sql.CommandText = "DELETE FROM Outsourcing_plans WHERE outsrcr_id = " & CoopID.Data
+                        ホーム.Sql.ExecuteNonQuery()
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "DELETE FROM Outsourcers WHERE outsrcr_code=" & CoopCode.Data & "AND outsrcr_id =" & CoopID.Data
                         ホーム.Sql.ExecuteNonQuery()
