@@ -115,7 +115,7 @@ Partial Class 業者一覧
         Me.VendorList.AllowDragging = C1.Win.C1FlexGrid.AllowDraggingEnum.None
         Me.VendorList.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None
         Me.VendorList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
-        Me.VendorList.ColumnInfo = "7,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9)
+        Me.VendorList.ColumnInfo = "9,1,0,0,0,-1,Columns:0{Width:1;}" & Global.Microsoft.VisualBasic.ChrW(9)
         Me.VendorList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.VendorList.Location = New System.Drawing.Point(18, 115)
         Me.VendorList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
@@ -126,7 +126,7 @@ Partial Class 業者一覧
         Me.VendorList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.VendorList.ShowCellLabels = True
         Me.VendorList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.VendorList.Size = New System.Drawing.Size(792, 486)
+        Me.VendorList.Size = New System.Drawing.Size(1153, 486)
         Me.VendorList.StyleInfo = resources.GetString("VendorList.StyleInfo")
         Me.VendorList.TabIndex = 51
         Me.SystemTheme.SetTheme(Me.VendorList, "予算管理テーマ")
@@ -138,7 +138,7 @@ Partial Class 業者一覧
         '
         'M_TOR_ICHIKAWA
         '
-        Me.M_TOR_ICHIKAWA.DataSetName = "M_TOR_ICHIKAWA"
+        Me.M_TOR_ICHIKAWA.DataSetName = "namikou"
         Me.M_TOR_ICHIKAWA.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'C1FlexGridSearchPanel1
@@ -185,7 +185,7 @@ Partial Class 業者一覧
         Me.Cancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Cancel.ImageIndex = 6
         Me.Cancel.ImageList = Me.ButtonImageList
-        Me.Cancel.Location = New System.Drawing.Point(718, 6)
+        Me.Cancel.Location = New System.Drawing.Point(1083, 6)
         Me.Cancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(100, 30)
@@ -208,7 +208,7 @@ Partial Class 業者一覧
         Me.FormSplitContainer.Name = "FormSplitContainer"
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel1)
         Me.FormSplitContainer.Panels.Add(Me.C1SplitterPanel2)
-        Me.FormSplitContainer.Size = New System.Drawing.Size(830, 662)
+        Me.FormSplitContainer.Size = New System.Drawing.Size(1195, 661)
         Me.FormSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.FormSplitContainer.SplitterWidth = 1
         Me.FormSplitContainer.TabIndex = 53
@@ -219,11 +219,11 @@ Partial Class 業者一覧
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
         Me.C1SplitterPanel1.Controls.Add(Me.C1FlexGridSearchPanel1)
-        Me.C1SplitterPanel1.Height = 620
+        Me.C1SplitterPanel1.Height = 619
         Me.C1SplitterPanel1.Location = New System.Drawing.Point(0, 0)
         Me.C1SplitterPanel1.Name = "C1SplitterPanel1"
         Me.C1SplitterPanel1.ResizeWhileDragging = True
-        Me.C1SplitterPanel1.Size = New System.Drawing.Size(830, 620)
+        Me.C1SplitterPanel1.Size = New System.Drawing.Size(1195, 619)
         Me.C1SplitterPanel1.SizeRatio = 93.797R
         Me.C1SplitterPanel1.TabIndex = 0
         Me.C1SplitterPanel1.Text = "パネル1"
@@ -233,9 +233,9 @@ Partial Class 業者一覧
         Me.C1SplitterPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.C1SplitterPanel2.Controls.Add(Me.Cancel)
         Me.C1SplitterPanel2.Height = 41
-        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 621)
+        Me.C1SplitterPanel2.Location = New System.Drawing.Point(0, 620)
         Me.C1SplitterPanel2.Name = "C1SplitterPanel2"
-        Me.C1SplitterPanel2.Size = New System.Drawing.Size(830, 41)
+        Me.C1SplitterPanel2.Size = New System.Drawing.Size(1195, 41)
         Me.C1SplitterPanel2.TabIndex = 1
         Me.C1SplitterPanel2.Text = "パネル2"
         '
@@ -304,7 +304,7 @@ Partial Class 業者一覧
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(830, 662)
+        Me.ClientSize = New System.Drawing.Size(1195, 661)
         Me.Controls.Add(Me.VendorList)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.FormSplitContainer)
