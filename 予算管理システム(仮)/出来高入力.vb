@@ -274,7 +274,6 @@ Public Class 出来高入力
                         DetailsList(Detarow1, 3) = details.Item("dtl_name")
                         DetailsList(Detarow1, 4) = details.Item("dtl_unit")
                         If details.Item("dtl_unit") = "式" Then
-                            DetailsList(Detarow1, 4) = 1
                             DetailsList.Rows(Detarow2).AllowEditing = False
                             DetailsList.Rows(Detarow3).AllowEditing = True
                         End If
@@ -324,8 +323,11 @@ Public Class 出来高入力
                         Dim TotalQuanity As Decimal
 
                         TotalQuanity = production.Item("total_quanity")
+                        If DetailsList(totalrow1 - 1, 4) = "式" Then
+                            TotalQuanity = 1
+                        End If
                         DetailsList(totalrow1, 7) = TotalQuanity
-                        DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
+                            DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
 
                         TotalAmount = production.Item("total_amount")
                         DetailsList(totalrow2, 7) = TotalAmount

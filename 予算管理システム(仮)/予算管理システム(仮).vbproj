@@ -26,8 +26,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
+
     <ApplicationRevision>52</ApplicationRevision>
     <ApplicationVersion>1.0.0.52</ApplicationVersion>
+r
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -171,9 +173,6 @@
     <Compile Include="Class\Reference_Details.vb" />
     <Compile Include="Class\TreeNode_ParentExpand.vb" />
     <Compile Include="Class\TreeNode_ChildExpand.vb" />
-    <Compile Include="M_TOR_ICHIKAWA.vb">
-      <DependentUpon>M_TOR_ICHIKAWA.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Report\Export明細書.vb" />
     <Compile Include="Report\Export実行予算.vb" />
     <Compile Include="Report\見積代価内訳_金抜き.vb" />
@@ -564,6 +563,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="外注内訳入力.resx">
       <DependentUpon>外注内訳入力.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="業者一覧.resx">
       <DependentUpon>業者一覧.vb</DependentUpon>
@@ -671,6 +671,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="テンプレート.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="外注計画テンプレート.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="出来高数量査定書テンプレート.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="注文内訳書テンプレート.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
