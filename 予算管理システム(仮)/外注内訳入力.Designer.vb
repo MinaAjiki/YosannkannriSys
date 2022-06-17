@@ -334,6 +334,7 @@ Partial Class 外注内訳入力
         Me.DetailList.ColumnInfo = resources.GetString("DetailList.ColumnInfo")
         Me.DetailList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.DetailList.HighLight = C1.Win.C1FlexGrid.HighLightEnum.Never
+        Me.DetailList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.DetailList.Location = New System.Drawing.Point(12, 64)
         Me.DetailList.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
         Me.DetailList.Name = "DetailList"
