@@ -571,6 +571,9 @@ Public Class 費用マスタ一覧
 
                 Next
 
+                ホーム.Sql.CommandText = "DROP TABLE #UpdateID"
+                ホーム.Sql.ExecuteNonQuery()
+
             ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
                     ホーム.SystemSql.CommandText = ""

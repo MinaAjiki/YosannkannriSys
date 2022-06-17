@@ -1040,6 +1040,11 @@ Public Class 代価内訳
                                               VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
                     ホーム.Sql.ExecuteNonQuery()
 
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE cstclss_code=" & ClassCode & " AND prjctcst_no=" & Integer.Parse(No)
+                    CreateCostID = ホーム.Sql.ExecuteScalar
+
                 Else
                     ホーム.Sql.CommandText = "UPDATE project_costs SET prjctcst_name=@name,prjctcst_spec=@spec,prjctcst_unit=@unit,prjctcst_quanity=@quanity,
                                                           prjctcst_costea=@costea,prjctcst_laborea=@labor,prjctcst_materialea=@material,prjctcst_machineea=@machine,
