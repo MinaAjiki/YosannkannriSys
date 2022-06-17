@@ -211,7 +211,7 @@ Partial Class 代価一覧
         Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.HeadLine.Location = New System.Drawing.Point(14, 14)
         Me.HeadLine.Name = "HeadLine"
-        Me.HeadLine.Size = New System.Drawing.Size(76, 18)
+        Me.HeadLine.Size = New System.Drawing.Size(94, 23)
         Me.HeadLine.TabIndex = 58
         Me.HeadLine.Text = "<<代価一覧"
         '
@@ -224,6 +224,7 @@ Partial Class 代価一覧
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProjectCostList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.ProjectCostList.ColumnInfo = resources.GetString("ProjectCostList.ColumnInfo")
+        Me.ProjectCostList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.ProjectCostList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.ProjectCostList.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
         Me.ProjectCostList.KeyActionTab = C1.Win.C1FlexGrid.KeyActionEnum.MoveAcross
@@ -359,14 +360,14 @@ Partial Class 代価一覧
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyMenu})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(160, 26)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(191, 32)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.Size = New System.Drawing.Size(159, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(190, 28)
         Me.CopyMenu.Text = "コピーして貼り付け"
         '
         'CostCreateMenu

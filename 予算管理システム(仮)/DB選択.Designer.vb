@@ -51,9 +51,10 @@ Partial Class DB選択
         Me.HeadLine.AutoSize = True
         Me.HeadLine.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.HeadLine.Location = New System.Drawing.Point(14, 14)
+        Me.HeadLine.Location = New System.Drawing.Point(18, 18)
+        Me.HeadLine.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.HeadLine.Name = "HeadLine"
-        Me.HeadLine.Size = New System.Drawing.Size(52, 18)
+        Me.HeadLine.Size = New System.Drawing.Size(64, 23)
         Me.HeadLine.TabIndex = 28
         Me.HeadLine.Text = "<<開く"
         '
@@ -65,7 +66,7 @@ Partial Class DB選択
         Me.C1TextBox1.Font = New System.Drawing.Font("メイリオ", 9.0!)
         Me.C1TextBox1.Location = New System.Drawing.Point(74, 59)
         Me.C1TextBox1.Name = "C1TextBox1"
-        Me.C1TextBox1.Size = New System.Drawing.Size(420, 23)
+        Me.C1TextBox1.Size = New System.Drawing.Size(420, 28)
         Me.C1TextBox1.TabIndex = 44
         Me.C1TextBox1.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.C1TextBox1, "(default)")
@@ -76,9 +77,10 @@ Partial Class DB選択
         Me.TableName.AutoSize = True
         Me.TableName.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TableName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.TableName.Location = New System.Drawing.Point(32, 44)
+        Me.TableName.Location = New System.Drawing.Point(40, 55)
+        Me.TableName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.TableName.Name = "TableName"
-        Me.TableName.Size = New System.Drawing.Size(128, 18)
+        Me.TableName.Size = New System.Drawing.Size(160, 23)
         Me.TableName.TabIndex = 48
         Me.TableName.Text = "最近使用したファイル"
         Me.SystemTheme.SetTheme(Me.TableName, "(default)")
@@ -95,10 +97,11 @@ Partial Class DB選択
         Me.MainSplitContainer.HeaderForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.MainSplitContainer.HeaderHeight = 0
         Me.MainSplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.MainSplitContainer.Margin = New System.Windows.Forms.Padding(4)
         Me.MainSplitContainer.Name = "MainSplitContainer"
         Me.MainSplitContainer.Panels.Add(Me.MainPanel)
         Me.MainSplitContainer.Panels.Add(Me.FooterPanel)
-        Me.MainSplitContainer.Size = New System.Drawing.Size(657, 281)
+        Me.MainSplitContainer.Size = New System.Drawing.Size(821, 351)
         Me.MainSplitContainer.SplitterColor = System.Drawing.Color.White
         Me.MainSplitContainer.SplitterMovingColor = System.Drawing.Color.Black
         Me.MainSplitContainer.SplitterWidth = 0
@@ -109,13 +112,16 @@ Partial Class DB選択
         'MainPanel
         '
         Me.MainPanel.Controls.Add(Me.FileList)
-        Me.MainPanel.Height = 241
+        Me.MainPanel.Height = 301
         Me.MainPanel.Location = New System.Drawing.Point(0, 0)
+        Me.MainPanel.MinHeight = 50
+        Me.MainPanel.MinWidth = 50
         Me.MainPanel.Name = "MainPanel"
-        Me.MainPanel.Size = New System.Drawing.Size(657, 241)
-        Me.MainPanel.SizeRatio = 85.765R
+        Me.MainPanel.Size = New System.Drawing.Size(821, 301)
+        Me.MainPanel.SizeRatio = 100.0R
         Me.MainPanel.TabIndex = 0
         Me.MainPanel.Text = "パネル1"
+        Me.MainPanel.Width = 821
         '
         'FileList
         '
@@ -126,15 +132,16 @@ Partial Class DB選択
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FileList.BorderStyle = C1.Win.C1FlexGrid.Util.BaseControls.BorderStyleEnum.FixedSingle
         Me.FileList.ColumnInfo = resources.GetString("FileList.ColumnInfo")
+        Me.FileList.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FileList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-        Me.FileList.Location = New System.Drawing.Point(35, 66)
-        Me.FileList.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FileList.Location = New System.Drawing.Point(44, 82)
+        Me.FileList.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FileList.Name = "FileList"
         Me.FileList.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.FileList.ScrollOptions = C1.Win.C1FlexGrid.ScrollFlags.AlwaysVisible
         Me.FileList.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Row
         Me.FileList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
-        Me.FileList.Size = New System.Drawing.Size(603, 147)
+        Me.FileList.Size = New System.Drawing.Size(753, 178)
         Me.FileList.StyleInfo = resources.GetString("FileList.StyleInfo")
         Me.FileList.TabIndex = 58
         Me.SystemTheme.SetTheme(Me.FileList, "予算管理テーマ")
@@ -144,12 +151,15 @@ Partial Class DB選択
         Me.FooterPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.FooterPanel.Controls.Add(Me.Open)
         Me.FooterPanel.Controls.Add(Me.OtherFile)
-        Me.FooterPanel.Height = 40
-        Me.FooterPanel.Location = New System.Drawing.Point(0, 241)
+        Me.FooterPanel.Height = 50
+        Me.FooterPanel.Location = New System.Drawing.Point(0, 301)
+        Me.FooterPanel.MinHeight = 50
+        Me.FooterPanel.MinWidth = 50
         Me.FooterPanel.Name = "FooterPanel"
-        Me.FooterPanel.Size = New System.Drawing.Size(657, 40)
+        Me.FooterPanel.Size = New System.Drawing.Size(821, 50)
         Me.FooterPanel.TabIndex = 1
         Me.FooterPanel.Text = "パネル2"
+        Me.FooterPanel.Width = 821
         '
         'Open
         '
@@ -159,10 +169,10 @@ Partial Class DB選択
         Me.Open.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Open.ImageIndex = 0
         Me.Open.ImageList = Me.ButtonImageList
-        Me.Open.Location = New System.Drawing.Point(552, 5)
+        Me.Open.Location = New System.Drawing.Point(690, 6)
         Me.Open.Margin = New System.Windows.Forms.Padding(0)
         Me.Open.Name = "Open"
-        Me.Open.Size = New System.Drawing.Size(100, 30)
+        Me.Open.Size = New System.Drawing.Size(125, 38)
         Me.Open.TabIndex = 58
         Me.Open.Text = "開く"
         Me.Open.UseVisualStyleBackColor = True
@@ -201,10 +211,10 @@ Partial Class DB選択
         Me.OtherFile.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.OtherFile.ImageIndex = 0
         Me.OtherFile.ImageList = Me.ButtonImageList
-        Me.OtherFile.Location = New System.Drawing.Point(448, 5)
+        Me.OtherFile.Location = New System.Drawing.Point(560, 6)
         Me.OtherFile.Margin = New System.Windows.Forms.Padding(0)
         Me.OtherFile.Name = "OtherFile"
-        Me.OtherFile.Size = New System.Drawing.Size(100, 30)
+        Me.OtherFile.Size = New System.Drawing.Size(125, 38)
         Me.OtherFile.TabIndex = 57
         Me.OtherFile.Text = "他ファイル参照"
         Me.OtherFile.UseVisualStyleBackColor = True
@@ -216,15 +226,15 @@ Partial Class DB選択
         '
         'DB選択
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(120.0!, 120.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(657, 280)
+        Me.ClientSize = New System.Drawing.Size(821, 350)
         Me.Controls.Add(Me.TableName)
         Me.Controls.Add(Me.HeadLine)
         Me.Controls.Add(Me.MainSplitContainer)
         Me.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "DB選択"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "DB選択"
