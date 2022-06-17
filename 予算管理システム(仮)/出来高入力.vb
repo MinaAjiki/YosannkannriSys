@@ -518,7 +518,6 @@ Public Class 出来高入力
         Dim Oquanity As Decimal
         Dim Ocostea As Int64
         While DtlID.Read
-            'dtl_id=0 はあたまなので表示されない
             Oquanity = DtlID.Item("outsrcng_quanity")
             Ocostea = DtlID.Item("outsrcng_costea")
             '数量０単価０で登録されている明細書IDは省く
