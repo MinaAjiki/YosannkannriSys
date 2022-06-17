@@ -212,7 +212,8 @@ Public Class 予算総括入力
                     OutsoucersList(DataCount, 1) = OutsourcersReader.Item("outsrcr_id")
                     OutsoucersList(DataCount, 3) = OutsourcersReader.Item("outsrcr_code")
                     OutsoucersList(DataCount, 4) = OutsourcersReader.Item("outsrcr_name")
-                    OutsoucersList(DataCount, 5) = OutsourcersReader.Item("worktype")
+                    OutsoucersList(DataCount, 5) = OutsourcersReader.Item("outsrcr_name_ryaku")
+                    OutsoucersList(DataCount, 6) = OutsourcersReader.Item("worktype")
                 End While
                 OutsourcersReader.Close()
             End If
@@ -462,8 +463,9 @@ Public Class 予算総括入力
 
                 Dim OutsrcrCodeCell As Integer = OutsoucersList(ListRow + 1, 3)
                 Dim OutsrceNameCell As String = OutsoucersList(ListRow + 1, 4)
-                Dim WorkTypeCell As String = OutsoucersList(ListRow + 1, 5)
-                If IsNothing(OutsoucersList(ListRow + 1, 5)) = True Then
+                Dim OutsrceNameRyaku As String = OutsoucersList(ListRow + 1, 5)
+                Dim WorkTypeCell As String = OutsoucersList(ListRow + 1, 6)
+                If IsNothing(OutsoucersList(ListRow + 1, 6)) = True Then
                     WorkTypeCell = ""
                 End If
 
@@ -473,10 +475,11 @@ Public Class 予算総括入力
                     ホーム.Sql.ExecuteNonQuery()
 
                 ElseIf IDCell = 0 AndAlso OutsrceNameCell <> "" AndAlso DeleteCell = "False" Then
-                    ホーム.Sql.CommandText = "INSERT INTO outsourcers (outsrcr_code,outsrcr_name,outsrcr_term_s,outsrcr_term_e,worktype,ordrfrm,e_cntrct) 
-                                                VALUES (@code,@name,@terms,@terme,@worktype,@ordrfrm,@ecntrct)"
+                    ホーム.Sql.CommandText = "INSERT INTO outsourcers (outsrcr_code,outsrcr_name,outsrcr_name_ryaku,outsrcr_term_s,outsrcr_term_e,worktype,ordrfrm,e_cntrct) 
+                                                VALUES (@code,@name,@ryaku,@terms,@terme,@worktype,@ordrfrm,@ecntrct)"
                     ホーム.Sql.Parameters.Add(New SqlParameter("@code", SqlDbType.Int)).Value = Integer.Parse(OutsrcrCodeCell)
                     ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = OutsrceNameCell
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@ryaku", SqlDbType.NVarChar)).Value = OutsrceNameRyaku
                     ホーム.Sql.Parameters.Add(New SqlParameter("@terms", SqlDbType.DateTime)).Value = DateTime.Parse(TermS.Text)
                     ホーム.Sql.Parameters.Add(New SqlParameter("@terme", SqlDbType.DateTime)).Value = DateTime.Parse(TermE.Text)
                     ホーム.Sql.Parameters.Add(New SqlParameter("@worktype", SqlDbType.NVarChar)).Value = WorkTypeCell

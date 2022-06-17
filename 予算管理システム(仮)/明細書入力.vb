@@ -679,19 +679,27 @@ Public Class 明細書入力
     End Sub
 
     Private Sub CategoryList_BeforeEdit(sender As Object, e As RowColEventArgs) Handles CategoryList.BeforeEdit
+        Try
 
-        If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
-            CategoryList.Rows(e.Row).AllowEditing = False
-            CategoryList.Rows(e.Row + 2).AllowEditing = False
-        ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
-            CategoryList.Rows(e.Row - 1).AllowEditing = False
-            CategoryList.Rows(e.Row + 1).AllowEditing = False
-        Else
-            CategoryList.Rows(e.Row - 2).AllowEditing = False
-            CategoryList.Rows(e.Row).AllowEditing = False
-        End If
+            If e.Row >= 4 Then
+                If DetailsList(e.Row, 7) = 1 Or DetailsList(e.Row, 7) = 4 Then
+                    CategoryList.Rows(e.Row).AllowEditing = False
+                    CategoryList.Rows(e.Row + 2).AllowEditing = False
+                ElseIf DetailsList(e.Row, 7) = 2 Or DetailsList(e.Row, 7) = 5 Then
+                    CategoryList.Rows(e.Row - 1).AllowEditing = False
+                    CategoryList.Rows(e.Row + 1).AllowEditing = False
+                Else
+                    CategoryList.Rows(e.Row - 2).AllowEditing = False
+                    CategoryList.Rows(e.Row).AllowEditing = False
+                End If
 
-
+            End If
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click

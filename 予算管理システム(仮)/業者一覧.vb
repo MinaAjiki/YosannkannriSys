@@ -126,10 +126,13 @@ Public Class 業者一覧
                 'セルの値を変数に代入する
                 Code = VendorList(RowIndex, 1)
                 Name = VendorList(RowIndex, 2)
+                Ryaku = VendorList(RowIndex, 5)
 
                 '予算総括入力に値を代入する
                 予算総括入力.OutsoucersList(SelectRowIndex, 3) = Code
                 予算総括入力.OutsoucersList(SelectRowIndex, 4) = Name
+                予算総括入力.OutsoucersList(SelectRowIndex, 5) = Ryaku
+
                 ホーム.Modified = "True"
 
             Else
