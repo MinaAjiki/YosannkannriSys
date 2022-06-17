@@ -976,6 +976,21 @@ Public Class 代価内訳
 
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Clear()
+
+                ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT DEFAULT (0) NOT NULL,
+                                                              cstclss_code INT DEFAULT (0) NOT NULL, 
+                                                              name NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              spec NVARCHAR(50) DEFAULT ('') NOT NULL,
+                                                              unit NVARCHAR(6) DEFAULT ('') NOT NULL,
+                                                              costea MONEY DEFAULT (0) NOT NULL,
+                                                              labor MONEY DEFAULT (0) NOT NULL,
+                                                              material MONEY DEFAULT (0) NOT NULL,
+                                                              machine MONEY DEFAULT (0) NOT NULL,
+                                                              subcntrct MONEY DEFAULT (0) NOT NULL,
+                                                              expense MONEY DEFAULT (0) NOT NULL)"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Add(New SqlParameter("@name", SqlDbType.NVarChar)).Value = CostName.Value
                 If IsNothing(CostSpec.Value) = True Or Not CostSpec.Text <> "" Then
                     ホーム.Sql.Parameters.Add(New SqlParameter("@spec", SqlDbType.NVarChar)).Value = ""
@@ -1017,19 +1032,22 @@ Public Class 代価内訳
                     ホーム.Sql.Parameters.Add(New SqlParameter("@prjctcstno", SqlDbType.SmallInt)).Value = Integer.Parse(No)
 
                     ホーム.Sql.CommandText = "INSERT INTO project_costs (budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,
-                                          prjctcst_quanity,prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea)
-                                            VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
+                                                          prjctcst_quanity,prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea)
+                                              OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_name,inserted.prjctcst_spec,inserted.prjctcst_unit,
+                                                     inserted.prjctcst_costea,inserted.prjctcst_laborea,inserted.prjctcst_materialea,inserted.prjctcst_machineea,
+                                                     inserted.prjctcst_subcntrctea,inserted.prjctcst_expenseea
+                                              INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
+                                              VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
                     ホーム.Sql.ExecuteNonQuery()
-
-                    ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = ""
-                    ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE cstclss_code=" & ClassCode & " AND prjctcst_no=" & Integer.Parse(No)
-                    CreateCostID = ホーム.Sql.ExecuteScalar
 
                 Else
                     ホーム.Sql.CommandText = "UPDATE project_costs SET prjctcst_name=@name,prjctcst_spec=@spec,prjctcst_unit=@unit,prjctcst_quanity=@quanity,
-                                          prjctcst_costea=@costea,prjctcst_laborea=@labor,prjctcst_materialea=@material,prjctcst_machineea=@machine,
-                                          prjctcst_subcntrctea=@subcntrct,prjctcst_expenseea=@expense WHERE prjctcst_id=" & CreateCostID
+                                                          prjctcst_costea=@costea,prjctcst_laborea=@labor,prjctcst_materialea=@material,prjctcst_machineea=@machine,
+                                                          prjctcst_subcntrctea=@subcntrct,prjctcst_expenseea=@expense 
+                                              OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_name,inserted.prjctcst_spec,inserted.prjctcst_unit,
+                                                     inserted.prjctcst_costea,inserted.prjctcst_laborea,inserted.prjctcst_materialea,inserted.prjctcst_machineea,
+                                                     inserted.prjctcst_subcntrctea,inserted.prjctcst_expenseea
+                                              INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) WHERE prjctcst_id=" & CreateCostID
                     ホーム.Sql.ExecuteNonQuery()
 
                 End If
@@ -1124,7 +1142,18 @@ Public Class 代価内訳
 
                 ホーム.Transaction.Commit()
                 代価一覧.CostClassName = "工事代価"
+
+                ホーム.Sql.Parameters.Clear()
+                ホーム.Sql.CommandText = ""
+
+                Dim Recalculation As String = ""
+
+                Dim RecalculationLoad As New Recalculation_prjctcst(ClassCode)
+                Recalculation = RecalculationLoad.Recalculation
             End If
+
+
+
             MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
 
             If CostID = 0 Then
