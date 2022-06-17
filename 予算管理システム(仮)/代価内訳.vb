@@ -727,12 +727,13 @@ Public Class 代価内訳
     End Sub
 
     Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        If ClassCode = 11 Then
-            代価一覧.CostClassName = "基礎代価"
-        ElseIf ClassCode > 11 Then
-            代価一覧.CostClassName = "工事代価"
-        End If
+        'If ClassCode = 11 Then
+        '    代価一覧.CostClassName = "基礎代価"
+        'ElseIf ClassCode > 11 Then
+        '    代価一覧.CostClassName = "工事代価"
+        'End If
         代価一覧.Show()
+        代価一覧.Visible = True
         Me.Close()
     End Sub
 
@@ -1162,8 +1163,31 @@ Public Class 代価内訳
             MsgBox(CostNo.Text & " 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
 
             If CostID = 0 Then
-                代価一覧.ProjectCostList.Rows.Count += 1
-                Dim rowscount As Integer = 代価一覧.ProjectCostList.Rows.Count - 1
+                Dim rowscount As Integer
+                Dim NewCreateID As Integer
+                If ClassCode = 11 Then
+                    ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE cstclss_code=" & ClassCode & " AND year=" & 代価一覧.YearList.Text
+                    Dim BasisCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+                    If BasisCostsCount > 50 Then
+                        rowscount = 代価一覧.ProjectCostList.Rows.Count + 1
+                    Else
+                        rowscount = BasisCostsCount
+                    End If
+                    ホーム.SystemSql.CommandText = "SELECT MAX(bsscst_id) FROM basis_costs WHERE cstclss_code=" & ClassCode & " AND year=" & 代価一覧.YearList.Text
+                    NewCreateID = ホーム.SystemSql.ExecuteScalar
+                ElseIf ClassCode > 11 Then
+                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
+                    Dim ProjectCostsCount As Integer = ホーム.Sql.ExecuteScalar
+                    If ProjectCostsCount > 50 Then
+                        rowscount = 代価一覧.ProjectCostList.Rows.Count + 1
+                    Else
+                        rowscount = ProjectCostsCount
+                    End If
+                    ホーム.Sql.CommandText = "SELECT MAX(prjctcst_id) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
+                    NewCreateID = ホーム.Sql.ExecuteScalar
+                End If
+                代価一覧.ProjectCostList(rowscount, 1) = NewCreateID
+                代価一覧.ProjectCostList(rowscount, 3) = Integer.Parse(No)
                 代価一覧.ProjectCostList(rowscount, 4) = CostName.Value
                 代価一覧.ProjectCostList(rowscount, 5) = CostSpec.Value
                 代価一覧.ProjectCostList(rowscount, 6) = CostUnit.Value
@@ -1179,9 +1203,12 @@ Public Class 代価内訳
                 代価一覧.ProjectCostList(代価一覧.SelectRow, 8) = CostCostea.Value
                 代価一覧.ProjectCostList(代価一覧.SelectRow, 9) = CostQuanity.Value * CostCostea.Value
             End If
-            代価一覧.Refresh()
-            代価一覧.ProjectCostList.Refresh()
+            '代価一覧.Refresh()
+            '代価一覧.ProjectCostList.Refresh()
             代価一覧.Show()
+            If ClassCode > 11 Then
+                代価一覧.CostList.Enabled = True
+            End If
             代価一覧.Visible = True
             Me.Close()
         Catch ex As Exception

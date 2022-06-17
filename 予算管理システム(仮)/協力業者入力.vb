@@ -222,7 +222,7 @@ Public Class 協力業者入力
                     'End If
                     ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
                     ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
-                    If Coopordr.Data = "工務課発注" Then
+                    If Coopordr.Data = "工事課発注" Then
                         ホーム.Sql.Parameters("@ordrfrm").Value = 11
                     ElseIf Coopordr.Data = "購買発注" Then
                         ホーム.Sql.Parameters("@ordrfrm").Value = 12

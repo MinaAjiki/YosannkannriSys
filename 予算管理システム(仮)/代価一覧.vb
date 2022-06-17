@@ -12,20 +12,6 @@ Public Class 代価一覧
         Try
             If CostClassName = "基礎代価" Then
                 CostClassCode = 11
-                ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode
-                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
-
-                If BasicCostsCount > 21 Then
-                    ProjectCostList.Rows.Count = BasicCostsCount + 1
-                Else
-                    ProjectCostList.Rows.Count = 22
-                End If
-
-                CostList.Text = CostClassName
-
-                ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim Year As Integer
                 ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
@@ -40,6 +26,20 @@ Public Class 代価一覧
                     End If
                 End If
 
+                ホーム.SystemSql.Parameters.Clear()
+                ホーム.SystemSql.CommandText = ""
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0"
+                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+
+                If BasicCostsCount > 21 Then
+                    ProjectCostList.Rows.Count = BasicCostsCount + 1
+                Else
+                    ProjectCostList.Rows.Count = 22
+                End If
+
+                CostList.Text = CostClassName
+
+                ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim RowCount As Integer = 0
 
@@ -378,7 +378,7 @@ Public Class 代価一覧
                     明細書入力.DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-                Me.Close()
+                Me.Visible = False
 
                 明細書入力.DetailsList.Focus()
                 明細書入力.DetailsList.Select(明細書入力.SelectRow, 6)
@@ -479,6 +479,8 @@ Public Class 代価一覧
                 End If
                 SelectRow = ProjectCostList.Selection.TopRow
                 代価内訳.CostID = ProjectCostList(SelectRow, 1)
+
+
                 代価内訳.ClassCode = CostClassCode
 
                 If CostClassCode = 11 Then
@@ -666,7 +668,7 @@ Public Class 代価一覧
 
                 ホーム.SystemSql.CommandText = ""
                 ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND year=" & YearList.Text
                 Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
                 ホーム.SystemSql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
                 For DeleteBasic As Integer = 1 To BasicCostsCount
@@ -1084,6 +1086,7 @@ Public Class 代価一覧
                     ProjectCostList(PasteRow, 1) = CreateCopyID
 
                     ホーム.Transaction.Commit()
+                    MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
                 End If
 
             End If
