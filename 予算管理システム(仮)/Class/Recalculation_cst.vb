@@ -145,15 +145,16 @@ Public Class Recalculation_cst
             ホーム.Sql.CommandText = "DELETE FROM ##bd"
             ホーム.Sql.ExecuteNonQuery()
 
-
-            ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET project_cost_breakdowns.prjctcst_bd_name=#prjct_UpdateID.name,project_cost_breakdowns.prjctcst_bd_spec=#prjct_UpdateID.spec,
+            If ClassLoop < 25 Then
+                ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET project_cost_breakdowns.prjctcst_bd_name=#prjct_UpdateID.name,project_cost_breakdowns.prjctcst_bd_spec=#prjct_UpdateID.spec,
                                                   project_cost_breakdowns.prjctcst_bd_unit=#prjct_UpdateID.unit,project_cost_breakdowns.prjctcst_bd_costea=#prjct_UpdateID.costea,
                                                   project_cost_breakdowns.prjctcst_bd_labor=#prjct_UpdateID.labor,project_cost_breakdowns.prjctcst_bd_material=#prjct_UpdateID.material,
                                                   project_cost_breakdowns.prjctcst_bd_machine=#prjct_UpdateID.machine,project_cost_breakdowns.prjctcst_bd_subcntrct=#prjct_UpdateID.subcntrct,
                                                   project_cost_breakdowns.prjctcst_bd_expense=#prjct_UpdateID.expense 
                                       OUTPUT inserted.prjctcst_id INTO ##bd(prjctcst_id)
-                                      FROM #prjct_UpdateID WHERE project_cost_breakdowns.cstclss_code=" & CodeLists(ClassLoop) & " AND project_cost_breakdowns.cstmstr_id=#prjct_UpdateID.id"
-            ホーム.Sql.ExecuteNonQuery()
+                                      FROM #prjct_UpdateID WHERE project_cost_breakdowns.cstclss_code=#prjct_UpdateID.cstclss_code AND project_cost_breakdowns.cstmstr_id=#prjct_UpdateID.id"
+                ホーム.Sql.ExecuteNonQuery()
+            End If
         Next
 
         ホーム.Sql.CommandText = "DROP TABLE ##bd"
