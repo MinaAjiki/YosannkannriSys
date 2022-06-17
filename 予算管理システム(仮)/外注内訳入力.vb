@@ -144,7 +144,10 @@ Public Class 外注内訳入力
 
             End While
             Detailreader.Close()
-            Me.Breakdown.Rows.Add()
+            Breakdown.SubtotalPosition = C1.Win.C1FlexGrid.SubtotalPositionEnum.BelowData
+            Breakdown.Subtotal(C1.Win.C1FlexGrid.AggregateEnum.Clear)
+            Breakdown.Subtotal(C1.Win.C1FlexGrid.AggregateEnum.Sum, -1, -1, 2, "Grand Total")
+            'Me.Breakdown.Rows.Add()
 
             '工種名を取得
             ホーム.Sql.Parameters.Clear()
