@@ -1531,56 +1531,6 @@ Public Class 代価内訳
                 Command1 = "Cut"
                 CopyRow = SelectRow
 
-                'CopyList(0) = BreakDownList(SelectRow, 1)
-                'CopyList(1) = BreakDownList(SelectRow, 3)
-                'CopyList(2) = BreakDownList(SelectRow, 4)
-                'CopyList(3) = BreakDownList(SelectRow + 1, 4)
-                'CopyList(4) = BreakDownList(SelectRow + 2, 4)
-                'CopyList(5) = BreakDownList(SelectRow + 2, 5)
-                'CopyList(6) = BreakDownList(SelectRow, 6)
-                'CopyList(7) = BreakDownList(SelectRow + 1, 6)
-                'CopyList(8) = BreakDownList(SelectRow + 2, 6)
-                'CopyList(9) = BreakDownList(SelectRow, 8)
-                'CopyList(10) = BreakDownList(SelectRow, 9)
-                'BreakDownList.Rows.RemoveRange(SelectRow, 3)
-                'Command = ""
-
-                'Dim RowNo As Integer = 0
-                'For RowCount As Integer = 1 To ((BreakDownList.Rows.Count - 3) / 3)
-                '    RowNo += 1
-
-                '    Dim Quanity As CellRange = BreakDownList.GetCellRange(RowCount * 3, 6)
-                '    Quanity.StyleNew.Format = "N1"
-                '    Dim Costea As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 1, 6)
-                '    Costea.StyleNew.Format = "N0"
-                '    Dim Amount As CellRange = BreakDownList.GetCellRange(RowCount * 3 + 2, 6)
-                '    Amount.StyleNew.Format = "N0"
-                '    BreakDownList.Rows(RowCount * 3).StyleFixedNew.BackColor = Color.FromArgb(213, 234, 216)
-
-
-                '    If RowCount Mod 2 = 0 Then
-                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 214)
-                '    Else
-                '        BreakDownList.Rows(RowCount * 3).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '        BreakDownList.Rows((RowCount * 3) + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '        BreakDownList.Rows((RowCount * 3) + 2).StyleNew.BackColor = System.Drawing.Color.FromArgb(255, 255, 255)
-                '    End If
-
-                '    BreakDownList(RowCount * 3, 7) = RowNo * RowNo
-                '    BreakDownList(RowCount * 3 + 1, 7) = (RowNo * RowNo) + 1
-                '    BreakDownList(RowCount * 3 + 2, 7) = (RowNo * RowNo) + 2
-                '    If (RowNo * RowNo) + 2 = 6 Then
-                '        RowNo = 0
-                '    End If
-
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 0, (RowCount * 3) + 2, 0)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 2, (RowCount * 3) + 2, 2)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 3, (RowCount * 3) + 2, 3)
-                '    BreakDownList.MergedRanges.Add(RowCount * 3, 4, RowCount * 3, 5)
-                '    BreakDownList.MergedRanges.Add((RowCount * 3) + 1, 4, (RowCount * 3) + 1, 5)
-                'Next
 
                 BreakDownList.Rows(SelectRow).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
                 BreakDownList.Rows(SelectRow + 1).StyleNew.BackColor = System.Drawing.Color.FromArgb(221, 236, 253)
