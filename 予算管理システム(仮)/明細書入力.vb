@@ -1172,15 +1172,24 @@ Public Class 明細書入力
                             Call Insert_Click(sender, e)
                         End If
 
-                        作成代価選択.SelectRow = SelectRow
-                        DetailsList(SelectRow, 3) = SelectRow / 3
-                        作成代価選択.HeadLine.Text = "<<作成代価選択"
-                        作成代価選択.Text = "作成代価選択"
-                        作成代価選択.ShowDialog()
-                        作成代価選択.TopMost = True
-                        作成代価選択.TopMost = False
+                        If ホーム.ProjectCostForm.Count > 0 Then
 
-                    End If
+                            ホーム.ProjectCostForm.Clear()
+                            ホーム.ProjectCostID.Clear()
+                            ホーム.ProjectCostSelectRow.Clear()
+                            ホーム.PrjctCstClassCode.Clear()
+                            ホーム.PrjctCstList.Clear()
+                        End If
+
+                        作成代価選択.SelectRow = SelectRow
+                            DetailsList(SelectRow, 3) = SelectRow / 3
+                            作成代価選択.HeadLine.Text = "<<作成代価選択"
+                            作成代価選択.Text = "作成代価選択"
+                            作成代価選択.ShowDialog()
+                            作成代価選択.TopMost = True
+                            作成代価選択.TopMost = False
+
+                        End If
 
                 Catch ex As Exception
                     ホーム.ErrorMessage = ex.Message
@@ -1267,6 +1276,15 @@ Public Class 明細書入力
             Next
 
             If DetailsList(SelectRow, 8) >= 12 Then
+
+                If ホーム.ProjectCostForm.Count > 0 Then
+
+                    ホーム.ProjectCostForm.Clear()
+                    ホーム.ProjectCostID.Clear()
+                    ホーム.ProjectCostSelectRow.Clear()
+                    ホーム.PrjctCstClassCode.Clear()
+                    ホーム.PrjctCstList.Clear()
+                End If
 
                 ホーム.ProjectCostForm.Add(New 代価表入力)
                 ホーム.ProjectCostForm(0).TopLevel = False

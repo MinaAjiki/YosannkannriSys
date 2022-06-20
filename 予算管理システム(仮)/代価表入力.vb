@@ -2121,8 +2121,8 @@ Public Class 代価表入力
                         ホーム.ProjectCostID(FormCount - 1) = CostID
 
                         Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
-                        Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
-                        Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
+                    Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
+                    Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
                         ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
                         Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
