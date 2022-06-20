@@ -45,13 +45,13 @@ Public Class 作成代価選択
                 'Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
                 'Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                ClassCode = 11
+                ClassCode = BeforeClass
 
             End If
 
             ホーム.Sql.Parameters.Clear()
             CostsList.Items.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>" & ClassCode & " ORDER BY cstclss_code ASC"
+            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code > " & ClassCode & " ORDER BY cstclss_code ASC"
             Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While CostClassReader.Read
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))

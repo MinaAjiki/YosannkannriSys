@@ -5908,7 +5908,7 @@ ORDER BY expens_bd.stexpns_code,
         <MarginTop>23</MarginTop>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -6516,7 +6516,7 @@ ORDER BY expens_bd.stexpns_code,
         <Top>70</Top>
         <Width>450</Width>
         <Height>225</Height>
-        <Align>LeftTop</Align>
+        <Align>CenterMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -6547,7 +6547,7 @@ ORDER BY expens_bd.stexpns_code,
         <Top>70</Top>
         <Width>1395</Width>
         <Height>225</Height>
-        <Align>LeftTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -6579,7 +6579,7 @@ ORDER BY expens_bd.stexpns_code,
         <Top>70</Top>
         <Width>1485</Width>
         <Height>225</Height>
-        <Align>LeftTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -6611,7 +6611,7 @@ ORDER BY expens_bd.stexpns_code,
         <Top>70</Top>
         <Width>1369</Width>
         <Height>225</Height>
-        <Align>LeftTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -6679,7 +6679,7 @@ ORDER BY expens_bd.stexpns_code,
         <MarginTop>23</MarginTop>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -7385,7 +7385,7 @@ FROM  L_worktype_total;</RecordSource>
         <Top>57</Top>
         <Width>1980</Width>
         <Height>285</Height>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23560,7 +23560,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(dtl_amount)</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23603,7 +23603,7 @@ FROM  subject_details;</RecordSource>
         <Text>=SUM(dtl_amount)-( SUM(amount1)+ SUM(amount2)+ SUM(amount3)+ SUM(amount4)+ SUM(amount5)+ SUM(amount6)+ SUM(amount7)+ SUM(amount8)+ SUM(amount9))</Text>
         <Calculated>true</Calculated>
         <Format>#,##0</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23634,7 +23634,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount1)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23665,7 +23665,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount3)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23696,7 +23696,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount4)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23727,7 +23727,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount5)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23874,7 +23874,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount6)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23905,7 +23905,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount7)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23936,6 +23936,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount8)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23966,7 +23967,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount9)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>CenterTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -23997,6 +23998,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount2)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -24375,7 +24377,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount5)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -24514,7 +24516,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount6)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -24545,7 +24547,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount7)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -24576,7 +24578,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount8)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
@@ -24607,7 +24609,7 @@ FROM  subject_details;</RecordSource>
         <Text>=Sum(amount9)</Text>
         <Calculated>true</Calculated>
         <Format>#,###</Format>
-        <Align>RightTop</Align>
+        <Align>RightMiddle</Align>
         <Font>
           <Name>メイリオ</Name>
           <Size>9</Size>
