@@ -13,7 +13,7 @@ Public Class Recalculation_cst
         ホーム.Transaction = ホーム.Connection.BeginTransaction
         ホーム.Sql.Transaction = ホーム.Transaction
 
-        ホーム.Sql.CommandText = "CREATE TABLE ##bd (prjctcst_id INT DEFAULT (0) NOT NULL,
+        ホーム.Sql.CommandText = "CREATE TABLE ##bd_data (prjctcst_id INT DEFAULT (0) NOT NULL,
                                                                  cstclss_code INT DEFAULT (0) NOT NULL,
                                                                  costea MONEY DEFAULT (0) NOT NULL,
                                                                  laborea MONEY DEFAULT (0) NOT NULL,
@@ -26,22 +26,22 @@ Public Class Recalculation_cst
         Dim text As String = ""
 
         If ClssCode = 1 Then
-            text = "project_cost_breakdowns.prjctcst_bd_labor=#UpdateID.costea"
+            text = "project_cost_breakdowns.prjctcst_bd_labor=#update_data.costea"
         ElseIf ClssCode = 2 Or ClssCode = 6 Or ClssCode = 7 Then
-           text = "project_cost_breakdowns.prjctcst_bd_material=#UpdateID.costea"
+            text = "project_cost_breakdowns.prjctcst_bd_material=#update_data.costea"
         ElseIf ClssCode = 3 Then
-           text = "project_cost_breakdowns.prjctcst_bd_machine=#UpdateID.costea"
+            text = "project_cost_breakdowns.prjctcst_bd_machine=#update_data.costea"
         ElseIf ClssCode = 4 Then
-           text = "project_cost_breakdowns.prjctcst_bd_subcntrct=#UpdateID.costea"
+            text = "project_cost_breakdowns.prjctcst_bd_subcntrct=#update_data.costea"
         ElseIf ClssCode = 5 Then
-           text = "project_cost_breakdowns.prjctcst_bd_expense=#UpdateID.costea"
+            text = "project_cost_breakdowns.prjctcst_bd_expense=#update_data.costea"
         End If
 
 
-        ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET project_cost_breakdowns.prjctcst_bd_name=#UpdateID.name,project_cost_breakdowns.prjctcst_bd_spec=#UpdateID.spec,
-                                         project_cost_breakdowns.prjctcst_bd_unit=#UpdateID.unit,project_cost_breakdowns.prjctcst_bd_costea=#UpdateID.costea," & text &
-                                  " OUTPUT inserted.prjctcst_id INTO ##bd(prjctcst_id)
-                                  FROM #UpdateID WHERE project_cost_breakdowns.cstclss_code=" & ClssCode & " AND project_cost_breakdowns.cstmstr_id=#UpdateID.cstmstr_id"
+        ホーム.Sql.CommandText = "UPDATE project_cost_breakdowns SET project_cost_breakdowns.prjctcst_bd_name=#update_data.name,project_cost_breakdowns.prjctcst_bd_spec=#update_data.spec,
+                                         project_cost_breakdowns.prjctcst_bd_unit=#update_data.unit,project_cost_breakdowns.prjctcst_bd_costea=#update_data.costea," & text &
+                                  " OUTPUT inserted.prjctcst_id INTO ##bd_data(prjctcst_id)
+                                  FROM #update_data WHERE project_cost_breakdowns.cstclss_code=" & ClssCode & " AND project_cost_breakdowns.cstmstr_id=#update_data.cstmstr_id"
         ホーム.Sql.ExecuteNonQuery()
 
         Dim CostLists(25) As String
@@ -119,21 +119,21 @@ Public Class Recalculation_cst
             ホーム.Sql.ExecuteNonQuery()
 
 
-            ホーム.Sql.CommandText = "UPDATE ##bd SET ##bd.cstclss_code=projectcst_bd_total.cstclss_code,
-                                                               ##bd.costea=projectcst_bd_total.costea,##bd.laborea=projectcst_bd_total.laborea,
-                                                               ##bd.materialea=projectcst_bd_total.materialea,##bd.machineea=projectcst_bd_total.machineea,
-                                                               ##bd.subcntrctea=projectcst_bd_total.subcntrctea,##bd.expenseea=projectcst_bd_total.expenseea
-                                        FROM projectcst_bd_total WHERE ##bd.prjctcst_id=projectcst_bd_total.prjctcst_id"
+            ホーム.Sql.CommandText = "UPDATE ##bd_data SET ##bd_data.cstclss_code=projectcst_bd_total.cstclss_code,
+                                                               ##bd_data.costea=projectcst_bd_total.costea,##bd_data.laborea=projectcst_bd_total.laborea,
+                                                               ##bd_data.materialea=projectcst_bd_total.materialea,##bd_data.machineea=projectcst_bd_total.machineea,
+                                                               ##bd_data.subcntrctea=projectcst_bd_total.subcntrctea,##bd_data.expenseea=projectcst_bd_total.expenseea
+                                        FROM projectcst_bd_total WHERE ##bd_data.prjctcst_id=projectcst_bd_total.prjctcst_id"
             ホーム.Sql.ExecuteNonQuery()
 
 
-            ホーム.Sql.CommandText = "UPDATE project_costs SET project_costs.prjctcst_costea=##bd.costea,project_costs.prjctcst_laborea=##bd.laborea,
-                                                               project_costs.prjctcst_materialea=##bd.materialea,project_costs.prjctcst_machineea=##bd.machineea,
-                                                               project_costs.prjctcst_subcntrctea=##bd.subcntrctea,project_costs.prjctcst_expenseea=##bd.expenseea 
+            ホーム.Sql.CommandText = "UPDATE project_costs SET project_costs.prjctcst_costea=##bd_data.costea,project_costs.prjctcst_laborea=##bd_data.laborea,
+                                                               project_costs.prjctcst_materialea=##bd_data.materialea,project_costs.prjctcst_machineea=##bd_data.machineea,
+                                                               project_costs.prjctcst_subcntrctea=##bd_data.subcntrctea,project_costs.prjctcst_expenseea=##bd_data.expenseea 
                                      OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_name,inserted.prjctcst_spec,inserted.prjctcst_unit,inserted.prjctcst_costea,
                                             inserted.prjctcst_laborea,inserted.prjctcst_materialea,inserted.prjctcst_machineea,inserted.prjctcst_subcntrctea,inserted.prjctcst_expenseea 
                                      INTO #prjct_UpdateID(id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense)
-                                     FROM ##bd  WHERE project_costs.prjctcst_id=##bd.prjctcst_id"
+                                     FROM ##bd_data  WHERE project_costs.prjctcst_id=##bd_data.prjctcst_id"
             ホーム.Sql.ExecuteNonQuery()
 
             ホーム.Sql.CommandText = "UPDATE details SET details.dtl_name=#prjct_UpdateID.name,details.dtl_spec=#prjct_UpdateID.spec,details.dtl_unit=#prjct_UpdateID.unit,
@@ -142,7 +142,7 @@ Public Class Recalculation_cst
                                       FROM #prjct_UpdateID WHERE details.cstmstr_id=#prjct_UpdateID.id AND details.cstclss_code=#prjct_UpdateID.cstclss_code"
             ホーム.Sql.ExecuteNonQuery()
 
-            ホーム.Sql.CommandText = "DELETE FROM ##bd"
+            ホーム.Sql.CommandText = "DELETE FROM ##bd_data"
             ホーム.Sql.ExecuteNonQuery()
 
             If ClassLoop < 25 Then
@@ -151,13 +151,13 @@ Public Class Recalculation_cst
                                                   project_cost_breakdowns.prjctcst_bd_labor=#prjct_UpdateID.labor,project_cost_breakdowns.prjctcst_bd_material=#prjct_UpdateID.material,
                                                   project_cost_breakdowns.prjctcst_bd_machine=#prjct_UpdateID.machine,project_cost_breakdowns.prjctcst_bd_subcntrct=#prjct_UpdateID.subcntrct,
                                                   project_cost_breakdowns.prjctcst_bd_expense=#prjct_UpdateID.expense 
-                                      OUTPUT inserted.prjctcst_id INTO ##bd(prjctcst_id)
+                                      OUTPUT inserted.prjctcst_id INTO ##bd_data(prjctcst_id)
                                       FROM #prjct_UpdateID WHERE project_cost_breakdowns.cstclss_code=#prjct_UpdateID.cstclss_code AND project_cost_breakdowns.cstmstr_id=#prjct_UpdateID.id"
                 ホーム.Sql.ExecuteNonQuery()
             End If
         Next
 
-        ホーム.Sql.CommandText = "DROP TABLE ##bd"
+        ホーム.Sql.CommandText = "DROP TABLE ##bd_data"
         ホーム.Sql.ExecuteNonQuery()
 
 

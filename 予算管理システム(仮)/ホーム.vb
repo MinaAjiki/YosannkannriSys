@@ -381,6 +381,8 @@ Public Class ホーム
                 Exit Sub
             End If
 
+            BudgetNo = 0
+
             Dim FilePath As String = IO.Path.GetDirectoryName(CreateFileDialog.FileName)
             If Not FilePath.Last = "\" Then
                 FilePath = FilePath & "\"
