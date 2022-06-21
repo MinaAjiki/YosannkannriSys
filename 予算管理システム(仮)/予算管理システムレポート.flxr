@@ -3337,7 +3337,7 @@ WHERE ((controldata.class_code) =20);</RecordSource>
         <Top>6479</Top>
         <Width>677</Width>
         <Height>270</Height>
-        <Text>((DrctCnstrctnCst+TmprryExpnss+ExpectedTotal+Mtrldffrnc)/cntrct_amount)*100</Text>
+        <Text>(Total/cntrct_amount)*100</Text>
         <Calculated>true</Calculated>
         <Format>##0.0</Format>
         <Align>CenterMiddle</Align>

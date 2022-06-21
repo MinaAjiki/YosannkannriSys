@@ -2012,7 +2012,7 @@ Public Class 代価表入力
 
             ホーム.Sql.Parameters.Clear()
 
-            ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT DEFAULT (0) NOT NULL,
+            ホーム.Sql.CommandText = "CREATE TABLE #update_data (id INT DEFAULT (0) NOT NULL,
                                                               cstclss_code INT DEFAULT (0) NOT NULL, 
                                                               name NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               spec NVARCHAR(50) DEFAULT ('') NOT NULL,
@@ -2025,7 +2025,7 @@ Public Class 代価表入力
                                                               expense MONEY DEFAULT (0) NOT NULL)"
             ホーム.Sql.ExecuteNonQuery()
 
-            ホーム.Sql.CommandText = "INSERT INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
+            ホーム.Sql.CommandText = "INSERT INTO #update_data (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
                                       VALUES (@id,@cstclsscode,@name,@spec,@unit,@costea,@labor,@material,@machine,@subcntrct,@expense)"
             ホーム.Sql.Parameters.Add(New SqlParameter("@id", SqlDbType.Int)).Value = CostID
             ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.Int)).Value = ClassCode
@@ -2690,5 +2690,9 @@ Public Class 代価表入力
 
     Private Sub 代価表入力_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         CostName.Focus()
+    End Sub
+
+    Private Sub Entry_ChangeUICues(sender As Object, e As UICuesEventArgs) Handles Entry.ChangeUICues
+
     End Sub
 End Class
