@@ -207,6 +207,7 @@
             ProjectCosts.ForeColor = Color.Gray
             ProjectCosts.FlatAppearance.BorderColor = Color.Gray
             ProjectCosts.Enabled = False
+            BasicCosts.Enabled = False
             Circulator.Enabled = False
         ElseIf SwitchBox.Text = "一般" Then
             Me.Text = "マスタメンテナンス"
@@ -218,6 +219,7 @@
             ProjectCosts.Enabled = True
             ProjectCosts.ForeColor = Color.Black
             ProjectCosts.FlatAppearance.BorderColor = Color.Black
+            BasicCosts.Enabled = True
             Circulator.Enabled = True
         End If
     End Sub

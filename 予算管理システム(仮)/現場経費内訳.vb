@@ -71,7 +71,7 @@ Public Class 現場経費内訳
             TExpns = ホーム.Sql.ExecuteScalar
             TotalExpense.Text = TExpns
 
-            ホーム.Sql.CommandText = "SELECT * FROM expense_breakdowns WHERE stexpns_id = " & ホーム.ExpnsbdID & "ORDER BY expns_bd_id ASC"
+            ホーム.Sql.CommandText = "SELECT * FROM expense_breakdowns WHERE stexpns_id = " & ホーム.ExpnsbdID & "ORDER BY expns_bd_no ASC"
             Dim expnsbd As SqlDataReader = ホーム.Sql.ExecuteReader
             Dim datacount As Integer = 1
             While expnsbd.Read
@@ -153,58 +153,61 @@ Public Class 現場経費内訳
                 End If
             End If
 
-            Dim RowIndex As Integer = DetailsList.Rows.Count - 1
-            For RowsLoop As Integer = 1 To RowIndex - 1
+        Dim RowIndex As Integer = DetailsList.Rows.Count - 1
+        Dim ExpnsNoCount As Integer = 0
+        For RowsLoop As Integer = 1 To RowIndex - 1
                 Dim Dflag As CellRange = DetailsList.GetCellRange(RowsLoop, 2)
                 Dim ExpnsID As CellRange = DetailsList.GetCellRange(RowsLoop, 1)
                 Dim ExpnsName As CellRange = DetailsList.GetCellRange(RowsLoop, 4)
                 Dim ExpnsSpec As CellRange = DetailsList.GetCellRange(RowsLoop, 5)
                 Dim ExpnsUnit As CellRange = DetailsList.GetCellRange(RowsLoop, 6)
                 Dim ExpnsQuanity As CellRange = DetailsList.GetCellRange(RowsLoop, 7)
-                Dim ExpnsCostea As CellRange = DetailsList.GetCellRange(RowsLoop, 8)
-                If Dflag.Data = False Then
-                    If ExpnsID.Data = Nothing Then
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "INSERT INTO expense_breakdowns (stexpns_id,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea) VALUES (@stexpns_id,@expns_bd_name,@expns_bd_spec,@expns_bd_unit,@expns_bd_quanity,@expns_bd_costea)"
-                    Else
-                        ホーム.Sql.CommandText = ""
-                        ホーム.Sql.Parameters.Clear()
-                        ホーム.Sql.CommandText = "UPDATE expense_breakdowns SET stexpns_id=@stexpns_id,expns_bd_name=@expns_bd_name,expns_bd_spec=@expns_bd_spec,expns_bd_unit=@expns_bd_unit,expns_bd_quanity=@expns_bd_quanity,expns_bd_costea=@expns_bd_costea WHERE expns_bd_id=@expns_bd_id"
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_id", SqlDbType.Int))
-                        ホーム.Sql.Parameters("@expns_bd_id").Value = ExpnsID.Data
-                    End If
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@stexpns_id", SqlDbType.Int))
-                    If IsNothing(DetailsList(RowsLoop, 4)) = True Then
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = ""
-                    Else
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = DetailsList(RowsLoop, 4)
-                    End If
+            Dim ExpnsCostea As CellRange = DetailsList.GetCellRange(RowsLoop, 8)
+            ExpnsNoCount += 1
+            If Dflag.Data = False Then
+                If ExpnsID.Data = Nothing Then
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "INSERT INTO expense_breakdowns (stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea) VALUES (@stexpns_id,@expns_bd_no,@expns_bd_name,@expns_bd_spec,@expns_bd_unit,@expns_bd_quanity,@expns_bd_costea)"
+                Else
+                    ホーム.Sql.CommandText = ""
+                    ホーム.Sql.Parameters.Clear()
+                    ホーム.Sql.CommandText = "UPDATE expense_breakdowns SET stexpns_id=@stexpns_id,expns_bd_no=@expns_bd_no,expns_bd_name=@expns_bd_name,expns_bd_spec=@expns_bd_spec,expns_bd_unit=@expns_bd_unit,expns_bd_quanity=@expns_bd_quanity,expns_bd_costea=@expns_bd_costea WHERE expns_bd_id=@expns_bd_id"
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_id", SqlDbType.Int))
+                    ホーム.Sql.Parameters("@expns_bd_id").Value = ExpnsID.Data
+                End If
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_no", SqlDbType.Int)).Value = ExpnsNoCount
+                ホーム.Sql.Parameters.Add(New SqlParameter("@stexpns_id", SqlDbType.Int))
+                If IsNothing(DetailsList(RowsLoop, 4)) = True Then
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = ""
+                Else
+                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_name", SqlDbType.NVarChar)).Value = ExpnsName.Data
+                End If
 
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_spec", SqlDbType.NVarChar))
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_unit", SqlDbType.NVarChar))
-                        ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_quanity", SqlDbType.Decimal))
-                    ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_costea", SqlDbType.Money)).Value = DetailsList(RowsLoop, 8)
-                    ホーム.Sql.Parameters("@stexpns_id").Value = ホーム.ExpnsbdID
-                    'If IsDBNull(ExpnsName.Data) = True Then
-                    '    ExpnsName.Data = "仮データ"
-                    'End If
-                    'ホーム.Sql.Parameters("@expns_bd_name").Value = ExpnsName.Data
-                    If ExpnsSpec.Data = Nothing Then
-                            ExpnsSpec.Data = ""
-                        End If
-                        ホーム.Sql.Parameters("@expns_bd_spec").Value = ExpnsSpec.Data
-                        If ExpnsUnit.Data = Nothing Then
-                            ExpnsUnit.Data = ""
-                        End If
-                        ホーム.Sql.Parameters("@expns_bd_unit").Value = ExpnsUnit.Data
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_spec", SqlDbType.NVarChar))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_unit", SqlDbType.NVarChar))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_quanity", SqlDbType.Decimal))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@expns_bd_costea", SqlDbType.Money)).Value = ExpnsCostea.Data
+                ホーム.Sql.Parameters("@stexpns_id").Value = ホーム.ExpnsbdID
+                'If IsDBNull(ExpnsName.Data) = True Then
+                '    ExpnsName.Data = "仮データ"
+                'End If
+                'ホーム.Sql.Parameters("@expns_bd_name").Value = ExpnsName.Data
+                If ExpnsSpec.Data = Nothing Then
+                    ExpnsSpec.Data = ""
+                End If
+                ホーム.Sql.Parameters("@expns_bd_spec").Value = ExpnsSpec.Data
+                If ExpnsUnit.Data = Nothing Then
+                    ExpnsUnit.Data = ""
+                End If
+                ホーム.Sql.Parameters("@expns_bd_unit").Value = ExpnsUnit.Data
 
-                        ホーム.Sql.Parameters("@expns_bd_quanity").Value = ExpnsQuanity.Data
+                ホーム.Sql.Parameters("@expns_bd_quanity").Value = ExpnsQuanity.Data
                 'ホーム.Sql.Parameters("@expns_bd_costea").Value = ExpnsCostea.Data
                 ホーム.Sql.ExecuteNonQuery()
-                    ElseIf Dflag.Data = True Then
+            ElseIf Dflag.Data = True Then
 
-                        If ExpnsID.Data <> Nothing Then
+                If ExpnsID.Data <> Nothing Then
                         quanity = ExpnsQuanity.Data
                         costea = ExpnsCostea.Data
                         amount = Math.Floor(quanity * costea)

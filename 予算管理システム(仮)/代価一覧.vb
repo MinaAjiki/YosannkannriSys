@@ -89,10 +89,11 @@ Public Class 代価一覧
                 End If
                 YearList.Text = Year
                 ProjectCostList.Cols(2).AllowEditing = True
+                Entry.Visible = False
 
             ElseIf CostClassName = "工事代価" Then
                 ProjectCostList.ContextMenuStrip = 右クリックメニュー
-
+                CostList.Enabled = True
 
 
                 Dim dt As DataTable
@@ -480,8 +481,11 @@ Public Class 代価一覧
                 SelectRow = ProjectCostList.Selection.TopRow
                 代価内訳.CostID = ProjectCostList(SelectRow, 1)
 
-
-                代価内訳.ClassCode = CostClassCode
+                If Not 代価内訳.ParentFormName = "代価一覧" Then
+                    代価内訳.ClassCode = CostClassCode
+                Else
+                    CostCreation.Visible = False
+                End If
 
                 If CostClassCode = 11 Then
                     ホーム.BeforeForm = "基礎代価一覧"
@@ -490,7 +494,8 @@ Public Class 代価一覧
                 End If
 
                 代価内訳.Show()
-                Me.Visible = False
+                Me.Close()
+                'Me.Visible = False
             End If
 
 
@@ -740,7 +745,8 @@ Public Class 代価一覧
             End If
 
             代価内訳.Show()
-            Me.Visible = False
+            Me.Close()
+            'Me.Visible = False
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -997,6 +1003,8 @@ Public Class 代価一覧
                     Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
                     If BreakDownCount > 0 Then
                         For BDLoop As Integer = 1 To BreakDownCount
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
                             ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID & " AND prjctcst_bd_no = " & BDLoop
                             Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
                             While BreakDownReader.Read
@@ -1091,10 +1099,10 @@ Public Class 代価一覧
 
             End If
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 End Class

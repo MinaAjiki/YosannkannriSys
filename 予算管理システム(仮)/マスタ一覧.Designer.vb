@@ -238,6 +238,7 @@ Partial Class マスタ一覧
         Me.Entry.Text = "　登 録"
         Me.Entry.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Entry.UseVisualStyleBackColor = True
+        Me.Entry.Visible = False
         '
         'マスタ一覧
         '
