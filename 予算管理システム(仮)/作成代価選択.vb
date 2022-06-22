@@ -45,13 +45,13 @@ Public Class 作成代価選択
                 'Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
                 'Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                ClassCode = BeforeClass
+                ClassCode = 11
 
             End If
 
             ホーム.Sql.Parameters.Clear()
             CostsList.Items.Clear()
-            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code > " & ClassCode & " ORDER BY cstclss_code ASC"
+            ホーム.Sql.CommandText = "SELECT * FROM cost_classes WHERE cstclss_code>" & ClassCode & " ORDER BY cstclss_code ASC"
             Dim CostClassReader As SqlDataReader = ホーム.Sql.ExecuteReader
             While CostClassReader.Read
                 CostsList.Items.Add(CostClassReader.Item("cstclss_name"))
@@ -201,8 +201,8 @@ Public Class 作成代価選択
                 CopyClassCode = ClassCode
                 代価一覧.CostClassName = CostsList.Text
                 代価内訳.Show()
-
-                代価一覧.Visible = False
+                代価一覧.Close()
+                '代価一覧.Visible = False
 
             ElseIf ホーム.BeforeForm = "代価内訳" Then
                 If 代価一覧.CostClassCode = 11 Then
@@ -212,8 +212,8 @@ Public Class 作成代価選択
                 End If
                 Dim DaikaForm As New 代価内訳
                 DaikaForm.ClassCode = 代価一覧.CostClassCode
-                DaikaForm.CostID = 代価一覧.ProjectCostList(SelectRow, 1)
-                CopyCostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                DaikaForm.CostID = 代価内訳.CostID
+                CopyCostID = 代価内訳.CostID
                 CopyClassCode = ClassCode
                 代価一覧.CostClassName = CostsList.Text
 

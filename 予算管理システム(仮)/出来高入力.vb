@@ -274,7 +274,7 @@ Public Class 出来高入力
                         DetailsList(Detarow1, 3) = details.Item("dtl_name")
                         DetailsList(Detarow1, 4) = details.Item("dtl_unit")
                         If details.Item("dtl_unit") = "式" Then
-                            DetailsList.Rows(Detarow2).AllowEditing = False
+                            DetailsList(Detarow2, 8) = 1
                             DetailsList.Rows(Detarow3).AllowEditing = True
                         End If
                         DetailsList(Detarow2, 2) = details.Item("dtl_name")
@@ -411,53 +411,61 @@ Public Class 出来高入力
 
             '累計出来高の合計と当月出来高を計算する。一式の場合は、数量１とし、金額を入力する。
             If Not DetailsList(e.Row - 2, 4) = "式" Then
-                quanity = DetailsList(e.Row, e.Col)
-                Concostea = DetailsList(e.Row - 1, 5)
-                If Concostea = 0 Then
-                    'DetailsList.Rows(e.Row + 1).AllowEditing = True
-                Else
-                    Lquanity = DetailsList(e.Row, 6)
-                    Lamount = DetailsList(e.Row + 1, 6)
+                '累計行
+                If e.Col = 7 Then
+                    quanity = DetailsList(e.Row, e.Col)
+                    Concostea = DetailsList(e.Row - 1, 5)
+                    If Concostea = 0 Then
+                        'DetailsList.Rows(e.Row + 1).AllowEditing = True
+                    Else
+                        Lquanity = DetailsList(e.Row, 6)
+                        Lamount = DetailsList(e.Row + 1, 6)
 
-                    Cuquanity = quanity - Lquanity
-                    DetailsList(e.Row, 8) = Cuquanity
+                        Cuquanity = quanity - Lquanity
+                        DetailsList(e.Row, 8) = Cuquanity
 
-                    amount = Math.Floor(quanity * Concostea)
-                    DetailsList(e.Row + 1, e.Col) = amount
+                        amount = Math.Floor(quanity * Concostea)
+                        DetailsList(e.Row + 1, e.Col) = amount
 
+                        Cuamount = amount - Lamount
+                        DetailsList(e.Row + 1, 8) = Cuamount
+                        If amount > DetailsList(e.Row + 1, 5) Then
+                            Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                            errorco.StyleNew.ForeColor = Color.Red
+                            MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                            ErrorCheck += 1
+                        Else
+                            Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                            errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                            ErrorCheck -= 1
+                        End If
+                    End If
+                ElseIf e.Col = 6 Then
+
+
+                End If
+            Else
+                If e.Col = 7 Then
+                    Lamount = DetailsList(e.Row, 6)
+                    amount = DetailsList(e.Row, e.Col)
                     Cuamount = amount - Lamount
-                    DetailsList(e.Row + 1, 8) = Cuamount
-                    If amount > DetailsList(e.Row + 1, 5) Then
-                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                    DetailsList(e.Row, 8) = Cuamount
+                    If amount > DetailsList(e.Row, 5) Then
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
                         errorco.StyleNew.ForeColor = Color.Red
                         MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
                         ErrorCheck += 1
                     Else
-                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
                         errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
                         ErrorCheck -= 1
                     End If
+                ElseIf e.Col = 6 Then
 
                 End If
-            Else
-                Lamount = DetailsList(e.Row, 6)
-                amount = DetailsList(e.Row, e.Col)
-                Cuamount = amount - Lamount
-                DetailsList(e.Row, 8) = Cuamount
-                If amount > DetailsList(e.Row, 5) Then
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
-                    errorco.StyleNew.ForeColor = Color.Red
-                    MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
-                    ErrorCheck += 1
-                Else
-                    Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
-                    errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
-                    ErrorCheck -= 1
-                End If
-
-
             End If
 
+            '合計行計算
             Dim RowsCount As Integer = DetailsList.Rows.Count / 3 - 1
             For totalloop As Integer = 1 To RowsCount
                 amount = DetailsList(totalloop * 3 + 2, 7)
