@@ -48,7 +48,7 @@ Public Class Export外注計画
         '工種リスト作成
         Dim s_wrktyp_codeList As New List(Of Integer)
         Dim s_wrktyp_nameList As New List(Of String)
-        ホーム.Sql.CommandText = "SELECT * FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(0) & ") ORDER BY s_worktype_code ASC"
+        ホーム.Sql.CommandText = "SELECT * FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(0) & ") ORDER BY s_worktype_code,dtl_no ASC"
         Dim SwrktypReader As SqlDataReader = ホーム.Sql.ExecuteReader
         Dim RowCount As Integer = 1
         While SwrktypReader.Read
@@ -74,25 +74,78 @@ Public Class Export外注計画
             Dim dm_amount As Decimal = Sql.ExecuteScalar
             EXSheet(RowCount, 10).Value = dm_amount
 
-            '材料費
-            Sql.CommandText = "SELECT ISNULL(dtl_material,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
-            Dim material As Decimal = Sql.ExecuteScalar
-            EXSheet(RowCount, 11).Value = material
+            ''材料費
+            'Sql.CommandText = "SELECT ISNULL(dtl_material,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
+            'Dim material As Decimal = Sql.ExecuteScalar
+            'EXSheet(RowCount, 11).Value = material
 
-            '機械費
-            Sql.CommandText = "SELECT ISNULL(dtl_machine,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
-            Dim machine As Decimal = Sql.ExecuteScalar
-            EXSheet(RowCount, 12).Value = material
+            ''機械費
+            'Sql.CommandText = "SELECT ISNULL(dtl_machine,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
+            'Dim machine As Decimal = Sql.ExecuteScalar
+            'EXSheet(RowCount, 12).Value = material
 
-            '外注費
-            Sql.CommandText = "SELECT ISNULL(dtl_subcntrct,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
-            Dim subcntrct As Decimal = Sql.ExecuteScalar
-            EXSheet(RowCount, 13).Value = material
+            ''外注費
+            'Sql.CommandText = "SELECT ISNULL(dtl_subcntrct,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
+            'Dim subcntrct As Decimal = Sql.ExecuteScalar
+            'EXSheet(RowCount, 13).Value = material
 
-            '機械費
-            Sql.CommandText = "SELECT ISNULL(dtl_labor,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
-            Dim labor As Decimal = Sql.ExecuteScalar
-            EXSheet(RowCount, 14).Value = material
+            ''機械費
+            'Sql.CommandText = "SELECT ISNULL(dtl_labor,0) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
+            'Dim labor As Decimal = Sql.ExecuteScalar
+            'EXSheet(RowCount, 14).Value = material
+
+            '詳細入力表内容
+            Sql.CommandText = "SELECT amount1,amount2,amount3,amount4,amount5,amount6,amount7,amount8,amount9 FROM subject_details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & EXSheet(RowCount, 3).Value
+            Dim SubjectReader As SqlDataReader = Sql.ExecuteReader
+            While SubjectReader.Read
+                If IsDBNull(SubjectReader.Item("amount1")) = True Then
+                    EXSheet(RowCount, 11).Value = 0
+                Else
+                    EXSheet(RowCount, 11).Value = SubjectReader.Item("amount1")
+                End If
+                If IsDBNull(SubjectReader.Item("amount2")) = True Then
+                    EXSheet(RowCount, 12).Value = 0
+                Else
+                    EXSheet(RowCount, 12).Value = SubjectReader.Item("amount2")
+                End If
+                If IsDBNull(SubjectReader.Item("amount3")) = True Then
+                    EXSheet(RowCount, 13).Value = 0
+                Else
+                    EXSheet(RowCount, 13).Value = SubjectReader.Item("amount3")
+                End If
+                If IsDBNull(SubjectReader.Item("amount4")) = True Then
+                    EXSheet(RowCount, 14).Value = 0
+                Else
+                    EXSheet(RowCount, 14).Value = SubjectReader.Item("amount4")
+                End If
+                If IsDBNull(SubjectReader.Item("amount5")) = True Then
+                    EXSheet(RowCount, 15).Value = 0
+                Else
+                    EXSheet(RowCount, 15).Value = SubjectReader.Item("amount5")
+                End If
+                If IsDBNull(SubjectReader.Item("amount6")) = True Then
+                    EXSheet(RowCount, 16).Value = 0
+                Else
+                    EXSheet(RowCount, 16).Value = SubjectReader.Item("amount6")
+                End If
+                If IsDBNull(SubjectReader.Item("amount7")) = True Then
+                    EXSheet(RowCount, 17).Value = 0
+                Else
+                    EXSheet(RowCount, 17).Value = SubjectReader.Item("amount7")
+                End If
+                If IsDBNull(SubjectReader.Item("amount8")) = True Then
+                    EXSheet(RowCount, 18).Value = 0
+                Else
+                    EXSheet(RowCount, 18).Value = SubjectReader.Item("amount8")
+                End If
+                If IsDBNull(SubjectReader.Item("amount9")) = True Then
+                    EXSheet(RowCount, 19).Value = 0
+                Else
+                    EXSheet(RowCount, 19).Value = SubjectReader.Item("amount9")
+                End If
+            End While
+            SubjectReader.Close()
+
 
             '業者数ループ
             For VendorLoop As Integer = 0 To VendorIDList.Count - 1
@@ -123,6 +176,8 @@ Public Class Export外注計画
         'Excel保存
         xlbook.Save(Path)
         Cursor.Current = Cursors.Default
+
+        MsgBox("ファイルを出力しました。" & vbCrLf & Path, MsgBoxStyle.OkOnly, "外注計画(EXCEL)")
 
         Return ExportLoad
     End Function
