@@ -96,6 +96,7 @@ Public Class 費用マスタ一覧
                     MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
                 End While
                 CostMasterReader.Close()
+                Entry.Visible = False
             End If
 
             If ParentFormName = "明細書" Or ParentFormName = "代価表" Then

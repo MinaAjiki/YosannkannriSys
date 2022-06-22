@@ -327,7 +327,7 @@ Public Class 出来高入力
                             TotalQuanity = 1
                         End If
                         DetailsList(totalrow1, 7) = TotalQuanity
-                            DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
+                        DetailsList.GetCellRange(totalrow1, 7).StyleNew.Format = "N1"
 
                         TotalAmount = production.Item("total_amount")
                         DetailsList(totalrow2, 7) = TotalAmount
@@ -405,11 +405,13 @@ Public Class 出来高入力
             Dim Totalamount As Int64
             Dim Lquanity As Decimal
             Dim Lamount As Int64
+            Dim Ltotal As Int64
             Dim Cuquanity As Decimal
             Dim Cuamount As Int64
             Dim Cutotal As Int64
 
             '累計出来高の合計と当月出来高を計算する。一式の場合は、数量１とし、金額を入力する。
+            '式じゃない時
             If Not DetailsList(e.Row - 2, 4) = "式" Then
                 '累計行
                 If e.Col = 7 Then
@@ -440,11 +442,42 @@ Public Class 出来高入力
                             ErrorCheck -= 1
                         End If
                     End If
-                ElseIf e.Col = 6 Then
 
+                    '前回行
+                ElseIf e.Col = 6 Then
+                    quanity = DetailsList(e.Row, 7)
+                    Concostea = DetailsList(e.Row - 1, 5)
+                    If Concostea = 0 Then
+                        'DetailsList.Rows(e.Row + 1).AllowEditing = True
+                    Else
+                        Lquanity = DetailsList(e.Row, 6)
+                        amount = DetailsList(e.Row + 1, 7)
+
+                        Cuquanity = quanity - Lquanity
+                        DetailsList(e.Row, 8) = Cuquanity
+
+                        Lamount = Math.Floor(Lquanity * Concostea)
+                        DetailsList(e.Row + 1, e.Col) = Lamount
+
+                        Cuamount = amount - Lamount
+                        DetailsList(e.Row + 1, 8) = Cuamount
+                        If amount > DetailsList(e.Row + 1, 5) Then
+                            Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                            errorco.StyleNew.ForeColor = Color.Red
+                            MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                            ErrorCheck += 1
+                        Else
+                            Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                            errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                            ErrorCheck -= 1
+                        End If
+                    End If
 
                 End If
-            Else
+
+                '式の時
+            ElseIf DetailsList(e.Row - 2, 4) = "式" Then
+                '累計行
                 If e.Col = 7 Then
                     Lamount = DetailsList(e.Row, 6)
                     amount = DetailsList(e.Row, e.Col)
@@ -460,8 +493,22 @@ Public Class 出来高入力
                         errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
                         ErrorCheck -= 1
                     End If
+                    '前回行
                 ElseIf e.Col = 6 Then
-
+                    Lamount = DetailsList(e.Row, 6)
+                    amount = DetailsList(e.Row, 7)
+                    Cuamount = amount - Lamount
+                    DetailsList(e.Row, 8) = Cuamount
+                    If amount > DetailsList(e.Row, 5) Then
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
+                        errorco.StyleNew.ForeColor = Color.Red
+                        MsgBox("累計出来高の金額が、契約金額を超えています。", MsgBoxStyle.OkOnly, "エラー")
+                        ErrorCheck += 1
+                    Else
+                        Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
+                        errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
+                        ErrorCheck -= 1
+                    End If
                 End If
             End If
 
@@ -472,7 +519,10 @@ Public Class 出来高入力
                 Totalamount += amount
                 Cuamount = DetailsList(totalloop * 3 + 2, 8)
                 Cutotal += Cuamount
+                Lamount = DetailsList(totalloop * 3 + 2, 6)
+                Ltotal += Lamount
             Next
+            TotalList(0, 2) = Ltotal
             TotalList(0, 3) = Totalamount
             TotalList(0, 4) = Cutotal
 
@@ -504,8 +554,8 @@ Public Class 出来高入力
         End Try
     End Sub
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
-        'Try
-        If ErrorCheck >= 1 Then
+        Try
+            If ErrorCheck >= 1 Then
                 MsgBox("累計出来高の金額が、契約金額を超えている行があります。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
@@ -521,18 +571,18 @@ Public Class 出来高入力
 
             '外注計画テーブルから外注業者IDで明細書IDを取得しリストに入れる
             ホーム.Sql.Parameters.Clear()
-        ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND budget_no = " & ホーム.BudgetNo
-        Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
-        Dim Oquanity As Decimal
-        Dim Ocostea As Int64
-        While DtlID.Read
-            Oquanity = DtlID.Item("outsrcng_quanity")
-            Ocostea = DtlID.Item("outsrcng_costea")
-            '数量０単価０で登録されている明細書IDは省く
-            If Oquanity = 0 And Ocostea = 0 Then
-                Continue While
-            End If
-            DtlIDlist.Add(DtlID.Item("dtl_id"))
+            ホーム.Sql.CommandText = "SELECT * FROM outsourcing_plans WHERE outsrcr_id = " & outsrcrID & "AND outsrc_no = (SELECT MAX(outsrc_no) FROM outsourcing_plans) AND budget_no = " & ホーム.BudgetNo
+            Dim DtlID As SqlDataReader = ホーム.Sql.ExecuteReader
+            Dim Oquanity As Decimal
+            Dim Ocostea As Int64
+            While DtlID.Read
+                Oquanity = DtlID.Item("outsrcng_quanity")
+                Ocostea = DtlID.Item("outsrcng_costea")
+                '数量０単価０で登録されている明細書IDは省く
+                If Oquanity = 0 And Ocostea = 0 Then
+                    Continue While
+                End If
+                DtlIDlist.Add(DtlID.Item("dtl_id"))
             End While
             DtlID.Close()
 
@@ -544,6 +594,8 @@ Public Class 出来高入力
                 Dim TCostea As CellRange = DetailsList.GetCellRange(Rowcount, 5)
                 Dim Tquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 7)
                 Dim Tamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 7)
+                Dim Lquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 6)
+                Dim Lamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 6)
                 ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & " AND closing_date = @DLDATE  AND outsrcr_id = " & outsrcrID
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
@@ -556,13 +608,15 @@ Public Class 出来高入力
                 Else
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,outsrcr_id=@outsrcr_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where outsrcr_id = " & outsrcrID & " AND dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
+                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,outsrcr_id=@outsrcr_id,last_quanity=@last_quanity,last_amount=@last_amount,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where outsrcr_id = " & outsrcrID & " AND dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
                 End If
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
+                ホーム.Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
@@ -584,6 +638,16 @@ Public Class 出来高入力
                 Else
                     ホーム.Sql.Parameters("@total_amount").Value = Tamount.Data
                 End If
+                If Lquanity.Data = Nothing Then
+                    ホーム.Sql.Parameters("@last_quanity").Value = 0
+                Else
+                    ホーム.Sql.Parameters("@last_quanity").Value = Lquanity.Data
+                End If
+                If Lamount.Data = Nothing Then
+                    ホーム.Sql.Parameters("@last_amount").Value = 0
+                Else
+                    ホーム.Sql.Parameters("@last_amount").Value = Lamount.Data
+                End If
 
                 ホーム.Sql.ExecuteNonQuery()
 
@@ -593,12 +657,12 @@ Public Class 出来高入力
             '外注内訳入力.ChangeFlag = 0
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "出来高登録")
 
-        'Catch ex As Exception
-        '    ホーム.ErrorMessage = ex.Message
-        '    ホーム.StackTrace = ex.StackTrace
-        '    エラー.Show()
-        '    Exit Sub
-        'End Try
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
     End Sub
 
 End Class

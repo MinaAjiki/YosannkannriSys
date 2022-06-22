@@ -65,7 +65,7 @@ Public Class 外注計画
         field9 = CType(レポート.C1FlexReport1.Fields("完成日"), TextField)
         field9.Text = Pterme
 
-        '選択業者パラメータセット
+        '選択業者名セット
         Dim SelectVendorlist(協力業者選択.SelectVendorcount - 1) As String
         Dim datacount As Integer = 0
         For Listinsert As Integer = 0 To 4
@@ -84,7 +84,6 @@ Public Class 外注計画
             Dim field0 As TextField
             field0 = CType(レポート.C1FlexReport1.Fields("outsrcr_name" & listcountloop), TextField)
             field0.Text = name
-
 
             Dim code As String = 協力業者選択.SelectVendorCode(listcountloop)
             Dim field As TextField
