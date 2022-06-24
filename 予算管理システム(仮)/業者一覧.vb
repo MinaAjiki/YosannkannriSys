@@ -144,6 +144,8 @@ Public Class 業者一覧
                 Name = VendorList(RowIndex, 2)
                 Ryaku = VendorList(RowIndex, 5)
 
+
+
                 '協力業者入力に値を代入する
                 協力業者入力.CoopVendorList(r, 1) = Code
                 協力業者入力.CoopVendorList(r, 2) = Name

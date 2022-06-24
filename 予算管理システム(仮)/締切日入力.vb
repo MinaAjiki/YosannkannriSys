@@ -78,53 +78,57 @@ Public Class 締切日入力
                 End If
             End If
 
-            For Proloop As Integer = 0 To ProductList.Count - 1
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "SELECT * FROM productions WHERE closing_date = @BDDATE AND dtl_id = " & ProductList.Item(Proloop)
-                ホーム.Sql.Parameters.Add(New SqlParameter("@BDDATE", SqlDbType.Date))
-                ホーム.Sql.Parameters("@BDDATE").Value = ReBeforeDeadline
-                Dim Productreader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While Productreader.Read
-                    OutsrcrID = Productreader.Item("outsrcr_id")
-                    ProID = Productreader.Item("dtl_id")
-                    Costea = Productreader.Item("total_costea")
-                    Quanity = Productreader.Item("total_quanity")
-                    Amount = Productreader.Item("total_amount")
-                End While
-                Productreader.Close()
-
-                ホーム.Sql.CommandText = ""
-                ホーム.Sql.Parameters.Clear()
-                ホーム.Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,outsrcr_id,last_costea,last_quanity,last_amount,total_costea,total_quanity,total_amount)VALUES(@closing_date,@dtl_id,@outsrcr_id,@last_costea,@last_quanity,@last_amount,@total_costea,@total_quanity,@total_amount)"
-                ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@last_costea", SqlDbType.Money))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
-                ホーム.Sql.Parameters("@closing_date").Value = AfterDeadline
-                ホーム.Sql.Parameters("@dtl_id").Value = ProID
-                ホーム.Sql.Parameters("@outsrcr_id").Value = OutsrcrID
-                ホーム.Sql.Parameters("@last_costea").Value = Costea
-                ホーム.Sql.Parameters("@last_quanity").Value = Quanity
-                ホーム.Sql.Parameters("@last_amount").Value = Amount
-                ホーム.Sql.Parameters("@total_costea").Value = Costea
-                ホーム.Sql.Parameters("@total_quanity").Value = Quanity
-                ホーム.Sql.Parameters("@total_amount").Value = Amount
-                ホーム.Sql.ExecuteNonQuery()
-                Productreader.Close()
-
-            Next
-
-
             ホーム.Transaction = ホーム.Connection.BeginTransaction
+            ホーム.Sql.Transaction = ホーム.Transaction
+
             ホーム.Sql.CommandText = ""
             ホーム.Sql.Parameters.Clear()
+            ホーム.Sql.CommandText = "SELECT * FROM productions WHERE closing_date = @BDDATE"
+            ホーム.Sql.Parameters.Add(New SqlParameter("@BDDATE", SqlDbType.Date))
+            ホーム.Sql.Parameters("@BDDATE").Value = ReBeforeDeadline
+            Dim Productreader As SqlDataReader = ホーム.Sql.ExecuteReader
+            While Productreader.Read
+                OutsrcrID = Productreader.Item("outsrcr_id")
+                ProID = Productreader.Item("dtl_id")
+                Costea = Productreader.Item("total_costea")
+                Quanity = Productreader.Item("total_quanity")
+                Amount = Productreader.Item("total_amount")
 
-            ホーム.Sql.Transaction = ホーム.Transaction
+                Dim Connection As New SqlConnection
+                Dim Sql As New SqlCommand
+                Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
+                Connection.Open()
+                Sql.Connection = Connection
+
+                Sql.CommandText = ""
+                Sql.Parameters.Clear()
+
+                Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
+                Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
+                Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
+                Sql.Parameters.Add(New SqlParameter("@last_costea", SqlDbType.Money))
+                Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
+                Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
+                Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
+                Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
+                Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
+                Sql.Parameters("@closing_date").Value = AfterDeadline
+                Sql.Parameters("@dtl_id").Value = ProID
+                Sql.Parameters("@outsrcr_id").Value = OutsrcrID
+                Sql.Parameters("@last_costea").Value = Costea
+                Sql.Parameters("@last_quanity").Value = Quanity
+                Sql.Parameters("@last_amount").Value = Amount
+                Sql.Parameters("@total_costea").Value = Costea
+                Sql.Parameters("@total_quanity").Value = Quanity
+                Sql.Parameters("@total_amount").Value = Amount
+                Sql.CommandText = "INSERT INTO productions (closing_date,dtl_id,outsrcr_id,last_costea,last_quanity,last_amount,total_costea,total_quanity,total_amount)
+                                    VALUES(@closing_date,@dtl_id,@outsrcr_id,@last_costea,@last_quanity,@last_amount,@total_costea,@total_quanity,@total_amount)"
+                Sql.ExecuteNonQuery()
+            End While
+            Productreader.Close()
+
+            ホーム.Sql.CommandText = ""
+            ホーム.Sql.Parameters.Clear()
             ホーム.Sql.Parameters.Add(New SqlParameter("@classcode", SqlDbType.SmallInt))
             ホーム.Sql.Parameters.Add(New SqlParameter("@contents", SqlDbType.Date))
             ホーム.Sql.CommandText = "UPDATE controldata SET contents=@contents WHERE class_code=@classcode"
