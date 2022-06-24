@@ -1,8 +1,10 @@
 ﻿Imports System.Data.SqlClient
 Public Class Recalculation_cst
     Private ClssCode As Integer
-    Public Sub New(ByVal ClassCode As Integer)
+    Private maxcode As Integer
+    Public Sub New(ByVal ClassCode As Integer, ByVal max As Integer)
         ClssCode = ClassCode
+        maxcode = max
     End Sub
     Public Function Recalculation() As String
 
@@ -114,7 +116,9 @@ Public Class Recalculation_cst
         ホーム.Sql.ExecuteNonQuery()
 
 
-        For ClassLoop As Integer = 0 To 25
+        Dim StartClass As Integer = Array.IndexOf(CodeLists, maxcode)
+
+        For ClassLoop As Integer = StartClass To 25
             ホーム.Sql.CommandText = "DELETE FROM #prjct_update_data"
             ホーム.Sql.ExecuteNonQuery()
 
