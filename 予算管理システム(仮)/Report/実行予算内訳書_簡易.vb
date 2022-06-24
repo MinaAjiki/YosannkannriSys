@@ -26,7 +26,7 @@ Public Class 実行予算内訳書_簡易
 	                                                S_worktype_total.s_wrktyp_name,
 	                             (CASE WHEN S_worktype_total.l_wrktyp_code= 840 THEN " & SiteExpense & " ELSE S_worktype_total.amout_total END) AS amout_total1 
                                  FROM S_worktype_total) AS S_worktype_total_alt 
-                                 WHERE ((S_worktype_total_alt.budget_no) =" & ホーム.BudgetNo & ") OR ((S_worktype_total_alt.budget_no) IS NULL) 
+                                 WHERE ((S_worktype_total_alt.budget_no) =" & ホーム.BudgetNo & ")
                                  GROUP BY S_worktype_total_alt.s_wrktyp_code,S_worktype_total_alt.s_wrktyp_name,S_worktype_total_alt.l_wrktyp_code,S_worktype_total_alt.l_wrktyp_name 
                                  ORDER BY S_worktype_total_alt.s_wrktyp_code;"
         レポート.C1FlexReport1.DataSources.Add(ReportData)

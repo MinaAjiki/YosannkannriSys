@@ -429,7 +429,7 @@ Public Class 全_詳細
 	                                               projectcst_bd.prjctcst_machineea,
 	                                               projectcst_bd.prjctcst_subcntrctea,
 	                                               projectcst_bd.prjctcst_expenseea
-                                    ORDER BY projectcst_bd.prjctcst_no;"
+                                    ORDER BY  projectcst_bd.cstclss_code,projectcst_bd.prjctcst_no;"
                 prjctcstlist_report(ClassLoop).DataSources.Add(prjctcstlist_reportdata(ClassLoop))
                 prjctcstlist_report(ClassLoop).DataSourceName = prjctcstlist_reportdata(ClassLoop).Name
 
@@ -482,7 +482,7 @@ Public Class 全_詳細
 	                                               projectcst_bd.prjctcst_bd_expense
                                     FROM  projectcst_bd
                                     WHERE ((projectcst_bd.budget_no) =" & ホーム.BudgetNo & ") AND ((projectcst_bd.cstclss_code) =" & ClassCode.Item(ClassLoop) & ") 
-                                    ORDER BY projectcst_bd.prjctcst_no,projectcst_bd.prjctcst_bd_no;"
+                                    ORDER BY projectcst_bd.cstclss_code,projectcst_bd.prjctcst_no,projectcst_bd.prjctcst_bd_no;"
                     prjctcst_report(ClassLoop).DataSources.Add(prjctcst_reportdata(ClassLoop))
                     prjctcst_report(ClassLoop).DataSourceName = prjctcst_reportdata(ClassLoop).Name
 

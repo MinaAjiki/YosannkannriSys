@@ -16896,7 +16896,7 @@ WHERE ((projectcst_bd.budget_no) =0) AND
           <Size>8</Size>
         </Font>
         <Text>
-          <Expression>prjctcst_bd_expens</Expression>
+          <Expression>prjctcst_bd_expense</Expression>
         </Text>
         <Format>#,##0</Format>
       </TextField>
