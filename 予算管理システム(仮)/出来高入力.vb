@@ -594,8 +594,8 @@ Public Class 出来高入力
                 Dim TCostea As CellRange = DetailsList.GetCellRange(Rowcount, 5)
                 Dim Tquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 7)
                 Dim Tamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 7)
-                Dim Lquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 6)
-                Dim Lamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 6)
+                'Dim Lquanity As CellRange = DetailsList.GetCellRange(Rowcount + 1, 6)
+                'Dim Lamount As CellRange = DetailsList.GetCellRange(Rowcount + 2, 6)
                 ホーム.Sql.Parameters.Clear()
                 ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM productions WHERE dtl_id = " & DetailsID.Data & " AND closing_date = @DLDATE  AND outsrcr_id = " & outsrcrID
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
@@ -608,15 +608,15 @@ Public Class 出来高入力
                 Else
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,outsrcr_id=@outsrcr_id,last_quanity=@last_quanity,last_amount=@last_amount,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where outsrcr_id = " & outsrcrID & " AND dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
+                    ホーム.Sql.CommandText = "UPDATE productions SET closing_date=@closing_date,dtl_id=@dtl_id,outsrcr_id=@outsrcr_id,total_costea=@total_costea,total_quanity=@total_quanity,total_amount=@total_amount where outsrcr_id = " & outsrcrID & " AND dtl_id = " & DetailsID.Data & "AND closing_date = @DLDATE"
                 End If
                 ホーム.Sql.Parameters.Add(New SqlParameter("@DLDATE", SqlDbType.Date))
                 ホーム.Sql.Parameters("@DLDATE").Value = Deadline.Value
                 ホーム.Sql.Parameters.Add(New SqlParameter("@closing_date", SqlDbType.Date))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@dtl_id", SqlDbType.Int))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
-                ホーム.Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
+                'ホーム.Sql.Parameters.Add(New SqlParameter("@last_quanity", SqlDbType.Decimal))
+                'ホーム.Sql.Parameters.Add(New SqlParameter("@last_amount", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_costea", SqlDbType.Money))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_quanity", SqlDbType.Decimal))
                 ホーム.Sql.Parameters.Add(New SqlParameter("@total_amount", SqlDbType.Money))
@@ -638,16 +638,16 @@ Public Class 出来高入力
                 Else
                     ホーム.Sql.Parameters("@total_amount").Value = Tamount.Data
                 End If
-                If Lquanity.Data = Nothing Then
-                    ホーム.Sql.Parameters("@last_quanity").Value = 0
-                Else
-                    ホーム.Sql.Parameters("@last_quanity").Value = Lquanity.Data
-                End If
-                If Lamount.Data = Nothing Then
-                    ホーム.Sql.Parameters("@last_amount").Value = 0
-                Else
-                    ホーム.Sql.Parameters("@last_amount").Value = Lamount.Data
-                End If
+                'If Lquanity.Data = Nothing Then
+                '    ホーム.Sql.Parameters("@last_quanity").Value = 0
+                'Else
+                '    ホーム.Sql.Parameters("@last_quanity").Value = Lquanity.Data
+                'End If
+                'If Lamount.Data = Nothing Then
+                '    ホーム.Sql.Parameters("@last_amount").Value = 0
+                'Else
+                '    ホーム.Sql.Parameters("@last_amount").Value = Lamount.Data
+                'End If
 
                 ホーム.Sql.ExecuteNonQuery()
 
