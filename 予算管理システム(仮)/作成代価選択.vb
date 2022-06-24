@@ -45,7 +45,7 @@ Public Class 作成代価選択
                 'Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
                 'Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                ClassCode = 11
+                ClassCode = BeforeClass
 
             End If
 

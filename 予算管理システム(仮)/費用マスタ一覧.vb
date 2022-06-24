@@ -494,6 +494,10 @@ Public Class 費用マスタ一覧
                                                               seq INT DEFAULT (0) NOT NULL)"
                 ホーム.Sql.ExecuteNonQuery()
 
+                ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
+                Dim maxcode As Integer = ホーム.Sql.ExecuteScalar
+
+
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
                     ホーム.Sql.CommandText = ""
                     ホーム.Sql.Parameters.Clear()
@@ -564,7 +568,7 @@ Public Class 費用マスタ一覧
 
                     Dim Recalculation As String = ""
 
-                    Dim RecalculationLoad As New Recalculation_cst(CostClassCode)
+                    Dim RecalculationLoad As New Recalculation_cst(CostClassCode, maxcode)
                     Recalculation = RecalculationLoad.Recalculation
 
                     ホーム.Sql.CommandText = "DELETE FROM #update_data"

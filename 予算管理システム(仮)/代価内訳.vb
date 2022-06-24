@@ -984,7 +984,7 @@ Public Class 代価内訳
                 ホーム.Sql.CommandText = ""
                 ホーム.Sql.Parameters.Clear()
 
-                ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (id INT DEFAULT (0) NOT NULL,
+                ホーム.Sql.CommandText = "CREATE TABLE #update_data (id INT DEFAULT (0) NOT NULL,
                                                               cstclss_code INT DEFAULT (0) NOT NULL, 
                                                               name NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               spec NVARCHAR(50) DEFAULT ('') NOT NULL,
@@ -1043,7 +1043,7 @@ Public Class 代価内訳
                                               OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_name,inserted.prjctcst_spec,inserted.prjctcst_unit,
                                                      inserted.prjctcst_costea,inserted.prjctcst_laborea,inserted.prjctcst_materialea,inserted.prjctcst_machineea,
                                                      inserted.prjctcst_subcntrctea,inserted.prjctcst_expenseea
-                                              INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
+                                              INTO #update_data (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) 
                                               VALUES (@budgetno,@cstclsscode,@prjctcstno,@name,@spec,@unit,@quanity,@costea,@labor,@material,@machine,@subcntrct,@expense)"
                     ホーム.Sql.ExecuteNonQuery()
 
@@ -1059,7 +1059,7 @@ Public Class 代価内訳
                                               OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_name,inserted.prjctcst_spec,inserted.prjctcst_unit,
                                                      inserted.prjctcst_costea,inserted.prjctcst_laborea,inserted.prjctcst_materialea,inserted.prjctcst_machineea,
                                                      inserted.prjctcst_subcntrctea,inserted.prjctcst_expenseea
-                                              INTO #UpdateID (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) WHERE prjctcst_id=" & CreateCostID
+                                              INTO #update_data (id,cstclss_code,name,spec,unit,costea,labor,material,machine,subcntrct,expense) WHERE prjctcst_id=" & CreateCostID
                     ホーム.Sql.ExecuteNonQuery()
 
                 End If
