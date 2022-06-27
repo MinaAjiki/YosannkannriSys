@@ -227,7 +227,9 @@ Public Class 協力業者入力
                     ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
                     ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
 
-                    ホーム.SystemSql.CommandText = "SELECT detail_code FROM name_masters WHERE class_code = 4 AND item_name = " & " & Coopordr.Data & "
+                    ホーム.SystemSql.Parameters.Clear()
+                    ホーム.SystemSql.CommandText = "SELECT detail_code FROM name_masters WHERE class_code = 4 AND item_name = @Coopordr"
+                    ホーム.SystemSql.Parameters.Add(New SqlParameter("@Coopordr", SqlDbType.NVarChar)).Value = Coopordr.Data
                     Dim dtlcode As String = ホーム.SystemSql.ExecuteScalar
                     ホーム.Sql.Parameters("@ordrfrm").Value = dtlcode
                     'If Coopordr.Data = "工事課発注" Then
