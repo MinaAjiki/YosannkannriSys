@@ -674,7 +674,9 @@
     <Content Include="出来高数量査定書テンプレート.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="外注計画テンプレート.xlsx" />
+    <Content Include="外注計画テンプレート.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="注文内訳書テンプレート.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
