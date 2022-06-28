@@ -20,6 +20,10 @@ Public Class 出来形数量査定書
         ホーム.Sql.CommandText = "SELECT outsrcr_id FROM outsourcers WHERE outsrcr_code = " & 出来高査定チェックフォーム.VN
         Dim outsrcrid As Integer = ホーム.Sql.ExecuteScalar
 
+        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
+        Dim DeadlineDate As DateTime = ホーム.Sql.ExecuteScalar
+        'DeadlineDate = DeadlineDate.Replace("-", "/")
+
         Dim ReportData As DataSource = New DataSource
         ReportData.Name = "ReportDataSource"
         ReportData.DataProvider = DataProvider.OLEDB
@@ -47,6 +51,7 @@ Public Class 出来形数量査定書
         From Production_View
         Where 
             ((Production_View.outsrc_no) = (SELECT MAX(outsrc_no) FROM Production_View)) And
+            ((Production_View.closing_date) = (SELECT MAX(closing_date) FROM Production_View)) And
             ((Production_View.outsrcr_id) = " & outsrcrid & ");"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name

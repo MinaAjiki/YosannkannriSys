@@ -9,6 +9,12 @@ Public Class 外注計画
         進行状況.Show()
         進行状況.Refresh()
 
+        Dim Connection As New SqlConnection
+        Dim Sql As New SqlCommand
+        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
+        Connection.Open()
+        Sql.Connection = Connection
+
         Dim ds As New C1.Win.FlexReport.DataSource()
         ds.Name = "MyDataName"
         ReportLoad = ""
@@ -65,7 +71,7 @@ Public Class 外注計画
         field9 = CType(レポート.C1FlexReport1.Fields("完成日"), TextField)
         field9.Text = Pterme
 
-        '選択業者パラメータセット
+        '選択業者名セット
         Dim SelectVendorlist(協力業者選択.SelectVendorcount - 1) As String
         Dim datacount As Integer = 0
         For Listinsert As Integer = 0 To 4
@@ -84,7 +90,6 @@ Public Class 外注計画
             Dim field0 As TextField
             field0 = CType(レポート.C1FlexReport1.Fields("outsrcr_name" & listcountloop), TextField)
             field0.Text = name
-
 
             Dim code As String = 協力業者選択.SelectVendorCode(listcountloop)
             Dim field As TextField
@@ -172,6 +177,10 @@ Public Class 外注計画
         End While
         SwrktypReader.Close()
 
+        Dim quanity As Decimal
+        Dim costea As Decimal
+        Dim amount As Decimal
+
         '工種数ループ
         For SwrktypLoop As Integer = 0 To SwrktypCount - 1
             Dim s_worktype_code As Integer = s_wrktyp_codeList(SwrktypLoop)
@@ -184,9 +193,10 @@ Public Class 外注計画
             Dim dtl_costea As Decimal = 0
             Dim dtl_amount As Decimal = 0
 
+
             '明細数カウント
-            ホーム.Sql.CommandText = "SELECT COUNT(DISTINCT dtl_id) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code = " & s_worktype_code
-            Dim DtlCount As Integer = ホーム.Sql.ExecuteScalar
+            'ホーム.Sql.CommandText = "SELECT COUNT(DISTINCT dtl_id) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code = " & s_worktype_code
+            'Dim DtlCount As Integer = ホーム.Sql.ExecuteScalar
 
             '明細データを取得
 
@@ -212,24 +222,45 @@ Public Class 外注計画
                 Dim AmountList As New List(Of Decimal) From {0, 0, 0, 0, 0}
                 '業者数ループ
                 For VendorLoop As Integer = 0 To 協力業者選択.SelectVendorcount - 1
-                    '変更回数がNULLでない場合
-                    'If Not IsDBNull(DtlReader.Item("outsrc_no")) Then
                     '外注計画データ取得
-                    Dim Connection As New SqlConnection
-                        Dim Sql As New SqlCommand
-                        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
-                        Connection.Open()
-                        Sql.Connection = Connection
-                        Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
-                        Dim quanity As Decimal = Sql.ExecuteScalar
-                        QuanityList(VendorLoop) = quanity
-                        Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
-                        Dim costea As Decimal = Sql.ExecuteScalar
-                        CosteaList(VendorLoop) = costea
-                        Sql.CommandText = "SELECT ISNULL(outsrcng_amount,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
-                        Dim amount As Decimal = Sql.ExecuteScalar
-                        AmountList(VendorLoop) = amount
-                    'End If
+                    'Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
+                    'Dim quanity As Decimal = Sql.ExecuteScalar
+                    'QuanityList(VendorLoop) = quanity
+                    'Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
+                    'Dim costea As Decimal = Sql.ExecuteScalar
+                    'CosteaList(VendorLoop) = costea
+                    'Sql.CommandText = "SELECT ISNULL(outsrcng_amount,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
+                    'Dim amount As Decimal = Sql.ExecuteScalar
+                    'AmountList(VendorLoop) = amount
+
+                    Sql.CommandText = "SELECT outsrcng_quanity, outsrcng_costea, outsrcng_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & s_worktype_code & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & dtl_id & " ORDER BY s_worktype_code,dtl_no ASC"
+                    Dim vendorcst As SqlDataReader = Sql.ExecuteReader
+                    While vendorcst.Read
+                        If IsDBNull(vendorcst.Item("outsrcng_quanity")) = True Then
+                            vendorcst.Close()
+                            Exit For
+                        Else
+                            quanity = vendorcst.Item("outsrcng_quanity")
+                            If quanity = 0 Then
+                                vendorcst.Close()
+                                Exit For
+                            End If
+                            QuanityList(VendorLoop) = quanity
+                        End If
+                        If IsDBNull(vendorcst.Item("outsrcng_costea")) = True Then
+                            CosteaList(VendorLoop) = 0
+                        Else
+                            costea = vendorcst.Item("outsrcng_costea")
+                            CosteaList(VendorLoop) = costea
+                        End If
+                        If IsDBNull(vendorcst.Item("outsrcng_amount")) = True Then
+                            AmountList(VendorLoop) = 0
+                        Else
+                            amount = vendorcst.Item("outsrcng_amount")
+                            AmountList(VendorLoop) = amount
+                        End If
+                    End While
+                    vendorcst.Close()
                 Next
                 'テーブルに行を追加
                 DT.Rows.Add(s_worktype_code, s_wrktyp_name, dtl_name, dtl_spec, dtl_unit, dtl_quanity, dtl_costea, dtl_amount, QuanityList(0), CosteaList(0), AmountList(0), QuanityList(1), CosteaList(1), AmountList(1), QuanityList(2), CosteaList(2), AmountList(2), QuanityList(3), CosteaList(3), AmountList(3), QuanityList(4), CosteaList(4), AmountList(4))

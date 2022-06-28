@@ -57,20 +57,20 @@ Public Class 外注計画報告書
         End While
         MasterReader.Close()
 
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=70"
-        Dim name0 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=71"
-        Dim name1 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=72"
-        Dim name2 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=73"
-        Dim name3 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=74"
-        Dim name4 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=75"
-        Dim name5 As String = ホーム.Sql.ExecuteScalar
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=76"
-        Dim name6 As String = ホーム.Sql.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
+        Dim name0 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=31"
+        Dim name1 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=32"
+        Dim name2 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=33"
+        Dim name3 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=34"
+        Dim name4 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=35"
+        Dim name5 As String = ホーム.SystemMdf.ExecuteScalar
+        ホーム.SystemMdf.CommandText = "SELECT contents FROM controldata WHERE class_code=36"
+        Dim name6 As String = ホーム.SystemMdf.ExecuteScalar
 
         Dim field2 As Field
         field2 = CType(レポート.C1FlexReport1.Fields("工事コード"), Field)

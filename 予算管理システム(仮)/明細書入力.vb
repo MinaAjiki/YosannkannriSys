@@ -1116,6 +1116,16 @@ Public Class 明細書入力
                             Call Insert_Click(sender, e)
                         End If
 
+
+                        If ホーム.ProjectCostForm.Count > 0 Then
+
+                            ホーム.ProjectCostForm.Clear()
+                            ホーム.ProjectCostID.Clear()
+                            ホーム.ProjectCostSelectRow.Clear()
+                            ホーム.PrjctCstClassCode.Clear()
+                            ホーム.PrjctCstList.Clear()
+                        End If
+
                         EntryCommand = "INSERT"
                         作成代価選択.SelectRow = SelectRow
                         作成代価選択.HeadLine.Text = "<<作成代価選択"
@@ -1172,15 +1182,24 @@ Public Class 明細書入力
                             Call Insert_Click(sender, e)
                         End If
 
-                        作成代価選択.SelectRow = SelectRow
-                        DetailsList(SelectRow, 3) = SelectRow / 3
-                        作成代価選択.HeadLine.Text = "<<作成代価選択"
-                        作成代価選択.Text = "作成代価選択"
-                        作成代価選択.ShowDialog()
-                        作成代価選択.TopMost = True
-                        作成代価選択.TopMost = False
+                        If ホーム.ProjectCostForm.Count > 0 Then
 
-                    End If
+                            ホーム.ProjectCostForm.Clear()
+                            ホーム.ProjectCostID.Clear()
+                            ホーム.ProjectCostSelectRow.Clear()
+                            ホーム.PrjctCstClassCode.Clear()
+                            ホーム.PrjctCstList.Clear()
+                        End If
+
+                        作成代価選択.SelectRow = SelectRow
+                            DetailsList(SelectRow, 3) = SelectRow / 3
+                            作成代価選択.HeadLine.Text = "<<作成代価選択"
+                            作成代価選択.Text = "作成代価選択"
+                            作成代価選択.ShowDialog()
+                            作成代価選択.TopMost = True
+                            作成代価選択.TopMost = False
+
+                        End If
 
                 Catch ex As Exception
                     ホーム.ErrorMessage = ex.Message
@@ -1268,6 +1287,15 @@ Public Class 明細書入力
 
             If DetailsList(SelectRow, 8) >= 12 Then
 
+                If ホーム.ProjectCostForm.Count > 0 Then
+
+                    ホーム.ProjectCostForm.Clear()
+                    ホーム.ProjectCostID.Clear()
+                    ホーム.ProjectCostSelectRow.Clear()
+                    ホーム.PrjctCstClassCode.Clear()
+                    ホーム.PrjctCstList.Clear()
+                End If
+
                 ホーム.ProjectCostForm.Add(New 代価表入力)
                 ホーム.ProjectCostForm(0).TopLevel = False
                 ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
@@ -1309,6 +1337,16 @@ Public Class 明細書入力
                     Exit For
                 End If
             Next
+
+
+            If ホーム.ProjectCostForm.Count > 0 Then
+
+                ホーム.ProjectCostForm.Clear()
+                ホーム.ProjectCostID.Clear()
+                ホーム.ProjectCostSelectRow.Clear()
+                ホーム.PrjctCstClassCode.Clear()
+                ホーム.PrjctCstList.Clear()
+            End If
 
             If DetailsList(SelectRow, 8) >= 12 Then
                 ホーム.ProjectCostForm.Add(New 代価表入力)
@@ -1774,6 +1812,16 @@ Public Class 明細書入力
             '    ホーム.HomeTreeView.CollapseAll()
             '    ホーム.SelectNodeList(0).Expand()
             'End If
+
+
+            If ホーム.ProjectCostForm.Count > 0 Then
+
+                ホーム.ProjectCostForm.Clear()
+                ホーム.ProjectCostID.Clear()
+                ホーム.ProjectCostSelectRow.Clear()
+                ホーム.PrjctCstClassCode.Clear()
+                ホーム.PrjctCstList.Clear()
+            End If
 
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "明細書入力")
 

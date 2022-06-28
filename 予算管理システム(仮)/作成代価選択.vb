@@ -45,7 +45,7 @@ Public Class 作成代価選択
                 'Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
                 'Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                ClassCode = 11
+                ClassCode = BeforeClass
 
             End If
 
@@ -201,8 +201,8 @@ Public Class 作成代価選択
                 CopyClassCode = ClassCode
                 代価一覧.CostClassName = CostsList.Text
                 代価内訳.Show()
-
-                代価一覧.Visible = False
+                代価一覧.Close()
+                '代価一覧.Visible = False
 
             ElseIf ホーム.BeforeForm = "代価内訳" Then
                 If 代価一覧.CostClassCode = 11 Then
@@ -212,8 +212,8 @@ Public Class 作成代価選択
                 End If
                 Dim DaikaForm As New 代価内訳
                 DaikaForm.ClassCode = 代価一覧.CostClassCode
-                DaikaForm.CostID = 代価一覧.ProjectCostList(SelectRow, 1)
-                CopyCostID = 代価一覧.ProjectCostList(SelectRow, 1)
+                DaikaForm.CostID = 代価内訳.CostID
+                CopyCostID = 代価内訳.CostID
                 CopyClassCode = ClassCode
                 代価一覧.CostClassName = CostsList.Text
 

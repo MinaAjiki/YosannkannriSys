@@ -162,6 +162,7 @@ Public Class マスタ一覧
                 End While
                 Stamptaxreader.Close()
             ElseIf ClickButton = "Circulator" Then
+                Entry.Visible = True
                 YearLabel.Visible = False
                 SelectYear.Visible = False
                 TableName.Text = "回覧マスタ"

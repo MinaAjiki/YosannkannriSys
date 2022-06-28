@@ -12,20 +12,6 @@ Public Class 代価一覧
         Try
             If CostClassName = "基礎代価" Then
                 CostClassCode = 11
-                ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = ""
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode
-                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
-
-                If BasicCostsCount > 21 Then
-                    ProjectCostList.Rows.Count = BasicCostsCount + 1
-                Else
-                    ProjectCostList.Rows.Count = 22
-                End If
-
-                CostList.Text = CostClassName
-
-                ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim Year As Integer
                 ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
@@ -40,6 +26,20 @@ Public Class 代価一覧
                     End If
                 End If
 
+                ホーム.SystemSql.Parameters.Clear()
+                ホーム.SystemSql.CommandText = ""
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND year=" & Year & "AND deleted = 0"
+                Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
+
+                If BasicCostsCount > 21 Then
+                    ProjectCostList.Rows.Count = BasicCostsCount + 1
+                Else
+                    ProjectCostList.Rows.Count = 22
+                End If
+
+                CostList.Text = CostClassName
+
+                ProjectCostList.Rows.Count = BasicCostsCount + 1
 
                 Dim RowCount As Integer = 0
 
@@ -89,10 +89,11 @@ Public Class 代価一覧
                 End If
                 YearList.Text = Year
                 ProjectCostList.Cols(2).AllowEditing = True
+                Entry.Visible = False
 
             ElseIf CostClassName = "工事代価" Then
                 ProjectCostList.ContextMenuStrip = 右クリックメニュー
-
+                CostList.Enabled = True
 
 
                 Dim dt As DataTable
@@ -378,7 +379,7 @@ Public Class 代価一覧
                     明細書入力.DetailsList.MergedRanges.Add(NewRow + 1, 4, NewRow + 1, 5)
 
                 End If
-                Me.Close()
+                Me.Visible = False
 
                 明細書入力.DetailsList.Focus()
                 明細書入力.DetailsList.Select(明細書入力.SelectRow, 6)
@@ -479,7 +480,12 @@ Public Class 代価一覧
                 End If
                 SelectRow = ProjectCostList.Selection.TopRow
                 代価内訳.CostID = ProjectCostList(SelectRow, 1)
-                代価内訳.ClassCode = CostClassCode
+
+                If Not 代価内訳.ParentFormName = "代価一覧" Then
+                    代価内訳.ClassCode = CostClassCode
+                Else
+                    CostCreation.Visible = False
+                End If
 
                 If CostClassCode = 11 Then
                     ホーム.BeforeForm = "基礎代価一覧"
@@ -488,7 +494,8 @@ Public Class 代価一覧
                 End If
 
                 代価内訳.Show()
-                Me.Visible = False
+                Me.Close()
+                'Me.Visible = False
             End If
 
 
@@ -666,7 +673,7 @@ Public Class 代価一覧
 
                 ホーム.SystemSql.CommandText = ""
                 ホーム.SystemSql.Parameters.Clear()
-                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND budget_no=" & ホーム.BudgetNo
+                ホーム.SystemSql.CommandText = "SELECT Count(*) FROM basis_costs WHERE deleted = 0 AND cstclss_code=" & CostClassCode & " AND year=" & YearList.Text
                 Dim BasicCostsCount As Integer = ホーム.SystemSql.ExecuteScalar
                 ホーム.SystemSql.Parameters.Add(New SqlParameter("@deleted", SqlDbType.NVarChar)).Value = 1
                 For DeleteBasic As Integer = 1 To BasicCostsCount
@@ -738,7 +745,8 @@ Public Class 代価一覧
             End If
 
             代価内訳.Show()
-            Me.Visible = False
+            Me.Close()
+            'Me.Visible = False
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace
@@ -995,6 +1003,8 @@ Public Class 代価一覧
                     Dim BreakDownCount As Integer = ホーム.Sql.ExecuteScalar
                     If BreakDownCount > 0 Then
                         For BDLoop As Integer = 1 To BreakDownCount
+                            ホーム.Sql.CommandText = ""
+                            ホーム.Sql.Parameters.Clear()
                             ホーム.Sql.CommandText = "SELECT * FROM project_cost_breakdowns WHERE prjctcst_id=" & CopyID & " AND prjctcst_bd_no = " & BDLoop
                             Dim BreakDownReader As SqlDataReader = ホーム.Sql.ExecuteReader
                             While BreakDownReader.Read
@@ -1084,14 +1094,15 @@ Public Class 代価一覧
                     ProjectCostList(PasteRow, 1) = CreateCopyID
 
                     ホーム.Transaction.Commit()
+                    MsgBox(" 登録完了", MsgBoxStyle.OkOnly, "代価表入力")
                 End If
 
             End If
         Catch ex As Exception
-        ホーム.ErrorMessage = ex.Message
-        ホーム.StackTrace = ex.StackTrace
-        エラー.Show()
-        Exit Sub
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
         End Try
     End Sub
 End Class

@@ -5,18 +5,23 @@ Imports System.ComponentModel
 Imports System.Deployment.Application.ApplicationDeployment
 Imports System.Windows.Forms.Form
 Imports C1.Win.C1FlexGrid
+Imports C1.Win.C1Input
 Imports C1.Win.C1Command
 
 
 Public Class 協力業者入力
     Private Sub 協力業者入力_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ''namemasterからデータを取得
-            'ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters"
-            'Dim Namemaster As SqlDataReader = ホーム.Sql.ExecuteReader
-            'While Namemaster.Read
-            '    CoopVendorList.Cols(5).ComboList = Namemaster.Item("item_name")
-            'End While
+            Dim C1combobox As C1ComboBox = New C1ComboBox
+            'namemasterからデータを取得
+            ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters WHERE class_code = 4"
+            Dim Namemaster As SqlDataReader = ホーム.SystemSql.ExecuteReader
+            While Namemaster.Read
+                C1combobox.Items.Add(Namemaster.Item("item_name"))
+            End While
+            Namemaster.Close()
+            CoopVendorList.Cols(5).Editor = C1combobox
+
             CoopVendorList.VisualStyle = C1.Win.C1FlexGrid.VisualStyle.Custom
             C1SplitterPanel1.Anchor = AnchorStyles.Top & Bottom
             C1SplitterPanel2.Anchor = AnchorStyles.Bottom
@@ -49,12 +54,11 @@ Public Class 協力業者入力
                 '    OrderNo = OrderReader.Item("ordrfrm")
                 'End While
 
-                Dim ordr As String = Coopreader.Item("ordrfrm")
-                If ordr = 11 Then
-                    CoopVendorList(datacount, 5) = "工事課発注"
-                ElseIf ordr = 12 Then
-                    CoopVendorList(datacount, 5) = "購買発注"
-                End If
+                Dim classcode As String = Coopreader.Item("ordrfrm")
+                ホーム.SystemSql.CommandText = "SELECT item_name FROM name_masters WHERE class_code = 4 AND detail_code = " & classcode
+                Dim itemname As String = ホーム.SystemSql.ExecuteScalar
+                CoopVendorList(datacount, 5) = itemname
+
                 Dim ecn As String = Coopreader.Item("e_cntrct")
                 If ecn = "true" Then
                     CoopVendorList.SetCellCheck(datacount, 6, CheckEnum.Checked)
@@ -222,11 +226,19 @@ Public Class 協力業者入力
                     'End If
                     ホーム.Sql.Parameters("@outsrcr_term_s").Value = Coopterms.Data
                     ホーム.Sql.Parameters("@outsrcr_term_e").Value = Coopterme.Data
-                    If Coopordr.Data = "工務課発注" Then
-                        ホーム.Sql.Parameters("@ordrfrm").Value = 11
-                    ElseIf Coopordr.Data = "購買発注" Then
-                        ホーム.Sql.Parameters("@ordrfrm").Value = 12
-                    End If
+
+                    ホーム.SystemSql.Parameters.Clear()
+                    ホーム.SystemSql.CommandText = "SELECT detail_code FROM name_masters WHERE class_code = 4 AND item_name = @Coopordr"
+                    ホーム.SystemSql.Parameters.Add(New SqlParameter("@Coopordr", SqlDbType.NVarChar)).Value = Coopordr.Data
+                    Dim dtlcode As String = ホーム.SystemSql.ExecuteScalar
+                    ホーム.Sql.Parameters("@ordrfrm").Value = dtlcode
+
+                    'If Coopordr.Data = "工事課発注" Then
+                    '    ホーム.Sql.Parameters("@ordrfrm").Value = 11
+                    'ElseIf Coopordr.Data = "購買発注" Then
+                    '    ホーム.Sql.Parameters("@ordrfrm").Value = 12
+                    'End If
+
                     If Coopcntrct.Data = True Then
                         ホーム.Sql.Parameters("@e_cntrct").Value = "true"
                     Else

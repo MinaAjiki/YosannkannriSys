@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\206029\デスクトップ\YosankanriSys\</PublishUrl>
+    <PublishUrl>C:\Users\217003\デスクトップ\YosankanriSys\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ns-dc001\kanchi%24\予算管理システム%28仮%29\</UpdateUrl>
-    <ApplicationRevision>53</ApplicationRevision>
-    <ApplicationVersion>1.0.0.53</ApplicationVersion>
+    <ApplicationRevision>58</ApplicationRevision>
+    <ApplicationVersion>1.0.0.58</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -671,10 +671,10 @@
     <Content Include="テンプレート.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="外注計画テンプレート.xlsx">
+    <Content Include="出来高数量査定書テンプレート.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="出来高数量査定書テンプレート.xlsx">
+    <Content Include="外注計画テンプレート.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="注文内訳書テンプレート.xlsx">

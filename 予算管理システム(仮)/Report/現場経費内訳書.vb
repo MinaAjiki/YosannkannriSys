@@ -24,7 +24,7 @@ Public Class 現場経費内訳書
                                                 	expens_bd.expns_bd_no,
                                                 	expens_bd.expns_bd_amount
                                                     FROM  expens_bd
-                                   WHERE ((expens_bd.budget_no) =" & ホーム.BudgetNo & ") ORDER BY expens_bd.stexpns_code,expens_bd.expns_bd_no;"
+                                   WHERE ((expens_bd.budget_no) =" & ホーム.BudgetNo & ") AND NOT expens_bd.expns_bd_quanity=0 ORDER BY expens_bd.stexpns_code,expens_bd.expns_bd_no;"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name
 

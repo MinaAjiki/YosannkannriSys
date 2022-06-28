@@ -106,7 +106,7 @@ Partial Class 代価内訳
         Me.HeadLine.ForeColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(68, Byte), Integer))
         Me.HeadLine.Location = New System.Drawing.Point(14, 14)
         Me.HeadLine.Name = "HeadLine"
-        Me.HeadLine.Size = New System.Drawing.Size(80, 18)
+        Me.HeadLine.Size = New System.Drawing.Size(99, 23)
         Me.HeadLine.TabIndex = 25
         Me.HeadLine.Text = "<< 代価内訳"
         '
@@ -158,55 +158,56 @@ Partial Class 代価内訳
         Me.BreakDownList.ShowThemedHeaders = C1.Win.C1FlexGrid.ShowThemedHeadersEnum.None
         Me.BreakDownList.Size = New System.Drawing.Size(950, 408)
         Me.BreakDownList.StyleInfo = resources.GetString("BreakDownList.StyleInfo")
-        Me.BreakDownList.TabIndex = 43
+        Me.BreakDownList.TabIndex = 8
         Me.SystemTheme.SetTheme(Me.BreakDownList, "予算管理テーマ2")
         '
         '右クリックメニュー
         '
         Me.右クリックメニュー.BackColor = System.Drawing.Color.White
         Me.右クリックメニュー.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.右クリックメニュー.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.右クリックメニュー.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ItemSelectMenu, Me.InsertMenu, Me.CutMenu, Me.CopyMenu, Me.PastingMenu, Me.Delete})
         Me.右クリックメニュー.Name = "ContextMenuStrip1"
         Me.右クリックメニュー.ShowImageMargin = False
-        Me.右クリックメニュー.Size = New System.Drawing.Size(124, 136)
+        Me.右クリックメニュー.Size = New System.Drawing.Size(146, 172)
         Me.右クリックメニュー.Text = "項目選択"
         Me.SystemTheme.SetTheme(Me.右クリックメニュー, "(default)")
         '
         'ItemSelectMenu
         '
         Me.ItemSelectMenu.Name = "ItemSelectMenu"
-        Me.ItemSelectMenu.Size = New System.Drawing.Size(123, 22)
+        Me.ItemSelectMenu.Size = New System.Drawing.Size(145, 28)
         Me.ItemSelectMenu.Text = "項目選択"
         '
         'InsertMenu
         '
         Me.InsertMenu.Name = "InsertMenu"
-        Me.InsertMenu.Size = New System.Drawing.Size(123, 22)
+        Me.InsertMenu.Size = New System.Drawing.Size(145, 28)
         Me.InsertMenu.Text = "行の挿入"
         '
         'CutMenu
         '
         Me.CutMenu.Name = "CutMenu"
-        Me.CutMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CutMenu.Size = New System.Drawing.Size(145, 28)
         Me.CutMenu.Text = "行の切り取り"
         '
         'CopyMenu
         '
         Me.CopyMenu.Name = "CopyMenu"
-        Me.CopyMenu.Size = New System.Drawing.Size(123, 22)
+        Me.CopyMenu.Size = New System.Drawing.Size(145, 28)
         Me.CopyMenu.Text = "行のコピー"
         '
         'PastingMenu
         '
         Me.PastingMenu.Name = "PastingMenu"
-        Me.PastingMenu.Size = New System.Drawing.Size(123, 22)
+        Me.PastingMenu.Size = New System.Drawing.Size(145, 28)
         Me.PastingMenu.Text = "行の貼り付け"
         '
         'Delete
         '
         Me.Delete.Name = "Delete"
         Me.Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.Delete.Size = New System.Drawing.Size(123, 22)
+        Me.Delete.Size = New System.Drawing.Size(145, 28)
         Me.Delete.Visible = False
         '
         'CostNo
@@ -220,7 +221,7 @@ Partial Class 代価内訳
         Me.CostNo.Location = New System.Drawing.Point(99, 60)
         Me.CostNo.Name = "CostNo"
         Me.CostNo.Size = New System.Drawing.Size(173, 20)
-        Me.CostNo.TabIndex = 45
+        Me.CostNo.TabIndex = 1
         Me.CostNo.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostNo, "予算管理テーマ")
         Me.CostNo.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -261,7 +262,7 @@ Partial Class 代価内訳
         Me.CostName.Location = New System.Drawing.Point(99, 81)
         Me.CostName.Name = "CostName"
         Me.CostName.Size = New System.Drawing.Size(228, 20)
-        Me.CostName.TabIndex = 63
+        Me.CostName.TabIndex = 2
         Me.CostName.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostName, "予算管理テーマ")
         Me.CostName.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -276,7 +277,7 @@ Partial Class 代価内訳
         Me.CostSpec.Location = New System.Drawing.Point(402, 81)
         Me.CostSpec.Name = "CostSpec"
         Me.CostSpec.Size = New System.Drawing.Size(543, 20)
-        Me.CostSpec.TabIndex = 70
+        Me.CostSpec.TabIndex = 3
         Me.CostSpec.Tag = Nothing
         Me.SystemTheme.SetTheme(Me.CostSpec, "予算管理テーマ")
         Me.CostSpec.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue
@@ -300,7 +301,7 @@ Partial Class 代価内訳
         Me.CostQuanity.Location = New System.Drawing.Point(66, 102)
         Me.CostQuanity.Name = "CostQuanity"
         Me.CostQuanity.Size = New System.Drawing.Size(110, 20)
-        Me.CostQuanity.TabIndex = 71
+        Me.CostQuanity.TabIndex = 4
         Me.CostQuanity.Tag = Nothing
         Me.CostQuanity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostQuanity, "予算管理テーマ")
@@ -333,7 +334,7 @@ Partial Class 代価内訳
         Me.CostUnitPrice.Location = New System.Drawing.Point(370, 102)
         Me.CostUnitPrice.Name = "CostUnitPrice"
         Me.CostUnitPrice.Size = New System.Drawing.Size(110, 20)
-        Me.CostUnitPrice.TabIndex = 72
+        Me.CostUnitPrice.TabIndex = 6
         Me.CostUnitPrice.Tag = Nothing
         Me.CostUnitPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostUnitPrice, "予算管理テーマ")
@@ -366,7 +367,7 @@ Partial Class 代価内訳
         Me.CostCostea.Location = New System.Drawing.Point(522, 102)
         Me.CostCostea.Name = "CostCostea"
         Me.CostCostea.Size = New System.Drawing.Size(110, 20)
-        Me.CostCostea.TabIndex = 74
+        Me.CostCostea.TabIndex = 7
         Me.CostCostea.Tag = Nothing
         Me.CostCostea.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SystemTheme.SetTheme(Me.CostCostea, "予算管理テーマ")
@@ -753,7 +754,7 @@ Partial Class 代価内訳
         Me.CostUnit.Location = New System.Drawing.Point(218, 102)
         Me.CostUnit.Name = "CostUnit"
         Me.CostUnit.Size = New System.Drawing.Size(109, 20)
-        Me.CostUnit.TabIndex = 85
+        Me.CostUnit.TabIndex = 5
         Me.CostUnit.Tag = Nothing
         Me.CostUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.SystemTheme.SetTheme(Me.CostUnit, "予算管理テーマ")

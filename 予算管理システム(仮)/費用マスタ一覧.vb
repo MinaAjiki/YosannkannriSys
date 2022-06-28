@@ -96,6 +96,7 @@ Public Class 費用マスタ一覧
                     MasterContentsList(RowCount, 8) = CostMasterReader.Item("cstmstr_costea")
                 End While
                 CostMasterReader.Close()
+                Entry.Visible = False
             End If
 
             If ParentFormName = "明細書" Or ParentFormName = "代価表" Then
@@ -482,7 +483,7 @@ Public Class 費用マスタ一覧
             If マスタメンテナンス.SwitchBox.Text = "一般" Then
 
 
-                ホーム.Sql.CommandText = "CREATE TABLE #UpdateID (cstmstr_id INT DEFAULT (0) NOT NULL,
+                ホーム.Sql.CommandText = "CREATE TABLE #update_data (cstmstr_id INT DEFAULT (0) NOT NULL,
                                                               cstclss_code INT DEFAULT (0) NOT NULL, 
                                                               cstmstr_category NVARCHAR(50) DEFAULT ('') NOT NULL,
                                                               cstmstr_code INT DEFAULT (0) NOT NULL, 
@@ -492,6 +493,10 @@ Public Class 費用マスタ一覧
                                                               costea MONEY DEFAULT (0) NOT NULL,
                                                               seq INT DEFAULT (0) NOT NULL)"
                 ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "SELECT MAX(cstclss_code) FROM cost_classes"
+                Dim maxcode As Integer = ホーム.Sql.ExecuteScalar
+
 
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
                     ホーム.Sql.CommandText = ""
@@ -545,14 +550,14 @@ Public Class 費用マスタ一覧
                                                                    ,cstmstr_unit,cstmstr_costea,changecode,cstmstr_seq) 
                                                       OUTPUT inserted.cstmstr_id,inserted.cstclss_code,inserted.cstmstr_category,inserted.cstmstr_code,
                                                              inserted.cstmstr_name,inserted.cstmstr_spec,inserted.cstmstr_unit,inserted.cstmstr_costea,inseted.cstmstr_seq
-                                                      INTO #UpdateID (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq)
+                                                      INTO #update_data (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq)
                                                   VALUES (@cstclsscode,@cstmstr_category,@cstmstr_code,@name,@spec,@unit,@costea,@change_code,@cstmstr_seq)"
                         Else
                             ホーム.Sql.CommandText = "UPDATE cost_masters SET cstmstr_category=@cstmstr_category,cstmstr_code=@cstmstr_code,cstmstr_name=@name,cstmstr_spec=@spec,
                                                             cstmstr_unit=@unit,cstmstr_costea=@costea,changecode=@change_code,cstmstr_seq=@cstmstr_seq 
                                                      OUTPUT inserted.cstmstr_id,inserted.cstclss_code,inserted.cstmstr_category,inserted.cstmstr_code,
                                                             inserted.cstmstr_name,inserted.cstmstr_spec,inserted.cstmstr_unit,inserted.cstmstr_costea,inserted.cstmstr_seq
-                                                     INTO #UpdateID (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq) 
+                                                     INTO #update_data (cstmstr_id,cstclss_code,cstmstr_category,cstmstr_code,name,spec,unit,costea,seq) 
                                                      WHERE cstmstr_id=" & MasterContentsList(RowCount, 1)
                         End If
                         ホーム.Sql.ExecuteNonQuery()
@@ -563,13 +568,16 @@ Public Class 費用マスタ一覧
 
                     Dim Recalculation As String = ""
 
-                    Dim RecalculationLoad As New Recalculation_cst(CostClassCode)
+                    Dim RecalculationLoad As New Recalculation_cst(CostClassCode, maxcode)
                     Recalculation = RecalculationLoad.Recalculation
 
-                    ホーム.Sql.CommandText = "DELETE FROM #UpdateID"
+                    ホーム.Sql.CommandText = "DELETE FROM #update_data"
                     ホーム.Sql.ExecuteNonQuery()
 
                 Next
+
+                ホーム.Sql.CommandText = "DROP TABLE #update_data"
+                ホーム.Sql.ExecuteNonQuery()
 
             ElseIf マスタメンテナンス.SwitchBox.Text = "管理者" Then
                 For RowCount As Integer = 1 To MasterContentsList.Rows.Count - 1
