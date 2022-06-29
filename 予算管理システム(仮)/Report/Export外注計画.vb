@@ -15,6 +15,12 @@ Public Class Export外注計画
         進行状況.Show()
         進行状況.Refresh()
 
+        Dim Connection As New SqlConnection
+        Dim Sql As New SqlCommand
+        Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
+        Connection.Open()
+        Sql.Connection = Connection
+
         ExportLoad = ""
         ホーム.Sql.Parameters.Clear()
 
@@ -48,7 +54,7 @@ Public Class Export外注計画
         '工種リスト作成
         Dim s_wrktyp_codeList As New List(Of Integer)
         Dim s_wrktyp_nameList As New List(Of String)
-        ホーム.Sql.CommandText = "SELECT * FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(0) & ") ORDER BY s_worktype_code,dtl_no ASC"
+        ホーム.Sql.CommandText = "SELECT DISTINCT(dtl_id),outsrc_no,s_worktype_code,dtl_no,s_wrktyp_name,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) ORDER BY s_worktype_code,dtl_no ASC"
         Dim SwrktypReader As SqlDataReader = ホーム.Sql.ExecuteReader
         Dim RowCount As Integer = 1
         While SwrktypReader.Read
@@ -63,13 +69,7 @@ Public Class Export外注計画
             EXSheet(RowCount, 8).Value = SwrktypReader.Item("dtl_costea")
             EXSheet(RowCount, 9).Value = SwrktypReader.Item("dtl_amount")
 
-            Dim Connection As New SqlConnection
-            Dim Sql As New SqlCommand
-            Connection.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" & ホーム.UserDataPath & ホーム.UserDataName & ";Integrated Security=True"
-            Connection.Open()
-
             '直営取得
-            Sql.Connection = Connection
             Sql.CommandText = "SELECT ISNULL(inhouse_amount,dtl_amount) FROM DirectManagement_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND dtl_id = " & EXSheet(RowCount, 3).Value
             Dim dm_amount As Decimal = Sql.ExecuteScalar
             EXSheet(RowCount, 10).Value = dm_amount
@@ -152,7 +152,6 @@ Public Class Export外注計画
                 '変更回数がNULLでない場合
                 If Not IsDBNull(SwrktypReader.Item("outsrc_no")) Then
                     '外注計画データ取得
-                    Sql.Connection = Connection
                     Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
                     Dim quanity As Decimal = Sql.ExecuteScalar
                     If Not IsDBNull(quanity) OrElse quanity = 0 Then

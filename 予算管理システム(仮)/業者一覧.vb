@@ -135,6 +135,24 @@ Public Class 業者一覧
 
                 ホーム.Modified = "True"
 
+            ElseIf ParentFormName = "業者修正" Then
+                RowIndex = VendorList.Selection.TopRow
+
+                'セルの値を変数に代入する
+                Code = VendorList(RowIndex, 1)
+                Name = VendorList(RowIndex, 2)
+                Ryaku = VendorList(RowIndex, 5)
+
+                '協力業者入力に値を代入する
+                If MsgBox("" & 協力業者入力.CoopVendorList(SelectRowIndex, 2) & "に上書きします。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Ok Then
+                    協力業者入力.CoopVendorList(SelectRowIndex, 1) = Code
+                    協力業者入力.CoopVendorList(SelectRowIndex, 2) = Name
+                    協力業者入力.CoopVendorList(SelectRowIndex, 9) = Ryaku
+                    ホーム.Modified = "True"
+                Else
+                    Me.Close()
+                End If
+
             Else
                 r = 協力業者入力.CoopVendorList.Rows.Count - 1
                 RowIndex = VendorList.Selection.TopRow
@@ -143,8 +161,6 @@ Public Class 業者一覧
                 Code = VendorList(RowIndex, 1)
                 Name = VendorList(RowIndex, 2)
                 Ryaku = VendorList(RowIndex, 5)
-
-
 
                 '協力業者入力に値を代入する
                 協力業者入力.CoopVendorList(r, 1) = Code
@@ -156,7 +172,12 @@ Public Class 業者一覧
             '業者一覧を閉じる
             Me.Close()
             If 協力業者入力.IsDisposed = False Then
-                協力業者入力.CoopVendorList.StartEditing(r, 3)
+                If ParentFormName = "業者修正" Then
+                    協力業者入力.CoopVendorList.StartEditing(SelectRowIndex, 3)
+                Else
+                    協力業者入力.CoopVendorList.StartEditing(r, 3)
+                End If
+
             End If
 
         Catch ex As Exception
@@ -210,71 +231,80 @@ Public Class 業者一覧
     End Sub
 
     Private Sub VendorList_SearchApplying(sender As Object, e As SearchApplyingEventArgs) Handles VendorList.SearchApplying
-        ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
-        Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
-        If Outsrcrcount = Nothing Then
-            If Not ParentFormName = "予算総括入力" Then
-                VendorList.DataSource = Nothing
-                MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
-                Me.Close()
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "市川工務店" Then
+        Try
+
+            ホーム.Sql.CommandText = "SELECT contents FROM controldata where class_code=11"
+            Dim Outsrcrcount As String = ホーム.Sql.ExecuteScalar
+            If Outsrcrcount = Nothing Then
+                If Not ParentFormName = "予算総括入力" Then
+                    VendorList.DataSource = Nothing
+                    MsgBox("先に予算総括入力を行ってください。", MsgBoxStyle.OkOnly, "エラー")
+                    Me.Close()
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "市川工務店" Then
+                    Me.M_TOR_ICHKAKWATableAdapter.Fill(Me.M_TOR_ICHIKAWA.M_TOR_ICHKAKWA)
+                    VendorList.DataSource = MTORICHKAKWABindingSource
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "巴産業" Then
+                    Me.M_TOR_TOMOETableAdapter.Fill(Me.M_TOR_TOMOE._M_TOR_TOMOE)
+                    VendorList.DataSource = MTORTOMOEBindingSource
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜アイシー" Then
+                    Me.M_TOR_GIFUICTableAdapter.Fill(Me.M_TOR_GIFUIC._M_TOR_GIFUIC)
+                    VendorList.DataSource = MTORGIFUICBindingSource
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜北建設" Then
+                    VendorList.DataSource = Nothing
+                    MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
+                    Me.Close()
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "飛高建設" Then
+                    Me.M_TOR_HIDAKATableAdapter.Fill(Me.M_TOR_HIDAKA._M_TOR_HIDAKA)
+                    VendorList.DataSource = MTORHIDAKABindingSource
+                ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "広小路建設" Then
+                    Me.M_TOR_HIROKOJITableAdapter.Fill(Me.M_TOR_HIROKOJI._M_TOR_HIROKOJI)
+                    VendorList.DataSource = MTORHIROKOJIBindingSource
+                End If
+            ElseIf Outsrcrcount = "市川工務店" Then
                 Me.M_TOR_ICHKAKWATableAdapter.Fill(Me.M_TOR_ICHIKAWA.M_TOR_ICHKAKWA)
                 VendorList.DataSource = MTORICHKAKWABindingSource
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "巴産業" Then
+            ElseIf Outsrcrcount = "巴産業" Then
                 Me.M_TOR_TOMOETableAdapter.Fill(Me.M_TOR_TOMOE._M_TOR_TOMOE)
                 VendorList.DataSource = MTORTOMOEBindingSource
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜アイシー" Then
+            ElseIf Outsrcrcount = "岐阜アイシー" Then
                 Me.M_TOR_GIFUICTableAdapter.Fill(Me.M_TOR_GIFUIC._M_TOR_GIFUIC)
                 VendorList.DataSource = MTORGIFUICBindingSource
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "岐阜北建設" Then
+            ElseIf Outsrcrcount = "岐阜北建設" Then
                 VendorList.DataSource = Nothing
                 MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
                 Me.Close()
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "飛高建設" Then
+            ElseIf Outsrcrcount = "飛高建設" Then
                 Me.M_TOR_HIDAKATableAdapter.Fill(Me.M_TOR_HIDAKA._M_TOR_HIDAKA)
                 VendorList.DataSource = MTORHIDAKABindingSource
-            ElseIf ParentFormName = "予算総括入力" AndAlso 予算総括入力.Company.Text = "広小路建設" Then
+            ElseIf Outsrcrcount = "広小路建設" Then
                 Me.M_TOR_HIROKOJITableAdapter.Fill(Me.M_TOR_HIROKOJI._M_TOR_HIROKOJI)
                 VendorList.DataSource = MTORHIROKOJIBindingSource
             End If
-        ElseIf Outsrcrcount = "市川工務店" Then
-            Me.M_TOR_ICHKAKWATableAdapter.Fill(Me.M_TOR_ICHIKAWA.M_TOR_ICHKAKWA)
-            VendorList.DataSource = MTORICHKAKWABindingSource
-        ElseIf Outsrcrcount = "巴産業" Then
-            Me.M_TOR_TOMOETableAdapter.Fill(Me.M_TOR_TOMOE._M_TOR_TOMOE)
-            VendorList.DataSource = MTORTOMOEBindingSource
-        ElseIf Outsrcrcount = "岐阜アイシー" Then
-            Me.M_TOR_GIFUICTableAdapter.Fill(Me.M_TOR_GIFUIC._M_TOR_GIFUIC)
-            VendorList.DataSource = MTORGIFUICBindingSource
-        ElseIf Outsrcrcount = "岐阜北建設" Then
-            VendorList.DataSource = Nothing
-            MsgBox("業者一覧を開くことができません。", MsgBoxStyle.OkOnly, "エラー")
-            Me.Close()
-        ElseIf Outsrcrcount = "飛高建設" Then
-            Me.M_TOR_HIDAKATableAdapter.Fill(Me.M_TOR_HIDAKA._M_TOR_HIDAKA)
-            VendorList.DataSource = MTORHIDAKABindingSource
-        ElseIf Outsrcrcount = "広小路建設" Then
-            Me.M_TOR_HIROKOJITableAdapter.Fill(Me.M_TOR_HIROKOJI._M_TOR_HIROKOJI)
-            VendorList.DataSource = MTORHIROKOJIBindingSource
-        End If
 
-        VendorList.Cols(0).Width = 0
-        VendorList.Cols(1).Width = 100
-        VendorList.Cols(2).Width = 300
-        VendorList.Cols(3).Width = 100
-        VendorList.Cols(4).Width = 0
-        VendorList.Cols(5).Width = 100
-        VendorList.Cols(6).Width = 250
-        VendorList.Cols(7).Width = 150
-        VendorList.Cols(8).Width = 130
+            VendorList.Cols(0).Width = 0
+            VendorList.Cols(1).Width = 100
+            VendorList.Cols(2).Width = 300
+            VendorList.Cols(3).Width = 100
+            VendorList.Cols(4).Width = 0
+            VendorList.Cols(5).Width = 100
+            VendorList.Cols(6).Width = 250
+            VendorList.Cols(7).Width = 150
+            VendorList.Cols(8).Width = 130
 
-        VendorList(0, 1) = "取引先コード"
-        VendorList(0, 2) = "業者名"
-        VendorList(0, 3) = ""
-        VendorList(0, 4) = ""
-        VendorList(0, 5) = ""
-        VendorList(0, 6) = "住所"
-        VendorList(0, 7) = ""
-        VendorList(0, 8) = "電話番号"
+            VendorList(0, 1) = "取引先コード"
+            VendorList(0, 2) = "業者名"
+            VendorList(0, 3) = ""
+            VendorList(0, 4) = ""
+            VendorList(0, 5) = ""
+            VendorList(0, 6) = "住所"
+            VendorList(0, 7) = ""
+            VendorList(0, 8) = "電話番号"
+
+        Catch ex As Exception
+        ホーム.ErrorMessage = ex.Message
+        ホーム.StackTrace = ex.StackTrace
+        エラー.Show()
+        Exit Sub
+        End Try
     End Sub
 End Class

@@ -42,7 +42,8 @@ Public Class 締切日入力
 
     Private Sub Entry_Click(sender As Object, e As EventArgs) Handles Entry.Click
         Try
-            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
+            'ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=30"
+            ホーム.Sql.CommandText = "SELECT MAX(closing_date) FROM productions"
             Dim BeforeDeadline As String = ホーム.Sql.ExecuteScalar
             If BeforeDeadline = "" Then
                 BeforeDeadline = "1900/01/01"
@@ -56,7 +57,7 @@ Public Class 締切日入力
             Dim AfterDeadline As String = Deadline(1, 1)
             Dim ReBeforeDeadline As String = BeforeDeadline.Replace("-", "/")
             If ReBeforeDeadline >= AfterDeadline Then
-                If MsgBox("登録済みの日付より前の日付です。よろしいですか？", MsgBoxStyle.OkCancel, "確認") = MsgBoxResult.Cancel Then
+                If MsgBox("最新の出来高締切日より前の日付です。", MsgBoxStyle.OkOnly, "エラー") Then
                     Exit Sub
                 End If
             End If
