@@ -49,6 +49,7 @@ Public Class 出来高査定書
         From Production_View
         Where 
             ((Production_View.outsrc_no) = (SELECT MAX(outsrc_no) FROM Production_View)) And
+((Production_View.closing_date) = (SELECT MAX(closing_date) FROM Production_View)) And
             ((Production_View.outsrcr_id) = " & outsrcrid & ");"
         レポート.C1FlexReport1.DataSources.Add(ReportData)
         レポート.C1FlexReport1.DataSourceName = ReportData.Name

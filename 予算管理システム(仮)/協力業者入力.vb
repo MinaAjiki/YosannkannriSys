@@ -251,6 +251,26 @@ Public Class 協力業者入力
             ホーム.Modified = "false"
             Me.Close()
             MsgBox("登録完了", MsgBoxStyle.OkOnly, "協力業者登録")
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub VendorMod_Click(sender As Object, e As EventArgs) Handles VendorMod.Click
+        Try
+            Dim SelectRow As Integer = CoopVendorList.Selection.TopRow
+            If CoopVendorList(SelectRow, 2) = Nothing Then
+                MsgBox("選択行に業者名が登録されていません", MsgBoxStyle.OkOnly, "協力業者登録")
+            Else
+                業者一覧.Show()
+                業者一覧.ParentFormName = "業者修正"
+                業者一覧.SelectRowIndex = CoopVendorList.Selection.TopRow
+            End If
+
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
             ホーム.StackTrace = ex.StackTrace

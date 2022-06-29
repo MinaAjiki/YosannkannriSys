@@ -6,6 +6,8 @@ Public Class 外注計画
     End Sub
 
     Public Function ReportLoad() As String
+        'カーソル変更
+        Cursor.Current = Cursors.WaitCursor
         進行状況.Show()
         進行状況.Refresh()
 

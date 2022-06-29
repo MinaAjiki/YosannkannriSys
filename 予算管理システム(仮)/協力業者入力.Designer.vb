@@ -33,10 +33,12 @@ Partial Class 協力業者入力
         Me.C1SplitterPanel2 = New C1.Win.C1SplitContainer.C1SplitterPanel()
         Me.Entry = New System.Windows.Forms.Button()
         Me.VendorSelect = New System.Windows.Forms.Button()
+        Me.VendorMod = New System.Windows.Forms.Button()
         CType(Me.CoopVendorList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FormSplitContainer.SuspendLayout()
+        Me.C1SplitterPanel1.SuspendLayout()
         Me.C1SplitterPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -124,6 +126,7 @@ Partial Class 協力業者入力
         'C1SplitterPanel1
         '
         Me.C1SplitterPanel1.BackColor = System.Drawing.Color.White
+        Me.C1SplitterPanel1.Controls.Add(Me.VendorMod)
         Me.C1SplitterPanel1.Font = New System.Drawing.Font("メイリオ", 10.0!)
         Me.C1SplitterPanel1.Height = 621
         Me.C1SplitterPanel1.KeepRelativeSize = False
@@ -181,8 +184,26 @@ Partial Class 協力業者入力
         Me.VendorSelect.Name = "VendorSelect"
         Me.VendorSelect.Size = New System.Drawing.Size(100, 30)
         Me.VendorSelect.TabIndex = 42
-        Me.VendorSelect.Text = "業 者 選 択"
+        Me.VendorSelect.Text = "業 者 追 加"
         Me.VendorSelect.UseVisualStyleBackColor = True
+        '
+        'VendorMod
+        '
+        Me.VendorMod.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.VendorMod.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.VendorMod.FlatAppearance.BorderSize = 0
+        Me.VendorMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.VendorMod.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.VendorMod.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
+        Me.VendorMod.ImageIndex = 0
+        Me.VendorMod.ImageList = Me.ButtonImageList
+        Me.VendorMod.Location = New System.Drawing.Point(144, 70)
+        Me.VendorMod.Margin = New System.Windows.Forms.Padding(3, 6, 3, 6)
+        Me.VendorMod.Name = "VendorMod"
+        Me.VendorMod.Size = New System.Drawing.Size(100, 30)
+        Me.VendorMod.TabIndex = 45
+        Me.VendorMod.Text = "業 者 修 正"
+        Me.VendorMod.UseVisualStyleBackColor = True
         '
         '協力業者入力
         '
@@ -203,6 +224,7 @@ Partial Class 協力業者入力
         CType(Me.SystemTheme, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FormSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FormSplitContainer.ResumeLayout(False)
+        Me.C1SplitterPanel1.ResumeLayout(False)
         Me.C1SplitterPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -217,4 +239,5 @@ Partial Class 協力業者入力
     Friend WithEvents FormSplitContainer As C1.Win.C1SplitContainer.C1SplitContainer
     Friend WithEvents C1SplitterPanel1 As C1.Win.C1SplitContainer.C1SplitterPanel
     Friend WithEvents C1SplitterPanel2 As C1.Win.C1SplitContainer.C1SplitterPanel
+    Friend WithEvents VendorMod As Button
 End Class

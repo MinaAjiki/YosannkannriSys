@@ -438,8 +438,10 @@ Public Class 出来高入力
                             ErrorCheck += 1
                         Else
                             Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
+                            If errorco.StyleNew.ForeColor = Color.Red Then
+                                ErrorCheck -= 1
+                            End If
                             errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
-                            ErrorCheck -= 1
                         End If
                     End If
 
@@ -469,7 +471,9 @@ Public Class 出来高入力
                         Else
                             Dim errorco As CellRange = DetailsList.GetCellRange(e.Row + 1, 7)
                             errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
-                            ErrorCheck -= 1
+                            If ErrorCheck > 0 Then
+                                ErrorCheck -= 1
+                            End If
                         End If
                     End If
 
@@ -490,8 +494,10 @@ Public Class 出来高入力
                         ErrorCheck += 1
                     Else
                         Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
+                        If errorco.StyleNew.ForeColor = Color.Red Then
+                            ErrorCheck -= 1
+                        End If
                         errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
-                        ErrorCheck -= 1
                     End If
                     '前回行
                 ElseIf e.Col = 6 Then
@@ -507,7 +513,9 @@ Public Class 出来高入力
                     Else
                         Dim errorco As CellRange = DetailsList.GetCellRange(e.Row, 7)
                         errorco.StyleNew.ForeColor = Color.FromArgb(68, 68, 68)
-                        ErrorCheck -= 1
+                        If ErrorCheck > 0 Then
+                            ErrorCheck -= 1
+                        End If
                     End If
                 End If
             End If
