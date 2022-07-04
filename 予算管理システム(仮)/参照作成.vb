@@ -125,21 +125,7 @@ Public Class 参照作成
 
     Private Sub OK_Click(sender As Object, e As EventArgs) Handles OK.Click
         Try
-            Cursor.Current = Cursors.WaitCursor
 
-            Dim BudgetNo As Integer = 0
-            Dim Year_New As Integer = 0
-            Dim Year_Old As Integer = 0
-
-            ホーム.Sql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-            Year_New = ホーム.Sql.ExecuteScalar
-
-            ReferenceSql.CommandText = "SELECT contents FROM controldata WHERE class_code=12"
-            Year_Old = ReferenceSql.ExecuteScalar
-
-            Dim Missingnumber_Details As String = ""
-            Dim ReferenceDetailsLoad As New Reference_Details(BudgetNo, Year_New, Year_Old)
-            Missingnumber_Details = ReferenceDetailsLoad.Missingnumber_Details
 
 
 

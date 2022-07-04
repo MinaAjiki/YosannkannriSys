@@ -25,7 +25,7 @@ Public Class ホーム
     Public Transaction As SqlTransaction
     Public BudgetNo As Integer                                          '作成予算回数
     Public AutoCmpCllctn As New AutoCompleteStringCollection
-    Public Modified As String = "False"                                    'データ修正判断
+    Public Modified As String = "False"                                 'データ修正判断
     Public AdminChk As String = "False"
     Public lworktypecode As Integer
     Public lworktypename As String
@@ -44,7 +44,6 @@ Public Class ホーム
     Public ReportName As String
     Public BeforeForm As String
     Public ItemSelect As String
-    'Public SelectNodeList As New List(Of C1.Win.TreeView.C1TreeNode)
     Public FirstTime As String = "False"
 
     Private Sub ホーム_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1426,10 +1425,6 @@ Public Class ホーム
             エラー.Show()
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub HomeTreeView_MouseClick(sender As Object, e As MouseEventArgs) Handles HomeTreeView.MouseClick
-
     End Sub
 
     Private Sub 右クリックメニュー_Opening(sender As Object, e As CancelEventArgs) Handles 右クリックメニュー.Opening
