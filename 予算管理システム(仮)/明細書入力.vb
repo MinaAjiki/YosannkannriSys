@@ -1314,10 +1314,7 @@ Public Class 明細書入力
                 remarks = remarks.Replace("第", "")
                 remarks = remarks.Replace("号", "")
 
-                'If ホーム.SelectNodeList.Count > 0 Then
-                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                '    NodeExpand = NodeExpandLoad.NodeExpand
-                'End If
+
             Else
                 MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
             End If
@@ -1366,10 +1363,6 @@ Public Class 明細書入力
                 remarks = remarks.Replace("号", "")
                 EntryCommand = "INSERT"
 
-                'If ホーム.SelectNodeList.Count > 0 Then
-                '    Dim NodeExpandLoad As New TreeNode_ChildExpand(ホーム.SelectNodeList(1), DetailsList(SelectRow, 3) & " " & DetailsList(SelectRow, 4) & "(" & remarks & ")")
-                '    NodeExpand = NodeExpandLoad.NodeExpand
-                'End If
 
             Else
                     MsgBox("選択された行には工事代価が登録されていません。", MsgBoxStyle.Exclamation, "明細書")
@@ -1395,8 +1388,8 @@ Public Class 明細書入力
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
 
-                Command = "CostCopy"
                 If DetailsList(SelectRow, 8) >= 12 Then
+                    ホーム.ProjectCommand = "CostCopy"
 
                     作成代価選択.HeadLine.Text = "<<コピー代価選択"
                     作成代価選択.Text = "コピー代価選択"
@@ -1431,7 +1424,7 @@ Public Class 明細書入力
             If SelectRow = 0 Then
                 MsgBox("行が選択されていません。", MsgBoxStyle.Exclamation, "明細書")
             Else
-                Command = "CostCopy"
+                ホーム.ProjectCommand = "CostCopy"
 
                 If DetailsList(SelectRow, 8) >= 12 Then
 
@@ -1806,6 +1799,7 @@ Public Class 明細書入力
 
             ホーム.Modified = "False"
             EntryCommand = ""
+            Command = ""
 
 
             'If ホーム.HomeTreeView.Nodes.Count > 0 Then

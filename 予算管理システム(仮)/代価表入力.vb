@@ -61,8 +61,6 @@ Public Class 代価表入力
                 ClassCode = ホーム.PrjctCstClassCode(FormCount - 1)
             End If
 
-            Dim CopyCostID As Integer = 0
-            Dim CopyClassCode As Integer = 0
             If 作成代価選択.Visible = True Then
                 If 明細書入力.Visible = True Then
                     If 明細書入力.DetailsList(明細書入力.SelectRow, 4) <> "" Then
@@ -92,12 +90,6 @@ Public Class 代価表入力
                         '    End If
                         'End If
                     End If
-                End If
-
-                If 作成代価選択.Text = "コピー代価選択" Then
-
-                    CopyCostID = 作成代価選択.CopyCostID
-                    CopyClassCode = 作成代価選択.CopyClassCode
                 End If
 
             End If
@@ -145,11 +137,9 @@ Public Class 代価表入力
             ホーム.Sql.CommandText = "SELECT cstclss_name FROM cost_classes WHERE cstclss_code=" & ClassCode
             Dim ClassName As String = ホーム.Sql.ExecuteScalar
 
-            If CostID > 0 Or CopyCostID > 0 Then
+            If CostID > 0 Then
                 Dim CreateCostID As Integer = CostID
-                If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
-                    CreateCostID = CopyCostID
-                End If
+
 
                 ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CreateCostID
                 Dim ProjectCostsReader As SqlDataReader = ホーム.Sql.ExecuteReader
@@ -185,31 +175,6 @@ Public Class 代価表入力
                 ProjectCostsReader.Close()
 
 
-                If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
-                    ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
-                    Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
-
-                    Dim MaxNo As Integer = 0
-
-                    If CostCount > 0 Then
-                        ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
-                        MaxNo = ホーム.Sql.ExecuteScalar
-                    End If
-
-                    Dim No As String = MaxNo + 1
-                    If No.Length = 1 Then
-                        No = "0000" & No
-                    ElseIf No.Length = 2 Then
-                        No = "000" & No
-                    ElseIf No.Length = 3 Then
-                        No = "00" & No
-                    ElseIf No.Length = 4 Then
-                        No = "0" & No
-                    End If
-                    CostNo.Value = "第" & ClassName.Last & "-" & No & "号"
-                End If
-
-
                 ホーム.Sql.CommandText = "SELECT amount FROM projectcst_bd_total WHERE prjctcst_id=" & CreateCostID
                 CostUnitPrice.Value = ホーム.Sql.ExecuteScalar
 
@@ -235,11 +200,8 @@ Public Class 代価表入力
                     While BreakDownReader.Read
                         RowCount += 1
                         RowNo += 1
-                        If 作成代価選択.Visible = True AndAlso 作成代価選択.Text = "コピー代価選択" Then
-                            BreakDownList(RowCount * 3, 1) = 0
-                        Else
-                            BreakDownList(RowCount * 3, 1) = BreakDownReader.Item("prjctcst_bd_id")
-                        End If
+
+                        BreakDownList(RowCount * 3, 1) = BreakDownReader.Item("prjctcst_bd_id")
                         BreakDownList(RowCount * 3, 9) = BreakDownReader.Item("cstmstr_id")
                         BreakDownList(RowCount * 3, 8) = BreakDownReader.Item("cstclss_code")
                         BreakDownList(RowCount * 3, 3) = BreakDownReader.Item("prjctcst_bd_no")
@@ -365,13 +327,13 @@ Public Class 代価表入力
 
                 BreakDownList.Rows.Count = 21
 
-                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode
+                ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
                 Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
 
                 Dim MaxNo As Integer = 0
 
                 If CostCount > 0 Then
-                    ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode
+                    ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
                     MaxNo = ホーム.Sql.ExecuteScalar
                 End If
 
@@ -781,6 +743,7 @@ Public Class 代価表入力
                     作成代価選択.Text = "コピー代価選択"
                     作成代価選択.SelectRow = SelectRow
                     作成代価選択.CopyList = BreakDownList
+                    作成代価選択.BeforeClass = 11
 
 
                     作成代価選択.ShowDialog()
@@ -820,6 +783,7 @@ Public Class 代価表入力
                     作成代価選択.Text = "コピー代価選択"
                     作成代価選択.SelectRow = SelectRow
                     作成代価選択.CopyList = BreakDownList
+                    作成代価選択.BeforeClass = 11
 
 
                     作成代価選択.ShowDialog()
@@ -2077,12 +2041,12 @@ Public Class 代価表入力
 
             If FormCount - 2 < 0 Then
                 If ホーム.FormPanel.Controls.Contains(明細書入力) = True Then
-                    If Not 明細書入力.Command = "CostCopy" Then
-                        明細書入力.DetailsList(明細書入力.SelectRow, 9) = CostID
+
+                    明細書入力.DetailsList(明細書入力.SelectRow, 9) = CostID
 
                         Dim ProjectCostID As Integer = 明細書入力.DetailsList(明細書入力.SelectRow, 9)
 
-                        ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
+                        ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CostID
                         Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
                         While ProjectCostReader.Read
                             明細書入力.DetailsList(明細書入力.SelectRow, 4) = ProjectCostReader.Item("prjctcst_name")
@@ -2106,9 +2070,8 @@ Public Class 代価表入力
 
                         End While
                         ProjectCostReader.Close()
-                    End If
 
-                    Dim CancelClick As String = ""
+                        Dim CancelClick As String = ""
                     Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
                     CancelClick = CancelClickLoad.ModifyCheck
 
@@ -2117,38 +2080,37 @@ Public Class 代価表入力
                     Me.Close()
                 End If
             ElseIf (FormCount - 2) >= 0 Then
-                    If Not ホーム.ProjectCommand = "CostCopy" Then
-                        ホーム.ProjectCostID(FormCount - 1) = CostID
 
-                        Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
+                ホーム.ProjectCostID(FormCount - 1) = CostID
+
+                    Dim ProjectCostID As Integer = ホーム.ProjectCostID(FormCount - 1)
                     Dim ProjectCostRow As Integer = ホーム.ProjectCostSelectRow(FormCount - 1)
                     Dim ProjectCostList As C1FlexGrid = ホーム.PrjctCstList(FormCount - 1)
 
-                        ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & ProjectCostID
-                        Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                        While ProjectCostReader.Read
-                            ProjectCostList(ProjectCostRow, 4) = ProjectCostReader.Item("prjctcst_name")
-                            ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
-                            ProjectCostList(ProjectCostRow + 2, 4) = CostNo.Text
-                            ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
-                            ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
-                            ProjectCostList(ProjectCostRow, 8) = ProjectCostReader.Item("cstclss_code")
-                            ProjectCostList(ProjectCostRow, 9) = ProjectCostID
-                            ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
-                            ProjectCostList(ProjectCostRow + 1, 10) = ProjectCostReader.Item("prjctcst_laborea")
-                            ProjectCostList(ProjectCostRow + 2, 10) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 10))
-                            ProjectCostList(ProjectCostRow + 1, 11) = ProjectCostReader.Item("prjctcst_materialea")
-                            ProjectCostList(ProjectCostRow + 2, 11) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 11))
-                            ProjectCostList(ProjectCostRow + 1, 12) = ProjectCostReader.Item("prjctcst_machineea")
-                            ProjectCostList(ProjectCostRow + 2, 12) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 12))
-                            ProjectCostList(ProjectCostRow + 1, 13) = ProjectCostReader.Item("prjctcst_subcntrctea")
-                            ProjectCostList(ProjectCostRow + 2, 13) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 13))
-                            ProjectCostList(ProjectCostRow + 1, 14) = ProjectCostReader.Item("prjctcst_expenseea")
-                            ProjectCostList(ProjectCostRow + 2, 14) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 14))
+                    ホーム.Sql.CommandText = "SELECT * FROM project_costs WHERE prjctcst_id=" & CostID
+                    Dim ProjectCostReader As SqlDataReader = ホーム.Sql.ExecuteReader
+                    While ProjectCostReader.Read
+                        ProjectCostList(ProjectCostRow, 4) = ProjectCostReader.Item("prjctcst_name")
+                        ProjectCostList(ProjectCostRow + 1, 4) = ProjectCostReader.Item("prjctcst_spec")
+                        ProjectCostList(ProjectCostRow + 2, 4) = CostNo.Text
+                        ProjectCostList(ProjectCostRow + 2, 5) = ProjectCostReader.Item("prjctcst_unit")
+                        ProjectCostList(ProjectCostRow + 1, 6) = ProjectCostReader.Item("prjctcst_costea")
+                        ProjectCostList(ProjectCostRow, 8) = ProjectCostReader.Item("cstclss_code")
+                        ProjectCostList(ProjectCostRow, 9) = ProjectCostID
+                        ProjectCostList(ProjectCostRow + 2, 6) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 6))
+                        ProjectCostList(ProjectCostRow + 1, 10) = ProjectCostReader.Item("prjctcst_laborea")
+                        ProjectCostList(ProjectCostRow + 2, 10) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 10))
+                        ProjectCostList(ProjectCostRow + 1, 11) = ProjectCostReader.Item("prjctcst_materialea")
+                        ProjectCostList(ProjectCostRow + 2, 11) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 11))
+                        ProjectCostList(ProjectCostRow + 1, 12) = ProjectCostReader.Item("prjctcst_machineea")
+                        ProjectCostList(ProjectCostRow + 2, 12) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 12))
+                        ProjectCostList(ProjectCostRow + 1, 13) = ProjectCostReader.Item("prjctcst_subcntrctea")
+                        ProjectCostList(ProjectCostRow + 2, 13) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 13))
+                        ProjectCostList(ProjectCostRow + 1, 14) = ProjectCostReader.Item("prjctcst_expenseea")
+                        ProjectCostList(ProjectCostRow + 2, 14) = Math.Floor(ProjectCostList(ProjectCostRow, 6) * ProjectCostList(ProjectCostRow + 1, 14))
 
-                        End While
-                        ProjectCostReader.Close()
-                    End If
+                    End While
+                    ProjectCostReader.Close()
 
                     Dim CancelClick As String = ""
                     Dim CancelClickLoad As New CancelClick(ホーム.ProjectCostForm(FormCount - 1))
@@ -2180,7 +2142,7 @@ Public Class 代価表入力
 
             Cursor.Current = Cursors.Default
 
-
+            ホーム.ProjectCommand = ""
 
         Catch ex As Exception
             ホーム.ErrorMessage = ex.Message
@@ -2693,6 +2655,10 @@ Public Class 代価表入力
     End Sub
 
     Private Sub Entry_ChangeUICues(sender As Object, e As UICuesEventArgs) Handles Entry.ChangeUICues
+
+    End Sub
+
+    Private Sub CostCopy_BindingContextChanged(sender As Object, e As EventArgs) Handles CostCopy.BindingContextChanged
 
     End Sub
 End Class

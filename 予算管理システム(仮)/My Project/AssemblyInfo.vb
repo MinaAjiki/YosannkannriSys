@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' アセンブリ属性の値を確認します
 
-<Assembly: AssemblyTitle("予算管理システム(仮)")>
+<Assembly: AssemblyTitle("予算管理システム")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("予算管理システム(仮)")>
+<Assembly: AssemblyProduct("予算管理システム")>
 <Assembly: AssemblyCopyright("Copyright ©  2021")>
 <Assembly: AssemblyTrademark("")>
 

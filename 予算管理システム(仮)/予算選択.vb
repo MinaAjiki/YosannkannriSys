@@ -45,6 +45,9 @@ Public Class 予算選択
                 ホーム.Sql.CommandText = "INSERT INTO budget_summary SELECT * FROM #tmp_item"
                 ホーム.Sql.ExecuteNonQuery()
 
+                ホーム.Sql.CommandText = "DROP TABLE #tmp_item"
+                ホーム.Sql.ExecuteNonQuery()
+
                 ホーム.Sql.CommandText = "SELECT budget_no,cstclss_code,prjctcst_no,prjctcst_name,prjctcst_spec,prjctcst_unit,prjctcst_quanity,
                                         prjctcst_costea,prjctcst_laborea,prjctcst_materialea,prjctcst_machineea,prjctcst_subcntrctea,prjctcst_expenseea 
                                         INTO #projectcost_item FROM project_costs WHERE budget_no=" & MaxNo & " AND prjctcst_id>0"
@@ -53,120 +56,106 @@ Public Class 予算選択
                 ホーム.Sql.CommandText = "UPDATE #projectcost_item SET budget_no =" & MaxNo + 1
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "CREATE TABLE #OutputTbl (new_id INT,no INT,classcode INT)"
+                ホーム.Sql.CommandText = "SELECT * INTO #prjctcst FROM project_costs WHERE budget_no=" & MaxNo
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "INSERT INTO project_costs OUTPUT inserted.prjctcst_id,inserted.prjctcst_no,inserted.cstclss_code INTO #OutputTbl(new_id,no,classcode) SELECT * FROM #projectcost_item"
+
+                ホーム.Sql.CommandText = "ALTER TABLE #prjctcst ADD new_id smallint DEFAULT ((0)) NOT NULL"
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "SELECT budget_no,stexpns_code,stexpns_name,stexpns_amount INTO #site_expenses FROM site_expenses WHERE budget_no=" & MaxNo
+                ホーム.Sql.CommandText = "CREATE TABLE #OutputTbl (output_id smallint,clsscode smallint,costno smallint)"
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "UPDATE #site_expenses SET budget_no =" & MaxNo + 1
+                ホーム.Sql.CommandText = "INSERT INTO project_costs OUTPUT inserted.prjctcst_id,inserted.cstclss_code,inserted.prjctcst_no INTO #OutputTbl(output_id,clsscode,costno)
+                                          SELECT * FROM #projectcost_item"
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "CREATE TABLE ##OutputTbl_expenses (new_id INT)"
+                ホーム.Sql.CommandText = "DROP TABLE #projectcost_item"
                 ホーム.Sql.ExecuteNonQuery()
 
-                ホーム.Sql.CommandText = "INSERT INTO site_expenses OUTPUT inserted.stexpns_id INTO ##OutputTbl_expenses(new_id) SELECT * FROM #site_expenses"
+                ホーム.Sql.CommandText = "UPDATE #prjctcst SET #prjctcst.new_id=#OutputTbl.output_id FROM #OutputTbl WHERE #prjctcst.cstclss_code=#OutputTbl.clsscode AND 
+                                          #prjctcst.prjctcst_no=#OutputTbl.costno"
                 ホーム.Sql.ExecuteNonQuery()
 
-                Dim ProcessCommand As New SqlCommand
-                Dim ProcessConnection As New SqlConnection
-                ProcessConnection.ConnectionString = ホーム.Connection.ConnectionString
-                ProcessConnection.Open()
-                ProcessCommand.Connection = ProcessConnection
+
+                'ホーム.Sql.CommandText = "UPDATE #OutputTbl SET #OutputTbl.prjctcst_id= project_costs.prjctcst_id FROM project_costs WHERE  budget_no=" & MaxNo + 1 & " AND prjctcst_id>0
+                '                          "
+                'ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = " CREATE TABLE ##prjctcst_bd (
+    [prjctcst_bd_id]        INT             IDENTITY (1, 1) NOT NULL,
+    [prjctcst_id]           INT             DEFAULT ((0)) NOT NULL,
+    [cstclss_code]          SMALLINT        DEFAULT ((0)) NOT NULL,
+    [cstmstr_id]            INT             DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_no]        SMALLINT        DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_name]      NVARCHAR (50)   DEFAULT ('') NOT NULL,
+    [prjctcst_bd_spec]      NVARCHAR (50)   DEFAULT ('') NOT NULL,
+    [prjctcst_bd_unit]      NVARCHAR (6)    DEFAULT ('') NOT NULL,
+    [prjctcst_bd_quanity]   DECIMAL (15, 2) DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_costea]    MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_labor]     MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_material]  MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_machine]   MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_subcntrct] MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_expense]   MONEY           DEFAULT ((0)) NOT NULL,
+    [prjctcst_bd_remarks]   NVARCHAR (30)   DEFAULT ('') NOT NULL);"
+                ホーム.Sql.ExecuteNonQuery()
 
 
 
-                ProcessCommand.CommandText = "SELECT budget_no,dtl_no,s_worktype_code,cstclss_code,cstmstr_id,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_labor,
-                                            dtl_material,dtl_machine,dtl_subcntrct,dtl_expens,dtl_fraction,dtl_remarks INTO ##details FROM details WHERE budget_no=" & MaxNo
-                ProcessCommand.ExecuteNonQuery()
-
-                ProcessCommand.CommandText = "UPDATE ##details SET budget_no=" & MaxNo + 1
-                ProcessCommand.ExecuteNonQuery()
-
-                Dim OldIDList_dtl As New List(Of Integer)
-                ホーム.Sql.CommandText = "SELECT dtl_id FROM details WHERE budget_no=" & MaxNo
-                Dim OldIDReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OldIDReader.Read
-                    OldIDList_dtl.Add(OldIDReader.Item("dtl_id"))
-                End While
-                OldIDReader.Close()
-
-                Dim OldIDList_expense As New List(Of Integer)
-                ホーム.Sql.CommandText = "SELECT stexpns_id FROM site_expenses WHERE budget_no=" & MaxNo
-                Dim OldID_expnsReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OldID_expnsReader.Read
-                    OldIDList_expense.Add(OldID_expnsReader.Item("stexpns_id"))
-                End While
-                OldID_expnsReader.Close()
+                ホーム.Sql.CommandText = "INSERT INTO ##prjctcst_bd SELECT project_cost_breakdowns.prjctcst_id,project_cost_breakdowns.cstclss_code,project_cost_breakdowns.cstmstr_id,project_cost_breakdowns.prjctcst_bd_no,
+                                          project_cost_breakdowns.prjctcst_bd_name,project_cost_breakdowns.prjctcst_bd_spec,project_cost_breakdowns.prjctcst_bd_unit,project_cost_breakdowns.prjctcst_bd_quanity,
+                                          project_cost_breakdowns.prjctcst_bd_costea,project_cost_breakdowns.prjctcst_bd_labor,project_cost_breakdowns.prjctcst_bd_material,project_cost_breakdowns.prjctcst_bd_machine,
+                                          project_cost_breakdowns.prjctcst_bd_subcntrct,project_cost_breakdowns.prjctcst_bd_expense,project_cost_breakdowns.prjctcst_bd_remarks FROM  project_cost_breakdowns 
+                                          INNER JOIN #prjctcst ON project_cost_breakdowns.prjctcst_id = #prjctcst.prjctcst_id"
+                ホーム.Sql.ExecuteNonQuery()
 
 
-                Dim ProcessCommand1 As New SqlCommand
-                Dim ProcessConnection1 As New SqlConnection
-                ProcessConnection1.ConnectionString = ホーム.Connection.ConnectionString
-                ProcessConnection1.Open()
-                ProcessCommand1.Connection = ProcessConnection1
+                ホーム.Sql.CommandText = "UPDATE ##prjctcst_bd SET ##prjctcst_bd.prjctcst_id=#prjctcst.new_id FROM #prjctcst WHERE ##prjctcst_bd.prjctcst_id=#prjctcst.prjctcst_id"
+                ホーム.Sql.ExecuteNonQuery()
 
-                Dim OldIDList_prjctcst As New List(Of Integer)
-                ホーム.Sql.CommandText = "SELECT prjctcst_id FROM project_costs WHERE budget_no=" & MaxNo
-                Dim OldID_prjctcstReader As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OldID_prjctcstReader.Read
-                    OldIDList_prjctcst.Add(OldID_prjctcstReader.Item("prjctcst_id"))
-                End While
-                OldID_prjctcstReader.Close()
+                ホーム.Sql.CommandText = "UPDATE ##prjctcst_bd SET ##prjctcst_bd.cstmstr_id=#prjctcst.new_id FROM #prjctcst WHERE ##prjctcst_bd.cstclss_code=#prjctcst.cstclss_code
+                                          AND ##prjctcst_bd.cstmstr_id=#prjctcst.prjctcst_id"
+                ホーム.Sql.ExecuteNonQuery()
 
-                Dim Count As Integer = 0
-                Dim NewIDList As New List(Of Integer)
-                ホーム.Sql.CommandText = "SELECT * FROM #OutputTbl"
-                Dim OldIDSelect As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OldIDSelect.Read
+                ホーム.Sql.CommandText = "INSERT INTO project_cost_breakdowns SELECT prjctcst_id,cstclss_code,cstmstr_id,prjctcst_bd_no,prjctcst_bd_name,prjctcst_bd_spec,
+                                          prjctcst_bd_unit,prjctcst_bd_quanity,prjctcst_bd_costea,prjctcst_bd_labor,prjctcst_bd_material,prjctcst_bd_machine,prjctcst_bd_subcntrct,
+                                          prjctcst_bd_expense,prjctcst_bd_remarks FROM ##prjctcst_bd"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "SELECT prjctcst_id,cstclss_code,cstmstr_id,prjctcst_bd_no,prjctcst_bd_name,prjctcst_bd_spec,prjctcst_bd_unit,prjctcst_bd_quanity,
-                                              prjctcst_bd_costea,prjctcst_bd_labor,prjctcst_bd_material,prjctcst_bd_machine,prjctcst_bd_subcntrct,prjctcst_bd_expense,prjctcst_bd_remarks 
-                                              INTO #prjctcst_bd FROM project_cost_breakdowns WHERE prjctcst_id=" & OldIDList_prjctcst.Item(Count)
-                    ProcessCommand.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "UPDATE #prjctcst_bd SET prjctcst_id=" & OldIDSelect.Item("new_id") & " WHERE prjctcst_id=" & OldIDList_prjctcst.Item(Count)
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "DROP TABLE ##prjctcst_bd"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "CREATE TABLE #OutputTbl_bd (new_id INT,no INT,classcode INT,cstmstr_id INT)"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "SELECT * INTO #details FROM details WHERE budget_no=" & MaxNo
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "INSERT INTO project_cost_breakdowns OUTPUT inserted.prjctcst_bd_id,inserted.prjctcst_bd_no,inserted.cstclss_code,inserted.cstmstr_id 
-                                               INTO #OutputTbl_bd(new_id,no,classcode,cstmstr_id) SELECT * FROM #prjctcst_bd"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "UPDATE #details SET #details.budget_no=" & MaxNo + 1
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "SELECT * FROM  #OutputTbl_bd"
-                    Dim bdSelect As SqlDataReader = ProcessCommand.ExecuteReader
-                    While bdSelect.Read
-                        If bdSelect.Item("classcode") = OldIDSelect.Item("classcode") AndAlso bdSelect.Item("cstmstr_id") = OldIDList_prjctcst.Item(Count) Then
-                            ProcessCommand1.CommandText = "UPDATE project_cost_breakdowns SET cstmstr_id=" & OldIDSelect.Item("new_id") & " WHERE prjctcst_bd_id=" & bdSelect.Item("new_id")
-                            ProcessCommand1.ExecuteNonQuery()
-                        End If
-                    End While
-                    bdSelect.Close()
+                ホーム.Sql.CommandText = "UPDATE #details SET #details.cstmstr_id=#prjctcst.new_id FROM #prjctcst WHERE #details.cstclss_code=#prjctcst.cstclss_code
+                                          AND #details.cstmstr_id=#prjctcst.prjctcst_id"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "UPDATE ##details SET cstmstr_id=" & OldIDSelect.Item("new_id") & " WHERE cstclss_code=" & OldIDSelect.Item("classcode") &
-                                                        " AND cstmstr_id=" & OldIDList_prjctcst.Item(Count)
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "ALTER TABLE #details DROP COLUMN dtl_id"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "DROP TABLE #prjctcst_bd"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "CREATE TABLE #OutputTbl_dtl (new_id smallint,old_id smallint)"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "DROP TABLE #OutputTbl_bd"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "INSERT INTO details OUTPUT inserted.dtl_id INTO #OutputTbl_dtl(new_id) SELECT * FROM #details"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    Count += 1
-                End While
-                OldIDSelect.Close()
+                ホーム.Sql.CommandText = "UPDATE #OutputTbl_dtl SET #OutputTbl_dtl.old_id=details.dtl_id FROM details WHERE details.budget_no=" & MaxNo
+                ホーム.Sql.ExecuteNonQuery()
 
-                ProcessCommand.CommandText = "CREATE TABLE ##OutputTbl_dtl (new_id INT)"
-                ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "DROP TABLE #OutputTbl"
+                ホーム.Sql.ExecuteNonQuery()
 
-                ProcessCommand.CommandText = "INSERT INTO details OUTPUT inserted.dtl_id INTO ##OutputTbl_dtl(new_id) SELECT * FROM ##details"
-                ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "DROP TABLE #details"
+                ホーム.Sql.ExecuteNonQuery()
+
+
 
                 ホーム.Sql.CommandText = "SELECT Count(*) FROM outsourcing_plans WHERE budget_no=" & MaxNo
                 Dim OutsourcingCount As Integer = ホーム.Sql.ExecuteScalar
@@ -178,8 +167,16 @@ Public Class 予算選択
                     ホーム.Sql.CommandText = "SELECT * INTO ##outsourcing_plans FROM outsourcing_plans WHERE budget_no=" & MaxNo & " AND outsrc_no=" & OutsrcMaxNo
                     ホーム.Sql.ExecuteNonQuery()
 
-                    ホーム.Sql.CommandText = "UPDATE ##outsourcing_plans SET budget_no=" & MaxNo + 1 & ",outsrc_no=" & OutsrcMaxNo + 1 & ",created_date=@createddate"
+                    ホーム.Sql.CommandText = "UPDATE ##outsourcing_plans SET ##outsourcing_plans.budget_no=" & MaxNo + 1 & ",##outsourcing_plans.outsrc_no=" & OutsrcMaxNo + 1 &
+                                             ",##outsourcing_plans.created_date=@createddate,##outsourcing_plans.dtl_id=#OutputTbl_dtl.new_id FROM #OutputTbl_dtl 
+                                              WHERE ##outsourcing_plans.dtl_id=#OutputTbl_dtl.old_id"
                     ホーム.Sql.Parameters.Add("@createddate", SqlDbType.DateTime).Value = Today
+                    ホーム.Sql.ExecuteNonQuery()
+
+                    ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans SELECT * FROM ##outsourcing_plans"
+                    ホーム.Sql.ExecuteNonQuery()
+
+                    ホーム.Sql.CommandText = "DROP TABLE ##outsourcing_plans"
                     ホーム.Sql.ExecuteNonQuery()
                 End If
 
@@ -196,59 +193,79 @@ Public Class 予算選択
                     ホーム.Sql.ExecuteNonQuery()
 
                     ホーム.Sql.Parameters.Clear()
-                    ホーム.Sql.CommandText = "UPDATE ##productions SET closing_date=@closingdate"
+                    ホーム.Sql.CommandText = "UPDATE ##productions SET  ##productions.closing_date=@closingdate, ##productions.dtl_id=#OutputTbl_dtl.new_id FROM  #OutputTbl_dtl
+                                              WHERE ##productions.dtl_id=#OutputTbl_dtl.old_id"
                     ホーム.Sql.Parameters.Add("@closingdate", SqlDbType.DateTime).Value = Today
                     ホーム.Sql.ExecuteNonQuery()
-                End If
 
-                Dim DetailsCount As Integer = 0
-                ホーム.Sql.Parameters.Clear()
-                ProcessCommand.CommandText = "SELECT * FROM ##OutputTbl_dtl"
-                Dim DetailsSelect As SqlDataReader = ProcessCommand.ExecuteReader
-                While DetailsSelect.Read
-
-                    If OutsourcingCount > 0 Then
-                        ホーム.Sql.CommandText = "UPDATE ##outsourcing_plans SET dtl_id=" & DetailsSelect.Item("new_id") & " WHERE dtl_id=" & OldIDList_dtl.Item(DetailsCount)
-                        ホーム.Sql.ExecuteNonQuery()
-                    End If
-                    If ProductionsCount > 0 Then
-                        ホーム.Sql.CommandText = "UPDATE ##productions SET dtl_id=" & DetailsSelect.Item("new_id") & " WHERE dtl_id=" & OldIDList_dtl.Item(DetailsCount)
-                        ホーム.Sql.ExecuteNonQuery()
-                    End If
-                    DetailsCount += 1
-                End While
-                DetailsSelect.Close()
-
-                If OutsourcingCount > 0 Then
-                    ホーム.Sql.CommandText = "INSERT INTO outsourcing_plans SELECT * FROM ##outsourcing_plans"
-                    ホーム.Sql.ExecuteNonQuery()
-                End If
-
-                If ProductionsCount > 0 Then
                     ホーム.Sql.CommandText = "INSERT INTO productions SELECT * FROM ##productions"
                     ホーム.Sql.ExecuteNonQuery()
+
+                    ホーム.Sql.CommandText = "DROP TABLE ##productions"
+                    ホーム.Sql.ExecuteNonQuery()
+
                 End If
 
-                Dim StexpnsCount As Integer = 0
-                ホーム.Sql.CommandText = "SELECT * FROM ##OutputTbl_expenses"
-                Dim OldID_StexpnsSelect As SqlDataReader = ホーム.Sql.ExecuteReader
-                While OldID_StexpnsSelect.Read
+                ホーム.Sql.CommandText = "SELECT budget_no,stexpns_code,stexpns_name,stexpns_amount INTO #expense_item FROM site_expenses WHERE budget_no=" & MaxNo & " AND stexpns_id>0"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,expns_bd_unit,expns_bd_quanity,expns_bd_costea INTO #expense_bd FROM expense_breakdowns WHERE stexpns_id=" & OldIDList_expense.Item(StexpnsCount)
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "UPDATE #expense_item SET budget_no =" & MaxNo + 1
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "UPDATE #expense_bd SET stexpns_id=" & OldID_StexpnsSelect.Item("new_id") & " WHERE stexpns_id=" & OldIDList_expense.Item(StexpnsCount)
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "SELECT * INTO #siteexpense FROM site_expenses WHERE budget_no=" & MaxNo
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "INSERT INTO expense_breakdowns SELECT * FROM #expense_bd"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "ALTER TABLE #siteexpense ADD new_id smallint DEFAULT ((0)) NOT NULL"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    ProcessCommand.CommandText = "DROP TABLE #expense_bd"
-                    ProcessCommand.ExecuteNonQuery()
+                ホーム.Sql.CommandText = "CREATE TABLE #OutputTbl_expense (output_id smallint,code smallint)"
+                ホーム.Sql.ExecuteNonQuery()
 
-                    StexpnsCount += 1
-                End While
-                OldID_StexpnsSelect.Close()
+                ホーム.Sql.CommandText = "INSERT INTO site_expenses OUTPUT inserted.stexpns_id,inserted.stexpns_code INTO #OutputTbl_expense(output_id,code) SELECT * FROM #expense_item"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "DROP TABLE #expense_item"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "UPDATE #siteexpense SET #siteexpense.new_id=#OutputTbl_expense.output_id FROM #OutputTbl_expense WHERE #siteexpense.stexpns_code=#OutputTbl_expense.code"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = " CREATE TABLE ##expense_bd (
+      [expns_bd_id]      INT             IDENTITY (1, 1) NOT NULL,
+    [stexpns_id]       INT             DEFAULT ((0)) NOT NULL,
+    [expns_bd_no]      SMALLINT        DEFAULT ((0)) NOT NULL,
+    [expns_bd_name]    NVARCHAR (30)   DEFAULT ('') NOT NULL,
+    [expns_bd_spec]    NVARCHAR (30)   DEFAULT ((0)) NOT NULL,
+    [expns_bd_unit]    NVARCHAR (6)    DEFAULT ('') NOT NULL,
+    [expns_bd_quanity] DECIMAL (15, 2) DEFAULT ((0)) NOT NULL,
+    [expns_bd_costea]  MONEY           DEFAULT ((0)) NOT NULL);"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "INSERT INTO ##expense_bd SELECT expense_breakdowns.stexpns_id,expense_breakdowns.expns_bd_no,
+                                          expense_breakdowns.expns_bd_name,expense_breakdowns.expns_bd_spec,expense_breakdowns.expns_bd_unit,expense_breakdowns.expns_bd_quanity,
+                                          expense_breakdowns.expns_bd_costea FROM expense_breakdowns 
+                                          INNER JOIN #siteexpense ON expense_breakdowns.stexpns_id = #siteexpense.stexpns_id"
+                ホーム.Sql.ExecuteNonQuery()
+
+
+                ホーム.Sql.CommandText = "UPDATE ##expense_bd SET ##expense_bd.stexpns_id=#siteexpense.new_id FROM #siteexpense WHERE ##expense_bd.stexpns_id=#siteexpense.stexpns_id"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "INSERT INTO expense_breakdowns SELECT stexpns_id,expns_bd_no,expns_bd_name,expns_bd_spec,
+                                          expns_bd_unit,expns_bd_quanity,expns_bd_costea FROM ##expense_bd"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "DROP TABLE ##expense_bd"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "DROP TABLE #prjctcst"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "DROP TABLE #OutputTbl_dtl"
+                ホーム.Sql.ExecuteNonQuery()
+
+                ホーム.Sql.CommandText = "DROP TABLE #siteexpense"
+                ホーム.Sql.ExecuteNonQuery()
 
                 ホーム.Transaction.Commit()
 

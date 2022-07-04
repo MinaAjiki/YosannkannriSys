@@ -173,20 +173,50 @@ Public Class 作成代価選択
             ホーム.Sql.Parameters("@cstclssname").Value = CostsList.SelectedItem
             Dim ClassCode As Integer = ホーム.Sql.ExecuteScalar
 
+            ホーム.Sql.CommandText = "SELECT Count(*) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
+            Dim CostCount As Integer = ホーム.Sql.ExecuteScalar
+
+            Dim MaxNo As Integer = 0
+
+            If CostCount > 0 Then
+                ホーム.Sql.CommandText = "SELECT MAX(prjctcst_no) FROM project_costs WHERE cstclss_code=" & ClassCode & " AND budget_no=" & ホーム.BudgetNo
+                MaxNo = ホーム.Sql.ExecuteScalar
+            End If
+
+            Dim No As String = MaxNo + 1
+            If No.Length = 1 Then
+                No = "0000" & No
+            ElseIf No.Length = 2 Then
+                No = "000" & No
+            ElseIf No.Length = 3 Then
+                No = "00" & No
+            ElseIf No.Length = 4 Then
+                No = "0" & No
+            End If
+            Dim ClassName As String = CostsList.SelectedItem
 
             If 明細書入力.Visible = True Then
+                If Not ホーム.ProjectCommand = "CostCopy" Then
+                    ホーム.ProjectCostForm.Add(New 代価表入力)
+                    ホーム.ProjectCostForm(0).TopLevel = False
+                    ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
+                    ホーム.ProjectCostSelectRow.Add(SelectRow)
+                    ホーム.ProjectCostID.Add(0)
+                    ホーム.PrjctCstClassCode.Add(ClassCode)
+                    ホーム.PrjctCstList.Add(明細書入力.DetailsList)
+                    CopyClassCode = 明細書入力.DetailsList(SelectRow, 8)
+                    CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
+                    ホーム.ProjectCostForm(0).Show()
+                    明細書入力.Visible = False
+                Else
 
-                ホーム.ProjectCostForm.Add(New 代価表入力)
-                ホーム.ProjectCostForm(0).TopLevel = False
-                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(0))
-                ホーム.ProjectCostSelectRow.Add(SelectRow)
-                ホーム.ProjectCostID.Add(0)
-                ホーム.PrjctCstClassCode.Add(ClassCode)
-                ホーム.PrjctCstList.Add(明細書入力.DetailsList)
-                CopyClassCode = 明細書入力.DetailsList(SelectRow, 8)
-                CopyCostID = 明細書入力.DetailsList(SelectRow, 9)
-                ホーム.ProjectCostForm(0).Show()
-                明細書入力.Visible = False
+                    If MsgBox(明細書入力.DetailsList(SelectRow + 2, 4) & " を " & "第" & ClassName.Last & "-" & No & "号 にコピーします。", MsgBoxStyle.OkCancel, "代価コピー") = MsgBoxResult.Ok Then
+                        Dim costcopy As String = ""
+                        Dim CostCopyLoad As New CostCopy(ClassCode, 明細書入力.DetailsList(SelectRow, 9), No)
+                        costcopy = CostCopyLoad.CostCopy
+                    End If
+                    ホーム.ProjectCommand = ""
+                End If
 
             ElseIf ホーム.BeforeForm = "代価一覧" Then
 
@@ -220,20 +250,34 @@ Public Class 作成代価選択
                 DaikaForm.Show()
                 代価内訳.Close()
             Else
-                Dim FormCount As Integer = ホーム.ProjectCostForm.Count
 
-                ホーム.ProjectCostForm.Add(New 代価表入力)
-                ホーム.ProjectCostForm(FormCount).TopLevel = False
-                ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
-                ホーム.ProjectCostSelectRow.Add(SelectRow)
-                ホーム.ProjectCostID.Add(0)
-                ホーム.PrjctCstClassCode.Add(ClassCode)
-                ホーム.PrjctCstList.Add(CopyList)
-                CopyClassCode = CopyList(SelectRow, 8)
-                CopyCostID = CopyList(SelectRow, 9)
-                ホーム.ProjectCostForm(FormCount).Show()
-                ホーム.ProjectCostForm(FormCount - 1).Visible = False
+                If Not ホーム.ProjectCommand = "CostCopy" Then
+                    Dim FormCount As Integer = ホーム.ProjectCostForm.Count
+
+                    ホーム.ProjectCostForm.Add(New 代価表入力)
+                    ホーム.ProjectCostForm(FormCount).TopLevel = False
+                    ホーム.FormPanel.Controls.Add(ホーム.ProjectCostForm(FormCount))
+                    ホーム.ProjectCostSelectRow.Add(SelectRow)
+                    ホーム.ProjectCostID.Add(0)
+                    ホーム.PrjctCstClassCode.Add(ClassCode)
+                    ホーム.PrjctCstList.Add(CopyList)
+                    CopyClassCode = CopyList(SelectRow, 8)
+                    CopyCostID = CopyList(SelectRow, 9)
+                    ホーム.ProjectCostForm(FormCount).Show()
+                    ホーム.ProjectCostForm(FormCount - 1).Visible = False
+                Else
+
+                    If MsgBox(CopyList((SelectRow) + 2, 4) & " を " & "第" & ClassName.Last & "-" & No & "号 にコピーします。", MsgBoxStyle.OkCancel, "代価コピー") = MsgBoxResult.Ok Then
+                        Dim costcopy As String = ""
+                        Dim CostCopyLoad As New CostCopy(ClassCode, CopyList(SelectRow, 9), No)
+                        costcopy = CostCopyLoad.CostCopy
+                    End If
+                    ホーム.ProjectCommand = ""
+                End If
+
             End If
+
+
             ホーム.Modified = "True"
 
             Me.Close()
