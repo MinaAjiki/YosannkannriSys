@@ -54,14 +54,21 @@ Public Class Export外注計画
         '工種リスト作成
         Dim s_wrktyp_codeList As New List(Of Integer)
         Dim s_wrktyp_nameList As New List(Of String)
+
         ホーム.Sql.CommandText = "SELECT DISTINCT(dtl_id),outsrc_no,s_worktype_code,dtl_no,s_wrktyp_name,dtl_name,dtl_spec,dtl_unit,dtl_quanity,dtl_costea,dtl_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) ORDER BY s_worktype_code,dtl_no ASC"
         Dim SwrktypReader As SqlDataReader = ホーム.Sql.ExecuteReader
         Dim RowCount As Integer = 1
         While SwrktypReader.Read
+            Dim DtlID = SwrktypReader.Item("dtl_id")
+            Sql.CommandText = "SELECT COUNT(dtl_id) FROM details WHERE budget_no = (SELECT MAX(budget_no) FROM details) AND dtl_id = " & DtlID
+            Dim DtlCount As Integer = Sql.ExecuteScalar
+            If DtlCount = 0 Then
+                Continue While
+            End If
+            EXSheet(RowCount, 3).Value = DtlID
             EXSheet(RowCount, 0).Value = SwrktypReader.Item("s_worktype_code")
             EXSheet(RowCount, 1).Value = SwrktypReader.Item("dtl_no")
             EXSheet(RowCount, 2).Value = SwrktypReader.Item("s_wrktyp_name")
-            EXSheet(RowCount, 3).Value = SwrktypReader.Item("dtl_id")
             EXSheet(RowCount, 4).Value = SwrktypReader.Item("dtl_name")
             EXSheet(RowCount, 5).Value = SwrktypReader.Item("dtl_spec")
             EXSheet(RowCount, 6).Value = SwrktypReader.Item("dtl_unit")
@@ -146,25 +153,55 @@ Public Class Export外注計画
             End While
             SubjectReader.Close()
 
-
+            Dim quanity As Decimal
+            Dim costea As Decimal
+            Dim amount As Decimal
             '業者数ループ
             For VendorLoop As Integer = 0 To VendorIDList.Count - 1
                 '変更回数がNULLでない場合
                 If Not IsDBNull(SwrktypReader.Item("outsrc_no")) Then
                     '外注計画データ取得
-                    Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
-                    Dim quanity As Decimal = Sql.ExecuteScalar
-                    If Not IsDBNull(quanity) OrElse quanity = 0 Then
-                        EXSheet(RowCount, 21 + (VendorLoop * 3)).Value = quanity
+                    'Sql.CommandText = "SELECT ISNULL(outsrcng_quanity,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
+                    'Dim quanity As Decimal = Sql.ExecuteScalar
+                    'If Not IsDBNull(quanity) OrElse quanity = 0 Then
+                    '    EXSheet(RowCount, 21 + (VendorLoop * 3)).Value = quanity
 
-                        Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
-                        Dim costea As Decimal = Sql.ExecuteScalar
-                        EXSheet(RowCount, 22 + (VendorLoop * 3)).Value = costea
+                    '    Sql.CommandText = "SELECT ISNULL(outsrcng_costea,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
+                    '    Dim costea As Decimal = Sql.ExecuteScalar
+                    '    EXSheet(RowCount, 22 + (VendorLoop * 3)).Value = costea
 
-                        Sql.CommandText = "SELECT ISNULL(outsrcng_amount,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
-                        Dim amount As Decimal = Sql.ExecuteScalar
-                        EXSheet(RowCount, 23 + (VendorLoop * 3)).Value = amount
-                    End If
+                    '    Sql.CommandText = "SELECT ISNULL(outsrcng_amount,0) FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
+                    '    Dim amount As Decimal = Sql.ExecuteScalar
+                    '    EXSheet(RowCount, 23 + (VendorLoop * 3)).Value = amount
+                    'End If
+                    Sql.CommandText = "SELECT outsrcng_quanity,outsrcng_costea,outsrcng_amount FROM OutsrcrPlan_View WHERE (outsrc_no IS NULL OR outsrc_no = (SELECT MAX(outsrc_no) FROM OutsrcrPlan_View)) AND s_worktype_code =  " & EXSheet(RowCount, 0).Value & " AND (outsrcr_id IS NULL OR outsrcr_id = " & VendorIDList(VendorLoop) & ") AND dtl_id = " & EXSheet(RowCount, 3).Value & " ORDER BY s_worktype_code,dtl_no ASC"
+                    Dim vendorcst As SqlDataReader = Sql.ExecuteReader
+                    While vendorcst.Read
+                        If IsDBNull(vendorcst.Item("outsrcng_quanity")) = True Then
+                            vendorcst.Close()
+                            Exit For
+                        Else
+                            quanity = vendorcst.Item("outsrcng_quanity")
+                            If quanity = 0 Then
+                                vendorcst.Close()
+                                Exit For
+                            End If
+                            EXSheet(RowCount, 21 + (VendorLoop * 3)).Value = quanity
+                        End If
+                        If IsDBNull(vendorcst.Item("outsrcng_costea")) = True Then
+                            EXSheet(RowCount, 22 + (VendorLoop * 3)).Value = 0
+                        Else
+                            costea = vendorcst.Item("outsrcng_costea")
+                            EXSheet(RowCount, 22 + (VendorLoop * 3)).Value = costea
+                        End If
+                        If IsDBNull(vendorcst.Item("outsrcng_amount")) = True Then
+                            EXSheet(RowCount, 23 + (VendorLoop * 3)).Value = 0
+                        Else
+                            amount = vendorcst.Item("outsrcng_amount")
+                            EXSheet(RowCount, 23 + (VendorLoop * 3)).Value = amount
+                        End If
+                    End While
+                    vendorcst.Close()
                 End If
             Next
             RowCount += 1
