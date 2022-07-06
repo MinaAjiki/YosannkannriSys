@@ -400,12 +400,12 @@ Partial Class 外注内訳入力
         Me.Create.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.Create.ImageIndex = 0
         Me.Create.ImageList = Me.ButtonImageList
-        Me.Create.Location = New System.Drawing.Point(940, 6)
+        Me.Create.Location = New System.Drawing.Point(10, 6)
         Me.Create.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Create.Name = "Create"
         Me.Create.Size = New System.Drawing.Size(100, 30)
         Me.Create.TabIndex = 51
-        Me.Create.Text = "作　成"
+        Me.Create.Text = "変 更 作 成"
         Me.Create.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Create.UseVisualStyleBackColor = True
         '

@@ -1671,7 +1671,8 @@ Public Class 明細書入力
                                     ホーム.Sql.Parameters.Add(New SqlParameter("@cstclsscode", SqlDbType.SmallInt)).Value = DetailsList(RowCount * 3, 8)
                                 End If
                                 If IsNothing(OutsoucerList(RowCount * 3, OutsrcrCount + 1)) = True Then
-                                    ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                                    'ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = 0
+                                    Continue For
                                 Else
                                     ホーム.Sql.Parameters.Add(New SqlParameter("@quanity", SqlDbType.Decimal)).Value = OutsoucerList(RowCount * 3, OutsrcrCount + 1)
                                 End If

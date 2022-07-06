@@ -537,8 +537,10 @@ Public Class 外注内訳入力
                 Exit Sub
             End If
 
+            '業者数ループ
             For Vendorloop As Integer = 1 To Vendorcount
                 Dim outsrcrid As Integer = Breakdown(2, Vendorloop)
+                '明細数ループ
                 For Detailloop As Integer = 1 To Detailscount
                     Dim dtlid As Integer = DetailList(Detailloop * 3, 0)
                     Dim Oquanity As Decimal = Breakdown(Detailloop * 3, Vendorloop)
@@ -546,7 +548,9 @@ Public Class 外注内訳入力
                     ホーム.Sql.Parameters.Clear()
                     ホーム.Sql.CommandText = "SELECT ISNULL(COUNT(dtl_id),0) FROM outsourcing_plans WHERE outsrc_no =" & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid
                     Dim OutsrcnoCount As Integer = ホーム.Sql.ExecuteScalar
+                    '登録内容が新規のとき
                     If OutsrcnoCount = 0 Then
+                        '個数か単価が0のとき、次のループへ。それ以外は新規登録
                         If Oquanity = 0 Or Ocostea = 0 Then
                             Continue For
                         Else
@@ -565,6 +569,7 @@ Public Class 外注内訳入力
                         ホーム.Sql.Parameters.Clear()
                         ホーム.Sql.CommandText = "UPDATE outsourcing_plans SET budget_no=@budget_no,outsrc_no=@outsrc_no,outsrcr_id=@outsrcr_id,dtl_id=@dtl_id,outsrcng_quanity=@outsrcng_quanity,outsrcng_costea=@outsrcng_costea,created_date=@created_date WHERE outsrc_no = " & outsrcno & "AND outsrcr_id =" & outsrcrid & "AND dtl_id =" & dtlid
                     End If
+
                     ホーム.Sql.Parameters.Add(New SqlParameter("@budget_no", SqlDbType.Int))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrc_no", SqlDbType.Int))
                     ホーム.Sql.Parameters.Add(New SqlParameter("@outsrcr_id", SqlDbType.Int))
