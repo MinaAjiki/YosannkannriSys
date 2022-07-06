@@ -91,6 +91,10 @@ Public Class 出来高査定チェックフォーム
 
     Private Sub Asses_Click(sender As Object, e As EventArgs) Handles Asses.Click
         Try
+            If VendorList.Text = "協力業者を選択" Then
+                MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
 
             '値がTrueの場合、変数に帳票名を代入する
             ホーム.ReportName = "出来高査定書"
@@ -110,6 +114,10 @@ Public Class 出来高査定チェックフォーム
 
     Private Sub AssesComp_Click(sender As Object, e As EventArgs) Handles AssesComp.Click
         Try
+            If VendorList.Text = "協力業者を選択" Then
+                MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
 
             '値がTrueの場合、変数に帳票名を代入する
             ホーム.ReportName = "出来高査定書(完成)"
@@ -129,6 +137,10 @@ Public Class 出来高査定チェックフォーム
 
     Private Sub QAsses_Click(sender As Object, e As EventArgs) Handles QAsses.Click
         Try
+            If VendorList.Text = "協力業者を選択" Then
+                MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
 
             '値がTrueの場合、変数に帳票名を代入する
             ホーム.ReportName = "出来形数量査定書(中間)"
@@ -148,6 +160,10 @@ Public Class 出来高査定チェックフォーム
 
     Private Sub QAssesComp_Click(sender As Object, e As EventArgs) Handles QAssesComp.Click
         Try
+            If VendorList.Text = "協力業者を選択" Then
+                MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
+                Exit Sub
+            End If
 
             '値がTrueの場合、変数に帳票名を代入する
             ホーム.ReportName = "出来形数量査定書(完成)"
@@ -167,10 +183,11 @@ Public Class 出来高査定チェックフォーム
 
     Private Sub QAssesEx_Click(sender As Object, e As EventArgs) Handles QAssesEx.Click
         Try
-            If VendorNo.Text = Nothing Then
+            If VendorList.Text = "協力業者を選択" Then
                 MsgBox("出力する業者を選択してください。", MsgBoxStyle.OkOnly, "エラー")
                 Exit Sub
             End If
+
             VN = VendorNo.Text
             SaveFileDialog1.ShowDialog()
         Catch ex As Exception
