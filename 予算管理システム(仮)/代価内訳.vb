@@ -2400,4 +2400,32 @@ Public Class 代価内訳
         End If
         代価一覧.Visible = True
     End Sub
+
+    Private Sub BreakDownList_CellChecked(sender As Object, e As RowColEventArgs) Handles BreakDownList.CellChecked
+        Try
+            '削除チェック時、数量を０にする。チェックを外したら元に戻す
+            For DetailsRowCount As Integer = 0 To BreakDownList.Rows.Count - 1
+                If DetailsRowCount < BreakDownList.Rows.Count - 3 AndAlso BreakDownList.Rows(DetailsRowCount + 2).Caption = "▶" Then
+                    SelectRow = DetailsRowCount + 2
+                    Exit For
+                End If
+            Next
+            Dim DeleteF As CellRange = BreakDownList.GetCellRange(SelectRow, 2)
+            Dim bdquanity As CellRange = BreakDownList.GetCellRange(SelectRow, 6)
+            If DeleteF.Data = True Then
+                BreakDownList(SelectRow, 15) = bdquanity.Data
+                BreakDownList(SelectRow, 6) = 0
+            Else
+                bdquanity = BreakDownList.GetCellRange(SelectRow, 15)
+                BreakDownList(SelectRow, 6) = bdquanity.Data
+                BreakDownList(SelectRow, 15) = 0
+            End If
+
+        Catch ex As Exception
+            ホーム.ErrorMessage = ex.Message
+            ホーム.StackTrace = ex.StackTrace
+            エラー.Show()
+            Exit Sub
+        End Try
+    End Sub
 End Class
